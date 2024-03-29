@@ -16,6 +16,7 @@ abstract class Link protected constructor(
      */
     @JvmField val id: Long,
 ) {
+
     /**
      * Process
      */

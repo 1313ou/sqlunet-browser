@@ -31,15 +31,15 @@ object ColorsLib {
 
         override val message: String
             get() = String.format(
-                    "%d %s [%02d] %s on %s (default %s on %s) with contrast %f ",
-                    resId,
-                    res,
-                    index,
-                    colorToString(foreColor),
-                    colorToString(backColor),
-                    colorToString(defaultForeColor),
-                    colorToString(defaultBackColor),
-                    contrast
+                "%d %s [%02d] %s on %s (default %s on %s) with contrast %f ",
+                resId,
+                res,
+                index,
+                colorToString(foreColor),
+                colorToString(backColor),
+                colorToString(defaultForeColor),
+                colorToString(defaultBackColor),
+                contrast
             )
     }
 
@@ -90,25 +90,25 @@ object ColorsLib {
 
     fun getDefaultColorAttrs(context: Context): IntArray {
         @StyleableRes val resIds = intArrayOf(
-                android.R.attr.colorBackground,
-                android.R.attr.colorForeground
+            android.R.attr.colorBackground,
+            android.R.attr.colorForeground
         )
         return getColorAttrs(context, R.style.MyTheme, *resIds)
     }
 
     fun dumpDefaultColors(context: Context) {
         val resIds = intArrayOf(
-                android.R.attr.colorForeground,
-                android.R.attr.colorBackground,
-                android.R.attr.windowBackground,
-                android.R.attr.foreground,
-                android.R.attr.textColor,
-                android.R.attr.color,
-                R.attr.color,
-                R.attr.colorOnBackground,
-                R.attr.colorSurface,
-                R.attr.colorOnSurface,
-                R.attr.backgroundColor
+            android.R.attr.colorForeground,
+            android.R.attr.colorBackground,
+            android.R.attr.windowBackground,
+            android.R.attr.foreground,
+            android.R.attr.textColor,
+            android.R.attr.color,
+            R.attr.color,
+            R.attr.colorOnBackground,
+            R.attr.colorSurface,
+            R.attr.colorOnSurface,
+            R.attr.backgroundColor
         )
         dumpColorAttrs(context, R.style.MyTheme, *resIds)
     }

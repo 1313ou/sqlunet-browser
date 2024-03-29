@@ -226,8 +226,8 @@ object MenuHandler {
                 val assetZip = Settings.getAssetPackZip(activity)
                 val assetZipEntry = activity.getString(R.string.asset_zip_entry)
                 val observer: TaskObserver<Pair<Number, Number>> = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
-                        .setTitle(activity.getString(R.string.title_dialog_assetload))
-                        .setMessage("$asset\n${activity.getString(R.string.gloss_asset_delivery_message)}")
+                    .setTitle(activity.getString(R.string.title_dialog_assetload))
+                    .setMessage("$asset\n${activity.getString(R.string.gloss_asset_delivery_message)}")
                 deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null)
                 return true
             }

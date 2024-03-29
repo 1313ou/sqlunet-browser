@@ -17,8 +17,10 @@ import org.sqlunet.browser.xn.BrowseActivity
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class RunBrowseFlatTest : TestCase() {
+
     @Rule
     var activityScenarioRule = ActivityScenarioRule(BrowseActivity::class.java)
+
     @Before
     fun before() {
         //Actions.do_choose(R.id.spinner, "senses")

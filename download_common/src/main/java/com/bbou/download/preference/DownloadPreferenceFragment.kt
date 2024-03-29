@@ -42,6 +42,7 @@ class DownloadPreferenceFragment : PreferenceFragmentCompat() {
     }
 
     companion object {
+
         private var unrecorded = ""
 
         private val STRING_SUMMARY_PROVIDER = SummaryProvider { preference: Preference -> PreferenceManager.getDefaultSharedPreferences(preference.context).getString(preference.key, unrecorded) }

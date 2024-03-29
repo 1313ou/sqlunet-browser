@@ -80,6 +80,7 @@ class DownloadedPreferenceFragment : PreferenceFragmentCompat() {
     }
 
     companion object {
+
         private var unrecorded = ""
 
         private val DATAPACK_STRING_SUMMARY_PROVIDER = SummaryProvider { preference: Preference? ->

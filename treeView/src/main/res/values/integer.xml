@@ -3,5 +3,5 @@
   -->
 
 <resources>
-	<integer name='lines_row' >10</integer>
+	<integer name='lines_row'>10</integer>
 </resources>

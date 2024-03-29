@@ -111,6 +111,7 @@ class PropBankProvider  // C O N S T R U C T O R
     }
 
     companion object {
+
         private const val TAG = "PropBankProvider"
 
         // C O N T E N T   P R O V I D E R   A U T H O R I T Y

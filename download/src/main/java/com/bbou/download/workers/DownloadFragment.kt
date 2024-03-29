@@ -357,6 +357,7 @@ class DownloadFragment : DownloadBaseFragment() {
     }
 
     companion object {
+
         /**
          * Log tag
          */

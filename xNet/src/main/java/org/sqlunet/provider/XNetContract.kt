@@ -23,6 +23,7 @@ object XNetContract {
     const val AS_CLASSES = V.AS_CLASSES
 
     object Words_FnWords_PbWords_VnWords {
+
         const val URI = "words_fnwords_pbwords_vnwords"
         const val WORD = V.WORD
         const val WORDID = V.WORDID
@@ -44,6 +45,7 @@ object XNetContract {
     }
 
     object Words_Pronunciations_FnWords_PbWords_VnWords {
+
         const val URI = "words_pronunciations_fnwords_pbwords_vnwords"
         const val PRONUNCIATION = V.PRONUNCIATION
         const val VARIETY = V.VARIETY
@@ -69,6 +71,7 @@ object XNetContract {
     }
 
     object Words_PbWords_VnWords {
+
         const val URI = "words_pbwords_vnwords"
         const val WORD = V.WORD
         const val WORDID = V.WORDID
@@ -89,6 +92,7 @@ object XNetContract {
     }
 
     object Words_VnWords_VnClasses {
+
         const val URI = "words_vnwords_vnclasses"
         const val WORDID = V.WORDID
         const val SYNSETID = V.SYNSETID
@@ -102,6 +106,7 @@ object XNetContract {
     }
 
     object Words_PbWords_PbRoleSets {
+
         const val URI = "words_pbwords_pbrolesets"
         const val WORDID = V.WORDID
         const val SYNSETID = V.SYNSETID
@@ -115,6 +120,7 @@ object XNetContract {
     }
 
     object Words_XNet {
+
         const val WORDID = V.WORDID
         const val SYNSETID = V.SYNSETID
         const val XID = V.XID
@@ -131,6 +137,7 @@ object XNetContract {
     // Sources
 
     object Sources {
+
         const val TABLE = Q.SOURCES.TABLE
         const val URI = TABLE
         const val ID = "idsource"
@@ -144,6 +151,7 @@ object XNetContract {
     // Meta
 
     object Meta {
+
         const val TABLE = Q.META.TABLE
         const val URI = TABLE
         const val CREATED = "created"
@@ -154,6 +162,7 @@ object XNetContract {
     // PredicateMatrix
 
     object PredicateMatrix {
+
         const val URI = "predicatematrix"
         const val WORDID = V.WORDID
         const val SYNSETID = V.SYNSETID
@@ -167,6 +176,7 @@ object XNetContract {
     }
 
     object PredicateMatrix_VerbNet {
+
         const val URI = "predicatematrix_verbnet"
         const val WORDID = V.WORDID
         const val SYNSETID = V.SYNSETID
@@ -175,6 +185,7 @@ object XNetContract {
     }
 
     object PredicateMatrix_PropBank {
+
         const val URI = "predicatematrix_propbank"
         const val WORDID = V.WORDID
         const val SYNSETID = V.SYNSETID
@@ -183,6 +194,7 @@ object XNetContract {
     }
 
     object PredicateMatrix_FrameNet {
+
         const val URI = "predicatematrix_framenet"
         const val WORDID = V.WORDID
         const val SYNSETID = V.SYNSETID
@@ -191,9 +203,10 @@ object XNetContract {
         const val FRAMEID = V.FRAMEID
     }
 
-// PredicateMatrix unions
+    // PredicateMatrix unions
 
     object Words_XNet_U {
+
         const val WORDID = V.WORDID
         const val SYNSETID = V.SYNSETID
         const val XID = V.XID
@@ -209,6 +222,7 @@ object XNetContract {
     }
 
     object Words_VnWords_VnClasses_U {
+
         const val URI = "words_vnwords_vnclasses_u"
         const val WORDID = V.WORDID
         const val SYNSETID = V.SYNSETID
@@ -222,18 +236,22 @@ object XNetContract {
     }
 
     object Words_VnWords_VnClasses_1U2 {
+
         const val URI = "words_vnwords_vnclasses_1u2"
     }
 
     object Words_VnWords_VnClasses_1 {
+
         const val URI = "words_vnwords_vnclasses_1"
     }
 
     object Words_VnWords_VnClasses_2 {
+
         const val URI = "words_vnwords_vnclasses_2"
     }
 
     object Words_PbWords_PbRoleSets_U {
+
         const val URI = "words_pbwords_pbrolesets_u"
         const val WORDID = V.WORDID
         const val SYNSETID = V.SYNSETID
@@ -247,18 +265,22 @@ object XNetContract {
     }
 
     object Words_PbWords_PbRoleSets_1 {
+
         const val URI = "words_pbwords_pbrolesets_1"
     }
 
     object Words_PbWords_PbRoleSets_2 {
+
         const val URI = "words_pbwords_pbrolesets_2"
     }
 
     object Words_PbWords_PbRoleSets_1U2 {
+
         const val URI = "words_pbwords_pbrolesets_1u2"
     }
 
     object Words_FnWords_FnFrames_U {
+
         const val URI = "words_fnwords_fnframes_u"
         const val WORDID = V.WORDID
         const val SYNSETID = V.SYNSETID
@@ -275,14 +297,17 @@ object XNetContract {
     }
 
     object Words_FnWords_FnFrames_1U2 {
+
         const val URI = "words_fnwords_fnframes_1u2"
     }
 
     object Words_FnWords_FnFrames_1 {
+
         const val URI = "words_fnwords_fnframes_1"
     }
 
     object Words_FnWords_FnFrames_2 {
+
         const val URI = "words_fnwords_fnframes_2"
     }
 }

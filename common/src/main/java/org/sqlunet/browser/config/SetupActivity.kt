@@ -62,7 +62,6 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         viewPager.setAdapter(pagerAdapter)
         viewPager.setOnPageChangeListener(object : SimpleOnPageChangeListener() {
             override fun onPageSelected(position: Int) {
-                
             }
         })
 
@@ -76,9 +75,9 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
             // Also specify this Activity object, which implements the TabListener interface, as the callback (listener) for when
             // this tab is selected.
             tabLayout.addTab(
-                tabLayout.newTab() 
-                    .setTag(pagerAdapter.getFragmentClass(i)) 
-                    .setContentDescription(pagerAdapter.getPageDescriptionId(i)) 
+                tabLayout.newTab()
+                    .setTag(pagerAdapter.getFragmentClass(i))
+                    .setContentDescription(pagerAdapter.getPageDescriptionId(i))
                     .setText(pagerAdapter.getPageTitleId(i))
             )
         }
@@ -204,40 +203,41 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
             return true
         } else if (itemId == R.id.action_dirs) {
             val message = reportStyledDirs(this)
-            AlertDialog.Builder(this) 
-                .setTitle(R.string.action_dirs) 
-                .setMessage(message) 
-                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } 
+            AlertDialog.Builder(this)
+                .setTitle(R.string.action_dirs)
+                .setMessage(message)
+                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                 .show()
         } else if (itemId == R.id.action_storage_dirs) {
             val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledStorageDirectoriesNamesValues(this)
             val message = namesValuesToReportStyled(dirs)
-            AlertDialog.Builder(this) 
-                .setTitle(R.string.action_storage_dirs) 
-                .setMessage(message) 
-                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } 
+            AlertDialog.Builder(this)
+                .setTitle(R.string.action_storage_dirs)
+                .setMessage(message)
+                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                 .show()
         } else if (itemId == R.id.action_cache_dirs) {
             val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledCachesNamesValues(this)
             val message = namesValuesToReportStyled(dirs)
-            AlertDialog.Builder(this) 
-                .setTitle(R.string.action_cache_dirs) 
-                .setMessage(message) 
-                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } 
+            AlertDialog.Builder(this)
+                .setTitle(R.string.action_cache_dirs)
+                .setMessage(message)
+                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                 .show()
         } else if (itemId == R.id.action_download_dirs) {
             val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledDownloadNamesValues(this)
             val message = namesValuesToReportStyled(dirs)
-            AlertDialog.Builder(this) 
-                .setTitle(R.string.action_download_dirs) 
-                .setMessage(message) 
-                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } 
+            AlertDialog.Builder(this)
+                .setTitle(R.string.action_download_dirs)
+                .setMessage(message)
+                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                 .show()
         }
         return super.onOptionsItemSelected(item)
     }
 
     companion object {
+
         private const val TAG = "SetupA"
     }
 }

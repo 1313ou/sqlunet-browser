@@ -14,6 +14,7 @@ import org.w3c.dom.Node
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object WnNodeFactory {
+
     /**
      * Make part-of-speech node
      *

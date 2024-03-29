@@ -22,12 +22,14 @@ import java.util.Locale
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object StorageUtils {
+
     private const val TAG = "StorageUtils"
 
     /**
      * Database size
      */
     private var DATABASE_SIZE_MB = Float.NaN
+
     @JvmStatic
     fun isAuto(value: String): Boolean {
         return DirType.AUTO.toString() == value
@@ -35,6 +37,7 @@ object StorageUtils {
 
     @JvmField
     val AUTO = DirType.AUTO.toString()
+
     @JvmField
     val AUTO_LABEL = DirType.AUTO.toDisplay()
     // C O L L E C T
@@ -48,8 +51,7 @@ object StorageUtils {
         val result: MutableList<Directory> = ArrayList()
 
         // A P P - S P E C I F I C - P O S S I B L Y   A D O P T E D
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) 
-        {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             result.add(Directory(context.filesDir, DirType.AUTO))
         }
 
@@ -80,8 +82,7 @@ object StorageUtils {
         // I N T E R N A L
 
         // internal private storage
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) 
-        {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             result.add(Directory(context.filesDir, DirType.APP_INTERNAL))
         }
         return result
@@ -291,6 +292,7 @@ object StorageUtils {
                     }
                 } catch (_: Throwable) {
                 }
+
                 DirType.APP_INTERNAL, DirType.AUTO -> {}
             }
         }
@@ -472,6 +474,7 @@ object StorageUtils {
      * Storage types
      */
     enum class StorageType {
+
         PRIMARY_EMULATED,
         PRIMARY_PHYSICAL,
         SECONDARY
@@ -483,6 +486,7 @@ object StorageUtils {
      * @author [Bernard Bou](mailto:1313ou@gmail.com)
      */
     enum class DirType {
+
         AUTO,
         APP_EXTERNAL_SECONDARY,
         APP_EXTERNAL_PRIMARY,
@@ -508,6 +512,7 @@ object StorageUtils {
         }
 
         companion object {
+
             /**
              * Compare (sort by preference)
              *
@@ -553,24 +558,25 @@ object StorageUtils {
      * @author [Bernard Bou](mailto:1313ou@gmail.com)
      */
     class StorageDirectory(
-	    /**
+        /**
          * Directory
          */
-	    @JvmField val dir: Directory,
-	    /**
+        @JvmField val dir: Directory,
+        /**
          * Free megabytes
          */
-	    @JvmField val free: Float,
-	    /**
+        @JvmField val free: Float,
+        /**
          * Occupancy
          */
         private val occupancy: Float,
-	    /**
+        /**
          * Status
          */
-	    @JvmField val status: Int,
+        @JvmField val status: Int,
 
-    ) : Comparable<StorageDirectory> {
+        ) : Comparable<StorageDirectory> {
+
         /**
          * Short string
          *
@@ -686,6 +692,7 @@ object StorageUtils {
         }
 
         companion object {
+
             /**
              * Status flag: null dir
              */

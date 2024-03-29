@@ -57,6 +57,7 @@ class DownloadActivity : com.bbou.download.workers.DownloadActivity() {
     }
 
     companion object {
+
         private const val TAG = "DownloadA"
     }
 }

@@ -12,6 +12,7 @@ import org.sqlunet.treeview.R
  * @param breakExpand whether this controller breaks expansion
  */
 open class QueryController(breakExpand: Boolean) : TreeController(breakExpand) {
+
     @LayoutRes
     override val layoutResId = R.layout.layout_query
 

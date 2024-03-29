@@ -13,14 +13,19 @@ import org.sqlunet.wordnet.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object Colors {
+
     @JvmField
     var membersBackColor = Color.TRANSPARENT
+
     @JvmField
     var membersForeColor = Color.TRANSPARENT
+
     @JvmField
     var wordBackColor = Color.TRANSPARENT
+
     @JvmField
     var wordForeColor = Color.TRANSPARENT
+
     @JvmStatic
     fun setColorsFromResources(context: Context) {
         // do not reorder : dependent on resource array order

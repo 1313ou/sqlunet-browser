@@ -1549,6 +1549,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @param fragment fragment
      */
     open class BaseSynsetLink(synsetId: Long, val recurse: Int, protected val fragment: Fragment) : Link(synsetId) {
+
         val parameters: Bundle?
 
         init {
@@ -1590,6 +1591,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @param fragment fragment
      */
     class RelationLink(synsetId: Long, val recurse: Int, private val fragment: Fragment) : Link(synsetId) {
+
         val parameters: Bundle?
 
         init {
@@ -1652,6 +1654,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     class SenseLink internal constructor(synsetId: Long, wordId: Long, recurse: Int, fragment: Fragment) : BaseSenseLink(synsetId, wordId, recurse, fragment)
 
     companion object {
+
         private const val TARGET_MEMBER_CHAR = '*'
     }
 }

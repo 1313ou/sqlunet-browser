@@ -157,6 +157,7 @@ object XnSettings : Settings() {
          */
         private val mask: Int,
     ) {
+
         WORDNET(0x1),
         BNC(0x2),
         VERBNET(0x10),
@@ -190,6 +191,7 @@ object XnSettings : Settings() {
      * Selectors
      */
     enum class Selector {
+
         SELECTOR,
         XSELECTOR;
 
@@ -204,6 +206,7 @@ object XnSettings : Settings() {
         }
 
         companion object {
+
             /**
              * Get preferred mode
              *

@@ -62,8 +62,7 @@ abstract class AbstractColors : TestCase() {
             ColorsLib.testColorsFromResources(context!!, R.array.palette_wn, true)
             ColorsLib.testColorsFromResources(context!!, R.array.palette_bnc, true)
             ColorsLib.testColorsFromResources(context!!, R.array.palette_sn, true)
-        }
-        catch (ce: ColorsLib.IllegalColorPair) {
+        } catch (ce: ColorsLib.IllegalColorPair) {
             Log.e(name, ce.message)
             fail(ce.message)
         }

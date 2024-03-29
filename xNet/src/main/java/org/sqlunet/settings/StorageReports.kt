@@ -34,6 +34,7 @@ import java.io.File
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object StorageReports {
+
     private const val ENLARGE = 1.2f
 
     /**
@@ -57,8 +58,8 @@ object StorageReports {
         // status
         val suitable = dir.status == 0 && dir.fitsIn(context)
         appendWithSpans(
-            sb, mbToString(dir.free), spans( 
-                if (suitable) Colors.dirOkBackColor else Colors.dirFailBackColor,  
+            sb, mbToString(dir.free), spans(
+                if (suitable) Colors.dirOkBackColor else Colors.dirFailBackColor,
                 if (suitable) Colors.dirOkForeColor else Colors.dirFailForeColor
             )
         )

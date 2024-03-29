@@ -16,6 +16,7 @@ import org.sqlunet.view.TreeOp
 class SqlunetViewTreeModel(application: Application) : AndroidViewModel(application) {
 
     fun interface ToTreeOps {
+
         fun cursorToTreeOps(cursor: Cursor): Array<TreeOp>
     }
 

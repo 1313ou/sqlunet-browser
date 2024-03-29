@@ -42,6 +42,7 @@ abstract class DocumentTransformer {
     protected abstract fun getXSLStream(from: String, isSelector: Boolean): InputStream?
 
     companion object {
+
         private const val TAG = "DocumentTransformer"
     }
 }

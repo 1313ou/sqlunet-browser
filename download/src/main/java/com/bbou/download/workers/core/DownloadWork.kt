@@ -75,7 +75,7 @@ open class DownloadWork {
                 val builder = downloadData.toData()
                 val outputData = builder
                     .putString(EXCEPTION, null)
-                    .putLong(PROGRESS, downloadData.size ?:-1)
+                    .putLong(PROGRESS, downloadData.size ?: -1)
                     .putLong(TOTAL, downloadData.size ?: -1)
                     .build()
                 Result.success(outputData)
@@ -102,6 +102,7 @@ open class DownloadWork {
     }
 
     companion object {
+
         /**
          * Worker tag
          */

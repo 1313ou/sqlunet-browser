@@ -21,6 +21,7 @@ import androidx.appcompat.widget.Toolbar
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class OthersActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -44,6 +44,7 @@ object FnSettings : Settings() {
          */
         private val mask: Int,
     ) {
+
         FRAMENET(0x40);
 
         /**

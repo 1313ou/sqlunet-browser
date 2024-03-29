@@ -17,6 +17,7 @@ internal class Domain(
     @JvmField val posId: Int,
     name: String,
 ) {
+
     @JvmField
     val domainName: String
 

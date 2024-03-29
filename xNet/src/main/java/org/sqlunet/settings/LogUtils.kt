@@ -18,6 +18,7 @@ import java.io.IOException
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object LogUtils {
+
     private const val TAG = "LogUtils"
 
     /**

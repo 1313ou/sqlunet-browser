@@ -10,7 +10,6 @@ import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
 import org.junit.Test
 
-
 class MyTaskTests {
 
     private val repeatTimes = 10

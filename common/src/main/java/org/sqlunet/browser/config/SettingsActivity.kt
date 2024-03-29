@@ -41,13 +41,13 @@ import java.util.function.BiConsumer
  */
 class SettingsActivity : BaseSettingsActivity() {
 
-
     // F R A G M E N T S
 
     /**
      * This fragment shows general preferences only.
      */
     class GeneralPreferenceFragment : PreferenceFragmentCompat() {
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             // inflate
             addPreferencesFromResource(R.xml.pref_general)
@@ -94,6 +94,7 @@ class SettingsActivity : BaseSettingsActivity() {
         }
 
         companion object {
+
             private val listener = Preference.OnPreferenceChangeListener { preference: Preference, value: Any? ->
                 val sharedPrefs = preference.getSharedPreferences()!!
                 val key = preference.key
@@ -111,6 +112,7 @@ class SettingsActivity : BaseSettingsActivity() {
      * This fragment shows general preferences only.
      */
     class FilterPreferenceFragment : PreferenceFragmentCompat() {
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             // inflate
             addPreferencesFromResource(R.xml.pref_filter)
@@ -121,6 +123,7 @@ class SettingsActivity : BaseSettingsActivity() {
      * This fragment shows database preferences only.
      */
     class DatabasePreferenceFragment : PreferenceFragmentCompat() {
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             // inflate
             addPreferencesFromResource(R.xml.pref_database)
@@ -157,6 +160,7 @@ class SettingsActivity : BaseSettingsActivity() {
      * This fragment shows database preferences only.
      */
     class DatabasePreference2Fragment : PreferenceFragmentCompat() {
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             // inflate
             addPreferencesFromResource(R.xml.pref_database2)
@@ -193,6 +197,7 @@ class SettingsActivity : BaseSettingsActivity() {
      * This fragment shows asset pack preferences only.
      */
     class AssetsPreferenceFragment : PreferenceFragmentCompat() {
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             // inflate
             addPreferencesFromResource(R.xml.pref_assets)
@@ -209,6 +214,7 @@ class SettingsActivity : BaseSettingsActivity() {
      * This fragment shows download preferences only.
      */
     class DownloadPreferenceFragment : PreferenceFragmentCompat() {
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             // inflate
             addPreferencesFromResource(R.xml.pref_download)

@@ -30,6 +30,7 @@ abstract class BaseProvider : ContentProvider() {
      * Circular buffer
      */
     class CircularBuffer internal constructor(private val limit: Int) : LinkedList<CharSequence?>() {
+
         @Synchronized
         fun addItem(value: CharSequence?) {
             addLast(value)
@@ -54,6 +55,7 @@ abstract class BaseProvider : ContentProvider() {
         }
 
         companion object {
+
             const val PREF_SQL_BUFFER_CAPACITY = "pref_sql_buffer_capacity"
             const val PREF_SQL_LOG = "pref_sql_log"
         }
@@ -169,6 +171,7 @@ abstract class BaseProvider : ContentProvider() {
     }
 
     companion object {
+
         private const val TAG = "BaseProvider"
 
         const val VENDOR = "sqlunet"

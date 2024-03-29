@@ -15,8 +15,7 @@ object ToBoolean {
         return try {
             Espresso.onView(view).check(ViewAssertions.matches(state))
             true
-        }
-        catch (e: Throwable) {
+        } catch (e: Throwable) {
             false
         }
     }
@@ -25,8 +24,7 @@ object ToBoolean {
         return try {
             Espresso.onView(view).check(assertion)
             true
-        }
-        catch (e: Throwable) {
+        } catch (e: Throwable) {
             false
         }
     }

@@ -26,10 +26,10 @@ class AboutFragment : Fragment() {
 
         // fragment
         val fragment: Fragment = SourceFragment()
-        getChildFragmentManager() 
-            .beginTransaction() 
-            .setReorderingAllowed(true) 
-            .replace(R.id.container_source, fragment) 
+        getChildFragmentManager()
+            .beginTransaction()
+            .setReorderingAllowed(true)
+            .replace(R.id.container_source, fragment)
             .commit()
     }
 }

@@ -60,6 +60,7 @@ internal class PbRoleQueryFromRoleSetId(connection: SQLiteDatabase, roleSetId: L
         get() = cursor!!.getString(4)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

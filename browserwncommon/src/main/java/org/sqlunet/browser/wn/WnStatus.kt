@@ -16,6 +16,7 @@ import org.sqlunet.browser.wn.lib.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal object WnStatus : Status() {
+
     private const val TAG = "Status"
 
     // status flags

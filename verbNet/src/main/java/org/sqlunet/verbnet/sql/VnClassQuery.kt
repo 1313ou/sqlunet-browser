@@ -39,6 +39,7 @@ internal class VnClassQuery(connection: SQLiteDatabase, classId: Long) : DBQuery
         get() = cursor!!.getString(2)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

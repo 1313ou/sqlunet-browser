@@ -122,8 +122,7 @@ class TextFragment : BaseListFragment() {
         val database = args.getString(ProviderArgs.ARG_QUERYDATABASE)
         if (database != null) {
             // wordnet
-            if ("vn" == database) 
-            {
+            if ("vn" == database) {
                 val idClasses = cursor.getColumnIndex(VerbNetContract.Lookup_VnExamples_X.CLASSES)
                 val classes = cursor.getString(idClasses)
                 Log.d(TAG, "Click: vn classes=$classes")
@@ -140,8 +139,7 @@ class TextFragment : BaseListFragment() {
                     val typedPointer = result.first[0]
                     startVn(typedPointer)
                 }
-            } else if ("pb" == database) 
-            {
+            } else if ("pb" == database) {
                 val idRoleSets = cursor.getColumnIndex(PropBankContract.Lookup_PbExamples_X.ROLESETS)
                 val roleSets = cursor.getString(idRoleSets)
                 Log.d(TAG, "Click: pb rolesets=$roleSets")
@@ -260,13 +258,14 @@ class TextFragment : BaseListFragment() {
      * @return dialog
      */
     private fun makeDialog(listener: DialogInterface.OnClickListener, vararg choices: CharSequence): AlertDialog {
-        return AlertDialog.Builder(requireContext()) 
-            .setTitle(R.string.title_activity_searchtext) 
-            .setItems(choices, listener) 
+        return AlertDialog.Builder(requireContext())
+            .setTitle(R.string.title_activity_searchtext)
+            .setItems(choices, listener)
             .create()
     }
 
     companion object {
+
         private const val TAG = "TextF"
         const val FRAGMENT_TAG = "text"
 

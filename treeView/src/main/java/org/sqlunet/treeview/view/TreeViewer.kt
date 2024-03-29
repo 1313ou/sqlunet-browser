@@ -57,6 +57,7 @@ class TreeViewer(
     private val context: Context,
     val root: TreeNode,
 ) {
+
     /**
      * (Top) tree view, immediately above root, a nested scroll view or horizontal scroll view
      */
@@ -502,7 +503,7 @@ class TreeViewer(
         // break expand
         if (overrideBreakExpand || !controller.isBreakExpand) {
             // children
-             for (child in node.children.toTypedArray<TreeNode>()) {
+            for (child in node.children.toTypedArray<TreeNode>()) {
                 //	TreeNode child = it.next();
 
                 // add child node to children view view
@@ -603,7 +604,7 @@ class TreeViewer(
             @StyleableRes val attrs = intArrayOf(android.R.attr.paddingStart, android.R.attr.paddingLeft)
             context.obtainStyledAttributes(containerStyle, attrs).use {
                 defaultValue = it.getDimensionPixelSize(0, 0)
-                 if (defaultValue == 0) {
+                if (defaultValue == 0) {
                     defaultValue = it.getDimensionPixelSize(1, 0)
                 }
             }
@@ -832,6 +833,7 @@ class TreeViewer(
     }
 
     companion object {
+
         private const val TAG = "TreeViewer"
         private const val NODES_PATH_SEPARATOR = ";"
         private const val ANIMATION_DP_PER_MS = 3f

@@ -49,6 +49,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
      * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
      */
     fun interface Listener {
+
         /**
          * Callback for when an item has been selected.
          */
@@ -282,8 +283,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
                 } else if (R.id.pm == id) {
                     val fields2 = value.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                     for (field2 in fields2) {
-                        if (field2.startsWith("pm"))
-                        {
+                        if (field2.startsWith("pm")) {
                             v.setImageResource(R.drawable.predicatematrix)
                             v.setVisibility(View.VISIBLE)
                             return
@@ -660,6 +660,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
     }
 
     companion object {
+
         private const val TAG = "XSelectorsF"
 
         /**

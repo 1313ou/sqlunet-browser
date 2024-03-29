@@ -22,6 +22,7 @@ internal class PbRoleSet private constructor(
     @JvmField val roleSetId: Long,
     @JvmField val wordId: Long,
 ) {
+
     companion object {
 
         /**

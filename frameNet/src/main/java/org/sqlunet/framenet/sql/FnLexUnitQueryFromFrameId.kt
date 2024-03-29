@@ -63,6 +63,7 @@ internal class FnLexUnitQueryFromFrameId(connection: SQLiteDatabase, luId: Long)
         get() = cursor!!.getInt(6).toLong()
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

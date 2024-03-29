@@ -200,7 +200,6 @@ open class DownloadCore(private val progressConsumer: BiConsumer<Long, Long>) {
 
             // date
             setDate(outFile, date)
-
         } finally {
             httpConnection?.disconnect()
         }

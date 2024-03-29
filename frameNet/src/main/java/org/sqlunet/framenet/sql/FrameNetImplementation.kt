@@ -339,6 +339,7 @@ class FrameNetImplementation(private val queryFromFnWord: Boolean) : FrameNetInt
     }
 
     companion object {
+
         const val FN_NS = "http://org.sqlunet/fn"
 
         /**

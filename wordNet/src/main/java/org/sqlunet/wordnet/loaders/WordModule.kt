@@ -18,6 +18,7 @@ import org.sqlunet.treeview.model.TreeNode
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class WordModule(fragment: TreeFragment) : BaseModule(fragment) {
+
     private var wordId: Long? = null
 
     override fun unmarshal(pointer: Parcelable) {

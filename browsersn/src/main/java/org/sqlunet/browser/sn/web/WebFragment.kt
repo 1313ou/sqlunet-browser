@@ -61,6 +61,7 @@ import java.net.URLDecoder
 class WebFragment : Fragment() {
 
     private inner class WebDocumentStringLoader(val context: Context, val pointer: Parcelable?, val pos: Char, val type: Int, val data: String?, val sources: Int, val xml: Boolean) : DocumentStringLoader {
+
         override fun getDoc(): String? {
             try {
                 DataSource(StorageSettings.getDatabasePath(context)).use {
@@ -95,8 +96,7 @@ class WebFragment : Fragment() {
                                     val xSources = xPointer.getXSources()
                                     val wordId = xPointer.getWordId()
                                     val synsetId = xPointer.getSynsetId()
-                                    if (xSources == null || xSources.contains("wn")) 
-                                    {
+                                    if (xSources == null || xSources.contains("wn")) {
                                         wnDomDoc = WordNetImplementation().querySenseDoc(db, wordId, synsetId)
                                     }
                                     if (org.sqlunet.browser.sn.SnSettings.Source.BNC.test(sources)) {
@@ -255,8 +255,7 @@ class WebFragment : Fragment() {
                     val value = target[1]
                     Log.d(TAG, "Query: $query name=$name value=$value")
                     val targetIntent = Intent(requireContext(), WebActivity::class.java)
-                    if ("word" == name) 
-                    {
+                    if ("word" == name) {
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYSTRING, value)
                     } else {
                         val id = value.toLong()
@@ -362,10 +361,10 @@ class WebFragment : Fragment() {
      */
     private fun docsToString(
         word: String?,
-        xml: Boolean,  
-        isSelector: Boolean,  
-        wnDomDoc: Document?,  
-        snDomDoc: Document?,  
+        xml: Boolean,
+        isSelector: Boolean,
+        wnDomDoc: Document?,
+        snDomDoc: Document?,
         bncDomDoc: Document?,
     ): String {
         // LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log")
@@ -461,6 +460,7 @@ class WebFragment : Fragment() {
     }
 
     companion object {
+
         private const val TAG = "WebF"
         const val FRAGMENT_TAG = "web"
         private const val SQLUNET_NS = "http://org.sqlunet"

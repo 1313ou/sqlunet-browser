@@ -63,8 +63,7 @@ class RunQueriesTest {
         val sql = toSql(code, providerSql)
         try {
             processor.process(sql)
-        }
-        catch (e: Exception) {
+        } catch (e: Exception) {
             System.err.println(providerSql)
             throw e
         }

@@ -113,6 +113,7 @@ class AutoEditTextPreference : DialogPreference {
     // D I A L O G  F R A G M E N T
 
     class AutoEditTextPreferenceDialogFragmentCompat : PreferenceDialogFragmentCompat() {
+
         private var editView: AutoCompleteTextView? = null
         override fun onBindDialogView(view: View) {
             super.onBindDialogView(view)
@@ -149,6 +150,7 @@ class AutoEditTextPreference : DialogPreference {
         }
 
         companion object {
+
             fun newInstance(pref: AutoEditTextPreference): AutoEditTextPreferenceDialogFragmentCompat {
                 val fragment = AutoEditTextPreferenceDialogFragmentCompat()
                 val args = Bundle()
@@ -194,6 +196,7 @@ class AutoEditTextPreference : DialogPreference {
     }
 
     companion object {
+
         private const val DIALOG_FRAGMENT_TAG = "AutoEditTextPreference"
 
         /**

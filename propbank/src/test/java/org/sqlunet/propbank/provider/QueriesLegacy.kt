@@ -122,9 +122,9 @@ object QueriesLegacy {
                 }
                 table = "pb_words INNER JOIN words USING (wordid)"
                 projection = arrayOf(
-                        "pbwordid AS _id",
-                        "word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
-                        "word AS " + SearchManager.SUGGEST_COLUMN_QUERY
+                    "pbwordid AS _id",
+                    "word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
+                    "word AS " + SearchManager.SUGGEST_COLUMN_QUERY
                 )
                 selection = "word LIKE ? || '%'"
                 selectionArgs = arrayOf(uriLast)
@@ -136,9 +136,9 @@ object QueriesLegacy {
                 }
                 table = "pb_words_word_fts4"
                 projection = arrayOf(
-                        "pbwordid AS _id",
-                        "word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
-                        "word AS " + SearchManager.SUGGEST_COLUMN_QUERY
+                    "pbwordid AS _id",
+                    "word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
+                    "word AS " + SearchManager.SUGGEST_COLUMN_QUERY
                 )
                 selection = "word MATCH ?"
                 selectionArgs = arrayOf("$uriLast*")

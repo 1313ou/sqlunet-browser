@@ -32,9 +32,9 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
         // fragment
         if (savedInstanceState == null) {
             val initial = intent.getBooleanExtra(INITIAL_ARG, false)
-            fm.beginTransaction() 
-                .setReorderingAllowed(true) 
-                .replace(R.id.settings, if (initial) Header2Fragment() else HeaderFragment()) 
+            fm.beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.settings, if (initial) Header2Fragment() else HeaderFragment())
                 .commit()
             setTitle(R.string.title_settings)
         } else {
@@ -99,16 +99,19 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
                 restart()
                 return true
             }
+
             R.id.action_diagnostics -> {
                 val intent = Intent(this, DiagnosticsActivity::class.java)
                 startActivity(intent)
                 return true
             }
+
             R.id.action_logs -> {
                 val intent = Intent(this, LogsActivity::class.java)
                 startActivity(intent)
                 return true
             }
+
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -131,23 +134,25 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
         fragment.setTargetFragment(caller, 0)
 
         // Replace the existing Fragment with the new Fragment
-        supportFragmentManager 
-            .beginTransaction() 
-            .setReorderingAllowed(true) 
-            .replace(R.id.settings, fragment) 
-            .addToBackStack("settings") 
+        supportFragmentManager
+            .beginTransaction()
+            .setReorderingAllowed(true)
+            .replace(R.id.settings, fragment)
+            .addToBackStack("settings")
             .commit()
         return true
     }
 
     // H E A D E R   F R A G M E N T
     class HeaderFragment : PreferenceFragmentCompat() {
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.pref_headers, rootKey)
         }
     }
 
     class Header2Fragment : PreferenceFragmentCompat() {
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.pref_headers2, rootKey)
         }
@@ -188,6 +193,7 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
     }
 
     companion object {
+
         private const val TITLE_TAG = "settingsActivityTitle"
         const val INITIAL_ARG = "settings_header"
     }

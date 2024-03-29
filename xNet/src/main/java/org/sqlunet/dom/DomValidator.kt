@@ -17,6 +17,7 @@ import java.io.StringReader
 import java.net.URL
 
 object DomValidator {
+
     private const val TAG = "XMLValidator"
 
     /**

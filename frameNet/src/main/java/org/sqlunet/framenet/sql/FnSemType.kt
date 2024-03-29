@@ -17,6 +17,7 @@ class FnSemType private constructor(
     @JvmField val semTypeName: String,
     @JvmField val semTypeDefinition: String,
 ) {
+
     companion object {
 
         /**

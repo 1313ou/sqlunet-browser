@@ -29,6 +29,7 @@ class SenseFragment : SynsetFragment() {
     }
 
     companion object {
+
         const val FRAGMENT_TAG = "wordnet_sense"
     }
 }

@@ -117,9 +117,9 @@
 		<item>pm_roles</item>
 		<item>pm_predicates</item>
 		<!-- predicate matrix DERIVED -->
-<!--		<item>pmvn</item>-->
-<!--		<item>pmpb</item>-->
-<!--		<item>pmfn</item>-->
+		<!--		<item>pmvn</item>-->
+		<!--		<item>pmpb</item>-->
+		<!--		<item>pmfn</item>-->
 
 		<!-- bnc -->
 		<item>bnc_bncs</item>

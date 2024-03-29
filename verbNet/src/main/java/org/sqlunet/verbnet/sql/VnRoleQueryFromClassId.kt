@@ -47,6 +47,7 @@ internal class VnRoleQueryFromClassId(connection: SQLiteDatabase, classId: Long)
         get() = cursor!!.getString(3)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

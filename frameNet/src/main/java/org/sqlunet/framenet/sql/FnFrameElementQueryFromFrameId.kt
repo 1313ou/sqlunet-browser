@@ -77,6 +77,7 @@ internal class FnFrameElementQueryFromFrameId(connection: SQLiteDatabase, frameI
         get() = cursor!!.getInt(8)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

@@ -8,6 +8,7 @@ import android.content.Context
 import android.view.View
 
 internal class DialogOptions {
+
     private var showNeutralButton = true
     private var showNegativeButton = true
     private var showTitle = true

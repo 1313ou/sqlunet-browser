@@ -70,6 +70,7 @@ abstract class BaseDownloadFragment : Fragment() {
          */
         val res: Int,
     ) {
+
         /**
          * Pending
          */

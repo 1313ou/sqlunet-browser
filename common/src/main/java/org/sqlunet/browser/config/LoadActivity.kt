@@ -66,6 +66,7 @@ class LoadActivity : AppCompatActivity() {
     }
 
     companion object {
+
         private const val TAG = "LoadA"
     }
 }

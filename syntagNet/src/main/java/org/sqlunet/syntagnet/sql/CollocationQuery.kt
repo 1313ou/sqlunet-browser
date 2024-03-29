@@ -20,6 +20,7 @@ internal class CollocationQuery(connection: SQLiteDatabase, collocationId: Long)
     }
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

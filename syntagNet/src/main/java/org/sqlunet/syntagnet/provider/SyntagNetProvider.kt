@@ -72,6 +72,7 @@ class SyntagNetProvider : BaseProvider() {
     }
 
     companion object {
+
         private const val TAG = "SyntagNetProvider"
 
         // C O N T E N T   P R O V I D E R   A U T H O R I T Y

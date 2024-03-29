@@ -12,6 +12,7 @@ import java.util.regex.Pattern
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object MarkupSpanner : Spanner() {
+
     /**
      * Apply spans
      *
@@ -25,10 +26,10 @@ object MarkupSpanner : Spanner() {
      */
     @JvmStatic
     fun setSpan(
-        text: CharSequence,  
-        sb: SpannableStringBuilder, spanFactory: SpanFactory,  
-        flags: Long,  
-        pattern: Pattern,  
+        text: CharSequence,
+        sb: SpannableStringBuilder, spanFactory: SpanFactory,
+        flags: Long,
+        pattern: Pattern,
         vararg extraPatterns: Pattern
     ): CharSequence {
         // specific patterns
@@ -116,6 +117,7 @@ object MarkupSpanner : Spanner() {
      * @author [Bernard Bou](mailto:1313ou@gmail.com)
      */
     fun interface SpanFactory {
+
         fun makeSpans(selector: String, flags: Long): Any?
     }
 
@@ -125,6 +127,7 @@ object MarkupSpanner : Spanner() {
      * @author [Bernard Bou](mailto:1313ou@gmail.com)
      */
     enum class SpanPosition {
+
         TAG1,
         TEXT,
         TAG2;
@@ -143,6 +146,7 @@ object MarkupSpanner : Spanner() {
         }
 
         companion object {
+
             /**
              * Make position from flags
              *

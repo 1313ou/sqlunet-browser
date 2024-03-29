@@ -26,6 +26,7 @@ internal open class Collocation private constructor(
     @JvmField val word1: String,
     @JvmField val word2: String,
 ) {
+
     internal class WithDefinitionAndPos(
         collocationId: Long, word1Id: Long, word2Id: Long, synset1Id: Long, synset2Id: Long, word1: String, word2: String,
         @JvmField val pos1: Char,

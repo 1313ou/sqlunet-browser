@@ -32,14 +32,15 @@ class SqlDialogFragment : DialogFragment() {
 
         // sub fragment
         val fragment: Fragment = SqlStatementsFragment()
-        getChildFragmentManager() 
-            .beginTransaction() 
-            .setReorderingAllowed(true) 
-            .replace(R.id.container_sql_statements, fragment) 
+        getChildFragmentManager()
+            .beginTransaction()
+            .setReorderingAllowed(true)
+            .replace(R.id.container_sql_statements, fragment)
             .commit()
     }
 
     companion object {
+
         fun show(manager: FragmentManager) {
             val dialogFragment = SqlDialogFragment()
             dialogFragment.show(manager, "sql")

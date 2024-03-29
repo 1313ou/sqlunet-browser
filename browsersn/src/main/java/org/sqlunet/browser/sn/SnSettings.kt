@@ -127,6 +127,7 @@ object SnSettings : Settings() {
          */
         private val mask: Int,
     ) {
+
         WORDNET(0x1),
         BNC(0x2),
         SYNTAGNET(0x1000);
@@ -158,6 +159,7 @@ object SnSettings : Settings() {
      * Selectors
      */
     enum class Selector {
+
         SELECTOR,
         XSELECTOR,
         SELECTOR_ALT;
@@ -173,6 +175,7 @@ object SnSettings : Settings() {
         }
 
         companion object {
+
             /**
              * Get preferred mode
              *

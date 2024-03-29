@@ -11,19 +11,19 @@ import org.sqlunet.propbank.provider.PropBankControl.querySuggest
 class QueriesUnitTest {
 
     private val codes = intArrayOf(
-            PropBankControl.PBROLESET,
-            PropBankControl.PBROLESETS,
-            PropBankControl.PBROLESETS_X,
-            PropBankControl.PBROLESETS_X_BY_ROLESET,
-            PropBankControl.WORDS_PBROLESETS,
-            PropBankControl.PBROLESETS_PBROLES,
-            PropBankControl.PBROLESETS_PBEXAMPLES,
-            PropBankControl.PBROLESETS_PBEXAMPLES_BY_EXAMPLE,
-            PropBankControl.LOOKUP_FTS_EXAMPLES,
-            PropBankControl.LOOKUP_FTS_EXAMPLES_X,
-            PropBankControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE,
-            PropBankControl.SUGGEST_WORDS,
-            PropBankControl.SUGGEST_FTS_WORDS
+        PropBankControl.PBROLESET,
+        PropBankControl.PBROLESETS,
+        PropBankControl.PBROLESETS_X,
+        PropBankControl.PBROLESETS_X_BY_ROLESET,
+        PropBankControl.WORDS_PBROLESETS,
+        PropBankControl.PBROLESETS_PBROLES,
+        PropBankControl.PBROLESETS_PBEXAMPLES,
+        PropBankControl.PBROLESETS_PBEXAMPLES_BY_EXAMPLE,
+        PropBankControl.LOOKUP_FTS_EXAMPLES,
+        PropBankControl.LOOKUP_FTS_EXAMPLES_X,
+        PropBankControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE,
+        PropBankControl.SUGGEST_WORDS,
+        PropBankControl.SUGGEST_FTS_WORDS
     )
     private val uriLast = "LAST"
     private val projection = arrayOf("PROJ1", "PROJ2", "PROJ3")

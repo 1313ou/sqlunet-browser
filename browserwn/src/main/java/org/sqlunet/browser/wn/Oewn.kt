@@ -16,10 +16,12 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 
 object Oewn {
+
     private const val PREF_FILE_NAME = "android_launches_pref_file"
     private const val PREF_KEY_LAUNCH_TIMES = "android_launch_times"
     private const val PREF_KEY_OEWN_NO_NOTICE = "pref_oewn_no_notice"
     private const val HOW_OFTEN = 10
+
     @JvmStatic
     fun hook(activity: Activity) {
         val prefs = activity.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
@@ -46,10 +48,10 @@ object Oewn {
             sb.append('@').setSpan(ImageSpan(activity, R.drawable.logo_semantikos_ewn), sb.length - 1, sb.length, 0)
             sb.append('\n').append(message2)
             val snackbar = Snackbar.make(parentLayout, sb, Snackbar.LENGTH_INDEFINITE)
-            snackbar.setTextMaxLines(10) 
-                .setBackgroundTint(ContextCompat.getColor(activity, R.color.snackbar_oewn)) 
-                .setAction(R.string.obsolete_get_oewn) { install(activity.getString(R.string.semantikos_ewn_uri), activity) } 
-                .setActionTextColor(ContextCompat.getColor(activity, android.R.color.white)) 
+            snackbar.setTextMaxLines(10)
+                .setBackgroundTint(ContextCompat.getColor(activity, R.color.snackbar_oewn))
+                .setAction(R.string.obsolete_get_oewn) { install(activity.getString(R.string.semantikos_ewn_uri), activity) }
+                .setActionTextColor(ContextCompat.getColor(activity, android.R.color.white))
                 .setBehavior(behavior).show()
         }
     }

@@ -31,6 +31,7 @@ open class Settings {
      * Selector view modes
      */
     enum class SelectorViewMode {
+
         VIEW,
         WEB;
 
@@ -61,10 +62,12 @@ open class Settings {
      * Detail detail view modes
      */
     enum class DetailViewMode {
+
         VIEW,
         WEB;
 
         companion object {
+
             /**
              * Get preferred view mode
              *
@@ -92,6 +95,7 @@ open class Settings {
      * Selectors
      */
     enum class Selector {
+
         SELECTOR;
 
         /**
@@ -461,7 +465,7 @@ open class Settings {
                     packageInfo.versionCode.toLong()
                 }
             } catch (ignored: PackageManager.NameNotFoundException) {
-                
+
             }
 
             // result
@@ -476,17 +480,17 @@ open class Settings {
         @SuppressLint("CommitPrefEdits", "ApplySharedPref")
         fun onUpgrade(context: Context, build: Long) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-            prefs 
-                .edit() 
+            prefs
+                .edit()
                 // clear all settings
                 // .clear()
                 // clear some settings
-                .remove(PREF_DOWNLOAD_MODE) 
-                .remove(PREF_DOWNLOAD_SITE) 
-                .remove(PREF_DOWNLOAD_DBFILE) 
-                .remove(PREF_LAUNCH) 
+                .remove(PREF_DOWNLOAD_MODE)
+                .remove(PREF_DOWNLOAD_SITE)
+                .remove(PREF_DOWNLOAD_DBFILE)
+                .remove(PREF_LAUNCH)
                 // flag as 'has run'
-                .putLong(PREF_VERSION, build) 
+                .putLong(PREF_VERSION, build)
                 .apply()
         }
 

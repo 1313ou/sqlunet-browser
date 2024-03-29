@@ -91,6 +91,7 @@ class Word : BasicWord {
     }
 
     companion object {
+
         private const val TAG = "Word"
 
         /**

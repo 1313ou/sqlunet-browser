@@ -22,6 +22,7 @@ import javax.xml.transform.stream.StreamSource
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object DomTransformer {
+
     private const val TAG = "XSLTransformer"
 
     /**

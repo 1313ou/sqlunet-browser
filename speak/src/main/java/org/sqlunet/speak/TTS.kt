@@ -64,8 +64,8 @@ class TTS(context: Context?, written: String, ipa: String, locale: Locale?, voic
                     tts.shutdown()
                 }
 
-                 @Deprecated("Deprecated in Java", ReplaceWith("onError(utteranceId: String, errorCode: Int)"))
-                 override fun onError(utteranceId: String) {
+                @Deprecated("Deprecated in Java", ReplaceWith("onError(utteranceId: String, errorCode: Int)"))
+                override fun onError(utteranceId: String) {
                     Log.e(TAG, "error $utteranceId")
                 }
 
@@ -101,6 +101,7 @@ class TTS(context: Context?, written: String, ipa: String, locale: Locale?, voic
     }
 
     companion object {
+
         const val TAG = "TTS"
         private val DEFAULT_LOCALE: Locale = Locale.UK
         private fun toLocale(locale: String?): Locale {

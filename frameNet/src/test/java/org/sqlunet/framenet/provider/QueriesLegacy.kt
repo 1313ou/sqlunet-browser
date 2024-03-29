@@ -334,9 +334,9 @@ object QueriesLegacy {
                 }
                 table = "fn_words"
                 projection = arrayOf(
-                        "fnwordid AS _id",
-                        "word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
-                        "word AS " + SearchManager.SUGGEST_COLUMN_QUERY
+                    "fnwordid AS _id",
+                    "word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
+                    "word AS " + SearchManager.SUGGEST_COLUMN_QUERY
                 )
                 selection = "word LIKE ? || '%'"
                 selectionArgs = arrayOf(uriLast)
@@ -348,9 +348,9 @@ object QueriesLegacy {
                 }
                 table = "fn_words_word_fts4"
                 projection = arrayOf(
-                        "fnwordid AS _id",
-                        "word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
-                        "word AS " + SearchManager.SUGGEST_COLUMN_QUERY
+                    "fnwordid AS _id",
+                    "word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
+                    "word AS " + SearchManager.SUGGEST_COLUMN_QUERY
                 )
                 selection = "word MATCH ?"
                 selectionArgs = arrayOf("$uriLast*")

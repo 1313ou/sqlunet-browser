@@ -26,8 +26,8 @@ import org.sqlunet.settings.Settings
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class AssetLoadFragment : Fragment(), TaskObserver<Pair<Number, Number>>
-{
+class AssetLoadFragment : Fragment(), TaskObserver<Pair<Number, Number>> {
+
     private var titleTextView: TextView? = null
     private var messageTextView: TextView? = null
     private var progressBar: ProgressBar? = null
@@ -62,7 +62,6 @@ class AssetLoadFragment : Fragment(), TaskObserver<Pair<Number, Number>>
         val assetZip = Settings.getAssetPackZip(context)
         val assetZipEntry = context.getString(R.string.asset_zip_entry)
         val whenComplete = Runnable {
-
 
             // avoid IllegalStateException on completion
             val context2 = getContext()
@@ -126,6 +125,7 @@ class AssetLoadFragment : Fragment(), TaskObserver<Pair<Number, Number>>
     }
 
     companion object {
+
         private const val TAG = "AssetF"
     }
 }

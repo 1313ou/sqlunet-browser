@@ -12,12 +12,14 @@ import androidx.preference.PreferenceManager
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object Settings {
+
     private const val PREF_PM_MODE = "pref_pm_mode"
 
     /**
      * Modes
      */
     enum class PMMode {
+
         ROLES,
         ROWS_GROUPED_BY_ROLE,
         ROWS_GROUPED_BY_SYNSET,
@@ -40,6 +42,7 @@ object Settings {
         }
 
         companion object {
+
             /**
              * Get mode preference
              *

@@ -69,6 +69,7 @@ internal class VnFrameQueryFromClassId(connection: SQLiteDatabase, classId: Long
         get() = cursor!!.getString(7)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

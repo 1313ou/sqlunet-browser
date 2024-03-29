@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<!DOCTYPE resources [	<!ENTITY bbuser "bbuser">	<!ENTITY bbrepo "bbrepo">	<!ENTITY bbcommit "xxxx">	]>
+<!DOCTYPE resources [    <!ENTITY bbuser "bbuser">    <!ENTITY bbrepo "bbrepo">    <!ENTITY bbcommit "xxxx">    ]>
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 

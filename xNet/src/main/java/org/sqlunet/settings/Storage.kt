@@ -17,6 +17,7 @@ import java.io.File
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object Storage {
+
     private const val TAG = "Storage"
 
     /**
@@ -73,8 +74,7 @@ object Storage {
         // test if set in preference
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         val prefValue = sharedPref.getString(PREF_SQLUNET_STORAGE, null)
-        if (!prefValue.isNullOrEmpty()) 
-        {
+        if (!prefValue.isNullOrEmpty()) {
             // pref defined
             if (StorageUtils.DirType.AUTO.toString() != prefValue) {
                 val prefStorage = File(prefValue)
@@ -90,8 +90,7 @@ object Storage {
         //  pref not defined || defined as auto || defined as invalid value
 
         // auto (as of marshmallow which allows for adopted storage)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && StorageUtils.DirType.AUTO.toString() == prefValue) 
-        {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && StorageUtils.DirType.AUTO.toString() == prefValue) {
             val autoStorage = context.filesDir
             Log.d(TAG, StorageUtils.DirType.AUTO.toDisplay() + ' ' + autoStorage.absolutePath)
             return autoStorage // context.getDatabasePath(DBFILE).getParentFile()

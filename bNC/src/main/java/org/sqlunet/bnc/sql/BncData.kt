@@ -55,6 +55,7 @@ data class BncData(
 ) {
 
     companion object {
+
         @JvmStatic
         fun makeData(connection: SQLiteDatabase, targetWord: String): List<BncData?>? {
             var result: MutableList<BncData?>? = null

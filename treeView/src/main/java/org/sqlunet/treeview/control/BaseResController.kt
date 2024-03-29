@@ -21,6 +21,7 @@ import org.sqlunet.treeview.model.TreeNode
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 abstract class BaseResController(breakExpand: Boolean) : Controller(breakExpand) {
+
     abstract val layoutResId: Int
 
     @CallSuper

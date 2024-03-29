@@ -75,6 +75,7 @@ internal class FnLexUnitQuery(connection: SQLiteDatabase, targetLuId: Long) : DB
         get() = cursor!!.getString(8)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

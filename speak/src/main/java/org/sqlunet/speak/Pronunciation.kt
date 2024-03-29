@@ -27,6 +27,7 @@ open class Pronunciation(@JvmField val ipa: String, variety: String?) : Comparab
     }
 
     companion object {
+
         val COMPARATOR = java.util.Comparator { p1: Pronunciation, p2: Pronunciation ->
             if (p1.variety == null && p2.variety == null) {
                 return@Comparator 0

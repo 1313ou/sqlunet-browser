@@ -24,6 +24,7 @@ class FrameNetProcessor : Preprocessor(*replacers) {
     }
 
     companion object {
+
         /**
          * Replacers for preprocessor
          */

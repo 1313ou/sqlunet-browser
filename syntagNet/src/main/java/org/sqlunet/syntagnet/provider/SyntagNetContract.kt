@@ -26,6 +26,7 @@ object SyntagNetContract {
     // T A B L E S
 
     object SnCollocations {
+
         const val TABLE = Q.COLLOCATIONS.TABLE
         const val URI = TABLE
         const val COLLOCATIONID = V.SYNTAGMID
@@ -37,6 +38,7 @@ object SyntagNetContract {
     }
 
     object SnCollocations_X {
+
         const val URI = "sn_syntagms_x"
         const val COLLOCATIONID = V.SYNTAGMID
         const val WORD1ID = V.WORD1ID

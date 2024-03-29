@@ -47,6 +47,7 @@ class VerbNetFragment : TreeFragment() {
     }
 
     companion object {
+
         const val FRAGMENT_TAG = "verbnet"
     }
 }

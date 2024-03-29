@@ -248,6 +248,7 @@ object WordNetControl {
     class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?)
 
     fun interface Factory {
+
         fun make(selection: String?): String?
     }
 }

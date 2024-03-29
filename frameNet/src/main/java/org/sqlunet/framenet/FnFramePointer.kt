@@ -31,6 +31,7 @@ class FnFramePointer : Pointer {
     }
 
     companion object CREATOR : Parcelable.Creator<FnFramePointer> {
+
         override fun createFromParcel(parcel: Parcel): FnFramePointer {
             return FnFramePointer(parcel)
         }

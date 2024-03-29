@@ -12,6 +12,7 @@ import android.os.Parcelable
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 open class Pointer : IPointer {
+
     /**
      * Id of pointed-to object
      */

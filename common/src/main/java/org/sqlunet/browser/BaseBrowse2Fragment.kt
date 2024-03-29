@@ -21,6 +21,7 @@ import org.sqlunet.settings.Settings.DetailViewMode
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 abstract class BaseBrowse2Fragment : Fragment() {
+
     @JvmField
     protected var pointer: Parcelable? = null
 
@@ -100,6 +101,7 @@ abstract class BaseBrowse2Fragment : Fragment() {
     protected abstract fun search()
 
     companion object {
+
         private const val TAG = "Browse2F"
         const val FRAGMENT_TAG = "browse2"
         private const val POINTER_STATE = "pointer"

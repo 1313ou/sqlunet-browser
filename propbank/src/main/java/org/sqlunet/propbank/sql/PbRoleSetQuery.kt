@@ -46,8 +46,8 @@ internal class PbRoleSetQuery(connection: SQLiteDatabase, roleSetId: Long) : DBQ
     val roleSetDescr: String
         get() = cursor!!.getString(3)
 
-
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

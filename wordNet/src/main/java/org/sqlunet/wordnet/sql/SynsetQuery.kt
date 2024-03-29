@@ -45,6 +45,7 @@ class SynsetQuery(connection: SQLiteDatabase, synsetId: Long) : DBQuery(connecti
         get() = cursor!!.getString(3)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

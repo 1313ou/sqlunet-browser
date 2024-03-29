@@ -30,24 +30,30 @@ object VerbNetFactories {
 
     // role
     val roleFactory = Factories.roleFactory
+
     @JvmField
     val themroleFactory = Spanner.SpanFactory { _: Long -> spans(Colors.themroleBackColor, Colors.themroleForeColor) }
 
     // frame
     val frameFactory = Spanner.SpanFactory { _: Long -> spans(Colors.vnFrameBackColor, Colors.vnFrameForeColor, StyleSpan(Typeface.BOLD)) }
     val framesubnameFactory = Spanner.SpanFactory { _: Long -> spans(Colors.vnFrameSubnameBackColor, Colors.vnFrameSubnameForeColor) }
+
     @JvmField
     val catFactory = Spanner.SpanFactory { _: Long -> spans(Colors.catBackColor, Colors.catForeColor) }
+
     @JvmField
     val catValueFactory = Spanner.SpanFactory { _: Long -> spans(Colors.catValueBackColor, Colors.catValueForeColor) }
 
     // semantics
     @JvmField
     val predicateFactory = Spanner.SpanFactory { _: Long -> spans(Colors.vnPredicateBackColor, Colors.vnPredicateForeColor) }
+
     @JvmField
     val argsFactory: Spanner.SpanFactory = Spanner.SpanFactory { _: Long -> null }
+
     @JvmField
     val constantFactory = Spanner.SpanFactory { _: Long -> spans(Colors.constantBackColor, Colors.constantForeColor) }
+
     @JvmField
     val eventFactory = Spanner.SpanFactory { _: Long -> spans(Colors.eventBackColor, Colors.eventForeColor) }
 

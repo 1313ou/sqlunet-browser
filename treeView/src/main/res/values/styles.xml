@@ -6,9 +6,9 @@
 
 	<!-- Base application theme. -->
 
-<!--	<style name="TreeNodeStyle">-->
-<!--		<item name="android:paddingLeft">20dp</item>-->
-<!--	</style>-->
+	<!--	<style name="TreeNodeStyle">-->
+	<!--		<item name="android:paddingLeft">20dp</item>-->
+	<!--	</style>-->
 
 	<style name="TreeNodeStyleCustom">
 		<item name="android:paddingLeft">@dimen/padding_tree_child_offset</item>
@@ -19,9 +19,9 @@
 
 	</style>
 
-<!--	<style name="TreeNodeStyleDivided">-->
-<!--		<item name="showDividers">middle</item>-->
-<!--		<item name="divider">@android:drawable/divider_horizontal_bright</item>-->
-<!--	</style>-->
+	<!--	<style name="TreeNodeStyleDivided">-->
+	<!--		<item name="showDividers">middle</item>-->
+	<!--		<item name="divider">@android:drawable/divider_horizontal_bright</item>-->
+	<!--	</style>-->
 
 </resources>

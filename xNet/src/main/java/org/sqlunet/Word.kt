@@ -12,6 +12,7 @@ import android.os.Parcelable
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class Word : IPointer {
+
     /**
      * Word
      */
@@ -47,6 +48,7 @@ class Word : IPointer {
     }
 
     companion object CREATOR : Parcelable.Creator<Word> {
+
         override fun createFromParcel(parcel: Parcel): Word {
             return Word(parcel)
         }

@@ -2,8 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	app:title="@string/pref_header_filter"
@@ -13,6 +12,6 @@
 		android:defaultValue="true"
 		android:key="pref_enable_framenet"
 		android:summary="@string/pref_description_enable_framenet"
-		android:title="@string/pref_title_enable_framenet"/>
+		android:title="@string/pref_title_enable_framenet" />
 
 </PreferenceScreen>

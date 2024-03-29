@@ -118,6 +118,7 @@ class ResourcesDownloader internal constructor(private val listener: Listener) :
      * Resources downloader listener
      */
     fun interface Listener {
+
         /**
          * Done
          *
@@ -127,6 +128,7 @@ class ResourcesDownloader internal constructor(private val listener: Listener) :
     }
 
     companion object {
+
         private const val TAG = "ResourcesDownloader"
 
         // Get resources from resource directory

@@ -22,7 +22,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import org.sqlunet.browser.common.R
 
-abstract class BaseSelectorsListFragment  : LoggingFragment(), OnItemClickListener {
+abstract class BaseSelectorsListFragment : LoggingFragment(), OnItemClickListener {
+
     /**
      * Search query
      */
@@ -198,6 +199,7 @@ abstract class BaseSelectorsListFragment  : LoggingFragment(), OnItemClickListen
     protected abstract fun activate(position: Int)
 
     companion object {
+
         private const val TAG = "SelectorsListF"
     }
 }

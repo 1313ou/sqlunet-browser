@@ -33,6 +33,7 @@ class PmRolePointer : Pointer {
     }
 
     companion object CREATOR : Parcelable.Creator<PmRolePointer> {
+
         override fun createFromParcel(parcel: Parcel): PmRolePointer {
             return PmRolePointer(parcel)
         }

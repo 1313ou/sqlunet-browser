@@ -25,6 +25,7 @@ class SearchRecentSuggestions(context: Context, mode: Int) {
 
     // a superset of all possible column names (need not all be in table)
     object SuggestionColumns : BaseColumns {
+
         const val DISPLAY1 = "display1"
 
         // const val DISPLAY2 = "display2"
@@ -110,6 +111,7 @@ class SearchRecentSuggestions(context: Context, mode: Int) {
         get() = getAuthority(mContext)
 
     companion object {
+
         private const val TAG = "SearchRecentSuggestions"
 
         @JvmStatic

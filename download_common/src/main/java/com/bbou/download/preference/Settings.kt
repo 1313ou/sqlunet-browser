@@ -582,6 +582,7 @@ object Settings {
      * Downloaders
      */
     enum class Downloader {
+
         /**
          * Plain download
          */
@@ -597,6 +598,7 @@ object Settings {
      * Download modes
      */
     enum class Mode {
+
         /**
          * Plain download
          */

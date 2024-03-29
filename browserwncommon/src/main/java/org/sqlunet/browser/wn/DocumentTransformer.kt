@@ -29,6 +29,7 @@ class DocumentTransformer : org.sqlunet.browser.web.DocumentTransformer() {
     }
 
     companion object {
+
         private const val XSL_DIR = "/org/sqlunet/"
     }
 }

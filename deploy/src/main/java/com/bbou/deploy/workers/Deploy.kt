@@ -752,6 +752,7 @@ object Deploy {
      * Publisher interface
      */
     interface Publisher {
+
         /**
          * Publish progress
          *

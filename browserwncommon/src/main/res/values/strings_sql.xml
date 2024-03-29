@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
@@ -20,7 +19,7 @@
 		<item>@string/action_exec_from_zipped_uri</item>
 	</string-array>
 	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays">
-		<item/>
+		<item />
 		<item>
 			<!-- wordnet -->
 			CREATE INDEX IF NOT EXISTS `pk_words` ON `words` (`wordid`);

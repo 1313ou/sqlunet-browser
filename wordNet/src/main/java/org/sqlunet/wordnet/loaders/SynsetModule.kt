@@ -25,6 +25,7 @@ import org.sqlunet.wordnet.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 open class SynsetModule(fragment: TreeFragment) : BaseModule(fragment) {
+
     /**
      * Synset id
      */

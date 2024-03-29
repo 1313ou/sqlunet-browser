@@ -31,6 +31,7 @@ internal class FnFrameElement private constructor(
     private val isCore: Boolean,
     @JvmField val coreSet: Int,
 ) {
+
     /**
      * FE sem types
      */
@@ -45,6 +46,7 @@ internal class FnFrameElement private constructor(
     }
 
     companion object {
+
         /**
          * Make sets of FEs from frame id
          *

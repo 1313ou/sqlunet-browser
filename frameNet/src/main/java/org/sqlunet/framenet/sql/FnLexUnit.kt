@@ -31,6 +31,7 @@ class FnLexUnit private constructor(
     frameId: Long, frame: String?,
     frameDefinition: String?,
 ) {
+
     /**
      * Buddy frame
      */

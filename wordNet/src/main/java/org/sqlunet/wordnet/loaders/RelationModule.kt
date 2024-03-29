@@ -86,6 +86,7 @@ class RelationModule(fragment: TreeFragment) : BaseModule(fragment) {
     }
 
     companion object {
+
         private const val HYPERNYM = 1
         private const val HYPONYM = 2
     }

@@ -159,6 +159,7 @@ class AppRate {
     }
 
     companion object {
+
         @Volatile
         private var singleton: AppRate? = null
 

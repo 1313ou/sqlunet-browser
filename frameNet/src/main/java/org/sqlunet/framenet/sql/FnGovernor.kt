@@ -19,6 +19,7 @@ internal class FnGovernor private constructor(
     @JvmField val wordId: Long,
     @JvmField val governor: String,
 ) {
+
     companion object {
 
         /**

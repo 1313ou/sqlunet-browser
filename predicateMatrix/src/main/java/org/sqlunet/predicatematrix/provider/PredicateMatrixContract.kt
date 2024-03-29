@@ -26,6 +26,7 @@ object PredicateMatrixContract {
     // const val AS_FNLUS = V.AS_FNLUS
 
     object PredicateMatrix {
+
         const val PMID = V.PMID
         const val PMROLEID = V.PMROLEID
         const val PMPREDICATEID = V.PREDICATEID

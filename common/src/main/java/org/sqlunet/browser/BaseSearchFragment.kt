@@ -411,6 +411,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     }
 
     companion object {
+
         private const val TAG = "BaseSearchF"
 
         /**

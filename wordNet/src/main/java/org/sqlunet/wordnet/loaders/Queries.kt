@@ -9,6 +9,7 @@ import org.sqlunet.wordnet.provider.V
 import org.sqlunet.wordnet.provider.WordNetContract
 
 object Queries {
+
     const val MORPHS = "morphs"
     const val PRONUNCIATIONS = "pronunciations"
 
@@ -17,19 +18,19 @@ object Queries {
     fun prepareWordSelect(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI
-        providerSql.projection = arrayOf( 
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id",  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION,  
-            WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id",
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION,
+            WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN,
             WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD
         )
         providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?" //
@@ -42,20 +43,20 @@ object Queries {
     fun prepareWordXSelect(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.URI
-        providerSql.projection = arrayOf( 
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID + " AS _id",  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEID,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEKEY,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.LEXID,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DEFINITION,  
-            WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POS,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID + " AS _id",
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEKEY,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.LEXID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DEFINITION,
+            WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POS,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD,
             "GROUP_CONCAT(CASE WHEN " + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + " IS NULL THEN '/'||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + "||'/' ELSE '['||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + "||'] '||'/'||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + "||'/' END) AS " + PRONUNCIATIONS
         )
         providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORD + " = ?" //
@@ -68,17 +69,17 @@ object Queries {
     fun prepareWnXSelect(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI
-        providerSql.projection = arrayOf( 
-            "'wn' AS " + XNetContract.Words_XNet_U.SOURCES,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS " + XNetContract.Words_XNet_U.XID,  
-            "NULL AS " + XNetContract.Words_XNet_U.XCLASSID,  
-            "NULL AS " + XNetContract.Words_XNet_U.XMEMBERID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + "|| '.' ||" + WordNetContract.AS_POSES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + " AS " + XNetContract.Words_XNet_U.XNAME,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN + " AS " + XNetContract.Words_XNet_U.XHEADER,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY + " AS " + XNetContract.Words_XNet_U.XINFO,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION + " AS " + XNetContract.Words_XNet_U.XDEFINITION,  
+        providerSql.projection = arrayOf(
+            "'wn' AS " + XNetContract.Words_XNet_U.SOURCES,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS " + XNetContract.Words_XNet_U.XID,
+            "NULL AS " + XNetContract.Words_XNet_U.XCLASSID,
+            "NULL AS " + XNetContract.Words_XNet_U.XMEMBERID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + "|| '.' ||" + WordNetContract.AS_POSES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + " AS " + XNetContract.Words_XNet_U.XNAME,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN + " AS " + XNetContract.Words_XNet_U.XHEADER,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY + " AS " + XNetContract.Words_XNet_U.XINFO,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION + " AS " + XNetContract.Words_XNet_U.XDEFINITION,
             WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id"
         )
         providerSql.selection = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID + " = ?"
@@ -91,18 +92,18 @@ object Queries {
     fun prepareWnPronunciationXSelect(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.URI
-        providerSql.projection = arrayOf( 
-            "'wn' AS " + XNetContract.Words_XNet_U.SOURCES,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID + " AS " + XNetContract.Words_XNet_U.XID,  
-            "NULL AS " + XNetContract.Words_XNet_U.XCLASSID,  
-            "NULL AS " + XNetContract.Words_XNet_U.XMEMBERID,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORD + "|| '.' ||" + WordNetContract.AS_POSES + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID + " AS " + XNetContract.Words_XNet_U.XNAME,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN + " AS " + XNetContract.Words_XNet_U.XHEADER,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEKEY + " AS " + XNetContract.Words_XNet_U.XINFO,  
-            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DEFINITION + " AS " + XNetContract.Words_XNet_U.XDEFINITION,  
-            "GROUP_CONCAT(CASE WHEN " + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + " IS NULL THEN '/'||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + "||'/' ELSE '['||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + "||'] '||'/'||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + "||'/' END) AS " + XNetContract.Words_XNet_U.XPRONUNCIATION,  
+        providerSql.projection = arrayOf(
+            "'wn' AS " + XNetContract.Words_XNet_U.SOURCES,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID + " AS " + XNetContract.Words_XNet_U.XID,
+            "NULL AS " + XNetContract.Words_XNet_U.XCLASSID,
+            "NULL AS " + XNetContract.Words_XNet_U.XMEMBERID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORD + "|| '.' ||" + WordNetContract.AS_POSES + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID + " AS " + XNetContract.Words_XNet_U.XNAME,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN + " AS " + XNetContract.Words_XNet_U.XHEADER,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEKEY + " AS " + XNetContract.Words_XNet_U.XINFO,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DEFINITION + " AS " + XNetContract.Words_XNet_U.XDEFINITION,
+            "GROUP_CONCAT(CASE WHEN " + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + " IS NULL THEN '/'||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + "||'/' ELSE '['||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + "||'] '||'/'||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + "||'/' END) AS " + XNetContract.Words_XNet_U.XPRONUNCIATION,
             WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID + " AS _id"
         )
         providerSql.selection = WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID + " = ?"
@@ -115,9 +116,9 @@ object Queries {
     fun prepareWord(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Lexes_Morphs.URI_BY_WORD
-        providerSql.projection = arrayOf( 
-            WordNetContract.Words_Lexes_Morphs.WORD,  
-            WordNetContract.Words_Lexes_Morphs.WORDID,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Words_Lexes_Morphs.WORD,
+            WordNetContract.Words_Lexes_Morphs.WORDID,
             "GROUP_CONCAT(" + WordNetContract.Words_Lexes_Morphs.MORPH + "||'-'||" + WordNetContract.Words_Lexes_Morphs.POSID + ") AS " + MORPHS
         )
         providerSql.selection = WordNetContract.Words.WORDID + " = ?"
@@ -129,18 +130,18 @@ object Queries {
     fun prepareSenses(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI
-        providerSql.projection = arrayOf( 
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id",  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id",
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN,
             WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD
         )
         providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?"
@@ -154,18 +155,18 @@ object Queries {
     fun prepareSenses(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI
-        providerSql.projection = arrayOf( 
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id",  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id",
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN,
             WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD
         )
         providerSql.selection = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID + " = ?"
@@ -179,8 +180,8 @@ object Queries {
     fun prepareSense(senseId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Senses.URI
-        providerSql.projection = arrayOf( 
-            WordNetContract.Senses.WORDID,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Senses.WORDID,
             WordNetContract.Senses.SYNSETID
         )
         providerSql.selection = WordNetContract.Senses.SENSEID + " = ?"
@@ -192,8 +193,8 @@ object Queries {
     fun prepareSense(senseKey: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Senses.URI
-        providerSql.projection = arrayOf( 
-            WordNetContract.Senses.WORDID,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Senses.WORDID,
             WordNetContract.Senses.SYNSETID
         )
         providerSql.selection = WordNetContract.Senses.SENSEKEY + " = ?"
@@ -205,9 +206,9 @@ object Queries {
     fun prepareSense(synsetId: Long, wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Synsets_Poses_Domains.URI
-        providerSql.projection = arrayOf( 
-            WordNetContract.Synsets.DEFINITION,  
-            WordNetContract.Poses.POS,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Synsets.DEFINITION,
+            WordNetContract.Poses.POS,
             WordNetContract.Domains.DOMAIN
         )
         providerSql.selection = WordNetContract.Synsets_Poses_Domains.SYNSETID + " = ?"
@@ -219,9 +220,9 @@ object Queries {
     fun prepareSynset(synsetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Synsets_Poses_Domains.URI
-        providerSql.projection = arrayOf( 
-            WordNetContract.Synsets.DEFINITION,  
-            WordNetContract.Poses.POS,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Synsets.DEFINITION,
+            WordNetContract.Poses.POS,
             WordNetContract.Domains.DOMAIN
         )
         providerSql.selection = WordNetContract.Synsets_Poses_Domains.SYNSETID + " = ?"
@@ -255,8 +256,8 @@ object Queries {
     fun prepareSamples(synsetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Samples.URI
-        providerSql.projection = arrayOf( 
-            WordNetContract.Samples.SAMPLEID,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Samples.SAMPLEID,
             WordNetContract.Samples.SAMPLE
         )
         providerSql.selection = WordNetContract.Samples.SYNSETID + " = ?"
@@ -269,14 +270,14 @@ object Queries {
     fun prepareRelations(synsetId: Long, wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.AnyRelations_Senses_Words_X.URI_BY_SYNSET
-        providerSql.projection = arrayOf( 
-            WordNetContract.RELATIONTYPE, WordNetContract.Relations.RELATIONID,  
-            WordNetContract.Relations.RELATION,  
-            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.SYNSETID + " AS " + V.SYNSET2ID,  
-            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.DEFINITION + " AS " + V.DEFINITION2,  
-            "GROUP_CONCAT(" + WordNetContract.AS_WORDS + '.' + WordNetContract.Words.WORD + ") AS " + WordNetContract.AnyRelations_Senses_Words_X.MEMBERS2,  
-            WordNetContract.AnyRelations_Senses_Words_X.RECURSES,  
-            WordNetContract.AS_WORDS2 + '.' + WordNetContract.Words.WORDID + " AS " + V.WORD2ID,  
+        providerSql.projection = arrayOf(
+            WordNetContract.RELATIONTYPE, WordNetContract.Relations.RELATIONID,
+            WordNetContract.Relations.RELATION,
+            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.SYNSETID + " AS " + V.SYNSET2ID,
+            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.DEFINITION + " AS " + V.DEFINITION2,
+            "GROUP_CONCAT(" + WordNetContract.AS_WORDS + '.' + WordNetContract.Words.WORD + ") AS " + WordNetContract.AnyRelations_Senses_Words_X.MEMBERS2,
+            WordNetContract.AnyRelations_Senses_Words_X.RECURSES,
+            WordNetContract.AS_WORDS2 + '.' + WordNetContract.Words.WORDID + " AS " + V.WORD2ID,
             WordNetContract.AS_WORDS2 + '.' + WordNetContract.Words.WORD + " AS " + V.WORD2
         )
         providerSql.selection = "synset1id = ? /**/|/**/ synset1id = ? AND word1id = ?"
@@ -289,11 +290,11 @@ object Queries {
     fun prepareSemRelations(synsetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.SemRelations_Synsets_Words_X.URI_BY_SYNSET
-        providerSql.projection = arrayOf( 
-            WordNetContract.Relations.RELATIONID,  
-            WordNetContract.Relations.RELATION,  
-            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.SYNSETID + " AS " + V.SYNSET2ID,  
-            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.DEFINITION + " AS " + V.DEFINITION2,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Relations.RELATIONID,
+            WordNetContract.Relations.RELATION,
+            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.SYNSETID + " AS " + V.SYNSET2ID,
+            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.DEFINITION + " AS " + V.DEFINITION2,
             WordNetContract.Relations.RECURSES
         )
         providerSql.selection = WordNetContract.AS_RELATIONS + '.' + WordNetContract.SemRelations_Synsets_Words_X.SYNSET1ID + " = ?" //
@@ -306,11 +307,11 @@ object Queries {
     fun prepareSemRelations(synsetId: Long, relationId: Int): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.SemRelations_Synsets_Words_X.URI_BY_SYNSET
-        providerSql.projection = arrayOf( 
-            WordNetContract.Relations.RELATIONID,  
-            WordNetContract.Relations.RELATION,  
-            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.SYNSETID + " AS " + V.SYNSET2ID,  
-            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.DEFINITION + " AS " + V.DEFINITION2,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Relations.RELATIONID,
+            WordNetContract.Relations.RELATION,
+            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.SYNSETID + " AS " + V.SYNSET2ID,
+            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.DEFINITION + " AS " + V.DEFINITION2,
             WordNetContract.Relations.RECURSES
         )
         providerSql.selection = WordNetContract.AS_RELATIONS + '.' + WordNetContract.SemRelations_Synsets_Words_X.SYNSET1ID + " = ? AND " + WordNetContract.Relations.RELATIONID + " = ?"
@@ -322,12 +323,12 @@ object Queries {
     fun prepareLexRelations(synsetId: Long, wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.LexRelations_Senses_Words_X.URI_BY_SYNSET
-        providerSql.projection = arrayOf( 
-            WordNetContract.Relations.RELATIONID,  
-            WordNetContract.Relations.RELATION,  
-            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.SYNSETID + " AS " + V.SYNSET2ID,  
-            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.DEFINITION + " AS " + V.DEFINITION2,  
-            WordNetContract.AS_WORDS + '.' + WordNetContract.Words.WORDID + " AS " + V.WORD2ID,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Relations.RELATIONID,
+            WordNetContract.Relations.RELATION,
+            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.SYNSETID + " AS " + V.SYNSET2ID,
+            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.DEFINITION + " AS " + V.DEFINITION2,
+            WordNetContract.AS_WORDS + '.' + WordNetContract.Words.WORDID + " AS " + V.WORD2ID,
             WordNetContract.AS_WORDS + '.' + WordNetContract.Words.WORD + " AS " + V.WORD2
         )
         providerSql.selection = WordNetContract.AS_RELATIONS + ".synset1id = ? AND " + WordNetContract.AS_RELATIONS + ".word1id = ?"
@@ -340,12 +341,12 @@ object Queries {
     fun prepareLexRelations(synsetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.LexRelations_Senses_Words_X.URI_BY_SYNSET
-        providerSql.projection = arrayOf( 
-            WordNetContract.Relations.RELATIONID,  
-            WordNetContract.Relations.RELATION,  
-            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.SYNSETID + " AS " + V.SYNSET2ID,  
-            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.DEFINITION + " AS " + V.DEFINITION2,  
-            WordNetContract.AS_WORDS + '.' + WordNetContract.Words.WORDID + " AS " + V.WORD2ID,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Relations.RELATIONID,
+            WordNetContract.Relations.RELATION,
+            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.SYNSETID + " AS " + V.SYNSET2ID,
+            WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.DEFINITION + " AS " + V.DEFINITION2,
+            WordNetContract.AS_WORDS + '.' + WordNetContract.Words.WORDID + " AS " + V.WORD2ID,
             WordNetContract.AS_WORDS + '.' + WordNetContract.Words.WORD + " AS " + V.WORD2
         )
         providerSql.selection = WordNetContract.AS_RELATIONS + '.' + WordNetContract.LexRelations_Senses_Words_X.SYNSET1ID + " = ?" //
@@ -428,19 +429,19 @@ object Queries {
     fun prepareSelectSn(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI
-        providerSql.projection = arrayOf( 
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id",  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION,  
-            WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS,  
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN,  
+        providerSql.projection = arrayOf(
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id",
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION,
+            WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS,
+            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN,
             WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD
         )
         providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?" //

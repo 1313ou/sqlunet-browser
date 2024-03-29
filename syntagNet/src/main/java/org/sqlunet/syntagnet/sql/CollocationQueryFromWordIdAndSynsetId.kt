@@ -21,6 +21,7 @@ internal class CollocationQueryFromWordIdAndSynsetId(connection: SQLiteDatabase,
     }
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

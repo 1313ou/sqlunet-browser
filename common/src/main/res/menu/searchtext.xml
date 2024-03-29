@@ -7,17 +7,17 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	tools:ignore="UnusedResources">
 	<!-- <group> -->
-		<item
-			android:id="@+id/search"
-			android:iconifiedByDefault="true"
-			android:title="@string/hint_searchtext"
-			app:actionViewClass="androidx.appcompat.widget.SearchView"
-			app:showAsAction="always"
-			tools:ignore="AlwaysShowAction" />
-		<item
-			android:id="@+id/action_main"
-			android:title="@string/action_main"
-			app:showAsAction="never"
-			tools:ignore="AppCompatResource" />
+	<item
+		android:id="@+id/search"
+		android:iconifiedByDefault="true"
+		android:title="@string/hint_searchtext"
+		app:actionViewClass="androidx.appcompat.widget.SearchView"
+		app:showAsAction="always"
+		tools:ignore="AlwaysShowAction" />
+	<item
+		android:id="@+id/action_main"
+		android:title="@string/action_main"
+		app:showAsAction="never"
+		tools:ignore="AppCompatResource" />
 	<!-- </group> -->
 </menu>

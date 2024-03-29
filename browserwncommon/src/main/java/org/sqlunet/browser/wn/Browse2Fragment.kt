@@ -141,6 +141,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
     }
 
     companion object {
+
         const val ARG_ALT = "alt_arg"
     }
 }

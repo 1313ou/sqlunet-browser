@@ -39,4 +39,4 @@ data class DownloadData(
      * Static version
      */
     @JvmField val staticVersion: String? = null,
-    )
+)

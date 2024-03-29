@@ -10,12 +10,12 @@ package org.sqlunet.wordnet.sql
  */
 open class BasicWord(
 
-	/**
+    /**
      * `word` is the string
      */
-	@JvmField val word: String,
-	/**
+    @JvmField val word: String,
+    /**
      * `id` is the word id
      */
-	@JvmField val id: Long
+    @JvmField val id: Long
 ) 

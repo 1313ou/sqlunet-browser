@@ -1,241 +1,357 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
 <HTML lang="en">
-    <HEAD>
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <TITLE>Relations</TITLE>
-        <LINK rel="stylesheet" type="text/css" href="relations.css">
-    </HEAD>
-    <BODY>
-        <TABLE class="relations full-width">
-            <TR class="relation full-width" name="relation" id="hyponym">
-                <TD class="full-width">
-                    <TABLE class="full-width">
-                        <TR class="full-width">
-                            <TD colspan="2">
-                                <DIV class="relationheader">
-                                    <IMG class="relationimage" src="images/hyponym.png" alt="Hyponym"><SPAN class="relationname">Hyponym</SPAN>
-                                </DIV>
-                            </TD>
-                        </TR>
-                        <TR class="full-width">
-                            <TD colspan="2">
-                                <DIV class="description">
-                                    <span>Subordinate (i.e. more specific). The specific term used to designate a member of a class. A concept that is more specific than a given concept. A hyponym of something is its subtype.</span>
-                                </DIV>
-                                <DIV class="description">
-                                    <span><b>Troponym</b>. A verb expressing a specific manner elaboration of another verb. Manner name (a word that denotes a manner of doing something).</span>
-                                </DIV>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD colspan="2">
-                                <DIV class="logical">
-                                    <DIV class="def">
-                                        <span><b>H</b> is a hyponym of <b>X</b></span> iff
-                                    </DIV>
-                                    <DIV class="cond">
-                                        &rarr;<span><b>H</b> is a (kind of) <b>X</b></span>
-                                    </DIV>
-                                </DIV>
-                                <DIV class="logical">
-                                    <DIV class="def">
-                                        <span><b>H</b> is a troponym of <b>X</b></span> iff
-                                    </DIV>
-                                    <DIV class="cond">
-                                        &rarr;<span>to <b>H</b> is to <b>X</b> in some manner </span>
-                                    </DIV>
-                                </DIV>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD class="colfeatures">
-                                <DIV class="features">
-                                    <IMG class="featureimage" src="images/feature_semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="images/pos_v.png" alt="verb" title="verb">
-                                </DIV>
-                            </TD><TD class="colother">
-                                <TABLE class="toright">
-                                    <TR>
-                                        <TD>
-                                            <DIV class="inverse">
-                                                inverse: <A href="hypernym.html">hypernym</A> <IMG class="otherimage" src="images/hypernym.png">
-                                            </DIV>
-                                        </TD>
-                                    </TR>
-                                    <TR>
-                                        <TD>
-                                            <DIV class="see"></DIV>
-                                        </TD>
-                                    </TR>
-                                </TABLE>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD colspan="2"></TD>
-                        </TR>
-                        <TR>
-                            <TD colspan="2">
-                                <DIV class="examples">
-                                    <TABLE class="exampletable">
-                                        <TR>
-                                            <TD class="fromguide"></TD><TD></TD><TD class="toguide">hyponym</TD><TD class="gloss"></TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromguide"></TD><TD></TD><TD class="toguide">troponym</TD><TD class="gloss"></TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromguide">X</TD><TD></TD><TD class="toguide">H</TD><TD class="gloss"></TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">tree</TD><TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD><TD class="to">oak</TD><TD class="gloss">an oak is a kind of tree</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">plant</TD><TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD><TD class="to">tree</TD><TD class="gloss">a tree is a kind of plant</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">tree</TD><TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD><TD class="to">oak</TD><TD class="gloss">a oak is a kind of tree</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">roadster</TD><TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD><TD class="to">car</TD><TD class="gloss">a roadster is a kind of car</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">car</TD><TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD><TD class="to">motor vehicle</TD><TD class="gloss">a car is a kind of motor vehicle</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">motor vehicle</TD><TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD><TD class="to">wheeled vehicle</TD><TD class="gloss">a motor vehicle is a kind of wheeled vehicle</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">dwelling</TD><TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD><TD class="to">house</TD><TD class="gloss">a house is a kind of dwelling</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">dissatisfaction</TD><TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD><TD class="to">disappointment</TD><TD class="gloss">disappointment is a kind of dissatisfaction</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">group</TD><TD class="rel"><IMG src="images/hyponym_instance.png" alt="Hyponym"></TD><TD class="to">the Great Lakes</TD><TD class="gloss">instance hypernym</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">evacuation</TD><TD class="rel"><IMG src="images/hyponym_instance.png" alt="Hyponym"></TD><TD class="to">Dunkirk</TD><TD class="gloss">instance hypernym</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">revolution</TD><TD class="rel"><IMG src="images/hyponym_instance.png" alt="Hyponym"></TD><TD class="to">French revolution</TD><TD class="gloss">instance hypernym</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">walk</TD><TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD><TD class="to">amble</TD><TD class="gloss">to amble is to walk in some manner</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">walk</TD><TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD><TD class="to">march</TD><TD class="gloss">to march is to walk in some manner</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">say</TD><TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD><TD class="to">lisp</TD><TD class="gloss">to lisp is to say in some manner</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">hit</TD><TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD><TD class="to">slam</TD><TD class="gloss">to slam is to hit in some manner</TD>
-                                        </TR>
-                                    </TABLE>
-                                </DIV>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD colspan="2">
-                                <DIV class="phrases">
-                                    <TABLE class="phrasetable">
-                                        <TR>
-                                            <TD class="fromphrase">tree</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">oak</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">plant</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">tree</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">tree</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">oak</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">roadster</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">car</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">car</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">motor vehicle</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">motor vehicle</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">wheeled vehicle</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">dwelling</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">house</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">dissatisfaction</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">disappointment</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">group</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">the Great Lakes</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">evacuation</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">Dunkirk</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">revolution</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">French revolution</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">walk</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">amble</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">walk</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">march</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">say</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">lisp</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">hit</TD><TD class="phrase">is more specific than</TD><TD class="tophrase">slam</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">tree</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">oak</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">plant</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">tree</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">tree</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">oak</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">roadster</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">car</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">car</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">motor vehicle</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">motor vehicle</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">wheeled vehicle</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">dwelling</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">house</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">dissatisfaction</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">disappointment</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">group</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">the Great Lakes</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">evacuation</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">Dunkirk</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">revolution</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">French revolution</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">walk</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">amble</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">walk</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">march</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">say</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">lisp</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">hit</TD><TD class="phrase">is a subtype of</TD><TD class="tophrase">slam</TD>
-                                        </TR>
-                                    </TABLE>
-                                </DIV>
-                            </TD>
-                        </TR>
-                    </TABLE>
-                </TD>
-            </TR>
-        </TABLE>
-        <BR>
-    </BODY>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<TITLE>Relations</TITLE>
+	<LINK rel="stylesheet" type="text/css" href="relations.css">
+</HEAD>
+<BODY>
+<TABLE class="relations full-width">
+	<TR class="relation full-width" name="relation" id="hyponym">
+		<TD class="full-width">
+			<TABLE class="full-width">
+				<TR class="full-width">
+					<TD colspan="2">
+						<DIV class="relationheader">
+							<IMG class="relationimage" src="images/hyponym.png" alt="Hyponym"><SPAN class="relationname">Hyponym</SPAN>
+						</DIV>
+					</TD>
+				</TR>
+				<TR class="full-width">
+					<TD colspan="2">
+						<DIV class="description">
+							<span>Subordinate (i.e. more specific). The specific term used to designate a member of a class. A concept that is more specific than a given concept. A hyponym of something is its subtype.</span>
+						</DIV>
+						<DIV class="description">
+							<span><b>Troponym</b>. A verb expressing a specific manner elaboration of another verb. Manner name (a word that denotes a manner of doing something).</span>
+						</DIV>
+					</TD>
+				</TR>
+				<TR>
+					<TD colspan="2">
+						<DIV class="logical">
+							<DIV class="def">
+								<span><b>H</b> is a hyponym of <b>X</b></span> iff
+							</DIV>
+							<DIV class="cond">
+								&rarr;<span><b>H</b> is a (kind of) <b>X</b></span>
+							</DIV>
+						</DIV>
+						<DIV class="logical">
+							<DIV class="def">
+								<span><b>H</b> is a troponym of <b>X</b></span> iff
+							</DIV>
+							<DIV class="cond">
+								&rarr;<span>to <b>H</b> is to <b>X</b> in some manner </span>
+							</DIV>
+						</DIV>
+					</TD>
+				</TR>
+				<TR>
+					<TD class="colfeatures">
+						<DIV class="features">
+							<IMG class="featureimage" src="images/feature_semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="images/pos_v.png" alt="verb"
+							                                                                                                                                                                          title="verb">
+						</DIV>
+					</TD>
+					<TD class="colother">
+						<TABLE class="toright">
+							<TR>
+								<TD>
+									<DIV class="inverse">
+										inverse: <A href="hypernym.html">hypernym</A> <IMG class="otherimage" src="images/hypernym.png">
+									</DIV>
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<DIV class="see"></DIV>
+								</TD>
+							</TR>
+						</TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD colspan="2"></TD>
+				</TR>
+				<TR>
+					<TD colspan="2">
+						<DIV class="examples">
+							<TABLE class="exampletable">
+								<TR>
+									<TD class="fromguide"></TD>
+									<TD></TD>
+									<TD class="toguide">hyponym</TD>
+									<TD class="gloss"></TD>
+								</TR>
+								<TR>
+									<TD class="fromguide"></TD>
+									<TD></TD>
+									<TD class="toguide">troponym</TD>
+									<TD class="gloss"></TD>
+								</TR>
+								<TR>
+									<TD class="fromguide">X</TD>
+									<TD></TD>
+									<TD class="toguide">H</TD>
+									<TD class="gloss"></TD>
+								</TR>
+								<TR>
+									<TD class="from">tree</TD>
+									<TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD>
+									<TD class="to">oak</TD>
+									<TD class="gloss">an oak is a kind of tree</TD>
+								</TR>
+								<TR>
+									<TD class="from">plant</TD>
+									<TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD>
+									<TD class="to">tree</TD>
+									<TD class="gloss">a tree is a kind of plant</TD>
+								</TR>
+								<TR>
+									<TD class="from">tree</TD>
+									<TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD>
+									<TD class="to">oak</TD>
+									<TD class="gloss">a oak is a kind of tree</TD>
+								</TR>
+								<TR>
+									<TD class="from">roadster</TD>
+									<TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD>
+									<TD class="to">car</TD>
+									<TD class="gloss">a roadster is a kind of car</TD>
+								</TR>
+								<TR>
+									<TD class="from">car</TD>
+									<TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD>
+									<TD class="to">motor vehicle</TD>
+									<TD class="gloss">a car is a kind of motor vehicle</TD>
+								</TR>
+								<TR>
+									<TD class="from">motor vehicle</TD>
+									<TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD>
+									<TD class="to">wheeled vehicle</TD>
+									<TD class="gloss">a motor vehicle is a kind of wheeled vehicle</TD>
+								</TR>
+								<TR>
+									<TD class="from">dwelling</TD>
+									<TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD>
+									<TD class="to">house</TD>
+									<TD class="gloss">a house is a kind of dwelling</TD>
+								</TR>
+								<TR>
+									<TD class="from">dissatisfaction</TD>
+									<TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD>
+									<TD class="to">disappointment</TD>
+									<TD class="gloss">disappointment is a kind of dissatisfaction</TD>
+								</TR>
+								<TR>
+									<TD class="from">group</TD>
+									<TD class="rel"><IMG src="images/hyponym_instance.png" alt="Hyponym"></TD>
+									<TD class="to">the Great Lakes</TD>
+									<TD class="gloss">instance hypernym</TD>
+								</TR>
+								<TR>
+									<TD class="from">evacuation</TD>
+									<TD class="rel"><IMG src="images/hyponym_instance.png" alt="Hyponym"></TD>
+									<TD class="to">Dunkirk</TD>
+									<TD class="gloss">instance hypernym</TD>
+								</TR>
+								<TR>
+									<TD class="from">revolution</TD>
+									<TD class="rel"><IMG src="images/hyponym_instance.png" alt="Hyponym"></TD>
+									<TD class="to">French revolution</TD>
+									<TD class="gloss">instance hypernym</TD>
+								</TR>
+								<TR>
+									<TD class="from">walk</TD>
+									<TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD>
+									<TD class="to">amble</TD>
+									<TD class="gloss">to amble is to walk in some manner</TD>
+								</TR>
+								<TR>
+									<TD class="from">walk</TD>
+									<TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD>
+									<TD class="to">march</TD>
+									<TD class="gloss">to march is to walk in some manner</TD>
+								</TR>
+								<TR>
+									<TD class="from">say</TD>
+									<TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD>
+									<TD class="to">lisp</TD>
+									<TD class="gloss">to lisp is to say in some manner</TD>
+								</TR>
+								<TR>
+									<TD class="from">hit</TD>
+									<TD class="rel"><IMG src="images/hyponym.png" alt="Hyponym"></TD>
+									<TD class="to">slam</TD>
+									<TD class="gloss">to slam is to hit in some manner</TD>
+								</TR>
+							</TABLE>
+						</DIV>
+					</TD>
+				</TR>
+				<TR>
+					<TD colspan="2">
+						<DIV class="phrases">
+							<TABLE class="phrasetable">
+								<TR>
+									<TD class="fromphrase">tree</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">oak</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">plant</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">tree</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">tree</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">oak</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">roadster</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">car</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">car</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">motor vehicle</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">motor vehicle</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">wheeled vehicle</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">dwelling</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">house</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">dissatisfaction</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">disappointment</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">group</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">the Great Lakes</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">evacuation</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">Dunkirk</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">revolution</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">French revolution</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">walk</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">amble</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">walk</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">march</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">say</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">lisp</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">hit</TD>
+									<TD class="phrase">is more specific than</TD>
+									<TD class="tophrase">slam</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">tree</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">oak</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">plant</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">tree</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">tree</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">oak</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">roadster</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">car</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">car</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">motor vehicle</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">motor vehicle</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">wheeled vehicle</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">dwelling</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">house</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">dissatisfaction</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">disappointment</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">group</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">the Great Lakes</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">evacuation</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">Dunkirk</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">revolution</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">French revolution</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">walk</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">amble</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">walk</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">march</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">say</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">lisp</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">hit</TD>
+									<TD class="phrase">is a subtype of</TD>
+									<TD class="tophrase">slam</TD>
+								</TR>
+							</TABLE>
+						</DIV>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+</TABLE>
+<BR>
+</BODY>
 </HTML>

@@ -25,6 +25,7 @@ import org.sqlunet.wordnet.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class SenseModule(fragment: TreeFragment) : SynsetModule(fragment) {
+
     /**
      * Word id
      */

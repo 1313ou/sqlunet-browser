@@ -187,6 +187,7 @@ class TaskDialogObserver<Progress : Pair<Number, Number>>(private val fragmentMa
         }
 
         companion object {
+
             /**
              * Make dialog fragment
              *
@@ -199,6 +200,7 @@ class TaskDialogObserver<Progress : Pair<Number, Number>>(private val fragmentMa
     }
 
     companion object {
+
         private const val TAG = "TaskDObserver"
     }
 }

@@ -40,6 +40,7 @@ class WordPointer : Pointer, HasWordId {
     }
 
     companion object CREATOR : Parcelable.Creator<WordPointer> {
+
         override fun createFromParcel(parcel: Parcel): WordPointer {
             return WordPointer(parcel)
         }

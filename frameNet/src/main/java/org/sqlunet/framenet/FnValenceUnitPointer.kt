@@ -31,6 +31,7 @@ class FnValenceUnitPointer : Pointer {
     }
 
     companion object CREATOR : Parcelable.Creator<FnValenceUnitPointer> {
+
         override fun createFromParcel(parcel: Parcel): FnValenceUnitPointer {
             return FnValenceUnitPointer(parcel)
         }

@@ -18,6 +18,7 @@ abstract class Query protected constructor(
      */
     @JvmField val id: Long,
 ) {
+
     /**
      * Process query
      *

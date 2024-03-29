@@ -15,7 +15,9 @@ import android.database.sqlite.SQLiteDatabase
 class VnRoleSet private constructor(
     @JvmField val roles: MutableList<VnRole>,
 ) {
+
     companion object {
+
         /**
          * Make VerbNet role sets from query built from class id, word id and synset id
          *

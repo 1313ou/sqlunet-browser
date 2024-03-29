@@ -15,8 +15,10 @@ import org.sqlunet.browser.Do.ensureDownloaded
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class RunDownloadTest : TestCase() {
+
     @Rule
     var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
+
     @Test
     fun download() {
         ensureDownloaded()

@@ -24,6 +24,7 @@ import org.sqlunet.settings.Settings
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, R.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false)
     }

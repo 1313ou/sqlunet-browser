@@ -20,6 +20,7 @@ import java.io.IOException
 import java.io.InputStream
 
 object SAFUtils {
+
     private const val TAG = "SAFUtils"
 
     // L I S T E N E R

@@ -11,9 +11,9 @@ import org.sqlunet.treeview.control.HotQueryController
 import org.sqlunet.treeview.control.IconTextController
 import org.sqlunet.treeview.control.LeafController
 import org.sqlunet.treeview.control.Link
+import org.sqlunet.treeview.control.LinkController
 import org.sqlunet.treeview.control.LinkHotQueryController
 import org.sqlunet.treeview.control.LinkLeafController
-import org.sqlunet.treeview.control.LinkController
 import org.sqlunet.treeview.control.LinkQueryController
 import org.sqlunet.treeview.control.LinkTreeController
 import org.sqlunet.treeview.control.MoreController

@@ -105,6 +105,7 @@ internal class BncQuery(connection: SQLiteDatabase, vararg params: Any) : DBQuer
         }
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

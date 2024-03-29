@@ -23,6 +23,7 @@ internal class FnLayer private constructor(
     @JvmField val rank: Int,
     @JvmField val labels: List<FnLabel>?,
 ) {
+
     companion object {
 
         /**

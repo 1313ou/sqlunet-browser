@@ -31,7 +31,9 @@ internal class VnClassWithSense private constructor(
     @JvmField val quality: Float,
     @JvmField val groupings: String,
 ) {
+
     companion object {
+
         /**
          * Make sets of VerbNet classes with senses from query built from word id and synset id
          *

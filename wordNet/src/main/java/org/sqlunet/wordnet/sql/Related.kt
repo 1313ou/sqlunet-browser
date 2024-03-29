@@ -110,6 +110,7 @@ class Related : Synset {
     }
 
     companion object {
+
         private const val TAG = "Related"
     }
 }

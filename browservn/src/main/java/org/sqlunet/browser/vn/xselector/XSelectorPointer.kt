@@ -139,12 +139,12 @@ class XSelectorPointer : SelectorPointer, HasXId {
     }
 
     override fun toString(): String {
-        return super.toString() + ' ' + "xid=" +  
-                xId + ' ' + "xclassid=" +  
-                xClassId + ' ' + "xmemberid=" +  
-                xMemberId + ' ' + "xsources=" +  
-                xSources + ' ' + "xmask=" +  
-                java.lang.Long.toHexString(xMask) + ' ' + "xgroup=" +  
+        return super.toString() + ' ' + "xid=" +
+                xId + ' ' + "xclassid=" +
+                xClassId + ' ' + "xmemberid=" +
+                xMemberId + ' ' + "xsources=" +
+                xSources + ' ' + "xmask=" +
+                java.lang.Long.toHexString(xMask) + ' ' + "xgroup=" +
                 xGroup
     }
 
@@ -163,16 +163,13 @@ class XSelectorPointer : SelectorPointer, HasXId {
         @JvmStatic
         fun getMask(xSources: String): Long {
             var mask: Long = 0
-            if (xSources.contains("wn")) 
-            {
+            if (xSources.contains("wn")) {
                 mask = mask or WORDNETSOURCE.toLong()
             }
-            if (xSources.contains("vn")) 
-            {
+            if (xSources.contains("vn")) {
                 mask = mask or VERBNETSOURCE.toLong()
             }
-            if (xSources.contains("pb")) 
-            {
+            if (xSources.contains("pb")) {
                 mask = mask or PROPBANKSOURCE.toLong()
             }
             return mask

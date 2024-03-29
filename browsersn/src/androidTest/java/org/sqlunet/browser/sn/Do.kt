@@ -68,11 +68,11 @@ internal object Do {
             Log.d("Searching ", "$word has $n results")
             for (i in 0 until n) {
                 Espresso.onData(CoreMatchers.anything())
-                        .inAdapterView(list)
-                        .atPosition(i)
-                        .perform(
-                                ViewActions.click()
-                        )
+                    .inAdapterView(list)
+                    .atPosition(i)
+                    .perform(
+                        ViewActions.click()
+                    )
                 Seq.doPressBack()
             }
         }

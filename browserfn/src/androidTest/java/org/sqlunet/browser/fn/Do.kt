@@ -17,7 +17,6 @@ import org.sqlunet.browser.Seq
 import org.sqlunet.browser.ToBoolean
 import org.sqlunet.browser.WaitUntil
 import org.sqlunet.browser.WaitUntilText
-import java.util.Objects
 
 internal object Do {
 
@@ -68,12 +67,12 @@ internal object Do {
             val n = ContainerUtils.getItemCount(list)
             Log.d("Searching ", "$word has $n results")
             for (i in 0 until n) {
-                Espresso.onData(CoreMatchers.anything()) 
-                        .inAdapterView(list) 
-                        .atPosition(i) 
-                        .perform( 
-                                ViewActions.click() 
-                        )
+                Espresso.onData(CoreMatchers.anything())
+                    .inAdapterView(list)
+                    .atPosition(i)
+                    .perform(
+                        ViewActions.click()
+                    )
                 Seq.doPressBack()
             }
         }

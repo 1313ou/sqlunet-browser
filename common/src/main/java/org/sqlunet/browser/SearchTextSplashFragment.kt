@@ -12,7 +12,7 @@ import org.sqlunet.browser.common.R
  */
 class SearchTextSplashFragment : SplashFragment() {
 
-   init {
+    init {
         layoutId = R.layout.fragment_splash_searchtext
     }
 }

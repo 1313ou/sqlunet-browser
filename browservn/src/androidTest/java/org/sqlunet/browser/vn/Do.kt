@@ -19,7 +19,6 @@ import org.sqlunet.browser.Seq
 import org.sqlunet.browser.ToBoolean
 import org.sqlunet.browser.WaitUntil
 import org.sqlunet.browser.WaitUntilText
-import java.util.Objects
 
 internal object Do {
 
@@ -68,12 +67,12 @@ internal object Do {
             Espresso.onView(list).check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
             // close first
             Espresso.onView(ViewMatchers.withChild(CoreMatchers.allOf(ViewMatchers.withId(R.id.xn), CoreMatchers.instanceOf(TextView::class.java), ViewMatchers.withText("verbnet"))))
-                    .perform(ViewActions.click())
+                .perform(ViewActions.click())
             // expand all
             Espresso.onView(ViewMatchers.withChild(CoreMatchers.allOf(ViewMatchers.withId(R.id.xn), CoreMatchers.instanceOf(TextView::class.java), ViewMatchers.withText("propbank"))))
-                    .perform(ViewActions.click())
+                .perform(ViewActions.click())
             Espresso.onView(ViewMatchers.withChild(CoreMatchers.allOf(ViewMatchers.withId(R.id.xn), CoreMatchers.instanceOf(TextView::class.java), ViewMatchers.withText("verbnet"))))
-                    .perform(ViewActions.click())
+                .perform(ViewActions.click())
             // for all selectors
             val counts = ContainerUtils.getExpandableListViewItemCounts(list)
             Log.d("Searching ", word + ' ' + DataUtils.arrayToString(*counts))
@@ -82,12 +81,12 @@ internal object Do {
                 k++ // for group header
                 for (c in 0 until counts[g]) {
                     Log.d("xselector (", (g + ' '.code + c).toString() + ") = " + k)
-                    Espresso.onData(CoreMatchers.anything()) 
-                            .inAdapterView(list) 
-                            .atPosition(k++) 
-                            .usingAdapterViewProtocol(AdapterViewProtocols.standardProtocol()).perform(
-                                    ViewActions.click() 
-                            )
+                    Espresso.onData(CoreMatchers.anything())
+                        .inAdapterView(list)
+                        .atPosition(k++)
+                        .usingAdapterViewProtocol(AdapterViewProtocols.standardProtocol()).perform(
+                            ViewActions.click()
+                        )
                     Seq.doPressBack()
                 }
             }

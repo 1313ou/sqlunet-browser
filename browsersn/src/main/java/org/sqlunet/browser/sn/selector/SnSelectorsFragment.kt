@@ -104,7 +104,7 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
 
     override fun makeAdapter(): CursorAdapter {
         val adapter = SimpleCursorAdapter(
-            requireContext(), R.layout.item_snselector, null,  
+            requireContext(), R.layout.item_snselector, null,
             DISPLAYED_COLUMNS, DISPLAYED_COLUMN_RES_IDS, 0
         )
         adapter.viewBinder = SimpleCursorAdapter.ViewBinder setViewBinder@{ view: View, cursor: Cursor, columnIndex: Int ->
@@ -161,7 +161,7 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
     private fun queryId(query: String?): Long {
         val uri = Uri.parse(WordNetProvider.makeUri(WordNetContract.Words.URI))
         val projection = arrayOf(WordNetContract.Words.WORDID)
-        val selection = WordNetContract.Words.WORD + " = ?" 
+        val selection = WordNetContract.Words.WORD + " = ?"
         val selectionArgs = arrayOf(query)
         requireContext().contentResolver.query(uri, projection, selection, selectionArgs, null).use {
             if (it != null) {
@@ -207,6 +207,7 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
      * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
      */
     fun interface Listener {
+
         /**
          * Callback for when an item has been selected.
          */
@@ -232,35 +233,35 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
         /**
          * Columns
          */
-        private val COLUMNS = arrayOf( 
-            "_id",  
-            SnCollocations_X.WORD1ID,  
-            SnCollocations_X.WORD2ID,  
-            SnCollocations_X.SYNSET1ID,  
-            SnCollocations_X.SYNSET2ID,  
-            SyntagNetContract.WORD1,  
-            SyntagNetContract.WORD2,  
-            SyntagNetContract.POS1,  
+        private val COLUMNS = arrayOf(
+            "_id",
+            SnCollocations_X.WORD1ID,
+            SnCollocations_X.WORD2ID,
+            SnCollocations_X.SYNSET1ID,
+            SnCollocations_X.SYNSET2ID,
+            SyntagNetContract.WORD1,
+            SyntagNetContract.WORD2,
+            SyntagNetContract.POS1,
             SyntagNetContract.POS2
         )
 
         /**
          * Displayed columns
          */
-        private val DISPLAYED_COLUMNS = arrayOf( 
-            SyntagNetContract.WORD1,  
-            SyntagNetContract.WORD2,  
-            SyntagNetContract.POS1,  
+        private val DISPLAYED_COLUMNS = arrayOf(
+            SyntagNetContract.WORD1,
+            SyntagNetContract.WORD2,
+            SyntagNetContract.POS1,
             SyntagNetContract.POS2
         )
 
         /**
          * Column resources
          */
-        private val DISPLAYED_COLUMN_RES_IDS = intArrayOf( 
-            R.id.word1,  
-            R.id.word2,  
-            R.id.pos1,  
+        private val DISPLAYED_COLUMN_RES_IDS = intArrayOf(
+            R.id.word1,
+            R.id.word2,
+            R.id.pos1,
             R.id.pos2
         )
     }

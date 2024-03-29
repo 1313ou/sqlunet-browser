@@ -34,10 +34,10 @@ class TableActivity : AppCompatActivity() {
         // fragment
         val fragment: Fragment = TableFragment()
         fragment.setArguments(intent.extras)
-        supportFragmentManager 
-            .beginTransaction() 
-            .setReorderingAllowed(true) 
-            .replace(R.id.container_table, fragment) 
+        supportFragmentManager
+            .beginTransaction()
+            .setReorderingAllowed(true)
+            .replace(R.id.container_table, fragment)
             .commit()
     }
 }

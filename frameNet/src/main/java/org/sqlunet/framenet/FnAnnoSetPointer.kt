@@ -31,6 +31,7 @@ class FnAnnoSetPointer : Pointer {
     }
 
     companion object CREATOR : Parcelable.Creator<FnAnnoSetPointer> {
+
         override fun createFromParcel(parcel: Parcel): FnAnnoSetPointer {
             return FnAnnoSetPointer(parcel)
         }

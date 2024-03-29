@@ -19,7 +19,9 @@ class VnClass private constructor(
     @JvmField val classId: Long,
     val groupings: String,
 ) {
+
     companion object {
+
         /**
          * Make sets of VerbNet class from query built from classId
          *

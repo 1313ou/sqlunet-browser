@@ -11,18 +11,18 @@ import org.sqlunet.verbnet.provider.VerbNetControl.querySuggest
 class QueriesUnitTest {
 
     private val codes = intArrayOf(
-            VerbNetControl.VNCLASS1,
-            VerbNetControl.VNCLASSES,
-            VerbNetControl.VNCLASSES_X_BY_VNCLASS,
-            VerbNetControl.WORDS_VNCLASSES,
-            VerbNetControl.VNCLASSES_VNMEMBERS_X_BY_WORD,
-            VerbNetControl.VNCLASSES_VNROLES_X_BY_VNROLE,
-            VerbNetControl.VNCLASSES_VNFRAMES_X_BY_VNFRAME,
-            VerbNetControl.LOOKUP_FTS_EXAMPLES,
-            VerbNetControl.LOOKUP_FTS_EXAMPLES_X,
-            VerbNetControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE,
-            VerbNetControl.SUGGEST_WORDS,
-            VerbNetControl.SUGGEST_FTS_WORDS
+        VerbNetControl.VNCLASS1,
+        VerbNetControl.VNCLASSES,
+        VerbNetControl.VNCLASSES_X_BY_VNCLASS,
+        VerbNetControl.WORDS_VNCLASSES,
+        VerbNetControl.VNCLASSES_VNMEMBERS_X_BY_WORD,
+        VerbNetControl.VNCLASSES_VNROLES_X_BY_VNROLE,
+        VerbNetControl.VNCLASSES_VNFRAMES_X_BY_VNFRAME,
+        VerbNetControl.LOOKUP_FTS_EXAMPLES,
+        VerbNetControl.LOOKUP_FTS_EXAMPLES_X,
+        VerbNetControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE,
+        VerbNetControl.SUGGEST_WORDS,
+        VerbNetControl.SUGGEST_FTS_WORDS
     )
     private val uriLast = "LAST"
     private val projection = arrayOf("PROJ1", "PROJ2", "PROJ3")

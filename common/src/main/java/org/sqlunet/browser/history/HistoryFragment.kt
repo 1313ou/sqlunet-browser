@@ -54,6 +54,7 @@ import kotlin.math.abs
  * @noinspection WeakerAccess
  */
 class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnItemClickListener {
+
     /**
      * List view
      */
@@ -321,6 +322,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
     }
 
     companion object {
+
         private const val TAG = "HistoryF"
 
         const val SWIPE_MIN_DISTANCE = 120

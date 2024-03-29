@@ -85,6 +85,7 @@ object SqlFormatter {
 
     private const val INDENT_STRING = "    "
     private const val INITIAL = "" //"\n    "
+
     @JvmStatic
     fun format(source: String): CharSequence {
         return FormatProcess(source, false).perform()
@@ -96,6 +97,7 @@ object SqlFormatter {
     }
 
     private class FormatProcess(sql: CharSequence, val style: Boolean) {
+
         var beginLine = true
         var afterBeginBeforeEnd = false
         var afterByOrSetOrFromOrSelect = false
@@ -369,6 +371,7 @@ object SqlFormatter {
         }
 
         companion object {
+
             // test functions
             private fun isFunctionName(tok: String): Boolean {
                 val begin = tok[0]

@@ -75,7 +75,6 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
-
             }
         }
 
@@ -180,6 +179,7 @@ class SearchTextFragment : BaseSearchFragment() {
     }
 
     companion object {
+
         private const val TAG = "SearchTextF"
     }
 }

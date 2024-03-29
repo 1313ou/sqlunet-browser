@@ -156,6 +156,7 @@ class TextFragment : BaseListFragment() {
     }
 
     companion object {
+
         private const val TAG = "TextF"
         const val FRAGMENT_TAG = "text"
 

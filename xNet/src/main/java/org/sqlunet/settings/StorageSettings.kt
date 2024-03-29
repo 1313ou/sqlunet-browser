@@ -15,6 +15,7 @@ import java.io.File
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object StorageSettings {
+
     // storage preferences
     const val PREF_STORAGE = Storage.PREF_SQLUNET_STORAGE
     const val PREF_CACHE = Storage.PREF_SQLUNET_CACHE

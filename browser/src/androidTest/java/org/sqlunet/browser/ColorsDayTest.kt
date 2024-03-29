@@ -11,6 +11,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class ColorsDayTest : AbstractColors() {
+
     override val mode: Int
         get() = AppCompatDelegate.MODE_NIGHT_NO
 }

@@ -90,6 +90,7 @@ internal class VnFrameQueryFromClassIdAndSense(connection: SQLiteDatabase, class
             cursor!!.getInt(9) == 0
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

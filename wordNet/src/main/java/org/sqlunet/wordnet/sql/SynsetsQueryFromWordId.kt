@@ -51,6 +51,7 @@ class SynsetsQueryFromWordId(connection: SQLiteDatabase, wordId: Long) : DBQuery
         get() = cursor!!.getString(4)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

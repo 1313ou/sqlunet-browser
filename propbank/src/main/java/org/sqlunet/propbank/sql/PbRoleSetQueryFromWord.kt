@@ -15,6 +15,7 @@ import org.sqlunet.sql.DBQuery
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal class PbRoleSetQueryFromWord(connection: SQLiteDatabase, word: String?) : DBQuery(connection, QUERY) {
+
     /**
      * Constructor
      */
@@ -56,8 +57,8 @@ internal class PbRoleSetQueryFromWord(connection: SQLiteDatabase, word: String?)
     val roleSetDescr: String
         get() = cursor!!.getString(4)
 
-
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

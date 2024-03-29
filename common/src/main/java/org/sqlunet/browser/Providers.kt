@@ -62,8 +62,8 @@ internal object Providers {
 
             // message
             try {
-                append(sb, activity.getString(R.string.suggestions), 0, Factories.boldFactory) 
-                    .append('\n') 
+                append(sb, activity.getString(R.string.suggestions), 0, Factories.boldFactory)
+                    .append('\n')
                     .append('\n')
                 build(sb, null, activity.getString(R.string.suggestion_provider_pack), suggestPkg, activity.getString(R.string.suggestion_provider_authority), suggestAuthority, activity.getString(R.string.suggestion_provider_path), suggestPath)
             } catch (_: IOException) {
@@ -71,10 +71,10 @@ internal object Providers {
         }
 
         // dialog
-        AlertDialog.Builder(activity) 
-            .setTitle(R.string.action_provider_info) 
-            .setMessage(sb) 
-            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } 
+        AlertDialog.Builder(activity)
+            .setTitle(R.string.action_provider_info)
+            .setMessage(sb)
+            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
             .show()
     }
 
@@ -84,31 +84,31 @@ internal object Providers {
     private fun build(sb: SpannableStringBuilder, name: String?, pkgLabel: String?, pkg: String?, authorityLabel: String, authority: String, pathLabel: String?, path: String?): SpannableStringBuilder {
         if (name != null) {
             // name
-            sb 
+            sb
                 .append(name)
                 .append('\n')
         }
 
         // package
         if (pkg != null) {
-            append(sb, pkgLabel, 0, Factories.boldFactory) 
-                .append(' ') 
-                .append(pkg) 
+            append(sb, pkgLabel, 0, Factories.boldFactory)
+                .append(' ')
+                .append(pkg)
                 .append('\n')
         }
 
         // authority
-        append(sb, authorityLabel, 0, Factories.boldFactory) 
-            .append(':') 
-            .append(' ') 
+        append(sb, authorityLabel, 0, Factories.boldFactory)
+            .append(':')
+            .append(' ')
             .append(authority)
             .append('\n')
 
         // package
         if (path != null) {
-            append(sb, pathLabel, 0, Factories.boldFactory) 
-                .append(' ') 
-                .append(path) 
+            append(sb, pathLabel, 0, Factories.boldFactory)
+                .append(' ')
+                .append(path)
                 .append('\n')
         }
         sb.append('\n')

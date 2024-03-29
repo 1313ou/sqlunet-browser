@@ -69,6 +69,7 @@ class SynsetsQueryFromWordIdAndCondition(connection: SQLiteDatabase, domainBased
         get() = cursor!!.getString(3)
 
     companion object {
+
         /**
          * `QUERYWITHPOS` is the (part-of-speech based) SQL statement
          */

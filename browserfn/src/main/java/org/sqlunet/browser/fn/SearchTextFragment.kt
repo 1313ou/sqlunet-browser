@@ -134,6 +134,7 @@ class SearchTextFragment : BaseSearchFragment() {
     }
 
     companion object {
+
         private const val TAG = "SearchTextF"
     }
 }

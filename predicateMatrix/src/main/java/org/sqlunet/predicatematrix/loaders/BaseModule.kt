@@ -385,6 +385,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
          */
         val fnFe: String?,
     ) : Comparable<FnData> {
+
         override fun compareTo(other: FnData): Int {
             if (fnFrameId != other.fnFrameId) {
                 return if (fnFrameId > other.fnFrameId) 1 else -1
@@ -549,6 +550,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * @param parent    parent
      * @param displayer displayer
      */(parent: TreeNode, displayer: Displayer) : PmProcess(parent, displayer) {
+
         /**
          * Role ids
          */
@@ -702,6 +704,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * @param displayer displayer to use
      */
         (parent: TreeNode, displayer: Displayer) : PmProcess(parent, displayer) {
+
         override fun process(parent: TreeNode, wnData: WnData, pmRow: PmRow, vnData: VnData, pbData: PbData, fnData: FnData) {
             displayer.display(parent, wnData, pmRow, vnData, pbData, fnData, changedList)
         }
@@ -711,6 +714,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * Abstract displayer
      */
     abstract inner class Displayer {
+
         /**
          * Display
          *
@@ -876,8 +880,8 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 vnsb.append(' ')
                 append(vnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
             }
-            val result = if (vnData.vnClassId == 0L) 
-                makeLeafNode(vnsb, R.drawable.verbnet, false).addTo(parent) else  
+            val result = if (vnData.vnClassId == 0L)
+                makeLeafNode(vnsb, R.drawable.verbnet, false).addTo(parent) else
                 makeLinkLeafNode(vnsb, R.drawable.verbnet, false, VnClassLink(vnData.vnClassId)).addTo(parent)
             changedList.add(TreeOpCode.NEWCHILD, result)
             return result
@@ -930,8 +934,8 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 pbsb.append(' ')
                 append(pbsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
             }
-            val result = if (pbData.pbRoleSetId == 0L) 
-                makeLeafNode(pbsb, R.drawable.propbank, false).addTo(parent) else  
+            val result = if (pbData.pbRoleSetId == 0L)
+                makeLeafNode(pbsb, R.drawable.propbank, false).addTo(parent) else
                 makeLinkLeafNode(pbsb, R.drawable.propbank, false, PbRoleSetLink(pbData.pbRoleSetId)).addTo(parent)
             changedList.add(TreeOpCode.NEWCHILD, result)
             return result
@@ -976,8 +980,8 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 fnsb.append(' ')
                 append(fnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
             }
-            val result = if (fnData.fnFrameId == 0L) 
-                makeLeafNode(fnsb, R.drawable.framenet, false).addTo(parent) else  
+            val result = if (fnData.fnFrameId == 0L)
+                makeLeafNode(fnsb, R.drawable.framenet, false).addTo(parent) else
                 makeLinkLeafNode(fnsb, R.drawable.framenet, false, FnFrameLink(fnData.fnFrameId)).addTo(parent)
             changedList.add(TreeOpCode.NEWCHILD, result)
             return result
@@ -1016,6 +1020,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * Displayer grouping on synset
      */
     internal inner class DisplayerBySynset : Displayer() {
+
         /**
          * Grouping synset id
          */
@@ -1108,6 +1113,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * VerbNet class link data
      */
     private inner class VnClassLink(classId: Long) : Link(classId) {
+
         override fun process() {
             val context = fragment.context ?: return
             val pointer: Parcelable = VnClassPointer(id)
@@ -1123,6 +1129,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * PropBank role set link data
      */
     private inner class PbRoleSetLink(roleSetId: Long) : Link(roleSetId) {
+
         override fun process() {
             val context = fragment.context ?: return
             val pointer: Parcelable = PbRoleSetPointer(id)
@@ -1138,6 +1145,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * FrameNet frame link data
      */
     private inner class FnFrameLink(frameId: Long) : Link(frameId) {
+
         override fun process() {
             val context = fragment.context ?: return
             val pointer: Parcelable = FnFramePointer(id)

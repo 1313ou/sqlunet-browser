@@ -34,6 +34,7 @@ internal class DomainsQuery(connection: SQLiteDatabase) : DBQuery(connection, QU
         get() = cursor!!.getString(2)?.get(0)?.code ?: 0
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

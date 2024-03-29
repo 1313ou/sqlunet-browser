@@ -13,12 +13,16 @@ import org.sqlunet.propbank.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object Colors {
+
     @JvmField
     var thetaBackColor = Color.TRANSPARENT
+
     @JvmField
     var thetaForeColor = Color.TRANSPARENT
+
     @JvmField
     var relationBackColor = Color.TRANSPARENT
+
     @JvmField
     var relationForeColor = Color.TRANSPARENT
 

@@ -31,6 +31,7 @@ class FnLexUnitPointer : Pointer {
     }
 
     companion object CREATOR : Parcelable.Creator<FnLexUnitPointer> {
+
         override fun createFromParcel(parcel: Parcel): FnLexUnitPointer {
             return FnLexUnitPointer(parcel)
         }

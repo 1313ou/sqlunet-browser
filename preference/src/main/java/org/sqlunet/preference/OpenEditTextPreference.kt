@@ -239,6 +239,7 @@ class OpenEditTextPreference : DialogPreference {
         }
 
         companion object {
+
             fun newInstance(pref: OpenEditTextPreference): OpenEditTextPreferenceDialogFragmentCompat {
                 val fragment = OpenEditTextPreferenceDialogFragmentCompat()
                 val args = Bundle()
@@ -284,6 +285,7 @@ class OpenEditTextPreference : DialogPreference {
     }
 
     companion object {
+
         private const val DIALOG_FRAGMENT_TAG = "OpenEditTextPreference"
 
         /**

@@ -35,6 +35,7 @@ abstract class BaseTask<Params, Progress, Result> : Cancelable {
      * @param Result result type
      */
     private abstract class JobBody<Params, Result> : Callable<Result> {
+
         var param: Params? = null
     }
 
@@ -54,6 +55,7 @@ abstract class BaseTask<Params, Progress, Result> : Cancelable {
      * Status enum
      */
     enum class Status {
+
         /**
          * Pending
          */

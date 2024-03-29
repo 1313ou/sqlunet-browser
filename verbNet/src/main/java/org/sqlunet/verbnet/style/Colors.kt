@@ -13,44 +13,64 @@ import org.sqlunet.verbnet.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object Colors {
+
     @JvmField
     var vnPredicateBackColor = Color.TRANSPARENT
+
     @JvmField
     var vnPredicateForeColor = Color.TRANSPARENT
+
     @JvmField
     var groupingBackColor = Color.TRANSPARENT
+
     @JvmField
     var groupingForeColor = Color.TRANSPARENT
+
     @JvmField
     var vnFrameBackColor = Color.TRANSPARENT
+
     @JvmField
     var vnFrameForeColor = Color.TRANSPARENT
+
     @JvmField
     var vnFrameSubnameBackColor = Color.TRANSPARENT
+
     @JvmField
     var vnFrameSubnameForeColor = Color.TRANSPARENT
+
     @JvmField
     var themroleBackColor = Color.TRANSPARENT
+
     @JvmField
     var themroleForeColor = Color.TRANSPARENT
+
     @JvmField
     var catBackColor = Color.TRANSPARENT
+
     @JvmField
     var catForeColor = Color.TRANSPARENT
+
     @JvmField
     var catValueBackColor = Color.TRANSPARENT
+
     @JvmField
     var catValueForeColor = Color.TRANSPARENT
+
     @JvmField
     var restrBackColor = Color.TRANSPARENT
+
     @JvmField
     var restrForeColor = Color.TRANSPARENT
+
     @JvmField
     var constantBackColor = Color.TRANSPARENT
+
     @JvmField
     var constantForeColor = Color.TRANSPARENT
+
     @JvmField
     var eventBackColor = Color.TRANSPARENT
+
     @JvmField
     var eventForeColor = Color.TRANSPARENT
 

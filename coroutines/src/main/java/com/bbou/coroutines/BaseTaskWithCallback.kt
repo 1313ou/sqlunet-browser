@@ -12,6 +12,7 @@ import kotlinx.coroutines.CoroutineDispatcher
  * @param Result result type
  */
 interface ResultCallback<Result> {
+
     /**
      * On done (post execute), fired when result becomes available or task fails
      *

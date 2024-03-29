@@ -25,6 +25,7 @@ class VnFrame(
     @JvmField val semantics: String,
     vararg examples: String,
 ) {
+
     @JvmField
     val examples: Array<out String>
 

@@ -40,6 +40,7 @@ open class SynsetPointer : Pointer, HasSynsetId {
     }
 
     companion object CREATOR : Parcelable.Creator<SynsetPointer> {
+
         override fun createFromParcel(parcel: Parcel): SynsetPointer {
             return SynsetPointer(parcel)
         }

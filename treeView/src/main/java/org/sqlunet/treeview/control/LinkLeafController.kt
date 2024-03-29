@@ -17,6 +17,7 @@ import org.sqlunet.treeview.model.TreeNode
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class LinkLeafController(breakExpand: Boolean) : LeafController(breakExpand) {
+
     @LayoutRes
     override var layoutResId = R.layout.layout_leaf_link
 

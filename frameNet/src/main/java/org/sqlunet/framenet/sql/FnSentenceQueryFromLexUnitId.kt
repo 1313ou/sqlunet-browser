@@ -15,6 +15,7 @@ import org.sqlunet.sql.DBQuery
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal class FnSentenceQueryFromLexUnitId(connection: SQLiteDatabase, luId: Long) : DBQuery(connection, QUERY) {
+
     /**
      * Constructor
      */
@@ -35,6 +36,7 @@ internal class FnSentenceQueryFromLexUnitId(connection: SQLiteDatabase, luId: Lo
         get() = cursor!!.getString(1)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

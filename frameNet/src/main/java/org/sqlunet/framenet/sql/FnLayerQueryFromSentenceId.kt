@@ -16,6 +16,7 @@ import android.database.sqlite.SQLiteDatabase
 internal class FnLayerQueryFromSentenceId(connection: SQLiteDatabase, targetSentenceId: Long) : FnLayerQuery(connection, targetSentenceId, QUERY) {
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

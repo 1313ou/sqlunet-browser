@@ -14,6 +14,7 @@ object FormatUtils {
      * Storage types
      */
     enum class StorageType {
+
         /**
          * Primary emulated
          */

@@ -81,6 +81,7 @@ object WnSettings : Settings() {
          */
         private val mask: Int
     ) {
+
         WORDNET(0x1),
         BNC(0x2);
 

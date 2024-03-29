@@ -157,6 +157,7 @@ class SyntagNetImplementation : SyntagNetInterface {
     }
 
     companion object {
+
         const val SN_NS = "http://org.sqlunet/sn"
         // S E L E C T O R
         /**

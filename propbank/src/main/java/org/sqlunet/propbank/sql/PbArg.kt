@@ -21,14 +21,15 @@ internal class PbArg private constructor(
     @JvmField val vnTheta: String?,
     @JvmField val subText: String,
 ) {
+
     /**
      * Constructor from argument fields
      *
      * @param argFields argument fields
      */
     constructor(vararg argFields: String) : this(
-        argFields[0], if ("*" == argFields[1]) 
-            null else argFields[1], argFields[2].lowercase(), if ("*" == argFields[3]) 
+        argFields[0], if ("*" == argFields[1])
+            null else argFields[1], argFields[2].lowercase(), if ("*" == argFields[3])
             null else argFields[3], argFields[4]
     )
 }

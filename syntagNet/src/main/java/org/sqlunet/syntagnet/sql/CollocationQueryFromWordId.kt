@@ -20,6 +20,7 @@ internal class CollocationQueryFromWordId(connection: SQLiteDatabase, wordid: Lo
     }
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

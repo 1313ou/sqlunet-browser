@@ -48,6 +48,7 @@ internal class StringSavedState : Preference.BaseSavedState {
     }
 
     companion object CREATOR : Parcelable.Creator<StringSavedState> {
+
         override fun createFromParcel(parcel: Parcel): StringSavedState {
             return StringSavedState(parcel)
         }

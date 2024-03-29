@@ -26,6 +26,7 @@ import org.sqlunet.style.Spanner.HiddenSpan
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class FrameNetMarkupFactory internal constructor(context: Context) : MarkupSpanner.SpanFactory {
+
     /**
      * Top role drawable
      */

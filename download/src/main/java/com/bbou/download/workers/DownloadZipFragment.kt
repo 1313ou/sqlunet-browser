@@ -15,9 +15,9 @@ import com.bbou.download.DownloadData
 import com.bbou.download.Keys.DOWNLOAD_ENTRY_ARG
 import com.bbou.download.Keys.DOWNLOAD_TO_DIR_ARG
 import com.bbou.download.Notifier
+import com.bbou.download.common.R
 import com.bbou.download.workers.core.DownloadZipWork
 import java.io.File
-import com.bbou.download.common.R
 
 /**
  * Download fragment using DownloadZipWork
@@ -207,7 +207,7 @@ class DownloadZipFragment : DownloadBaseFragment() {
     }
 
     companion object {
-        private const val TAG = "ZipDownloadF"
 
+        private const val TAG = "ZipDownloadF"
     }
 }

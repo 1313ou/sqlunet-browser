@@ -20,8 +20,10 @@ import org.sqlunet.browser.test.R
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 class RunTextSearchTest : TestCase() {
+
     @Rule
     var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
+
     @Before
     fun before() {
         if (ensureDownloaded()) {

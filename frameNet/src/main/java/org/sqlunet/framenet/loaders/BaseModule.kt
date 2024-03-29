@@ -992,8 +992,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                 // fe realizations
                 val fers = cursor.getString(idFers)
-                for (fer in fers.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())  
-                {
+                for (fer in fers.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
                     // pt:gf:valenceUnit id
 
                     // valenceUnit id
@@ -1572,7 +1571,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @return changed nodes
      */
     private fun annoSets(
-        parent: TreeNode, cursor: Cursor,  
+        parent: TreeNode, cursor: Cursor,
         sentenceText: String?, idSentenceText: Int, idLayerType: Int, idRank: Int, idAnnotations: Int, idAnnoSetId: Int,
     ): Array<TreeOp> {
         val changed: Array<TreeOp>
@@ -1634,8 +1633,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                         // label
                         append(
-                            sb, label.label, 0, if (isFE) 
-                                FrameNetFactories.feFactory else  
+                            sb, label.label, 0, if (isFE)
+                                FrameNetFactories.feFactory else
                                 FrameNetFactories.labelFactory
                         )
                         sb.append(' ')
@@ -1653,8 +1652,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         }
                         val p = sb.length
                         append(
-                            sb, subtext, 0, if (isTarget) 
-                                FrameNetFactories.targetFactory else  
+                            sb, subtext, 0, if (isTarget)
+                                FrameNetFactories.targetFactory else
                                 FrameNetFactories.subtextFactory
                         )
 
@@ -1746,12 +1745,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @return processed layer name
      */
     private fun processLayer(name: CharSequence): CharSequence {
-        if ("FE".contentEquals(name)) 
-        {
+        if ("FE".contentEquals(name)) {
             return "Frame element"
         }
-        if ("PT".contentEquals(name)) 
-        {
+        if ("PT".contentEquals(name)) {
             return "Phrase type"
         }
         return if ("GF".contentEquals(name)) {
@@ -1766,12 +1763,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @return processed PT
      */
     private fun processPT(name: CharSequence): CharSequence {
-        if ("CNI".contentEquals(name)) 
-        {
+        if ("CNI".contentEquals(name)) {
             return "constructional ∅"
         }
-        if ("DNI".contentEquals(name)) 
-        {
+        if ("DNI".contentEquals(name)) {
             return "definite ∅"
         }
         return if ("INI".contentEquals(name)) {
@@ -1955,6 +1950,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Fn frame link data
      */
     internal inner class FnFrameLink(frameId: Long) : Link(frameId) {
+
         override fun process() {
             val context = fragment.context ?: return
             val pointer: Parcelable = FnFramePointer(id)
@@ -1974,6 +1970,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Fn lex unit link data
      */
     internal inner class FnLexUnitLink(luId: Long) : Link(luId) {
+
         override fun process() {
             val context = fragment.context ?: return
             val pointer: Parcelable = FnLexUnitPointer(id)
@@ -1993,6 +1990,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Fn sentence link data
      */
     internal inner class FnSentenceLink(sentenceId: Long) : Link(sentenceId) {
+
         override fun process() {
             val context = fragment.context ?: return
             val pointer: Parcelable = FnSentencePointer(id)
@@ -2009,6 +2007,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     companion object {
+
         private const val TAG = "BaseModule"
 
         /**
@@ -2027,7 +2026,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             VERBOSE = verbose
         }
 
-        private val FRAMERELATION_RANK = intArrayOf( 
+        private val FRAMERELATION_RANK = intArrayOf(
             20,  // 1  - Has Subframe(s)
             11,  // 2  - Inherits from
             60,  // 3  - Is Causative of
@@ -2042,7 +2041,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             21,  // 12 - Subframe of
             30
         )
-        private val FRAMERELATION_GLOSS = arrayOf( 
+        private val FRAMERELATION_GLOSS = arrayOf(
             "%s has %s as subframe",  // 1  - Has Subframe(s)
             "%s inherits %s",  // 2  - Inherits from
             "%s is causative of %s",  // 3  - Is Causative of

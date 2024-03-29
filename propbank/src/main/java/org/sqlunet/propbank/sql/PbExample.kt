@@ -26,6 +26,7 @@ internal class PbExample private constructor(
     @JvmField val voice: String,
     @JvmField val person: String,
 ) {
+
     companion object {
 
         /**

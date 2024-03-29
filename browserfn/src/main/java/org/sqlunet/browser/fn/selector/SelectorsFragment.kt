@@ -80,9 +80,9 @@ class SelectorsFragment : BaseSelectorsListFragment() {
 
     override fun makeAdapter(): CursorAdapter {
         val adapter = SimpleCursorAdapter(
-            requireContext(), R.layout.item_selector, null, arrayOf( 
+            requireContext(), R.layout.item_selector, null, arrayOf(
                 LexUnits_or_Frames.NAME, LexUnits_or_Frames.FRAMENAME, LexUnits_or_Frames.WORD, LexUnits_or_Frames.FNID, LexUnits_or_Frames.FNWORDID, LexUnits_or_Frames.WORDID, LexUnits_or_Frames.FRAMEID, LexUnits_or_Frames.ISFRAME
-            ), intArrayOf( 
+            ), intArrayOf(
                 R.id.fnname, R.id.fnframename, R.id.fnword, R.id.fnid, R.id.fnwordid, R.id.wordid, R.id.fnframeid, R.id.icon
             ), 0
         )
@@ -135,6 +135,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
      * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
      */
     fun interface Listener {
+
         /**
          * Callback for when an item has been selected.
          */

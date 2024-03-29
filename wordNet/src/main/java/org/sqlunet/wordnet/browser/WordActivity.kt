@@ -15,6 +15,7 @@ import org.sqlunet.wordnet.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class WordActivity : AppCompatActivity() {
+
     private var fromSavedInstance = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,9 +51,9 @@ class WordActivity : AppCompatActivity() {
                 val args = intent.extras
                 fragment.setArguments(args)
             }
-            manager.beginTransaction() 
-                .setReorderingAllowed(true) 
-                .replace(R.id.container_word, fragment, WordFragment.FRAGMENT_TAG) 
+            manager.beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container_word, fragment, WordFragment.FRAGMENT_TAG)
                 // .addToBackStack(WordFragment.FRAGMENT_TAG) 
                 .commit()
         }

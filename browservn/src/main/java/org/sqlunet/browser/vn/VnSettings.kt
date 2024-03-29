@@ -107,6 +107,7 @@ object VnSettings : Settings() {
          */
         private val mask: Int
     ) {
+
         WORDNET(ENABLE_WORDNET),
         VERBNET(ENABLE_VERBNET),
         PROPBANK(ENABLE_PROPBANK);
@@ -138,6 +139,7 @@ object VnSettings : Settings() {
      * Selectors
      */
     enum class Selector {
+
         XSELECTOR;
 
         /**
@@ -151,6 +153,7 @@ object VnSettings : Settings() {
         }
 
         companion object {
+
             /**
              * Get preferred mode
              *

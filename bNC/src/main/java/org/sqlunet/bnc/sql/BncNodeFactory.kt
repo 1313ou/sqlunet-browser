@@ -13,6 +13,7 @@ import org.w3c.dom.Node
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal object BncNodeFactory {
+
     /**
      * Make BNC root node
      *

@@ -31,6 +31,7 @@ class FnSentencePointer : Pointer {
     }
 
     companion object CREATOR : Parcelable.Creator<FnSentencePointer> {
+
         override fun createFromParcel(parcel: Parcel): FnSentencePointer {
             return FnSentencePointer(parcel)
         }

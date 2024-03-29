@@ -26,7 +26,8 @@ class PreparedStatement(
      */
     private val sql: String,
 
-) : AutoCloseable {
+    ) : AutoCloseable {
+
     /**
      * Selection arguments
      */
@@ -68,7 +69,7 @@ class PreparedStatement(
      * @param i    ith parameter
      * @param type type
      */
-    fun setNull(i: Int,  type: Int) {
+    fun setNull(i: Int, type: Int) {
         selectionArgs.put(i, null)
     }
 
@@ -114,6 +115,7 @@ class PreparedStatement(
     }
 
     companion object {
+
         private const val TAG = "PreparedStatement"
 
         /**

@@ -78,6 +78,7 @@ class FrameNetSpanner(context: Context) {
     }
 
     companion object {
+
         private val pattern = Pattern.compile("<([^>]*)>([^<]*)</([^>]*)>")
         private val pattern1 = Pattern.compile("<(ex)>(.*)</(ex)>")
     }

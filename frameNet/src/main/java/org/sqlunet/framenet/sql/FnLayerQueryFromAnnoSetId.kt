@@ -16,6 +16,7 @@ import android.database.sqlite.SQLiteDatabase
 internal class FnLayerQueryFromAnnoSetId(connection: SQLiteDatabase, targetAnnoSetId: Long) : FnLayerQuery(connection, targetAnnoSetId, QUERY) {
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

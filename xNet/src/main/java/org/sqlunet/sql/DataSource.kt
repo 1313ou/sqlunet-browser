@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class DataSource(path: String) : AutoCloseable {
+
     /**
      * Connection as database
      */

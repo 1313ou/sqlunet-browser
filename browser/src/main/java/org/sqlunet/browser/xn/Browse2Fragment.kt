@@ -35,6 +35,7 @@ import org.sqlunet.wordnet.browser.SenseFragment
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class Browse2Fragment : BaseBrowse2Fragment() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val args = arguments
@@ -164,9 +165,9 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 webFragment.setArguments(args)
 
                 // detail fragment replace
-                manager.beginTransaction() 
-                    .setReorderingAllowed(true) 
-                    .replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG) 
+                manager.beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG)
                     .commit()
             }
         }
@@ -211,7 +212,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 sb.append('\n')
                 appendClickableImage(sb, org.sqlunet.speak.R.drawable.ic_speak_button, label, {
                     Log.d("Speak", "")
-                    pronounce(requireContext(), word!!, ipa, country,  SpeakSettings.findVoiceFor(country, requireContext()))
+                    pronounce(requireContext(), word!!, ipa, country, SpeakSettings.findVoiceFor(country, requireContext()))
                 }, requireContext())
             }
         }
@@ -219,6 +220,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
     }
 
     companion object {
+
         const val ARG_ALT = "alt_arg"
     }
 }

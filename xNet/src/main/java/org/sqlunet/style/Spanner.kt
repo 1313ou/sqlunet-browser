@@ -36,6 +36,7 @@ open class Spanner {
      * @author [Bernard Bou](mailto:1313ou@gmail.com)
      */
     fun interface SpanFactory {
+
         fun make(flags: Long): Any?
     }
 
@@ -45,6 +46,7 @@ open class Spanner {
      * @author [Bernard Bou](mailto:1313ou@gmail.com)
      */
     fun interface OnClickImage {
+
         fun onClickImage(sb: SpannableStringBuilder?, position: Int, collapsed: Boolean)
     }
 
@@ -60,8 +62,8 @@ open class Spanner {
      * Constructor
      */
         : ReplacementSpan() {
+
         override fun draw(canvas: Canvas, arg1: CharSequence, arg2: Int, arg3: Int, arg4: Float, arg5: Int, arg6: Int, arg7: Int, arg8: Paint) {
-            
         }
 
         override fun getSize(paint: Paint, text: CharSequence, from: Int, to: Int, fm: FontMetricsInt?): Int {
@@ -70,6 +72,7 @@ open class Spanner {
     }
 
     companion object {
+
         private const val TAG = "Spanner"
 
         /**

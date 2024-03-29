@@ -47,6 +47,7 @@ class PropBankFragment : TreeFragment() {
     }
 
     companion object {
+
         const val FRAGMENT_TAG = "propbank"
     }
 }

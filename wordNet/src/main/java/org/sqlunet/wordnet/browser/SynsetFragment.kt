@@ -19,6 +19,7 @@ import org.sqlunet.wordnet.loaders.SynsetModule
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 open class SynsetFragment : TreeFragment() {
+
     /**
      * Whether to expandContainer
      */
@@ -101,6 +102,7 @@ open class SynsetFragment : TreeFragment() {
     }
 
     companion object {
+
         private const val TAG = "SynsetF"
 
         /**

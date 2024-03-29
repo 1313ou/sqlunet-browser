@@ -22,6 +22,7 @@ import org.sqlunet.wordnet.browser.SenseFragment
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class Browse2Fragment : BaseBrowse2Fragment() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val args = arguments
@@ -48,7 +49,6 @@ class Browse2Fragment : BaseBrowse2Fragment() {
         args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse)
         args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
 
-        
         var hasWordNet = true
         if (pointer is CollocationSelectorPointer) {
             val selectorPointer = pointer as CollocationSelectorPointer?
@@ -115,9 +115,9 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 webFragment.setArguments(args)
 
                 // detail fragment replace
-                manager.beginTransaction() 
-                    .setReorderingAllowed(true) 
-                    .replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG) 
+                manager.beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG)
                     .commit()
             }
         }
@@ -137,6 +137,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
     }
 
     companion object {
+
         const val ARG_ALT = "alt_arg"
     }
 }

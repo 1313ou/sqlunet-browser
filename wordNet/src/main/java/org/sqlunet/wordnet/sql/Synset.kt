@@ -170,6 +170,7 @@ open class Synset : BasicSynset {
     }
 
     companion object {
+
         private const val TAG = "Synset"
     }
 }

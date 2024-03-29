@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/senseScrollView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="org.sqlunet.wordnet.browser.SenseActivity">
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/senseScrollView"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context="org.sqlunet.wordnet.browser.SenseActivity">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -39,7 +38,7 @@
 			android:id="@+id/data_contents"
 			style="@style/Data.Contents"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content" />
 	</LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

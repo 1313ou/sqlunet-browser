@@ -15,7 +15,9 @@ import android.database.sqlite.SQLiteDatabase
 class VnFrameSet private constructor(
     @JvmField val frames: MutableList<VnFrame>,
 ) {
+
     companion object {
+
         /**
          * Make a set of frames from query built from class id, word id and synset id
          *

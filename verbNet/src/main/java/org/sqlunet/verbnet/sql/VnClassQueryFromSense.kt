@@ -69,8 +69,8 @@ internal class VnClassQueryFromSense(connection: SQLiteDatabase, wordId: Long, s
     val groupings: String
         get() = cursor!!.getString(7)
 
-
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

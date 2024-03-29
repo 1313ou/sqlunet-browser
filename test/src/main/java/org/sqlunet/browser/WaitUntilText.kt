@@ -20,11 +20,11 @@ class WaitUntilText(
     viewMatcher: Matcher<in View?>,
     private val target: String, private val not: Boolean
 ) : BaseWaitUntil(
-        CoreMatchers.allOf(
-                viewMatcher, CoreMatchers.instanceOf(
-                TextView::class.java
+    CoreMatchers.allOf(
+        viewMatcher, CoreMatchers.instanceOf(
+            TextView::class.java
         )
-        )
+    )
 ) {
 
     override fun isIdleNow(): Boolean {
@@ -57,8 +57,7 @@ class WaitUntilText(
             try {
                 IdlingRegistry.getInstance().register(idlingResource)
                 Espresso.onView(matcher).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-            }
-            finally {
+            } finally {
                 IdlingRegistry.getInstance().unregister(idlingResource)
             }
         }

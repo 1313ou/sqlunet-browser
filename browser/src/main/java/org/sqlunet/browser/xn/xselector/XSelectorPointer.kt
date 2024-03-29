@@ -139,12 +139,12 @@ class XSelectorPointer : SelectorPointer, HasXId {
     }
 
     override fun toString(): String {
-        return super.toString() + ' ' + "xid=" +  
-                xId + ' ' + "xclassid=" +  
-                xClassId + ' ' + "xmemberid=" +  
-                xMemberId + ' ' + "xsources=" +  
-                xSources + ' ' + "xmask=" +  
-                java.lang.Long.toHexString(xMask) + ' ' + "xgroup=" +  
+        return super.toString() + ' ' + "xid=" +
+                xId + ' ' + "xclassid=" +
+                xClassId + ' ' + "xmemberid=" +
+                xMemberId + ' ' + "xsources=" +
+                xSources + ' ' + "xmask=" +
+                java.lang.Long.toHexString(xMask) + ' ' + "xgroup=" +
                 xGroup
     }
 
@@ -181,32 +181,25 @@ class XSelectorPointer : SelectorPointer, HasXId {
         @JvmStatic
         fun getMask(xSources: String): Long {
             var mask: Long = 0
-            if (xSources.contains("wn")) 
-            {
+            if (xSources.contains("wn")) {
                 mask = mask or WORDNETSOURCE.toLong()
             }
-            if (xSources.contains("vn")) 
-            {
+            if (xSources.contains("vn")) {
                 mask = mask or VERBNETSOURCE.toLong()
             }
-            if (xSources.contains("pb")) 
-            {
+            if (xSources.contains("pb")) {
                 mask = mask or PROPBANKSOURCE.toLong()
             }
-            if (xSources.contains("fn")) 
-            {
+            if (xSources.contains("fn")) {
                 mask = mask or FRAMENETSOURCE.toLong()
             }
-            if (xSources.contains("pmvn")) 
-            {
+            if (xSources.contains("pmvn")) {
                 mask = mask or PMVERBNETSOURCE.toLong()
             }
-            if (xSources.contains("pmpb")) 
-            {
+            if (xSources.contains("pmpb")) {
                 mask = mask or PMPROPBANKSOURCE.toLong()
             }
-            if (xSources.contains("pmfn")) 
-            {
+            if (xSources.contains("pmfn")) {
                 mask = mask or PMFRAMENETSOURCE.toLong()
             }
             return mask

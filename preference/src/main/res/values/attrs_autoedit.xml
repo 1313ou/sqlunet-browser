@@ -5,7 +5,7 @@
 <resources>
 
 	<declare-styleable name="AutoEditTextPreference">
-		<attr name="values"/>
+		<attr name="values" />
 	</declare-styleable>
 
 </resources>

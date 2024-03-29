@@ -13,16 +13,22 @@ import org.sqlunet.predicatematrix.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object Colors {
+
     @JvmField
     var predicateNameBackColor = Color.TRANSPARENT
+
     @JvmField
     var predicateNameForeColor = Color.TRANSPARENT
+
     @JvmField
     var groupBackColor = Color.TRANSPARENT
+
     @JvmField
     var groupForeColor = Color.TRANSPARENT
+
     @JvmField
     var roleAliasBackColor = Color.TRANSPARENT
+
     @JvmField
     var roleAliasForeColor = Color.TRANSPARENT
 

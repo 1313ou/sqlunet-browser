@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import org.w3c.dom.Document
 
 internal interface BncInterface {
+
     /**
      * Business method that returns BNC data as DOM document
      *

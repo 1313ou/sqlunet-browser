@@ -16,6 +16,7 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 open class DBQuery protected constructor(connection: SQLiteDatabase, statement: String) : AutoCloseable {
+
     /**
      * `SQL statement
      */

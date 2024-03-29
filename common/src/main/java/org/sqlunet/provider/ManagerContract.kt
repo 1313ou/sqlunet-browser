@@ -25,11 +25,11 @@ object ManagerContract {
         intent.putExtra(ProviderArgs.ARG_QUERYURI, ManagerProvider.makeUri(TablesAndIndices.URI))
         intent.putExtra(ProviderArgs.ARG_QUERYID, "rowid")
         intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf("rowid", TablesAndIndices.TYPE, TablesAndIndices.NAME))
-        val order = ("CASE " 
-                + "WHEN " + TablesAndIndices.TYPE + " = 'table' THEN '1' " 
-                + "WHEN " + TablesAndIndices.TYPE + " = 'view' THEN '2' " 
-                + "WHEN " + TablesAndIndices.TYPE + " = 'index' THEN '3' " 
-                + "ELSE " + TablesAndIndices.TYPE + " END ASC," 
+        val order = ("CASE "
+                + "WHEN " + TablesAndIndices.TYPE + " = 'table' THEN '1' "
+                + "WHEN " + TablesAndIndices.TYPE + " = 'view' THEN '2' "
+                + "WHEN " + TablesAndIndices.TYPE + " = 'index' THEN '3' "
+                + "ELSE " + TablesAndIndices.TYPE + " END ASC,"
                 + TablesAndIndices.NAME + " ASC")
         intent.putExtra(ProviderArgs.ARG_QUERYSORT, order)
         intent.putExtra(ProviderArgs.ARG_QUERYFILTER, "name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'")
@@ -40,6 +40,7 @@ object ManagerContract {
      * Table and indices contract
      */
     object TablesAndIndices {
+
         const val TABLE = "sqlite_master"
         const val URI = TABLE
         const val NAME = "name"

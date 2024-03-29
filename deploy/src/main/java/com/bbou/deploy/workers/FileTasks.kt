@@ -868,7 +868,6 @@ class FileTasks(
             observer.taskUpdate(activity.getString(R.string.status_unzipping))
         }
 
-
         /**
          * Launch unzipping of entry in archive file
          *

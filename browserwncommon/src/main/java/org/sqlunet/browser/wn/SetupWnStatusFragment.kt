@@ -19,8 +19,8 @@ import org.sqlunet.browser.Info.info
 import org.sqlunet.browser.config.SetupDatabaseActivity
 import org.sqlunet.browser.config.SetupDatabaseFragment
 import org.sqlunet.browser.config.SetupStatusFragment
-import org.sqlunet.browser.config.Utils.hrSize
 import org.sqlunet.browser.config.Status
+import org.sqlunet.browser.config.Utils.hrSize
 import org.sqlunet.browser.wn.lib.R
 import org.sqlunet.settings.StorageSettings
 import org.sqlunet.settings.StorageUtils.countToStorageString
@@ -33,6 +33,7 @@ import java.io.File
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class SetupWnStatusFragment : SetupStatusFragment() {
+
     // components
     private var imageTextSearchWn: ImageView? = null
     private var buttonTextSearchWn: ImageButton? = null
@@ -68,25 +69,25 @@ class SetupWnStatusFragment : SetupStatusFragment() {
                 val size = File(database).length()
                 val hrSize = countToStorageString(size) + " (" + size + ')'
                 info(
-                    activity, R.string.title_status,  
-                    getString(R.string.title_database), database,  
-                    getString(R.string.title_status), getString(R.string.status_database_exists) + '-' + getString(if (existsTables) R.string.status_data_exists else R.string.status_data_not_exists),  
-                    getString(R.string.title_free), free,  
-                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  
-                    getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, requireContext()),  
-                    getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  
+                    activity, R.string.title_status,
+                    getString(R.string.title_database), database,
+                    getString(R.string.title_status), getString(R.string.status_database_exists) + '-' + getString(if (existsTables) R.string.status_data_exists else R.string.status_data_not_exists),
+                    getString(R.string.title_free), free,
+                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),
+                    getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, requireContext()),
+                    getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),
                     getString(R.string.size_current), hrSize
                 )
             } else {
                 info(
-                    activity, R.string.title_dialog_info_download,  
-                    getString(R.string.title_operation), getString(R.string.info_op_download_database),  
-                    getString(R.string.title_from), source,  
-                    getString(R.string.title_database), database,  
-                    getString(R.string.title_free), free,  
-                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  
-                    getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, requireContext()),  
-                    getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  
+                    activity, R.string.title_dialog_info_download,
+                    getString(R.string.title_operation), getString(R.string.info_op_download_database),
+                    getString(R.string.title_from), source,
+                    getString(R.string.title_database), database,
+                    getString(R.string.title_free), free,
+                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),
+                    getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, requireContext()),
+                    getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),
                     getString(R.string.title_status), getString(R.string.status_database_not_exists)
                 )
             }
@@ -120,6 +121,7 @@ class SetupWnStatusFragment : SetupStatusFragment() {
     }
 
     companion object {
+
         private const val TAG = "SetupStatusF"
     }
 }

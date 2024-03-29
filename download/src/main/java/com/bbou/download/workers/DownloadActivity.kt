@@ -98,6 +98,7 @@ open class DownloadActivity : AppCompatActivity(), CompletionListener {
     }
 
     companion object {
+
         private const val TAG = "DownloadA"
 
         /**

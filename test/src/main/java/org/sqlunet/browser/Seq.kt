@@ -42,10 +42,10 @@ object Seq {
      */
     fun doType(@IdRes editTextViewId: Int, text: String) {
         Espresso.onView(ViewMatchers.withId(editTextViewId))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-                .perform(
-                        ViewActions.typeText(text)
-                )
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+            .perform(
+                ViewActions.typeText(text)
+            )
     }
 
     /**
@@ -58,17 +58,17 @@ object Seq {
         val searchView = ViewMatchers.withId(searchViewId)
         // open search view
         Espresso.onView(searchView)
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-                .perform(
-                        ViewActions.click()
-                )
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+            .perform(
+                ViewActions.click()
+            )
         // type search
         Espresso.onView(CoreMatchers.allOf(ViewMatchers.isDescendantOfA(searchView), ViewMatchers.isAssignableFrom(EditText::class.java)))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-                .perform(
-                        ViewActions.typeText(text),
-                        ViewActions.pressImeActionButton()
-                )
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+            .perform(
+                ViewActions.typeText(text),
+                ViewActions.pressImeActionButton()
+            )
     }
 
     /**
@@ -78,8 +78,8 @@ object Seq {
      */
     fun doClick(@IdRes buttonId: Int) {
         Espresso.onView(ViewMatchers.withId(buttonId))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-                .perform(ViewActions.click())
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+            .perform(ViewActions.click())
     }
 
     /**
@@ -111,13 +111,13 @@ object Seq {
     fun doChoose(@IdRes spinnerId: Int, targetText: String) {
         // expand spinner
         Espresso.onView(CoreMatchers.allOf(ViewMatchers.withId(spinnerId), CoreMatchers.instanceOf(Spinner::class.java)))
-                .perform(ViewActions.click())
+            .perform(ViewActions.click())
         // do_click view matching text
         Espresso.onData(CoreMatchers.allOf(CoreMatchers.`is`(CoreMatchers.instanceOf<Any>(String::class.java)), CoreMatchers.`is`(targetText)))
-                .perform(ViewActions.click())
+            .perform(ViewActions.click())
         // check
         Espresso.onView(ViewMatchers.withId(spinnerId))
-                .check(ViewAssertions.matches(ViewMatchers.withSpinnerText(CoreMatchers.containsString(targetText))))
+            .check(ViewAssertions.matches(ViewMatchers.withSpinnerText(CoreMatchers.containsString(targetText))))
     }
 
     /**
@@ -129,10 +129,10 @@ object Seq {
     fun doChoose(@IdRes spinnerId: Int, position: Int) {
         // expand spinner
         Espresso.onView(CoreMatchers.allOf(ViewMatchers.withId(spinnerId), CoreMatchers.instanceOf(Spinner::class.java)))
-                .perform(ViewActions.click())
+            .perform(ViewActions.click())
         // do_click view matching position
         Espresso.onData(org.hamcrest.Matchers.anything()).atPosition(position)
-                .perform(ViewActions.click())
+            .perform(ViewActions.click())
     }
 
     /**
@@ -144,7 +144,7 @@ object Seq {
      */
     fun doNavigate(@IdRes drawerLayoutId: Int, @IdRes navViewId: Int, targetText: String?) {
         Espresso.onView(ViewMatchers.withId(drawerLayoutId))
-                .perform(DrawerActions.open())
+            .perform(DrawerActions.open())
         /*
 		var t = !Utils.testAssertion(withId(drawer_layout), doesNotExist());
 		t = Utils.test(withId(drawer_layout), isDisplayed());
@@ -152,14 +152,14 @@ object Seq {
 		t = Utils.test(allOf(isDescendantOfA(withId(drawer_layout)), withText(targetText)), isDisplayed());
 		*/
         Espresso.onView(
-                CoreMatchers.allOf(
-                        ViewMatchers.isDescendantOfA(ViewMatchers.withId(navViewId)),
-                        ViewMatchers.withText(targetText)
-                )
+            CoreMatchers.allOf(
+                ViewMatchers.isDescendantOfA(ViewMatchers.withId(navViewId)),
+                ViewMatchers.withText(targetText)
+            )
         )
-                .perform(ViewActions.click())
+            .perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(drawerLayoutId))
-                .perform(DrawerActions.close())
+            .perform(DrawerActions.close())
     }
 
     /**
@@ -171,16 +171,16 @@ object Seq {
      */
     fun doNavigate(@IdRes drawerLayoutId: Int, @IdRes navViewId: Int, @MenuRes targetId: Int) {
         Espresso.onView(ViewMatchers.withId(drawerLayoutId))
-                .perform(DrawerActions.open())
+            .perform(DrawerActions.open())
         /*
 		var t = !Utils.testAssertion(withId(drawer_layout), doesNotExist())
 		t = Utils.test(withId(drawer_layout), isDisplayed())
 		t = !Utils.testAssertion(allOf(isDescendantOfA(withId(drawer_layout)), withText(targetText)), doesNotExist())
 		t = Utils.test(allOf(isDescendantOfA(withId(drawer_layout)), withText(targetText)), isDisplayed())
 		*/Espresso.onView(ViewMatchers.withId(navViewId))
-                .perform(NavigationViewActions.navigateTo(targetId))
+            .perform(NavigationViewActions.navigateTo(targetId))
         Espresso.onView(ViewMatchers.withId(drawerLayoutId))
-                .perform(DrawerActions.close())
+            .perform(DrawerActions.close())
     }
 
     /**
@@ -190,10 +190,10 @@ object Seq {
      */
     fun doSwipeUp(@IdRes viewId: Int) {
         Espresso.onView(ViewMatchers.withId(viewId))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-                .perform(
-                        onlyIf(ViewActions.swipeUp(), ViewMatchers.isDisplayingAtLeast(1))
-                        //, swipeUp() 
-                )
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+            .perform(
+                onlyIf(ViewActions.swipeUp(), ViewMatchers.isDisplayingAtLeast(1))
+                //, swipeUp()
+            )
     }
 }

@@ -18,7 +18,7 @@ import org.sqlunet.browser.common.R
  */
 class StatusActivity : AppCompatActivity() {
 
-     override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // content

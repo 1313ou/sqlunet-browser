@@ -138,12 +138,12 @@ class XSelectorPointer : SelectorPointer, HasXId {
     }
 
     override fun toString(): String {
-        return super.toString() + ' ' + "xid=" +  
-                xId + ' ' + "xclassid=" +  
-                xClassId + ' ' + "xmemberid=" +  
-                xMemberId + ' ' + "xsources=" +  
-                xSources + ' ' + "xmask=" +  
-                java.lang.Long.toHexString(xMask) + ' ' + "xgroup=" +  
+        return super.toString() + ' ' + "xid=" +
+                xId + ' ' + "xclassid=" +
+                xClassId + ' ' + "xmemberid=" +
+                xMemberId + ' ' + "xsources=" +
+                xSources + ' ' + "xmask=" +
+                java.lang.Long.toHexString(xMask) + ' ' + "xgroup=" +
                 xGroup
     }
 
@@ -162,6 +162,7 @@ class XSelectorPointer : SelectorPointer, HasXId {
     }
 
     companion object CREATOR : Parcelable.Creator<XSelectorPointer> {
+
         private const val WORDNETSOURCE = 0x00001
         private const val SYNTAGNETSOURCE = 0x00100
 
@@ -173,12 +174,10 @@ class XSelectorPointer : SelectorPointer, HasXId {
          */
         fun getMask(xSources: String): Long {
             var mask: Long = 0
-            if (xSources.contains("wn")) 
-            {
+            if (xSources.contains("wn")) {
                 mask = mask or WORDNETSOURCE.toLong()
             }
-            if (xSources.contains("sn")) 
-            {
+            if (xSources.contains("sn")) {
                 mask = mask or SYNTAGNETSOURCE.toLong()
             }
             return mask

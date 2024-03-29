@@ -427,8 +427,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
                 // syntax
                 val syntax = cursor.getString(idSyntax)
-                for (line in syntax.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())  
-                {
+                for (line in syntax.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
                     sb.append('\n')
                     sb.append('\t')
                     appendImage(sb, drawableSyntax)
@@ -437,8 +436,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
                 // semantics
                 val semantics = cursor.getString(idSemantics)
-                for (line in semantics.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())  
-                {
+                for (line in semantics.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
                     sb.append('\n')
                     sb.append('\t')
                     appendImage(sb, drawableSemantics)

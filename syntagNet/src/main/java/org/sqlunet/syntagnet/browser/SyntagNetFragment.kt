@@ -47,6 +47,7 @@ class SyntagNetFragment : TreeFragment() {
     }
 
     companion object {
+
         const val FRAGMENT_TAG = "syntagnet"
     }
 }

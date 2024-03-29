@@ -17,6 +17,7 @@ class FnSentence internal constructor(
     @JvmField val sentenceId: Long,
     @JvmField val text: String,
 ) {
+
     companion object {
 
         /**

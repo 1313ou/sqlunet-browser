@@ -42,7 +42,7 @@
 	<string name="description_action_searchtext_fn">Prepare text search on FrameNet</string>
 
 	<!-- database info -->
-<!--	<string name="action_tables_and_indices">Tables and Indices</string>-->
+	<!--	<string name="action_tables_and_indices">Tables and Indices</string>-->
 	<string name="action_table_domains">Domains</string>
 	<string name="action_table_relations">Relations</string>
 	<string name="action_table_poses">POSes</string>

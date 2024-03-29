@@ -18,6 +18,7 @@ enum class StoreType {
     AMAZON;
 
     internal fun interface IntentBuilder {
+
         fun build(context: Context): Intent
     }
 

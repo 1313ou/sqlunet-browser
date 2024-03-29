@@ -1,13 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<!DOCTYPE resources [
-	<!ENTITY bbuser "semantikos3">
-	<!ENTITY bbrepo "semantikos23">
-	<!ENTITY bbcommit "1df285d4f8009dad17af0cc1cfecd8c0b694db85">
-	]>
+<!DOCTYPE resources [    <!ENTITY bbuser "semantikos3">    <!ENTITY bbrepo "semantikos23">    <!ENTITY bbcommit "1df285d4f8009dad17af0cc1cfecd8c0b694db85">    ]>
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 

@@ -18,6 +18,7 @@ import org.sqlunet.treeview.model.TreeNode
  * @author Bogdan Melnychuk on 2/12/15.
  */
 open class TreeController(breakExpand: Boolean) : BaseResController(breakExpand) {
+
     @LayoutRes
     override val layoutResId = R.layout.layout_tree
 

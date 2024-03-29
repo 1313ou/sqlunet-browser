@@ -17,6 +17,7 @@ class FnRelatedFrame private constructor(
     @JvmField val frameName: String,
     @JvmField val relation: String,
 ) {
+
     companion object {
 
         /**

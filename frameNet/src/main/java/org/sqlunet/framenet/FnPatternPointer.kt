@@ -31,6 +31,7 @@ class FnPatternPointer : Pointer {
     }
 
     companion object CREATOR : Parcelable.Creator<FnPatternPointer> {
+
         override fun createFromParcel(parcel: Parcel): FnPatternPointer {
             return FnPatternPointer(parcel)
         }

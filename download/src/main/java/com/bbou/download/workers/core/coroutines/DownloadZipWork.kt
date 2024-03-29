@@ -103,6 +103,7 @@ object DownloadZipWork : DownloadWork() {
      * Utilities
      */
     object Utils {
+
         /**
          * Enqueuing work with observer
          *

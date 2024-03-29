@@ -55,7 +55,7 @@ object SetupAsset {
         }
 
         // deliver asset (returns non null path if already installed)
-        val path0 = AssetPackLoader(activity, assetPack) 
+        val path0 = AssetPackLoader(activity, assetPack)
             .assetPackDelivery(activity, observer) {
 
                 // run when delivery completes

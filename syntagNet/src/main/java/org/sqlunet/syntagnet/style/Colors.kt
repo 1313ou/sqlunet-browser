@@ -13,28 +13,40 @@ import org.sqlunet.syntagnet.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object Colors {
+
     @JvmField
     var collocationBackColor = Color.TRANSPARENT
+
     @JvmField
     var collocationForeColor = Color.TRANSPARENT
+
     @JvmField
     var word1BackColor = Color.TRANSPARENT
+
     @JvmField
     var word1ForeColor = Color.TRANSPARENT
+
     @JvmField
     var word2BackColor = Color.TRANSPARENT
+
     @JvmField
     var word2ForeColor = Color.TRANSPARENT
+
     @JvmField
     var definition1BackColor = Color.TRANSPARENT
+
     @JvmField
     var definition1ForeColor = Color.TRANSPARENT
+
     @JvmField
     var definition2BackColor = Color.TRANSPARENT
+
     @JvmField
     var definition2ForeColor = Color.TRANSPARENT
+
     @JvmField
     var idsBackColor = Color.TRANSPARENT
+
     @JvmField
     var idsForeColor = Color.TRANSPARENT
     fun setColorsFromResources(context: Context) {

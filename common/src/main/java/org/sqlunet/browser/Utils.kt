@@ -29,8 +29,7 @@ fun <T, U> safeCast(what: T): U {
 //     val w:Number = safeCast(x)
 // }
 
-fun getParcelable(args: Bundle, key: String): Parcelable?
-{
+fun getParcelable(args: Bundle, key: String): Parcelable? {
     @Suppress("DEPRECATION")
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) args.getParcelable(key, Parcelable::class.java) else args.getParcelable(key)
 }

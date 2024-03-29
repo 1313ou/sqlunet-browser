@@ -34,6 +34,7 @@ internal class RelationsQuery(connection: SQLiteDatabase) : DBQuery(connection, 
         get() = cursor!!.getInt(2) != 0
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

@@ -15,6 +15,7 @@ import org.sqlunet.style.Spanner
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object FrameNetFactories {
+
     val boldFactory = Factories.boldFactory
     val dataFactory = Factories.dataFactory
 

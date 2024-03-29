@@ -6,11 +6,11 @@
 
 	<xs:simpleType name="posType">
 		<xs:restriction base='xs:string'>
-			<xs:enumeration value='n'/>
-			<xs:enumeration value='v'/>
-			<xs:enumeration value='a'/>
-			<xs:enumeration value='r'/>
-			<xs:enumeration value='s'/>
+			<xs:enumeration value='n' />
+			<xs:enumeration value='v' />
+			<xs:enumeration value='a' />
+			<xs:enumeration value='r' />
+			<xs:enumeration value='s' />
 		</xs:restriction>
 	</xs:simpleType>
 

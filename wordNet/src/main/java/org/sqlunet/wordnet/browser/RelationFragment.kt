@@ -19,6 +19,7 @@ import org.sqlunet.wordnet.loaders.RelationModule
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class RelationFragment : TreeFragment() {
+
     /**
      * Whether to expandContainer
      */
@@ -97,6 +98,7 @@ class RelationFragment : TreeFragment() {
         get() = true
 
     companion object {
+
         private const val TAG = "RelationF"
 
         /**

@@ -382,13 +382,14 @@ class TextFragment : BaseListFragment() {
      * @return dialog
      */
     private fun makeDialog(listener: DialogInterface.OnClickListener, vararg choices: CharSequence): AlertDialog {
-        return AlertDialog.Builder(requireContext()) 
-            .setTitle(R.string.title_activity_searchtext) 
-            .setItems(choices, listener) 
+        return AlertDialog.Builder(requireContext())
+            .setTitle(R.string.title_activity_searchtext)
+            .setItems(choices, listener)
             .create()
     }
 
     companion object {
+
         private const val TAG = "TextF"
         const val FRAGMENT_TAG = "text"
 

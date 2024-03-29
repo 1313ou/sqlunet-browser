@@ -16,6 +16,7 @@ import org.sqlunet.HasTarget
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class CollocationSelectorPointer : PosSelectorPointer, Has2SynsetId, Has2WordId, Has2Pos, HasTarget {
+
     /**
      * Synset 2 id
      */
@@ -104,6 +105,7 @@ class CollocationSelectorPointer : PosSelectorPointer, Has2SynsetId, Has2WordId,
     }
 
     companion object CREATOR : Parcelable.Creator<CollocationSelectorPointer> {
+
         override fun createFromParcel(parcel: Parcel): CollocationSelectorPointer {
             return CollocationSelectorPointer(parcel)
         }

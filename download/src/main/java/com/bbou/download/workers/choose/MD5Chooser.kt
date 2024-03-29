@@ -12,11 +12,11 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import com.bbou.deploy.workers.MD5
 import com.bbou.download.choose.Chooser
+import com.bbou.download.common.R
 import com.bbou.download.storage.ReportUtils.appendHeader
 import com.bbou.download.storage.StorageReports
-import java.io.File
-import com.bbou.download.common.R
 import com.bbou.download.storage.StorageUtils
+import java.io.File
 
 /**
  * Md5 async task

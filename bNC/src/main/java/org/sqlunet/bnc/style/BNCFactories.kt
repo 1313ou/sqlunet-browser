@@ -9,6 +9,7 @@ import org.sqlunet.style.Factories
 import org.sqlunet.style.Spanner
 
 object BNCFactories {
+
     @JvmField
     val headerFactory = Spanner.SpanFactory { _: Long -> Factories.spans(Colors.bncHeaderBackColor, Colors.bncHeaderForeColor, StyleSpan(Typeface.BOLD)) }
 }

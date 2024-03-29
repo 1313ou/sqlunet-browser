@@ -19,6 +19,7 @@ class RunDownloadTest : TestCase() {
 
     @Rule
     var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
+
     @Test
     fun download() {
         ensureDownloaded()

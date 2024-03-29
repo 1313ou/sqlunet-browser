@@ -17,6 +17,7 @@ import org.sqlunet.xnet.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 abstract class AbstractActivity : AppCompatActivity() {
+
     protected abstract val layoutId: Int
     protected abstract val containerId: Int
     protected abstract fun makeFragment(): Fragment
@@ -43,10 +44,10 @@ abstract class AbstractActivity : AppCompatActivity() {
             // create the sense fragment, transmit intent's extras as parameters and addItem it to the activity using a fragment transaction
             val fragment = makeFragment()
             fragment.setArguments(intent.extras)
-            supportFragmentManager 
-                .beginTransaction() 
-                .setReorderingAllowed(true) 
-                .replace(containerId, fragment) 
+            supportFragmentManager
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(containerId, fragment)
                 // .addToBackStack(fragment.getTag() == null ? "tagless" : fragment.getTag()) 
                 .commit()
         }

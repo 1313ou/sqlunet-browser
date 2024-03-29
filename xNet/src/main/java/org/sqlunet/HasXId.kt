@@ -9,6 +9,7 @@ package org.sqlunet
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 interface HasXId {
+
     /**
      * Get extended class id (class=vn:class id,pb:rolesetid,fn:frame id)
      *
@@ -21,19 +22,19 @@ interface HasXId {
      *
      * @return extended class id (class=vn:class id,pb:roleset id,fn:frame id)
      */
-    fun  getXClassId(): Long?
+    fun getXClassId(): Long?
 
     /**
      * Get extended member id (fn:lexunit)
      *
      * @return extended member id (fn:lexunit)
      */
-    fun  getXMemberId(): Long?
+    fun getXMemberId(): Long?
 
     /**
      * Get extended sources
      *
      * @return extended sources
      */
-    fun  getXSources(): String?
+    fun getXSources(): String?
 }

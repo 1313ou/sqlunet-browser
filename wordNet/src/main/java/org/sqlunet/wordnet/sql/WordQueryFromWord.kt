@@ -33,6 +33,7 @@ internal class WordQueryFromWord(connection: SQLiteDatabase, word: String) : DBQ
         get() = cursor!!.getString(1)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

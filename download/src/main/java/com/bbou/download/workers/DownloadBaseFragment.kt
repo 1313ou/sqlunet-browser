@@ -236,6 +236,7 @@ abstract class DownloadBaseFragment : ProbedDownloadFragment() {
         }
 
     companion object {
+
         private const val TAG = "DownloadBaseF"
     }
 

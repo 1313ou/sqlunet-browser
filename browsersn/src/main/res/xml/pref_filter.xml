@@ -2,8 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	app:title="@string/pref_header_filter"
@@ -13,22 +12,22 @@
 		android:defaultValue="true"
 		android:key="pref_enable_wordnet"
 		android:summary="@string/pref_description_enable_wordnet"
-		android:title="@string/pref_title_enable_wordnet"/>
+		android:title="@string/pref_title_enable_wordnet" />
 	<SwitchPreferenceCompat
 		android:defaultValue="true"
 		android:key="pref_enable_syntagnet"
 		android:summary="@string/pref_description_enable_syntagnet"
-		android:title="@string/pref_title_enable_syntagnet"/>
+		android:title="@string/pref_title_enable_syntagnet" />
 	<SwitchPreferenceCompat
 		android:defaultValue="true"
 		android:key="pref_enable_bnc"
 		android:summary="@string/pref_description_enable_bnc"
-		android:title="@string/pref_title_enable_bnc"/>
+		android:title="@string/pref_title_enable_bnc" />
 	<EditTextPreference
 		android:defaultValue="-1"
 		android:key="pref_relations_recurse"
 		android:inputType="number"
 		android:summary="@string/pref_description_relation_recursion"
-		android:title="@string/pref_title_relation_recursion"/>
+		android:title="@string/pref_title_relation_recursion" />
 
 </PreferenceScreen>

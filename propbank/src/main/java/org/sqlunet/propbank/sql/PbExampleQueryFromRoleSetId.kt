@@ -45,8 +45,7 @@ internal class PbExampleQueryFromRoleSetId(connection: SQLiteDatabase, roleSetId
         get() {
             val concatArg = cursor!!.getString(3) ?: return null
             val args: MutableList<PbArg> = ArrayList()
-            for (arg in concatArg.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())  
-            {
+            for (arg in concatArg.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
                 val argFields = arg.split("~".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 args.add(PbArg(*argFields))
             }
@@ -83,8 +82,8 @@ internal class PbExampleQueryFromRoleSetId(connection: SQLiteDatabase, roleSetId
     val person: String
         get() = cursor!!.getString(8)
 
-
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

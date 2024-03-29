@@ -27,7 +27,7 @@ object QueriesLegacy {
                         "LEFT JOIN fn_frames AS " + PredicateMatrixContract.AS_FNFRAMES + " ON fnframeid = " + PredicateMatrixContract.AS_FNFRAMES + ".frameid " +
                         "LEFT JOIN fn_fes AS " + PredicateMatrixContract.AS_FNFES + " ON fnfeid = " + PredicateMatrixContract.AS_FNFES + ".feid " +
                         "LEFT JOIN fn_fetypes AS " + PredicateMatrixContract.AS_FNFETYPES + " ON " + PredicateMatrixContract.AS_FNFES + ".fetypeid = " + PredicateMatrixContract.AS_FNFETYPES + ".fetypeid"
-                        // + "LEFT JOIN fn_lexunits AS " + PredicateMatrixContract.AS_FNLUS + " ON fnluid = " + PredicateMatrixContract.AS_FNLUS + ".luid"
+            // + "LEFT JOIN fn_lexunits AS " + PredicateMatrixContract.AS_FNLUS + " ON fnluid = " + PredicateMatrixContract.AS_FNLUS + ".luid"
             else -> return null
         }
         return PredicateMatrixControl.Result(table, projection0, selection0, selectionArgs0, groupBy)

@@ -66,6 +66,7 @@ internal class VnRoleQueryFromClassIdAndSense(connection: SQLiteDatabase, classI
         get() = cursor!!.getInt(5) == 0
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

@@ -106,6 +106,7 @@ class ContentDownloader(private val listener: Listener) : Task<String, Void, Arr
      * Content downloader listener
      */
     fun interface Listener {
+
         /**
          * Done
          *
@@ -115,6 +116,7 @@ class ContentDownloader(private val listener: Listener) : Task<String, Void, Arr
     }
 
     companion object {
+
         private const val TAG = "ContentDownloader"
         private const val CONTENT_FILE = "content"
 

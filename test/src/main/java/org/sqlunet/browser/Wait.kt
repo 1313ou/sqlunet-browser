@@ -102,8 +102,7 @@ object Wait {
     fun pause(sec: Int) {
         try {
             Thread.sleep(sec.toLong() * TIME_UNIT_IN_MS)
-        }
-        catch (e: InterruptedException) {
+        } catch (e: InterruptedException) {
             //
         }
     }

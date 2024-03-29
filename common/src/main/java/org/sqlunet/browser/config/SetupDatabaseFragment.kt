@@ -94,6 +94,7 @@ class SetupDatabaseFragment : BaseTaskFragment() {
     }
 
     companion object {
+
         /**
          * Initial spinner position key
          */

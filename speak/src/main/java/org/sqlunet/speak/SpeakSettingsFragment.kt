@@ -93,6 +93,7 @@ class SpeakSettingsFragment : PreferenceFragmentCompat() {
     }
 
     companion object {
+
         const val VOICE_PREF = "voice"
         const val COUNTRY_PREF = "country"
     }

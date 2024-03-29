@@ -147,6 +147,7 @@ class FrameNetProvider : BaseProvider() {
     }
 
     companion object {
+
         private const val TAG = "FrameNetProvider"
 
         // C O N T E N T   P R O V I D E R   A U T H O R I T Y

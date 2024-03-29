@@ -42,6 +42,7 @@ import java.io.OutputStreamWriter
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class SqlFragment : Fragment() {
+
     private var exportLauncher: ActivityResultLauncher<String>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,10 +77,10 @@ class SqlFragment : Fragment() {
         if (savedInstanceState == null) {
             // splash fragment
             val fragment: Fragment = SqlStatementsFragment()
-            getChildFragmentManager() 
-                .beginTransaction() 
-                .setReorderingAllowed(true) 
-                .replace(R.id.container_sql_statements, fragment, FRAGMENT_TAG) 
+            getChildFragmentManager()
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container_sql_statements, fragment, FRAGMENT_TAG)
                 // .addToBackStack(FRAGMENT_TAG) 
                 .commit()
         }
@@ -165,6 +166,7 @@ class SqlFragment : Fragment() {
     }
 
     companion object {
+
         const val TAG = "SqlF"
         const val FRAGMENT_TAG = "sql"
 

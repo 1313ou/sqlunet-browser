@@ -95,29 +95,29 @@ class SelectorsFragment : BaseSelectorsListFragment() {
 
     override fun makeAdapter(): CursorAdapter {
         val adapter = SimpleCursorAdapter(
-            requireContext(), R.layout.item_selector, null, arrayOf( 
-                Words_Senses_CasedWords_Synsets_Poses_Domains.POSID,  
-                Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN,  
-                Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION,  
-                Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD,  
-                Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM,  
-                Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY,  
-                Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID,  
-                Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT,  
-                Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,  
-                Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,  
+            requireContext(), R.layout.item_selector, null, arrayOf(
+                Words_Senses_CasedWords_Synsets_Poses_Domains.POSID,
+                Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN,
+                Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION,
+                Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD,
+                Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM,
+                Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY,
+                Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID,
+                Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT,
+                Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,
+                Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,
                 Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID
-            ), intArrayOf( 
-                R.id.pos,  
-                R.id.domain,  
-                R.id.definition,  
-                R.id.cased,  
-                R.id.sensenum,  
-                R.id.sensekey,  
-                R.id.lexid,  
-                R.id.tagcount,  
-                R.id.wordid,  
-                R.id.synsetid,  
+            ), intArrayOf(
+                R.id.pos,
+                R.id.domain,
+                R.id.definition,
+                R.id.cased,
+                R.id.sensenum,
+                R.id.sensekey,
+                R.id.lexid,
+                R.id.tagcount,
+                R.id.wordid,
+                R.id.synsetid,
                 R.id.senseid
             ), 0
         )
@@ -180,6 +180,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
      * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
      */
     fun interface Listener {
+
         /**
          * Callback for when an item has been selected.
          */
@@ -191,7 +192,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
      */
     private var listeners: Array<out Listener>? = null
 
-      /**
+    /**
      * Set listeners
      *
      * @param listeners listeners

@@ -9,6 +9,7 @@ package org.sqlunet
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 fun interface HasSynsetId {
+
     /**
      * Get synset id
      *

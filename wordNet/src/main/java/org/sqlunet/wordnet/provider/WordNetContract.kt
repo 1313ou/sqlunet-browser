@@ -35,6 +35,7 @@ object WordNetContract {
     // T A B L E S
 
     object Lexes {
+
         const val TABLE = Q.LEXES.TABLE
         const val URI = TABLE
         const val LUID = V.LUID
@@ -51,6 +52,7 @@ object WordNetContract {
     }
 
     object Words {
+
         const val TABLE = Q.WORDS.TABLE
         const val URI = TABLE
         const val URI1 = "word"
@@ -64,6 +66,7 @@ object WordNetContract {
     }
 
     object CasedWords {
+
         const val TABLE = Q.CASEDWORDS.TABLE
         const val URI = TABLE
         const val CASEDWORDID = V.CASEDWORDID
@@ -78,6 +81,7 @@ object WordNetContract {
     }
 
     object Morphs {
+
         const val TABLE = Q.MORPHS.TABLE
         const val URI = TABLE
         const val MORPHID = V.MORPHID
@@ -90,6 +94,7 @@ object WordNetContract {
     }
 
     object Pronunciations {
+
         const val TABLE = Q.PRONUNCIATIONS.TABLE
         const val URI = TABLE
         const val PRONUNCIATIONID = V.PRONUNCIATIONID
@@ -102,6 +107,7 @@ object WordNetContract {
     }
 
     object Senses {
+
         const val TABLE = Q.SENSES.TABLE
         const val URI = TABLE
         const val URI1 = "sense"
@@ -129,6 +135,7 @@ object WordNetContract {
     }
 
     object Synsets {
+
         const val TABLE = Q.SYNSETS.TABLE
         const val URI = TABLE
         const val URI1 = "synset"
@@ -146,6 +153,7 @@ object WordNetContract {
     }
 
     object SemRelations {
+
         const val TABLE = Q.SEMRELATIONS.TABLE
         const val URI = TABLE
         const val SYNSET1ID = V.SYNSET1ID
@@ -160,6 +168,7 @@ object WordNetContract {
     }
 
     object LexRelations {
+
         const val TABLE = Q.LEXRELATIONS.TABLE
         const val URI = TABLE
         const val WORD1ID = V.WORD1ID
@@ -182,6 +191,7 @@ object WordNetContract {
     }
 
     object Relations {
+
         const val TABLE = Q.RELATIONS.TABLE
         const val URI = TABLE
         const val RELATIONID = V.RELATIONID
@@ -198,6 +208,7 @@ object WordNetContract {
     }
 
     object Poses {
+
         const val TABLE = Q.POSES.TABLE
         const val URI = TABLE
         const val POSID = V.POSID
@@ -210,6 +221,7 @@ object WordNetContract {
     }
 
     object AdjPositions {
+
         const val TABLE = Q.ADJPOSITIONS.TABLE
         const val URI = TABLE
         const val POSITIONID = V.POSITIONID
@@ -221,6 +233,7 @@ object WordNetContract {
     }
 
     object Domains {
+
         const val TABLE = Q.DOMAINS.TABLE
         const val URI = TABLE
         const val DOMAINID = V.DOMAINID
@@ -237,6 +250,7 @@ object WordNetContract {
     }
 
     object Samples {
+
         const val TABLE = Q.SAMPLES.TABLE
         const val URI = TABLE
         const val SAMPLEID = V.SAMPLEID
@@ -251,6 +265,7 @@ object WordNetContract {
     }
 
     object VerbFrames {
+
         const val TABLE = Q.VFRAMES.TABLE
         const val URI = TABLE
         const val FRAMEID = V.FRAMEID
@@ -262,6 +277,7 @@ object WordNetContract {
     }
 
     object VerbTemplates {
+
         const val TABLE = Q.VTEMPLATES.TABLE
         const val URI = TABLE
         const val TEMPLATEID = V.TEMPLATEID
@@ -468,6 +484,7 @@ object WordNetContract {
     // V I E W S
 
     object Dict {
+
         const val TABLE = Q.DICT.TABLE
         const val URI = TABLE
     }

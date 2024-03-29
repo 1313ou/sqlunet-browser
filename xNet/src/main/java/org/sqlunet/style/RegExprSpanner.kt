@@ -14,6 +14,7 @@ import kotlin.math.min
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 open class RegExprSpanner : Spanner {
+
     /**
      * Replacers
      */

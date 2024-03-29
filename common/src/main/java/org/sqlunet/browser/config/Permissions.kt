@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal object Permissions {
+
     private const val PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1313
 
     @JvmStatic

@@ -33,6 +33,7 @@ internal class SynsetWordsQuery(connection: SQLiteDatabase, synsetId: Long) : DB
         get() = cursor!!.getLong(1)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

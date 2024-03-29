@@ -30,8 +30,7 @@ abstract class BaseWaitUntil(@JvmField protected val viewMatcher: Matcher<View?>
                 finderField.isAccessible = true
                 val finder = (finderField[viewInteraction] as ViewFinder)
                 finder.view
-            }
-            catch (e: Exception) {
+            } catch (e: Exception) {
                 null
             }
         }

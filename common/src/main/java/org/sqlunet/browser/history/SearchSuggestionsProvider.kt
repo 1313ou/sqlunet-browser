@@ -20,6 +20,7 @@ class SearchSuggestionsProvider : SearchRecentSuggestionsProvider() {
     }
 
     companion object {
+
         private const val MODE = DATABASE_MODE_QUERIES
     }
 }

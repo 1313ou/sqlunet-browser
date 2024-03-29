@@ -37,7 +37,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
      */
     private var query2: String? = null
 
-     init {
+    init {
         layoutId = R.layout.fragment_browse_predicatematrix
         menuId = R.menu.predicate_matrix
         colorAttrId = R.attr.colorPrimaryVariant
@@ -57,10 +57,10 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         } else {
             // splash fragment
             val fragment: Fragment = BrowsePredicateMatrixSplashFragment()
-            getChildFragmentManager() 
-                .beginTransaction() 
-                .setReorderingAllowed(true) 
-                .replace(R.id.container_predicatematrix, fragment, SplashFragment.FRAGMENT_TAG) 
+            getChildFragmentManager()
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container_predicatematrix, fragment, SplashFragment.FRAGMENT_TAG)
                 // .addToBackStack(SplashFragment.FRAGMENT_TAG) 
                 .commit()
         }
@@ -81,7 +81,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
 
         // save data
         if (this.query2 != null) {
-        outState.putString(STATE_QUERY, this.query2)
+            outState.putString(STATE_QUERY, this.query2)
         }
         if (pointer != null) {
             outState.putParcelable(STATE_POINTER, pointer)
@@ -119,14 +119,13 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
                 if (hasChanged) {
                     if (this@BrowsePredicateMatrixFragment.pointer != null) {
                         search(this@BrowsePredicateMatrixFragment.pointer!!)
-                    } else if (this@BrowsePredicateMatrixFragment.query2 != null){
+                    } else if (this@BrowsePredicateMatrixFragment.query2 != null) {
                         search(this@BrowsePredicateMatrixFragment.query2!!)
                     }
                 }
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
-                
             }
         }
     }
@@ -164,11 +163,11 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         if (!isAdded) {
             return
         }
-        getChildFragmentManager() 
-            .beginTransaction() 
-            .setReorderingAllowed(true) 
-            .replace(R.id.container_predicatematrix, fragment, PredicateMatrixFragment.FRAGMENT_TAG) 
-            .addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG) 
+        getChildFragmentManager()
+            .beginTransaction()
+            .setReorderingAllowed(true)
+            .replace(R.id.container_predicatematrix, fragment, PredicateMatrixFragment.FRAGMENT_TAG)
+            .addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG)
             .commit()
     }
 
@@ -194,8 +193,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         this.pointer = null
 
         // pointer
-        val pointer: Parcelable = if (trimmedQuery.startsWith("#mr")) 
-        {
+        val pointer: Parcelable = if (trimmedQuery.startsWith("#mr")) {
             val roleId = trimmedQuery.substring(3).toLong()
             PmRolePointer(roleId)
         } else {
@@ -213,11 +211,11 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         if (!isAdded) {
             return
         }
-        getChildFragmentManager() 
-            .beginTransaction() 
-            .setReorderingAllowed(true) 
-            .replace(R.id.container_predicatematrix, fragment, PredicateMatrixFragment.FRAGMENT_TAG) 
-            .addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG) 
+        getChildFragmentManager()
+            .beginTransaction()
+            .setReorderingAllowed(true)
+            .replace(R.id.container_predicatematrix, fragment, PredicateMatrixFragment.FRAGMENT_TAG)
+            .addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG)
             .commit()
     }
 
@@ -230,6 +228,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
     }
 
     companion object {
+
         private const val TAG = "BrowsePmF"
 
         /**

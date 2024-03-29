@@ -124,6 +124,7 @@ class HelpFragment : Fragment() {
     }
 
     companion object {
+
         /**
          * Log tag
          */

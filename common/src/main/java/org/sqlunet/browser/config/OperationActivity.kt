@@ -39,6 +39,7 @@ class OperationActivity : AppCompatActivity() {
     }
 
     companion object {
+
         private const val TAG = "OperationActivity"
         const val ARG_OP = "arg_op"
         const val OP_COPY = "op_copy"

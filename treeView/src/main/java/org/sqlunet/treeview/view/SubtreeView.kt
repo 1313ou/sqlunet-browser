@@ -22,6 +22,7 @@ import org.sqlunet.treeview.R
  * @author Bogdan Melnychuk on 2/10/15.
  */
 class SubtreeView : LinearLayout {
+
     /**
      * Container style
      */

@@ -52,7 +52,6 @@ object ExecuteAsync {
         }
     }
 
-
     // S C O P E   F A C T O R Y
 
     /**
@@ -77,6 +76,7 @@ object ExecuteAsync {
      * @param context coroutine context
      */
     internal class ContextScope(context: CoroutineContext) : CoroutineScope {
+
         override val coroutineContext: CoroutineContext = context
         override fun toString(): String = "CoroutineScope(coroutineContext=$coroutineContext)"
     }

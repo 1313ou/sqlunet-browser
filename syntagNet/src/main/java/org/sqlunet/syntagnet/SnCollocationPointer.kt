@@ -33,6 +33,7 @@ class SnCollocationPointer : Pointer {
     }
 
     companion object CREATOR : Parcelable.Creator<SnCollocationPointer> {
+
         override fun createFromParcel(parcel: Parcel): SnCollocationPointer {
             return SnCollocationPointer(parcel)
         }

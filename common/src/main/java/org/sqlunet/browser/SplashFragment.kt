@@ -27,6 +27,7 @@ abstract class SplashFragment : Fragment() {
     }
 
     companion object {
+
         const val FRAGMENT_TAG = "splash"
     }
 }

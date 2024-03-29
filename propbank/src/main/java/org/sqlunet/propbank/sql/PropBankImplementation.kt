@@ -132,6 +132,7 @@ class PropBankImplementation : PropBankInterface {
     }
 
     companion object {
+
         const val PB_NS = "http://org.sqlunet/pb"
 
         /**

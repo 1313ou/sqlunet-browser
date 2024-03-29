@@ -22,6 +22,7 @@ class FnLabel(
     @JvmField val iType: String,
     bgColor: String?, fgColor: String?,
 ) {
+
     /**
      * Background color
      */

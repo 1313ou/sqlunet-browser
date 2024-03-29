@@ -32,8 +32,7 @@ class RoleSetModule(fragment: TreeFragment) : BaseModule(fragment) {
         if (pointer is HasXId) {
             val xIdPointer = pointer as HasXId
             val xSources = xIdPointer.getXSources()
-            if (xSources == null || xSources.contains("pb")) 
-            {
+            if (xSources == null || xSources.contains("pb")) {
                 roleSetId = xIdPointer.getXClassId()
             }
         }

@@ -21,8 +21,7 @@ object Matchers {
         return try {
             Espresso.onView(matcher).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
             matcher
-        }
-        catch (noMatchingViewException: Exception) {
+        } catch (noMatchingViewException: Exception) {
             Espresso.openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().targetContext)
             ViewMatchers.withText(menuText)
         }

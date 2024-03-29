@@ -255,6 +255,7 @@ class DonateActivity : AppCompatActivity(), BillingListener {
     }
 
     companion object {
+
         private const val TAG = "DonateA"
         private val BUTTON_IDS = intArrayOf(R.id.buyButton1, R.id.buyButton2, R.id.buyButton3, R.id.buyButton4, R.id.buyButton5)
         private val DRAWABLE_IDS = intArrayOf(R.drawable.ic_donate1, R.drawable.ic_donate2, R.drawable.ic_donate3, R.drawable.ic_donate4, R.drawable.ic_donate5)

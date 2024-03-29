@@ -51,6 +51,7 @@ class VnClassQueryFromWordAndPos(connection: SQLiteDatabase, word: String) : DBQ
         get() = cursor!!.getInt(4)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

@@ -147,9 +147,9 @@ class SQLiteQueryBuilder {
                     "NULL AS $unionColumn"
         }
         return buildQuery(
-                projectionIn, selection, groupBy, having,
-                null /* sortOrder */,
-                null /* limit */
+            projectionIn, selection, groupBy, having,
+            null /* sortOrder */,
+            null /* limit */
         )
     }
 

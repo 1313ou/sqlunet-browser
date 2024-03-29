@@ -195,6 +195,7 @@ class DownloadZipCore(progressConsumer: BiConsumer<Long, Long>) : DownloadCore(p
     }
 
     companion object {
+
         private const val TAG = "DownloadDelegateZip"
     }
 }

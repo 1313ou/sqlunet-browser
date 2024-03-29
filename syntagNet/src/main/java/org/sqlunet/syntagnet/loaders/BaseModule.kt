@@ -178,12 +178,12 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
     @SuppressLint("DefaultLocale")
     private fun makeContent(
-        collocationId: Int,  
-        word1: String, word2: String,  
-        word1Id: Long, word2Id: Long,  
-        synset1Id: Long, synset2Id: Long,  
-        pos1: String, pos2: String,  
-        definition1: String, definition2: String,  
+        collocationId: Int,
+        word1: String, word2: String,
+        word1Id: Long, word2Id: Long,
+        synset1Id: Long, synset2Id: Long,
+        pos1: String, pos2: String,
+        definition1: String, definition2: String,
         isSingle: Boolean, isTargetSecond: Boolean, parent: TreeNode, changedList: TreeOps,
     ) {
         // header

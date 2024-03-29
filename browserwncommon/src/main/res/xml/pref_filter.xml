@@ -2,8 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	app:title="@string/pref_header_filter">
 
@@ -11,11 +10,11 @@
 		android:defaultValue="true"
 		android:key="pref_enable_wordnet"
 		android:summary="@string/pref_description_enable_wordnet"
-		android:title="@string/pref_title_enable_wordnet"/>
+		android:title="@string/pref_title_enable_wordnet" />
 	<SwitchPreferenceCompat
 		android:defaultValue="true"
 		android:key="pref_enable_bnc"
 		android:summary="@string/pref_description_enable_bnc"
-		android:title="@string/pref_title_enable_bnc"/>
+		android:title="@string/pref_title_enable_bnc" />
 
 </PreferenceScreen>

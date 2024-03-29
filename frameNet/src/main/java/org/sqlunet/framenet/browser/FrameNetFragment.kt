@@ -47,6 +47,7 @@ class FrameNetFragment : TreeFragment() {
     }
 
     companion object {
+
         const val FRAGMENT_TAG = "framenet"
     }
 }

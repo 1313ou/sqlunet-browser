@@ -9,6 +9,7 @@ package org.sqlunet.browser.web
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 fun interface DocumentStringLoader {
+
     /**
      * Get document
      *

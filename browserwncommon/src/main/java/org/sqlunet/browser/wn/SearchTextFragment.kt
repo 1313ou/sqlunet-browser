@@ -40,10 +40,10 @@ class SearchTextFragment : BaseSearchFragment() {
         if (savedInstanceState == null) {
             // splash fragment
             val fragment: Fragment = SearchTextSplashFragment()
-            getChildFragmentManager() 
-                .beginTransaction() 
-                .setReorderingAllowed(true) 
-                .replace(R.id.container_searchtext, fragment, SplashFragment.FRAGMENT_TAG) 
+            getChildFragmentManager()
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container_searchtext, fragment, SplashFragment.FRAGMENT_TAG)
                 //.addToBackStack(SplashFragment.FRAGMENT_TAG) 
                 .commit()
         }
@@ -75,7 +75,6 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
-                
             }
         }
 
@@ -166,11 +165,11 @@ class SearchTextFragment : BaseSearchFragment() {
         if (!isAdded) {
             return
         }
-        getChildFragmentManager() 
-            .beginTransaction() 
-            .setReorderingAllowed(true) 
-            .replace(R.id.container_searchtext, fragment, TextFragment.FRAGMENT_TAG) 
-            .addToBackStack(TextFragment.FRAGMENT_TAG) 
+        getChildFragmentManager()
+            .beginTransaction()
+            .setReorderingAllowed(true)
+            .replace(R.id.container_searchtext, fragment, TextFragment.FRAGMENT_TAG)
+            .addToBackStack(TextFragment.FRAGMENT_TAG)
             .commit()
     }
 
@@ -183,6 +182,7 @@ class SearchTextFragment : BaseSearchFragment() {
     }
 
     companion object {
+
         private const val TAG = "SearchTextF"
     }
 }

@@ -82,6 +82,7 @@ internal class FnLexUnitQueryFromFnWord(connection: SQLiteDatabase, standalone: 
         get() = cursor!!.getString(9)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

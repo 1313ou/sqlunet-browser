@@ -18,8 +18,8 @@ import java.util.Locale
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal class FnLexUnitQueryFromFnWordId(connection: SQLiteDatabase, standalone: Boolean, fnWordId: Long, pos: Char?) : DBQuery(
-    connection, if (pos != null) 
-        (if (standalone) QUERYWITHPOSFN else QUERYWITHPOS) else  
+    connection, if (pos != null)
+        (if (standalone) QUERYWITHPOSFN else QUERYWITHPOS) else
         if (standalone) QUERYFN else QUERY
 ) {
 
@@ -82,6 +82,7 @@ internal class FnLexUnitQueryFromFnWordId(connection: SQLiteDatabase, standalone
         get() = cursor!!.getString(8)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

@@ -40,6 +40,7 @@ internal class FnAnnoSetQuery(connection: SQLiteDatabase, annoSetId: Long) : DBQ
         get() = toIds(cursor!!.getString(2))
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

@@ -10,6 +10,7 @@ import org.sqlunet.style.Factories.spans
 import org.sqlunet.style.Spanner
 
 object PredicateMatrixFactories {
+
     // name
     val nameFactory = Spanner.SpanFactory { _: Long -> spans(Colors.predicateNameBackColor, Colors.predicateNameForeColor, StyleSpan(Typeface.BOLD)) }
 

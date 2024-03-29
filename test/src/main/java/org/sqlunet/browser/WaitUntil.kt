@@ -13,7 +13,7 @@ import androidx.test.espresso.matcher.ViewMatchers
 import org.hamcrest.Matcher
 
 class WaitUntil  // private static final String TAG = WaitUntil.class.getSimpleName();
-(viewMatcher: Matcher<View?>?) : BaseWaitUntil(viewMatcher!!) {
+    (viewMatcher: Matcher<View?>?) : BaseWaitUntil(viewMatcher!!) {
 
     override fun isIdleNow(): Boolean {
         val view = getView(viewMatcher)
@@ -36,8 +36,7 @@ class WaitUntil  // private static final String TAG = WaitUntil.class.getSimpleN
                 IdlingRegistry.getInstance().register(idlingResource)
                 //onView(matcher).check(matches(isDisplayed()));
                 Espresso.onView(matcher).check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
-            }
-            finally {
+            } finally {
                 IdlingRegistry.getInstance().unregister(idlingResource)
             }
         }

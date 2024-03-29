@@ -110,6 +110,7 @@ class TaskProgressDialogObserver<Progress : Pair<Number, Number>>(activity: Acti
     }
 
     companion object {
+
         private const val TAG = "TaskDPObserver"
     }
 }

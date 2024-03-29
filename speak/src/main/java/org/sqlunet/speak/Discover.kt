@@ -15,6 +15,7 @@ import java.util.Locale
 import java.util.function.Consumer
 
 class Discover {
+
     private var tts: TextToSpeech? = null
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -106,6 +107,7 @@ class Discover {
     }
 
     companion object {
+
         const val TAG = "Voice"
     }
 }

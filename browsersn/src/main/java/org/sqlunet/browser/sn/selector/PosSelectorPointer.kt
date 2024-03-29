@@ -60,6 +60,7 @@ open class PosSelectorPointer : SelectorPointer, HasPos {
     }
 
     companion object CREATOR : Parcelable.Creator<PosSelectorPointer> {
+
         override fun createFromParcel(parcel: Parcel): PosSelectorPointer {
             return PosSelectorPointer(parcel)
         }

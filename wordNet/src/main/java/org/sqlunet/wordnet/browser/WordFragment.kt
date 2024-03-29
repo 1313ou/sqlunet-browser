@@ -53,6 +53,7 @@ class WordFragment : TreeFragment() {
     }
 
     companion object {
+
         const val FRAGMENT_TAG = "word"
     }
 }

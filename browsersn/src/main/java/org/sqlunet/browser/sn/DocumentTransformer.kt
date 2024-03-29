@@ -31,6 +31,7 @@ class DocumentTransformer : DocumentTransformer() {
     }
 
     companion object {
+
         private const val XSL_DIR = "/org/sqlunet/"
     }
 }

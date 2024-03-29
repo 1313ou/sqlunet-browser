@@ -75,6 +75,7 @@ class BncImplementation : BncInterface {
     }
 
     companion object {
+
         const val BNC_NS = "http://org.sqlunet/bc"
 
         /**

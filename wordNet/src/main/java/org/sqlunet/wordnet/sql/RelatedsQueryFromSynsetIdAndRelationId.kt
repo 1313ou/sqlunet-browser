@@ -98,6 +98,7 @@ class RelatedsQueryFromSynsetIdAndRelationId(connection: SQLiteDatabase) : DBQue
         }
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

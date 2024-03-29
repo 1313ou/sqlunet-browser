@@ -48,6 +48,7 @@ class PredicateMatrixFragment : TreeFragment() {
     }
 
     companion object {
+
         const val FRAGMENT_TAG = "predicatematrix"
     }
 }

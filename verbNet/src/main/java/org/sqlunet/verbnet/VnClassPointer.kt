@@ -31,6 +31,7 @@ class VnClassPointer : Pointer {
     }
 
     companion object CREATOR : Parcelable.Creator<VnClassPointer> {
+
         override fun createFromParcel(parcel: Parcel): VnClassPointer {
             return VnClassPointer(parcel)
         }

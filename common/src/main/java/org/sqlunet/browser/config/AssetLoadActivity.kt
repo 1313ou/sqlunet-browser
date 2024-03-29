@@ -66,6 +66,7 @@ class AssetLoadActivity : AppCompatActivity() {
     }
 
     companion object {
+
         private const val TAG = "AssetLoadA"
     }
 }

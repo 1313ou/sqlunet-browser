@@ -33,6 +33,7 @@ internal class WordQuery(connection: SQLiteDatabase, wordId: Long) : DBQuery(con
         get() = cursor!!.getString(1)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

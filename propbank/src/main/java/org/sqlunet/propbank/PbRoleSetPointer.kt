@@ -13,6 +13,7 @@ import org.sqlunet.Pointer
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class PbRoleSetPointer : Pointer {
+
     /**
      * Constructor from parcel, reads back fields IN THE ORDER they were written
      *
@@ -32,6 +33,7 @@ class PbRoleSetPointer : Pointer {
     }
 
     companion object CREATOR : Parcelable.Creator<PbRoleSetPointer> {
+
         override fun createFromParcel(parcel: Parcel): PbRoleSetPointer {
             return PbRoleSetPointer(parcel)
         }

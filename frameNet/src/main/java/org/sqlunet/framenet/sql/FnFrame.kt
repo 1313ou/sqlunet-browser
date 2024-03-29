@@ -16,14 +16,16 @@ import android.database.sqlite.SQLiteDatabase
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class FnFrame  internal constructor(
-	@JvmField val frameId: Long,
-	@JvmField val frameName: String,
-	@JvmField val frameDefinition: String,
-	@JvmField val semTypes: List<FnSemType>?,
-	@JvmField val relatedFrames: List<FnRelatedFrame>?
+class FnFrame internal constructor(
+    @JvmField val frameId: Long,
+    @JvmField val frameName: String,
+    @JvmField val frameDefinition: String,
+    @JvmField val semTypes: List<FnSemType>?,
+    @JvmField val relatedFrames: List<FnRelatedFrame>?
 ) {
+
     companion object {
+
         /**
          * Frame factory
          *

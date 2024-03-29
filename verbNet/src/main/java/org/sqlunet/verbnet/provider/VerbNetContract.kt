@@ -13,6 +13,7 @@ import android.app.SearchManager
 class VerbNetContract {
 
     object VnWords {
+
         const val TABLE = Q.WORDS.TABLE
         const val URI = TABLE
         const val VNWORDID = V.VNWORDID
@@ -21,6 +22,7 @@ class VerbNetContract {
     }
 
     object VnClasses {
+
         const val TABLE = Q.VNCLASSES.TABLE
         const val URI = TABLE
         const val URI1 = "vn_class1"
@@ -32,6 +34,7 @@ class VerbNetContract {
     }
 
     object VnClasses_X {
+
         const val URI_BY_VNCLASS = "vnclasses_x_by_vnclass"
         const val WORDID = V.WORDID
         const val POS = V.POSID
@@ -41,6 +44,7 @@ class VerbNetContract {
     }
 
     object Words_VnClasses {
+
         const val TABLE = "words_vnclasses"
         const val URI = TABLE
         const val WORDID = V.WORDID
@@ -55,6 +59,7 @@ class VerbNetContract {
     }
 
     object VnClasses_VnMembers_X {
+
         const val URI_BY_WORD = "vnclasses_vnmembers_x_by_word"
         const val CLASSID = V.CLASSID
         const val VNWORDID = V.VNWORDID
@@ -67,6 +72,7 @@ class VerbNetContract {
     }
 
     object VnClasses_VnRoles_X {
+
         const val URI_BY_ROLE = "vnclasses_vnroles_x_by_vnrole"
         const val CLASSID = V.CLASSID
         const val ROLEID = V.ROLEID
@@ -75,6 +81,7 @@ class VerbNetContract {
     }
 
     object VnClasses_VnFrames_X {
+
         const val URI_BY_FRAME = "vnclasses_vnframes_x_by_vnframe"
         const val CLASSID = V.CLASSID
         const val FRAMEID = V.FRAMEID
@@ -89,6 +96,7 @@ class VerbNetContract {
     }
 
     object Lookup_VnExamples {
+
         const val TABLE = Q.LOOKUP_FTS_EXAMPLES.TABLE
         const val URI = TABLE
         const val EXAMPLEID = V.EXAMPLEID
@@ -98,6 +106,7 @@ class VerbNetContract {
     }
 
     object Lookup_VnExamples_X {
+
         const val URI = "fts_vnexamples_x"
         const val URI_BY_EXAMPLE = "fts_vnexamples_x_by_example"
         const val EXAMPLEID = V.EXAMPLEID
@@ -110,6 +119,7 @@ class VerbNetContract {
     }
 
     object Suggest_VnWords {
+
         const val SEARCH_WORD_PATH = "suggest_vnword"
         const val URI = SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY
         const val VNWORDID = V.VNWORDID
@@ -118,6 +128,7 @@ class VerbNetContract {
     }
 
     object Suggest_FTS_VnWords {
+
         const val SEARCH_WORD_PATH = "suggest_fts_vnword"
         const val URI = SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY
         const val VNWORDID = V.VNWORDID

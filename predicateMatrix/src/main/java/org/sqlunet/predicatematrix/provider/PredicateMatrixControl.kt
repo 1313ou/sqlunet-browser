@@ -9,11 +9,13 @@ package org.sqlunet.predicatematrix.provider
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object PredicateMatrixControl {
+
     // table codes
     const val PM = 10
 
     // join codes
     const val PM_X = 11
+
     @JvmStatic
     fun queryMain(code: Int, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
         val groupBy: String? = null

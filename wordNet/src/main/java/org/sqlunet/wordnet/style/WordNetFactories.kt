@@ -15,16 +15,22 @@ import org.sqlunet.style.Spanner
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object WordNetFactories {
+
     @JvmField
     val membersFactory = Spanner.SpanFactory { _: Long -> spans(Colors.membersBackColor, Colors.membersForeColor, StyleSpan(Typeface.BOLD)) }
+
     @JvmField
     val wordFactory = Spanner.SpanFactory { _: Long -> spans(Colors.wordBackColor, Colors.wordForeColor, StyleSpan(Typeface.BOLD)) }
+
     @JvmField
     val definitionFactory = Factories.definitionFactory
+
     @JvmField
     val sampleFactory = Factories.exampleFactory
+
     @JvmField
     val relationFactory = Factories.relationFactory
+
     @JvmField
     val dataFactory = Factories.dataFactory
 }

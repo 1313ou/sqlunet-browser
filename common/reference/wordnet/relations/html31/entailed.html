@@ -1,183 +1,260 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
 <HTML lang="en">
-    <HEAD>
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <TITLE>Relations</TITLE>
-        <LINK rel="stylesheet" type="text/css" href="relations.css">
-    </HEAD>
-    <BODY>
-        <TABLE class="relations full-width">
-            <TR class="relation full-width" name="relation" id="entailed">
-                <TD class="full-width">
-                    <TABLE class="full-width">
-                        <TR class="full-width">
-                            <TD colspan="2">
-                                <DIV class="relationheader">
-                                    <IMG class="relationimage" src="images/entailed.png" alt="Is entailed by"><SPAN class="relationname">Is entailed by</SPAN>
-                                </DIV>
-                            </TD>
-                        </TR>
-                        <TR class="full-width">
-                            <TD colspan="2">
-                                <DIV class="description">
-                                    <span>Is entailed by</span>
-                                </DIV>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD colspan="2">
-                                <DIV class="logical">
-                                    <DIV class="def">
-                                        <span>A verb <b>E</b> is entailed by<b>A</b></span> iff
-                                    </DIV>
-                                    <DIV class="cond">
-                                        &rarr;<span><b>A</b> cannot be done unless <b>E</b> is, or has been, done</span>
-                                    </DIV>
-                                    <DIV class="cond">
-                                        &rarr;<span>there is no conceivable state of affairs that could make <b>A</b> true and <b>E</b> false</span>
-                                    </DIV>
-                                </DIV>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD class="colfeatures">
-                                <DIV class="features">
-                                    <IMG class="featureimage" src="images/feature_semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="images/pos_v.png" alt="verb" title="verb">
-                                </DIV>
-                            </TD><TD class="colother">
-                                <TABLE class="toright">
-                                    <TR>
-                                        <TD>
-                                            <DIV class="inverse">
-                                                inverse: <A href="entails.html">entails</A> <IMG class="otherimage" src="images/entails.png">
-                                            </DIV>
-                                        </TD>
-                                    </TR>
-                                    <TR>
-                                        <TD>
-                                            <DIV class="see">
-                                                <DIV class="see">
-                                                      see: <A href="caused.html">caused</A> <IMG class="inline-image" src="images/caused.png" alt="caused">
-                                                </DIV>
-                                            </DIV>
-                                        </TD>
-                                    </TR>
-                                </TABLE>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD colspan="2"></TD>
-                        </TR>
-                        <TR>
-                            <TD colspan="2">
-                                <DIV class="examples">
-                                    <TABLE class="exampletable">
-                                        <TR>
-                                            <TD class="fromguide"></TD><TD></TD><TD class="toguide">is entailed by</TD><TD class="gloss"></TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromguide">E</TD><TD></TD><TD class="toguide">A</TD><TD class="gloss"></TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">walk</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">limp</TD><TD class="gloss">temporal inclusion - coextensive</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">talk</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">lisp</TD><TD class="gloss">temporal inclusion - coextensive</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">sleep</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">snore</TD><TD class="gloss">temporal inclusion - proper inclusion</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">pay</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">buy</TD><TD class="gloss">temporal inclusion - proper inclusion</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">try</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">succeed</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">try</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">fail</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">tie</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">untie</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">aim</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">hit</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">aim</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">miss</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">rise</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">raise</TD><TD class="gloss">no temporal inclusion - cause</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">have</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">give</TD><TD class="gloss">no temporal inclusion - cause</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">fear</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">scare</TD><TD class="gloss">no temporal inclusion - cause</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">eat</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">feed</TD><TD class="gloss">no temporal inclusion - cause</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="from">learn</TD><TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD><TD class="to">teach</TD><TD class="gloss">no temporal inclusion - cause</TD>
-                                        </TR>
-                                    </TABLE>
-                                </DIV>
-                            </TD>
-                        </TR>
-                        <TR>
-                            <TD colspan="2">
-                                <DIV class="phrases">
-                                    <TABLE class="phrasetable">
-                                        <TR>
-                                            <TD class="fromphrase">walk</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">limp</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">talk</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">lisp</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">sleep</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">snore</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">pay</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">buy</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">try</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">succeed</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">try</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">fail</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">tie</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">untie</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">aim</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">hit</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">aim</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">miss</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">rise</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">raise</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">have</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">give</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">fear</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">scare</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">eat</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">feed</TD>
-                                        </TR>
-                                        <TR>
-                                            <TD class="fromphrase">learn</TD><TD class="phrase">is entailed by</TD><TD class="tophrase">teach</TD>
-                                        </TR>
-                                    </TABLE>
-                                </DIV>
-                            </TD>
-                        </TR>
-                    </TABLE>
-                </TD>
-            </TR>
-        </TABLE>
-        <BR>
-    </BODY>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<TITLE>Relations</TITLE>
+	<LINK rel="stylesheet" type="text/css" href="relations.css">
+</HEAD>
+<BODY>
+<TABLE class="relations full-width">
+	<TR class="relation full-width" name="relation" id="entailed">
+		<TD class="full-width">
+			<TABLE class="full-width">
+				<TR class="full-width">
+					<TD colspan="2">
+						<DIV class="relationheader">
+							<IMG class="relationimage" src="images/entailed.png" alt="Is entailed by"><SPAN class="relationname">Is entailed by</SPAN>
+						</DIV>
+					</TD>
+				</TR>
+				<TR class="full-width">
+					<TD colspan="2">
+						<DIV class="description">
+							<span>Is entailed by</span>
+						</DIV>
+					</TD>
+				</TR>
+				<TR>
+					<TD colspan="2">
+						<DIV class="logical">
+							<DIV class="def">
+								<span>A verb <b>E</b> is entailed by<b>A</b></span> iff
+							</DIV>
+							<DIV class="cond">
+								&rarr;<span><b>A</b> cannot be done unless <b>E</b> is, or has been, done</span>
+							</DIV>
+							<DIV class="cond">
+								&rarr;<span>there is no conceivable state of affairs that could make <b>A</b> true and <b>E</b> false</span>
+							</DIV>
+						</DIV>
+					</TD>
+				</TR>
+				<TR>
+					<TD class="colfeatures">
+						<DIV class="features">
+							<IMG class="featureimage" src="images/feature_semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="images/pos_v.png" alt="verb" title="verb">
+						</DIV>
+					</TD>
+					<TD class="colother">
+						<TABLE class="toright">
+							<TR>
+								<TD>
+									<DIV class="inverse">
+										inverse: <A href="entails.html">entails</A> <IMG class="otherimage" src="images/entails.png">
+									</DIV>
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<DIV class="see">
+										<DIV class="see">
+											see: <A href="caused.html">caused</A> <IMG class="inline-image" src="images/caused.png" alt="caused">
+										</DIV>
+									</DIV>
+								</TD>
+							</TR>
+						</TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD colspan="2"></TD>
+				</TR>
+				<TR>
+					<TD colspan="2">
+						<DIV class="examples">
+							<TABLE class="exampletable">
+								<TR>
+									<TD class="fromguide"></TD>
+									<TD></TD>
+									<TD class="toguide">is entailed by</TD>
+									<TD class="gloss"></TD>
+								</TR>
+								<TR>
+									<TD class="fromguide">E</TD>
+									<TD></TD>
+									<TD class="toguide">A</TD>
+									<TD class="gloss"></TD>
+								</TR>
+								<TR>
+									<TD class="from">walk</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">limp</TD>
+									<TD class="gloss">temporal inclusion - coextensive</TD>
+								</TR>
+								<TR>
+									<TD class="from">talk</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">lisp</TD>
+									<TD class="gloss">temporal inclusion - coextensive</TD>
+								</TR>
+								<TR>
+									<TD class="from">sleep</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">snore</TD>
+									<TD class="gloss">temporal inclusion - proper inclusion</TD>
+								</TR>
+								<TR>
+									<TD class="from">pay</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">buy</TD>
+									<TD class="gloss">temporal inclusion - proper inclusion</TD>
+								</TR>
+								<TR>
+									<TD class="from">try</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">succeed</TD>
+									<TD class="gloss">no temporal inclusion - backward presupposition</TD>
+								</TR>
+								<TR>
+									<TD class="from">try</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">fail</TD>
+									<TD class="gloss">no temporal inclusion - backward presupposition</TD>
+								</TR>
+								<TR>
+									<TD class="from">tie</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">untie</TD>
+									<TD class="gloss">no temporal inclusion - backward presupposition</TD>
+								</TR>
+								<TR>
+									<TD class="from">aim</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">hit</TD>
+									<TD class="gloss">no temporal inclusion - backward presupposition</TD>
+								</TR>
+								<TR>
+									<TD class="from">aim</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">miss</TD>
+									<TD class="gloss">no temporal inclusion - backward presupposition</TD>
+								</TR>
+								<TR>
+									<TD class="from">rise</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">raise</TD>
+									<TD class="gloss">no temporal inclusion - cause</TD>
+								</TR>
+								<TR>
+									<TD class="from">have</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">give</TD>
+									<TD class="gloss">no temporal inclusion - cause</TD>
+								</TR>
+								<TR>
+									<TD class="from">fear</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">scare</TD>
+									<TD class="gloss">no temporal inclusion - cause</TD>
+								</TR>
+								<TR>
+									<TD class="from">eat</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">feed</TD>
+									<TD class="gloss">no temporal inclusion - cause</TD>
+								</TR>
+								<TR>
+									<TD class="from">learn</TD>
+									<TD class="rel"><IMG src="images/entailed.png" alt="Is entailed by"></TD>
+									<TD class="to">teach</TD>
+									<TD class="gloss">no temporal inclusion - cause</TD>
+								</TR>
+							</TABLE>
+						</DIV>
+					</TD>
+				</TR>
+				<TR>
+					<TD colspan="2">
+						<DIV class="phrases">
+							<TABLE class="phrasetable">
+								<TR>
+									<TD class="fromphrase">walk</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">limp</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">talk</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">lisp</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">sleep</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">snore</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">pay</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">buy</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">try</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">succeed</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">try</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">fail</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">tie</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">untie</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">aim</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">hit</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">aim</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">miss</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">rise</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">raise</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">have</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">give</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">fear</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">scare</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">eat</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">feed</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">learn</TD>
+									<TD class="phrase">is entailed by</TD>
+									<TD class="tophrase">teach</TD>
+								</TR>
+							</TABLE>
+						</DIV>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+</TABLE>
+<BR>
+</BODY>
 </HTML>

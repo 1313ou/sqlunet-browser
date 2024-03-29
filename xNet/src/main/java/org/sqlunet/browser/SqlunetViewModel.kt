@@ -16,7 +16,8 @@ import org.sqlunet.browser.Module.ContentProviderSql
 class SqlunetViewModel(application: Application) : AndroidViewModel(application) {
 
     fun interface PostProcessor {
-         fun postProcess(cursor: Cursor)
+
+        fun postProcess(cursor: Cursor)
     }
 
     val mutableData = MutableLiveData<Cursor?>()
@@ -49,6 +50,7 @@ class SqlunetViewModel(application: Application) : AndroidViewModel(application)
     }
 
     companion object {
+
         private const val TAG = "SqlunetViewModel"
     }
 }

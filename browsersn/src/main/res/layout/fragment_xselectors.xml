@@ -6,24 +6,24 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content">
 -->
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/wnselectors"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical">
+		android:layout_height="0dp"
+		android:layout_weight="2"
+		android:paddingBottom="10dp"
+		android:tag="wordnet" />
 
-		<androidx.fragment.app.FragmentContainerView
-			android:id="@+id/wnselectors"
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_weight="2"
-			android:paddingBottom="10dp"
-			android:tag="wordnet" />
-
-<!--	<View-->
-<!--		android:id="@+id/divider1"-->
-<!--		android:layout_width="match_parent"-->
-<!--		android:layout_height="3dp"-->
-<!--		android:background="?android:attr/listDivider" />-->
+	<!--	<View-->
+	<!--		android:id="@+id/divider1"-->
+	<!--		android:layout_width="match_parent"-->
+	<!--		android:layout_height="3dp"-->
+	<!--		android:background="?android:attr/listDivider" />-->
 
 	<TextView
 		style="@style/Header"
@@ -32,12 +32,11 @@
 		android:text="@string/collocations" />
 
 	<androidx.fragment.app.FragmentContainerView
-			android:id="@+id/snselectors"
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:paddingTop="10dp"
-			android:layout_weight="1"
-			android:tag="syntagnet" />
+		android:id="@+id/snselectors"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:paddingTop="10dp"
+		android:layout_weight="1"
+		android:tag="syntagnet" />
 
-	</LinearLayout>
-<!--</ScrollView>-->
+</LinearLayout><!--</ScrollView>-->

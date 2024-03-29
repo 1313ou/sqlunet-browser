@@ -312,17 +312,17 @@ class TreeNode(
     override fun toString(): String {
         val sb = StringBuilder()
         sb
-                .append("#")
-                .append(id)
-                .append(' ')
-                .append('"')
-                .append(text)
-                .append('"')
-                .append(' ')
+            .append("#")
+            .append(id)
+            .append(' ')
+            .append('"')
+            .append(text)
+            .append('"')
+            .append(' ')
         if (payload != null) {
             sb
-                    .append("payload=")
-                    .append('{')
+                .append("payload=")
+                .append('{')
             var first = true
             for (obj in payload) {
                 if (first) {
@@ -335,15 +335,15 @@ class TreeNode(
             sb.append('}')
         }
         sb
-                .append("controller=")
-                .append(controller.javaClass.getSimpleName())
-                .append(' ')
-                .append("parent=")
-                .append(parent ?.id ?: "none")
-                .append(' ')
+            .append("controller=")
+            .append(controller.javaClass.getSimpleName())
+            .append(' ')
+            .append("parent=")
+            .append(parent?.id ?: "none")
+            .append(' ')
         sb
-                .append("num children=")
-                .append(children.size)
+            .append("num children=")
+            .append(children.size)
         return sb.toString()
     }
 

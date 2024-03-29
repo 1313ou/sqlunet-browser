@@ -181,9 +181,9 @@ object QueriesLegacy {
             WordNetControl.LOOKUP_FTS_SAMPLES -> table = "samples_sample_fts4"
             WordNetControl.SUGGEST_WORDS -> {
                 projection = arrayOf(
-                        "wordid AS _id",
-                        "word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
-                        "word AS " + SearchManager.SUGGEST_COLUMN_QUERY
+                    "wordid AS _id",
+                    "word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
+                    "word AS " + SearchManager.SUGGEST_COLUMN_QUERY
                 )
                 selection = "word LIKE ? || '%'"
                 selectionArgs = arrayOf(uriLast)
@@ -192,9 +192,9 @@ object QueriesLegacy {
 
             WordNetControl.SUGGEST_FTS_WORDS -> {
                 projection = arrayOf(
-                        "wordid AS _id",
-                        "word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
-                        "word AS " + SearchManager.SUGGEST_COLUMN_QUERY
+                    "wordid AS _id",
+                    "word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
+                    "word AS " + SearchManager.SUGGEST_COLUMN_QUERY
                 )
                 selection = "word MATCH ?"
                 selectionArgs = arrayOf("$uriLast*")
@@ -203,9 +203,9 @@ object QueriesLegacy {
 
             WordNetControl.SUGGEST_FTS_DEFINITIONS -> {
                 projection = arrayOf(
-                        "synsetid AS _id",
-                        "definition AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
-                        "definition AS " + SearchManager.SUGGEST_COLUMN_QUERY
+                    "synsetid AS _id",
+                    "definition AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
+                    "definition AS " + SearchManager.SUGGEST_COLUMN_QUERY
                 )
                 selection = "definition MATCH ?"
                 selectionArgs = arrayOf("$uriLast*")
@@ -214,9 +214,9 @@ object QueriesLegacy {
 
             WordNetControl.SUGGEST_FTS_SAMPLES -> {
                 projection = arrayOf(
-                        "synsetid AS _id",
-                        "sample AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
-                        "sample AS " + SearchManager.SUGGEST_COLUMN_QUERY
+                    "synsetid AS _id",
+                    "sample AS " + SearchManager.SUGGEST_COLUMN_TEXT_1,
+                    "sample AS " + SearchManager.SUGGEST_COLUMN_QUERY
                 )
                 selection = "sample MATCH ?"
                 selectionArgs = arrayOf("$uriLast*")

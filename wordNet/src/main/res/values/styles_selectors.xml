@@ -55,7 +55,7 @@
 		<item name="android:textSize">10sp</item>
 	</style>
 
-	<style name="Data.WnDefinition"/>
+	<style name="Data.WnDefinition" />
 
 	<!-- L I S T   I T E M -->
 

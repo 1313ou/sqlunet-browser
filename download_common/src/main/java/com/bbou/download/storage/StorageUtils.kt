@@ -448,6 +448,7 @@ object StorageUtils {
      * @author [Bernard Bou](mailto:1313ou@gmail.com)
      */
     enum class DirType {
+
         /**
          * Auto
          */
@@ -495,6 +496,7 @@ object StorageUtils {
         }
 
         companion object {
+
             /**
              * Compare (sort by preference)
              *
@@ -525,6 +527,7 @@ object StorageUtils {
          */
         val type: DirType,
     ) {
+
         /**
          * Directory path
          */
@@ -682,6 +685,7 @@ object StorageUtils {
         }
 
         companion object {
+
             /**
              * Status flag: null dir
              */

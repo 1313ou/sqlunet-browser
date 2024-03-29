@@ -12,18 +12,18 @@ object Queries {
     fun prepareSnSelect(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI
-        providerSql.projection = arrayOf( 
-            SyntagNetContract.SnCollocations_X.COLLOCATIONID + " AS _id",  
-            SyntagNetContract.SnCollocations_X.WORD1ID,  
-            SyntagNetContract.SnCollocations_X.WORD2ID,  
-            SyntagNetContract.SnCollocations_X.SYNSET1ID,  
-            SyntagNetContract.SnCollocations_X.SYNSET2ID,  
-            SyntagNetContract.AS_WORDS1 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1,  
-            SyntagNetContract.AS_WORDS2 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2,  
-            SyntagNetContract.AS_SYNSETS1 + '.' + SyntagNetContract.SnCollocations_X.POS + " AS " + SyntagNetContract.POS1,  
+        providerSql.projection = arrayOf(
+            SyntagNetContract.SnCollocations_X.COLLOCATIONID + " AS _id",
+            SyntagNetContract.SnCollocations_X.WORD1ID,
+            SyntagNetContract.SnCollocations_X.WORD2ID,
+            SyntagNetContract.SnCollocations_X.SYNSET1ID,
+            SyntagNetContract.SnCollocations_X.SYNSET2ID,
+            SyntagNetContract.AS_WORDS1 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1,
+            SyntagNetContract.AS_WORDS2 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2,
+            SyntagNetContract.AS_SYNSETS1 + '.' + SyntagNetContract.SnCollocations_X.POS + " AS " + SyntagNetContract.POS1,
             SyntagNetContract.AS_SYNSETS2 + '.' + SyntagNetContract.SnCollocations_X.POS + " AS " + SyntagNetContract.POS2
         )
-        providerSql.selection = SyntagNetContract.SnCollocations_X.WORD1ID + " = ? OR " + SyntagNetContract.SnCollocations_X.WORD2ID + " = ?" 
+        providerSql.selection = SyntagNetContract.SnCollocations_X.WORD1ID + " = ? OR " + SyntagNetContract.SnCollocations_X.WORD2ID + " = ?"
         providerSql.selectionArgs = arrayOf(wordId.toString(), wordId.toString(), wordId.toString())
         providerSql.sortBy = SyntagNetContract.SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.AS_WORDS1 + '.' + SyntagNetContract.SnCollocations_X.WORD + ',' + SyntagNetContract.AS_WORDS2 + '.' + SyntagNetContract.SnCollocations_X.WORD
         return providerSql
@@ -33,17 +33,17 @@ object Queries {
     fun prepareCollocation(collocationId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI
-        providerSql.projection = arrayOf( 
-            SyntagNetContract.SnCollocations_X.COLLOCATIONID,  
-            SyntagNetContract.SnCollocations_X.WORD1ID,  
-            SyntagNetContract.SnCollocations_X.WORD2ID,  
-            SyntagNetContract.SnCollocations_X.SYNSET1ID,  
-            SyntagNetContract.SnCollocations_X.SYNSET2ID,  
-            SyntagNetContract.AS_WORDS1 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1,  
-            SyntagNetContract.AS_WORDS2 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2,  
-            SyntagNetContract.AS_SYNSETS1 + '.' + SyntagNetContract.SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION1,  
-            SyntagNetContract.AS_SYNSETS2 + '.' + SyntagNetContract.SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION2,  
-            SyntagNetContract.AS_SYNSETS1 + '.' + SyntagNetContract.SnCollocations_X.POS + " AS " + SyntagNetContract.POS1,  
+        providerSql.projection = arrayOf(
+            SyntagNetContract.SnCollocations_X.COLLOCATIONID,
+            SyntagNetContract.SnCollocations_X.WORD1ID,
+            SyntagNetContract.SnCollocations_X.WORD2ID,
+            SyntagNetContract.SnCollocations_X.SYNSET1ID,
+            SyntagNetContract.SnCollocations_X.SYNSET2ID,
+            SyntagNetContract.AS_WORDS1 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1,
+            SyntagNetContract.AS_WORDS2 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2,
+            SyntagNetContract.AS_SYNSETS1 + '.' + SyntagNetContract.SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION1,
+            SyntagNetContract.AS_SYNSETS2 + '.' + SyntagNetContract.SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION2,
+            SyntagNetContract.AS_SYNSETS1 + '.' + SyntagNetContract.SnCollocations_X.POS + " AS " + SyntagNetContract.POS1,
             SyntagNetContract.AS_SYNSETS2 + '.' + SyntagNetContract.SnCollocations_X.POS + " AS " + SyntagNetContract.POS2
         )
         providerSql.selection = SyntagNetContract.SnCollocations_X.COLLOCATIONID + " = ?"
@@ -55,18 +55,18 @@ object Queries {
     fun prepareCollocations(word1Id: Long?, word2Id: Long?, synset1Id: Long?, synset2Id: Long?): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI
-        providerSql.projection = arrayOf( 
-            SyntagNetContract.SnCollocations_X.COLLOCATIONID,  
-            SyntagNetContract.SnCollocations_X.WORD1ID,  
-            SyntagNetContract.SnCollocations_X.WORD1ID,  
-            SyntagNetContract.SnCollocations_X.WORD2ID,  
-            SyntagNetContract.SnCollocations_X.SYNSET1ID,  
-            SyntagNetContract.SnCollocations_X.SYNSET2ID,  
-            SyntagNetContract.AS_WORDS1 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1,  
-            SyntagNetContract.AS_WORDS2 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2,  
-            SyntagNetContract.AS_SYNSETS1 + '.' + SyntagNetContract.SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION1,  
-            SyntagNetContract.AS_SYNSETS2 + '.' + SyntagNetContract.SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION2,  
-            SyntagNetContract.AS_SYNSETS1 + '.' + SyntagNetContract.SnCollocations_X.POS + " AS " + SyntagNetContract.POS1,  
+        providerSql.projection = arrayOf(
+            SyntagNetContract.SnCollocations_X.COLLOCATIONID,
+            SyntagNetContract.SnCollocations_X.WORD1ID,
+            SyntagNetContract.SnCollocations_X.WORD1ID,
+            SyntagNetContract.SnCollocations_X.WORD2ID,
+            SyntagNetContract.SnCollocations_X.SYNSET1ID,
+            SyntagNetContract.SnCollocations_X.SYNSET2ID,
+            SyntagNetContract.AS_WORDS1 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1,
+            SyntagNetContract.AS_WORDS2 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2,
+            SyntagNetContract.AS_SYNSETS1 + '.' + SyntagNetContract.SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION1,
+            SyntagNetContract.AS_SYNSETS2 + '.' + SyntagNetContract.SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION2,
+            SyntagNetContract.AS_SYNSETS1 + '.' + SyntagNetContract.SnCollocations_X.POS + " AS " + SyntagNetContract.POS1,
             SyntagNetContract.AS_SYNSETS2 + '.' + SyntagNetContract.SnCollocations_X.POS + " AS " + SyntagNetContract.POS2
         )
         providerSql.selection = selection(word1Id, word2Id, synset1Id, synset2Id)
@@ -82,12 +82,12 @@ object Queries {
     fun prepareCollocations(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI
-        providerSql.projection = arrayOf( 
-            SyntagNetContract.SnCollocations_X.WORD1ID,  
-            SyntagNetContract.SnCollocations_X.WORD2ID,  
-            SyntagNetContract.SnCollocations_X.SYNSET1ID,  
-            SyntagNetContract.SnCollocations_X.SYNSET2ID,  
-            SyntagNetContract.AS_WORDS1 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1,  
+        providerSql.projection = arrayOf(
+            SyntagNetContract.SnCollocations_X.WORD1ID,
+            SyntagNetContract.SnCollocations_X.WORD2ID,
+            SyntagNetContract.SnCollocations_X.SYNSET1ID,
+            SyntagNetContract.SnCollocations_X.SYNSET2ID,
+            SyntagNetContract.AS_WORDS1 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1,
             SyntagNetContract.AS_WORDS2 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2
         )
         providerSql.selection = SyntagNetContract.SnCollocations_X.WORD1ID + " = ? OR " + SyntagNetContract.SnCollocations_X.WORD2ID + " = ?"
@@ -100,12 +100,12 @@ object Queries {
     fun prepareCollocations(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI
-        providerSql.projection = arrayOf( 
-            SyntagNetContract.SnCollocations_X.WORD1ID,  
-            SyntagNetContract.SnCollocations_X.WORD2ID,  
-            SyntagNetContract.SnCollocations_X.SYNSET1ID,  
-            SyntagNetContract.SnCollocations_X.SYNSET2ID,  
-            SyntagNetContract.AS_WORDS1 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1,  
+        providerSql.projection = arrayOf(
+            SyntagNetContract.SnCollocations_X.WORD1ID,
+            SyntagNetContract.SnCollocations_X.WORD2ID,
+            SyntagNetContract.SnCollocations_X.SYNSET1ID,
+            SyntagNetContract.SnCollocations_X.SYNSET2ID,
+            SyntagNetContract.AS_WORDS1 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1,
             SyntagNetContract.AS_WORDS2 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2
         )
         providerSql.selection = SyntagNetContract.SnCollocations_X.WORD1ID + " = ? OR " + SyntagNetContract.SnCollocations_X.WORD2ID + " = ?"

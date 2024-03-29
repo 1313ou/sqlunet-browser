@@ -20,7 +20,7 @@ class DocumentTransformer : org.sqlunet.browser.web.DocumentTransformer() {
      * @return XSL inputstream
      */
     override fun getXSLStream(from: String, isSelector: Boolean): InputStream? {
-         val source = VnSettings.Source.valueOf(from)
+        val source = VnSettings.Source.valueOf(from)
         val xsl: String = when (source) {
             VnSettings.Source.VERBNET -> XSL_DIR + (if (isSelector) "verbnet2html-select.xsl" else "verbnet2html.xsl")
             VnSettings.Source.PROPBANK -> XSL_DIR + (if (isSelector) "propbank2html-select.xsl" else "propbank2html.xsl")
@@ -30,6 +30,7 @@ class DocumentTransformer : org.sqlunet.browser.web.DocumentTransformer() {
     }
 
     companion object {
+
         private const val XSL_DIR = "/org/sqlunet/"
     }
 }

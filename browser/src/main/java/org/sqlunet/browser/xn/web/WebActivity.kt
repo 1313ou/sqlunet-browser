@@ -38,10 +38,10 @@ class WebActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             val fragment: Fragment = WebFragment()
             fragment.setArguments(intent.extras)
-            supportFragmentManager 
-                .beginTransaction() 
-                .setReorderingAllowed(true) 
-                .replace(R.id.container_web, fragment, WebFragment.FRAGMENT_TAG) 
+            supportFragmentManager
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container_web, fragment, WebFragment.FRAGMENT_TAG)
                 // .addToBackStack(WebFragment.FRAGMENT_TAG) 
                 .commit()
         }

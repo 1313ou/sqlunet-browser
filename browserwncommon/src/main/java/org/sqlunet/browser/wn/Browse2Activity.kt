@@ -20,6 +20,7 @@ import org.sqlunet.provider.ProviderArgs
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class Browse2Activity : AbstractBrowse2Activity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

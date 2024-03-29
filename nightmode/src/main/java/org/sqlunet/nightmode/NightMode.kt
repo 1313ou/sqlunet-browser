@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.view.ContextThemeWrapper
 
 object NightMode {
+
     private const val TAG = "NightMode"
 
     @JvmStatic

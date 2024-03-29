@@ -91,6 +91,7 @@ internal class MD5Downloader(private val listener: Listener) : Task<Pair<String,
      * MD5 downloader listener
      */
     fun interface Listener {
+
         /**
          * Done
          *
@@ -100,6 +101,7 @@ internal class MD5Downloader(private val listener: Listener) : Task<Pair<String,
     }
 
     companion object {
+
         private const val TAG = "MD5Downloader"
     }
 }

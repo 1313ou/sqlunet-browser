@@ -5,8 +5,8 @@
 <resources>
 
 	<declare-styleable name="OpenEditTextPreference">
-		<attr name="values"/>
-		<attr name="labels" format="reference"/>
+		<attr name="values" />
+		<attr name="labels" format="reference" />
 	</declare-styleable>
 
 </resources>

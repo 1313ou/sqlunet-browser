@@ -13,6 +13,7 @@ import javax.xml.parsers.ParserConfigurationException
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object DomFactory {
+
     /**
      * Build blank document
      *

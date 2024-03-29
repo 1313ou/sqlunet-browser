@@ -17,5 +17,6 @@ internal class Relation(
     @JvmField val name: String,
     @JvmField val recurses: Boolean,
 ) {
+
     var pos = 0
 }

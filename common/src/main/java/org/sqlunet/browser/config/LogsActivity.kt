@@ -58,6 +58,7 @@ class LogsActivity : AppCompatActivity() {
     }
 
     companion object {
+
         private fun readFile(file: File): String {
             val sb = StringBuilder()
             try {

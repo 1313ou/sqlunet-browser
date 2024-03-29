@@ -4,5 +4,6 @@
 package org.sqlunet.browser.config
 
 fun interface Updatable {
+
     fun update()
 }

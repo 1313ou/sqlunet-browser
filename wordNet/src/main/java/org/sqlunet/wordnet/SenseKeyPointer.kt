@@ -13,6 +13,7 @@ import org.sqlunet.HasSenseKey
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class SenseKeyPointer : Parcelable, HasSenseKey {
+
     private val senseKey: String?
 
     /**
@@ -49,6 +50,7 @@ class SenseKeyPointer : Parcelable, HasSenseKey {
     }
 
     companion object CREATOR : Parcelable.Creator<SenseKeyPointer> {
+
         override fun createFromParcel(parcel: Parcel): SenseKeyPointer {
             return SenseKeyPointer(parcel)
         }

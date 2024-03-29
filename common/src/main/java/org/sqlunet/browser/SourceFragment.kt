@@ -35,8 +35,8 @@ class SourceFragment : ListFragment() {
         val from = arrayOf(XNetContract.Sources.NAME, XNetContract.Sources.VERSION, XNetContract.Sources.URL, XNetContract.Sources.PROVIDER, XNetContract.Sources.REFERENCE)
         val to = intArrayOf(R.id.name, R.id.version, R.id.url, R.id.provider, R.id.reference)
         val adapter: ListAdapter = SimpleCursorAdapter(
-            requireContext(), R.layout.item_source, null,  
-            from,  
+            requireContext(), R.layout.item_source, null,
+            from,
             to, 0
         )
         setListAdapter(adapter)

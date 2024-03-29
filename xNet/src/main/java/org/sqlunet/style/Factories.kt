@@ -18,6 +18,7 @@ import org.sqlunet.style.Spanner.HiddenSpan
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object Factories {
+
     @JvmField
     val classFactory = Spanner.SpanFactory { _: Long -> spans(Colors.classBackColor, Colors.classForeColor, StyleSpan(Typeface.BOLD)) }
 

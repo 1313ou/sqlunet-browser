@@ -51,8 +51,7 @@ object DataUtils {
                     }
                 }
             }
-        }
-        catch (e: IOException) {
+        } catch (e: IOException) {
             //Log.d("Read", "Error " + dataFile.getAbsolutePath(), e)
             Log.e("Read", "Error $LIST_FILE", e)
             return null
@@ -72,8 +71,7 @@ object DataUtils {
                     return list.toTypedArray<String>()
                 }
             }
-        }
-        catch (e: IOException) {
+        } catch (e: IOException) {
             Log.d("Read", "Error " + dataFile.absolutePath, e)
         }
         return null

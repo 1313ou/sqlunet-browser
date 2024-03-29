@@ -18,7 +18,9 @@ class VnEntry private constructor(
     @JvmField val word: BasicWord,
     @JvmField val synsets: List<VnSynset>?,
 ) {
+
     companion object {
+
         /**
          * Make entry
          *

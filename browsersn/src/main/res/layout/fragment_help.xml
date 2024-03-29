@@ -3,15 +3,15 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="org.sqlunet.browser.HelpActivity"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context="org.sqlunet.browser.HelpActivity"
 	tools:keep="@layout/fragment_help">
 
 	<WebView
 		android:id="@+id/webView"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"/>
+		android:layout_height="match_parent" />
 
 </RelativeLayout>

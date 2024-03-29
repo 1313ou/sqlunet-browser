@@ -23,6 +23,7 @@ class RunMainTest : TestCase() {
 
     @Rule
     var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
+
     @Before
     fun before() {
         if (ensureDownloaded()) ActivityScenario.launch(MainActivity::class.java)

@@ -92,6 +92,7 @@ class BillingManager(activity: Activity, listener: BillingListener) {
      * Listener to the updates that happen when verifiedPurchases list was updated or consumption of the item was finished
      */
     interface BillingListener {
+
         fun onBillingClientSetupFinished()
         fun onPurchaseFinished(purchase: Purchase)
         fun onConsumeFinished(purchase: Purchase)
@@ -254,7 +255,6 @@ class BillingManager(activity: Activity, listener: BillingListener) {
     fun initiatePurchaseFlow(productId: String) {
         executeServiceRequest {
 
-
             // guard against destroyed client
             if (client == null) {
                 Log.e(TAG, "Initiate purchase flow failed. Null billing client.")
@@ -300,7 +300,6 @@ class BillingManager(activity: Activity, listener: BillingListener) {
      */
     private fun initiatePurchaseFlow(productDetails: ProductDetails) {
         executeServiceRequest {
-
 
             // guard against destroyed client
             if (client == null) {
@@ -407,7 +406,6 @@ class BillingManager(activity: Activity, listener: BillingListener) {
     private fun consume(purchase: Purchase) {
         executeServiceRequest {
 
-
             // guard against destroyed client
             if (client == null) {
                 Log.e(TAG, "Consume failed. Null billing client.")
@@ -440,7 +438,6 @@ class BillingManager(activity: Activity, listener: BillingListener) {
      */
     fun queryPurchases() {
         executeServiceRequest {
-
 
             // guard against destroyed client
             if (client == null) {
@@ -494,7 +491,6 @@ class BillingManager(activity: Activity, listener: BillingListener) {
         // Creating a runnable from the request to use it inside our connection retry policy below
         executeServiceRequest {
 
-
             // guard against destroyed client
             if (client == null) {
                 Log.e(TAG, "Query sku details failed. Null billing client.")
@@ -544,6 +540,7 @@ class BillingManager(activity: Activity, listener: BillingListener) {
     }
 
     companion object {
+
         private const val TAG = "BillingManager"
     }
 }

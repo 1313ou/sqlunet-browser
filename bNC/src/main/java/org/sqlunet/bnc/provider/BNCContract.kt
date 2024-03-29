@@ -6,6 +6,7 @@ package org.sqlunet.bnc.provider
 class BNCContract {
     interface BNCs {
         companion object {
+
             const val TABLE = Q.BNCS.TABLE
             const val URI = TABLE
             const val WORDID = V.WORDID
@@ -16,6 +17,7 @@ class BNCContract {
 
     interface Words_BNCs {
         companion object {
+
             const val URI = "words_bncs"
             const val WORD = V.WORD
             const val WORDID = V.WORDID

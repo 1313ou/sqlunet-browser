@@ -69,12 +69,12 @@ internal object Do {
             val n = ContainerUtils.getItemCount(list)
             Log.d("Searching ", "$word has $n results")
             for (i in 0 until n) {
-                Espresso.onData(CoreMatchers.anything()) 
-                        .inAdapterView(list) 
-                        .atPosition(i) 
-                        .perform( 
-                                ViewActions.click() 
-                        )
+                Espresso.onData(CoreMatchers.anything())
+                    .inAdapterView(list)
+                    .atPosition(i)
+                    .perform(
+                        ViewActions.click()
+                    )
                 Seq.doPressBack()
             }
         }

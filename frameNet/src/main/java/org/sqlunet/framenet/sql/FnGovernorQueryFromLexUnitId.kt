@@ -39,6 +39,7 @@ internal class FnGovernorQueryFromLexUnitId(connection: SQLiteDatabase, luId: Lo
         get() = cursor!!.getString(2)
 
     companion object {
+
         /**
          * `QUERY` is the SQL statement
          */

@@ -55,11 +55,11 @@ class BrowseFragment : BaseSearchFragment() {
             // splash fragment
             val fragment: Fragment = BrowseSplashFragment()
             getChildFragmentManager()
-                    .beginTransaction()
-                    .setReorderingAllowed(true)
-                    .replace(R.id.container_browse, fragment, SplashFragment.FRAGMENT_TAG)
-                    //.addToBackStack(SplashFragment.FRAGMENT_TAG)
-                    .commit()
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container_browse, fragment, SplashFragment.FRAGMENT_TAG)
+                //.addToBackStack(SplashFragment.FRAGMENT_TAG)
+                .commit()
         }
     }
 
@@ -68,6 +68,7 @@ class BrowseFragment : BaseSearchFragment() {
         // remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
         beforeSaving(BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG)
     }
+
     // M E N U
     @Deprecated("Deprecated in Java", ReplaceWith("Add a MenuHost"))
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -153,10 +154,10 @@ class BrowseFragment : BaseSearchFragment() {
                 return
             }
             getChildFragmentManager()
-                    .beginTransaction()
-                    .setReorderingAllowed(true)
-                    .replace(R.id.container_browse, fragment!!, BaseBrowse1Fragment.FRAGMENT_TAG)
-                    .addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG).commit()
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container_browse, fragment!!, BaseBrowse1Fragment.FRAGMENT_TAG)
+                .addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG).commit()
         }
     }
 

@@ -16,7 +16,7 @@ import org.sqlunet.browser.BaseListFragment
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class TableFragment  : BaseListFragment() {
+class TableFragment : BaseListFragment() {
 
     /**
      * Make view binder

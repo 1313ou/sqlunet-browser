@@ -17,6 +17,7 @@ class FnAnnoSet private constructor(
     @JvmField val annoSetId: Long,
     @JvmField val sentence: FnSentence,
 ) {
+
     companion object {
 
         /**

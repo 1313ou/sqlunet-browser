@@ -26,6 +26,7 @@ object FrameNetContract {
     const val AS_POSES = V.AS_POSES
 
     object Words {
+
         const val TABLE = Q.WORDS.TABLE
         const val URI = TABLE
         const val FNWORDID = V.FNWORDID
@@ -34,6 +35,7 @@ object FrameNetContract {
     }
 
     object LexUnits {
+
         const val TABLE = Q.LEXUNITS.TABLE
         const val URI = TABLE
         const val URI1 = "lexunit"
@@ -46,6 +48,7 @@ object FrameNetContract {
     }
 
     object LexUnits_X {
+
         const val URI = "lexunits_x"
         const val URI_BY_LEXUNIT = URI + "_by_lexunit"
         const val LUID = V.LUID
@@ -63,6 +66,7 @@ object FrameNetContract {
     }
 
     object LexUnits_or_Frames {
+
         const val URI = "lexunits_or_frame"
         const val URI_FN = URI + "_fn"
         const val ID = V._ID
@@ -77,6 +81,7 @@ object FrameNetContract {
     }
 
     object Frames {
+
         const val TABLE = Q.FRAMES.TABLE
         const val URI = TABLE
         const val URI1 = "frame"
@@ -85,6 +90,7 @@ object FrameNetContract {
     }
 
     object Frames_X {
+
         const val URI = "frames_x"
         const val URI_BY_FRAME = URI + "_by_frame"
         const val FRAMEID = V.FRAMEID
@@ -97,6 +103,7 @@ object FrameNetContract {
     }
 
     object Frames_Related {
+
         const val URI = "frames_related"
         const val FRAMEID = V.FRAMEID
         const val FRAME = V.FRAME
@@ -106,6 +113,7 @@ object FrameNetContract {
     }
 
     object Sentences {
+
         const val TABLE = Q.SENTENCES.TABLE
         const val URI = TABLE
         const val URI1 = "sentence"
@@ -114,6 +122,7 @@ object FrameNetContract {
     }
 
     object AnnoSets {
+
         const val TABLE = Q.ANNOSETS.TABLE
         const val URI = TABLE
         const val URI1 = "annoset"
@@ -122,6 +131,7 @@ object FrameNetContract {
     }
 
     object Sentences_Layers_X {
+
         const val URI = "sentences_layers_x"
         const val SENTENCEID = V.SENTENCEID
         const val ANNOSETID = V.ANNOSETID
@@ -138,6 +148,7 @@ object FrameNetContract {
     }
 
     object AnnoSets_Layers_X {
+
         const val URI = "annosets_layers_x"
         const val ANNOSETID = V.ANNOSETID
         const val SENTENCEID = V.SENTENCEID
@@ -155,6 +166,7 @@ object FrameNetContract {
     }
 
     object Patterns_Layers_X {
+
         const val URI = "patterns_layers_x"
         const val ANNOSETID = V.ANNOSETID
         const val SENTENCEID = V.SENTENCEID
@@ -172,6 +184,7 @@ object FrameNetContract {
     }
 
     object ValenceUnits_Layers_X {
+
         const val URI = "valenceunits_layers_x"
         const val ANNOSETID = V.ANNOSETID
         const val SENTENCEID = V.SENTENCEID
@@ -189,6 +202,7 @@ object FrameNetContract {
     }
 
     object Words_LexUnits_Frames {
+
         const val URI = "words_lexunits"
         const val URI_FN = URI + "_fn"
         const val WORDID = V.WORDID
@@ -209,6 +223,7 @@ object FrameNetContract {
     }
 
     object Frames_FEs {
+
         const val URI = "frames_fes"
         const val URI_BY_FE = URI + "_by_fe"
         const val FRAMEID = V.FRAMEID
@@ -224,6 +239,7 @@ object FrameNetContract {
     }
 
     object LexUnits_Sentences {
+
         const val URI = "frames_sentences"
         const val URI_BY_SENTENCE = URI + "_by_sentence"
         const val LUID = V.LUID
@@ -237,6 +253,7 @@ object FrameNetContract {
     }
 
     object LexUnits_Sentences_AnnoSets_Layers_Labels {
+
         const val URI = "lexunits_sentences_annosets_layers_labels"
         const val URI_BY_SENTENCE = URI + "_by_sentence"
         const val LUID = V.LUID
@@ -261,6 +278,7 @@ object FrameNetContract {
     }
 
     object LexUnits_Governors {
+
         const val URI = "lexunits_governors"
         const val URI_FN = URI + "_fn"
         const val LUID = V.LUID
@@ -271,6 +289,7 @@ object FrameNetContract {
     }
 
     object LexUnits_FERealizations_ValenceUnits {
+
         const val URI = "lexunits_ferealizations_valenceunits"
         const val URI_BY_REALIZATION = URI + "_by_realization"
         const val LUID = V.LUID
@@ -284,6 +303,7 @@ object FrameNetContract {
     }
 
     object LexUnits_FEGroupRealizations_Patterns_ValenceUnits {
+
         const val URI = "lexunits_fegrouprealizations_patterns_valenceunits"
         const val URI_BY_PATTERN = URI + "_by_pattern"
         const val LUID = V.LUID
@@ -300,6 +320,7 @@ object FrameNetContract {
     }
 
     object Patterns_Sentences {
+
         const val URI = "patterns_sentences"
         const val PATTERNID = V.PATTERNID
         const val ANNOSETID = V.ANNOSETID
@@ -308,6 +329,7 @@ object FrameNetContract {
     }
 
     object ValenceUnits_Sentences {
+
         const val URI = "valenceunits_sentences"
         const val VUID = V.VUID
         const val ANNOSETID = V.ANNOSETID
@@ -316,6 +338,7 @@ object FrameNetContract {
     }
 
     object Governors_AnnoSets_Sentences {
+
         const val URI = "governors_annosets_sentences"
         const val GOVERNORID = V.GOVERNORID
         const val ANNOSETID = V.ANNOSETID
@@ -324,6 +347,7 @@ object FrameNetContract {
     }
 
     object Lookup_FTS_FnWords {
+
         const val TABLE = "fn_words_word_fts4"
         const val URI = TABLE
         const val FNWORDID = V.FNWORDID
@@ -332,6 +356,7 @@ object FrameNetContract {
     }
 
     object Lookup_FTS_FnSentences {
+
         const val TABLE = "fn_sentences_text_fts4"
         const val URI = TABLE
         const val SENTENCEID = V.SENTENCEID
@@ -342,6 +367,7 @@ object FrameNetContract {
     }
 
     object Lookup_FTS_FnSentences_X {
+
         const val URI = "fn_sentences_text_x_fts4"
         const val URI_BY_SENTENCE = "fn_sentences_text_x_by_sentence_fts4"
         const val SENTENCEID = V.SENTENCEID
@@ -357,6 +383,7 @@ object FrameNetContract {
     }
 
     object Suggest_FnWords {
+
         const val SEARCH_WORD_PATH = "suggest_fnword"
         const val URI = SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY
         const val FNWORDID = V.FNWORDID
@@ -365,6 +392,7 @@ object FrameNetContract {
     }
 
     object Suggest_FTS_FnWords {
+
         const val SEARCH_WORD_PATH = "suggest_fts_fnword"
         const val URI = SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY
         const val FNWORDID = V.FNWORDID

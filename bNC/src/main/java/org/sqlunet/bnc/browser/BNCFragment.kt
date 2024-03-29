@@ -17,7 +17,7 @@ import org.sqlunet.provider.ProviderArgs
  */
 class BNCFragment : TreeFragment() {
 
-   init {
+    init {
         layoutId = R.layout.fragment_bnc
         treeContainerId = R.id.data_contents
         headerId = R.string.bnc_frequencies
@@ -46,6 +46,7 @@ class BNCFragment : TreeFragment() {
     }
 
     companion object {
+
         // private const val TAG = "BncF"
         const val FRAGMENT_TAG = "bnc"
     }

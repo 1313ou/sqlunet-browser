@@ -14,6 +14,7 @@ import org.sqlunet.treeview.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 open class HotQueryController(breakExpand: Boolean) : QueryController(breakExpand) {
+
     @LayoutRes
     override val layoutResId = R.layout.layout_query
 
