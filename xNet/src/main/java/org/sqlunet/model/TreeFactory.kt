@@ -203,7 +203,8 @@ object TreeFactory {
         return TreeNode(text, icon, arrayOf(query, link), LinkQueryController(breakExpand, buttonImageRes), true)
     }
     // H E L P E R S
-    /**
+
+   /**
      * No results have been attached to this node
      *
      * @param node node

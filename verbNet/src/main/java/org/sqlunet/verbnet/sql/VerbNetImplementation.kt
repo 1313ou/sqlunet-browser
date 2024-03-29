@@ -144,7 +144,8 @@ class VerbNetImplementation : VerbNetInterface {
         const val VN_NS = "http://org.sqlunet/vn"
 
         // W A L K
-        /**
+
+       /**
          * Perform queries for VerbNet selector data
          *
          * @param connection connection

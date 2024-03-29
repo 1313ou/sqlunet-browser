@@ -67,7 +67,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     private var spinnerPosition = 0
 
     // R E S O U R C E S
-    @JvmField
+
+   @JvmField
     @LayoutRes
     protected var layoutId = 0
 

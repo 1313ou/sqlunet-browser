@@ -206,7 +206,8 @@ class DonateActivity : AppCompatActivity(), BillingListener {
     }
 
     // D O N A T E
-    private fun donate(productId: String) {
+
+   private fun donate(productId: String) {
         if (billingManager != null) {
             billingManager!!.initiatePurchaseFlow(productId)
         }
@@ -239,7 +240,8 @@ class DonateActivity : AppCompatActivity(), BillingListener {
     }
 
     // M E N U
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+   override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // inflate the menu; this adds items to the type bar if it is present.
         menuInflater.inflate(R.menu.donate, menu)
         return true

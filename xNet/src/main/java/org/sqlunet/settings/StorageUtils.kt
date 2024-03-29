@@ -41,7 +41,8 @@ object StorageUtils {
     @JvmField
     val AUTO_LABEL = DirType.AUTO.toDisplay()
     // C O L L E C T
-    /**
+
+   /**
      * Get list of directories
      *
      * @param context context
@@ -167,7 +168,8 @@ object StorageUtils {
         }
 
         // S E C O N D A R Y
-        val secondaryStorages = discoverSecondaryExternalStorage()
+
+       val secondaryStorages = discoverSecondaryExternalStorage()
         if (!secondaryStorages.isNullOrEmpty()) {
             dirs[StorageType.SECONDARY] = secondaryStorages
         }
@@ -266,7 +268,8 @@ object StorageUtils {
         return null
     }
     // Q U A L I F I E S
-    /**
+
+   /**
      * Whether the dir qualifies as sqlunet storage
      *
      * @param dir directory

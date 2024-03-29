@@ -388,7 +388,8 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         pbFromWordIdModel!!.loadData(uri, sql, null)
     }
     // L I S T E N E R
-    /**
+
+   /**
      * Set listener
      *
      * @param listener listener

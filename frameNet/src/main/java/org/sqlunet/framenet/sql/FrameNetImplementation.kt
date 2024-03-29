@@ -41,7 +41,8 @@ import org.w3c.dom.Node
 class FrameNetImplementation(private val queryFromFnWord: Boolean) : FrameNetInterface {
 
     // S E L E C T O R
-    /**
+
+   /**
      * Business method that returns FrameNet selector data as DOM document
      *
      * @param connection connection

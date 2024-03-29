@@ -33,7 +33,8 @@ import org.sqlunet.sql.SqlFormatter.format
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class PropBankProvider  // C O N S T R U C T O R
-/**
+
+**
  * Constructor
  */
     : BaseProvider() {

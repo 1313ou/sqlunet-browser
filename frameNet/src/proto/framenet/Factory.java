@@ -38,7 +38,8 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 		switch (key)
 		{
 			// T A B L E
-			// table uri : last element is table
+
+		// table uri : last element is table
 
 			case LEXUNITS:
 				table = "${lexunits.table}";
@@ -61,7 +62,8 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				break;
 
 			// I T E M
-			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
+
+		// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
 			case LEXUNIT1:

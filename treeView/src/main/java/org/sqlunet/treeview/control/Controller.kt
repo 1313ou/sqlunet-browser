@@ -20,6 +20,7 @@ import org.sqlunet.treeview.view.SubtreeView
 abstract class Controller protected constructor(
     var isBreakExpand: Boolean,
 ) {
+
     // M O D E L
 
     /**

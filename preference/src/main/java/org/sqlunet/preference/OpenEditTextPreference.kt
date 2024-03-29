@@ -144,7 +144,8 @@ class OpenEditTextPreference : DialogPreference {
     }
 
     // V A L U E
-    override fun onGetDefaultValue(array: TypedArray, index: Int): Any? {
+
+   override fun onGetDefaultValue(array: TypedArray, index: Int): Any? {
         return array.getString(index)
     }
 
@@ -251,7 +252,8 @@ class OpenEditTextPreference : DialogPreference {
     }
 
     // S T A T E
-    override fun onSaveInstanceState(): Parcelable? {
+
+   override fun onSaveInstanceState(): Parcelable? {
         val superState = super.onSaveInstanceState()
 
         // check whether this Preference is persistent (continually saved)

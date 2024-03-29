@@ -121,7 +121,8 @@ open class MainActivity : AppCompatActivity() {
     }
 
     // M E N U
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+   override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // inflate the menu; this adds items to the type bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         // MenuCompat.setGroupDividerEnabled(menu, true)
@@ -133,7 +134,8 @@ open class MainActivity : AppCompatActivity() {
     }
 
     // N A V
-    override fun onSupportNavigateUp(): Boolean {
+
+   override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(this, R.id.nav_host_fragment)
         return navigateUp(navController, appBarConfiguration!!) || super.onSupportNavigateUp()
     }
