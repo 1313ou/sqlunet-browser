@@ -79,6 +79,7 @@ class TTS(context: Context?, written: String, ipa: String, locale: Locale?, voic
             } else {
                 val params = HashMap<String, String>()
                 params[TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID] = written + '_' + ipa
+                @Suppress("DEPRECATION")
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, params)
             }
         }

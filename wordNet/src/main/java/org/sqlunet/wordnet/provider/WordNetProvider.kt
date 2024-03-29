@@ -387,7 +387,7 @@ class WordNetProvider : BaseProvider() {
             //return embed(uQuery, projection, selection, groupBy, sortOrder)
         }
 
-        private fun makeSelection(projection: Array<String>, selection: String): String {
+        private fun makeSelection(@Suppress("UNUSED_PARAMETER") projection: Array<String>, selection: String): String {
             return selection
         }
     }

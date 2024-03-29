@@ -462,6 +462,7 @@ open class Settings {
                 build = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     packageInfo.longVersionCode
                 } else {
+                    @Suppress("DEPRECATION")
                     packageInfo.versionCode.toLong()
                 }
             } catch (ignored: PackageManager.NameNotFoundException) {

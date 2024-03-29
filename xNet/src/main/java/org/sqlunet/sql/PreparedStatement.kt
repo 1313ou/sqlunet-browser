@@ -69,7 +69,7 @@ class PreparedStatement(
      * @param i    ith parameter
      * @param type type
      */
-    fun setNull(i: Int, type: Int) {
+    fun setNull(i: Int, @Suppress("UNUSED_PARAMETER") type: Int) {
         selectionArgs.put(i, null)
     }
 

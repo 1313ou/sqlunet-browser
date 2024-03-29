@@ -84,7 +84,12 @@ abstract class TreeFragment protected constructor() : Fragment() {
     }
 
     fun getPointer(args: Bundle): Parcelable {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable::class.java)!! else args.getParcelable(ProviderArgs.ARG_QUERYPOINTER)!!
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+            args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable::class.java)!!
+        else {
+            @Suppress("DEPRECATION")
+            args.getParcelable(ProviderArgs.ARG_QUERYPOINTER)!!
+        }
     }
 
     protected open val scroll2D: Boolean

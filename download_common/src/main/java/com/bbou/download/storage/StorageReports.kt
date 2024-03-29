@@ -38,7 +38,6 @@ object StorageReports {
         val dirs: MutableList<File> = ArrayList()
         dirs.add(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS))
         dirs.addAll(listOf(*context.getExternalFilesDirs(Environment.DIRECTORY_DOWNLOADS)))
-        @Suppress("DEPRECATION")
         dirs.addAll(listOf(*context.externalMediaDirs))
         for (dir in dirs) {
             val value = dir.absolutePath

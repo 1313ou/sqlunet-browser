@@ -134,7 +134,6 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
         val args = pref.getExtras()
         val fragment = supportFragmentManager.getFragmentFactory().instantiate(classLoader, fragmentClassName)
         fragment.setArguments(args)
-        fragment.setTargetFragment(caller, 0)
 
         // Replace the existing Fragment with the new Fragment
         supportFragmentManager

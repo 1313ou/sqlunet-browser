@@ -204,7 +204,7 @@ object Queries {
     }
 
     @JvmStatic
-    fun prepareSense(synsetId: Long, wordId: Long): ContentProviderSql {
+    fun prepareSense(synsetId: Long, @Suppress("UNUSED_PARAMETER") wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Synsets_Poses_Domains.URI
         providerSql.projection = arrayOf(

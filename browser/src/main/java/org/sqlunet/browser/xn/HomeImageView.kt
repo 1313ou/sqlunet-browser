@@ -88,7 +88,7 @@ internal class HomeImageView : AppCompatImageView {
             if (messageId != 0) {
                 val context = context
                 val message = context.getString(messageId)
-                val html = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) Html.fromHtml(message, 0) else Html.fromHtml(message)
+                val html = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) Html.fromHtml(message, 0) else @Suppress("DEPRECATION") Html.fromHtml(message)
                 //Log.i("Pick ", message);
 
                 //				var toast = Toast.makeText(getContext(), html, Toast.LENGTH_LONG);

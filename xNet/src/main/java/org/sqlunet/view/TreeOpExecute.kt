@@ -20,7 +20,7 @@ class TreeOpExecute(private val fragment: TreeFragment) {
         }
     }
 
-    private fun noopImpl(ops: Array<TreeOp>) {}
+    private fun noopImpl(@Suppress("UNUSED_PARAMETER") ops: Array<TreeOp>) {}
 
     private fun execImpl(ops: Array<TreeOp>) {
         val treeView = fragment.treeViewer ?: return

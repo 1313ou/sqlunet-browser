@@ -104,7 +104,11 @@ object NightMode {
                 expected == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
             }
 
-            AppCompatDelegate.MODE_NIGHT_UNSPECIFIED, AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY, AppCompatDelegate.MODE_NIGHT_AUTO_TIME -> throw IllegalStateException("Unexpected value: $mode")
+            AppCompatDelegate.MODE_NIGHT_UNSPECIFIED,
+            AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY,
+            @Suppress("DEPRECATION")
+            AppCompatDelegate.MODE_NIGHT_AUTO_TIME -> throw IllegalStateException("Unexpected value: $mode")
+
             else -> throw IllegalStateException("Unexpected value: $mode")
         }
     }

@@ -53,10 +53,11 @@ object SetupDatabaseTasks {
             val client = context.contentResolver.acquireContentProviderClient(authority!!)!!
             val provider = client.localContentProvider!!
             provider.shutdown()
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                client.release()
-            } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 client.close()
+            } else {
+                @Suppress("DEPRECATION")
+                client.release()
             }
         }
 

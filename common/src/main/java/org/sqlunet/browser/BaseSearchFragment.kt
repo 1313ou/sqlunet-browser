@@ -136,9 +136,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 setupToolBar(toolbar)
             }
 
-            @Suppress("deprecation")
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                val handled = onOptionsItemSelected(menuItem)
+                @Suppress("DEPRECATION")
+                val handled = onOptionsItemSelected(menuItem) // use it a normal function
                 return if (handled) {
                     true
                 } else menuDispatch((requireActivity() as AppCompatActivity), menuItem)

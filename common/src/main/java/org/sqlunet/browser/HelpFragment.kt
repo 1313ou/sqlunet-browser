@@ -55,6 +55,7 @@ class HelpFragment : Fragment() {
 
                 @Deprecated("Deprecated in Java")
                 override fun onReceivedError(webView: WebView, errorCode: Int, description: String, failingUrl: String) {
+                    @Suppress("DEPRECATION")
                     super.onReceivedError(webView, errorCode, description, failingUrl)
                     Log.e(TAG, "$failingUrl:$description,$errorCode")
                 }

@@ -3,7 +3,6 @@
  */
 package org.sqlunet.browser.config
 
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -16,10 +15,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
-import androidx.viewpager.widget.ViewPager.SimpleOnPageChangeListener
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import org.sqlunet.browser.MenuHandler
 import org.sqlunet.browser.common.R
@@ -32,13 +30,12 @@ import org.sqlunet.settings.StorageReports.namesValuesToReportStyled
 import org.sqlunet.settings.StorageReports.reportStyledDirs
 import java.lang.reflect.InvocationTargetException
 
-@Suppress("deprecation")
 class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
 
     /**
      * Pager that will host the section contents.
      */
-    private lateinit var viewPager: ViewPager
+    private lateinit var viewPager: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,13 +52,17 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         }
 
         // create the adapter that will return a fragment for each of the three sections of the activity.
-        val pagerAdapter = SectionsPagerAdapter(supportFragmentManager, this)
+        val pagerAdapter = SectionsPagerAdapter(this)
 
         // set up the pager with the sections adapter.
         viewPager = findViewById(R.id.container)
         viewPager.setAdapter(pagerAdapter)
-        viewPager.setOnPageChangeListener(object : SimpleOnPageChangeListener() {
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+
             override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                Log.d("ViewPager2", "Switched to page $position")
+                // You can perform actions based on the current page, update UI elements, etc.
             }
         })
 
@@ -70,13 +71,13 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         tabLayout.addOnTabSelectedListener(this)
 
         // For each of the sections in the app, add a tab to the action bar.
-        for (i in 0 until pagerAdapter.count) {
+        for (i in 0 until pagerAdapter.itemCount) {
             // Create a tab with text corresponding to the page titleId defined by the adapter.
             // Also specify this Activity object, which implements the TabListener interface, as the callback (listener) for when
             // this tab is selected.
             tabLayout.addTab(
                 tabLayout.newTab()
-                    .setTag(pagerAdapter.getFragmentClass(i))
+                    .setTag(pagerAdapter.fragmentClasses[i])
                     .setContentDescription(pagerAdapter.getPageDescriptionId(i))
                     .setText(pagerAdapter.getPageTitleId(i))
             )
@@ -87,7 +88,7 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
 
     override fun onTabSelected(tab: TabLayout.Tab) {
         val position = tab.position
-        viewPager.setCurrentItem(position)
+        viewPager.currentItem = position
         val fragmentClass = tab.tag as String?
         val fragment = makeFragment(fragmentClass)
         if (fragment is Updatable) {
@@ -97,7 +98,9 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
     }
 
     override fun onTabUnselected(tab: TabLayout.Tab) {}
+
     override fun onTabReselected(tab: TabLayout.Tab) {}
+
     private fun makeFragment(fragmentClass: String?): Fragment {
         Log.d(TAG, "Page fragment $fragmentClass")
         if (!fragmentClass.isNullOrEmpty()) {
@@ -121,34 +124,24 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
     }
 
     /**
-     * A [FragmentPagerAdapter] that returns a fragment corresponding to one of the sections/tabs/pages.
+     * A Adapter that returns a fragment corresponding to one of the sections/tabs/pages.
      */
-    private inner class SectionsPagerAdapter(fragmentManager: FragmentManager, context: Context) : FragmentPagerAdapter(fragmentManager) {
+    private inner class SectionsPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
-        private val fragmentClasses: Array<String>
+        val fragmentClasses: Array<String>
 
         init {
-            val res = context.resources
+            val res = activity.resources
             fragmentClasses = res.getStringArray(R.array.fragment_class_setup_pages)
         }
 
-        fun getFragmentClass(i: Int): String {
-            return fragmentClasses[i]
-        }
-
-        override fun getItem(position: Int): Fragment {
-            return makeFragment(fragmentClasses[position])
-        }
-
-        override fun getCount(): Int {
+        override fun getItemCount(): Int {
             return fragmentClasses.size
         }
 
-        override fun getPageTitle(position: Int): CharSequence {
-            val id = getPageTitleId(position)
-            return if (id == 0) {
-                ""
-            } else getString(id)
+        override fun createFragment(position: Int): Fragment {
+            val fragmentName = fragmentClasses[position]
+            return makeFragment(fragmentName)
         }
 
         fun getPageTitleId(position: Int): Int {
@@ -157,7 +150,7 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
                 1 -> return R.string.title_page_setup_file
                 2 -> return R.string.title_page_setup_database
             }
-            return 0
+            throw IllegalArgumentException()
         }
 
         fun getPageDescriptionId(position: Int): Int {
@@ -166,7 +159,7 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
                 1 -> return R.string.description_page_setup_file
                 2 -> return R.string.description_page_setup_database
             }
-            return 0
+            throw IllegalArgumentException()
         }
     }
 

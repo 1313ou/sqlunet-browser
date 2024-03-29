@@ -237,7 +237,17 @@ class OpenEditTextPreference : DialogPreference {
                 if (pref.callChangeListener(newValue)) {
                     pref.setValue(newValue)
                 }
+                setResult(pref.value)
             }
+        }
+
+        private fun setResult(result: String?) {
+            val bundle = Bundle().apply {
+                if (result != null) {
+                    putString(TEXT_RESULT_KEY, result)
+                }
+            }
+            parentFragmentManager.setFragmentResult(TEXT_RESULT_KEY, bundle)
         }
 
         companion object {
@@ -290,9 +300,11 @@ class OpenEditTextPreference : DialogPreference {
     companion object {
 
         private const val DIALOG_FRAGMENT_TAG = "OpenEditTextPreference"
+        private const val TEXT_RESULT_KEY = "edited_text"
+        private const val TEXT_REQUEST_CODE = 901
 
         /**
-         * onDisplayPreferenceDialog helper
+         * onDisplayPreferenceDialog helper, called by fragment
          *
          * @param prefFragment preference fragment
          * @param preference   preference
@@ -309,7 +321,17 @@ class OpenEditTextPreference : DialogPreference {
             }
             if (preference is OpenEditTextPreference) {
                 val dialogFragment: DialogFragment = OpenEditTextPreferenceDialogFragmentCompat.newInstance(preference)
-                dialogFragment.setTargetFragment(prefFragment, 0)
+                manager.setFragmentResultListener(TEXT_RESULT_KEY, prefFragment) { key: String, bundle: Bundle ->
+                    run {
+                        if (key == TEXT_RESULT_KEY) {
+                            val text = bundle.getString(TEXT_RESULT_KEY)
+                            //  Log.d(TAG, "Result text $text through FragmentResultListener()")
+                            preference.value = text
+                        }
+                    }
+                }
+                @Suppress("DEPRECATION")
+                dialogFragment.setTargetFragment(prefFragment, TEXT_REQUEST_CODE) // Optional for back button handling
                 dialogFragment.show(manager, DIALOG_FRAGMENT_TAG)
                 return true
             }

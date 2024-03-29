@@ -53,7 +53,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         // restore data
         if (savedInstanceState != null) {
             this.query2 = savedInstanceState.getString(STATE_QUERY)
-            this.pointer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) savedInstanceState.getParcelable(STATE_POINTER, PmRolePointer::class.java) else savedInstanceState.getParcelable(STATE_POINTER)
+            this.pointer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) savedInstanceState.getParcelable(STATE_POINTER, PmRolePointer::class.java) else @Suppress("DEPRECATION") savedInstanceState.getParcelable(STATE_POINTER)
         } else {
             // splash fragment
             val fragment: Fragment = BrowsePredicateMatrixSplashFragment()

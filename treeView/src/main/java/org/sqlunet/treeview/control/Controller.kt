@@ -160,7 +160,7 @@ abstract class Controller protected constructor(
      *
      * @param selected selected flag
      */
-    fun onSelectedEvent(selected: Boolean) {
+    fun onSelectedEvent(@Suppress("UNUSED_PARAMETER") selected: Boolean) {
         // empty
     }
 }

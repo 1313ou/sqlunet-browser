@@ -51,7 +51,7 @@ object Diagnostics {
         val pInfo: PackageInfo
         try {
             pInfo = context.packageManager.getPackageInfo(packageName, 0)
-            val code = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) pInfo.longVersionCode else pInfo.versionCode.toLong()
+            val code = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) pInfo.longVersionCode else @Suppress("DEPRECATION") pInfo.versionCode.toLong()
             sb.append("version: ")
             sb.append(code.toString())
             sb.append('\n')

@@ -54,12 +54,12 @@ object ColorUtils {
         return getColor(res, theme, colorRes)
     }
 
-    @Suppress("deprecation")
-    @ColorInt
+        @ColorInt
     fun getColor(res: Resources, theme: Theme?, @ColorRes colorRes: Int): Int {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             res.getColor(colorRes, theme)
         } else {
+            @Suppress("DEPRECATION")
             res.getColor(colorRes)
         }
     }

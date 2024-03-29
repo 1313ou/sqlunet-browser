@@ -360,7 +360,7 @@ class WebFragment : Fragment() {
      * @return string
      */
     private fun docsToString(
-        word: String?,
+        @Suppress("UNUSED_PARAMETER") word: String?, // might appear in the document
         xml: Boolean,
         isSelector: Boolean,
         wnDomDoc: Document?,

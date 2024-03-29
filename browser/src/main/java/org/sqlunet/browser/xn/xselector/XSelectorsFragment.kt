@@ -798,9 +798,10 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
                 cursor.addRow(arrayOf<Any>(GROUPID_PROPBANK, "propbank", R.drawable.propbank.toString()))
             }
             if (XnSettings.Source.FRAMENET.test(enable)) {
-                groupPositions[GROUPINDEX_FRAMENET] = position++
+                groupPositions[GROUPINDEX_FRAMENET] = position
                 cursor.addRow(arrayOf<Any>(GROUPID_FRAMENET, "framenet", R.drawable.framenet.toString()))
             }
+            // increment position if anything added
             return groupPositions
         }
     }

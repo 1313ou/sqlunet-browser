@@ -57,13 +57,12 @@ class AssetLoadActivity : AppCompatActivity() {
         return MenuHandler.menuDispatchWhenCantRun(this, item)
     }
 
-    /** @noinspection deprecation
-     */
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        Log.d(TAG, "onBackPressed")
-        super.onBackPressed()
-    }
+    // @Suppress("DEPRECATION")
+    // @Deprecated("Deprecated in Java")
+    // override fun onBackPressed() {
+    //     Log.d(TAG, "onBackPressed")
+    //     super.onBackPressed()
+    // }
 
     companion object {
 
