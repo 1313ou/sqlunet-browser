@@ -95,7 +95,7 @@ open class Spanner {
          */
         private const val EOEXPANDEDSTRING = '~'
 
-        // A P P L Y S P A N
+        // A P P L Y  S P A N
 
         /**
          * Apply spans

@@ -84,7 +84,7 @@ internal object FileUtils {
         }
     }
 
-    // E X P A N D A S S E T
+    // E X P A N D   A S S E T
 
     /**
      * Expand asset file

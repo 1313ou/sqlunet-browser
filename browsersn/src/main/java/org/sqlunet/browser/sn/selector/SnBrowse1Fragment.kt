@@ -73,7 +73,7 @@ class SnBrowse1Fragment : BaseBrowse1Fragment(), SnSelectorsFragment.Listener {
         }
     }
 
-    // I T E M S E L E C T I O N H A N D L I N G
+    // S E L E C T I O N
 
     /**
      * Callback method from [SnSelectorsFragment.Listener] indicating that the item with the given ID was selected.

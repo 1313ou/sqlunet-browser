@@ -313,8 +313,6 @@ class TreeNode(
         this.selected = selected
     }
 
-    // S T R I N G I F Y
-
     override fun toString(): String {
         val sb = StringBuilder()
         sb

@@ -74,7 +74,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
         }
     }
 
-    // I T E M S E L E C T I O N H A N D L I N G
+    // S E L E C T I O N
 
     /**
      * Callback method from [SelectorsFragment.Listener] indicating that the item with the given ID was selected.

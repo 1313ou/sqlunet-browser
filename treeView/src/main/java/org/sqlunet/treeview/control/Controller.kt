@@ -52,8 +52,6 @@ abstract class Controller protected constructor(
      */
     open var childrenView: ViewGroup? = null
 
-    // V I E W
-
     fun createView(context: Context, containerStyle: Int, treeIndent: Int, treeRowMinHeight: Int): SubtreeView? {
 
         // node view
