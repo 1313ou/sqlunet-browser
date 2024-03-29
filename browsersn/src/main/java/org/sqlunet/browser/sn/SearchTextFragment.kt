@@ -46,12 +46,11 @@ class SearchTextFragment : BaseSearchFragment() {
         }
     }
 
-    override fun onStop() {
-        super.onStop()
-
-        // remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
-        beforeSaving(SearchTextSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_searchtext, TextFragment.FRAGMENT_TAG)
-    }
+    // override fun onStop() {
+    //     super.onStop()
+    //     // remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
+    //     beforeSaving(SearchTextSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_searchtext, TextFragment.FRAGMENT_TAG)
+    // }
 
     // S P I N N E R
 

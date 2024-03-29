@@ -68,12 +68,11 @@ class BrowseFragment : BaseSearchFragment() {
         }
     }
 
-    override fun onStop() {
-        super.onStop()
-
-        // remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
-        beforeSaving(BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG)
-    }
+    // override fun onStop() {
+    //     super.onStop()
+    //     // remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
+    //     beforeSaving(BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG)
+    // }
 
     // M E N U
 

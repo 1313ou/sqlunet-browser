@@ -66,12 +66,11 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         }
     }
 
-    override fun onStop() {
-        super.onStop()
-
-        // remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
-        beforeSaving(BrowsePredicateMatrixSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_predicatematrix, PredicateMatrixFragment.FRAGMENT_TAG)
-    }
+    // override fun onStop() {
+    //     super.onStop()
+    //     // remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
+    //     beforeSaving(BrowsePredicateMatrixSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_predicatematrix, PredicateMatrixFragment.FRAGMENT_TAG)
+    // }
 
     // S A V E
 

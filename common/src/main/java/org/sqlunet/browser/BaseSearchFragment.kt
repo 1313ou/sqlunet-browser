@@ -398,18 +398,18 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     // F R A G M E N T   M A N A G E M E N T
 
-    /**
-     * Remove children fragments with tags and insert given fragment with at given location
-     *
-     * @param fragment          new fragment
-     * @param tag               new fragment's tag
-     * @param where             new fragment's location
-     * @param childFragmentTags removed children's tags
-     * @noinspection SameParameterValue, EmptyMethod
-     */
-    protected fun beforeSaving(fragment: Fragment, tag: String?, @IdRes where: Int, vararg childFragmentTags: String) {
-        // FragmentUtils.removeAllChildFragment(getChildFragmentManager(), fragment, tag, where, *childFragmentTags)
-    }
+    // /**
+    //  * Remove children fragments with tags and insert given fragment with at given location
+    //  *
+    //  * @param fragment          new fragment
+    //  * @param tag               new fragment's tag
+    //  * @param where             new fragment's location
+    //  * @param childFragmentTags removed children's tags
+    //  * @noinspection SameParameterValue, EmptyMethod
+    //  */
+    // protected fun beforeSaving(fragment: Fragment, tag: String?, @IdRes where: Int, vararg childFragmentTags: String) {
+    //     // FragmentUtils.removeAllChildFragment(getChildFragmentManager(), fragment, tag, where, *childFragmentTags)
+    // }
 
     companion object {
 
