@@ -216,7 +216,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
                 return true
             }
 
-            override fun getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View, parent: ViewGroup): View? {
+            override fun getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View?, parent: ViewGroup): View? {
                 this.cursor ?: return null
                 return super.getGroupView(groupPosition, isExpanded, convertView, parent)
             }
