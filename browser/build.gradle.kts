@@ -39,6 +39,10 @@ android {
         targetSdk = vTargetSdk
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // BuildConfig fields
+        buildConfigField("int", "VERSION_CODE", vCode.toString())
+        buildConfigField("String", "VERSION_NAME", "\"$vName\"")
     }
 
     compileSdk = vCompileSdk
@@ -47,6 +51,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
         isCoreLibraryDesugaringEnabled = true
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
     }
 
     sourceSets {
@@ -67,6 +75,11 @@ android {
         }
     }
 
+    buildFeatures {
+        buildConfig = true
+        compose = false
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -77,9 +90,6 @@ android {
         debug {
             signingConfig = signingConfigs.getByName("sqlunet")
         }
-    }
-    kotlinOptions {
-        jvmTarget = "17"
     }
 }
 

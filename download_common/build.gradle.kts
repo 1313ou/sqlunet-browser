@@ -41,6 +41,10 @@ android {
         targetSdk = vTargetSdk
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false

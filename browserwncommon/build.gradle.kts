@@ -40,6 +40,10 @@ android {
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // BuildConfig fields
+        buildConfigField("int", "VERSION_CODE", vCode.toString())
+        buildConfigField("String", "VERSION_NAME", "\"$vName\"")
     }
 
     compileSdk = vCompileSdk
@@ -50,10 +54,19 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
 
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
     sourceSets {
         getByName("androidTest") {
             assets.srcDirs("src/main/assets", "src/debug/assets/")
         }
+    }
+
+    buildFeatures {
+        buildConfig = true
+        compose = false
     }
 
     buildTypes {
@@ -61,9 +74,6 @@ android {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.txt")
         }
-    }
-    kotlinOptions {
-        jvmTarget = "17"
     }
 }
 

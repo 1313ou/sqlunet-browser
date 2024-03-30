@@ -36,14 +36,19 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
 
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.txt")
         }
-    }
-    kotlinOptions {
-        jvmTarget = "17"
     }
 }
 
