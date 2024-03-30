@@ -248,6 +248,7 @@ object StorageReports {
         dirs.add(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS))
         dirs.addAll(listOf(*context.getExternalFilesDirs(Environment.DIRECTORY_DOWNLOADS)))
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            @Suppress("DEPRECATION")
             dirs.addAll(listOf(*context.externalMediaDirs))
         }
         for (dir in dirs) {
