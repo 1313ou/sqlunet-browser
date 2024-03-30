@@ -600,11 +600,12 @@ class TreeViewer(
         if (factor != -1f) {
             var defaultValue: Int
             @StyleableRes val attrs = intArrayOf(android.R.attr.paddingStart, android.R.attr.paddingLeft)
-            context.obtainStyledAttributes(containerStyle, attrs).use {
+            context.obtainStyledAttributes(containerStyle, attrs).let {
                 defaultValue = it.getDimensionPixelSize(0, 0)
                 if (defaultValue == 0) {
                     defaultValue = it.getDimensionPixelSize(1, 0)
                 }
+                it.recycle()
             }
             val value = (defaultValue * factor).toInt()
             Log.d(TAG, "Indent default=$defaultValue new=$value factor=$factor")

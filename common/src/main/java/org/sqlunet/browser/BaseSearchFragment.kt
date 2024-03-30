@@ -302,18 +302,16 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         get() {
             val context = requireContext()
 
-            // resources
-            val resources = context.resources
-
             // adapter values and icons
             val modeLabels = resources.getTextArray(spinnerLabels)
             val modeIcons: IntArray
-            resources.obtainTypedArray(spinnerIcons).use {
+            resources.obtainTypedArray(spinnerIcons).let {
                 val n = it.length()
                 modeIcons = IntArray(n)
                 for (i in 0 until n) {
                     modeIcons[i] = it.getResourceId(i, -1)
                 }
+                it.recycle()
             }
 
             // adapter

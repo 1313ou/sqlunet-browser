@@ -194,10 +194,11 @@ object Colors {
     @JvmStatic
     fun getColorAttrs(context: Context, @StyleRes themeId: Int, @StyleableRes vararg resIds: Int): IntArray {
         val result = IntArray(resIds.size)
-        context.theme.obtainStyledAttributes(themeId, resIds).use {
+        context.theme.obtainStyledAttributes(themeId, resIds).let {
             for (i in resIds.indices) {
                 result[i] = it.getColor(i, NOT_DEFINED)
             }
+            it.recycle()
         }
         return result
     }
@@ -206,12 +207,13 @@ object Colors {
 
     @JvmStatic
     fun dumpColorAttrs(context: Context, @StyleRes themeId: Int, @StyleableRes vararg resIds: Int) {
-        context.theme.obtainStyledAttributes(themeId, resIds).use {
+        context.theme.obtainStyledAttributes(themeId, resIds).let {
             for (i in 0 until it.length()) {
                 val name = context.resources.getResourceName(resIds[i])
                 val value = it.getColor(i, NOT_DEFINED)
                 Log.i(DUMP, String.format("Attr %s = %s", name, colorToString(value)))
             }
+            it.recycle()
         }
     }
 

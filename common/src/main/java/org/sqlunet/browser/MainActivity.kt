@@ -52,12 +52,13 @@ open class MainActivity : AppCompatActivity() {
 
         // navigation top destinations
         val topDests: IntArray
-        getResources().obtainTypedArray(R.array.drawer_top_dest).use {
+        resources.obtainTypedArray(R.array.drawer_top_dest).let {
             val len = it.length()
             topDests = IntArray(len)
             for (i in 0 until len) {
                 topDests[i] = it.getResourceId(i, 0)
             }
+            it.recycle()
         }
 
         // navigation
