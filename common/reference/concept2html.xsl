@@ -4,7 +4,7 @@
 
 <!-- LINK 2 HTML - (C) 2014 Author: Bernard Bou -->
 <xsl:transform version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:output method="html" indent="yes" encoding="UTF-8" doctype-system="about:legacy-compat" />
+	<xsl:output method="html" indent="yes" encoding="UTF-8" />
 
 	<xsl:variable name="imagedir" select='"./images/"' />
 
