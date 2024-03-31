@@ -35,9 +35,6 @@ class RelationFragment : TreeFragment() {
      */
     var parameters: Bundle? = null
 
-    /**
-     * Constructor
-     */
     init {
         layoutId = R.layout.fragment_relation
         treeContainerId = R.id.data_contents

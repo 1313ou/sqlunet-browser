@@ -16,9 +16,6 @@ import org.sqlunet.sql.DBQuery
  */
 internal class FnSentenceQuery(connection: SQLiteDatabase, sentenceId: Long) : DBQuery(connection, QUERY) {
 
-    /**
-     * Constructor
-     */
     init {
         setParams(sentenceId)
     }

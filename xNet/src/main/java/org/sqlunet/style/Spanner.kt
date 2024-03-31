@@ -57,11 +57,7 @@ open class Spanner {
      *
      * @author [Bernard Bou](mailto:1313ou@gmail.com)
      */
-    class HiddenSpan
-    /**
-     * Constructor
-     */
-        : ReplacementSpan() {
+    class HiddenSpan : ReplacementSpan() {
 
         override fun draw(canvas: Canvas, arg1: CharSequence, arg2: Int, arg3: Int, arg4: Float, arg5: Int, arg6: Int, arg7: Int, arg8: Paint) {
         }

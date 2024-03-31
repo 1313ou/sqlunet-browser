@@ -38,9 +38,6 @@ internal class FnFrameElement private constructor(
     @JvmField
     val semTypes: Array<String>?
 
-    /**
-     * Constructor
-     */
     init {
         this.semTypes = semTypes?.split("\\|".toRegex())?.dropLastWhile { it.isEmpty() }?.toTypedArray()
     }

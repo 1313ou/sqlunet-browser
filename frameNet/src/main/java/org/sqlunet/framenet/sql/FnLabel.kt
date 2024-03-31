@@ -33,9 +33,6 @@ class FnLabel(
      */
     val fgColor: String?
 
-    /**
-     * Constructor
-     */
     init {
         this.bgColor = if (bgColor != null && bgColor.isEmpty()) null else bgColor
         this.fgColor = if (fgColor != null && fgColor.isEmpty()) null else fgColor

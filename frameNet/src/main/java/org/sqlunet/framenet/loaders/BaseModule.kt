@@ -304,9 +304,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         return changed
     }
 
-    /**
-     * Constructor
-     */
     init {
 
         // models

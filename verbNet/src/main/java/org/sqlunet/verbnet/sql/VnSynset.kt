@@ -20,9 +20,6 @@ class VnSynset(query: VnClassQueryFromWordAndPos) : BasicSynset(query.synsetId, 
     @JvmField
     val flag: Boolean
 
-    /**
-     * Constructor from query for synsets
-     */
     init {
         flag = query.synsetSpecific
     }

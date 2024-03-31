@@ -101,9 +101,6 @@ class BillingManager(activity: Activity, listener: BillingListener) {
 
     // C O N S T R U C T O R / D E S T R U C T O R
 
-    /**
-     * Constructor
-     */
     init {
         Log.d(TAG, "Creating billing client.")
         this.activity = activity

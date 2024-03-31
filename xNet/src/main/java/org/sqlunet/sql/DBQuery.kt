@@ -29,10 +29,6 @@ open class DBQuery protected constructor(connection: SQLiteDatabase, statement: 
     @JvmField
     protected var cursor: Cursor? = null
 
-    /**
-     * Constructor
-     *
-     */
     init {
         this.statement = PreparedStatement(connection, statement)
     }

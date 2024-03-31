@@ -69,16 +69,10 @@ object WnSettings : Settings() {
 
     /**
      * Source
-     */
-    enum class Source
-    /**
-     * Constructor
      *
      * @param mask mask
-     */(
-        /**
-         * Source mask
-         */
+     */
+    enum class Source(
         private val mask: Int
     ) {
 
