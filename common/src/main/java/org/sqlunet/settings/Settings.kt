@@ -96,7 +96,7 @@ open class Settings {
      */
     enum class Selector {
 
-        SELECTOR;
+        SELECTOR, XSELECTOR;
 
         /**
          * Set this selector as preferred selector
