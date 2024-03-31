@@ -9,7 +9,6 @@ import org.sqlunet.provider.XNetContract
 object Queries {
 
     const val PRONUNCIATIONS = "pronunciations"
-    const val XPRONUNCIATIONS = "xpronunciations"
     private const val GROUPID_COLUMN = "_id"
 
     // B R O W S E R
