@@ -206,10 +206,9 @@ object Queries {
             XNetContract.Words_FnWords_FnFrames_U.FRAMEID + " AS " + XNetContract.Words_XNet_U.XID,
             XNetContract.Words_FnWords_FnFrames_U.FRAMEID + " AS " + XNetContract.Words_XNet_U.XCLASSID,
             XNetContract.Words_FnWords_FnFrames_U.LUID + " AS " + XNetContract.Words_XNet_U.XMEMBERID,
-
-            "GROUP_CONCAT(${XNetContract.Words_FnWords_FnFrames_U.LEXUNIT},'\n') AS ${XNetContract.Words_XNet_U.XNAME}",
+            "GROUP_CONCAT(DISTINCT ${XNetContract.Words_FnWords_FnFrames_U.LEXUNIT}) AS ${XNetContract.Words_XNet_U.XNAME}",
             XNetContract.Words_FnWords_FnFrames_U.FRAME + " AS " + XNetContract.Words_XNet_U.XHEADER,
-            "GROUP_CONCAT(${XNetContract.Words_FnWords_FnFrames_U.LUDEFINITION},'\n') AS ${XNetContract.Words_XNet_U.XINFO}",
+            "GROUP_CONCAT(DISTINCT ${XNetContract.Words_FnWords_FnFrames_U.LUDEFINITION}) AS ${XNetContract.Words_XNet_U.XINFO}",
             XNetContract.Words_FnWords_FnFrames_U.DEFINITION + " AS " + XNetContract.Words_XNet_U.XDEFINITION,
             "NULL AS $PRONUNCIATIONS",
             "RANDOM() AS _id"
