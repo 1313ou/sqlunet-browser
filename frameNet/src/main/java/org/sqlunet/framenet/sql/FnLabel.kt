@@ -19,8 +19,9 @@ class FnLabel(
     @JvmField val from: String,
     @JvmField val to: String,
     @JvmField val label: String,
-    @JvmField val iType: String,
-    bgColor: String?, fgColor: String?,
+    @JvmField val iType: String?,
+    bgColor: String?,
+    fgColor: String?,
 ) {
 
     /**

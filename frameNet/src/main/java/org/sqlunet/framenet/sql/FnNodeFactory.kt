@@ -243,7 +243,7 @@ internal object FnNodeFactory {
                     makeAttribute(element2, "to", label.to)
                 }
                 makeAttribute(element2, "label", label.label)
-                if (label.iType.isNotEmpty()) {
+                if (!label.iType.isNullOrEmpty()) {
                     makeAttribute(element2, "itype", label.iType)
                 }
             }

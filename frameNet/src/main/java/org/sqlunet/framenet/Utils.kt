@@ -50,7 +50,9 @@ object Utils {
             if (result == null) {
                 result = ArrayList()
             }
-            result.add(FnLabel(from!!, to!!, value!!, iType!!, bgColor, fgColor))
+            if (from != null && to != null && value != null) {
+                result.add(FnLabel(from, to, value, iType, bgColor, fgColor))
+            }
         }
         return result
     }
