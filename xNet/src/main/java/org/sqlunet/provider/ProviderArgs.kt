@@ -39,6 +39,8 @@ object ProviderArgs {
     const val ARG_QUERYTYPE_COLLOCATIONS = 50
     const val ARG_QUERYTYPE_COLLOCATION = 51
 
+    const val ARG_STANDALONE = "QUERYSTANDALONE"
+
     // tables
     const val ARG_QUERYURI = "QUERYURI"
     const val ARG_QUERYDATABASE = "QUERYDATABASE"

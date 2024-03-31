@@ -20,9 +20,9 @@ object Queries {
     const val ISLIKE = "islike"
 
     @JvmStatic
-    fun prepareSelect(word: String): ContentProviderSql {
+    fun prepareSelect(word: String, standAlone: Boolean): ContentProviderSql {
         val providerSql = ContentProviderSql()
-        providerSql.providerUri = FrameNetContract.LexUnits_or_Frames.URI_FN
+        providerSql.providerUri = if (standAlone) FrameNetContract.LexUnits_or_Frames.URI_FN else FrameNetContract.LexUnits_or_Frames.URI
         providerSql.projection = arrayOf(
             FrameNetContract.LexUnits_or_Frames.ID,
             FrameNetContract.LexUnits_or_Frames.FNID,
@@ -137,9 +137,9 @@ object Queries {
     }
 
     @JvmStatic
-    fun prepareLexUnitsForWordAndPos(wordId: Long, pos: Char?): ContentProviderSql {
+    fun prepareLexUnitsForWordAndPos(wordId: Long, pos: Char?, standAlone: Boolean): ContentProviderSql {
         val providerSql = ContentProviderSql()
-        providerSql.providerUri = FrameNetContract.Words_LexUnits_Frames.URI_FN
+        providerSql.providerUri = if (standAlone) FrameNetContract.Words_LexUnits_Frames.URI_FN else FrameNetContract.Words_LexUnits_Frames.URI
         providerSql.projection = arrayOf(
             FrameNetContract.Words_LexUnits_Frames.LUID,
             FrameNetContract.Words_LexUnits_Frames.LEXUNIT,
@@ -159,9 +159,9 @@ object Queries {
     }
 
     @JvmStatic
-    fun prepareGovernorsForLexUnit(luId: Long): ContentProviderSql {
+    fun prepareGovernorsForLexUnit(luId: Long, standAlone: Boolean): ContentProviderSql {
         val providerSql = ContentProviderSql()
-        providerSql.providerUri = FrameNetContract.LexUnits_Governors.URI_FN
+        providerSql.providerUri = if (standAlone) FrameNetContract.LexUnits_Governors.URI_FN else FrameNetContract.LexUnits_Governors.URI
         providerSql.projection = arrayOf(
             FrameNetContract.LexUnits_Governors.LUID,
             FrameNetContract.LexUnits_Governors.GOVERNORID,
