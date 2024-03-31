@@ -358,16 +358,13 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
     /**
      * FrameNet data
-     */
-    class FnData
-    /**
-     * Constructor
      *
      * @param fnFrameId Frame id
      * @param fnFeId    Frame element id
      * @param fnFrame   Frame
      * @param fnFe      Frame element
-     */(
+     */
+    class FnData(
         /**
          * Frame id
          */
@@ -494,24 +491,24 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     // var word = cursor.getString(idWord)
                     val synsetId = cursor.getLong(idSynsetId)
                     val definition = cursor.getString(idDefinition)
-                    val wnData = WnData(synsetId, definition)
+                    val wnData = if (synsetId != 0L) WnData(synsetId, definition) else null
                     val vnClassId = cursor.getLong(idVnClassId)
                     val vnRoleId = cursor.getLong(idVnRoleTypeId)
                     val vnClass = cursor.getString(idVnClass)
                     val vnRole = cursor.getString(idVnRoleType)
-                    val vnData = VnData(vnClassId, vnRoleId, vnClass, vnRole)
+                    val vnData = if (vnClassId != 0L && vnRoleId != 0L) VnData(vnClassId, vnRoleId, vnClass, vnRole) else null
                     val pbRoleSetId = cursor.getLong(idPbRoleSetId)
                     val pbRoleId = cursor.getLong(idPbRoleId)
                     val pbRoleSet = cursor.getString(idPbRoleSet)
                     val pbRoleSetDescr = cursor.getString(idPbRoleSetDescr)
                     val pbRole = cursor.getString(idPbRole)
                     val pbRoleDescr = cursor.getString(idPbRoleDescr)
-                    val pbData = PbData(pbRoleSetId, pbRoleId, pbRoleSet, pbRoleSetDescr, pbRole, pbRoleDescr)
+                    val pbData = if (pbRoleSetId != 0L && pbRoleId != 0L) PbData(pbRoleSetId, pbRoleId, pbRoleSet, pbRoleSetDescr, pbRole, pbRoleDescr) else null
                     val fnFrameId = cursor.getLong(idFnFrameId)
                     val fnFeId = cursor.getLong(idFnFeTypeId)
                     val fnFrame = cursor.getString(idFnFrame)
                     val fnFe = cursor.getString(idFnFeType)
-                    val fnData = FnData(fnFrameId, fnFeId, fnFrame, fnFe)
+                    val fnData = if (fnFrameId != 0L && fnFeId != 0L) FnData(fnFrameId, fnFeId, fnFrame, fnFe) else null
 
                     // process
                     process(this.parent, wnData, pmRow, vnData, pbData, fnData)
@@ -532,7 +529,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
          * @param pbData PropBank data
          * @param fnData FrameNet data
          */
-        protected abstract fun process(parent: TreeNode, wnData: WnData, pmRow: PmRow, vnData: VnData, pbData: PbData, fnData: FnData)
+        protected abstract fun process(parent: TreeNode, wnData: WnData?, pmRow: PmRow, vnData: VnData?, pbData: PbData?, fnData: FnData?)
 
         /**
          * End of processing
@@ -542,14 +539,11 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
     /**
      * Processor of data based on grouping rows
-     */
-    internal inner class PmProcessGrouped
-    /**
-     * Constructor
      *
      * @param parent    parent
      * @param displayer displayer
-     */(parent: TreeNode, displayer: Displayer) : PmProcess(parent, displayer) {
+     */
+    internal inner class PmProcessGrouped(parent: TreeNode, displayer: Displayer) : PmProcess(parent, displayer) {
 
         /**
          * Role ids
@@ -585,13 +579,14 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
          * Grouping role id
          */
         private var pmRoleId: Long = 0
-        override fun process(parent: TreeNode, wnData: WnData, pmRow: PmRow, vnData: VnData, pbData: PbData, fnData: FnData) {
+
+        override fun process(parent: TreeNode, wnData: WnData?, pmRow: PmRow, vnData: VnData?, pbData: PbData?, fnData: FnData?) {
             if (pmRoleId != pmRow.pmRoleId) {
                 pmRoleIds.add(pmRow.pmRoleId.toInt())
                 pm.append(pmRow.pmRoleId.toInt(), pmRow)
                 pmRoleId = pmRow.pmRoleId
             }
-            if (vnData.vnClassId > 0) {
+            if (vnData != null) {
                 var vnSet = vnMap[pmRoleId.toInt()]
                 if (vnSet == null) {
                     vnSet = TreeSet()
@@ -605,9 +600,11 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     wnSet = HashSet()
                     wnMap[vnData] = wnSet
                 }
-                wnSet.add(wnData)
+                if (wnData != null) {
+                    wnSet.add(wnData)
+                }
             }
-            if (pbData.pbRoleSetId > 0) {
+            if (pbData != null) {
                 var pbSet = pbMap[pmRoleId.toInt()]
                 if (pbSet == null) {
                     pbSet = TreeSet()
@@ -621,9 +618,11 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     wnSet = HashSet()
                     wnMap[pbData] = wnSet
                 }
-                wnSet.add(wnData)
+                if (wnData != null) {
+                    wnSet.add(wnData)
+                }
             }
-            if (fnData.fnFrameId > 0) {
+            if (fnData != null) {
                 var fnSet = fnMap[pmRoleId.toInt()]
                 if (fnSet == null) {
                     fnSet = TreeSet()
@@ -637,7 +636,9 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     wnSet = HashSet()
                     wnMap[fnData] = wnSet
                 }
-                wnSet.add(wnData)
+                if (wnData != null) {
+                    wnSet.add(wnData)
+                }
             }
         }
 
@@ -695,17 +696,13 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
     /**
      * Processor of data based on row iteration
-     */
-    internal inner class PmProcessOnIteration
-    /**
-     * Constructor
      *
      * @param parent    parent
      * @param displayer displayer to use
      */
-        (parent: TreeNode, displayer: Displayer) : PmProcess(parent, displayer) {
+    internal inner class PmProcessOnIteration(parent: TreeNode, displayer: Displayer) : PmProcess(parent, displayer) {
 
-        override fun process(parent: TreeNode, wnData: WnData, pmRow: PmRow, vnData: VnData, pbData: PbData, fnData: FnData) {
+        override fun process(parent: TreeNode, wnData: WnData?, pmRow: PmRow, vnData: VnData?, pbData: PbData?, fnData: FnData?) {
             displayer.display(parent, wnData, pmRow, vnData, pbData, fnData, changedList)
         }
     }
@@ -726,7 +723,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
          * @param fnData      FrameNet data
          * @param changedList tree ops
          */
-        abstract fun display(parentNode: TreeNode, wnData: WnData, pmRole: PmRow, vnData: VnData, pbData: PbData, fnData: FnData, changedList: TreeOps)
+        abstract fun display(parentNode: TreeNode, wnData: WnData?, pmRole: PmRow, vnData: VnData?, pbData: PbData?, fnData: FnData?, changedList: TreeOps)
 
         /**
          * Get required sort order
@@ -734,6 +731,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
          * @return sort order
          */
         abstract val requiredOrder: String
+
         protected abstract val expandLevels: Int
 
         /**
@@ -758,29 +756,35 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
          * @param wnDataOnRow   whether to display WordNet data on label
          * @param wnDataOnXData whether to display WordNet data on extended data
          */
-        fun displayRow(parent: TreeNode, wnData: WnData?, pmRow: PmRow, vnData: VnData, pbData: PbData, fnData: FnData, wnDataOnRow: Boolean, wnDataOnXData: Boolean, changedList: TreeOps) {
+        fun displayRow(parent: TreeNode, wnData: WnData?, pmRow: PmRow, vnData: VnData?, pbData: PbData?, fnData: FnData?, wnDataOnRow: Boolean, wnDataOnXData: Boolean, changedList: TreeOps) {
             // entry
             val roleNode = displayPmRow(parent, pmRow, if (wnDataOnRow) wnData else null, changedList)
 
             // vn
-            if (wnDataOnXData) {
-                makeVnNode(roleNode, changedList, vnData, wnData!!)
-            } else {
-                makeVnNode(roleNode, changedList, vnData)
+            if (vnData != null) {
+                if (wnDataOnXData && wnData != null) {
+                    makeVnNode(roleNode, changedList, vnData, wnData)
+                } else {
+                    makeVnNode(roleNode, changedList, vnData)
+                }
             }
 
             // pb
-            if (wnDataOnXData) {
-                makePbNode(roleNode, changedList, pbData, wnData!!)
-            } else {
-                makePbNode(roleNode, changedList, pbData)
+            if (pbData != null) {
+                if (wnDataOnXData && wnData != null) {
+                    makePbNode(roleNode, changedList, pbData, wnData)
+                } else {
+                    makePbNode(roleNode, changedList, pbData)
+                }
             }
 
             // fn
-            if (wnDataOnXData) {
-                makeFnNode(roleNode, changedList, fnData, wnData!!)
-            } else {
-                makeFnNode(roleNode, changedList, fnData)
+            if (fnData != null) {
+                if (wnDataOnXData && wnData != null) {
+                    makeFnNode(roleNode, changedList, fnData, wnData)
+                } else {
+                    makeFnNode(roleNode, changedList, fnData)
+                }
             }
         }
 
@@ -1031,8 +1035,8 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
          */
         private var synsetNode: TreeNode? = null
 
-        override fun display(parentNode: TreeNode, wnData: WnData, pmRole: PmRow, vnData: VnData, pbData: PbData, fnData: FnData, changedList: TreeOps) {
-            if (synsetId != wnData.synsetId) {
+        override fun display(parentNode: TreeNode, wnData: WnData?, pmRole: PmRow, vnData: VnData?, pbData: PbData?, fnData: FnData?, changedList: TreeOps) {
+            if (wnData != null && synsetId != wnData.synsetId) {
                 // record
                 synsetId = wnData.synsetId
                 val synsetsb = SpannableStringBuilder()
@@ -1048,7 +1052,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 synsetNode = makeTreeNode(synsetsb, R.drawable.synset, false).addTo(parentNode)
                 changedList.add(TreeOpCode.NEWCHILD, synsetNode!!)
             }
-            super.displayRow(synsetNode!!, wnData, pmRole, vnData, pbData, fnData, wnDataOnRow = false, wnDataOnXData = false, changedList = changedList)
+            super.displayRow(synsetNode ?: parentNode, wnData, pmRole, vnData, pbData, fnData, wnDataOnRow = false, wnDataOnXData = false, changedList = changedList)
         }
 
         override val requiredOrder: String
@@ -1073,7 +1077,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
          */
         private var pmRoleNode: TreeNode? = null
 
-        override fun display(parentNode: TreeNode, wnData: WnData, pmRole: PmRow, vnData: VnData, pbData: PbData, fnData: FnData, changedList: TreeOps) {
+        override fun display(parentNode: TreeNode, wnData: WnData?, pmRole: PmRow, vnData: VnData?, pbData: PbData?, fnData: FnData?, changedList: TreeOps) {
             if (pmRoleId != pmRole.pmRoleId) {
                 // group
                 pmRoleNode = displayPmRole(parentNode, pmRole, changedList)
@@ -1096,7 +1100,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     internal inner class DisplayerUngrouped : Displayer() {
 
-        override fun display(parentNode: TreeNode, wnData: WnData, pmRole: PmRow, vnData: VnData, pbData: PbData, fnData: FnData, changedList: TreeOps) {
+        override fun display(parentNode: TreeNode, wnData: WnData?, pmRole: PmRow, vnData: VnData?, pbData: PbData?, fnData: FnData?, changedList: TreeOps) {
             super.displayRow(parentNode, wnData, pmRole, vnData, pbData, fnData, wnDataOnRow = true, wnDataOnXData = false, changedList = changedList)
         }
 
