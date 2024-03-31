@@ -587,56 +587,32 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 pmRoleId = pmRow.pmRoleId
             }
             if (vnData != null) {
-                var vnSet = vnMap[pmRoleId.toInt()]
-                if (vnSet == null) {
-                    vnSet = TreeSet()
-                    vnMap.put(pmRoleId.toInt(), vnSet)
-                }
+                val vnSet = vnMap.computeIfAbsent(pmRoleId.toInt()) { TreeSet() }
                 vnSet.add(vnData)
 
                 // wn
-                var wnSet = wnMap[vnData]
-                if (wnSet == null) {
-                    wnSet = HashSet()
-                    wnMap[vnData] = wnSet
-                }
                 if (wnData != null) {
+                    val wnSet = wnMap.computeIfAbsent(vnData) { HashSet() }
                     wnSet.add(wnData)
                 }
             }
             if (pbData != null) {
-                var pbSet = pbMap[pmRoleId.toInt()]
-                if (pbSet == null) {
-                    pbSet = TreeSet()
-                    pbMap.put(pmRoleId.toInt(), pbSet)
-                }
+                val pbSet = pbMap.computeIfAbsent(pmRoleId.toInt()) { TreeSet() }
                 pbSet.add(pbData)
 
                 // wn
-                var wnSet = wnMap[pbData]
-                if (wnSet == null) {
-                    wnSet = HashSet()
-                    wnMap[pbData] = wnSet
-                }
                 if (wnData != null) {
+                    val wnSet = wnMap.computeIfAbsent(pbData) { HashSet() }
                     wnSet.add(wnData)
                 }
             }
             if (fnData != null) {
-                var fnSet = fnMap[pmRoleId.toInt()]
-                if (fnSet == null) {
-                    fnSet = TreeSet()
-                    fnMap.put(pmRoleId.toInt(), fnSet)
-                }
+                val fnSet = fnMap.computeIfAbsent(pmRoleId.toInt()) { TreeSet() }
                 fnSet.add(fnData)
 
                 // wn
-                var wnSet = wnMap[fnData]
-                if (wnSet == null) {
-                    wnSet = HashSet()
-                    wnMap[fnData] = wnSet
-                }
                 if (wnData != null) {
+                    val wnSet = wnMap.computeIfAbsent(fnData) { HashSet() }
                     wnSet.add(wnData)
                 }
             }
@@ -1188,6 +1164,18 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
          */
         private fun capitalize1(s: String): String {
             return s.substring(0, 1).uppercase() + s.substring(1)
+        }
+
+        private fun <V> SparseArray<V>.computeIfAbsent(key: Int, supplier: () -> V): V {
+            val v: V? = get(key)
+            if (v == null) {
+                val newValue: V = supplier.invoke()
+                if (newValue != null) {
+                    put(key, newValue)
+                    return newValue
+                }
+            }
+            return v!!
         }
     }
 }
