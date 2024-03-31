@@ -12,10 +12,11 @@ import org.sqlunet.treeview.model.TreeNode
  * Lex unit module
  *
  * @param fragment containing fragment
+ * @param standAlone whether the database is FN-standalone or whether it is optimized and operates in conjunction with WN
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-open class LexUnitModule(fragment: TreeFragment) : FrameModule(fragment) {
+open class LexUnitModule(fragment: TreeFragment, standAlone: Boolean) : FrameModule(fragment, standAlone) {
 
     /**
      * LuId

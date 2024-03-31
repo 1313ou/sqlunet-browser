@@ -12,10 +12,11 @@ import org.sqlunet.treeview.model.TreeNode
  * AnnoSet module
  *
  * @param fragment containing fragment
+ * @param standAlone whether the database is FN-standalone or whether it is optimized and operates in conjunction with WN
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class AnnoSetModule(fragment: TreeFragment) : BaseModule(fragment) {
+class AnnoSetModule(fragment: TreeFragment, standAlone: Boolean) : BaseModule(fragment, standAlone) {
 
     /**
      * AnnoSet id
