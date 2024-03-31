@@ -32,6 +32,7 @@ class FrameNetFragment : TreeFragment() {
         // query
         val args = requireArguments()
         val type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
+        val standAlone = args.getBoolean(ProviderArgs.ARG_STANDALONE)
         if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER)) {
             // pointer
             val pointer = getPointer(args)
@@ -40,7 +41,7 @@ class FrameNetFragment : TreeFragment() {
             val queryNode = treeRoot.children.iterator().next()
 
             // module
-            val module: Module = if (pointer is HasXId) FrameModule(this) else LexUnitFromWordModule(this)
+            val module: Module = if (pointer is HasXId) FrameModule(this, standAlone) else LexUnitFromWordModule(this, standAlone)
             module.init(type, pointer)
             module.process(queryNode)
         }

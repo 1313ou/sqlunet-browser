@@ -46,15 +46,16 @@ class FnAnnoSetFragment : TreeFragment() {
             // pointer
             val pointer = getPointer(args)
             val type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
+            val standAlone = args.getBoolean(ProviderArgs.ARG_STANDALONE)
 
             // root node
             val queryNode = treeRoot.children.iterator().next()
 
             // module
             val module: Module = when (type) {
-                ProviderArgs.ARG_QUERYTYPE_FNANNOSET -> AnnoSetModule(this)
-                ProviderArgs.ARG_QUERYTYPE_FNPATTERN -> AnnoSetFromPatternModule(this)
-                ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT -> AnnoSetFromValenceUnitModule(this)
+                ProviderArgs.ARG_QUERYTYPE_FNANNOSET -> AnnoSetModule(this, standAlone)
+                ProviderArgs.ARG_QUERYTYPE_FNPATTERN -> AnnoSetFromPatternModule(this, standAlone)
+                ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT -> AnnoSetFromValenceUnitModule(this, standAlone)
                 else -> return
             }
             module.init(type, pointer)

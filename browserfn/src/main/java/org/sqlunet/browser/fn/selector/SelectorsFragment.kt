@@ -62,6 +62,8 @@ class SelectorsFragment : BaseSelectorsListFragment() {
         }
     }
 
+    private var standalone: Boolean = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -74,6 +76,9 @@ class SelectorsFragment : BaseSelectorsListFragment() {
             query = query.trim { it <= ' ' }.lowercase()
         }
         word = query!!
+
+        // stand-alone database
+        standalone = args.getBoolean(ProviderArgs.ARG_STANDALONE)
     }
 
     // A D A P T E R
@@ -124,7 +129,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
 
     override fun load() {
         // load the contents
-        val sql = prepareSelect(word)
+        val sql = prepareSelect(word, standalone)
         val uri = Uri.parse(makeUri(sql.providerUri))
         dataModel!!.loadData(uri, sql, null)
     }
