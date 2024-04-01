@@ -40,14 +40,14 @@ object LogUtils {
         return writeLog(text, append, logFile)
     }
 
-     /**
+    /**
      * Write long text to log file
      *
      * @param text     text to write
      * @param append   whether to append to file
      * @param logFile  file to log to
      */
-   @JvmStatic
+    @JvmStatic
     fun writeLog(text: CharSequence, append: Boolean, logFile: File): String? {
         try {
             logFile.createNewFile()
@@ -85,5 +85,14 @@ object LogUtils {
         }
         val data = sb.toString()
         return writeLog(data, append, context, fileName)
+    }
+
+    fun clearLogs(context: Context) {
+        val storage = context.cacheDir
+        for (logFile in listOf(File(storage, SQL_LOG), File(storage, DOC_LOG))) {
+            if (logFile.exists()) {
+                logFile.delete()
+            }
+        }
     }
 }

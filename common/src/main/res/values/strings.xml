@@ -35,6 +35,7 @@
 	<string name="action_logs">Logs</string>
 	<string name="action_logs_doc">Logs (Documents)</string>
 	<string name="action_logs_exec">Logs (Execution)</string>
+	<string name="action_clear_logs">Clear logs</string>
 	<!-- setup -->
 	<string name="action_setup">Set up</string>
 	<!-- database info -->

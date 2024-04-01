@@ -44,6 +44,21 @@
 				android:title="@string/action_logs"
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_logs_doc"
+				android:title="@string/action_logs_doc"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_logs_exec"
+				android:title="@string/action_logs_exec"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_clear_logs"
+				android:title="@string/action_clear_logs"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
 		</menu>
 	</item>
 

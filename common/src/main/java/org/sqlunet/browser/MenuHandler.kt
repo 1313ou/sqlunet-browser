@@ -228,6 +228,11 @@ object MenuHandler {
                 intent.putExtra(LogsActivity.ARG_LOG, ExecAsyncTask.EXEC_LOG)
             }
 
+            R.id.action_clear_logs -> {
+                LogUtils.clearLogs(activity)
+                return true
+            }
+
             R.id.action_drop -> {
                 intent = Intent(activity, SetupFileActivity::class.java)
                 intent.putExtra(SetupFileFragment.ARG, SetupFileFragment.Operation.DROP.toString())

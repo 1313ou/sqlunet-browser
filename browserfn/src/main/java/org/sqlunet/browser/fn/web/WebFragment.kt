@@ -40,6 +40,7 @@ import org.sqlunet.framenet.FnLexUnitPointer
 import org.sqlunet.framenet.FnSentencePointer
 import org.sqlunet.framenet.sql.FrameNetImplementation
 import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.settings.LogUtils
 import org.sqlunet.settings.LogUtils.writeLog
 import org.sqlunet.settings.Settings
 import org.sqlunet.settings.StorageSettings
@@ -331,7 +332,7 @@ class WebFragment : Fragment() {
             }
             data = docToXml(rootDomDoc)
             if (BuildConfig.DEBUG) {
-                writeLog(data, false, requireContext(), null)
+                writeLog(data, false, requireContext(), LogUtils.DOC_LOG)
                 val xsd = DocumentTransformer::class.java.getResource("/org/sqlunet/SqlUNet.xsd")!!
                 validateStrings(xsd, data)
                 Log.d(TAG, "output=\n$data")
@@ -381,7 +382,7 @@ class WebFragment : Fragment() {
                 val xsd = DocumentTransformer::class.java.getResource("/org/sqlunet/SqlUNet.xsd")!!
                 validateDocs(xsd, fnDomDoc!!)
                 writeLog(false, requireContext(), null, fnDomDoc)
-                writeLog(data, false, requireContext(), null)
+                writeLog(data, false, requireContext(), LogUtils.DOC_LOG)
                 Log.d(TAG, "output=\n$data")
             }
         }
