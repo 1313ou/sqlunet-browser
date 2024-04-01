@@ -30,7 +30,6 @@ class FnSentenceFragment : TreeFragment() {
         // query
         val args = requireArguments()
         val type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
-        val standAlone = args.getBoolean(ProviderArgs.ARG_STANDALONE)
         if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER)) {
             // pointer
             val pointer = getPointer(args)
@@ -39,7 +38,7 @@ class FnSentenceFragment : TreeFragment() {
             val queryNode = treeRoot.children.iterator().next()
 
             // module
-            val module: Module = SentenceModule(this, standAlone)
+            val module: Module = SentenceModule(this)
             module.init(type, pointer)
             module.process(queryNode)
         }

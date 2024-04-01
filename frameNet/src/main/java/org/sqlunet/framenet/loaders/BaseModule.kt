@@ -91,11 +91,10 @@ import java.util.TreeMap
  * Base framenet module
  *
  * @param fragment containing fragment
- * @param standAlone whether the database is FN-standalone or whether it is optimized and operates in conjunction with WN
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract class BaseModule internal constructor(fragment: TreeFragment, private val standAlone: Boolean) : Module(fragment) {
+abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(fragment) {
     /**
      * standAlone
      * FN standalone without WordNet
@@ -793,7 +792,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment, private v
      * @param parent parent node
      */
     fun lexUnitsForWordAndPos(wordId: Long, pos: Char?, parent: TreeNode) {
-        val sql = prepareLexUnitsForWordAndPos(wordId, pos, standAlone)
+        val sql = prepareLexUnitsForWordAndPos(wordId, pos)
         val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
         lexUnitsFromWordIdPosModel.loadData(uri, sql) { cursor: Cursor -> lexUnitsFromWordIdPosCursorToTreeModel(cursor, parent) }
     }
@@ -901,7 +900,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment, private v
      * @param parent parent node
      */
     private fun governorsForLexUnit(luId: Long, parent: TreeNode) {
-        val sql = prepareGovernorsForLexUnit(luId, standAlone)
+        val sql = prepareGovernorsForLexUnit(luId)
         val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
         governorsFromLuIdModel.loadData(uri, sql) { cursor: Cursor -> governorsCursorToTreeModel(cursor, parent) }
     }

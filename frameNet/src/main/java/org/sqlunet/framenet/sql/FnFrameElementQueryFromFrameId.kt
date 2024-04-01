@@ -59,7 +59,7 @@ internal class FnFrameElementQueryFromFrameId(connection: SQLiteDatabase, frameI
     /**
      * Fe sem types from the result set
      */
-    val semTypes: String
+    val semTypes: String?
         get() = cursor!!.getString(6)
 
     /**

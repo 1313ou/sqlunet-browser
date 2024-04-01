@@ -4,6 +4,7 @@
 package org.sqlunet.framenet.loaders
 
 import org.sqlunet.browser.Module.ContentProviderSql
+import org.sqlunet.framenet.FnFlags
 import org.sqlunet.framenet.provider.FrameNetContract
 import java.util.Locale
 
@@ -20,9 +21,9 @@ object Queries {
     const val ISLIKE = "islike"
 
     @JvmStatic
-    fun prepareSelect(word: String, standAlone: Boolean): ContentProviderSql {
+    fun prepareSelect(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
-        providerSql.providerUri = if (standAlone) FrameNetContract.LexUnits_or_Frames.URI_FN else FrameNetContract.LexUnits_or_Frames.URI
+        providerSql.providerUri = if (FnFlags.standAlone) FrameNetContract.LexUnits_or_Frames.URI_FN else FrameNetContract.LexUnits_or_Frames.URI
         providerSql.projection = arrayOf(
             FrameNetContract.LexUnits_or_Frames.ID,
             FrameNetContract.LexUnits_or_Frames.FNID,
@@ -137,9 +138,9 @@ object Queries {
     }
 
     @JvmStatic
-    fun prepareLexUnitsForWordAndPos(wordId: Long, pos: Char?, standAlone: Boolean): ContentProviderSql {
+    fun prepareLexUnitsForWordAndPos(wordId: Long, pos: Char?): ContentProviderSql {
         val providerSql = ContentProviderSql()
-        providerSql.providerUri = if (standAlone) FrameNetContract.Words_LexUnits_Frames.URI_FN else FrameNetContract.Words_LexUnits_Frames.URI
+        providerSql.providerUri = if (FnFlags.standAlone) FrameNetContract.Words_LexUnits_Frames.URI_FN else FrameNetContract.Words_LexUnits_Frames.URI
         providerSql.projection = arrayOf(
             FrameNetContract.Words_LexUnits_Frames.LUID,
             FrameNetContract.Words_LexUnits_Frames.LEXUNIT,
@@ -159,9 +160,9 @@ object Queries {
     }
 
     @JvmStatic
-    fun prepareGovernorsForLexUnit(luId: Long, standAlone: Boolean): ContentProviderSql {
+    fun prepareGovernorsForLexUnit(luId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
-        providerSql.providerUri = if (standAlone) FrameNetContract.LexUnits_Governors.URI_FN else FrameNetContract.LexUnits_Governors.URI
+        providerSql.providerUri = if (FnFlags.standAlone) FrameNetContract.LexUnits_Governors.URI_FN else FrameNetContract.LexUnits_Governors.URI
         providerSql.projection = arrayOf(
             FrameNetContract.LexUnits_Governors.LUID,
             FrameNetContract.LexUnits_Governors.GOVERNORID,

@@ -4,18 +4,18 @@
 package org.sqlunet.framenet.sql
 
 import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.framenet.FnFlags
 import org.sqlunet.sql.DBQuery
 
 /**
  * FrameNet lex unit query from word
  *
  * @param connection connection
- * @param standalone standalone query
  * @param word       target word
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class FnLexUnitQueryFromWord(connection: SQLiteDatabase, standalone: Boolean, word: String) : DBQuery(connection, if (standalone) QUERYFN else QUERY) {
+internal class FnLexUnitQueryFromWord(connection: SQLiteDatabase, word: String) : DBQuery(connection, if (FnFlags.standAlone) QUERYFN else QUERY) {
 
     init {
         setParams(word)
@@ -62,7 +62,7 @@ internal class FnLexUnitQueryFromWord(connection: SQLiteDatabase, standalone: Bo
     /**
      * Incorporated fe from the result set
      */
-    val incorporatedFe: String
+    val incorporatedFe: String?
         get() = cursor!!.getString(6)
 
     /**

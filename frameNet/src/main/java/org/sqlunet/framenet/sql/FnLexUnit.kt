@@ -26,9 +26,10 @@ class FnLexUnit private constructor(
     @JvmField val lexUnit: String,
     val pos: String,
     @JvmField val definition: String,
-    private val dictionary: String,
-    private val incorporatedFe: String,
-    frameId: Long, frame: String?,
+    private val dictionary: String?,
+    private val incorporatedFe: String?,
+    frameId: Long,
+    frame: String?,
     frameDefinition: String?,
 ) {
 
@@ -81,7 +82,7 @@ class FnLexUnit private constructor(
         @JvmStatic
         fun makeFromWord(connection: SQLiteDatabase, word: String): Pair<Long, List<FnLexUnit>?> {
             var result: MutableList<FnLexUnit>? = null
-            FnLexUnitQueryFromWord(connection, false, word).use {
+            FnLexUnitQueryFromWord(connection, word).use {
                 it.execute()
                 var wordId: Long = 0
                 while (it.next()) {
@@ -114,7 +115,7 @@ class FnLexUnit private constructor(
         @JvmStatic
         fun makeFromFnWord(connection: SQLiteDatabase, fnWord: String?): Pair<Long, List<FnLexUnit?>?> {
             var result: MutableList<FnLexUnit?>? = null
-            FnLexUnitQueryFromFnWord(connection, true, fnWord).use {
+            FnLexUnitQueryFromFnWord(connection, fnWord).use {
                 it.execute()
                 var fnWordId: Long = 0
                 while (it.next()) {
@@ -148,7 +149,7 @@ class FnLexUnit private constructor(
         @JvmStatic
         fun makeFromWordId(connection: SQLiteDatabase, wordId: Long, pos: Char?): List<FnLexUnit?>? {
             var result: MutableList<FnLexUnit?>? = null
-            FnLexUnitQueryFromWordId(connection, false, wordId, pos).use {
+            FnLexUnitQueryFromWordId(connection, wordId, pos).use {
                 it.execute()
                 while (it.next()) {
                     val luId = it.luId
@@ -180,7 +181,7 @@ class FnLexUnit private constructor(
         @JvmStatic
         fun makeFromFnWordId(connection: SQLiteDatabase, fnWordId: Long, pos: Char?): List<FnLexUnit?>? {
             var result: MutableList<FnLexUnit?>? = null
-            FnLexUnitQueryFromFnWordId(connection, true, fnWordId, pos).use {
+            FnLexUnitQueryFromFnWordId(connection, fnWordId, pos).use {
                 it.execute()
                 while (it.next()) {
                     val luId = it.luId

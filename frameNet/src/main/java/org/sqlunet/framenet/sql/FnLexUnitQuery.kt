@@ -50,7 +50,7 @@ internal class FnLexUnitQuery(connection: SQLiteDatabase, targetLuId: Long) : DB
     val dictionary: String
         get() = cursor!!.getString(4)
 
-    val incorporatedFe: String
+    val incorporatedFe: String?
         /**
          * Incorporated FE from the result set or null if none
          */

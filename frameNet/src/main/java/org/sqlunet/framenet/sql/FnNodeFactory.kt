@@ -131,7 +131,7 @@ internal object FnNodeFactory {
         makeAttribute(element, "feid", fe.feId.toString())
         makeAttribute(element, "coreset", fe.coreSet.toString())
         makeAttribute(element, "type", fe.coreType)
-        makeAttribute(element, "semtype", join(*fe.semTypes!!))
+        if (fe.semTypes != null) makeAttribute(element, "semtype", join(*fe.semTypes))
         mount(doc, element, fe.feDefinition, "fedefinition")
         return element
     }

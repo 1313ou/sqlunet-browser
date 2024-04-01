@@ -226,37 +226,31 @@ class BrowseFragment : BaseSearchFragment() {
                 val framePointer: Parcelable = FnFramePointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, framePointer)
-                args.putBoolean(ProviderArgs.ARG_STANDALONE, false)
                 makeDetailIntent(FnFrameActivity::class.java)
             } else if (trimmedQuery.startsWith("#fl")) {
                 val lexunitPointer: Parcelable = FnLexUnitPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, lexunitPointer)
-                args.putBoolean(ProviderArgs.ARG_STANDALONE, false)
                 makeDetailIntent(FnLexUnitActivity::class.java)
             } else if (trimmedQuery.startsWith("#fs")) {
                 val sentencePointer: Parcelable = FnSentencePointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, sentencePointer)
-                args.putBoolean(ProviderArgs.ARG_STANDALONE, false)
                 makeDetailIntent(FnSentenceActivity::class.java)
             } else if (trimmedQuery.startsWith("#fa")) {
                 val annoSetPointer: Parcelable = FnAnnoSetPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNANNOSET)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, annoSetPointer)
-                args.putBoolean(ProviderArgs.ARG_STANDALONE, false)
                 makeDetailIntent(FnAnnoSetActivity::class.java)
             } else if (trimmedQuery.startsWith("#fp")) {
                 val patternPointer: Parcelable = FnPatternPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNPATTERN)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, patternPointer)
-                args.putBoolean(ProviderArgs.ARG_STANDALONE, false)
                 makeDetailIntent(FnAnnoSetActivity::class.java)
             } else if (trimmedQuery.startsWith("#fv")) {
                 val valenceunitPointer: Parcelable = FnValenceUnitPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, valenceunitPointer)
-                args.putBoolean(ProviderArgs.ARG_STANDALONE, false)
                 makeDetailIntent(FnAnnoSetActivity::class.java)
             } else if (trimmedQuery.startsWith("#mr")) {
                 val rolePointer: Parcelable = PmRolePointer(id)

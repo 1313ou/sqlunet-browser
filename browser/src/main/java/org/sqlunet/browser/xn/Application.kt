@@ -5,6 +5,7 @@ package org.sqlunet.browser.xn
 
 import android.content.Context
 import org.sqlunet.browser.AbstractApplication
+import org.sqlunet.framenet.FnFlags
 import org.sqlunet.style.Colors
 
 class Application : AbstractApplication() {
@@ -27,5 +28,8 @@ class Application : AbstractApplication() {
     }
 
     companion object {
+        init {
+            FnFlags.standAlone = false
+        }
     }
 }

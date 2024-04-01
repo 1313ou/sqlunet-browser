@@ -4,6 +4,7 @@
 package org.sqlunet.framenet.sql
 
 import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.framenet.FnFlags
 import org.sqlunet.sql.DBQuery
 import java.util.Locale
 
@@ -11,16 +12,16 @@ import java.util.Locale
  * FrameNet lex unit query
  *
  * @param connection connection
- * @param standalone standalone query
  * @param fnWordId   target fn word id
  * @param pos        target pos or null
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class FnLexUnitQueryFromFnWordId(connection: SQLiteDatabase, standalone: Boolean, fnWordId: Long, pos: Char?) : DBQuery(
-    connection, if (pos != null)
-        (if (standalone) QUERYWITHPOSFN else QUERYWITHPOS) else
-        if (standalone) QUERYFN else QUERY
+internal class FnLexUnitQueryFromFnWordId(connection: SQLiteDatabase, fnWordId: Long, pos: Char?) : DBQuery(
+    connection,
+    if (pos != null)
+        (if (FnFlags.standAlone) QUERYWITHPOSFN else QUERYWITHPOS)
+    else if (FnFlags.standAlone) QUERYFN else QUERY
 ) {
 
     init {
@@ -60,7 +61,7 @@ internal class FnLexUnitQueryFromFnWordId(connection: SQLiteDatabase, standalone
     /**
      * Incorporated FE from the result set or null if none
      */
-    val incorporatedFe: String
+    val incorporatedFe: String?
         get() = cursor!!.getString(5)
 
     /**

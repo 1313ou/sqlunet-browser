@@ -43,13 +43,13 @@ internal class FnFrameQuery(connection: SQLiteDatabase, frameId: Long) : DBQuery
     /**
      * Semtypes from the result set
      */
-    val semTypes: String
+    val semTypes: String?
         get() = cursor!!.getString(3)
 
     /**
      * Get the related frames from the result set or null if none
      */
-    val relatedFrames: String
+    val relatedFrames: String?
         get() = cursor!!.getString(4)
 
     companion object {

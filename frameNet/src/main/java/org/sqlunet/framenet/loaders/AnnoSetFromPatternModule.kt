@@ -12,11 +12,10 @@ import org.sqlunet.treeview.model.TreeNode
  * AnnoSet from pattern module
  *
  * @param fragment containing fragment
- * @param standAlone whether the database is FN-standalone or whether it is optimized and operates in conjunction with WN
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class AnnoSetFromPatternModule(fragment: TreeFragment, standAlone: Boolean) : BaseModule(fragment, standAlone) {
+class AnnoSetFromPatternModule(fragment: TreeFragment) : BaseModule(fragment) {
 
     /**
      * Pattern id

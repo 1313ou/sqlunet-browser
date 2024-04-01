@@ -53,7 +53,7 @@ internal class FnLexUnitQueryFromFrameId(connection: SQLiteDatabase, luId: Long)
     /**
      * Incorporated FE from the result set or null if none
      */
-    val incorporatedFe: String
+    val incorporatedFe: String?
         get() = cursor!!.getString(5)
 
     /**

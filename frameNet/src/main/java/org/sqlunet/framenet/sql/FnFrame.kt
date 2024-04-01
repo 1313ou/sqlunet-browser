@@ -41,8 +41,8 @@ class FnFrame internal constructor(
                     val frameName = it.frame
                     val frameDescription = it.frameDescription
                     // val frameId = query.getFrameId()
-                    val semTypes = FnSemType.make(it.semTypes)
-                    val relatedFrames = FnRelatedFrame.make(it.relatedFrames)
+                    val semTypes = if (it.semTypes != null) FnSemType.make(it.semTypes!!) else null
+                    val relatedFrames = if (it.relatedFrames != null) FnRelatedFrame.make(it.relatedFrames!!) else null
                     return FnFrame(frameId, frameName, frameDescription, semTypes, relatedFrames)
                 }
             }

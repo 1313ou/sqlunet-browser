@@ -14,11 +14,10 @@ import org.sqlunet.treeview.model.TreeNode
  * Lex unit from word module
  *
  * @param fragment containing fragment
- * @param standAlone whether the database is FN-standalone or whether it is optimized and operates in conjunction with WN
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class LexUnitFromWordModule(fragment: TreeFragment, standAlone: Boolean) : LexUnitModule(fragment, standAlone) {
+class LexUnitFromWordModule(fragment: TreeFragment) : LexUnitModule(fragment) {
 
     /**
      * Word id
