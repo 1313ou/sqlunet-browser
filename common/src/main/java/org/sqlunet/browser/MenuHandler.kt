@@ -26,6 +26,7 @@ import org.sqlunet.browser.config.BaseSettingsActivity
 import org.sqlunet.browser.config.DiagnosticsActivity
 import org.sqlunet.browser.config.DownloadIntentFactory.makeIntent
 import org.sqlunet.browser.config.DownloadIntentFactory.makeUpdateIntent
+import org.sqlunet.browser.config.ExecAsyncTask
 import org.sqlunet.browser.config.LogsActivity
 import org.sqlunet.browser.config.SettingsActivity
 import org.sqlunet.browser.config.SetupActivity
@@ -37,6 +38,7 @@ import org.sqlunet.browser.config.StorageActivity
 import org.sqlunet.browser.history.HistoryActivity
 import org.sqlunet.provider.BaseProvider
 import org.sqlunet.provider.BaseProvider.Companion.closeProviders
+import org.sqlunet.settings.LogUtils
 import org.sqlunet.settings.Settings
 
 /**
@@ -213,6 +215,17 @@ object MenuHandler {
 
             R.id.action_logs -> {
                 intent = Intent(activity, LogsActivity::class.java)
+                intent.putExtra(LogsActivity.ARG_LOG, LogUtils.SQL_LOG)
+            }
+
+            R.id.action_logs_doc -> {
+                intent = Intent(activity, LogsActivity::class.java)
+                intent.putExtra(LogsActivity.ARG_LOG, LogUtils.DOC_LOG)
+            }
+
+            R.id.action_logs_exec -> {
+                intent = Intent(activity, LogsActivity::class.java)
+                intent.putExtra(LogsActivity.ARG_LOG, ExecAsyncTask.EXEC_LOG)
             }
 
             R.id.action_drop -> {

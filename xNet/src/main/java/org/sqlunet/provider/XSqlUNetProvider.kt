@@ -23,6 +23,7 @@ import org.sqlunet.provider.XNetContract.Words_Pronunciations_FnWords_PbWords_Vn
 import org.sqlunet.provider.XNetContract.Words_VnWords_VnClasses
 import org.sqlunet.provider.XNetContract.Words_VnWords_VnClasses_U
 import org.sqlunet.provider.XNetControl.queryMain
+import org.sqlunet.settings.LogUtils
 import org.sqlunet.sql.SqlFormatter.format
 
 /**
@@ -98,6 +99,7 @@ class XSqlUNetProvider : BaseProvider() {
             } catch (e: SQLiteException) {
                 Log.d(TAG + "SQL", sql)
                 Log.e(TAG, "WordNet provider query failed", e)
+                LogUtils.writeLog("${e}\n$sql", true, context!!, null)
             }
         }
         return null

@@ -13,6 +13,7 @@ import android.net.Uri
 import android.util.Log
 import org.sqlunet.predicatematrix.provider.PredicateMatrixControl.queryMain
 import org.sqlunet.provider.BaseProvider
+import org.sqlunet.settings.LogUtils
 import org.sqlunet.sql.SqlFormatter.format
 
 /**
@@ -66,6 +67,7 @@ class PredicateMatrixProvider : BaseProvider() {
             } catch (e: SQLiteException) {
                 Log.d(TAG + "SQL", sql)
                 Log.e(TAG, "PropBank provider query failed", e)
+                LogUtils.writeLog("${e}\n$sql", true, context!!, null)
             }
         }
         return null

@@ -13,13 +13,17 @@ import java.io.FileWriter
 import java.io.IOException
 
 /**
- * File utilities
+ * Log utilities
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object LogUtils {
 
     private const val TAG = "LogUtils"
+
+    const val SQL_LOG = "sqlunet.log"
+
+    const val DOC_LOG = "sqlunet_doc.log"
 
     /**
      * Write long text to log file
@@ -30,10 +34,21 @@ object LogUtils {
      * @param fileName file name
      */
     @JvmStatic
-    fun writeLog(text: CharSequence?, append: Boolean, context: Context, fileName: String?): String? {
+    fun writeLog(text: CharSequence, append: Boolean, context: Context, fileName: String?): String? {
         val storage = context.cacheDir
-        val logFile = File(storage, fileName ?: "sqlunet.log")
-        // Log.d(TAG, "log " + logFile.getAbsolutePath())
+        val logFile = File(storage, fileName ?: SQL_LOG)
+        return writeLog(text, append, logFile)
+    }
+
+     /**
+     * Write long text to log file
+     *
+     * @param text     text to write
+     * @param append   whether to append to file
+     * @param logFile  file to log to
+     */
+   @JvmStatic
+    fun writeLog(text: CharSequence, append: Boolean, logFile: File): String? {
         try {
             logFile.createNewFile()
         } catch (e: IOException) {
@@ -41,7 +56,6 @@ object LogUtils {
             return null
         }
         try {
-            // BufferedWriter for performance, true to set append to file flag
             val buf = BufferedWriter(FileWriter(logFile, append))
             buf.append(text)
             buf.newLine()
@@ -55,7 +69,7 @@ object LogUtils {
     }
 
     /**
-     * Write long text to log file
+     * Write documents to log file
      *
      * @param append    whether to append to file
      * @param context   context
@@ -64,7 +78,7 @@ object LogUtils {
      */
     @JvmStatic
     fun writeLog(append: Boolean, context: Context, fileName0: String?, vararg docs: Document): String? {
-        val fileName = fileName0 ?: "sqlunetx.log"
+        val fileName = fileName0 ?: DOC_LOG
         val sb = StringBuilder()
         for (doc in docs) {
             sb.append(DomTransformer.docToXml(doc))

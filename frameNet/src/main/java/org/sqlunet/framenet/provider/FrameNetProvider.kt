@@ -41,6 +41,7 @@ import org.sqlunet.framenet.provider.FrameNetControl.queryMain
 import org.sqlunet.framenet.provider.FrameNetControl.querySearch
 import org.sqlunet.framenet.provider.FrameNetControl.querySuggest
 import org.sqlunet.provider.BaseProvider
+import org.sqlunet.settings.LogUtils
 import org.sqlunet.sql.SqlFormatter.format
 
 /**
@@ -135,6 +136,7 @@ class FrameNetProvider : BaseProvider() {
             } catch (e: SQLiteException) {
                 Log.d(TAG + "SQL", sql)
                 Log.e(TAG, "WordNet provider query failed", e)
+                LogUtils.writeLog("${e}\n$sql", true, context!!, null)
             }
             return null
         }

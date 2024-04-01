@@ -21,6 +21,7 @@ import com.bbou.concurrency.observe.TaskDialogObserver
 import com.bbou.concurrency.observe.TaskObserver
 import org.sqlunet.browser.common.R
 import java.io.BufferedReader
+import java.io.File
 import java.io.IOException
 import java.io.InputStreamReader
 import java.util.zip.ZipEntry
@@ -70,6 +71,11 @@ class ExecAsyncTask
          * Data base path
          */
         private val dataBase: String,
+
+        /**
+         * Log file
+         */
+        private val logFile: File?,
 
         /**
          * Done listener
@@ -148,8 +154,8 @@ class ExecAsyncTask
     /**
      * Execute sql statements
      */
-    fun fromSql(dataBase: String): Task<Array<String>, Pair<Number, Number>, Boolean> {
-        return AsyncExecuteFromSql(dataBase, whenDone, observer, publishRate)
+    fun fromSql(dataBase: String, logFile: File?): Task<Array<String>, Pair<Number, Number>, Boolean> {
+        return AsyncExecuteFromSql(dataBase, logFile, whenDone, observer, publishRate)
     }
 
     // A R C H I V E   F I L E
@@ -165,6 +171,11 @@ class ExecAsyncTask
          * Zip entry
          */
         private val entry: String,
+
+        /**
+         * Log file
+         */
+        private val logFile: File?,
 
         /**
          * Done listener
@@ -328,10 +339,10 @@ class ExecAsyncTask
     /**
      * Execute sql statements from zip file
      */
-    fun fromArchiveFile(dataBase: String, entry: String): Task<String, Pair<Number, Number>, Boolean> {
+    fun fromArchiveFile(dataBase: String, entry: String, logFile: File?): Task<String, Pair<Number, Number>, Boolean> {
         val powerManager = activity.getSystemService(Context.POWER_SERVICE) as PowerManager
         val window = activity.window
-        return AsyncExecuteFromArchiveFile(dataBase, entry, whenDone, observer, publishRate, powerManager, window)
+        return AsyncExecuteFromArchiveFile(dataBase, entry, logFile, whenDone, observer, publishRate, powerManager, window)
     }
 
     // U R I
@@ -347,6 +358,11 @@ class ExecAsyncTask
          * Content resolver
          */
         val resolver: ContentResolver,
+
+        /**
+         * Log file
+         */
+        private val logFile: File?,
 
         /**
          * Done listener
@@ -508,10 +524,10 @@ class ExecAsyncTask
     /**
      * Execute sql statements from zip file
      */
-    fun fromUri(dataBase: String, resolver: ContentResolver): Task<Uri, Pair<Number, Number>, Boolean> {
+    fun fromUri(dataBase: String, resolver: ContentResolver, logFile: File?): Task<Uri, Pair<Number, Number>, Boolean> {
         val powerManager = activity.getSystemService(Context.POWER_SERVICE) as PowerManager
         val window = activity.window
-        return AsyncExecuteFromUri(dataBase, resolver, whenDone, observer, publishRate, powerManager, window)
+        return AsyncExecuteFromUri(dataBase, resolver, logFile, whenDone, observer, publishRate, powerManager, window)
     }
 
     // A R C H I V E   U R I
@@ -535,6 +551,11 @@ class ExecAsyncTask
          * Content resolver
          */
         val resolver: ContentResolver,
+
+        /**
+         * Log file
+         */
+        private val logFile: File?,
 
         /**
          * Done listener
@@ -714,10 +735,10 @@ class ExecAsyncTask
      * @param entry    zip entry
      * @param resolver content resolver
      */
-    fun fromArchiveUri(dataBase: String, entry: String, resolver: ContentResolver): Task<Uri, Pair<Number, Number>, Boolean> {
+    fun fromArchiveUri(dataBase: String, entry: String, resolver: ContentResolver, logFile: File?): Task<Uri, Pair<Number, Number>, Boolean> {
         val powerManager = activity.getSystemService(Context.POWER_SERVICE) as PowerManager
         val window = activity.window
-        return AsyncExecuteFromArchiveUri(dataBase, entry, resolver, whenDone, observer, publishRate, powerManager, window)
+        return AsyncExecuteFromArchiveUri(dataBase, entry, resolver, logFile, whenDone, observer, publishRate, powerManager, window)
     }
 
     // V A C U U M
@@ -775,6 +796,8 @@ class ExecAsyncTask
 
         private const val TAG = "ExecAsyncTask"
 
+        const val EXEC_LOG = "sqlunet_exe.log"
+
         /**
          * Execute transaction
          */
@@ -796,23 +819,6 @@ class ExecAsyncTask
         }
 
         /**
-         * Launch uri
-         *
-         * @param activity activity
-         * @param observer observer
-         * @param uri      source zip uri
-         * @param dest     database path
-         * @param whenDone to run when done
-         */
-        private fun launchExecUri(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, uri: Uri, dest: String, whenDone: Consumer<Boolean>) {
-            val whenDone2 = Consumer { result: Boolean -> whenDone.accept(result) }
-            ExecAsyncTask(activity, whenDone2, observer, 1000)
-                .fromUri(dest, activity.contentResolver)
-                .execute(uri)
-            observer.taskUpdate(activity.getString(R.string.status_executing))
-        }
-
-        /**
          * Launch exec of archive uri
          *
          * @param activity     activity
@@ -828,6 +834,23 @@ class ExecAsyncTask
         }
 
         /**
+         * Launch uri
+         *
+         * @param activity activity
+         * @param observer observer
+         * @param uri      source zip uri
+         * @param dest     database path
+         * @param whenDone to run when done
+         */
+        private fun launchExecUri(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, uri: Uri, dest: String, whenDone: Consumer<Boolean>) {
+            val whenDone2 = Consumer { result: Boolean -> whenDone.accept(result) }
+            ExecAsyncTask(activity, whenDone2, observer, 1000)
+                .fromUri(dest, activity.contentResolver, getLogFile(activity))
+                .execute(uri)
+            observer.taskUpdate(activity.getString(R.string.status_executing))
+        }
+
+        /**
          * Launch exec of entry in archive uri
          *
          * @param activity  activity
@@ -840,9 +863,14 @@ class ExecAsyncTask
         private fun launchExecZippedUri(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, sourceUri: Uri, zipEntry: String, dest: String, whenDone: Consumer<Boolean>) {
             val whenDone2 = Consumer { result: Boolean -> whenDone.accept(result) }
             ExecAsyncTask(activity, whenDone2, observer, 1000)
-                .fromArchiveUri(dest, zipEntry, activity.contentResolver)
+                .fromArchiveUri(dest, zipEntry, activity.contentResolver, getLogFile(activity))
                 .execute(sourceUri)
             observer.taskUpdate(activity.getString(R.string.status_executing) + ' ' + zipEntry)
+        }
+
+        fun getLogFile(context: Context): File {
+            val storage = context.cacheDir
+            return File(storage, EXEC_LOG)
         }
     }
 }

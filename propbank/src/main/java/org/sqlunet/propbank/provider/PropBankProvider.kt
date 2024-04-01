@@ -25,6 +25,7 @@ import org.sqlunet.propbank.provider.PropBankControl.queryMain
 import org.sqlunet.propbank.provider.PropBankControl.querySearch
 import org.sqlunet.propbank.provider.PropBankControl.querySuggest
 import org.sqlunet.provider.BaseProvider
+import org.sqlunet.settings.LogUtils
 import org.sqlunet.sql.SqlFormatter.format
 
 /**
@@ -95,6 +96,7 @@ class PropBankProvider : BaseProvider() {
             } catch (e: SQLiteException) {
                 Log.d(TAG + "SQL", sql)
                 Log.e(TAG, "WordNet provider query failed", e)
+                LogUtils.writeLog("${e}\n$sql", true, context!!, null)
             }
             return null
         }

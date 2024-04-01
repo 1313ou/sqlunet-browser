@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.sqlunet.browser.Sender
 import org.sqlunet.browser.common.R
+import org.sqlunet.settings.LogUtils
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
@@ -46,9 +47,8 @@ class LogsActivity : AppCompatActivity() {
         fab.setOnClickListener { Sender.send(this, "Semantikos log", textView.getText(), "semantikos.org@gmail.com") }
 
         // logs
-        val fileName: String? = null
-        val storage = cacheDir
-        val logFile = File(storage, fileName ?: "sqlunet.log")
+        val fileName = intent.getStringExtra(ARG_LOG) ?: LogUtils.SQL_LOG
+        val logFile = File(cacheDir, fileName)
         val text = readFile(logFile)
         textView.text = text
         progress.isIndeterminate = false
@@ -58,6 +58,8 @@ class LogsActivity : AppCompatActivity() {
     }
 
     companion object {
+
+        const val ARG_LOG = "which"
 
         private fun readFile(file: File): String {
             val sb = StringBuilder()

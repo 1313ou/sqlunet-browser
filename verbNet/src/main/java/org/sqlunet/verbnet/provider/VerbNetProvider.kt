@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteQueryBuilder
 import android.net.Uri
 import android.util.Log
 import org.sqlunet.provider.BaseProvider
+import org.sqlunet.settings.LogUtils
 import org.sqlunet.sql.SqlFormatter.format
 import org.sqlunet.verbnet.provider.VerbNetContract.Lookup_VnExamples
 import org.sqlunet.verbnet.provider.VerbNetContract.Lookup_VnExamples_X
@@ -93,6 +94,7 @@ class VerbNetProvider : BaseProvider() {
             } catch (e: SQLiteException) {
                 Log.d(TAG + "SQL", sql)
                 Log.e(TAG, "WordNet provider query failed", e)
+                LogUtils.writeLog("${e}\n$sql", true, context!!, null)
             }
             return null
         }

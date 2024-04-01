@@ -16,6 +16,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import org.sqlunet.browser.common.R
+import org.sqlunet.settings.LogUtils
 
 abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
@@ -109,6 +110,21 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
 
             R.id.action_logs -> {
                 val intent = Intent(this, LogsActivity::class.java)
+                intent.putExtra(LogsActivity.ARG_LOG, LogUtils.SQL_LOG)
+                startActivity(intent)
+                return true
+            }
+
+            R.id.action_logs_doc -> {
+                val intent = Intent(this, LogsActivity::class.java)
+                intent.putExtra(LogsActivity.ARG_LOG, LogUtils.DOC_LOG)
+                startActivity(intent)
+                return true
+            }
+
+            R.id.action_logs_exec -> {
+                val intent = Intent(this, LogsActivity::class.java)
+                intent.putExtra(LogsActivity.ARG_LOG, ExecAsyncTask.EXEC_LOG)
                 startActivity(intent)
                 return true
             }
