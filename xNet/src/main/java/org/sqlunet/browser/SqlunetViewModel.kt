@@ -10,7 +10,10 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.bbou.concurrency.Task
+import androidx.lifecycle.viewModelScope
+import com.bbou.coroutines.BaseTask
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.sqlunet.browser.Module.ContentProviderSql
 
 class SqlunetViewModel(application: Application) : AndroidViewModel(application) {
@@ -20,7 +23,7 @@ class SqlunetViewModel(application: Application) : AndroidViewModel(application)
         fun postProcess(cursor: Cursor)
     }
 
-    val mutableData = MutableLiveData<Cursor?>()
+    private val mutableData = MutableLiveData<Cursor?>()
 
     fun getData(): LiveData<Cursor?> {
         return mutableData
@@ -28,9 +31,9 @@ class SqlunetViewModel(application: Application) : AndroidViewModel(application)
 
     fun loadData(uri: Uri, projection: Array<String>?, selection: String?, selectionArgs: Array<String>?, sortOrder: String?, postProcessor: PostProcessor?) {
         Log.d(TAG, "Loading data for $uri")
-        object : Task<Void?, Void, Cursor?>() {
+        val task = object : BaseTask<Void?, Cursor?>() {
 
-            override fun doJob(params: Void?): Cursor? {
+            override suspend fun doJob(params: Void?): Cursor? {
                 val cursor = getApplication<Application>().contentResolver.query(uri, projection, selection, selectionArgs, sortOrder)
                 Log.d(TAG, "Loaded data for $uri yielded cursor $cursor")
                 if (postProcessor != null && cursor != null) {
@@ -38,11 +41,11 @@ class SqlunetViewModel(application: Application) : AndroidViewModel(application)
                 }
                 return cursor
             }
-
-            override fun onDone(result: Cursor?) {
-                mutableData.value = result
-            }
-        }.execute(null)
+        }
+        viewModelScope.launch {
+            val result = task.run(Dispatchers.Default, null)
+            mutableData.value = result
+        }
     }
 
     fun loadData(uri: Uri, sql: ContentProviderSql, postProcessor: PostProcessor?) {

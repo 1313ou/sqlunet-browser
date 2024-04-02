@@ -3,13 +3,15 @@
  */
 package org.sqlunet.browser
 
-import android.annotation.SuppressLint
 import android.app.Application
 import android.database.Cursor
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.bbou.concurrency.Task
+import androidx.lifecycle.viewModelScope
+import com.bbou.coroutines.BaseTask
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.sqlunet.browser.Module.ContentProviderSql
 import org.sqlunet.view.TreeOp
 
@@ -22,22 +24,18 @@ class SqlunetViewTreeModel(application: Application) : AndroidViewModel(applicat
 
     val data = MutableLiveData<Array<TreeOp>?>()
 
-    @SuppressLint("StaticFieldLeak")
     fun loadData(uri: Uri, projection: Array<String>?, selection: String?, selectionArgs: Array<String>?, sortOrder: String?, treeConverter: ToTreeOps) {
+        val task = object : BaseTask<Void?, Array<TreeOp>?>() {
 
-        object : Task<Void?, Void?, Array<TreeOp>?>() {
-
-            override fun doJob(params: Void?): Array<TreeOp>? {
+            override suspend fun doJob(params: Void?): Array<TreeOp>? {
                 val cursor = getApplication<Application>().contentResolver.query(uri, projection, selection, selectionArgs, sortOrder)
                 return if (cursor == null) null else treeConverter.cursorToTreeOps(cursor)
             }
-
-            override fun onDone(result: Array<TreeOp>?) {
-                if (result != null) {
-                    data.value = result
-                }
-            }
-        }.execute(null)
+        }
+        viewModelScope.launch {
+            val result = task.run(Dispatchers.Default, null)
+            data.value = result
+        }
     }
 
     fun loadData(uri: Uri, sql: ContentProviderSql, treeConverter: ToTreeOps) {

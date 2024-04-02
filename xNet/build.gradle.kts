@@ -54,7 +54,7 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
 
     implementation(project(":treeView"))
-    implementation(project(":concurrency"))
+    implementation(project(":coroutines"))
     implementation(project(":nightmode"))
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
