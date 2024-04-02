@@ -46,7 +46,6 @@ allprojects {
         set("activityVersion", "1.8.2")
         set("fragmentVersion", "1.6.2")
         set("lifecycleVersion", "2.7.0")
-        set("lifecycleExtensionsVersion", "2.2.0")
         set("navVersion", "2.7.7")
         set("preferenceVersion", "1.2.1")
         set("materialVersion", "1.11.0")

@@ -11,14 +11,11 @@ private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as 
 private val fragmentVersion by lazy { rootProject.extra["fragmentVersion"] as String }
 private val navVersion by lazy { rootProject.extra["navVersion"] as String }
 private val lifecycleVersion by lazy { rootProject.extra["lifecycleVersion"] as String }
-private val lifecycleExtensionsVersion by lazy { rootProject.extra["lifecycleExtensionsVersion"] as String }
 private val preferenceVersion by lazy { rootProject.extra["preferenceVersion"] as String }
-private val constraintlayoutVersion by lazy { rootProject.extra["constraintlayoutVersion"] as String }
 private val materialVersion by lazy { rootProject.extra["materialVersion"] as String }
 private val annotationVersion by lazy { rootProject.extra["annotationVersion"] as String }
 private val coreVersion by lazy { rootProject.extra["coreVersion"] as String }
 private val desugarVersion by lazy { rootProject.extra["desugarVersion"] as String }
-private val coroutinesVersion by lazy { rootProject.extra["coroutinesVersion"] as String }
 
 android {
 
@@ -73,8 +70,9 @@ dependencies {
 
     implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion")
     implementation("androidx.fragment:fragment-ktx:$fragmentVersion")
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")

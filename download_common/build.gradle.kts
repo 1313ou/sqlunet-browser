@@ -8,11 +8,8 @@ private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
 private val vTargetSdk by lazy { rootProject.extra["targetSdk"] as Int }
 private val coreVersion by lazy { rootProject.extra["coreVersion"] as String }
 private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
-private val fragmentVersion by lazy { rootProject.extra["fragmentVersion"] as String }
-private val workVersion by lazy { rootProject.extra["workVersion"] as String }
 private val materialVersion by lazy { rootProject.extra["materialVersion"] as String }
 private val preferenceVersion by lazy { rootProject.extra["preferenceVersion"] as String }
-private val annotationVersion by lazy { rootProject.extra["annotationVersion"] as String }
 private val desugarVersion by lazy { rootProject.extra["desugarVersion"] as String }
 
 android {

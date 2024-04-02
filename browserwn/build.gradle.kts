@@ -12,16 +12,11 @@ private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
 private val vTargetSdk by lazy { rootProject.extra["targetSdk"] as Int }
 private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
-private val lifecycleVersion by lazy { rootProject.extra["lifecycleVersion"] as String }
-private val lifecycleExtensionsVersion by lazy { rootProject.extra["lifecycleExtensionsVersion"] as String }
-private val navVersion by lazy { rootProject.extra["navVersion"] as String }
 private val preferenceVersion by lazy { rootProject.extra["preferenceVersion"] as String }
-private val constraintlayoutVersion by lazy { rootProject.extra["constraintlayoutVersion"] as String }
 private val materialVersion by lazy { rootProject.extra["materialVersion"] as String }
 private val annotationVersion by lazy { rootProject.extra["annotationVersion"] as String }
 private val coreVersion by lazy { rootProject.extra["coreVersion"] as String }
 private val desugarVersion by lazy { rootProject.extra["desugarVersion"] as String }
-private val coroutinesVersion by lazy { rootProject.extra["coroutinesVersion"] as String }
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()

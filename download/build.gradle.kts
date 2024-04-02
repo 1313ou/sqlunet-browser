@@ -12,7 +12,6 @@ private val fragmentVersion by lazy { rootProject.extra["fragmentVersion"] as St
 private val workVersion by lazy { rootProject.extra["workVersion"] as String }
 private val materialVersion by lazy { rootProject.extra["materialVersion"] as String }
 private val preferenceVersion by lazy { rootProject.extra["preferenceVersion"] as String }
-private val annotationVersion by lazy { rootProject.extra["annotationVersion"] as String }
 private val desugarVersion by lazy { rootProject.extra["desugarVersion"] as String }
 
 android {
