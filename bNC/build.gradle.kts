@@ -1,3 +1,5 @@
+import java.util.Date
+
 plugins {
     id("org.sqlunet.plugin.querybuilder") version "1.0.0"
     id("com.android.library")
@@ -59,8 +61,8 @@ dependencies {
 
 private var protoSrcDir = File(project.projectDir, "/src/proto")
 private var generatedSrcDir = project.layout.buildDirectory.dir("generated/source/queries").get()
-println("ProtoDir $protoSrcDir")
-println("Generated $generatedSrcDir")
+//println("ProtoDir $protoSrcDir")
+//println("Generated $generatedSrcDir")
 
 android {
     sourceSets {
@@ -104,11 +106,52 @@ querybuilder_args {
     instantiateDest = "org.sqlunet.bnc.sql"
 }
 
+fun allExist(outFiles: Sequence<File>): Boolean {
+    for (f in outFiles)
+        if (!f.exists())
+            return false
+    return true
+}
+
+fun newest(outFiles: Sequence<File>): Long? {
+    return outFiles
+        //.onEach { print("### $it ")}
+        .map { it.lastModified() }
+        //.onEach { println(it)}
+        .maxOrNull()
+}
+
 tasks.register("generateAll") {
-    dependsOn("generateQV")
-        .dependsOn("generateQ")
-        .dependsOn("generateV")
-        .dependsOn("instantiate")
+    onlyIf {
+        val generatedQVFiles = listOf(querybuilder_args.v, querybuilder_args.q, querybuilder_args.qv)
+            .map { file("$generatedSrcDir/${querybuilder_args.qPackage.replace('.', '/')}/$it.java") }
+        val generatedInstantiateFiles = querybuilder_args.instantiates
+            .map { file("$generatedSrcDir/${querybuilder_args.instantiateDest.replace('.', '/')}/$it") }
+        val generatedFiles = generatedQVFiles + generatedInstantiateFiles
+        //println("GENERATED $generatedFiles")
+        if (!allExist(generatedFiles.asSequence()))
+            true
+        else {
+            val protoFactoryFile = listOf(file("${querybuilder_args.inDir}/${querybuilder_args.factory}"))
+            val protoInstantiatesFiles = querybuilder_args.instantiates.map { file("${querybuilder_args.inDir}/$it") }
+            val protoVariableFiles = querybuilder_args.variables.map { file("${querybuilder_args.inDir}/$it") }
+            val protoFiles = protoFactoryFile + protoInstantiatesFiles + protoVariableFiles
+            //println("PROTO $protoFiles")
+
+            val newestProtoStamp = newest(protoFiles.asSequence())
+            val generatedStamp = newest(generatedFiles.asSequence())
+            val result = (newestProtoStamp ?: 0L) > (generatedStamp ?: 0L)
+            if (result) { println("NEWEST ${Date(newestProtoStamp!!)} PROTO\nNEWEST ${Date(generatedStamp!!)} GENERATED\nGENERATING SOURCES")}
+            result
+        }
+    }
+    doLast {
+        println("Generation of source code from prototypes")
+        task("generateQV")
+        task("generateQ")
+        task("generateV")
+        task("instantiate")
+    }
 }
 
 tasks.preBuild {
