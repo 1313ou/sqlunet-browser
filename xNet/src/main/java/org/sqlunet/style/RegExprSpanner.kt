@@ -18,7 +18,7 @@ open class RegExprSpanner : Spanner {
     /**
      * Replacers
      */
-    private val spanReplacers: Array<SpanReplacer?>
+    private val spanReplacers: Array<SpanReplacer>
 
     /**
      * Constructor
@@ -27,10 +27,9 @@ open class RegExprSpanner : Spanner {
      * @param factories span factories, distinct for each regexpr
      */
     protected constructor(regexprs: Array<String>, factories: Array<Array<SpanFactory>>) {
-        val n = min(regexprs.size.toDouble(), factories.size.toDouble()).toInt()
-        spanReplacers = arrayOfNulls(n)
-        for (i in 0 until n) {
-            spanReplacers[i] = SpanReplacer(regexprs[i], *factories[i])
+        val n = min(regexprs.size, factories.size)
+        spanReplacers = Array(n) {
+            SpanReplacer(regexprs[it], *factories[it])
         }
     }
 
@@ -41,10 +40,9 @@ open class RegExprSpanner : Spanner {
      * @param factories span factories common to all regexprs
      */
     constructor(regexprs: Array<String>, factories: Array<SpanFactory>) {
-        val n = regexprs.size
-        spanReplacers = arrayOfNulls(n)
-        for (i in 0 until n) {
-            spanReplacers[i] = SpanReplacer(regexprs[i], *factories)
+        val n = min(regexprs.size, factories.size)
+        spanReplacers = Array(n) {
+            SpanReplacer(regexprs[it], *factories)
         }
     }
 
@@ -71,7 +69,7 @@ open class RegExprSpanner : Spanner {
     fun setSpan(sb: SpannableStringBuilder, from: Int, flags: Long) {
         val text = sb.subSequence(from, sb.length)
         for (spanReplacer in spanReplacers) {
-            spanReplacer!!.setSpan(text, sb, from, flags)
+            spanReplacer.setSpan(text, sb, from, flags)
         }
     }
 
@@ -136,7 +134,9 @@ open class RegExprSpanner : Spanner {
                     if (end - start > 0) {
                         // span
                         val startSpans = spanFactories[i].make(flags)
-                        applySpans(sb, start, end, startSpans!!)
+                        if (startSpans != null) {
+                            applySpans(sb, start, end, startSpans)
+                        }
                     }
                 }
             }
