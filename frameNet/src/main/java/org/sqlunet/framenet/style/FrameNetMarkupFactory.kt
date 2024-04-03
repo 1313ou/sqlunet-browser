@@ -65,27 +65,16 @@ class FrameNetMarkupFactory internal constructor(context: Context) : MarkupSpann
         val position = valueFrom(flags) ?: throw IllegalArgumentException()
         return when (position) {
             SpanPosition.TAG1 -> {
-                if ("t" == selector) {
-                    return ImageSpan(relationDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
+                when {
+                    "t" == selector -> return ImageSpan(relationDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
+                    "fen" == selector -> return ImageSpan(roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
+                    "fe" == selector -> return ImageSpan(role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE)
+                    selector.matches("fex.*".toRegex()) -> return ImageSpan(role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE)
+                    selector.matches("xfen".toRegex()) -> return HiddenSpan()
+                    selector.matches("ex".toRegex()) -> return ImageSpan(sampleDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
+                    selector.matches("x".toRegex()) -> return HiddenSpan()
+                    else -> return spans(Colors.tag1BackColor, Colors.tag1ForeColor)
                 }
-                if ("fen" == selector) {
-                    return ImageSpan(roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
-                }
-                if ("fe" == selector) {
-                    return ImageSpan(role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE)
-                }
-                if (selector.matches("fex.*".toRegex())) {
-                    return ImageSpan(role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE)
-                }
-                if (selector.matches("xfen".toRegex())) {
-                    return HiddenSpan()
-                }
-                if (selector.matches("ex".toRegex())) {
-                    return ImageSpan(sampleDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
-                }
-                if (selector.matches("x".toRegex())) {
-                    HiddenSpan()
-                } else spans(Colors.tag1BackColor, Colors.tag1ForeColor)
             }
 
             SpanPosition.TAG2 -> {
@@ -112,37 +101,18 @@ class FrameNetMarkupFactory internal constructor(context: Context) : MarkupSpann
          * Text factory
          */
         private val textFactory: MarkupSpanner.SpanFactory = MarkupSpanner.SpanFactory { selector: String, flags: Long ->
-            if ("fe" == selector) {
-                return@SpanFactory spans(Colors.feBackColor, Colors.feForeColor)
-            }
-            if ("t" == selector) // target
-            {
-                return@SpanFactory spans(Colors.tBackColor, Colors.tForeColor)
-            }
-            if ("fen" == selector) {
-                if (flags and FEDEF.toLong() != 0L) {
-                    return@SpanFactory spans(Colors.fenWithinDefBackColor, Colors.fenWithinDefForeColor)
-                } else {
-                    return@SpanFactory spans(Colors.fenBackColor, Colors.fenForeColor)
+            return@SpanFactory when {
+                selector == "fe" -> spans(Colors.feBackColor, Colors.feForeColor)
+                selector == "t" -> spans(Colors.tBackColor, Colors.tForeColor) // target
+                selector == "fen" -> if (flags and FEDEF.toLong() != 0L) spans(Colors.fenWithinDefBackColor, Colors.fenWithinDefForeColor) else spans(Colors.fenBackColor, Colors.fenForeColor)
+                selector == "xfen" -> spans(Colors.xfenBackColor, Colors.xfenForeColor)
+                selector == "ex" -> spans(Colors.exBackColor, Colors.exForeColor, StyleSpan(Typeface.ITALIC))
+                selector == "x" -> spans(Colors.xBackColor, Colors.xForeColor, StyleSpan(Typeface.BOLD))
+                selector.matches("fex.*".toRegex()) -> if (flags and FEDEF.toLong() == 0L) spans(Colors.fexWithinDefBackColor, Colors.fexWithinDefForeColor, UnderlineSpan()) else spans(Colors.fexBackColor, Colors.fexForeColor)
+                else -> {
+                    throw IllegalArgumentException(selector)
                 }
             }
-            if (selector.matches("fex.*".toRegex())) {
-                if (flags and FEDEF.toLong() == 0L) {
-                    return@SpanFactory spans(Colors.fexWithinDefBackColor, Colors.fexWithinDefForeColor, UnderlineSpan())
-                } else {
-                    return@SpanFactory spans(Colors.fexBackColor, Colors.fexForeColor)
-                }
-            }
-            if ("xfen" == selector) {
-                return@SpanFactory spans(Colors.xfenBackColor, Colors.xfenForeColor)
-            }
-            if ("ex" == selector) {
-                return@SpanFactory spans(Colors.exBackColor, Colors.exForeColor, StyleSpan(Typeface.ITALIC))
-            }
-            if ("x" == selector) {
-                return@SpanFactory spans(Colors.xBackColor, Colors.xForeColor, StyleSpan(Typeface.BOLD))
-            }
-            throw IllegalArgumentException(selector)
         }
     }
 }
