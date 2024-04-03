@@ -56,23 +56,21 @@ class FrameNetSpanner(context: Context) {
      */
     fun addSpan(sb: SpannableStringBuilder, start: Int, end: Int, selector: String, flags: Long) {
         val spans = factory.makeSpans(selector, flags)
-        if (spans != null) {
-            when (spans) {
-                is Array<*> -> {
-                    for (span in spans) {
-                        sb.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                    }
+        when (spans) {
+            is Array<*> -> {
+                for (span in spans) {
+                    sb.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 }
+            }
 
-                is Collection<*> -> {
-                    for (span2 in spans) {
-                        sb.setSpan(span2, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                    }
+            is Collection<*> -> {
+                for (span2 in spans) {
+                    sb.setSpan(span2, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 }
+            }
 
-                else -> {
-                    sb.setSpan(spans, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                }
+            else -> {
+                sb.setSpan(spans, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
         }
     }

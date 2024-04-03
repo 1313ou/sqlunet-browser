@@ -61,46 +61,44 @@ class FrameNetMarkupFactory internal constructor(context: Context) : MarkupSpann
      * @param flags    flags
      * @return spans
      */
-    override fun makeSpans(selector: String, flags: Long): Any? {
-        val position = valueOf(flags)
-        return if (position != null) {
-            when (position) {
-                SpanPosition.TAG1 -> {
-                    if ("t" == selector) {
-                        return ImageSpan(relationDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
-                    }
-                    if ("fen" == selector) {
-                        return ImageSpan(roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
-                    }
-                    if ("fe" == selector) {
-                        return ImageSpan(role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE)
-                    }
-                    if (selector.matches("fex.*".toRegex())) {
-                        return ImageSpan(role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE)
-                    }
-                    if (selector.matches("xfen".toRegex())) {
-                        return HiddenSpan()
-                    }
-                    if (selector.matches("ex".toRegex())) {
-                        return ImageSpan(sampleDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
-                    }
-                    if (selector.matches("x".toRegex())) {
-                        HiddenSpan()
-                    } else spans(Colors.tag1BackColor, Colors.tag1ForeColor)
+    override fun makeSpans(selector: String, flags: Long): Any {
+        val position = valueOf(flags) ?: throw IllegalArgumentException()
+        return when (position) {
+            SpanPosition.TAG1 -> {
+                if ("t" == selector) {
+                    return ImageSpan(relationDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
                 }
-
-                SpanPosition.TAG2 -> {
-                    when (selector) {
-                        "t", "x", "ex", "fex", "xfen", "fen", "fe" -> return HiddenSpan()
-                    }
-                    spans(Colors.tag2BackColor, Colors.tag2ForeColor)
+                if ("fen" == selector) {
+                    return ImageSpan(roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
                 }
-
-                SpanPosition.TEXT -> {
-                    textFactory.makeSpans(selector, flags)
+                if ("fe" == selector) {
+                    return ImageSpan(role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE)
                 }
+                if (selector.matches("fex.*".toRegex())) {
+                    return ImageSpan(role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE)
+                }
+                if (selector.matches("xfen".toRegex())) {
+                    return HiddenSpan()
+                }
+                if (selector.matches("ex".toRegex())) {
+                    return ImageSpan(sampleDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
+                }
+                if (selector.matches("x".toRegex())) {
+                    HiddenSpan()
+                } else spans(Colors.tag1BackColor, Colors.tag1ForeColor)
             }
-        } else null
+
+            SpanPosition.TAG2 -> {
+                when (selector) {
+                    "t", "x", "ex", "fex", "xfen", "fen", "fe" -> return HiddenSpan()
+                }
+                spans(Colors.tag2BackColor, Colors.tag2ForeColor)
+            }
+
+            SpanPosition.TEXT -> {
+                textFactory.makeSpans(selector, flags)
+            }
+        }
     }
 
     companion object {
@@ -113,7 +111,7 @@ class FrameNetMarkupFactory internal constructor(context: Context) : MarkupSpann
         /**
          * Text factory
          */
-        private val textFactory: MarkupSpanner.SpanFactory = MarkupSpanner.SpanFactory { selector: String?, flags: Long ->
+        private val textFactory: MarkupSpanner.SpanFactory = MarkupSpanner.SpanFactory { selector: String, flags: Long ->
             if ("fe" == selector) {
                 return@SpanFactory spans(Colors.feBackColor, Colors.feForeColor)
             }
@@ -128,7 +126,7 @@ class FrameNetMarkupFactory internal constructor(context: Context) : MarkupSpann
                     return@SpanFactory spans(Colors.fenBackColor, Colors.fenForeColor)
                 }
             }
-            if (selector!!.matches("fex.*".toRegex())) {
+            if (selector.matches("fex.*".toRegex())) {
                 if (flags and FEDEF.toLong() == 0L) {
                     return@SpanFactory spans(Colors.fexWithinDefBackColor, Colors.fexWithinDefForeColor, UnderlineSpan())
                 } else {
@@ -144,7 +142,7 @@ class FrameNetMarkupFactory internal constructor(context: Context) : MarkupSpann
             if ("x" == selector) {
                 return@SpanFactory spans(Colors.xBackColor, Colors.xForeColor, StyleSpan(Typeface.BOLD))
             }
-            null
+            throw IllegalArgumentException(selector)
         }
     }
 }

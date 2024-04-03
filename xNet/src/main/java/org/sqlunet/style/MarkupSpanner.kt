@@ -104,9 +104,8 @@ object MarkupSpanner : Spanner() {
      * @param factories span factories
      */
     private fun setSpan(selector: String, sb: SpannableStringBuilder, i: Int, j: Int, flags: Long, vararg factories: SpanFactory) {
-        val spans = arrayOfNulls<Any>(factories.size)
-        for (f in factories.indices) {
-            spans[f] = factories[f].makeSpans(selector, flags)
+        val spans = Array<Span>(factories.size) {
+            factories[it].makeSpans(selector, flags)
         }
         setSpan(sb, i, j, spans)
     }
@@ -118,7 +117,7 @@ object MarkupSpanner : Spanner() {
      */
     fun interface SpanFactory {
 
-        fun makeSpans(selector: String, flags: Long): Any?
+        fun makeSpans(selector: String, flags: Long): Span
     }
 
     /**
