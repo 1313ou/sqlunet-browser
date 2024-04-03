@@ -104,7 +104,7 @@ object MarkupSpanner : Spanner() {
      * @param factories span factories
      */
     private fun setSpan(selector: String, sb: SpannableStringBuilder, i: Int, j: Int, flags: Long, vararg factories: SpanFactory) {
-        val spans = Array<Span>(factories.size) {
+        val spans = Array(factories.size) {
             factories[it].makeSpans(selector, flags)
         }
         setSpan(sb, i, j, spans)
@@ -153,7 +153,7 @@ object MarkupSpanner : Spanner() {
              * @return position
              */
             @JvmStatic
-            fun valueOf(flags: Long): SpanPosition? {
+            fun valueFrom(flags: Long): SpanPosition? {
                 when ((flags and 3L).toInt()) {
                     1 -> return TAG1
                     2 -> return TAG2

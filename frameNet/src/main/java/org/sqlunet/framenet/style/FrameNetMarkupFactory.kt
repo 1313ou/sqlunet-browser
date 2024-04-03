@@ -14,7 +14,7 @@ import org.sqlunet.framenet.R
 import org.sqlunet.style.Factories.spans
 import org.sqlunet.style.MarkupSpanner
 import org.sqlunet.style.MarkupSpanner.SpanPosition
-import org.sqlunet.style.MarkupSpanner.SpanPosition.Companion.valueOf
+import org.sqlunet.style.MarkupSpanner.SpanPosition.Companion.valueFrom
 import org.sqlunet.style.Spanner.Companion.getDrawable
 import org.sqlunet.style.Spanner.HiddenSpan
 
@@ -62,7 +62,7 @@ class FrameNetMarkupFactory internal constructor(context: Context) : MarkupSpann
      * @return spans
      */
     override fun makeSpans(selector: String, flags: Long): Any {
-        val position = valueOf(flags) ?: throw IllegalArgumentException()
+        val position = valueFrom(flags) ?: throw IllegalArgumentException()
         return when (position) {
             SpanPosition.TAG1 -> {
                 if ("t" == selector) {

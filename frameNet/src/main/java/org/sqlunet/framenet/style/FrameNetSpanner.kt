@@ -55,8 +55,7 @@ class FrameNetSpanner(context: Context) {
      * @param flags    flags
      */
     fun addSpan(sb: SpannableStringBuilder, start: Int, end: Int, selector: String, flags: Long) {
-        val spans = factory.makeSpans(selector, flags)
-        when (spans) {
+        when (val spans = factory.makeSpans(selector, flags)) {
             is Array<*> -> {
                 for (span in spans) {
                     sb.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
