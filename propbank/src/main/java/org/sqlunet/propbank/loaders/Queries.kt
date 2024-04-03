@@ -58,7 +58,7 @@ object Queries {
     @JvmStatic
     fun prepareExamples(roleSetId: Int): ContentProviderSql {
         val providerSql = ContentProviderSql()
-        providerSql.providerUri = PropBankContract.PbRoleSets_PbExamples.URI
+        providerSql.providerUri = PropBankContract.PbRoleSets_PbExamples.URI_BY_EXAMPLE
         providerSql.projection = arrayOf(
             PropBankContract.PbRoleSets_PbExamples.TEXT,
             PropBankContract.PbRoleSets_PbExamples.REL,
