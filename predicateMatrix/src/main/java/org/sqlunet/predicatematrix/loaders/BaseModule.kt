@@ -629,9 +629,10 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 val aliases: MutableCollection<String?> = TreeSet()
                 if (vnDatas != null) {
                     for (vnData in vnDatas) {
-                        val wnData: Set<WnData> = wnMap[vnData]!!
-                        displayer.makeVnNode(pmroleNode, changedList, vnData, *wnData.toTypedArray<WnData>())
-
+                        val wnData: Set<WnData>? = wnMap[vnData]
+                        if (wnData != null) {
+                            displayer.makeVnNode(pmroleNode, changedList, vnData, *wnData.toTypedArray<WnData>())
+                        }
                         // contribute to header
                         if (!vnData.vnRole.isNullOrEmpty()) {
                             aliases.add(vnData.vnRole)
@@ -640,9 +641,10 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 }
                 if (pbDatas != null) {
                     for (pbData in pbDatas) {
-                        val wnData: Set<WnData> = wnMap[pbData]!!
-                        displayer.makePbNode(pmroleNode, changedList, pbData, *wnData.toTypedArray<WnData>())
-
+                        val wnData: Set<WnData>? = wnMap[pbData]
+                        if (wnData != null) {
+                            displayer.makePbNode(pmroleNode, changedList, pbData, *wnData.toTypedArray<WnData>())
+                        }
                         // contribute to header
                         if (pbData.pbRoleDescr.isNotEmpty()) {
                             aliases.add(capitalize1(pbData.pbRoleDescr))
@@ -651,9 +653,10 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 }
                 if (fnDatas != null) {
                     for (fnData in fnDatas) {
-                        val wnData: Set<WnData> = wnMap[fnData]!!
-                        displayer.makeFnNode(pmroleNode, changedList, fnData, *wnData.toTypedArray<WnData>())
-
+                        val wnData: Set<WnData>? = wnMap[fnData]
+                        if (wnData != null) {
+                            displayer.makeFnNode(pmroleNode, changedList, fnData, *wnData.toTypedArray<WnData>())
+                        }
                         // contribute to header
                         if (!fnData.fnFe.isNullOrEmpty()) {
                             aliases.add(fnData.fnFe)
