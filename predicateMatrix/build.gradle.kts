@@ -135,36 +135,44 @@ fun newest(outFiles: Sequence<File>): Long? {
         .maxOrNull()
 }
 
-tasks.register("generateAll") {
-     onlyIf {
-        val generatedQVFiles = listOf(querybuilder_args.v, querybuilder_args.q, querybuilder_args.qv)
-            .map { file("$generatedSrcDir/${querybuilder_args.qPackage.replace('.', '/')}/$it.java") }
-        val generatedInstantiateFiles = querybuilder_args.instantiates
-            .map { file("$generatedSrcDir/${querybuilder_args.instantiateDest.replace('.', '/')}/$it") }
-        val generatedFiles = generatedQVFiles + generatedInstantiateFiles
-        //println("GENERATED $generatedFiles")
-        if (!allExist(generatedFiles.asSequence()))
-            true
-        else {
-            val protoFactoryFile = listOf(file("${querybuilder_args.inDir}/${querybuilder_args.factory}"))
-            val protoInstantiatesFiles = querybuilder_args.instantiates.map { file("${querybuilder_args.inDir}/$it") }
-            val protoVariableFiles = querybuilder_args.variables.map { file("${querybuilder_args.inDir}/$it") }
-            val protoFiles = protoFactoryFile + protoInstantiatesFiles + protoVariableFiles
-            //println("PROTO $protoFiles")
-
-            val newestProtoStamp = newest(protoFiles.asSequence())
-            val generatedStamp = newest(generatedFiles.asSequence())
-            val result = (newestProtoStamp ?: 0L) > (generatedStamp ?: 0L)
-            if (result) { println("NEWEST ${Date(newestProtoStamp!!)} PROTO\nNEWEST ${Date(generatedStamp!!)} GENERATED\nGENERATING SOURCES")}
-            result
+fun needed(): Boolean {
+    val generatedQVFiles = listOf(querybuilder_args.v, querybuilder_args.q, querybuilder_args.qv)
+        .map { file("$generatedSrcDir/${querybuilder_args.qPackage.replace('.', '/')}/$it.java") }
+    val generatedInstantiateFiles = querybuilder_args.instantiates
+        .map { file("$generatedSrcDir/${querybuilder_args.instantiateDest.replace('.', '/')}/$it") }
+    val generatedFiles = generatedQVFiles + generatedInstantiateFiles
+    //println("GENERATED $generatedFiles")
+    if (!allExist(generatedFiles.asSequence()))
+        return true
+    else {
+        val protoFactoryFile = listOf(file("${querybuilder_args.inDir}/${querybuilder_args.factory}"))
+        val protoInstantiatesFiles = querybuilder_args.instantiates.map { file("${querybuilder_args.inDir}/$it") }
+        val protoVariableFiles = querybuilder_args.variables.map { file("${querybuilder_args.inDir}/$it") }
+        val protoFiles = protoFactoryFile + protoInstantiatesFiles + protoVariableFiles
+        //println("PROTO $protoFiles")
+        val newestProtoStamp = newest(protoFiles.asSequence())
+        val generatedStamp = newest(generatedFiles.asSequence())
+        val result = (newestProtoStamp ?: 0L) > (generatedStamp ?: 0L)
+        if (result) {
+            println("predicateMatrix module\nNewest prototype: ${Date(newestProtoStamp!!)}\nNewest generated: ${Date(generatedStamp!!)}\nGenerating sources from prototypes")
         }
+        return result
+    }
+}
+
+tasks.register("generateAll") {
+    val isNeeded = needed()
+    if (isNeeded) {
+        dependsOn("generateQV")
+        dependsOn("generateQ")
+        dependsOn("generateV")
+        dependsOn("instantiate")
+    }
+    onlyIf {
+        isNeeded
     }
     doLast {
         println("Generation of source code from prototypes")
-        task("generateQV")
-        task("generateQ")
-        task("generateV")
-        task("instantiate")
     }
 }
 
