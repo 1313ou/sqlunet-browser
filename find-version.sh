@@ -15,6 +15,5 @@ MAGENTA='\u001b[35m'
 CYAN='\u001b[36m'
 RESET='\u001b[0m'
 
-grep 'versionCode = ' build.gradle | \
-sed -r  's/^[^0-9]*([0-9]+).*/\1/'
-
+grep 'set("versionCode",' build.gradle.kts | \
+sed -r  's/\s*set\("[^0-9]*", ([0-9]+)\).*/\1/'
