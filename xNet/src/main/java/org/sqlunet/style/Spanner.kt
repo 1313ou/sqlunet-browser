@@ -21,6 +21,8 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
 import org.sqlunet.xnet.R
 
+typealias Span = Any
+
 /**
  * Spanner
  *
@@ -37,7 +39,7 @@ open class Spanner {
      */
     fun interface SpanFactory {
 
-        fun make(flags: Long): Any?
+        fun make(flags: Long): Span?
     }
 
     /**
@@ -102,9 +104,9 @@ open class Spanner {
          * @param spans spans to apply
          */
         @JvmStatic
-        fun setSpan(sb: SpannableStringBuilder, from: Int, to: Int, spans: Any?) {
+        fun setSpan(sb: SpannableStringBuilder, from: Int, to: Int, spans: Span?) {
             if (spans != null && to - from > 0) {
-                if (spans is Array<*> && spans.isArrayOf<Any>()) {
+                if (spans is Array<*> && spans.isArrayOf<Span>()) {
                     for (span in spans) {
                         if (span != null) {
                             sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -147,7 +149,7 @@ open class Spanner {
          * @param sb    spannable string builder
          * @param spans image span with possible image style span
          */
-        private fun appendImageSpans(sb: SpannableStringBuilder, vararg spans: Any) {
+        private fun appendImageSpans(sb: SpannableStringBuilder, vararg spans: Span) {
             val from = sb.length
             sb.append(COLLAPSEDCHAR)
             val to = sb.length
@@ -164,7 +166,7 @@ open class Spanner {
          */
         @JvmStatic
         fun appendImage(sb: SpannableStringBuilder, drawable: Drawable) {
-            val span: Any = ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BASELINE)
+            val span: Span = ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BASELINE)
             appendImageSpans(sb, span)
         }
 
@@ -219,7 +221,7 @@ open class Spanner {
                             sb1.replace(from, to, if (collapsed) EXPANDEDSTRING else COLLAPSEDSTRING)
 
                             // set new image span
-                            val newImageSpan: Any = ImageSpan(if (collapsed) expandedDrawable else collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
+                            val newImageSpan: Span = ImageSpan(if (collapsed) expandedDrawable else collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
                             sb1.setSpan(newImageSpan, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
                             // fire click
@@ -293,7 +295,7 @@ open class Spanner {
          * @param spans spans to apply
          */
         @JvmStatic
-        fun appendWithSpans(sb: SpannableStringBuilder, text: CharSequence?, vararg spans: Any): SpannableStringBuilder {
+        fun appendWithSpans(sb: SpannableStringBuilder, text: CharSequence?, vararg spans: Span): SpannableStringBuilder {
             if (!text.isNullOrEmpty()) {
                 val from = sb.length
                 sb.append(text)
@@ -312,7 +314,7 @@ open class Spanner {
          * @param spans spans to apply
          */
         @JvmStatic
-        fun applySpans(sb: SpannableStringBuilder, from: Int, to: Int, vararg spans: Any) {
+        fun applySpans(sb: SpannableStringBuilder, from: Int, to: Int, vararg spans: Span) {
             for (span in spans) {
                 applySpan(sb, from, to, span)
             }
@@ -326,8 +328,8 @@ open class Spanner {
          * @param to   to position
          * @param span span to apply
          */
-        private fun applySpan(sb: SpannableStringBuilder, from: Int, to: Int, span: Any) {
-            if (span is Array<*> && span.isArrayOf<Any>()) {
+        private fun applySpan(sb: SpannableStringBuilder, from: Int, to: Int, span: Span) {
+            if (span is Array<*> && span.isArrayOf<Span>()) {
                 for (span2 in span) {
                     sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 }
