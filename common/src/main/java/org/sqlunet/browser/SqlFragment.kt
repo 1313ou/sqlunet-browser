@@ -65,10 +65,8 @@ class SqlFragment : Fragment() {
             if (!isAdded) {
                 return@setOnRefreshListener
             }
-            val fragment = getChildFragmentManager().findFragmentByTag(FRAGMENT_TAG)
-            if (fragment is SqlStatementsFragment) {
-                fragment.update()
-            }
+            refresh()
+
             // stop the refreshing indicator
             swipeRefreshLayout.isRefreshing = false
         }
@@ -92,7 +90,7 @@ class SqlFragment : Fragment() {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 // inflate
                 menu.clear()
-                menuInflater.inflate(R.menu.main, menu)
+                // menuInflater.inflate(R.menu.main, menu)
                 menuInflater.inflate(R.menu.sql, menu)
                 // MenuCompat.setGroupDividerEnabled(menu, true)
             }
@@ -118,8 +116,9 @@ class SqlFragment : Fragment() {
                         true
                     }
 
-                    R.id.action_sql_clear -> {
+                    R.id.action_sql_clear_and_refresh -> {
                         BaseProvider.sqlBuffer.clear()
+                        refresh()
                         true
                     }
 
@@ -163,6 +162,16 @@ class SqlFragment : Fragment() {
      */
     fun export() {
         exportLauncher!!.launch(MIME_TYPE)
+    }
+
+    /**
+     * Refresh
+     */
+    private fun refresh() {
+        val fragment = getChildFragmentManager().findFragmentByTag(FRAGMENT_TAG)
+        if (fragment is SqlStatementsFragment) {
+            fragment.update()
+        }
     }
 
     companion object {
