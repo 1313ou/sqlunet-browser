@@ -87,6 +87,11 @@ object LogUtils {
         return writeLog(data, append, context, fileName)
     }
 
+    /**
+     * Clear log files in cache
+     *
+     * @param context   context
+     */
     fun clearLogs(context: Context) {
         val storage = context.cacheDir
         for (logFile in listOf(File(storage, SQL_LOG), File(storage, DOC_LOG))) {
