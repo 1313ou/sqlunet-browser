@@ -136,7 +136,7 @@ class FrameNetProvider : BaseProvider() {
             } catch (e: SQLiteException) {
                 Log.d(TAG + "SQL", sql)
                 Log.e(TAG, "WordNet provider query failed", e)
-                LogUtils.writeLog("${e}\n$sql", true, context!!, null)
+                LogUtils.writeLog("${e}\n$sql\n", true, context!!, null)
             }
             return null
         }

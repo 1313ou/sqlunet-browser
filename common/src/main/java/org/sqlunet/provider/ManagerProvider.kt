@@ -65,7 +65,7 @@ class ManagerProvider : BaseProvider() {
             val sql2 = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null)
             Log.d(TAG + "SQL", sql2)
             Log.e(TAG, "Manager provider query failed", e)
-            LogUtils.writeLog("${e}\n$sql2", true, context!!, null)
+            LogUtils.writeLog("${e}\n$sql2\n", true, context!!, null)
             null
         }
     }
