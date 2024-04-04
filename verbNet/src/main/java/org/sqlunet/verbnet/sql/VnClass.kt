@@ -31,7 +31,7 @@ class VnClass private constructor(
          */
         @JvmStatic
         fun make(connection: SQLiteDatabase, classId: Long): VnClass? {
-            VnClassQuery(connection, classId).use { it ->
+            VnClassQuery(connection, classId).use {
                 it.execute()
                 if (it.next()) {
                     val className = it.className

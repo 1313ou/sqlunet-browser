@@ -63,7 +63,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 val enable = WnSettings.getAllPref(context)
 
                 // wordnet
-                if (enable and org.sqlunet.browser.wn.WnSettings.ENABLE_WORDNET != 0) {
+                if (enable and WnSettings.ENABLE_WORDNET != 0) {
                     // val labelView: View = findViewById(R.id.label_wordnet)
                     // labelView.setVisibility(View.VISIBLE)
                     val senseFragment = SenseFragment()
@@ -78,7 +78,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // bnc
-                if (enable and org.sqlunet.browser.wn.WnSettings.ENABLE_BNC != 0) {
+                if (enable and WnSettings.ENABLE_BNC != 0) {
                     // val labelView: View = findViewById(R.id.label_bnc)
                     // labelView.visibility = View.VISIBLE
                     val bncFragment: Fragment = BNCFragment()

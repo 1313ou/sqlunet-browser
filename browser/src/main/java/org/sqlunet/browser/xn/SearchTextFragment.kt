@@ -83,7 +83,7 @@ class SearchTextFragment : BaseSearchFragment() {
         }
 
         // spinner position
-        val position: Int = org.sqlunet.settings.Settings.getSearchModePref(requireContext())
+        val position: Int = Settings.getSearchModePref(requireContext())
         spinner.setSelection(position)
     }
 

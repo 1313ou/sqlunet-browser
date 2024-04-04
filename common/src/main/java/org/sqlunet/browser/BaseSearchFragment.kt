@@ -39,7 +39,6 @@ import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.ColorUtils.tint
 import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
-import org.sqlunet.settings.Settings.Selector
 
 /**
  * Base search fragment

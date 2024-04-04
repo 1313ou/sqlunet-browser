@@ -230,6 +230,7 @@ abstract class BaseTask<Params, Progress, Result> : Cancelable {
      * @param param parameter
      * @return task
      */
+    @Suppress("MemberVisibilityCanBePrivate")
     fun executeOnExecutor(executor: Executor, param: Params): BaseTask<Params, Progress, Result> {
         return if (status != Status.PENDING) {
             when (status) {

@@ -22,7 +22,4 @@ class Application : AbstractApplication() {
         org.sqlunet.wordnet.style.Colors.setColorsFromResources(newContext)
         org.sqlunet.bnc.style.Colors.setColorsFromResources(newContext)
     }
-
-    companion object {
-    }
 }

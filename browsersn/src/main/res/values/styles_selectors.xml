@@ -12,7 +12,7 @@
 		<item name="android:background">?attr/colorPrimary</item>
 	</style>
 
-	<style name="Data.Icon"></style>
+	<style name="Data.Icon" />
 
 	<style name="Data.Pos">
 		<item name="android:maxLines">1</item>

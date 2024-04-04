@@ -65,7 +65,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 val transaction = manager.beginTransaction().setReorderingAllowed(true)
 
                 // wordnet
-                if (enable and org.sqlunet.browser.sn.SnSettings.ENABLE_WORDNET != 0 && hasWordNet) {
+                if (enable and SnSettings.ENABLE_WORDNET != 0 && hasWordNet) {
                     // var labelView = findViewById(R.id.label_wordnet)
                     // labelView.setVisibility(View.VISIBLE)
                     val senseFragment = SenseFragment()
@@ -80,7 +80,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // syntagnet
-                if (enable and org.sqlunet.browser.sn.SnSettings.ENABLE_SYNTAGNET != 0) {
+                if (enable and SnSettings.ENABLE_SYNTAGNET != 0) {
                     // var labelView = findViewById(R.id.label_syntagnet)
                     // labelView.setVisibility(View.VISIBLE)
                     val syntagNetFragment: Fragment = SyntagNetFragment()
@@ -94,7 +94,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // bnc
-                if (enable and org.sqlunet.browser.sn.SnSettings.ENABLE_BNC != 0) {
+                if (enable and SnSettings.ENABLE_BNC != 0) {
                     // var labelView = findViewById(R.id.label_bnc)
                     // labelView.setVisibility(View.VISIBLE)
                     val bncFragment: Fragment = BNCFragment()

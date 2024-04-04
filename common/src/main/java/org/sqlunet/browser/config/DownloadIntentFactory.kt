@@ -26,16 +26,16 @@ object DownloadIntentFactory {
     fun makeIntent(context: Context): Intent {
         var type = Mode.getModePref(context)
         if (type == null) {
-            type = Settings.Mode.DOWNLOAD_ZIP
+            type = Mode.DOWNLOAD_ZIP
         }
         return makeIntent(context, type)
     }
 
-    private fun makeIntent(context: Context, type: Settings.Mode): Intent {
+    private fun makeIntent(context: Context, type: Mode): Intent {
         return when (type) {
-            Settings.Mode.DOWNLOAD -> makeIntentPlainDownload(context)
-            Settings.Mode.DOWNLOAD_ZIP -> makeIntentZipDownload(context)
-            Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP -> makeIntentDownloadThenDeploy(context)
+            Mode.DOWNLOAD -> makeIntentPlainDownload(context)
+            Mode.DOWNLOAD_ZIP -> makeIntentZipDownload(context)
+            Mode.DOWNLOAD_ZIP_THEN_UNZIP -> makeIntentDownloadThenDeploy(context)
             else -> throw RuntimeException(type.toString())
         }
     }
@@ -48,7 +48,7 @@ object DownloadIntentFactory {
     private fun makeIntentPlainDownload(context: Context, dbSource: String?): Intent {
         val dbDest = StorageSettings.getDatabasePath(context)
         val intent = Intent(context, DownloadActivity::class.java)
-        intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD.toString()) // plain transfer
+        intent.putExtra(DOWNLOAD_MODE_ARG, Mode.DOWNLOAD.toString()) // plain transfer
         intent.putExtra(DOWNLOAD_FROM_ARG, dbSource) // source file
         intent.putExtra(DOWNLOAD_TO_FILE_ARG, dbDest) // dest file
         intent.putExtra(DOWNLOAD_TARGET_FILE_ARG, dbDest) // target file
@@ -66,7 +66,7 @@ object DownloadIntentFactory {
         val dbName = StorageSettings.getDatabaseName()
         val dbTarget = StorageSettings.getDatabasePath(context)
         val intent = Intent(context, DownloadActivity::class.java)
-        intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD_ZIP.toString()) // zipped transfer
+        intent.putExtra(DOWNLOAD_MODE_ARG, Mode.DOWNLOAD_ZIP.toString()) // zipped transfer
         intent.putExtra(DOWNLOAD_FROM_ARG, dbZipSource) // source archive
         intent.putExtra(DOWNLOAD_TO_DIR_ARG, dbDestDir) // dest directory
         intent.putExtra(DOWNLOAD_ENTRY_ARG, dbZipEntry) // zip entry
@@ -89,7 +89,7 @@ object DownloadIntentFactory {
         val dbRenameTo = StorageSettings.getDatabaseName()
         val dbTarget = StorageSettings.getDatabasePath(context)
         val intent = Intent(context, DownloadActivity::class.java)
-        intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP.toString()) // zip transfer then unzip
+        intent.putExtra(DOWNLOAD_MODE_ARG, Mode.DOWNLOAD_ZIP_THEN_UNZIP.toString()) // zip transfer then unzip
         intent.putExtra(DOWNLOAD_FROM_ARG, dbZipSource) // source archive
         intent.putExtra(DOWNLOAD_TO_FILE_ARG, dbZipDest) // destination archive
         intent.putExtra(THEN_UNZIP_TO_ARG, dbDir) // unzip destination directory
@@ -110,18 +110,18 @@ object DownloadIntentFactory {
         // source has zip extension
         var mode = Mode.getModePref(context)
         if (mode == null) {
-            mode = Settings.Mode.DOWNLOAD_ZIP
+            mode = Mode.DOWNLOAD_ZIP
         }
         return when (mode) {
-            Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP -> {
+            Mode.DOWNLOAD_ZIP_THEN_UNZIP -> {
                 val name = Uri.parse(downloadSourceUrl).lastPathSegment
                 val cache = StorageSettings.getCacheDir(context)
                 val cachePath = "$cache/$name"
                 makeIntentDownloadThenDeploy(context, downloadSourceUrl, cachePath)
             }
 
-            Settings.Mode.DOWNLOAD_ZIP -> makeIntentZipDownload(context, downloadSourceUrl)
-            Settings.Mode.DOWNLOAD -> throw RuntimeException(mode.toString())
+            Mode.DOWNLOAD_ZIP -> makeIntentZipDownload(context, downloadSourceUrl)
+            Mode.DOWNLOAD -> throw RuntimeException(mode.toString())
             else -> throw RuntimeException(mode.toString())
         }
     }

@@ -21,7 +21,4 @@ class Application : AbstractApplication() {
         org.sqlunet.propbank.style.Colors.setColorsFromResources(newContext)
         org.sqlunet.wordnet.style.Colors.setColorsFromResources(newContext)
     }
-
-    companion object {
-    }
 }

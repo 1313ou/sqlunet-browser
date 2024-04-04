@@ -111,7 +111,7 @@ class SetupWnStatusFragment : SetupStatusFragment() {
                 // images
                 val okDrawable = getDrawable(context, R.drawable.ic_ok)
                 val failDrawable = getDrawable(context, R.drawable.ic_fail)
-                val existsTsWn = status and org.sqlunet.browser.wn.WnStatus.EXISTS_TS_WN != 0
+                val existsTsWn = status and WnStatus.EXISTS_TS_WN != 0
                 imageTextSearchWn!!.setImageDrawable(if (existsTsWn) okDrawable else failDrawable)
                 ImageViewCompat.setImageTintMode(imageTextSearchWn!!, if (existsTsWn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
                 buttonTextSearchWn!!.setVisibility(if (existsTsWn) View.GONE else View.VISIBLE)

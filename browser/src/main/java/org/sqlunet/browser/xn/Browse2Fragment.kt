@@ -75,10 +75,10 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                     val xpointer = pointer as XSelectorPointer?
                     val group = xpointer!!.xGroup
                     when (group) {
-                        XSelectorsFragment.GROUPID_WORDNET -> mask = org.sqlunet.browser.xn.XnSettings.ENABLE_VERBNET or org.sqlunet.browser.xn.XnSettings.ENABLE_PROPBANK or org.sqlunet.browser.xn.XnSettings.ENABLE_FRAMENET
-                        XSelectorsFragment.GROUPID_VERBNET -> mask = org.sqlunet.browser.xn.XnSettings.ENABLE_PROPBANK or org.sqlunet.browser.xn.XnSettings.ENABLE_FRAMENET
-                        XSelectorsFragment.GROUPID_PROPBANK -> mask = org.sqlunet.browser.xn.XnSettings.ENABLE_VERBNET or org.sqlunet.browser.xn.XnSettings.ENABLE_FRAMENET
-                        XSelectorsFragment.GROUPID_FRAMENET -> mask = org.sqlunet.browser.xn.XnSettings.ENABLE_VERBNET or org.sqlunet.browser.xn.XnSettings.ENABLE_PROPBANK
+                        XSelectorsFragment.GROUPID_WORDNET -> mask = XnSettings.ENABLE_VERBNET or XnSettings.ENABLE_PROPBANK or XnSettings.ENABLE_FRAMENET
+                        XSelectorsFragment.GROUPID_VERBNET -> mask = XnSettings.ENABLE_PROPBANK or XnSettings.ENABLE_FRAMENET
+                        XSelectorsFragment.GROUPID_PROPBANK -> mask = XnSettings.ENABLE_VERBNET or XnSettings.ENABLE_FRAMENET
+                        XSelectorsFragment.GROUPID_FRAMENET -> mask = XnSettings.ENABLE_VERBNET or XnSettings.ENABLE_PROPBANK
                     }
                     enable = enable and mask.inv()
                 }
@@ -87,7 +87,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 val transaction = manager.beginTransaction().setReorderingAllowed(true)
 
                 // wordnet
-                if (enable and org.sqlunet.browser.xn.XnSettings.ENABLE_WORDNET != 0) {
+                if (enable and XnSettings.ENABLE_WORDNET != 0) {
                     // var labelView = findViewById(R.id.label_wordnet)
                     // labelView.setVisibility(View.VISIBLE)
                     val senseFragment = SenseFragment()
@@ -102,7 +102,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // verbnet
-                if (enable and org.sqlunet.browser.xn.XnSettings.ENABLE_VERBNET != 0) {
+                if (enable and XnSettings.ENABLE_VERBNET != 0) {
                     // var labelView = findViewById(R.id.label_verbnet)
                     // labelView.setVisibility(View.VISIBLE)
                     val verbnetFragment: Fragment = VerbNetFragment()
@@ -116,7 +116,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // propbank
-                if (enable and org.sqlunet.browser.xn.XnSettings.ENABLE_PROPBANK != 0) {
+                if (enable and XnSettings.ENABLE_PROPBANK != 0) {
                     // var labelView = findViewById(R.id.label_propbank)
                     // labelView.setVisibility(View.VISIBLE)
                     val propbankFragment: Fragment = PropBankFragment()
@@ -130,7 +130,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // framenet
-                if (enable and org.sqlunet.browser.xn.XnSettings.ENABLE_FRAMENET != 0) {
+                if (enable and XnSettings.ENABLE_FRAMENET != 0) {
                     // var labelView = findViewById(R.id.label_framenet)
                     // labelView.setVisibility(View.VISIBLE)
                     val framenetFragment: Fragment = FrameNetFragment()
@@ -144,7 +144,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // bnc
-                if (enable and org.sqlunet.browser.xn.XnSettings.ENABLE_BNC != 0) {
+                if (enable and XnSettings.ENABLE_BNC != 0) {
                     // var labelView = findViewById(R.id.label_bnc)
                     // labelView.setVisibility(View.VISIBLE)
                     val bncFragment: Fragment = BNCFragment()

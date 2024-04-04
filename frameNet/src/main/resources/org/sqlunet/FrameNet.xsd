@@ -101,11 +101,11 @@
 	</xs:element>
 
 	<xs:element name='fen'>
-		<xs:complexType mixed='true'></xs:complexType>
+		<xs:complexType mixed='true' />
 	</xs:element>
 
 	<xs:element name='t'>
-		<xs:complexType mixed='true'></xs:complexType>
+		<xs:complexType mixed='true' />
 	</xs:element>
 
 	<xs:element name='fex'>
@@ -115,7 +115,7 @@
 	</xs:element>
 
 	<xs:element name='example'>
-		<xs:complexType mixed='true'></xs:complexType>
+		<xs:complexType mixed='true' />
 	</xs:element>
 
 	<xs:element name='sentences'>

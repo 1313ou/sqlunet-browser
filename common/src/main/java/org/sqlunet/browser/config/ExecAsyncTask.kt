@@ -73,11 +73,6 @@ class ExecAsyncTask
         private val dataBase: String,
 
         /**
-         * Log file
-         */
-        private val logFile: File?,
-
-        /**
          * Done listener
          */
         val whenDone: Consumer<Boolean>,
@@ -155,7 +150,7 @@ class ExecAsyncTask
      * Execute sql statements
      */
     fun fromSql(dataBase: String, logFile: File?): Task<Array<String>, Pair<Number, Number>, Boolean> {
-        return AsyncExecuteFromSql(dataBase, logFile, whenDone, observer, publishRate)
+        return AsyncExecuteFromSql(dataBase, whenDone, observer, publishRate)
     }
 
     // A R C H I V E   F I L E
@@ -171,11 +166,6 @@ class ExecAsyncTask
          * Zip entry
          */
         private val entry: String,
-
-        /**
-         * Log file
-         */
-        private val logFile: File?,
 
         /**
          * Done listener
@@ -342,7 +332,7 @@ class ExecAsyncTask
     fun fromArchiveFile(dataBase: String, entry: String, logFile: File?): Task<String, Pair<Number, Number>, Boolean> {
         val powerManager = activity.getSystemService(Context.POWER_SERVICE) as PowerManager
         val window = activity.window
-        return AsyncExecuteFromArchiveFile(dataBase, entry, logFile, whenDone, observer, publishRate, powerManager, window)
+        return AsyncExecuteFromArchiveFile(dataBase, entry, whenDone, observer, publishRate, powerManager, window)
     }
 
     // U R I
@@ -358,11 +348,6 @@ class ExecAsyncTask
          * Content resolver
          */
         val resolver: ContentResolver,
-
-        /**
-         * Log file
-         */
-        private val logFile: File?,
 
         /**
          * Done listener
@@ -527,7 +512,7 @@ class ExecAsyncTask
     fun fromUri(dataBase: String, resolver: ContentResolver, logFile: File?): Task<Uri, Pair<Number, Number>, Boolean> {
         val powerManager = activity.getSystemService(Context.POWER_SERVICE) as PowerManager
         val window = activity.window
-        return AsyncExecuteFromUri(dataBase, resolver, logFile, whenDone, observer, publishRate, powerManager, window)
+        return AsyncExecuteFromUri(dataBase, resolver, whenDone, observer, publishRate, powerManager, window)
     }
 
     // A R C H I V E   U R I
@@ -551,11 +536,6 @@ class ExecAsyncTask
          * Content resolver
          */
         val resolver: ContentResolver,
-
-        /**
-         * Log file
-         */
-        private val logFile: File?,
 
         /**
          * Done listener
@@ -738,7 +718,7 @@ class ExecAsyncTask
     fun fromArchiveUri(dataBase: String, entry: String, resolver: ContentResolver, logFile: File?): Task<Uri, Pair<Number, Number>, Boolean> {
         val powerManager = activity.getSystemService(Context.POWER_SERVICE) as PowerManager
         val window = activity.window
-        return AsyncExecuteFromArchiveUri(dataBase, entry, resolver, logFile, whenDone, observer, publishRate, powerManager, window)
+        return AsyncExecuteFromArchiveUri(dataBase, entry, resolver, whenDone, observer, publishRate, powerManager, window)
     }
 
     // V A C U U M

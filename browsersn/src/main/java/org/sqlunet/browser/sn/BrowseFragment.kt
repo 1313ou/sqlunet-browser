@@ -94,7 +94,7 @@ class BrowseFragment : BaseSearchFragment() {
         // spinner listener
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
-                val selectorMode = org.sqlunet.browser.sn.SnSettings.Selector.entries.toTypedArray()[position]
+                val selectorMode = Selector.entries.toTypedArray()[position]
                 selectorMode.setPref(requireContext())
             }
 
@@ -279,9 +279,9 @@ class BrowseFragment : BaseSearchFragment() {
         val selectorMode: SelectorViewMode = Settings.getSelectorViewModePref(context)
         return when (selectorMode) {
             SelectorViewMode.VIEW -> when (selectorType) {
-                org.sqlunet.browser.sn.SnSettings.Selector.SELECTOR -> Browse1Fragment()
-                org.sqlunet.browser.sn.SnSettings.Selector.XSELECTOR -> XBrowse1Fragment()
-                org.sqlunet.browser.sn.SnSettings.Selector.SELECTOR_ALT -> SnBrowse1Fragment()
+                Selector.SELECTOR -> Browse1Fragment()
+                Selector.XSELECTOR -> XBrowse1Fragment()
+                Selector.SELECTOR_ALT -> SnBrowse1Fragment()
             }
 
             SelectorViewMode.WEB -> WebFragment()
@@ -309,9 +309,9 @@ class BrowseFragment : BaseSearchFragment() {
             SelectorViewMode.VIEW -> {
                 val intentClass: Class<*> =
                     when (selectorType) {
-                        org.sqlunet.browser.sn.SnSettings.Selector.SELECTOR -> Browse1Activity::class.java
-                        org.sqlunet.browser.sn.SnSettings.Selector.SELECTOR_ALT -> SnBrowse1Fragment::class.java
-                        org.sqlunet.browser.sn.SnSettings.Selector.XSELECTOR -> XBrowse1Activity::class.java
+                        Selector.SELECTOR -> Browse1Activity::class.java
+                        Selector.SELECTOR_ALT -> SnBrowse1Fragment::class.java
+                        Selector.XSELECTOR -> XBrowse1Activity::class.java
                     }
                 Intent(requireContext(), intentClass)
             }
