@@ -6,18 +6,22 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools">
 	<item
+		android:id="@+id/action_sql_clear_and_refresh"
+		android:title="@string/action_clear"
+		app:showAsAction="ifRoom"
+		tools:ignore="AppCompatResource" />
+	<item
 		android:id="@+id/action_copy"
 		android:title="@string/action_copy"
 		app:showAsAction="ifRoom"
 		tools:ignore="AppCompatResource" />
 	<item
 		android:id="@+id/action_sql_send"
-		android:title="@string/action_sql_send"
+		android:title="@string/action_send"
 		app:showAsAction="ifRoom"
 		tools:ignore="AppCompatResource" />
 	<item
 		android:id="@+id/action_sql_export"
-		android:title="@string/action_sql_export"
+		android:title="@string/action_export"
 		tools:ignore="AppCompatResource" />
-
 </menu>
