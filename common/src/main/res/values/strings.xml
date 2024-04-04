@@ -135,6 +135,9 @@
 	<string name="status_viewer_failed">No viewer</string>
 	<string name="status_clipboard_copied">Copied to clipboard</string>
 	<string name="status_diagnostics_running">Running diagnostics…</string>
+	<string name="status_log_not_exists">Nothing has been logged.\nNo error was logged while querying content providers.</string>
+	<string name="status_log_not_exists_doc">Nothing has been logged while making XML/HTML documents.</string>
+	<string name="status_log_not_exists_exec">Nothing has been logged.\nNo error was logged while executing SQL statements.</string>
 	<string name="status_state_unknown" />
 
 	<!-- error -->

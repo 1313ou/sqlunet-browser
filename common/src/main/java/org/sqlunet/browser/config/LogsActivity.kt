@@ -47,14 +47,27 @@ class LogsActivity : AppCompatActivity() {
         fab.setOnClickListener { Sender.send(this, "Semantikos log", textView.getText(), "semantikos.org@gmail.com") }
 
         // logs
-        val fileName = intent.getStringExtra(ARG_LOG) ?: LogUtils.SQL_LOG
+        val logArg = intent.getStringExtra(ARG_LOG)
+        val fileName = logArg ?: LogUtils.SQL_LOG
         val logFile = File(cacheDir, fileName)
-        val text = readFile(logFile)
-        textView.text = text
-        progress.isIndeterminate = false
-        progress.visibility = View.GONE
-        fab.visibility = View.VISIBLE
-        fab.setEnabled(true)
+        if (logFile.exists()) {
+            val text = readFile(logFile)
+            textView.text = text
+            progress.isIndeterminate = false
+            progress.visibility = View.GONE
+            fab.visibility = View.VISIBLE
+            fab.setEnabled(true)
+        } else {
+            val resId = when (logArg) {
+                LogUtils.SQL_LOG -> R.string.status_log_not_exists
+                LogUtils.DOC_LOG -> R.string.status_log_not_exists_doc
+                ExecAsyncTask.EXEC_LOG -> R.string.status_log_not_exists_exec
+                else -> R.string.status_log_not_exists
+            }
+            textView.text = resources.getText(resId)
+            progress.isIndeterminate = false
+            progress.visibility = View.GONE
+        }
     }
 
     companion object {
