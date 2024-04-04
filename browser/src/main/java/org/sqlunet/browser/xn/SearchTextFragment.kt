@@ -18,6 +18,7 @@ import org.sqlunet.framenet.provider.FrameNetProvider
 import org.sqlunet.propbank.provider.PropBankContract
 import org.sqlunet.propbank.provider.PropBankProvider
 import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.settings.Settings
 import org.sqlunet.verbnet.provider.VerbNetContract
 import org.sqlunet.verbnet.provider.VerbNetProvider
 import org.sqlunet.wordnet.provider.WordNetContract
@@ -73,7 +74,8 @@ class SearchTextFragment : BaseSearchFragment() {
         // spinner listener
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
-                org.sqlunet.settings.Settings.setSearchModePref(requireContext(), position)
+                searchModePosition = position
+                Settings.setSearchModePref(requireContext(), position)
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {

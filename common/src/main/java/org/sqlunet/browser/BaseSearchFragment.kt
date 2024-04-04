@@ -26,7 +26,6 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.annotation.ArrayRes
 import androidx.annotation.AttrRes
-import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
 import androidx.appcompat.app.AppCompatActivity
@@ -34,7 +33,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import org.sqlunet.browser.ColorUtils.fetchColor
 import org.sqlunet.browser.ColorUtils.getDrawable
@@ -347,19 +345,20 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
 
     /**
-     * Search type position, obtained by peeking at spinner state or registry if spinner is still null
+     * Search type position, obtained by peeking at spinner state
      */
-    protected val searchModePosition: Int
+    protected val spinnerSearchModePosition: Int
         get() {
             if (spinner != null) {
-                val position = spinner!!.selectedItemPosition
-                if (position != -1) {
-                    return position
-                }
+                return spinner!!.selectedItemPosition
             }
-            val selectorMode = Selector.getPref(requireContext())
-            return selectorMode.ordinal
+            return -1
         }
+
+    /**
+     * Search type position, obtained by peeking at spinner state or registry if spinner is still null
+     */
+    protected var searchModePosition: Int = -1
 
     // S E A R C H   L I S T E N E R
 

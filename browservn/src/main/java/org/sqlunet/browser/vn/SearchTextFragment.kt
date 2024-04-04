@@ -70,6 +70,7 @@ class SearchTextFragment : BaseSearchFragment() {
         // spinner listener
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
+                searchModePosition = position
                 Settings.setSearchModePref(requireContext(), position)
             }
 
@@ -78,8 +79,8 @@ class SearchTextFragment : BaseSearchFragment() {
         }
 
         // spinner position
-        val modePosition: Int = Settings.getSearchModePref(requireContext())
-        spinner.setSelection(modePosition)
+        val position: Int = Settings.getSearchModePref(requireContext())
+        spinner.setSelection(position)
     }
 
     // S E A R C H

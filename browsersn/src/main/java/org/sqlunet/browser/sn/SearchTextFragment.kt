@@ -67,6 +67,7 @@ class SearchTextFragment : BaseSearchFragment() {
         // spinner listener
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
+                searchModePosition = position
                 Settings.setSearchModePref(requireContext(), position)
             }
 
