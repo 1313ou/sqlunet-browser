@@ -35,7 +35,7 @@ internal class VnClassQuery(connection: SQLiteDatabase, classId: Long) : DBQuery
     /**
      * (|-separated) Groupings from the result set
      */
-    val groupings: String
+    val groupings: String?
         get() = cursor!!.getString(2)
 
     companion object {

@@ -50,7 +50,7 @@ internal class VnRoleQueryFromClassIdAndSense(connection: SQLiteDatabase, classI
     /**
      * Role selectional restriction from the result set
      */
-    val selectionRestriction: String
+    val selectionRestriction: String?
         get() = cursor!!.getString(3)
 
     /**

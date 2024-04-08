@@ -98,9 +98,14 @@ internal object VnNodeFactory {
             "synsetid", vnClass.synsetId.toString(),
             "sensenum", vnClass.senseNum.toString(),
             "sensekey", vnClass.senseKey,
-            "groupings", vnClass.groupings,
             "quality", vnClass.quality.toString()
         )
+        if (vnClass.groupings != null) {
+            addAttributes(
+                element,
+                "groupings", vnClass.groupings
+            )
+        }
         return element
     }
 
@@ -130,9 +135,11 @@ internal object VnNodeFactory {
         val element = makeNode(doc, parent, "themrole", null)
         makeAttribute(element, "type", role.roleType)
         makeAttribute(element, "id", i.toString())
-        val restrsElement = makeNode(doc, element, "restrs", null)
-        restrsElement.setAttribute("value", role.selectionRestrictions)
-        // restrsElement.setTextContent(role.selectionRestrictions)
+        if (role.selectionRestrictions != null) {
+            val restrsElement = makeNode(doc, element, "restrs", null)
+            restrsElement.setAttribute("value", role.selectionRestrictions)
+            // restrsElement.setTextContent(role.selectionRestrictions)
+        }
         return element
     }
 

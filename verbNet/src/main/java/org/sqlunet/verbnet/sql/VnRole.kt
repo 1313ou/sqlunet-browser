@@ -13,5 +13,5 @@ package org.sqlunet.verbnet.sql
  */
 class VnRole(
     @JvmField val roleType: String,
-    @JvmField val selectionRestrictions: String
+    @JvmField val selectionRestrictions: String?
 ) 

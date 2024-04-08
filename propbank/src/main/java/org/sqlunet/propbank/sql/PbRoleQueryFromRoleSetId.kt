@@ -56,7 +56,7 @@ internal class PbRoleQueryFromRoleSetId(connection: SQLiteDatabase, roleSetId: L
     /**
      * Role VerbNet theta
      */
-    val roleTheta: String
+    val roleTheta: String?
         get() = cursor!!.getString(4)
 
     companion object {

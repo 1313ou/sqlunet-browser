@@ -20,11 +20,11 @@ internal class PbExample private constructor(
     @JvmField val text: String,
     @JvmField val rel: String,
     @JvmField val args: List<PbArg>?,
-    @JvmField val aspect: String,
-    @JvmField val form: String,
-    @JvmField val tense: String,
-    @JvmField val voice: String,
-    @JvmField val person: String,
+    @JvmField val aspect: String?,
+    @JvmField val form: String?,
+    @JvmField val tense: String?,
+    @JvmField val voice: String?,
+    @JvmField val person: String?,
 ) {
 
     companion object {

@@ -66,7 +66,7 @@ internal class VnClassQueryFromSense(connection: SQLiteDatabase, wordId: Long, s
     /**
      * (|-separated) Groupings from the result set
      */
-    val groupings: String
+    val groupings: String?
         get() = cursor!!.getString(7)
 
     companion object {

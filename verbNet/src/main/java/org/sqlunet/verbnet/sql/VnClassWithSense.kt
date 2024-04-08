@@ -29,7 +29,7 @@ internal class VnClassWithSense private constructor(
     @JvmField val senseNum: Int,
     @JvmField val senseKey: String,
     @JvmField val quality: Float,
-    @JvmField val groupings: String,
+    @JvmField val groupings: String?,
 ) {
 
     companion object {
@@ -43,8 +43,8 @@ internal class VnClassWithSense private constructor(
          * @return list of VerbNet classes
          */
         @JvmStatic
-        fun make(connection: SQLiteDatabase, wordId: Long, synsetId: Long?): List<VnClassWithSense?>? {
-            var result: MutableList<VnClassWithSense?>? = null
+        fun make(connection: SQLiteDatabase, wordId: Long, synsetId: Long?): List<VnClassWithSense>? {
+            var result: MutableList<VnClassWithSense>? = null
             VnClassQueryFromSense(connection, wordId, synsetId).use {
                 it.execute()
                 while (it.next()) {

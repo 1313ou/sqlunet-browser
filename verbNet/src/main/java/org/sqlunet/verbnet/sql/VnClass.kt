@@ -17,7 +17,7 @@ import android.database.sqlite.SQLiteDatabase
 class VnClass private constructor(
     @JvmField val className: String,
     @JvmField val classId: Long,
-    val groupings: String,
+    val groupings: String?,
 ) {
 
     companion object {

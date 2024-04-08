@@ -21,7 +21,7 @@ internal class PbRole private constructor(
     @JvmField val roleDescr: String,
     @JvmField val argType: String,
     @JvmField val roleFunc: String,
-    @JvmField val roleTheta: String,
+    @JvmField val roleTheta: String?,
 ) {
 
     companion object {
