@@ -276,7 +276,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 // sb.append(' ')
                 append(sb, cursor.getString(idWord), 0, VerbNetFactories.memberFactory)
                 val definitions = cursor.getString(idDefinitions)
-                val groupings = cursor.getString(idGroupings)
+                val groupings: String? = cursor.getString(idGroupings)
                 if (definitions != null || groupings != null) {
                     val memberNode = makeTreeNode(sb, R.drawable.member, false).addTo(parent)
                     changedList.add(TreeOpCode.NEWCHILD, memberNode)
