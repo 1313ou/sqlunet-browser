@@ -96,7 +96,7 @@ class VerbNetImplementation : VerbNetInterface {
      * @param pos        pos to build query from
      * @return VerbNet data as DOM document
      */
-    override fun queryDoc(connection: SQLiteDatabase, wordId: Long, synsetId: Long, pos: Char): Document {
+    override fun queryDoc(connection: SQLiteDatabase, wordId: Long, synsetId: Long, pos: Char?): Document {
         val doc = makeDocument()
         val rootNode = makeVnRootNode(doc, wordId, synsetId)
         walk(connection, doc, rootNode, wordId, synsetId, roles = true, frames = true)
@@ -112,7 +112,7 @@ class VerbNetImplementation : VerbNetInterface {
      * @param pos        pos to build query from
      * @return VerbNet data as XML
      */
-    override fun queryXML(connection: SQLiteDatabase, wordId: Long, synsetId: Long, pos: Char): String {
+    override fun queryXML(connection: SQLiteDatabase, wordId: Long, synsetId: Long, pos: Char?): String {
         val doc = queryDoc(connection, wordId, synsetId, pos)
         return docToString(doc)
     }

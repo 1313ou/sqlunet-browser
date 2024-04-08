@@ -56,7 +56,7 @@ internal interface PropBankInterface {
      * @param pos    the pos to build query from
      * @return PropBank data as DOM document
      */
-    fun queryDoc(connection: SQLiteDatabase, wordId: Long, pos: Char): Document?
+    fun queryDoc(connection: SQLiteDatabase, wordId: Long, pos: Char?): Document?
 
     /**
      * Business method that returns PropBank data as XML from word id
@@ -65,7 +65,7 @@ internal interface PropBankInterface {
      * @param pos    the pos to build query from
      * @return PropBank data as XML
      */
-    fun queryXML(connection: SQLiteDatabase, wordId: Long, pos: Char): String
+    fun queryXML(connection: SQLiteDatabase, wordId: Long, pos: Char?): String
 
     // I T E M S
 

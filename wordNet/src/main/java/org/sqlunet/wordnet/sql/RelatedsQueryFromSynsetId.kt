@@ -42,7 +42,7 @@ class RelatedsQueryFromSynsetId(connection: SQLiteDatabase) : DBQuery(connection
     /**
      * Samples in a bar-separated string
      */
-    val samples: String
+    val samples: String?
         get() = cursor!!.getString(4)
 
     /**

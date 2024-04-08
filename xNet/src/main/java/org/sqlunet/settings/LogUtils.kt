@@ -77,10 +77,12 @@ object LogUtils {
      * @param docs      documents
      */
     @JvmStatic
-    fun writeLog(append: Boolean, context: Context, fileName0: String?, vararg docs: Document): String? {
+    fun writeLog(append: Boolean, context: Context, fileName0: String?, vararg docs: Document?): String? {
         val fileName = fileName0 ?: DOC_LOG
         val sb = StringBuilder()
         for (doc in docs) {
+            if (doc == null)
+                continue
             sb.append(DomTransformer.docToXml(doc))
         }
         val data = sb.toString()

@@ -56,7 +56,7 @@ import java.net.URLDecoder
  */
 class WebFragment : Fragment() {
 
-    private inner class WebDocumentStringLoader(val context: Context, val pointer: Parcelable?, val type: Int, val data: String?, val sources: Int, val xml: Boolean) : DocumentStringLoader {
+    private inner class WebDocumentStringLoader(val context: Context, val pointer: Parcelable?, val pos: Char?, val type: Int, val data: String?, val sources: Int, val xml: Boolean) : DocumentStringLoader {
 
         override fun getDoc(): String? {
             try {
@@ -75,7 +75,7 @@ class WebFragment : Fragment() {
                     if (isSelector) {
                         // this is a selector query
                         if (org.sqlunet.browser.fn.FnSettings.Source.FRAMENET.test(sources)) {
-                            fnDomDoc = FrameNetImplementation(true).querySelectorDoc(db, data!!, null)
+                            fnDomDoc = FrameNetImplementation(true).querySelectorDoc(db, data!!, pos)
                         }
                     } else {
                         // this is a detail query
@@ -85,7 +85,7 @@ class WebFragment : Fragment() {
                                     val xPointer = pointer as Pointer?
                                     val id = xPointer!!.id
                                     val isFrame = xPointer is FnFramePointer
-                                    fnDomDoc = if (isFrame) FrameNetImplementation(true).queryFrameDoc(db, id, null) else FrameNetImplementation(true).queryLexUnitDoc(db, id)
+                                    fnDomDoc = if (isFrame) FrameNetImplementation(true).queryFrameDoc(db, id, pos) else FrameNetImplementation(true).queryLexUnitDoc(db, id)
                                 }
                             }
 
@@ -101,7 +101,7 @@ class WebFragment : Fragment() {
                                 val framePointer = pointer as FnFramePointer?
                                 Log.d(TAG, "ArgPosition: fnframe=$framePointer")
                                 if (framePointer != null && org.sqlunet.browser.fn.FnSettings.Source.FRAMENET.test(sources)) {
-                                    fnDomDoc = FrameNetImplementation(true).queryFrameDoc(db, framePointer.id, null)
+                                    fnDomDoc = FrameNetImplementation(true).queryFrameDoc(db, framePointer.id, pos)
                                 }
                             }
 
@@ -291,15 +291,15 @@ class WebFragment : Fragment() {
         Log.d(TAG, "ArgPosition: query=$pointer")
 
         // hint
-        // val posString = args.getString(ProviderArgs.ARG_HINTPOS)
-        // val pos = if (posString != null) posString[0] else null
+        val posString = args.getString(ProviderArgs.ARG_HINTPOS)
+        val pos = if (posString != null) posString[0] else null
 
         // text
         val data = args.getString(ProviderArgs.ARG_QUERYSTRING)
         Log.d(TAG, "ArgPosition: data=$data")
 
         // load the contents
-        model!!.loadData(WebDocumentStringLoader(requireContext(), pointer, type, data, sources, xml))
+        model!!.loadData(WebDocumentStringLoader(requireContext(), pointer, pos, type, data, sources, xml))
     }
 
     /**
@@ -380,7 +380,7 @@ class WebFragment : Fragment() {
             data = sb.toString()
             if (BuildConfig.DEBUG) {
                 val xsd = DocumentTransformer::class.java.getResource("/org/sqlunet/SqlUNet.xsd")!!
-                validateDocs(xsd, fnDomDoc!!)
+                validateDocs(xsd, fnDomDoc)
                 writeLog(false, requireContext(), null, fnDomDoc)
                 writeLog(data, false, requireContext(), LogUtils.DOC_LOG)
                 Log.d(TAG, "output=\n$data")

@@ -41,7 +41,7 @@ class SynsetQuery(connection: SQLiteDatabase, synsetId: Long) : DBQuery(connecti
     /**
      * Samples as a semicolon-separated string
      */
-    val sample: String
+    val sample: String?
         get() = cursor!!.getString(3)
 
     companion object {

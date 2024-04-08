@@ -62,10 +62,12 @@ object DomValidator {
      * @param documents documents
      */
     @JvmStatic
-    fun validateDocs(xsdUrl: URL, vararg documents: Document) {
+    fun validateDocs(xsdUrl: URL, vararg documents: Document?) {
         try {
             val validator = makeValidator(xsdUrl)
             for (document in documents) {
+                if (document == null)
+                    continue
                 // cannot make org.w3c.dom.Document and mf.org.w3c.dom.Document compatible
                 // DomValidator.validate(validator, new DOMSource(document))
                 val string = DomTransformer.docToXml(document)

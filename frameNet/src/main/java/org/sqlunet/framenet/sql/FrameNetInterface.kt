@@ -42,7 +42,7 @@ internal interface FrameNetInterface {
      * @param pos    target pos to build query from
      * @return FrameNet data as DOM document
      */
-    fun queryDoc(connection: SQLiteDatabase, wordId: Long, pos: Char): Document?
+    fun queryDoc(connection: SQLiteDatabase, wordId: Long, pos: Char?): Document?
 
     /**
      * Business method that returns FrameNet data as XML
@@ -51,7 +51,7 @@ internal interface FrameNetInterface {
      * @param pos    target pos to build query from
      * @return FrameNet data as XML
      */
-    fun queryXML(connection: SQLiteDatabase, wordId: Long, pos: Char): String
+    fun queryXML(connection: SQLiteDatabase, wordId: Long, pos: Char?): String
 
     /**
      * Business method that returns FrameNet data as DOM document
@@ -60,7 +60,7 @@ internal interface FrameNetInterface {
      * @param pos  target pos to build query from
      * @return FrameNet data as DOM document
      */
-    fun queryDoc(connection: SQLiteDatabase, word: String, pos: Char): Document?
+    fun queryDoc(connection: SQLiteDatabase, word: String, pos: Char?): Document?
 
     /**
      * Business method that returns FrameNet data as XML
@@ -69,7 +69,7 @@ internal interface FrameNetInterface {
      * @param pos  target pos to build query from
      * @return FrameNet data as XML
      */
-    fun queryXML(connection: SQLiteDatabase, word: String, pos: Char): String
+    fun queryXML(connection: SQLiteDatabase, word: String, pos: Char?): String
 
     // I T E M S
 

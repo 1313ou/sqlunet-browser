@@ -83,7 +83,7 @@ class PropBankImplementation : PropBankInterface {
      * @param pos        pos to build query from
      * @return PropBank data as DOM document
      */
-    override fun queryDoc(connection: SQLiteDatabase, wordId: Long, pos: Char): Document {
+    override fun queryDoc(connection: SQLiteDatabase, wordId: Long, pos: Char?): Document {
         val doc = makeDocument()
         val wordNode = makePbRootNode(doc, wordId)
         walk(connection, doc, wordNode, wordId)
@@ -98,7 +98,7 @@ class PropBankImplementation : PropBankInterface {
      * @param pos        pos to build query from
      * @return PropBank data as XML
      */
-    override fun queryXML(connection: SQLiteDatabase, wordId: Long, pos: Char): String {
+    override fun queryXML(connection: SQLiteDatabase, wordId: Long, pos: Char?): String {
         val doc = queryDoc(connection, wordId, pos)
         return docToString(doc)
     }

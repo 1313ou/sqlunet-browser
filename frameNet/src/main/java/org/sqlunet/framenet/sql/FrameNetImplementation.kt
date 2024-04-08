@@ -80,7 +80,7 @@ class FrameNetImplementation(private val queryFromFnWord: Boolean) : FrameNetInt
      * @param pos        the pos to build query from
      * @return FrameNet data as DOM document
      */
-    override fun queryDoc(connection: SQLiteDatabase, word: String, pos: Char): Document {
+    override fun queryDoc(connection: SQLiteDatabase, word: String, pos: Char?): Document {
         val doc = makeDocument()
         val rootNode = makeFnRootNode(doc, word, pos)
         walk(connection, doc, rootNode, word)
@@ -95,7 +95,7 @@ class FrameNetImplementation(private val queryFromFnWord: Boolean) : FrameNetInt
      * @param pos        the pos to build query from
      * @return FrameNet data as XML
      */
-    override fun queryXML(connection: SQLiteDatabase, word: String, pos: Char): String {
+    override fun queryXML(connection: SQLiteDatabase, word: String, pos: Char?): String {
         val doc = queryDoc(connection, word, pos)
         return docToString(doc)
     }
@@ -112,7 +112,7 @@ class FrameNetImplementation(private val queryFromFnWord: Boolean) : FrameNetInt
      * @param pos        the pos to build query from
      * @return FrameNet data as DOM document
      */
-    override fun queryDoc(connection: SQLiteDatabase, wordId: Long, pos: Char): Document {
+    override fun queryDoc(connection: SQLiteDatabase, wordId: Long, pos: Char?): Document {
         val doc = makeDocument()
         val rootNode = makeFnRootNode(doc, wordId, pos)
         walkWord(connection, doc, rootNode, wordId, pos)
@@ -127,7 +127,7 @@ class FrameNetImplementation(private val queryFromFnWord: Boolean) : FrameNetInt
      * @param pos        the pos to build query from
      * @return FrameNet data as XML
      */
-    override fun queryXML(connection: SQLiteDatabase, wordId: Long, pos: Char): String {
+    override fun queryXML(connection: SQLiteDatabase, wordId: Long, pos: Char?): String {
         val doc = queryDoc(connection, wordId, pos)
         return docToString(doc)
     }

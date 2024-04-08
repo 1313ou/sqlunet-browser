@@ -47,7 +47,7 @@ class SynsetsQueryFromWordId(connection: SQLiteDatabase, wordId: Long) : DBQuery
     /**
      * Samples as a semicolon-separated string
      */
-    val sample: String
+    val sample: String?
         get() = cursor!!.getString(4)
 
     companion object {

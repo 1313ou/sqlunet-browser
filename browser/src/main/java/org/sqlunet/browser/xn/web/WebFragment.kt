@@ -67,7 +67,7 @@ import java.net.URLDecoder
  */
 class WebFragment : Fragment() {
 
-    private inner class WebDocumentStringLoader(val context: Context, val pointer: Parcelable?, val pos: Char, val type: Int, val data: String?, val sources: Int, val xml: Boolean) : DocumentStringLoader {
+    private inner class WebDocumentStringLoader(val context: Context, val pointer: Parcelable?, val pos: Char?, val type: Int, val data: String?, val sources: Int, val xml: Boolean) : DocumentStringLoader {
 
         override fun getDoc(): String? {
             try {
@@ -422,7 +422,7 @@ class WebFragment : Fragment() {
 
         // hint
         val posString = args.getString(ProviderArgs.ARG_HINTPOS)
-        val pos = posString?.get(0)!!
+        val pos = if (posString != null) posString[0] else null
 
         // text
         val data = args.getString(ProviderArgs.ARG_QUERYSTRING)
@@ -568,7 +568,7 @@ class WebFragment : Fragment() {
             data = sb.toString()
             if (BuildConfig.DEBUG) {
                 val xsd = DocumentTransformer::class.java.getResource("/org/sqlunet/SqlUNet.xsd")!!
-                validateDocs(xsd, wnDomDoc!!, vnDomDoc!!, pbDomDoc!!, fnDomDoc!!, bncDomDoc!!)
+                validateDocs(xsd, wnDomDoc, vnDomDoc, pbDomDoc, fnDomDoc, bncDomDoc)
                 writeLog(false, requireContext(), null, wnDomDoc, vnDomDoc, pbDomDoc, fnDomDoc, bncDomDoc)
                 writeLog(data, false, requireContext(), LogUtils.DOC_LOG)
                 Log.d(TAG, "output=\n$data")
