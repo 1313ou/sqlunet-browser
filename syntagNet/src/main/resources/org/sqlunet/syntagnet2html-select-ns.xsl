@@ -60,7 +60,7 @@
 			<SPAN class="sncollocationlabel">
 				<SPAN class="sncollocationname">
 					<xsl:value-of select="./sn:word[@which='1']/text()" />
-					<xsl:text />
+					<xsl:text>&#xA0;</xsl:text>
 					<xsl:value-of select="./sn:word[@which='2']/text()" />
 				</SPAN>
 			</SPAN>
