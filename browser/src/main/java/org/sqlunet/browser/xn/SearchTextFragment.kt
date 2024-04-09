@@ -152,7 +152,7 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             3 -> {
-                searchUri = VerbNetProvider.makeUri(VerbNetContract.Lookup_VnExamples_X.URI)
+                searchUri = VerbNetProvider.makeUri(VerbNetContract.Lookup_VnExamples_X.URI_BY_EXAMPLE)
                 id = VerbNetContract.Lookup_VnExamples_X.EXAMPLEID
                 idType = "vnexample"
                 target = VerbNetContract.Lookup_VnExamples_X.EXAMPLE
@@ -164,7 +164,7 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             4 -> {
-                searchUri = PropBankProvider.makeUri(PropBankContract.Lookup_PbExamples_X.URI)
+                searchUri = PropBankProvider.makeUri(PropBankContract.Lookup_PbExamples_X.URI_BY_EXAMPLE)
                 id = PropBankContract.Lookup_PbExamples_X.EXAMPLEID
                 idType = "pbexample"
                 target = PropBankContract.Lookup_PbExamples_X.TEXT
