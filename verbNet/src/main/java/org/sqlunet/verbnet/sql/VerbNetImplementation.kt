@@ -236,7 +236,7 @@ class VerbNetImplementation : VerbNetInterface {
             if (vnClasses != null) {
                 for (vnClass in vnClasses) {
                     // class
-                    val classNode = makeVnClassWithSenseNode(doc, parent, vnClass!!)
+                    val classNode = makeVnClassWithSenseNode(doc, parent, vnClass)
                     if (vnClass.synsetId != 0L) {
                         // sense node
                         val senseNode: Node = makeSenseNode(doc, classNode, vnClass.wordId, vnClass.synsetId!!, vnClass.senseNum)
