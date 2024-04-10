@@ -86,7 +86,7 @@ object Queries {
             FrameNetContract.Frames_FEs.FETYPE,
             FrameNetContract.Frames_FEs.FEABBREV,
             FrameNetContract.Frames_FEs.FEDEFINITION,
-            "GROUP_CONCAT(" + FrameNetContract.Frames_FEs.SEMTYPE + ",'|') AS " + FrameNetContract.Frames_FEs.SEMTYPES,
+            "GROUP_CONCAT(DISTINCT " + FrameNetContract.Frames_FEs.SEMTYPE + ") AS " + FrameNetContract.Frames_FEs.SEMTYPES,
             FrameNetContract.Frames_FEs.CORETYPEID,
             FrameNetContract.Frames_FEs.CORETYPE,
             FrameNetContract.Frames_FEs.CORESET
@@ -184,11 +184,11 @@ object Queries {
             FrameNetContract.LexUnits_FERealizations_ValenceUnits.LUID,
             FrameNetContract.LexUnits_FERealizations_ValenceUnits.FERID,
             FrameNetContract.LexUnits_FERealizations_ValenceUnits.FETYPE,
-            "GROUP_CONCAT(IFNULL(" +
-                    FrameNetContract.LexUnits_FERealizations_ValenceUnits.PT + ",'') || ':' || IFNULL(" +
-                    FrameNetContract.LexUnits_FERealizations_ValenceUnits.GF + ",'') || ':' || " +
-                    FrameNetContract.LexUnits_FERealizations_ValenceUnits.VUID + ") AS " +
-                    FrameNetContract.LexUnits_FERealizations_ValenceUnits.FERS,
+            "GROUP_CONCAT( " +
+                    "IFNULL(" + FrameNetContract.LexUnits_FERealizations_ValenceUnits.PT + ",'') || ':' || " +
+                    "IFNULL(" + FrameNetContract.LexUnits_FERealizations_ValenceUnits.GF + ",'') || ':' || " +
+                    FrameNetContract.LexUnits_FERealizations_ValenceUnits.VUID +
+                    ") AS " + FrameNetContract.LexUnits_FERealizations_ValenceUnits.FERS,
             FrameNetContract.LexUnits_FERealizations_ValenceUnits.TOTAL
         )
         providerSql.selection = FrameNetContract.LexUnits_FERealizations_ValenceUnits.LUID + " = ?"
@@ -205,11 +205,11 @@ object Queries {
             FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID,
             FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID,
             FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PATTERNID,
-            "GROUP_CONCAT(" +
+            "GROUP_CONCAT( " +
                     FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FETYPE + " || '.' || " +
-                    FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PT + " || '.'|| IFNULL(" +
-                    FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GF + ", '--')) AS " +
-                    FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GROUPREALIZATIONS
+                    FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PT + " || '.' || " +
+                    "IFNULL(" + FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GF + ", '--')" +
+                    ") AS " + FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GROUPREALIZATIONS
         )
         providerSql.selection = FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID + " = ?"
         providerSql.selectionArgs = arrayOf(luId.toString())
@@ -239,7 +239,7 @@ object Queries {
             FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.TEXT,
             FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE,
             FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.RANK,
-            "GROUP_CONCAT(" +
+            "GROUP_CONCAT( " +
                     FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.START + "||':'||" +
                     FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.END + "||':'||" +
                     FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LABELTYPE + "||':'||" +
@@ -248,8 +248,8 @@ object Queries {
                     "''||':'||" +
                     //"CASE WHEN " + LexUnits_Sentences_AnnoSets_Layers_Labels.FGCOLOR + " IS NULL THEN '' ELSE " + LexUnits_Sentences_AnnoSets_Layers_Labels.FGCOLOR + " END" + 
                     "''" +
-                    ",'|')" +
-                    " AS " + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERANNOTATION
+                    ", '|'" + // DELIMITER
+                    ") AS " + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERANNOTATION
         )
         providerSql.selection = FrameNetContract.AS_LEXUNITS + '.' + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LUID + " = ? AND " + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE + " = ?"
         providerSql.selectionArgs = arrayOf(luId.toString(), FOCUSLAYER)
