@@ -171,7 +171,8 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 5
 								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 6
 								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END + // 7
-								",'|') AS %s " + // 2bis
+								", '|'" + // DELIMITER
+								") AS %s " + // 2bis
 								"FROM %s " + // 8
 								"LEFT JOIN %s USING (%s) " + // 9
 								"LEFT JOIN %s USING (%s) " + // 10
@@ -210,7 +211,8 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 5
 								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 6
 								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END
-								",'|') AS %s " + // 2bis
+								", '|'" + // DELIMITER
+								") AS %s " + // 2bis
 								"FROM %s " + // 8
 								"LEFT JOIN %s USING (%s) " + // 9
 								"LEFT JOIN %s USING (%s) " + // 10
@@ -249,7 +251,8 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 5
 								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 6
 								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 7
-								",'|') AS %s " + // 2bis
+								", '|'" + // DELIMITER
+								") AS %s " + // 2bis
 								"FROM %s " + // 8
 								"LEFT JOIN %s USING (%s) " + // 9
 								"LEFT JOIN %s USING (%s) " + // 10
@@ -290,7 +293,8 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 5
 								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 6
 								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 7
-								",'|') AS %s " + // 2bis
+								", '|'" + // DELIMITER
+								") AS %s " + // 2bis
 								"FROM %s " + // 8
 								"LEFT JOIN %s USING (%s) " + // 9
 								"LEFT JOIN %s USING (%s) " + // 10
