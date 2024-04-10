@@ -160,11 +160,11 @@ class SqLiteDialect
 	// frame from frame id
 	static public final String FrameNetFrameQuery = //
 			"SELECT ${as_frames}.${frames.frameid},${as_frames}.${frames.frame},${as_frames}.${frames.framedefinition}, " + //
-					"(SELECT GROUP_CONCAT(${semtypes.semtypeid}||':'||${semtypes.semtype}||':'||${semtypes.semtypedefinition},'|') " + //
+					"(SELECT GROUP_CONCAT(${semtypes.semtypeid}||':'||${semtypes.semtype}||':'||${semtypes.semtypedefinition}, '|') " + // DELIMITER
 					"	FROM ${frames_semtypes.table} AS ${as_types} " + //
 					"	LEFT JOIN ${semtypes.table} USING (${semtypes.semtypeid}) " + //
 					"	WHERE ${as_types}.${frames.frameid} = ${as_frames}.${frames.frameid}), " + //
-					"(SELECT GROUP_CONCAT(${frames_related.frame2id}||':'||${as_related_frames}.${frames.frame}||':'||${framerelations.relation},'|') " + //
+					"(SELECT GROUP_CONCAT(${frames_related.frame2id}||':'||${as_related_frames}.${frames.frame}||':'||${framerelations.relation}, '|') " + // DELIMITER
 					"	FROM ${frames_related.table} AS ${as_relations} " + //
 					"	LEFT JOIN ${frames.table} AS ${as_related_frames} ON (${frames_related.frame2id} = ${as_related_frames}.${frames.frameid}) " + //
 					"	LEFT JOIN ${framerelations.table} USING (${framerelations.relationid}) " + //
@@ -175,7 +175,7 @@ class SqLiteDialect
 	// FRAME ELEMENTS
 	// fes from frame id
 	static public final String FrameNetFEQueryFromFrameId = //
-			"SELECT ${fetypes.fetypeid},${fetypes.fetype},${fes.feid},${fes.fedefinition},${fes.feabbrev},${coretypes.coretype},GROUP_CONCAT(${semtypes.semtype},'|') AS ${a_types},${coretypes.coretypeid} = 1 AS ${iscorefe},${fes.coreset} " + //
+			"SELECT ${fetypes.fetypeid},${fetypes.fetype},${fes.feid},${fes.fedefinition},${fes.feabbrev},${coretypes.coretype},GROUP_CONCAT(${semtypes.semtype}, '|') AS ${a_types},${coretypes.coretypeid} = 1 AS ${iscorefe},${fes.coreset} " + // DELIMITER
 					"FROM ${frames.table} " + //
 					"INNER JOIN ${fes.table} USING (${frames.frameid}) " + //
 					"LEFT JOIN ${fetypes.table} USING (${fetypes.fetypeid}) " + //
@@ -227,7 +227,7 @@ class SqLiteDialect
 	// LAYERS
 	// layers from annoSet id
 	static public final String FrameNetLayerQueryFromAnnoSetId = //
-			"SELECT ${layers.layerid},${layertypes.layertype},${annosets.annosetid},${layers.rank},GROUP_CONCAT(${labels.start}||':'||${labels.end}||':'||${labeltypes.labeltype}||':'||CASE WHEN ${labelitypes.labelitype} IS NULL THEN '' ELSE ${labelitypes.labelitype} END,'|') " + //
+			"SELECT ${layers.layerid},${layertypes.layertype},${annosets.annosetid},${layers.rank},GROUP_CONCAT(${labels.start}||':'||${labels.end}||':'||${labeltypes.labeltype}||':'||CASE WHEN ${labelitypes.labelitype} IS NULL THEN '' ELSE ${labelitypes.labelitype} END, '|') " + // DELIMITER
 					"FROM " + //
 					"(SELECT ${layers.layerid},${layertypes.layertype},${annosets.annosetid},${layers.rank},${labels.start},${labels.end},${labeltypes.labeltype},${labelitypes.labelitype} " + //
 					"FROM ${layers.table} " + //
@@ -240,7 +240,7 @@ class SqLiteDialect
 					"GROUP BY ${layers.layerid};";
 	// layers from sentence id
 	static public final String FrameNetLayerQueryFromSentenceId = //
-			"SELECT ${layers.layerid},${layertypes.layertype},${annosets.annosetid},${layers.rank},GROUP_CONCAT(${labels.start}||':'||${labels.end}||':'||${labeltypes.labeltype}||':'||CASE WHEN ${labelitypes.labelitype} IS NULL THEN '' ELSE ${labelitypes.labelitype} END,'|') " + //
+			"SELECT ${layers.layerid},${layertypes.layertype},${annosets.annosetid},${layers.rank},GROUP_CONCAT(${labels.start}||':'||${labels.end}||':'||${labeltypes.labeltype}||':'||CASE WHEN ${labelitypes.labelitype} IS NULL THEN '' ELSE ${labelitypes.labelitype} END, '|') " + // DELIMITER
 					"FROM " + //
 					"(SELECT ${layers.layerid},${layertypes.layertype},${annosets.annosetid},${layers.rank},${labels.start},${labels.end},${labeltypes.labeltype},${labelitypes.labelitype} " + //
 					"FROM ${sentences.table} " + //

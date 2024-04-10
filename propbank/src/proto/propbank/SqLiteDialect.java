@@ -48,7 +48,7 @@ class SqLiteDialect
 					"(CASE WHEN ${funcs.func} IS NULL THEN '*' ELSE ${funcs.func} END)||'~'||" + //
 					"${roles.roledescr}||'~'||" + //
 					"(CASE WHEN ${thetas.theta} IS NULL THEN '*' ELSE ${thetas.theta} END)||'~'||" + //
-					"${args.arg},'|')," + //
+					"${args.arg},'|')," + // DELIMITER
 					"${aspects.aspect},${forms.form},${tenses.tense},${voices.voice},${persons.person} " + //
 					"FROM ${rolesets.table} " + //
 					"INNER JOIN ${examples.table} AS ${as_examples} USING (${rolesets.rolesetid}) " + //
