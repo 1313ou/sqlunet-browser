@@ -248,7 +248,7 @@ object Queries {
                     "''||':'||" +
                     //"CASE WHEN " + LexUnits_Sentences_AnnoSets_Layers_Labels.FGCOLOR + " IS NULL THEN '' ELSE " + LexUnits_Sentences_AnnoSets_Layers_Labels.FGCOLOR + " END" + 
                     "''" +
-                    ", '|'" + // DELIMITER
+                    ", '|'" + // GROUP_CONCAT DELIMITER
                     ") AS " + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERANNOTATION
         )
         providerSql.selection = FrameNetContract.AS_LEXUNITS + '.' + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LUID + " = ? AND " + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE + " = ?"

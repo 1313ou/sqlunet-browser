@@ -41,7 +41,7 @@ class SqLiteDialect
 
 	// query for synset from synset id
 	static final String SynsetQuery = //
-			"SELECT ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset} " +  // DELIMITER
+			"SELECT ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset} " +  // GROUP_CONCAT DELIMITER
 					"FROM ${synsets.table} " +  //
 					"LEFT JOIN ${samples.table} USING (${synsets.synsetid}) " +  //
 					"WHERE ${synsets.synsetid} = ? " +  //
@@ -56,7 +56,7 @@ class SqLiteDialect
 
 	// query for synsets from word id
 	static final String SynsetsQueryFromWordId = //
-			"SELECT ${synsets.synsetid}, ${synsets.definition}, ${synsets.posid}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset} " +  // DELIMITER
+			"SELECT ${synsets.synsetid}, ${synsets.definition}, ${synsets.posid}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset} " +  // GROUP_CONCAT DELIMITER
 					"FROM ${senses.table} " +  //
 					"INNER JOIN ${synsets.table} USING (${synsets.synsetid}) " + //
 					"LEFT JOIN ${samples.table} USING (${synsets.synsetid}) " + //
@@ -66,7 +66,7 @@ class SqLiteDialect
 
 	// query for synsets of given pos id from word id
 	static final String SynsetsQueryFromWordIdAndPos = //
-			"SELECT ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset} " + // DELIMITER
+			"SELECT ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset} " + // GROUP_CONCAT DELIMITER
 					"FROM ${senses.table} " + //
 					"INNER JOIN ${synsets.table} USING (${synsets.synsetid}) " + //
 					"LEFT JOIN ${samples.table} USING (synsets.synsetid) " + //
@@ -76,7 +76,7 @@ class SqLiteDialect
 
 	// query for synsets of given domain from word
 	static final String SynsetsQueryFromWordIdAndDomainId = //
-			"SELECT ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset} " + // DELIMITER
+			"SELECT ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset} " + // GROUP_CONCAT DELIMITER
 					"FROM ${senses.table} " + //
 					"INNER JOIN ${synsets.table} USING (${synsets.synsetid}) " + //
 					"LEFT JOIN ${samples.table} USING (${synsets.synsetid}) " + //
@@ -87,7 +87,7 @@ class SqLiteDialect
 	// RELATIONS
 	// query for relateds from synsets
 	static final String RelatedsQueryFromSynsetId = //
-			"SELECT ${relations.relationid}, ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset}, 0 AS ${lexrelations.word2id}, NULL AS ${word2}, ${semrelations.synset1id}, 0 " +  // DELIMITER
+			"SELECT ${relations.relationid}, ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset}, 0 AS ${lexrelations.word2id}, NULL AS ${word2}, ${semrelations.synset1id}, 0 " +  // GROUP_CONCAT DELIMITER
 					"FROM ${semrelations.table} " + //
 					"INNER JOIN ${synsets.table} ON ${semrelations.synset2id} = ${synsets.synsetid} " +  //
 					"LEFT JOIN ${relations.table} USING (${relations.relationid}) " + //
@@ -95,7 +95,7 @@ class SqLiteDialect
 					"WHERE ${semrelations.synset1id} = ? " + //
 					"GROUP BY ${synsets.synsetid} " + //
 					"UNION " + //
-					"SELECT ${relations.relationid}, ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset}, GROUP_CONCAT(DISTINCT ${lexrelations.word2id}), GROUP_CONCAT(DISTINCT ${words.word}) AS ${word2}, ${lexrelations.synset1id}, ${lexrelations.word1id} " + // DELIMITER
+					"SELECT ${relations.relationid}, ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset}, GROUP_CONCAT(DISTINCT ${lexrelations.word2id}), GROUP_CONCAT(DISTINCT ${words.word}) AS ${word2}, ${lexrelations.synset1id}, ${lexrelations.word1id} " + // GROUP_CONCAT DELIMITER
 					"FROM ${lexrelations.table} " + //
 					"INNER JOIN ${synsets.table} ON ${lexrelations.synset2id} = ${synsets.synsetid} " + //
 					"LEFT JOIN ${words.table} ON ${lexrelations.word2id} = ${words.wordid} " + //
@@ -107,7 +107,7 @@ class SqLiteDialect
 
 	// query for relateds from synsets and relation type
 	static final String RelatedsQueryFromSynsetIdAndRelationId = //
-			"SELECT ${relations.relationid}, ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset}, 0 AS ${lexrelations.word2id}, NULL AS ${word2}, ${semrelations.synset1id}, 0 " + // DELIMITER
+			"SELECT ${relations.relationid}, ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset}, 0 AS ${lexrelations.word2id}, NULL AS ${word2}, ${semrelations.synset1id}, 0 " + // GROUP_CONCAT DELIMITER
 					"FROM ${semrelations.table} " + //
 					"INNER JOIN ${synsets.table} ON ${semrelations.synset2id} = ${synsets.synsetid} " + //
 					"LEFT JOIN ${relations.table} USING (${relations.relationid}) " + //
@@ -115,7 +115,7 @@ class SqLiteDialect
 					"WHERE ${semrelations.synset1id} = ? AND ${relations.relationid} = ? " + //
 					"GROUP BY ${synsets.synsetid} " + //
 					"UNION " + //
-					"SELECT ${relations.relationid}, ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset}, GROUP_CONCAT(DISTINCT ${lexrelations.word2id}), GROUP_CONCAT(DISTINCT ${words.word}) AS ${word2}, ${lexrelations.synset1id}, ${lexrelations.word1id} " + // DELIMITER
+					"SELECT ${relations.relationid}, ${synsets.synsetid}, ${synsets.definition}, ${synsets.domainid}, GROUP_CONCAT(${samples.sample}, '|') AS ${sampleset}, GROUP_CONCAT(DISTINCT ${lexrelations.word2id}), GROUP_CONCAT(DISTINCT ${words.word}) AS ${word2}, ${lexrelations.synset1id}, ${lexrelations.word1id} " + // GROUP_CONCAT DELIMITER
 					"FROM ${lexrelations.table} " + //
 					"INNER JOIN ${synsets.table} ON ${lexrelations.synset2id} = ${synsets.synsetid} " + //
 					"LEFT JOIN ${words.table} ON ${lexrelations.word2id} = ${words.wordid} " + //

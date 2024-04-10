@@ -14,7 +14,7 @@ class SqLiteDialect
 	// CLASS
 	// query for verbnet class
 	static final String VerbNetClassQuery = //
-			"SELECT ${classes.classid}, ${classes.class}, GROUP_CONCAT(${groupings.grouping}, '|') AS ${groupings} " + // DELIMITER
+			"SELECT ${classes.classid}, ${classes.class}, GROUP_CONCAT(${groupings.grouping}, '|') AS ${groupings} " + // GROUP_CONCAT DELIMITER
 					"FROM ${classes.table} " + //
 					"LEFT JOIN ${members_groupings.table} USING (${classes.classid}) " + //
 					"LEFT JOIN ${groupings.table} USING (${groupings.groupingid}) " + //
@@ -32,7 +32,7 @@ class SqLiteDialect
 					"ORDER BY ${wnsynsets.domainid},${wnsynsets.synsetid},${nullsynset} ASC;";
 	// query for verbnet class from sense
 	static final String VerbNetClassQueryFromSense = //
-			"SELECT ${classes.classid}, ${classes.class}, (${wnsynsets.synsetid} IS NULL) AS ${nullsynset}, ${wnsynsets.definition}, ${members_senses.sensenum}, ${members_senses.sensekey}, ${members_senses.quality}, GROUP_CONCAT(${groupings.grouping}, '|') AS ${groupings} " + // DELIMITER/
+			"SELECT ${classes.classid}, ${classes.class}, (${wnsynsets.synsetid} IS NULL) AS ${nullsynset}, ${wnsynsets.definition}, ${members_senses.sensenum}, ${members_senses.sensekey}, ${members_senses.quality}, GROUP_CONCAT(${groupings.grouping}, '|') AS ${groupings} " + // GROUP_CONCAT DELIMITER/
 					"FROM ${wnwords.table} " + //
 					"INNER JOIN ${words.table} USING (${wnwords.wordid}) " + //
 					"INNER JOIN ${members_senses.table} USING (${words.vnwordid},${wnwords.wordid}) " + //
@@ -65,7 +65,7 @@ class SqLiteDialect
 	// FRAMES
 	// query for verbnet frames
 	static final String VerbNetFramesQueryFromClassId = //
-			"SELECT ${frames.frameid}, ${frames.number}, ${frames.xtag}, ${framenames.framename}, ${framesubnames.framesubname}, ${syntaxes.syntax}, ${semantics.semantics}, GROUP_CONCAT(${examples.example}, '|') AS ${sampleset}, ${classes.classid} " + // DELIMITER
+			"SELECT ${frames.frameid}, ${frames.number}, ${frames.xtag}, ${framenames.framename}, ${framesubnames.framesubname}, ${syntaxes.syntax}, ${semantics.semantics}, GROUP_CONCAT(${examples.example}, '|') AS ${sampleset}, ${classes.classid} " + // GROUP_CONCAT DELIMITER
 					"FROM ${classes_frames.table}  " + //
 					"INNER JOIN ${frames.table} USING (${frames.frameid}) " + //
 					"LEFT JOIN ${framenames.table} USING (${framenames.framenameid})  " + //
@@ -76,7 +76,7 @@ class SqLiteDialect
 					"LEFT JOIN ${examples.table} USING (${examples.exampleid})  " + //
 					"WHERE ${classes.classid} = ?;";
 	static final String VerbNetFramesQueryFromClassIdAndSense = //
-			"SELECT ${frames.frameid}, ${frames.number}, ${frames.xtag}, ${framenames.framename}, ${framesubnames.framesubname}, ${syntaxes.syntax}, ${semantics.semantics}, GROUP_CONCAT(${examples.example}, '|') AS ${sampleset},${classes.classid},(${wnsynsets.synsetid} IS NULL) AS ${nullsynset},${wnsynsets.synsetid},${wnwords.wordid},${members_senses.quality} " + // DELIMITER
+			"SELECT ${frames.frameid}, ${frames.number}, ${frames.xtag}, ${framenames.framename}, ${framesubnames.framesubname}, ${syntaxes.syntax}, ${semantics.semantics}, GROUP_CONCAT(${examples.example}, '|') AS ${sampleset},${classes.classid},(${wnsynsets.synsetid} IS NULL) AS ${nullsynset},${wnsynsets.synsetid},${wnwords.wordid},${members_senses.quality} " + // GROUP_CONCAT DELIMITER
 					"FROM ${wnwords.table} " + //
 					"INNER JOIN ${words.table} USING (${wnwords.wordid}) " + //
 					"LEFT JOIN ${members_senses.table} USING (${words.vnwordid},${wnwords.wordid}) " + //

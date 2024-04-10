@@ -72,7 +72,7 @@ object Queries {
                     "||(CASE WHEN " + PropBankContract.PbRoleSets_PbExamples.THETA + " IS NULL THEN '*' ELSE " + PropBankContract.PbRoleSets_PbExamples.THETA + " END)" +
                     "||'~'" +
                     "||" + PropBankContract.PbRoleSets_PbExamples.ARG +
-                    ", '|'" + // DELIMITER
+                    ", '|'" + // GROUP_CONCAT DELIMITER
                     ") AS " + PropBankContract.PbRoleSets_PbExamples.ARGS,
             PropBankContract.PbRoleSets_PbExamples.ASPECT,
             PropBankContract.PbRoleSets_PbExamples.FORM,
