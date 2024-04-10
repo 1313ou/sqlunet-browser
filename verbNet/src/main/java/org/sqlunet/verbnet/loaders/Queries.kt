@@ -90,7 +90,7 @@ object Queries {
             VerbNetContract.VnClasses_VnFrames_X.FRAMESUBNAME,
             VerbNetContract.VnClasses_VnFrames_X.SYNTAX,
             VerbNetContract.VnClasses_VnFrames_X.SEMANTICS,
-            "GROUP_CONCAT(" + VerbNetContract.VnClasses_VnFrames_X.EXAMPLE + " , '|') AS " + VerbNetContract.VnClasses_VnFrames_X.EXAMPLES,
+            "REPLACE(REPLACE(GROUP_CONCAT(DISTINCT REPLACE(" + VerbNetContract.VnClasses_VnFrames_X.EXAMPLE + ",',','#')),',','|'),'#',',') AS " + VerbNetContract.VnClasses_VnFrames_X.EXAMPLES,
             VerbNetContract.VnClasses_VnFrames_X.CLASSID
         )
         providerSql.selection = VerbNetContract.VnClasses_VnFrames_X.CLASSID + " = ?"
