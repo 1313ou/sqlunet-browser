@@ -11,13 +11,13 @@ object Queries {
     @JvmStatic
     fun prepareRoleSet(roleSetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
-        providerSql.providerUri = PropBankContract.PbRoleSets_X.URI
+        providerSql.providerUri = PropBankContract.PbRoleSets_X.URI_BY_ROLESET
         providerSql.projection = arrayOf(
             PropBankContract.PbRoleSets_X.ROLESETID,
             PropBankContract.PbRoleSets_X.ROLESETNAME,
             PropBankContract.PbRoleSets_X.ROLESETHEAD,
             PropBankContract.PbRoleSets_X.ROLESETDESC,
-            "GROUP_CONCAT(" + PropBankContract.PbRoleSets_X.WORD + ") AS " + PropBankContract.PbRoleSets_X.ALIASES
+            "GROUP_CONCAT(DISTINCT " + PropBankContract.PbRoleSets_X.WORD + ") AS " + PropBankContract.PbRoleSets_X.ALIASES
         )
         providerSql.selection = PropBankContract.PbRoleSets_X.ROLESETID + " = ?"
         providerSql.selectionArgs = arrayOf(roleSetId.toString())
@@ -62,7 +62,7 @@ object Queries {
         providerSql.projection = arrayOf(
             PropBankContract.PbRoleSets_PbExamples.TEXT,
             PropBankContract.PbRoleSets_PbExamples.REL,
-            "GROUP_CONCAT(" +
+            "GROUP_CONCAT(DISTINCT " +
                     PropBankContract.PbRoleSets_PbExamples.ARGTYPE +
                     "||'~'" +
                     "||(CASE WHEN " + PropBankContract.PbRoleSets_PbExamples.FUNCNAME + " IS NULL THEN '*' ELSE " + PropBankContract.PbRoleSets_PbExamples.FUNCNAME + " END)" +
@@ -71,7 +71,9 @@ object Queries {
                     "||'~'" +
                     "||(CASE WHEN " + PropBankContract.PbRoleSets_PbExamples.THETA + " IS NULL THEN '*' ELSE " + PropBankContract.PbRoleSets_PbExamples.THETA + " END)" +
                     "||'~'" +
-                    "||" + PropBankContract.PbRoleSets_PbExamples.ARG + ",'|') AS " + PropBankContract.PbRoleSets_PbExamples.ARGS,
+                    "||" + PropBankContract.PbRoleSets_PbExamples.ARG +
+                    ", '|'" + // DELIMITER
+                    ") AS " + PropBankContract.PbRoleSets_PbExamples.ARGS,
             PropBankContract.PbRoleSets_PbExamples.ASPECT,
             PropBankContract.PbRoleSets_PbExamples.FORM,
             PropBankContract.PbRoleSets_PbExamples.TENSE,
