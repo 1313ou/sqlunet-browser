@@ -124,7 +124,7 @@ class SearchTextFragment : BaseSearchFragment() {
                 target = VerbNetContract.Lookup_VnExamples_X.EXAMPLE
                 columns = arrayOf(VerbNetContract.Lookup_VnExamples_X.EXAMPLE)
                 hiddenColumns = arrayOf(
-                    "GROUP_CONCAT(class || '@' || classid) AS " + VerbNetContract.Lookup_VnExamples_X.CLASSES
+                    "GROUP_CONCAT(DISTINCT class || '@' || classid) AS " + VerbNetContract.Lookup_VnExamples_X.CLASSES
                 )
                 database = "vn"
             }
@@ -136,7 +136,7 @@ class SearchTextFragment : BaseSearchFragment() {
                 target = PropBankContract.Lookup_PbExamples_X.TEXT
                 columns = arrayOf(PropBankContract.Lookup_PbExamples_X.TEXT)
                 hiddenColumns = arrayOf(
-                    "GROUP_CONCAT(rolesetname ||'@'||rolesetid) AS " + PropBankContract.Lookup_PbExamples_X.ROLESETS
+                    "GROUP_CONCAT(DISTINCT rolesetname ||'@'||rolesetid) AS " + PropBankContract.Lookup_PbExamples_X.ROLESETS
                 )
                 database = "pb"
             }
