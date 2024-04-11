@@ -45,7 +45,7 @@ class SqLiteDialect
 	// query for examples rel(n~arg|n~arg|..)
 	static final String PropBankExamplesQueryFromRoleSetId = 
 			"SELECT ${examples.exampleid},${examples.text},${rels.rel}," +
-					"GROUP_CONCAT(DISTINCT ${args.argtypeid}||'~'||(CASE WHEN ${funcs.func} IS NULL THEN '*' ELSE ${funcs.func} END)||'~'||${roles.roledescr}||'~'||(CASE WHEN ${thetas.theta} IS NULL THEN '*' ELSE ${thetas.theta} END)||'~'||${args.arg}),"
+					"GROUP_CONCAT(DISTINCT ${args.argtypeid}||'~'||(CASE WHEN ${funcs.func} IS NULL THEN '*' ELSE ${funcs.func} END)||'~'||${roles.roledescr}||'~'||(CASE WHEN ${thetas.theta} IS NULL THEN '*' ELSE ${thetas.theta} END)||'~'||${args.arg})," +
 					"${aspects.aspect},${forms.form},${tenses.tense},${voices.voice},${persons.person} " + 
 					"FROM ${rolesets.table} " + 
 					"INNER JOIN ${examples.table} AS ${as_examples} USING (${rolesets.rolesetid}) " + 
