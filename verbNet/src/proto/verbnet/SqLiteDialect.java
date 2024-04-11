@@ -32,7 +32,7 @@ class SqLiteDialect
 					"ORDER BY ${wnsynsets.domainid},${wnsynsets.synsetid},${nullsynset} ASC;";
 	// query for verbnet class from sense
 	static final String VerbNetClassQueryFromSense =
-			"SELECT ${classes.classid}, ${classes.class}, (${wnsynsets.synsetid} IS NULL) AS ${nullsynset}, ${wnsynsets.definition}, ${members_senses.sensenum}, ${members_senses.sensekey}, ${members_senses.quality}, GROUP_CONCAT(DISTINCT ${groupings.grouping}) AS ${groupings} "
+			"SELECT ${classes.classid}, ${classes.class}, (${wnsynsets.synsetid} IS NULL) AS ${nullsynset}, ${wnsynsets.definition}, ${members_senses.sensenum}, ${members_senses.sensekey}, ${members_senses.quality}, GROUP_CONCAT(DISTINCT ${groupings.grouping}) AS ${groupings} " +
 					"FROM ${wnwords.table} " +
 					"INNER JOIN ${words.table} USING (${wnwords.wordid}) " +
 					"INNER JOIN ${members_senses.table} USING (${words.vnwordid},${wnwords.wordid}) " +
