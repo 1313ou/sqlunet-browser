@@ -275,17 +275,18 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 // Spanner.appendImage(sb, BaseModule.this.drawableMember)
                 // sb.append(' ')
                 append(sb, cursor.getString(idWord), 0, VerbNetFactories.memberFactory)
-                val definitions = cursor.getString(idDefinitions)
+                val definitionsConcat = cursor.getString(idDefinitions)
                 val groupings: String? = cursor.getString(idGroupings)
-                if (definitions != null || groupings != null) {
+                if (definitionsConcat != null || groupings != null) {
                     val memberNode = makeTreeNode(sb, R.drawable.member, false).addTo(parent)
                     changedList.add(TreeOpCode.NEWCHILD, memberNode)
                     val sb2 = SpannableStringBuilder()
 
                     // definitions
                     var first = true
-                    if (definitions != null) {
-                        for (definition in definitions.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
+                    if (definitionsConcat != null) {
+                        val definitions = definitionsConcat.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                        for (definition in definitions) {
                             if (first) {
                                 first = false
                             } else {
@@ -473,13 +474,13 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
     /**
      * Groups
      *
-     * @param group items concat with '|'
+     * @param group items concat with ','
      * @return node
      */
-    protected fun items(parent: TreeNode, group: String?): TreeNode? {
+    protected fun groupItems(parent: TreeNode, group: String?): TreeNode? {
         if (group != null) {
             val sb = SpannableStringBuilder()
-            val items = group.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            val items = group.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             if (items.size == 1) {
                 appendImage(sb, drawableMember)
                 append(sb, items[0], 0, VerbNetFactories.memberFactory)

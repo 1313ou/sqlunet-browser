@@ -150,7 +150,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     private lateinit var synsetFromSynsetIdModel: SqlunetViewTreeModel
     private lateinit var membersFromSynsetIdModel: SqlunetViewTreeModel
     private lateinit var members2FromSynsetIdModel: SqlunetViewTreeModel
-    private lateinit var samplesfromSynsetIdModel: SqlunetViewTreeModel
+    private lateinit var samplesFromSynsetIdModel: SqlunetViewTreeModel
     private lateinit var relationsFromSynsetIdWordIdModel: SqlunetViewTreeModel
     private lateinit var semRelationsFromSynsetIdModel: SqlunetViewTreeModel
     private lateinit var semRelationsFromSynsetIdRelationIdModel: SqlunetViewTreeModel
@@ -216,8 +216,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         membersFromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
         members2FromSynsetIdModel = ViewModelProvider(fragment)["wn.memberSet(synsetid)", SqlunetViewTreeModel::class.java]
         members2FromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
-        samplesfromSynsetIdModel = ViewModelProvider(fragment)["wn.samples(synsetid)", SqlunetViewTreeModel::class.java]
-        samplesfromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        samplesFromSynsetIdModel = ViewModelProvider(fragment)["wn.samples(synsetid)", SqlunetViewTreeModel::class.java]
+        samplesFromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
         relationsFromSynsetIdWordIdModel = ViewModelProvider(fragment)["wn.relations(synsetid,wordid)", SqlunetViewTreeModel::class.java]
         relationsFromSynsetIdWordIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
         semRelationsFromSynsetIdModel = ViewModelProvider(fragment)["wn.semrelations(synsetid)", SqlunetViewTreeModel::class.java]
@@ -737,7 +737,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     private fun samples(synsetId: Long, parent: TreeNode, addNewNode: Boolean) {
         val sql = Queries.prepareSamples(synsetId)
         val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
-        samplesfromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> samplesCursorToTreeModel(cursor, parent, addNewNode) }
+        samplesFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> samplesCursorToTreeModel(cursor, parent, addNewNode) }
     }
 
     private fun samplesCursorToTreeModel(cursor: Cursor, parent: TreeNode, addNewNode: Boolean): Array<TreeOp> {
