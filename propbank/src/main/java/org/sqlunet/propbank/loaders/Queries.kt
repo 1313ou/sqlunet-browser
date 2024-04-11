@@ -62,7 +62,7 @@ object Queries {
         providerSql.projection = arrayOf(
             PropBankContract.PbRoleSets_PbExamples.TEXT,
             PropBankContract.PbRoleSets_PbExamples.REL,
-            "GROUP_CONCAT(DISTINCT " +
+            "REPLACE(REPLACE(GROUP_CONCAT(DISTINCT REPLACE(" +
                     PropBankContract.PbRoleSets_PbExamples.ARGTYPE +
                     "||'~'" +
                     "||(CASE WHEN " + PropBankContract.PbRoleSets_PbExamples.FUNCNAME + " IS NULL THEN '*' ELSE " + PropBankContract.PbRoleSets_PbExamples.FUNCNAME + " END)" +
@@ -72,8 +72,7 @@ object Queries {
                     "||(CASE WHEN " + PropBankContract.PbRoleSets_PbExamples.THETA + " IS NULL THEN '*' ELSE " + PropBankContract.PbRoleSets_PbExamples.THETA + " END)" +
                     "||'~'" +
                     "||" + PropBankContract.PbRoleSets_PbExamples.ARG +
-                    ", '|'" + // GROUP_CONCAT DELIMITER
-                    ") AS " + PropBankContract.PbRoleSets_PbExamples.ARGS,
+                    ",',','#')),',','|'),'#',',') AS " + PropBankContract.PbRoleSets_PbExamples.ARGS,
             PropBankContract.PbRoleSets_PbExamples.ASPECT,
             PropBankContract.PbRoleSets_PbExamples.FORM,
             PropBankContract.PbRoleSets_PbExamples.TENSE,

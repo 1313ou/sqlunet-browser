@@ -239,7 +239,7 @@ object Queries {
             FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.TEXT,
             FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE,
             FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.RANK,
-            "GROUP_CONCAT( " +
+            "GROUP_CONCAT(DISTINCT " +
                     FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.START + "||':'||" +
                     FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.END + "||':'||" +
                     FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LABELTYPE + "||':'||" +
@@ -248,7 +248,6 @@ object Queries {
                     "''||':'||" +
                     //"CASE WHEN " + LexUnits_Sentences_AnnoSets_Layers_Labels.FGCOLOR + " IS NULL THEN '' ELSE " + LexUnits_Sentences_AnnoSets_Layers_Labels.FGCOLOR + " END" + 
                     "''" +
-                    ", '|'" + // GROUP_CONCAT DELIMITER
                     ") AS " + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERANNOTATION
         )
         providerSql.selection = FrameNetContract.AS_LEXUNITS + '.' + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LUID + " = ? AND " + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE + " = ?"
