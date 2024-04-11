@@ -28,7 +28,7 @@ class FnSemType private constructor(
          */
         fun make(semTypesString: String): List<FnSemType>? {
             var result: MutableList<FnSemType>? = null
-            val semTypes = semTypesString.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            val semTypes = semTypesString.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             for (semType in semTypes) {
                 if (result == null) {
                     result = ArrayList()

@@ -28,7 +28,7 @@ class FnRelatedFrame private constructor(
          */
         fun make(relatedFramesString: String): List<FnRelatedFrame>? {
             var result: MutableList<FnRelatedFrame>? = null
-            val relatedFrames = relatedFramesString.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            val relatedFrames = relatedFramesString.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             for (relatedFrame in relatedFrames) {
                 if (result == null) {
                     result = ArrayList()

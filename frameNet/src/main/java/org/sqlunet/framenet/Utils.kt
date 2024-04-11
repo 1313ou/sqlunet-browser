@@ -38,7 +38,7 @@ object Utils {
             return null
         }
         var result: MutableList<FnLabel>? = null
-        val labels = labelsString.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val labels = labelsString.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         for (label in labels) {
             val fields = label.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             val from = if (fields.isEmpty()) null else fields[0]

@@ -41,8 +41,8 @@ class VnFrameSet private constructor(
                     val description2 = it.description2
                     val syntax = it.syntax
                     val semantics = it.semantics
-                    val concatExamples = it.example
-                    val examples = concatExamples.split("\\|".toRegex()).dropLastWhile { it2 -> it2.isEmpty() }.toTypedArray()
+                    val examplesConcat = it.example
+                    val examples = examplesConcat.split("\\|".toRegex()).dropLastWhile { it2 -> it2.isEmpty() }.toTypedArray()
                     // var quality = query.quality
                     // var synsetSpecific = query.synsetSpecific
 
@@ -82,8 +82,8 @@ class VnFrameSet private constructor(
                     val description2 = it.description2
                     val syntax = it.syntax
                     val semantics = it.semantics
-                    val exampleConcat = it.examples
-                    val examples = exampleConcat.split("\\|".toRegex()).dropLastWhile { it2 -> it2.isEmpty() }.toTypedArray()
+                    val examplesConcat = it.examples
+                    val examples = examplesConcat.split("\\|".toRegex()).dropLastWhile { it2 -> it2.isEmpty() }.toTypedArray()
                     // frame
                     val frame = VnFrame(number, xTag, description1, description2, syntax, semantics, *examples)
 
