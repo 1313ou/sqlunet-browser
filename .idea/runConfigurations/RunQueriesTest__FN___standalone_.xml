@@ -1,0 +1,32 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="RunQueriesTest (FN) (standalone)" type="GradleRunConfiguration" factoryName="Gradle" folderName="With EXPLAIN">
+    <ExternalSystemSettings>
+      <option name="env">
+        <map>
+          <entry key="db" value="/tmp/semantikos/sqlunet-fn.db" />
+          <entry key="standAlone" value="true" />
+        </map>
+      </option>
+      <option name="executionName" />
+      <option name="externalProjectPath" value="$PROJECT_DIR$/frameNet" />
+      <option name="externalSystemIdString" value="GRADLE" />
+      <option name="scriptParameters" value="" />
+      <option name="taskDescriptions">
+        <list />
+      </option>
+      <option name="taskNames">
+        <list>
+          <option value=":frameNet:testDebugUnitTest" />
+          <option value="--tests" />
+          <option value="&quot;org.sqlunet.framenet.provider.RunQueriesAsExplainTest&quot;" />
+        </list>
+      </option>
+      <option name="vmOptions" value="-Ddb=&quot;$TempDir$/semantikos/sqlunet-fn.db&quot;" />
+    </ExternalSystemSettings>
+    <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+    <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+    <DebugAllEnabled>false</DebugAllEnabled>
+    <RunAsTest>true</RunAsTest>
+    <method v="2" />
+  </configuration>
+</component>

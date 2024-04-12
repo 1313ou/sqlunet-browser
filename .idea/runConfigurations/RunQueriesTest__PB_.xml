@@ -1,0 +1,31 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="RunQueriesTest (PB)" type="GradleRunConfiguration" factoryName="Gradle" folderName="With EXPLAIN">
+    <ExternalSystemSettings>
+      <option name="env">
+        <map>
+          <entry key="db" value="/tmp/semantikos/sqlunet-vn.db" />
+        </map>
+      </option>
+      <option name="executionName" />
+      <option name="externalProjectPath" value="$PROJECT_DIR$/propbank" />
+      <option name="externalSystemIdString" value="GRADLE" />
+      <option name="scriptParameters" value="" />
+      <option name="taskDescriptions">
+        <list />
+      </option>
+      <option name="taskNames">
+        <list>
+          <option value=":propbank:testDebugUnitTest" />
+          <option value="--tests" />
+          <option value="&quot;org.sqlunet.propbank.provider.RunQueriesAsExplainTest&quot;" />
+        </list>
+      </option>
+      <option name="vmOptions" value="-Ddb=&quot;$TempDir$/semantikos/sqlunet-vn.db&quot;" />
+    </ExternalSystemSettings>
+    <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+    <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+    <DebugAllEnabled>false</DebugAllEnabled>
+    <RunAsTest>true</RunAsTest>
+    <method v="2" />
+  </configuration>
+</component>
