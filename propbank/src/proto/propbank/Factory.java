@@ -54,7 +54,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 			case PBROLESET1:
 				table = "${rolesets.table}";
-				selection = "${rolesets.rolesetid} = ?";
+				selection = "${rolesets.rolesetid} = #{uri_last}";
 				break;
 
 			// J O I N S

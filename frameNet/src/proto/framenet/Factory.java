@@ -68,18 +68,22 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 			case LEXUNIT1:
 				table = "${lexunits.table}";
+				selection = "${lexunits.luid} = #{uri_last}";
 				break;
 
 			case FRAME1:
 				table = "${frames.table}";
+				selection = "${frames.frameid} = #{uri_last}";
 				break;
 
 			case SENTENCE1:
 				table = "${sentences.table}";
+				selection = "${sentences.sentenceid} = #{uri_last}";
 				break;
 
 			case ANNOSET1:
 				table = "${annosets.table}";
+				selection = "${annosets.annosetid} = #{uri_last}";
 				break;
 
 			// J O I N S

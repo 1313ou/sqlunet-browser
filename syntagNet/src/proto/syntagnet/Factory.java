@@ -39,7 +39,11 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 			case COLLOCATIONS:
 				table = "${syntagms.table}";
-				selection = "${syntagms.syntagmid} = ?";
+				break;
+
+			case COLLOCATION1:
+				table = "${syntagms.table}";
+				selection = "${syntagms.syntagmid} = #{uri_last}";
 				break;
 
 			// J O I N S
@@ -76,7 +80,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 	private enum Key
 	{
-		COLLOCATIONS, COLLOCATIONS_X
+		COLLOCATIONS, COLLOCATION1, COLLOCATIONS_X
 	}
 
 	private static String quote(String str)
