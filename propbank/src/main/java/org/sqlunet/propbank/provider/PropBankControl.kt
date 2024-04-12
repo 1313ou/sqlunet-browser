@@ -14,7 +14,7 @@ import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_X
 object PropBankControl {
 
     // table codes
-    const val PBROLESET = 10
+    const val PBROLESET1 = 10
     const val PBROLESETS = 11
 
     // join codes
@@ -35,20 +35,20 @@ object PropBankControl {
     const val SUGGEST_FTS_WORDS = 602
 
     @JvmStatic
-    fun queryMain(code: Int, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
+    fun queryMain(code: Int, uriLast: String, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
         val table: String
         var selection = selection0
         var groupBy: String? = null
         when (code) {
             PBROLESETS -> table = Q.PBROLESETS.TABLE
-            PBROLESET -> {
+            PBROLESET1 -> {
                 table = Q.PBROLESET1.TABLE
                 if (selection != null) {
                     selection += " AND "
                 } else {
                     selection = ""
                 }
-                selection += Q.PBROLESET1.SELECTION
+                selection += Q.PBROLESET1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.ROLESETID + " = " + uriLast
             }
 
             PBROLESETS_X_BY_ROLESET -> {
@@ -123,5 +123,10 @@ object PropBankControl {
         return Result(table, projection, selection, selectionArgs, null)
     }
 
-    class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?)
+    data class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?) {
+
+        override fun toString(): String {
+            return "table='$table'\nprojection=${projection.contentToString()}\nselection='$selection'\nselectionArgs=${selectionArgs.contentToString()}\ngroupBy=$groupBy"
+        }
+    }
 }

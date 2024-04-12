@@ -150,5 +150,10 @@ object XNetControl {
         return Result(table, projection, selection, selectionArgs, groupBy, orderBy)
     }
 
-    class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?, @JvmField val orderBy: String?)
+    data class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?, @JvmField val orderBy: String?) {
+
+        override fun toString(): String {
+            return "table='$table'\nprojection=${projection.contentToString()}\nselection='$selection'\nselectionArgs=${selectionArgs.contentToString()}\ngroupBy=$groupBy"
+        }
+    }
 }

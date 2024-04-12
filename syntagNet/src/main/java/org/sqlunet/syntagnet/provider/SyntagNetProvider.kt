@@ -29,7 +29,8 @@ class SyntagNetProvider : BaseProvider() {
 
     override fun getType(uri: Uri): String {
         return when (uriMatcher.match(uri)) {
-            SyntagNetControl.COLLOCATIONS -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + SnCollocations.URI
+            SyntagNetControl.COLLOCATION1 -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + SnCollocations.URI
+            SyntagNetControl.COLLOCATIONS -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + SnCollocations.URI
             SyntagNetControl.COLLOCATIONS_X -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + SnCollocations_X.URI
             else -> throw UnsupportedOperationException("Illegal MIME type")
         }
@@ -50,7 +51,7 @@ class SyntagNetProvider : BaseProvider() {
         if (code == UriMatcher.NO_MATCH) {
             throw RuntimeException("Malformed URI $uri")
         }
-        val result = queryMain(code, projection0, selection0, selectionArgs0)
+        val result = queryMain(code, uri.lastPathSegment!!, projection0, selection0, selectionArgs0)
         if (result != null) {
             val sql = SQLiteQueryBuilder.buildQueryString(false, result.table, result.projection, result.selection, result.groupBy, null, sortOrder0, null)
             logSql(sql, *selectionArgs0 ?: arrayOf())
@@ -91,6 +92,7 @@ class SyntagNetProvider : BaseProvider() {
         }
 
         private fun matchURIs() {
+            uriMatcher.addURI(AUTHORITY, SnCollocations.URI, SyntagNetControl.COLLOCATION1)
             uriMatcher.addURI(AUTHORITY, SnCollocations.URI, SyntagNetControl.COLLOCATIONS)
             uriMatcher.addURI(AUTHORITY, SnCollocations_X.URI, SyntagNetControl.COLLOCATIONS_X)
         }

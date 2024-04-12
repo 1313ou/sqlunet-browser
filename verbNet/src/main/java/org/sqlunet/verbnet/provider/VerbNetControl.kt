@@ -51,7 +51,7 @@ object VerbNetControl {
                 } else {
                     selection = ""
                 }
-                selection += Q.VNCLASS1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast)
+                selection += Q.VNCLASS1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.CLASSID + " = " + uriLast
             }
 
             WORDS_VNCLASSES -> table = Q.WORDS_VNCLASSES.TABLE
@@ -128,5 +128,10 @@ object VerbNetControl {
         return Result(table, projection, selection, selectionArgs, null)
     }
 
-    class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?)
+    data class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?) {
+
+        override fun toString(): String {
+            return "table='$table'\nprojection=${projection.contentToString()}\nselection='$selection'\nselectionArgs=${selectionArgs.contentToString()}\ngroupBy=$groupBy"
+        }
+    }
 }

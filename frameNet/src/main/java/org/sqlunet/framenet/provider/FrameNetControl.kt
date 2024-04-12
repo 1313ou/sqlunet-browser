@@ -13,16 +13,16 @@ import android.app.SearchManager
 object FrameNetControl {
 
     // table codes
-    const val LEXUNIT = 10
+    const val LEXUNIT1 = 10
     const val LEXUNITS = 11
     const val LEXUNITS_X_BY_LEXUNIT = 12
-    const val FRAME = 20
+    const val FRAME1 = 20
     const val FRAMES = 21
     const val FRAMES_X_BY_FRAME = 23
     const val FRAMES_RELATED = 25
-    const val SENTENCE = 30
+    const val SENTENCE1 = 30
     const val SENTENCES = 31
-    const val ANNOSET = 40
+    const val ANNOSET1 = 40
     const val ANNOSETS = 41
     const val SENTENCES_LAYERS_X = 50
     const val ANNOSETS_LAYERS_X = 51
@@ -70,44 +70,44 @@ object FrameNetControl {
             FRAMES -> table = Q.FRAMES.TABLE
             ANNOSETS -> table = Q.ANNOSETS.TABLE
             SENTENCES -> table = Q.SENTENCES.TABLE
-            LEXUNIT -> {
+            LEXUNIT1 -> {
                 table = Q.LEXUNIT1.TABLE
                 if (selection != null) {
                     selection += " AND "
                 } else {
                     selection = ""
                 }
-                selection += V.LUID + " = " + uriLast
+                selection += Q.LEXUNIT1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.LUID + " = " + uriLast
             }
 
-            FRAME -> {
+            FRAME1 -> {
                 table = Q.FRAME1.TABLE
                 if (selection != null) {
                     selection += " AND "
                 } else {
                     selection = ""
                 }
-                selection += V.FRAMEID + " = " + uriLast
+                selection += Q.FRAME1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.FRAMEID + " = " + uriLast
             }
 
-            SENTENCE -> {
+            SENTENCE1 -> {
                 table = Q.SENTENCE1.TABLE
                 if (selection != null) {
                     selection += " AND "
                 } else {
                     selection = ""
                 }
-                selection += V.SENTENCEID + " = " + uriLast
+                selection += Q.SENTENCE1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.SENTENCEID + " = " + uriLast
             }
 
-            ANNOSET -> {
+            ANNOSET1 -> {
                 table = Q.ANNOSET1.TABLE
                 if (selection != null) {
                     selection += " AND "
                 } else {
                     selection = ""
                 }
-                selection += V.ANNOSETID + " = " + uriLast
+                selection += Q.ANNOSET1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.ANNOSETID + " = " + uriLast
             }
 
             LEXUNITS_OR_FRAMES -> table = Q.LEXUNITS_OR_FRAMES.TABLE
@@ -223,5 +223,10 @@ object FrameNetControl {
         return Result(table, projection, selection, selectionArgs, null)
     }
 
-    class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?)
+    data class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?) {
+
+        override fun toString(): String {
+            return "table='$table'\nprojection=${projection.contentToString()}\nselection='$selection'\nselectionArgs=${selectionArgs.contentToString()}\ngroupBy=$groupBy"
+        }
+    }
 }

@@ -90,7 +90,7 @@ object WordNetControl {
                     selection = ""
                 }
                 //selection += Q.WORDID + " = " + uriLast
-                selection += Q.WORD1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast)
+                selection += Q.WORD1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.WORDID + " = " + uriLast
             }
 
             SENSE -> {
@@ -101,7 +101,7 @@ object WordNetControl {
                     selection = ""
                 }
                 //selection += Q.SENSEID + " = " + uriLast
-                selection += Q.SENSE1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast)
+                selection += Q.SENSE1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.SENSEID + " = " + uriLast
             }
 
             SYNSET -> {
@@ -112,7 +112,7 @@ object WordNetControl {
                     selection = ""
                 }
                 //selection += Q.SYNSETID + " = " + uriLast
-                selection += Q.SYNSET1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast)
+                selection += Q.SYNSET1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.SYNSETID + " = " + uriLast
             }
 
             DICT -> table = Q.DICT.TABLE
@@ -245,7 +245,12 @@ object WordNetControl {
         return Result(table, projection, selection, selectionArgs, null)
     }
 
-    class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?)
+    data class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?) {
+
+        override fun toString(): String {
+            return "table='$table'\nprojection=${projection.contentToString()}\nselection='$selection'\nselectionArgs=${selectionArgs.contentToString()}\ngroupBy=$groupBy"
+        }
+    }
 
     fun interface Factory {
 

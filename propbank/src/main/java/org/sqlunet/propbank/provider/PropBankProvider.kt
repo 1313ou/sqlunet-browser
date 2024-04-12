@@ -39,7 +39,7 @@ class PropBankProvider : BaseProvider() {
 
     override fun getType(uri: Uri): String {
         return when (uriMatcher.match(uri)) {
-            PropBankControl.PBROLESET -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + PbRoleSets.URI
+            PropBankControl.PBROLESET1 -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + PbRoleSets.URI
             PropBankControl.PBROLESETS -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + PbRoleSets.URI
             PropBankControl.PBROLESETS_X -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_X.URI
             PropBankControl.PBROLESETS_X_BY_ROLESET -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_X.URI_BY_ROLESET
@@ -74,7 +74,7 @@ class PropBankProvider : BaseProvider() {
         }
         var result: PropBankControl.Result?
         // MAIN
-        result = queryMain(code, projection0, selection0, selectionArgs0)
+        result = queryMain(code, uri.lastPathSegment!!, projection0, selection0, selectionArgs0)
         if (result == null) {
             // TEXTSEARCH
             result = querySearch(code, projection0, selection0, selectionArgs0)
@@ -126,7 +126,7 @@ class PropBankProvider : BaseProvider() {
         }
 
         private fun matchURIs() {
-            uriMatcher.addURI(AUTHORITY, PbRoleSets.URI, PropBankControl.PBROLESET)
+            uriMatcher.addURI(AUTHORITY, PbRoleSets.URI, PropBankControl.PBROLESET1)
             uriMatcher.addURI(AUTHORITY, PbRoleSets.URI, PropBankControl.PBROLESETS)
             uriMatcher.addURI(AUTHORITY, PbRoleSets_X.URI, PropBankControl.PBROLESETS_X)
             uriMatcher.addURI(AUTHORITY, PbRoleSets_X.URI_BY_ROLESET, PropBankControl.PBROLESETS_X_BY_ROLESET)

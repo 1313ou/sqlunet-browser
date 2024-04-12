@@ -55,18 +55,18 @@ class FrameNetProvider : BaseProvider() {
 
     override fun getType(uri: Uri): String {
         return when (uriMatcher.match(uri)) {
-            FrameNetControl.LEXUNIT -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + LexUnits.URI
+            FrameNetControl.LEXUNIT1 -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + LexUnits.URI
             FrameNetControl.LEXUNITS -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + LexUnits.URI
             FrameNetControl.LEXUNITS_X_BY_LEXUNIT -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + LexUnits_X.URI_BY_LEXUNIT
             FrameNetControl.LEXUNITS_OR_FRAMES -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + LexUnits_or_Frames.URI
             FrameNetControl.LEXUNITS_OR_FRAMES_FN -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + LexUnits_or_Frames.URI_FN
-            FrameNetControl.FRAME -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + FrameNetContract.Frames.URI
+            FrameNetControl.FRAME1 -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + FrameNetContract.Frames.URI
             FrameNetControl.FRAMES -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + FrameNetContract.Frames.URI
             FrameNetControl.FRAMES_X_BY_FRAME -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + Frames_X.URI_BY_FRAME
             FrameNetControl.FRAMES_RELATED -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + Frames_Related.URI
-            FrameNetControl.SENTENCE -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + Sentences.URI
+            FrameNetControl.SENTENCE1 -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + Sentences.URI
             FrameNetControl.SENTENCES -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + Sentences.URI
-            FrameNetControl.ANNOSET -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + AnnoSets.URI
+            FrameNetControl.ANNOSET1 -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + AnnoSets.URI
             FrameNetControl.ANNOSETS -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + AnnoSets.URI
             FrameNetControl.SENTENCES_LAYERS_X -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + Sentences_Layers_X.URI
             FrameNetControl.ANNOSETS_LAYERS_X -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + AnnoSets_Layers_X.URI
@@ -165,18 +165,18 @@ class FrameNetProvider : BaseProvider() {
         }
 
         private fun matchURIs() {
-            uriMatcher.addURI(AUTHORITY, LexUnits.URI, FrameNetControl.LEXUNIT)
+            uriMatcher.addURI(AUTHORITY, LexUnits.URI, FrameNetControl.LEXUNIT1)
             uriMatcher.addURI(AUTHORITY, LexUnits.URI, FrameNetControl.LEXUNITS)
             uriMatcher.addURI(AUTHORITY, LexUnits_X.URI_BY_LEXUNIT, FrameNetControl.LEXUNITS_X_BY_LEXUNIT)
             uriMatcher.addURI(AUTHORITY, LexUnits_or_Frames.URI, FrameNetControl.LEXUNITS_OR_FRAMES)
             uriMatcher.addURI(AUTHORITY, LexUnits_or_Frames.URI_FN, FrameNetControl.LEXUNITS_OR_FRAMES_FN)
-            uriMatcher.addURI(AUTHORITY, FrameNetContract.Frames.URI, FrameNetControl.FRAME)
+            uriMatcher.addURI(AUTHORITY, FrameNetContract.Frames.URI, FrameNetControl.FRAME1)
             uriMatcher.addURI(AUTHORITY, FrameNetContract.Frames.URI, FrameNetControl.FRAMES)
             uriMatcher.addURI(AUTHORITY, Frames_X.URI_BY_FRAME, FrameNetControl.FRAMES_X_BY_FRAME)
             uriMatcher.addURI(AUTHORITY, Frames_Related.URI, FrameNetControl.FRAMES_RELATED)
-            uriMatcher.addURI(AUTHORITY, Sentences.URI, FrameNetControl.SENTENCE)
+            uriMatcher.addURI(AUTHORITY, Sentences.URI, FrameNetControl.SENTENCE1)
             uriMatcher.addURI(AUTHORITY, Sentences.URI, FrameNetControl.SENTENCES)
-            uriMatcher.addURI(AUTHORITY, AnnoSets.URI, FrameNetControl.ANNOSET)
+            uriMatcher.addURI(AUTHORITY, AnnoSets.URI, FrameNetControl.ANNOSET1)
             uriMatcher.addURI(AUTHORITY, AnnoSets.URI, FrameNetControl.ANNOSETS)
             uriMatcher.addURI(AUTHORITY, Sentences_Layers_X.URI, FrameNetControl.SENTENCES_LAYERS_X)
             uriMatcher.addURI(AUTHORITY, AnnoSets_Layers_X.URI, FrameNetControl.ANNOSETS_LAYERS_X)
