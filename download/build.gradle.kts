@@ -63,7 +63,6 @@ dependencies {
     implementation("androidx.core:core-ktx:${coreVersion}")
     implementation("androidx.fragment:fragment-ktx:${fragmentVersion}")
     implementation("androidx.preference:preference-ktx:${preferenceVersion}")
-    implementation("androidx.legacy:legacy-preference-v14:1.0.0")
     implementation("androidx.work:work-runtime:${workVersion}")
     implementation("com.google.android.material:material:${materialVersion}")
 }
