@@ -74,29 +74,18 @@ class SearchTextFragment : BaseSearchFragment() {
         // status
         // var[] textSearches = getResources().getTextArray(R.array.searchtext_modes)
 
-        // as per selected mode
-        val searchUri: String
-        val id: String
-        val idType: String
-        val target: String
-        val columns: Array<String>
-        val hiddenColumns: Array<String>
-        val database: String
-        if (modePosition == 0) {
-            searchUri = makeUri(Lookup_FTS_FnSentences_X.URI_BY_SENTENCE)
-            id = Lookup_FTS_FnSentences_X.SENTENCEID
-            idType = "fnsentence"
-            target = Lookup_FTS_FnSentences_X.TEXT
-            columns = arrayOf(Lookup_FTS_FnSentences_X.TEXT)
-            hiddenColumns = arrayOf(
-                Lookup_FTS_FnSentences_X.SENTENCEID,
-                "GROUP_CONCAT(DISTINCT  frame || '@' || frameid) AS " + Lookup_FTS_FnSentences_X.FRAMES,
-                "GROUP_CONCAT(DISTINCT  lexunit || '@' || luid) AS " + Lookup_FTS_FnSentences_X.LEXUNITS
-            )
-            database = "fn"
-        } else {
-            return
-        }
+        // arguments
+        val searchUri: String = makeUri(Lookup_FTS_FnSentences_X.URI_BY_SENTENCE)
+        val id: String = Lookup_FTS_FnSentences_X.SENTENCEID
+        val idType = "fnsentence"
+        val target: String = Lookup_FTS_FnSentences_X.TEXT
+        val columns: Array<String> = arrayOf(Lookup_FTS_FnSentences_X.TEXT)
+        val hiddenColumns: Array<String> = arrayOf(
+            Lookup_FTS_FnSentences_X.SENTENCEID,
+            "GROUP_CONCAT(DISTINCT  frame || '@' || frameid) AS " + Lookup_FTS_FnSentences_X.FRAMES,
+            "GROUP_CONCAT(DISTINCT  lexunit || '@' || luid) AS " + Lookup_FTS_FnSentences_X.LEXUNITS
+        )
+        val database = "fn"
 
         // parameters
         val args = Bundle()
