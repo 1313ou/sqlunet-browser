@@ -95,6 +95,7 @@ import java.util.TreeMap
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(fragment) {
+
     /**
      * standAlone
      * FN standalone without WordNet
@@ -1560,6 +1561,32 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         return changed
     }
 
+    data class Layer(
+        val layerType: String,
+        val annotations: String,
+        val annoSetId: Long,
+        val rank: Int,
+        val text: String,
+    )
+
+    private val importance = mapOf("Target" to 1, "FE" to 2, "PT" to 3, "GF" to 4, "BNC" to 5)
+
+    private val byImportance = compareBy<Layer> { importance[it.layerType] ?: 6 }.thenBy { it.layerType }
+
+    private fun readLayer(cursor: Cursor, idSentenceText: Int, idLayerType: Int, idRank: Int, idAnnotations: Int, idAnnoSetId: Int): MutableList<Layer> {
+        val layers = ArrayList<Layer>()
+        do {
+            val layerType = cursor.getString(idLayerType)
+            val annotations = cursor.getString(idAnnotations)
+            val annoSetId = cursor.getLong(idAnnoSetId)
+            val rank = cursor.getString(idRank)
+            val text = cursor.getString(idSentenceText)
+            layers.add(Layer(layerType, annotations, annoSetId, rank.toInt(), text))
+        } while (cursor.moveToNext())
+        layers.sortWith(byImportance)
+        return layers
+    }
+
     /**
      * AnnoSets helper function
      *
@@ -1629,7 +1656,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // annotations
                 val labels = Utils.parseLabels(annotations)
                 if (labels != null) {
-                    for (label in labels) {
+                    for (label in labels.sortedBy { it.from.toInt() }) {
                         sb.append('\n')
                         sb.append('\t')
                         sb.append('\t')
