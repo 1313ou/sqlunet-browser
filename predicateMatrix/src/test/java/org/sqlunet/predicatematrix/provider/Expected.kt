@@ -8,7 +8,6 @@ package org.sqlunet.predicatematrix.provider
  */
 object Expected {
 
-    @JvmStatic
     fun expected(code: Int, uriLast: String, projection0: Array<String>, selection0: String?, selectionArgs0: Array<String>?): PredicateMatrixControl.Result? {
         val table: String
         var projection = projection0

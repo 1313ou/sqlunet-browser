@@ -17,7 +17,6 @@ object History {
      * @param context context
      * @param query   source
      */
-    @JvmStatic
     fun makeSearchIntent(context: Context, query: String?): Intent {
         return try {
             val browserClass = context.getString(R.string.activity_browse)
@@ -36,7 +35,6 @@ object History {
      * @param context context
      * @param query   query
      */
-    @JvmStatic
     fun recordQuery(context: Context, query: String?) {
         val suggestions = android.provider.SearchRecentSuggestions(context, SearchRecentSuggestions.getAuthority(context), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
         suggestions.saveRecentQuery(query, null)

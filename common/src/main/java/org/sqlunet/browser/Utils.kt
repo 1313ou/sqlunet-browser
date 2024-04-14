@@ -1,7 +1,6 @@
 /*
  * Copyright (c) 2024. Bernard Bou <1313ou@gmail.com>
  */
-
 package org.sqlunet.browser
 
 import android.os.Build

@@ -5,9 +5,8 @@ package org.sqlunet.speak
 
 import java.util.regex.Pattern
 
-open class Pronunciation(@JvmField val ipa: String, variety: String?) : Comparable<Pronunciation> {
+open class Pronunciation(val ipa: String, variety: String?) : Comparable<Pronunciation> {
 
-    @JvmField
     val variety: String?
 
     fun hasVariety(): Boolean {
@@ -76,7 +75,6 @@ open class Pronunciation(@JvmField val ipa: String, variety: String?) : Comparab
 
         private val PATTERN2 = Pattern.compile("/(.*)/")
 
-        @JvmStatic
         fun pronunciations(pronunciationBundle: String?): List<Pronunciation>? {
             if (pronunciationBundle == null) {
                 return null
@@ -102,7 +100,6 @@ open class Pronunciation(@JvmField val ipa: String, variety: String?) : Comparab
             return result
         }
 
-        @JvmStatic
         fun sortedPronunciations(pronunciationBundle: String?): String? {
             if (pronunciationBundle == null) {
                 return null

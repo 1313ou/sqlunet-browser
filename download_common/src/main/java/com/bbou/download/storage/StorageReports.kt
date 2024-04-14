@@ -61,7 +61,7 @@ object StorageReports {
      * @return pair of names (user-friendly styled display) and values (dir absolute path)
      */
     @SuppressLint("ObsoleteSdkInt")
-    @JvmStatic
+
     fun getStyledCachesNamesValues(context: Context): Pair<Array<out CharSequence>, Array<String>> {
         val names: MutableList<CharSequence> = ArrayList()
         val values: MutableList<String> = ArrayList()
@@ -123,7 +123,6 @@ object StorageReports {
      * @param context context
      * @return pair of names (user-friendly styled display) and values (dir absolute path)
      */
-    @JvmStatic
     fun getStyledStorageDirectoriesNamesValues(context: Context): Pair<Array<out CharSequence>, Array<String>> {
         val names: MutableList<CharSequence> = ArrayList()
         val values: MutableList<String> = ArrayList()
@@ -148,7 +147,6 @@ object StorageReports {
      * @param context context
      * @return pair of names and values
      */
-    @JvmStatic
     fun getStyledStorageDirectoriesShortNamesValues(context: Context): Pair<Array<out CharSequence>, Array<String>> {
         val names: MutableList<CharSequence> = ArrayList()
         val values: MutableList<String> = ArrayList()

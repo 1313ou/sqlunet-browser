@@ -68,7 +68,6 @@ object Storage {
      * @param context context
      * @return database storage directory
      */
-    @JvmStatic
     @SuppressLint("CommitPrefEdits", "ApplySharedPref")
     fun getSqlUNetStorage(context: Context): File {
         // test if set in preference
@@ -145,7 +144,6 @@ object Storage {
      * @param context context
      * @return data cache
      */
-    @JvmStatic
     @SuppressLint("CommitPrefEdits", "ApplySharedPref")
     fun getCacheDir(context: Context): String {
         // test if set in preference

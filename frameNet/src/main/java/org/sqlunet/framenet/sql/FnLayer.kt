@@ -17,11 +17,11 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal class FnLayer private constructor(
-    @JvmField val layerId: Long,
-    @JvmField val layerType: String,
-    @JvmField val annoSetId: Long,
-    @JvmField val rank: Int,
-    @JvmField val labels: List<FnLabel>?,
+    val layerId: Long,
+    val layerType: String,
+    val annoSetId: Long,
+    val rank: Int,
+    val labels: List<FnLabel>?,
 ) {
 
     companion object {
@@ -33,7 +33,6 @@ internal class FnLayer private constructor(
          * @param sentenceId sentence id
          * @return layers
          */
-        @JvmStatic
         fun makeFromSentence(connection: SQLiteDatabase, sentenceId: Long): List<FnLayer>? {
             var result: MutableList<FnLayer>? = null
             FnLayerQueryFromSentenceId(connection, sentenceId).use {
@@ -60,7 +59,6 @@ internal class FnLayer private constructor(
          * @param annoSetId  annoset id
          * @return layers
          */
-        @JvmStatic
         fun makeFromAnnoSet(connection: SQLiteDatabase, annoSetId: Long): List<FnLayer?>? {
             var result: MutableList<FnLayer?>? = null
             FnLayerQueryFromAnnoSetId(connection, annoSetId).use {

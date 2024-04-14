@@ -15,7 +15,6 @@ object Queries {
 
     // B R O W S E R
 
-    @JvmStatic
     fun prepareWordSelect(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI
@@ -40,7 +39,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareWordXSelect(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.URI
@@ -66,7 +64,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareWnXSelect(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI
@@ -89,7 +86,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareWnPronunciationXSelect(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.URI
@@ -113,7 +109,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareWord(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Lexes_Morphs.URI_BY_WORD
@@ -127,7 +122,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareSenses(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI
@@ -152,7 +146,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareSenses(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI
@@ -177,7 +170,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareSense(senseId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Senses.URI
@@ -190,7 +182,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareSense(senseKey: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Senses.URI
@@ -203,7 +194,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareSense(synsetId: Long, @Suppress("UNUSED_PARAMETER") wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Synsets_Poses_Domains.URI
@@ -217,7 +207,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareSynset(synsetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Synsets_Poses_Domains.URI
@@ -231,7 +220,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareMembers(synsetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Senses_Words.URI
@@ -242,7 +230,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareMembers2(synsetId: Long, membersGrouped: Boolean): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = if (membersGrouped) WordNetContract.Senses_Words.URI_BY_SYNSET else WordNetContract.Senses_Words.URI
@@ -253,7 +240,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareSamples(synsetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Samples.URI
@@ -267,7 +253,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareRelations(synsetId: Long, wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.AnyRelations_Senses_Words_X.URI_BY_SYNSET
@@ -287,7 +272,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareSemRelations(synsetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.SemRelations_Synsets_Words_X.URI_BY_SYNSET
@@ -304,7 +288,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareSemRelations(synsetId: Long, relationId: Int): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.SemRelations_Synsets_Words_X.URI_BY_SYNSET
@@ -320,7 +303,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareLexRelations(synsetId: Long, wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.LexRelations_Senses_Words_X.URI_BY_SYNSET
@@ -338,7 +320,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareLexRelations(synsetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.LexRelations_Senses_Words_X.URI_BY_SYNSET
@@ -355,7 +336,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareVFrames(synsetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Senses_VerbFrames.URI
@@ -365,7 +345,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareVFrames(synsetId: Long, wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Senses_VerbFrames.URI
@@ -375,7 +354,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareVTemplates(synsetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Senses_VerbTemplates.URI
@@ -385,7 +363,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareVTemplates(synsetId: Long, wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Senses_VerbTemplates.URI
@@ -395,7 +372,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareAdjPosition(synsetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Senses_AdjPositions.URI
@@ -405,7 +381,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareAdjPosition(synsetId: Long, wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Senses_AdjPositions.URI
@@ -415,7 +390,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareMorphs(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Lexes_Morphs.URI
@@ -427,7 +401,6 @@ object Queries {
 
     // S N   B R O W S E R
 
-    @JvmStatic
     fun prepareSelectSn(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI

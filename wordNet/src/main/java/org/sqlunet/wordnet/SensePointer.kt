@@ -57,7 +57,6 @@ open class SensePointer : SynsetPointer, HasWordId {
 
     companion object {
 
-        @JvmField
         val CREATOR: Parcelable.Creator<SensePointer> = object : Parcelable.Creator<SensePointer> {
             override fun createFromParcel(parcel: Parcel): SensePointer {
                 return SensePointer(parcel)

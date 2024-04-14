@@ -15,8 +15,8 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class VnClass private constructor(
-    @JvmField val className: String,
-    @JvmField val classId: Long,
+    val className: String,
+    val classId: Long,
     val groupings: String?,
 ) {
 
@@ -29,7 +29,6 @@ class VnClass private constructor(
          * @param classId    is the class id to build the query from
          * @return list of VerbNet classes
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, classId: Long): VnClass? {
             VnClassQuery(connection, classId).use {
                 it.execute()

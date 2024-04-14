@@ -13,10 +13,8 @@ internal class DialogOptions {
     private var showNegativeButton = true
     private var showTitle = true
 
-    @JvmField
     var cancelable = false
 
-    @JvmField
     var storeType = StoreType.GOOGLE
     var titleResId = R.string.rate_dialog_title
     var messageResId = R.string.rate_dialog_message
@@ -29,7 +27,6 @@ internal class DialogOptions {
     private var neutralText: String? = null
     private var negativeText: String? = null
 
-    @JvmField
     var view: View? = null
 
     fun shouldShowNeutralButton(): Boolean {

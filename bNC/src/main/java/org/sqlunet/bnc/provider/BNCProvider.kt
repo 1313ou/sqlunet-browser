@@ -93,7 +93,6 @@ class BNCProvider : BaseProvider() {
             uriMatcher.addURI(AUTHORITY, BNCContract.Words_BNCs.URI, BNCControl.WORDS_BNC)
         }
 
-        @JvmStatic
         fun makeUri(table: String): String {
             return "$SCHEME$AUTHORITY/$table"
         }

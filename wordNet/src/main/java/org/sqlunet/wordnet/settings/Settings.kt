@@ -20,7 +20,6 @@ object Settings {
      * @param context context
      * @return preferred recurse max level
      */
-    @JvmStatic
     fun getRecursePref(context: Context): Int {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         val value = sharedPref.getString(PREF_RELATION_RECURSE, null) ?: return -1
@@ -37,7 +36,6 @@ object Settings {
      * @param context context
      * @return bundle
      */
-    @JvmStatic
     fun getRenderParametersPref(context: Context): Bundle? {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         val displaySemRelationName = sharedPref.getBoolean(PREF_DISPLAY_SEM_RELATION_NAME, true)

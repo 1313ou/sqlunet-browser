@@ -13,9 +13,9 @@ package org.sqlunet.framenet.sql
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class FnRelatedFrame private constructor(
-    @JvmField val frameId: Long,
-    @JvmField val frameName: String,
-    @JvmField val relation: String,
+    val frameId: Long,
+    val frameName: String,
+    val relation: String,
 ) {
 
     companion object {

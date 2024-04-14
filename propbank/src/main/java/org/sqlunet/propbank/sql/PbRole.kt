@@ -17,11 +17,11 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal class PbRole private constructor(
-    @JvmField val roleId: Long,
-    @JvmField val roleDescr: String,
-    @JvmField val argType: String,
-    @JvmField val roleFunc: String,
-    @JvmField val roleTheta: String?,
+    val roleId: Long,
+    val roleDescr: String,
+    val argType: String,
+    val roleFunc: String,
+    val roleTheta: String?,
 ) {
 
     companion object {
@@ -33,7 +33,6 @@ internal class PbRole private constructor(
          * @param roleSetId  role set id to build query from
          * @return list of PropBank roles
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, roleSetId: Long): List<PbRole?>? {
             var result: MutableList<PbRole?>? = null
             PbRoleQueryFromRoleSetId(connection, roleSetId).use {

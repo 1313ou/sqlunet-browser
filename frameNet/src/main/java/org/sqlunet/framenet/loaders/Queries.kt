@@ -20,7 +20,6 @@ object Queries {
      */
     const val ISLIKE = "islike"
 
-    @JvmStatic
     fun prepareSelect(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = if (FnFlags.standAlone) FrameNetContract.LexUnits_or_Frames.URI_FN else FrameNetContract.LexUnits_or_Frames.URI
@@ -42,7 +41,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareFrame(frameId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.Frames_X.URI_BY_FRAME
@@ -60,7 +58,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareRelatedFrames(frameId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.Frames_Related.URI
@@ -77,7 +74,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareFesForFrame(frameId: Int): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.Frames_FEs.URI_BY_FE
@@ -97,7 +93,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareLexUnit(luId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.LexUnits_X.URI_BY_LEXUNIT
@@ -117,7 +112,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareLexUnitsForFrame(frameId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.LexUnits_X.URI_BY_LEXUNIT
@@ -137,7 +131,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareLexUnitsForWordAndPos(wordId: Long, pos: Char?): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = if (FnFlags.standAlone) FrameNetContract.Words_LexUnits_Frames.URI_FN else FrameNetContract.Words_LexUnits_Frames.URI
@@ -159,7 +152,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareGovernorsForLexUnit(luId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = if (FnFlags.standAlone) FrameNetContract.LexUnits_Governors.URI_FN else FrameNetContract.LexUnits_Governors.URI
@@ -176,7 +168,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareRealizationsForLexicalUnit(luId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.LexUnits_FERealizations_ValenceUnits.URI_BY_REALIZATION
@@ -197,7 +188,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareGroupRealizationsForLexUnit(luId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.URI_BY_PATTERN
@@ -217,7 +207,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareSentence(sentenceId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.Sentences.URI
@@ -230,7 +219,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareSentencesForLexUnit(luId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.URI_BY_SENTENCE
@@ -258,7 +246,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareSentencesForPattern(patternId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.Patterns_Sentences.URI
@@ -273,7 +260,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareSentencesForValenceUnit(vuId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.ValenceUnits_Sentences.URI
@@ -288,7 +274,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareAnnoSet(annoSetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.AnnoSets_Layers_X.URI
@@ -305,7 +290,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareAnnoSetsForGovernor(governorId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.Governors_AnnoSets_Sentences.URI
@@ -320,7 +304,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareAnnoSetsForPattern(patternId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.Patterns_Layers_X.URI
@@ -338,7 +321,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareAnnoSetsForValenceUnit(vuId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.ValenceUnits_Layers_X.URI
@@ -356,7 +338,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareLayersForSentence(sentenceId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = FrameNetContract.Sentences_Layers_X.URI

@@ -63,18 +63,15 @@ internal object Mapping {
      */
     private var relationsByName: MutableMap<String, Relation> = HashMap()
 
-    @JvmStatic
     val posNames: Array<String>
         get() = arrayOf("noun", "verb", "adj", "adv")
 
-    @JvmStatic
     val domainNames: Array<String>
         get() {
             val nameSet: Set<String> = domainsByName.keys
             return nameSet.toTypedArray<String>()
         }
 
-    @JvmStatic
     val relationNames: Array<String>
         get() {
             val nameSet: Set<String> = relationsByName.keys
@@ -86,7 +83,6 @@ internal object Mapping {
      *
      * @param connection connection
      */
-    @JvmStatic
     fun initDomains(connection: SQLiteDatabase) {
         // domain
         try {
@@ -112,7 +108,6 @@ internal object Mapping {
      *
      * @param connection connection
      */
-    @JvmStatic
     @SuppressLint("DefaultLocale")
     fun initRelations(connection: SQLiteDatabase) {
         try {
@@ -172,7 +167,6 @@ internal object Mapping {
      * @param domainName target domain name
      * @return domain id or -1 if not found
      */
-    @JvmStatic
     fun getDomainId(posName: String?, domainName: String?): Int {
         if (posName == null || domainName == null) {
             return ANY_TYPE
@@ -192,7 +186,6 @@ internal object Mapping {
      * @param posName target part-of-speech name
      * @return part-of-speech id or ANYTYPE if not found
      */
-    @JvmStatic
     fun getPosId(posName: String?): Int {
         if (posName == null) {
             return ANY_TYPE
@@ -229,7 +222,6 @@ internal object Mapping {
      * @param relationId target relation id
      * @return relation name or "relation.xxx" if not found
      */
-    @JvmStatic
     fun getRelationName(relationId: Int): String {
         return try {
             val relation = relationsById[relationId]
@@ -245,7 +237,6 @@ internal object Mapping {
      * @param relationName target relation name
      * @return relation id or ANYTYPE if it is not found
      */
-    @JvmStatic
     fun getRelationId(relationName: String?): Int {
         return if (relationName == null) {
             ANY_TYPE
@@ -263,7 +254,6 @@ internal object Mapping {
      * @param relationId target relation id
      * @return whether this relation can recurse
      */
-    @JvmStatic
     fun canRecurse(relationId: Int): Boolean {
         return try {
             val relation = relationsById[relationId]

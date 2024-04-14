@@ -71,14 +71,11 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
     // resources
 
-    @JvmField
     protected val membersLabel: String
     private val groupLabel: String
 
-    @JvmField
     protected val rolesLabel: String
 
-    @JvmField
     protected val framesLabel: String
     private val examplesLabel: String
 
@@ -95,7 +92,6 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
     /**
      * Drawable for role sets
      */
-    @JvmField
     val drawableRoles: Drawable
 
     /**

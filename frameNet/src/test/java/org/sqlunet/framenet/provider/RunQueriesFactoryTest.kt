@@ -81,7 +81,6 @@ class RunQueriesFactoryTest {
         println("\n$code\n$r")
     }
 
-
     private fun check(code: Int, r1: FrameNetControl.Result?, r2: FrameNetControl.Result?) {
         assert(r1 != null) { println(code) }
         assert(r2 != null) { println(code) }

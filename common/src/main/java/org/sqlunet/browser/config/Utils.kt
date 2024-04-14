@@ -28,7 +28,6 @@ object Utils {
      * @param askId    ask resource id
      * @param runnable run if confirmed
      */
-    @JvmStatic
     fun confirm(context: Context, @StringRes titleId: Int, @StringRes askId: Int, runnable: Runnable) {
         AlertDialog.Builder(context)
             .setIconAttribute(android.R.attr.alertDialogIcon)
@@ -55,7 +54,6 @@ object Utils {
         return String.format(FORMAT, Math.round(x), "TB")
     }
 
-    @JvmStatic
     fun hrSize(@IntegerRes id: Int, context: Context): String {
         val x = context.resources.getInteger(id).toLong()
         return hrSize(x)

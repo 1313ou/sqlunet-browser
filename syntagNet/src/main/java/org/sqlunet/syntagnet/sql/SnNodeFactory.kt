@@ -24,7 +24,6 @@ internal object SnNodeFactory {
      * @param wordId target word id
      * @return newly created node
      */
-    @JvmStatic
     fun makeSnRootNode(doc: Document, wordId: Long): Node {
         val rootNode = makeNode(doc, doc, "syntagnet", null, SyntagNetImplementation.SN_NS)
         addAttributes(rootNode, "wordid", wordId.toString())
@@ -38,7 +37,6 @@ internal object SnNodeFactory {
      * @param word target word
      * @return newly created node
      */
-    @JvmStatic
     fun makeSnRootNode(doc: Document, word: String?): Node {
         val rootNode = makeNode(doc, doc, "syntagnet", null, SyntagNetImplementation.SN_NS)
         addAttributes(rootNode, "word", word!!)
@@ -66,7 +64,6 @@ internal object SnNodeFactory {
      * @param collocation is the collocation information
      * @param i           the ith collocation
      */
-    @JvmStatic
     fun makeCollocationNode(doc: Document, parent: Node?, collocation: WithDefinitionAndPos, i: Int): Node {
         val collocationElement = makeNode(doc, parent, "collocation", null)
         makeAttribute(collocationElement, "ith", i.toString())
@@ -100,7 +97,6 @@ internal object SnNodeFactory {
      * @param collocation is the collocation information
      * @param i           the ith collocation
      */
-    @JvmStatic
     fun makeSelectorCollocationNode(doc: Document, parent: Node?, collocation: Collocation, i: Int): Node {
         val collocationElement = makeNode(doc, parent, "collocation", null)
         makeAttribute(collocationElement, "ith", i.toString())

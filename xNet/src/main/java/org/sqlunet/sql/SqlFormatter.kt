@@ -86,12 +86,10 @@ object SqlFormatter {
     private const val INDENT_STRING = "    "
     private const val INITIAL = "" //"\n    "
 
-    @JvmStatic
     fun format(source: String): CharSequence {
         return FormatProcess(source, false).perform()
     }
 
-    @JvmStatic
     fun styledFormat(source: CharSequence): CharSequence {
         return FormatProcess(source, true).perform()
     }

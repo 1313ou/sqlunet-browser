@@ -300,7 +300,6 @@ class WordNetProvider : BaseProvider() {
             uriMatcher.addURI(AUTHORITY, Suggest_FTS_Samples.URI + "/", WordNetControl.SUGGEST_FTS_SAMPLES)
         }
 
-        @JvmStatic
         fun makeUri(table: String): String {
             return "$SCHEME$AUTHORITY/$table"
         }

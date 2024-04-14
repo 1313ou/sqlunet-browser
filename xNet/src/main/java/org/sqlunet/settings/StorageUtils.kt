@@ -30,15 +30,12 @@ object StorageUtils {
      */
     private var DATABASE_SIZE_MB = Float.NaN
 
-    @JvmStatic
     fun isAuto(value: String): Boolean {
         return DirType.AUTO.toString() == value
     }
 
-    @JvmField
     val AUTO = DirType.AUTO.toString()
 
-    @JvmField
     val AUTO_LABEL = DirType.AUTO.toDisplay()
 
     // C O L L E C T
@@ -133,7 +130,6 @@ object StorageUtils {
      * @param context context
      * @return list of storage directories (desc-) sorted by size and type
      */
-    @JvmStatic
     fun getSortedStorageDirectories(context: Context): List<StorageDirectory> {
         val storageDirectories = getStorageDirectories(context)
         storageDirectories.sort()
@@ -148,7 +144,6 @@ object StorageUtils {
      * @param context context
      * @return map per type of external storage
      */
-    @JvmStatic
     fun getExternalStorages(context: Context): Map<StorageType, Array<File>> {
 
         // result set of paths
@@ -358,7 +353,6 @@ object StorageUtils {
      * @param path path
      * @return data
      */
-    @JvmStatic
     fun storageStats(path: String): FloatArray {
         val stats = FloatArray(3)
         stats[STORAGE_FREE] = storageFree(path)
@@ -367,7 +361,6 @@ object StorageUtils {
         return stats
     }
 
-    @JvmStatic
     fun getFree(context: Context, target: String): String {
         val file = File(target)
         val dir = if (file.isDirectory()) file.absolutePath else file.getParent()!!
@@ -400,7 +393,6 @@ object StorageUtils {
      * @param dir dir
      * @return free space as string
      */
-    @JvmStatic
     fun storageFreeAsString(dir: File): CharSequence {
         return storageFreeAsString(dir.absolutePath)
     }
@@ -411,7 +403,6 @@ object StorageUtils {
      * @param dir dir
      * @return free space as string
      */
-    @JvmStatic
     fun storageFreeAsString(dir: String): CharSequence {
         return mbToString(storageFree(dir))
     }
@@ -422,7 +413,6 @@ object StorageUtils {
      * @param path path
      * @return storage capacity in megabytes
      */
-    @JvmStatic
     fun storageCapacity(path: String?): Float {
         return try {
             val stat = StatFs(path)
@@ -440,7 +430,6 @@ object StorageUtils {
      * @param mb megabytes
      * @return string
      */
-    @JvmStatic
     fun mbToString(mb: Float): String {
         if (java.lang.Float.isNaN(mb)) {
             return "[N/A size]"
@@ -460,7 +449,6 @@ object StorageUtils {
      * @param count byte count
      * @return string
      */
-    @JvmStatic
     fun countToStorageString(count: Long): String {
         if (count > 0) {
             var unit = 1024f * 1024f * 1024f
@@ -539,7 +527,7 @@ object StorageUtils {
      *
      * @author [Bernard Bou](mailto:1313ou@gmail.com)
      */
-    class Directory(@JvmField val file: File, @JvmField val type: DirType) {
+    class Directory(val file: File, val type: DirType) {
 
         val fSValue: CharSequence
             get() = file.absolutePath
@@ -567,11 +555,11 @@ object StorageUtils {
         /**
          * Directory
          */
-        @JvmField val dir: Directory,
+        val dir: Directory,
         /**
          * Free megabytes
          */
-        @JvmField val free: Float,
+        val free: Float,
         /**
          * Occupancy
          */
@@ -579,7 +567,7 @@ object StorageUtils {
         /**
          * Status
          */
-        @JvmField val status: Int,
+        val status: Int,
 
         ) : Comparable<StorageDirectory> {
 

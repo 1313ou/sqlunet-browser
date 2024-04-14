@@ -25,25 +25,21 @@ abstract class BaseTaskFragment : Fragment() {
     /**
      * Action spinner
      */
-    @JvmField
     var spinner: Spinner? = null
 
     /**
      * Status view
      */
-    @JvmField
     var status: TextView? = null
 
     /**
      * Run button
      */
-    @JvmField
     var runButton: ImageButton? = null
 
     /**
      * Layout id set by derived class
      */
-    @JvmField
     var layoutId = 0
 
     /**

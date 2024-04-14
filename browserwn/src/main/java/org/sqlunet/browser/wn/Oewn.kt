@@ -22,7 +22,6 @@ object Oewn {
     private const val PREF_KEY_OEWN_NO_NOTICE = "pref_oewn_no_notice"
     private const val HOW_OFTEN = 10
 
-    @JvmStatic
     fun hook(activity: Activity) {
         val prefs = activity.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)
         val launchTimes = prefs.getInt(PREF_KEY_LAUNCH_TIMES, 0)

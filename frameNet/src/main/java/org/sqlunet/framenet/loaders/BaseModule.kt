@@ -96,13 +96,6 @@ import java.util.TreeMap
  */
 abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(fragment) {
 
-    /**
-     * standAlone
-     * FN standalone without WordNet
-     * Queries vary slightly in that the fn_words table has the word string field,
-     * In the global SqlUNet it is ot present but references should be made to the words table in wn.
-     */
-
     // agents
 
     /**

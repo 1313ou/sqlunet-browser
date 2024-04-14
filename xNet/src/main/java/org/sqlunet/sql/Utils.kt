@@ -16,7 +16,6 @@ object Utils {
      * @param ids ids
      * @return joined ids
      */
-    @JvmStatic
     fun join(vararg ids: Int): String {
         val sb = StringBuilder()
         var first = true
@@ -57,7 +56,6 @@ object Utils {
      * @param strings strings to join
      * @return joined strings
      */
-    @JvmStatic
     fun join(vararg strings: String): String {
         val sb = StringBuilder()
         var first = true
@@ -98,7 +96,6 @@ object Utils {
      * @param args arguments
      * @return expanded sql
      */
-    @JvmStatic
     fun replaceArgs(sql: String, vararg args: String?): String {
         var processedSql = sql
         if (args.isNotEmpty()) {
@@ -109,7 +106,6 @@ object Utils {
         return processedSql
     }
 
-    @JvmStatic
     fun toArgs(vararg args: String): Array<String> {
         val result = Array(args.size) {
             // A single quote within the string can be encoded by putting two single quotes in a row
@@ -128,7 +124,6 @@ object Utils {
      * @param string ,-separated string of ids
      * @return ids as long array
      */
-    @JvmStatic
     fun toIds(string: String): LongArray {
         val strings = string.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         val ids = LongArray(strings.size)

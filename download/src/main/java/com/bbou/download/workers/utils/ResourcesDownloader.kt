@@ -168,7 +168,6 @@ class ResourcesDownloader internal constructor(private val listener: Listener) :
         /**
          * Populate radio group with resources
          */
-        @JvmStatic
         fun populateLists(context: Context, consumer: BiConsumer<List<String>, List<String>>) {
             val url = context.getString(R.string.resources_directory)
             val filter = context.getString(R.string.resources_directory_filter)
@@ -191,7 +190,6 @@ class ResourcesDownloader internal constructor(private val listener: Listener) :
         /**
          * Populate radio group with resources
          */
-        @JvmStatic
         fun populateRadioGroup(context: Context, optionsView: RadioGroup) {
             populateLists(context) { values: List<String>, labels: List<String> ->
                 val n = values.size.coerceAtMost(labels.size)

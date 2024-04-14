@@ -101,7 +101,6 @@ class Word : BasicWord {
          * @param str        target string
          * @return Word or null
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, str: String): Word? {
             try {
                 WordQueryFromWord(connection, str).use {
@@ -123,7 +122,6 @@ class Word : BasicWord {
          * @param wordId     target id
          * @return Word or null
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, wordId: Long): Word? {
             try {
                 WordQuery(connection, wordId).use {

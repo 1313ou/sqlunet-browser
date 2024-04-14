@@ -38,7 +38,6 @@ object Formatter {
      * @param unit unit, if null then information units are used
      * @return string
      */
-    @JvmStatic
     fun formatAsString(count: Long, unit: String?): String {
         val strValue = NumberFormat.getNumberInstance(Locale.US).format(count)
         return if (unit == null) strValue else "$strValue $unit"
@@ -52,7 +51,6 @@ object Formatter {
      * @param unit unit, if null then information units are used
      * @return string
      */
-    @JvmStatic
     fun formatAsString(progress: Long, total: Long, unit: String?): String {
         var str = if (unit != null) formatAsString(progress, unit) else formatAsInformationString(progress)
         if (total != -1L) {

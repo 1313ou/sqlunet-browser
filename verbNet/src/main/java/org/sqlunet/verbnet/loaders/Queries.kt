@@ -8,7 +8,6 @@ import org.sqlunet.verbnet.provider.VerbNetContract
 
 object Queries {
 
-    @JvmStatic
     fun prepareVnClass(classId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = VerbNetContract.VnClasses.URI
@@ -22,7 +21,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareVnClasses(wordId: Long, synsetId: Long?): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = VerbNetContract.Words_VnClasses.URI
@@ -45,7 +43,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareVnMembers(classId: Int): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = VerbNetContract.VnClasses_VnMembers_X.URI_BY_WORD
@@ -63,7 +60,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareVnRoles(classId: Int): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = VerbNetContract.VnClasses_VnRoles_X.URI_BY_ROLE
@@ -78,7 +74,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareVnFrames(classId: Int): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = VerbNetContract.VnClasses_VnFrames_X.URI_BY_FRAME

@@ -15,8 +15,8 @@ import org.sqlunet.wordnet.sql.BasicWord
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class VnEntry private constructor(
-    @JvmField val word: BasicWord,
-    @JvmField val synsets: List<VnSynset>?,
+    val word: BasicWord,
+    val synsets: List<VnSynset>?,
 ) {
 
     companion object {
@@ -28,7 +28,6 @@ class VnEntry private constructor(
          * @param word       target word
          * @return new entry or null
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, word: String): VnEntry? {
             VnClassQueryFromWordAndPos(connection, word).use {
                 it.execute()

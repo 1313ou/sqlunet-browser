@@ -104,7 +104,6 @@ class OthersActivity : AppCompatActivity() {
 
     companion object {
 
-        @JvmStatic
         fun install(uri: String?, activity: Activity) {
             val goToMarket = Intent(Intent.ACTION_VIEW).setData(Uri.parse(uri))
             try {

@@ -77,42 +77,30 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
     // resources
 
-    @JvmField
     protected val wordLabel: String
 
-    @JvmField
     protected val senseLabel: String
 
-    @JvmField
     protected val synsetLabel: String
 
     private val sensesLabel: String
 
-    @JvmField
     protected val membersLabel: String
 
-    @JvmField
     protected val samplesLabel: String
 
-    @JvmField
     protected val relationsLabel: String
 
-    @JvmField
     protected val upLabel: String
 
-    @JvmField
     protected val downLabel: String
 
-    @JvmField
     protected val verbFramesLabel: String
 
-    @JvmField
     protected val verbTemplatesLabel: String
 
-    @JvmField
     protected val adjPositionsLabel: String
 
-    @JvmField
     protected val morphsLabel: String
     private val synsetDrawable: Drawable
     private val memberDrawable: Drawable
@@ -136,7 +124,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     /**
      * Max relation recursion
      */
-    @JvmField
     protected var maxRecursion = Int.MAX_VALUE
 
     // view models

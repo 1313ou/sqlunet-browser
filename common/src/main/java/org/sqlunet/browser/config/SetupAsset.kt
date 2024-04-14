@@ -37,7 +37,6 @@ object SetupAsset {
      * @param view          view for snackbar
      * @return path if already installed
      */
-    @JvmStatic
     fun deliverAsset(assetPack: String, assetDir: String, assetZip: String, assetZipEntry: String, activity: Activity, observer: TaskObserver<Pair<Number, Number>>, whenComplete: Runnable?, view: View?): String? {
         if (assetPack.isEmpty()) {
             throw RuntimeException("Asset is empty")
@@ -102,7 +101,6 @@ object SetupAsset {
      * @param assetPack asset pack name
      * @param activity  activity
      */
-    @JvmStatic
     fun disposeAsset(assetPack: String, activity: FragmentActivity) {
         if (assetPack.isEmpty()) {
             throw RuntimeException("Asset is empty")

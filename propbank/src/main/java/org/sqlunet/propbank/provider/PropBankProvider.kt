@@ -143,7 +143,6 @@ class PropBankProvider : BaseProvider() {
             uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.URI + "/", PropBankControl.SUGGEST_FTS_WORDS)
         }
 
-        @JvmStatic
         fun makeUri(table: String): String {
             return "$SCHEME$AUTHORITY/$table"
         }

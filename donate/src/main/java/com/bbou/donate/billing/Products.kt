@@ -26,7 +26,6 @@ object Products {
     var inappProducts: Array<String>? = null
         private set
 
-    @JvmStatic
     fun init(context: Context) {
         val res = context.resources
         inappProducts = res.getStringArray(R.array.skus)

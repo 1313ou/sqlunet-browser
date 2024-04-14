@@ -10,9 +10,8 @@ import androidx.test.espresso.IdlingResource.ResourceCallback
 import androidx.test.espresso.ViewFinder
 import org.hamcrest.Matcher
 
-abstract class BaseWaitUntil(@JvmField protected val viewMatcher: Matcher<View?>) : IdlingResource {
+abstract class BaseWaitUntil(protected val viewMatcher: Matcher<View?>) : IdlingResource {
 
-    @JvmField
     protected var resourceCallback: ResourceCallback? = null
 
     override fun registerIdleTransitionCallback(resourceCallback: ResourceCallback) {
@@ -21,8 +20,7 @@ abstract class BaseWaitUntil(@JvmField protected val viewMatcher: Matcher<View?>
 
     companion object {
 
-        @JvmStatic
-        protected fun getView(viewMatcher: Matcher<View?>): View? {
+        fun getView(viewMatcher: Matcher<View?>): View? {
             return try {
                 val viewInteraction = Espresso.onView(viewMatcher)
                 // private in ViewInteraction

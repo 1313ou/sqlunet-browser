@@ -30,7 +30,7 @@ object FileTaskChooser {
      * @param directories  directory names-values array
      */
     @SafeVarargs
-    @JvmStatic
+
     fun copyFromFile(activity: FragmentActivity, databasePath: String, directories: Pair<Array<out CharSequence>, Array<String>>) {
         // collect sources
         val input = toRadioGroup(activity, directories.first, directories.second)
@@ -69,7 +69,7 @@ object FileTaskChooser {
      * @param directories  directory names-values array
      */
     @SafeVarargs
-    @JvmStatic
+
     fun unzipFromArchive(activity: FragmentActivity, databasePath: String, directories: Pair<Array<out CharSequence>, Array<String>>) {
         // collect sources
         val input = toRadioGroup(activity, directories.first, directories.second)
@@ -108,7 +108,7 @@ object FileTaskChooser {
      * @param directories  directory names-values array
      */
     @SafeVarargs
-    @JvmStatic
+
     fun unzipEntryFromArchive(activity: FragmentActivity, databasePath: String, directories: Pair<Array<out CharSequence>, Array<String>>) {
         // collect sources
         val archiveInput1 = toRadioGroup(activity, directories.first, directories.second)
@@ -157,7 +157,7 @@ object FileTaskChooser {
      * @param directories directory names-values array
      */
     @SafeVarargs
-    @JvmStatic
+
     fun md5FromFile(activity: FragmentActivity, directories: Pair<Array<out CharSequence>, Array<String>>) {
         // collect sources
         val input = toRadioGroup(activity, directories.first, directories.second)

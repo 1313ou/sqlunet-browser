@@ -8,7 +8,6 @@ import org.sqlunet.propbank.provider.PropBankContract
 
 object Queries {
 
-    @JvmStatic
     fun prepareRoleSet(roleSetId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = PropBankContract.PbRoleSets_X.URI_BY_ROLESET
@@ -24,7 +23,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareRoleSets(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = PropBankContract.Words_PbRoleSets.URI
@@ -39,7 +37,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareRoles(roleSetId: Int): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = PropBankContract.PbRoleSets_PbRoles.URI
@@ -55,7 +52,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareExamples(roleSetId: Int): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = PropBankContract.PbRoleSets_PbExamples.URI_BY_EXAMPLE

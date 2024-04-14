@@ -59,7 +59,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
     /**
      * Activate on click flag
      */
-    private var activateOnItemClick = true
+    var activateOnItemClick = true
 
     /**
      * Group positions
@@ -548,15 +548,6 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
     }
 
     // C L I C K
-
-    /**
-     * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
-     *
-     * @param activateOnItemClick true if activate
-     */
-    fun setActivateOnItemClick(activateOnItemClick: Boolean) {
-        this.activateOnItemClick = activateOnItemClick
-    }
 
     override fun onChildClick(parent: ExpandableListView, v: View, groupPosition: Int, childPosition: Int, id: Long): Boolean {
         super.onChildClick(parent, v, groupPosition, childPosition, id)

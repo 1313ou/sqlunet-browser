@@ -10,7 +10,6 @@ import org.sqlunet.xnet.provider.Q
  */
 object Expected {
 
-    @JvmStatic
     fun expected(code: Int, uriLast: String, projection0: Array<String>, selection0: String?, selectionArgs0: Array<String>?): XNetControl.Result? {
         val table: String
         var projection = projection0
@@ -54,6 +53,7 @@ object Expected {
                 table = Q.WORDS_PBWORDS_PBROLESETS.TABLE
                 groupBy = Q.WORDS_PBWORDS_PBROLESETS.GROUPBY
             }
+
             XNetControl.WORDS_PBWORDS_PBROLESETS_U -> table = Q.WORDS_PBWORDS_PBROLESETS_U.TABLE
             XNetControl.WORDS_PBWORDS_PBROLESETS_1 -> table = Q.WORDS_PBWORDS_PBROLESETS_1.TABLE
             XNetControl.WORDS_PBWORDS_PBROLESETS_2 -> table = Q.WORDS_PBWORDS_PBROLESETS_2.TABLE

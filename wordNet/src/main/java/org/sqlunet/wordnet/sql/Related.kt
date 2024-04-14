@@ -24,13 +24,11 @@ class Related : Synset {
     /**
      * `word` related word (lexrelations)
      */
-    @JvmField
     val word: String?
 
     /**
      * `wordId` related word id (lexrelations)
      */
-    @JvmField
     val wordId: Long
 
     /**

@@ -26,7 +26,6 @@ abstract class AbstractBrowseActivity<F : BaseSearchFragment?> : AppCompatActivi
     /**
      * Fragment
      */
-    @JvmField
     protected var fragment: F? = null
 
     @get:LayoutRes

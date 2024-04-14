@@ -14,8 +14,8 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class FnAnnoSet private constructor(
-    @JvmField val annoSetId: Long,
-    @JvmField val sentence: FnSentence,
+    val annoSetId: Long,
+    val sentence: FnSentence,
 ) {
 
     companion object {
@@ -27,7 +27,6 @@ class FnAnnoSet private constructor(
          * @param annoSetId  annoSet id
          * @return annoSet
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, annoSetId: Long): FnAnnoSet? {
             FnAnnoSetQuery(connection, annoSetId).use {
                 it.execute()

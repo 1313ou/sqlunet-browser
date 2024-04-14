@@ -19,7 +19,6 @@ object DomFactory {
      *
      * @return empty org.w3c.dom.Document
      */
-    @JvmStatic
     fun makeDocument(): Document {
         return try {
             val factory = DocumentBuilderFactory.newInstance()

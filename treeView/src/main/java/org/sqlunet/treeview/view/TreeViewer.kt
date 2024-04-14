@@ -46,7 +46,6 @@ NestedScrollView, wrapper bottom
 						LinearLayout id/node_children
  */
  /* @formatter:on */
-
 /**
  * Tree viewer, makes and manages tree view
  *

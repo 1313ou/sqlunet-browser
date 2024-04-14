@@ -23,7 +23,6 @@ object WnNodeFactory {
      * @param value  is the part-of-speech
      * @return newly created node
      */
-    @JvmStatic
     fun makePosNode(doc: Document, parent: Node?, value: String?): Node {
         val element = NodeFactory.makeNode(doc, parent, "pos", null)
         NodeFactory.makeAttribute(element, "name", value)
@@ -38,7 +37,6 @@ object WnNodeFactory {
      * @param value  domain
      * @return newly created node
      */
-    @JvmStatic
     fun makeDomainNode(doc: Document, parent: Node?, value: String?): Node {
         val element = NodeFactory.makeNode(doc, parent, "domain", null)
         NodeFactory.makeAttribute(element, "name", value)
@@ -54,7 +52,6 @@ object WnNodeFactory {
      * @param synsetId is the synset id
      * @return newly created node
      */
-    @JvmStatic
     fun makeSenseNode(doc: Document, parent: Node?, wordId: Long, synsetId: Long, senseIdx: Int): Element {
         val element = NodeFactory.makeNode(doc, parent, "sense", null)
         if (wordId != 0L) {
@@ -78,7 +75,6 @@ object WnNodeFactory {
      * @param size     is the synset's size (the number of words in the synset)
      * @return newly created element
      */
-    @JvmStatic
     fun makeSynsetNode(doc: Document, parent: Node?, synsetId: Long, size: Int): Element {
         val element = NodeFactory.makeNode(doc, parent, "synset", null)
         NodeFactory.makeAttribute(element, "synsetid", synsetId.toString())
@@ -97,7 +93,6 @@ object WnNodeFactory {
      * @param id     is the word id
      * @return newly created node
      */
-    @JvmStatic
     fun makeWordNode(doc: Document, parent: Node?, word: String?, id: Long): Node {
         val element = NodeFactory.makeNode(doc, parent, "word", word)
         NodeFactory.makeAttribute(element, "wordid", id.toString())
@@ -113,7 +108,6 @@ object WnNodeFactory {
      * @param level        is the recursion level
      * @return newly created node
      */
-    @JvmStatic
     fun makeRelationNode(doc: Document, parent: Node?, relationType: String?, level: Int): Node {
         val element = NodeFactory.makeNode(doc, parent, relationType, null)
         if (level > 0) {
@@ -131,7 +125,6 @@ object WnNodeFactory {
      * @param level        is the recursion level
      * @return newly created node
      */
-    @JvmStatic
     fun makeMoreRelationNode(doc: Document, parent: Node?, relationType: String?, level: Int): Node {
         val element = NodeFactory.makeNode(doc, parent, relationType, null)
         NodeFactory.makeAttribute(element, "level", level.toString())

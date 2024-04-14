@@ -23,7 +23,6 @@ import androidx.core.graphics.drawable.DrawableCompat
  */
 object ColorUtils {
 
-    @JvmStatic
     fun tint(color: Int, vararg drawables: Drawable) {
         for (drawable in drawables) {
             tint(drawable, color)
@@ -54,7 +53,7 @@ object ColorUtils {
         return getColor(res, theme, colorRes)
     }
 
-        @ColorInt
+    @ColorInt
     fun getColor(res: Resources, theme: Theme?, @ColorRes colorRes: Int): Int {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             res.getColor(colorRes, theme)
@@ -64,12 +63,10 @@ object ColorUtils {
         }
     }
 
-    @JvmStatic
     fun getDrawable(context: Context, @DrawableRes resId: Int): Drawable? {
         return AppCompatResources.getDrawable(context, resId)
     }
 
-    @JvmStatic
     @ColorInt
     fun fetchColor(context: Context, @AttrRes attr: Int): Int {
         val typedValue = TypedValue()

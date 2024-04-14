@@ -14,7 +14,6 @@ object NightMode {
 
     private const val TAG = "NightMode"
 
-    @JvmStatic
     fun toConfigurationUiMode(mode: Int): Int {
         return when (mode) {
             AppCompatDelegate.MODE_NIGHT_YES -> Configuration.UI_MODE_NIGHT_YES
@@ -23,7 +22,6 @@ object NightMode {
         }
     }
 
-    @JvmStatic
     fun createOverrideConfigurationForDayNight(context: Context, mode: Int): Configuration {
         val newNightMode: Int = when (mode) {
             AppCompatDelegate.MODE_NIGHT_YES -> Configuration.UI_MODE_NIGHT_YES
@@ -47,7 +45,6 @@ object NightMode {
         return overrideConf
     }
 
-    @JvmStatic
     fun wrapContext(context: Context, newConfig: Configuration?, @StyleRes themeId: Int): Context {
         val newContext = context.createConfigurationContext(newConfig!!)
         return ContextThemeWrapper(newContext, themeId)
@@ -75,7 +72,6 @@ object NightMode {
      * @param context context
      * @return mode to string
      */
-    @JvmStatic
     fun nightModeToString(context: Context): String {
         val nightModeFlags = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return when (nightModeFlags) {
@@ -86,7 +82,6 @@ object NightMode {
         }
     }
 
-    @JvmStatic
     fun checkDarkMode(expected: Int): Boolean {
         return when (val mode = AppCompatDelegate.getDefaultNightMode()) {
             AppCompatDelegate.MODE_NIGHT_YES -> {

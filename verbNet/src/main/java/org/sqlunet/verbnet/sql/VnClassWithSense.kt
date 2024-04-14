@@ -21,15 +21,15 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal class VnClassWithSense private constructor(
-    @JvmField val className: String,
-    @JvmField val classId: Long,
-    @JvmField val wordId: Long,
-    @JvmField val synsetId: Long?,
-    @JvmField val definition: String,
-    @JvmField val senseNum: Int,
-    @JvmField val senseKey: String,
-    @JvmField val quality: Float,
-    @JvmField val groupings: String?,
+    val className: String,
+    val classId: Long,
+    val wordId: Long,
+    val synsetId: Long?,
+    val definition: String,
+    val senseNum: Int,
+    val senseKey: String,
+    val quality: Float,
+    val groupings: String?,
 ) {
 
     companion object {
@@ -42,7 +42,6 @@ internal class VnClassWithSense private constructor(
          * @param synsetId   synset id to build the query from (null if any)
          * @return list of VerbNet classes
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, wordId: Long, synsetId: Long?): List<VnClassWithSense>? {
             var result: MutableList<VnClassWithSense>? = null
             VnClassQueryFromSense(connection, wordId, synsetId).use {

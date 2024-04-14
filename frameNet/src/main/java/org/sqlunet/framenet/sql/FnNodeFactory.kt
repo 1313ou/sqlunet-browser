@@ -27,7 +27,6 @@ internal object FnNodeFactory {
      * @param pos    target pos
      * @return newly created node
      */
-    @JvmStatic
     fun makeFnRootNode(doc: Document, wordId: Long, pos: Char?): Node {
         val rootNode = makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS)
         if (pos == null) {
@@ -46,7 +45,6 @@ internal object FnNodeFactory {
      * @param pos  target pos
      * @return newly created node
      */
-    @JvmStatic
     fun makeFnRootNode(doc: Document, word: String?, pos: Char?): Node {
         val rootNode = makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS)
         if (pos == null) {
@@ -64,7 +62,6 @@ internal object FnNodeFactory {
      * @param parent  parent node to attach this node to
      * @param lexUnit frame information
      */
-    @JvmStatic
     fun makeFnLexunitNode(doc: Document, parent: Node?, lexUnit: FnLexUnit): Node {
         val element = makeNode(doc, parent, "lexunit", null)
         makeAttribute(element, "name", lexUnit.lexUnit)
@@ -82,7 +79,6 @@ internal object FnNodeFactory {
      * @param removeEx whether to remove <ex> element
      * @return newly created node
     </ex> */
-    @JvmStatic
     fun makeFnFrameNode(doc: Document, parent: Node?, frame: FnFrame, removeEx: Boolean): Node {
         val element = makeNode(doc, parent, "frame", null)
         makeAttribute(element, "name", frame.frameName)
@@ -124,7 +120,6 @@ internal object FnNodeFactory {
      * @param fe     FE
      * @return newly created node
      */
-    @JvmStatic
     fun makeFnFENode(doc: Document, parent: Node?, fe: FnFrameElement): Node {
         val element = makeNode(doc, parent, "fe", null)
         makeAttribute(element, "name", fe.feType)
@@ -144,7 +139,6 @@ internal object FnNodeFactory {
      * @param governor governor
      * @return newly created node
      */
-    @JvmStatic
     fun makeFnGovernorNode(doc: Document, parent: Node?, governor: FnGovernor): Node {
         val element = makeNode(doc, parent, "governor", null)
         makeAttribute(element, "governorid", governor.governorId.toString())
@@ -160,7 +154,6 @@ internal object FnNodeFactory {
      * @param parent parent node to attach this node to
      * @return newly created node
      */
-    @JvmStatic
     fun makeFnSentencesNode(doc: Document, parent: Node?): Node {
         return makeNode(doc, parent, "sentences", null)
     }
@@ -172,7 +165,6 @@ internal object FnNodeFactory {
      * @param parent parent node to attach this node to
      * @param i      the ith
      */
-    @JvmStatic
     fun makeFnSentenceNode(doc: Document, parent: Node, sentence: FnSentence, i: Int): Node {
         return makeFnSentenceNode(doc, parent, sentence.text, sentence.sentenceId, i)
     }
@@ -202,7 +194,6 @@ internal object FnNodeFactory {
      * @param annoSetId annoSetId
      * @return annoSet node
      */
-    @JvmStatic
     fun makeFnAnnoSetNode(doc: Document, parent: Node?, annoSetId: Long): Node {
         val element = makeNode(doc, parent, "annoset", null)
         makeAttribute(element, "annosetid", annoSetId.toString())
@@ -217,7 +208,6 @@ internal object FnNodeFactory {
      * @param annoSet annoSet
      * @return annoSet node
      */
-    @JvmStatic
     fun makeFnAnnoSetNode(doc: Document, parent: Node?, annoSet: FnAnnoSet): Node {
         return makeFnAnnoSetNode(doc, parent, annoSet.annoSetId)
     }
@@ -229,7 +219,6 @@ internal object FnNodeFactory {
      * @param layer target layer
      * @return layer node
      */
-    @JvmStatic
     fun makeFnLayerNode(doc: Document, parent: Node?, layer: FnLayer): Node {
         val element = makeNode(doc, parent, "layer", null)
         makeAttribute(element, "rank", layer.rank.toString())
@@ -258,7 +247,6 @@ internal object FnNodeFactory {
      * @param frameId target frame id
      * @return root frame node
      */
-    @JvmStatic
     fun makeFnRootFrameNode(doc: Document, frameId: Long): Node {
         val rootNode = makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS)
         addAttributes(rootNode, "frameid", frameId.toString())
@@ -272,7 +260,6 @@ internal object FnNodeFactory {
      * @param luId target luId
      * @return root lexunit node
      */
-    @JvmStatic
     fun makeFnRootLexUnitNode(doc: Document, luId: Long): Node {
         val rootNode = makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS)
         addAttributes(rootNode, "luid", luId.toString())
@@ -286,7 +273,6 @@ internal object FnNodeFactory {
      * @param sentenceId target sentence id
      * @return root sentence node
      */
-    @JvmStatic
     fun makeFnRootSentenceNode(doc: Document, sentenceId: Long): Node {
         val rootNode = makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS)
         addAttributes(rootNode, "sentenceid", sentenceId.toString())
@@ -300,7 +286,6 @@ internal object FnNodeFactory {
      * @param annoSetId target annoSetId
      * @return root annoSet node
      */
-    @JvmStatic
     fun makeFnRootAnnoSetNode(doc: Document, annoSetId: Long): Node {
         val rootNode = makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS)
         addAttributes(rootNode, "annosetid", annoSetId.toString())

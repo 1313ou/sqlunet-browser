@@ -16,7 +16,7 @@ abstract class Query protected constructor(
     /**
      * Id used in query
      */
-    @JvmField val id: Long,
+    val id: Long,
 ) {
 
     /**

@@ -114,7 +114,6 @@ class SearchRecentSuggestions(context: Context, mode: Int) {
 
         private const val TAG = "SearchRecentSuggestions"
 
-        @JvmStatic
         fun getAuthority(context: Context): String {
             return context.getString(R.string.history_authority)
         }

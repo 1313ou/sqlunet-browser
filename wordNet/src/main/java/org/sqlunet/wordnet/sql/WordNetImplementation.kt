@@ -671,7 +671,6 @@ class WordNetImplementation : WordNetInterface {
         /**
          * Initial house-keeping - directory queries - connections - database static data
          */
-        @JvmStatic
         fun init(connection: SQLiteDatabase) {
             // do queries for static maps
             initDomains(connection)

@@ -17,16 +17,15 @@ package org.sqlunet.verbnet.sql
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class VnFrame(
-    @JvmField val number: String,
-    @JvmField val xTag: String,
-    @JvmField val description1: String,
-    @JvmField val description2: String,
-    @JvmField val syntax: String,
-    @JvmField val semantics: String,
+    val number: String,
+    val xTag: String,
+    val description1: String,
+    val description2: String,
+    val syntax: String,
+    val semantics: String,
     vararg examples: String,
 ) {
 
-    @JvmField
     val examples: Array<out String>
 
     init {

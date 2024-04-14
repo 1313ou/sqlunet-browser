@@ -29,29 +29,17 @@ open class SynsetModule(fragment: TreeFragment) : BaseModule(fragment) {
     /**
      * Synset id
      */
-    @JvmField
     var synsetId: Long? = null
 
     /**
      * Pos
      */
-    @JvmField
     var pos: Char? = null
 
     /**
      * Expand flag
      */
-    @JvmField
     var expand = true
-
-    /**
-     * Set expandContainer
-     *
-     * @param expand expandContainer flag
-     */
-    fun setExpand(expand: Boolean) {
-        this.expand = expand
-    }
 
     override fun unmarshal(pointer: Parcelable) {
         synsetId = null

@@ -65,23 +65,18 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     // R E S O U R C E S
 
-    @JvmField
     @LayoutRes
     protected var layoutId = 0
 
-    @JvmField
     @MenuRes
     protected var menuId = 0
 
-    @JvmField
     @AttrRes
     protected var colorAttrId = 0
 
-    @JvmField
     @ArrayRes
     protected var spinnerLabels = 0
 
-    @JvmField
     @ArrayRes
     protected var spinnerIcons = 0
 

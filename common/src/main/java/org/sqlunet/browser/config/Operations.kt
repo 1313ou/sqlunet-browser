@@ -59,7 +59,6 @@ object Operations {
 
     // file
 
-    @JvmStatic
     fun copy(activity: FragmentActivity) {
         val downloadDirs = getStyledDownloadNamesValues(activity)
         val cachedDirs = getStyledCachesNamesValues(activity)
@@ -67,7 +66,6 @@ object Operations {
         com.bbou.download.preference.Settings.unrecordDatapack(activity)
     }
 
-    @JvmStatic
     fun unzip(activity: FragmentActivity) {
         val downloadDirs = getStyledDownloadNamesValues(activity)
         val cachedDirs = getStyledCachesNamesValues(activity)
@@ -75,7 +73,6 @@ object Operations {
         com.bbou.download.preference.Settings.unrecordDatapack(activity)
     }
 
-    @JvmStatic
     fun md5(activity: FragmentActivity) {
         val downloadDirs = getStyledDownloadNamesValues(activity)
         val cachedDirs = getStyledCachesNamesValues(activity)

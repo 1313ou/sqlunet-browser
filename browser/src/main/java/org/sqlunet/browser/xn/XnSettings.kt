@@ -35,7 +35,6 @@ object XnSettings : Settings() {
      * @param context context
      * @return preferred selector type
      */
-    @JvmStatic
     fun getXSelectorPref(context: Context): Selector {
         return Selector.getPref(context)
     }
@@ -46,7 +45,6 @@ object XnSettings : Settings() {
      * @param context context
      * @return preferred enable WordNet flag
      */
-    @JvmStatic
     fun getAllPref(context: Context): Int {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         var result = 0
@@ -74,7 +72,6 @@ object XnSettings : Settings() {
      * @param context context
      * @return preferred enable WordNet flag
      */
-    @JvmStatic
     fun getWordNetPref(context: Context): Boolean {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getBoolean(PREF_ENABLE_WORDNET, true)
@@ -86,7 +83,6 @@ object XnSettings : Settings() {
      * @param context context
      * @return preferred enable VerbNet flag
      */
-    @JvmStatic
     fun getVerbNetPref(context: Context): Boolean {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getBoolean(PREF_ENABLE_VERBNET, true)
@@ -98,7 +94,6 @@ object XnSettings : Settings() {
      * @param context context
      * @return preferred enable PropBank flag
      */
-    @JvmStatic
     fun getPropBankPref(context: Context): Boolean {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getBoolean(PREF_ENABLE_PROPBANK, true)
@@ -110,7 +105,6 @@ object XnSettings : Settings() {
      * @param context context
      * @return preferred enable FrameNet flag
      */
-    @JvmStatic
     fun getFrameNetPref(context: Context): Boolean {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getBoolean(PREF_ENABLE_FRAMENET, true)
@@ -122,7 +116,6 @@ object XnSettings : Settings() {
      * @param context context
      * @return preferred enable BNC flag
      */
-    @JvmStatic
     fun getBncPref(context: Context): Boolean {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getBoolean(PREF_ENABLE_BNC, true)
@@ -213,7 +206,6 @@ object XnSettings : Settings() {
              * @param context context
              * @return preferred selector mode
              */
-            @JvmStatic
             fun getPref(context: Context): Selector {
                 val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
                 val name = sharedPref.getString(PREF_SELECTOR, XSELECTOR.name)

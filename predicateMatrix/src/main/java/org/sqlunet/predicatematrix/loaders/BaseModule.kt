@@ -996,7 +996,6 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
         Spanner.append(sb, sources.toString(), 0, PredicateMatrixFactories.dataFactory)
     }
     */
-
     // Q U E R I E S
 
     /**
@@ -1144,18 +1143,16 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
         // sources
 
-        /*
-        const val SEMLINK = 0x1
-        const val SYNONYMS = 0x2
-        const val FRAME = 0x10
-        const val FN_FE = 0x20
-        const val ADDED_FRAME_FN_ROLE = 0x40 // ADDED_FRAME-FN_ROLE
-        const val FN_MAPPING = 0x100
-        const val VN_MAPPING = 0x200
-        const val PREDICATE_MAPPING = 0x400
-        const val ROLE_MAPPING = 0x800
-        const val WN_MISSING = 0x1000
-        */
+        // const val SEMLINK = 0x1
+        // const val SYNONYMS = 0x2
+        // const val FRAME = 0x10
+        // const val FN_FE = 0x20
+        // const val ADDED_FRAME_FN_ROLE = 0x40 // ADDED_FRAME-FN_ROLE
+        // const val FN_MAPPING = 0x100
+        // const val VN_MAPPING = 0x200
+        // const val PREDICATE_MAPPING = 0x400
+        // const val ROLE_MAPPING = 0x800
+        // const val WN_MISSING = 0x1000
 
         // H E L P E R S
 

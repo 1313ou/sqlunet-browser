@@ -142,7 +142,6 @@ object StorageReports {
      * @param context context
      * @return pair of names and values
      */
-    @JvmStatic
     fun getStyledStoragesNamesValues(context: Context): Pair<Array<CharSequence>, Array<CharSequence>> {
         val names: MutableList<CharSequence> = ArrayList()
         val values: MutableList<CharSequence> = ArrayList()
@@ -167,7 +166,6 @@ object StorageReports {
      * @param context context
      * @return pair of names and values
      */
-    @JvmStatic
     fun getStyledStorageDirectoriesNamesValues(context: Context): Pair<Array<CharSequence>, Array<String>> {
         val names: MutableList<CharSequence> = ArrayList()
         val values: MutableList<String> = ArrayList()
@@ -196,7 +194,6 @@ object StorageReports {
      * @param context context
      * @return pair of names and values
      */
-    @JvmStatic
     fun getStyledCachesNamesValues(context: Context): Pair<Array<CharSequence>, Array<String>> {
         val names: MutableList<CharSequence> = ArrayList()
         val values: MutableList<String> = ArrayList()
@@ -238,7 +235,6 @@ object StorageReports {
      * @param context context
      * @return pair of names and values
      */
-    @JvmStatic
     fun getStyledDownloadNamesValues(context: Context): Pair<Array<CharSequence>, Array<String>> {
         val names: MutableList<CharSequence> = ArrayList()
         val values: MutableList<String> = ArrayList()
@@ -282,7 +278,6 @@ object StorageReports {
      * @param context context
      * @return report
      */
-    @JvmStatic
     fun reportStorageDirectories(context: Context): CharSequence {
         val sb = StringBuilder()
         var i = 1
@@ -307,7 +302,6 @@ object StorageReports {
      * @param context context
      * @return report
      */
-    @JvmStatic
     fun reportExternalStorage(context: Context): CharSequence {
         val storages = getExternalStorages(context)
         val physical = storages[StorageUtils.StorageType.PRIMARY_PHYSICAL]
@@ -370,7 +364,6 @@ object StorageReports {
 
     // S T Y L E D   R E P O R T S
 
-    @JvmStatic
     @SafeVarargs
     fun namesValuesToReportStyled(vararg directories: Pair<Array<CharSequence>, Array<String>>): CharSequence {
         val sb = SpannableStringBuilder()
@@ -391,7 +384,6 @@ object StorageReports {
      * @param context context
      * @return report
      */
-    @JvmStatic
     fun reportStyledStorageDirectories(context: Context): CharSequence {
         val sb = SpannableStringBuilder()
         val dirs = getSortedStorageDirectories(context)
@@ -422,7 +414,6 @@ object StorageReports {
      * @param context context
      * @return report
      */
-    @JvmStatic
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     fun reportStyledExternalStorage(context: Context): CharSequence {
         val storages = getExternalStorages(context)
@@ -496,7 +487,6 @@ object StorageReports {
      * @param context context
      * @return directories report
      */
-    @JvmStatic
     fun reportStyledDirs(context: Context): CharSequence {
         val sb = SpannableStringBuilder()
         appendDir(sb, "files dir", context.filesDir)

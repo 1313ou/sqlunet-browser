@@ -22,7 +22,6 @@ internal object BncNodeFactory {
      * @param pos    target pos
      * @return newly created node
      */
-    @JvmStatic
     fun makeBncRootNode(doc: Document, wordId: Long, pos: Char?): Node {
         val rootNode = NodeFactory.makeNode(doc, doc, "bnc", null, BncImplementation.BNC_NS)
         if (pos == null) {
@@ -41,7 +40,6 @@ internal object BncNodeFactory {
      * @param data   is the BNC data
      * @param i      the ith BNC data
      */
-    @JvmStatic
     fun makeBncNode(doc: Document, parent: Node?, data: BncData, i: Int): Node {
         val element = NodeFactory.makeNode(doc, parent, "bncdata", null)
         NodeFactory.makeAttribute(element, "ith", i.toString())

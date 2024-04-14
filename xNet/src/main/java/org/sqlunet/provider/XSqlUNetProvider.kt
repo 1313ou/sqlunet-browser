@@ -138,7 +138,6 @@ class XSqlUNetProvider : BaseProvider() {
             uriMatcher.addURI(AUTHORITY, XNetContract.Meta.URI, XNetControl.META)
         }
 
-        @JvmStatic
         fun makeUri(table: String): String {
             return "$SCHEME$AUTHORITY/$table"
         }

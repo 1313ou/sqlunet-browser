@@ -40,7 +40,6 @@ object XNetControl {
     const val SOURCES = 400
     const val META = 500
 
-    @JvmStatic
     fun queryMain(code: Int, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
         val table: String
         var projection = projection0
@@ -150,7 +149,7 @@ object XNetControl {
         return Result(table, projection, selection, selectionArgs, groupBy, orderBy)
     }
 
-    data class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?, @JvmField val orderBy: String?) {
+    data class Result(val table: String, val projection: Array<String>?, val selection: String?, val selectionArgs: Array<String>?, val groupBy: String?, val orderBy: String?) {
 
         override fun toString(): String {
             return "table='$table'\nprojection=${projection.contentToString()}\nselection='$selection'\nselectionArgs=${selectionArgs.contentToString()}\ngroupBy=$groupBy"

@@ -23,7 +23,6 @@ object Chooser {
      * @param directories directories
      * @return radio group
      */
-    @JvmStatic
     @SafeVarargs
     fun toRadioGroup(context: Context, directories: Array<String>): RadioGroup? {
         val names = directories.map { File(it).name }.toTypedArray()
@@ -39,7 +38,7 @@ object Chooser {
      * @return radio group
      */
     @SuppressLint("SetTextI18n")
-    @JvmStatic
+
     @SafeVarargs
     fun toRadioGroup(context: Context, names: Array<out CharSequence>, values: Array<String>): RadioGroup? {
         val group = RadioGroup(context)

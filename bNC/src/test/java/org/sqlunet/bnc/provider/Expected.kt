@@ -3,14 +3,11 @@
  */
 package org.sqlunet.bnc.provider
 
-import android.app.SearchManager
-
 /**
  * Queries factory, which will execute on the development machine (host).
  */
 object Expected {
 
-    @JvmStatic
     fun expected(code: Int, uriLast: String, projection0: Array<String>, selection0: String?, selectionArgs0: Array<String>?): BNCControl.Result? {
         val table: String
         var projection = projection0

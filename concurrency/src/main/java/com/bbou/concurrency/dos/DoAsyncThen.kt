@@ -14,7 +14,6 @@ object DoAsyncThen {
     /**
      * Run main runnable then post runnable
      */
-    @JvmStatic
     fun run(main: Runnable, post: Runnable): Task<Void?, Unit, Unit> {
         val t: Task<Void?, Unit, Unit> = object : Task<Void?, Unit, Unit>() {
 

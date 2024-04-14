@@ -24,7 +24,6 @@ internal object PbNodeFactory {
      * @param wordId target word id
      * @return newly created node
      */
-    @JvmStatic
     fun makePbRootNode(doc: Document, wordId: Long): Node {
         val rootNode = makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS)
         addAttributes(rootNode, "wordid", wordId.toString())
@@ -38,7 +37,6 @@ internal object PbNodeFactory {
      * @param word target word
      * @return newly created node
      */
-    @JvmStatic
     fun makePbRootNode(doc: Document, word: String?): Node {
         val rootNode = makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS)
         addAttributes(rootNode, "word", word!!)
@@ -52,7 +50,6 @@ internal object PbNodeFactory {
      * @param roleSetId target roleSet id
      * @return newly created node
      */
-    @JvmStatic
     fun makePbRootRoleSetNode(doc: Document, roleSetId: Long): Node {
         val rootNode = makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS)
         addAttributes(rootNode, "rolesetid", roleSetId.toString())
@@ -67,7 +64,6 @@ internal object PbNodeFactory {
      * @param roleSet is the roleSet information
      * @param i       the ith roleSet
      */
-    @JvmStatic
     fun makePbRoleSetNode(doc: Document, parent: Node?, roleSet: PbRoleSet, i: Int): Node {
         val element = makeNode(doc, parent, "roleset", null)
         makeAttribute(element, "num", i.toString())
@@ -88,7 +84,6 @@ internal object PbNodeFactory {
      * @param parent is the parent node to attach this node to
      * @param role   is the role information
      */
-    @JvmStatic
     fun makePbRoleNode(doc: Document, parent: Node?, role: PbRole): Node {
         val element = makeNode(doc, parent, "role", null)
         makeAttribute(element, "roleid", role.roleId.toString())
@@ -99,7 +94,6 @@ internal object PbNodeFactory {
         return element
     }
 
-    @JvmStatic
     fun makePbExampleNode(doc: Document, parent: Node?, example: PbExample): Node {
         val element = makeNode(doc, parent, "example", null)
         makeAttribute(element, "exampleid", example.exampleId.toString())

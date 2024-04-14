@@ -14,8 +14,8 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class FnSentence internal constructor(
-    @JvmField val sentenceId: Long,
-    @JvmField val text: String,
+    val sentenceId: Long,
+    val text: String,
 ) {
 
     companion object {
@@ -27,7 +27,6 @@ class FnSentence internal constructor(
          * @param sentenceId is the sentence id to build query from
          * @return sentence
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, sentenceId: Long): FnSentence? {
             FnSentenceQuery(connection, sentenceId).use {
                 it.execute()
@@ -47,7 +46,6 @@ class FnSentence internal constructor(
          * @param luId       is the lex unit id to build query from
          * @return list of sentences
          */
-        @JvmStatic
         fun makeFromLexicalUnit(connection: SQLiteDatabase, luId: Long): List<FnSentence?>? {
             var result: MutableList<FnSentence?>? = null
             FnSentenceQueryFromLexUnitId(connection, luId).use {

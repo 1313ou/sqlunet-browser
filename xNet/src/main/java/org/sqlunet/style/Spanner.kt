@@ -103,7 +103,6 @@ open class Spanner {
          * @param to    finish
          * @param spans spans to apply
          */
-        @JvmStatic
         fun setSpan(sb: SpannableStringBuilder, from: Int, to: Int, spans: Span?) {
             if (spans != null && to - from > 0) {
                 if (spans is Array<*> && spans.isArrayOf<Span>()) {
@@ -131,7 +130,6 @@ open class Spanner {
          * @param flags     flags
          * @param factories span factories to call to get spans
          */
-        @JvmStatic
         fun setSpan(sb: SpannableStringBuilder, from: Int, to: Int, flags: Long, vararg factories: SpanFactory) {
             if (to - from > 0) {
                 for (spanFactory in factories) {
@@ -164,7 +162,6 @@ open class Spanner {
          * @param sb       spannable string builder
          * @param drawable drawable to use
          */
-        @JvmStatic
         fun appendImage(sb: SpannableStringBuilder, drawable: Drawable) {
             val span: Span = ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BASELINE)
             appendImageSpans(sb, span)
@@ -271,7 +268,6 @@ open class Spanner {
          * @param factories span factories
          * @return input spannable string builder
          */
-        @JvmStatic
         fun append(sb: SpannableStringBuilder, text: CharSequence?, flags: Long, vararg factories: SpanFactory?): Appendable {
             if (!text.isNullOrEmpty()) {
                 val from = sb.length
@@ -294,7 +290,6 @@ open class Spanner {
          * @param text  text
          * @param spans spans to apply
          */
-        @JvmStatic
         fun appendWithSpans(sb: SpannableStringBuilder, text: CharSequence?, vararg spans: Span): SpannableStringBuilder {
             if (!text.isNullOrEmpty()) {
                 val from = sb.length
@@ -313,7 +308,6 @@ open class Spanner {
          * @param to    to position
          * @param spans spans to apply
          */
-        @JvmStatic
         fun applySpans(sb: SpannableStringBuilder, from: Int, to: Int, vararg spans: Span) {
             for (span in spans) {
                 applySpan(sb, from, to, span)
@@ -370,7 +364,6 @@ open class Spanner {
          * @param resId   resource id
          * @return drawable
          */
-        @JvmStatic
         fun getDrawable(context: Context, @DrawableRes resId: Int): Drawable {
             val drawable = AppCompatResources.getDrawable(context, resId)!!
             drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)

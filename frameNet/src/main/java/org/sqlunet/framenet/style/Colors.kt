@@ -15,156 +15,106 @@ import org.sqlunet.framenet.R
  */
 object Colors {
 
-    @JvmField
     var feBackColor = Color.TRANSPARENT
 
-    @JvmField
     var feForeColor = Color.TRANSPARENT
 
-    @JvmField
     var feAbbrevBackColor = Color.TRANSPARENT
 
-    @JvmField
     var feAbbrevForeColor = Color.TRANSPARENT
 
-    @JvmField
     var fe2BackColor = Color.TRANSPARENT
 
-    @JvmField
     var fe2ForeColor = Color.TRANSPARENT
 
-    @JvmField
     var fenBackColor = Color.TRANSPARENT
 
-    @JvmField
     var fenForeColor = Color.TRANSPARENT
 
-    @JvmField
     var fenWithinDefBackColor = Color.TRANSPARENT
 
-    @JvmField
     var fenWithinDefForeColor = Color.TRANSPARENT
 
-    @JvmField
     var xfenBackColor = Color.TRANSPARENT
 
-    @JvmField
     var xfenForeColor = Color.TRANSPARENT
 
-    @JvmField
     var fexBackColor = Color.TRANSPARENT
 
-    @JvmField
     var fexForeColor = Color.TRANSPARENT
 
-    @JvmField
     var fexWithinDefBackColor = Color.TRANSPARENT
 
-    @JvmField
     var fexWithinDefForeColor = Color.TRANSPARENT
 
-    @JvmField
     var metaFrameDefinitionBackColor = Color.TRANSPARENT
 
-    @JvmField
     var metaFrameDefinitionForeColor = Color.TRANSPARENT
 
-    @JvmField
     var metaFeDefinitionBackColor = Color.TRANSPARENT
 
-    @JvmField
     var metaFeDefinitionForeColor = Color.TRANSPARENT
 
-    @JvmField
     var tag1BackColor = Color.TRANSPARENT
 
-    @JvmField
     var tag1ForeColor = Color.TRANSPARENT
 
-    @JvmField
     var tag2BackColor = Color.TRANSPARENT
 
-    @JvmField
     var tag2ForeColor = Color.TRANSPARENT
 
-    @JvmField
     var exBackColor = Color.TRANSPARENT
 
-    @JvmField
     var exForeColor = Color.TRANSPARENT
 
-    @JvmField
     var xBackColor = Color.TRANSPARENT
 
-    @JvmField
     var xForeColor = Color.TRANSPARENT
 
-    @JvmField
     var tBackColor = Color.TRANSPARENT
 
-    @JvmField
     var tForeColor = Color.TRANSPARENT
 
-    @JvmField
     var governorTypeBackColor = Color.TRANSPARENT
 
-    @JvmField
     var governorTypeForeColor = Color.TRANSPARENT
 
-    @JvmField
     var governorBackColor = Color.TRANSPARENT
 
-    @JvmField
     var governorForeColor = Color.TRANSPARENT
 
-    @JvmField
     var annoSetBackColor = Color.TRANSPARENT
 
-    @JvmField
     var annoSetForeColor = Color.TRANSPARENT
 
-    @JvmField
     var layerTypeBackColor = Color.TRANSPARENT
 
-    @JvmField
     var layerTypeForeColor = Color.TRANSPARENT
 
-    @JvmField
     var labelBackColor = Color.TRANSPARENT
 
-    @JvmField
     var labelForeColor = Color.TRANSPARENT
 
-    @JvmField
     var subtextBackColor = Color.TRANSPARENT
 
-    @JvmField
     var subtextForeColor = Color.TRANSPARENT
     private var groupBackColor = Color.TRANSPARENT
     private var groupForeColor = Color.TRANSPARENT
 
-    @JvmField
     var targetBackColor = Color.TRANSPARENT
 
-    @JvmField
     var targetForeColor = Color.TRANSPARENT
 
-    @JvmField
     var targetHighlightTextBackColor = Color.TRANSPARENT
 
-    @JvmField
     var targetHighlightTextForeColor = Color.TRANSPARENT
 
-    @JvmField
     var ptBackColor = Color.TRANSPARENT
 
-    @JvmField
     var ptForeColor = Color.TRANSPARENT
 
-    @JvmField
     var gfBackColor = Color.TRANSPARENT
 
-    @JvmField
     var gfForeColor = Color.TRANSPARENT
 
     fun setColorsFromResources(context: Context) {

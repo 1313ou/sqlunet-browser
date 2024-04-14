@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class VnFrameSet private constructor(
-    @JvmField val frames: MutableList<VnFrame>,
+    val frames: MutableList<VnFrame>,
 ) {
 
     companion object {
@@ -27,7 +27,6 @@ class VnFrameSet private constructor(
          * @param synsetId   synset id to build query from (null for any)
          * @return set of frames
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, classId: Long, wordId: Long, synsetId: Long?): VnFrameSet? {
             VnFrameQueryFromClassIdAndSense(connection, classId, wordId, synsetId).use {
                 it.execute()
@@ -68,7 +67,6 @@ class VnFrameSet private constructor(
          * @param classId    class id
          * @return set of frames
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, classId: Long): VnFrameSet? {
             VnFrameQueryFromClassId(connection, classId).use {
                 it.execute()

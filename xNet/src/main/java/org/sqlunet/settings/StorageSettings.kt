@@ -33,7 +33,6 @@ object StorageSettings {
      * @param context context
      * @return database directory
      */
-    @JvmStatic
     fun getDataDir(context: Context): String {
         val dir = getSqlUNetStorage(context)
         if (!dir.exists()) {
@@ -49,7 +48,6 @@ object StorageSettings {
      * @param context context
      * @return database path
      */
-    @JvmStatic
     fun getDatabasePath(context: Context): String {
         return getDataDir(context) + File.separatorChar + getDatabaseName()
     }
@@ -59,7 +57,6 @@ object StorageSettings {
      *
      * @return database path
      */
-    @JvmStatic
     fun getDatabaseName(): String {
         return Storage.DBFILE
     }
@@ -72,7 +69,6 @@ object StorageSettings {
      * @param context context
      * @return data cache
      */
-    @JvmStatic
     fun getCacheDir(context: Context): String {
         return Storage.getCacheDir(context)
     }
@@ -83,7 +79,6 @@ object StorageSettings {
      * @param context context
      * @return cached target
      */
-    @JvmStatic
     fun getCachedZippedPath(context: Context): String {
         return getCacheDir(context) + File.separatorChar + getDbDownloadZipName(context)
     }
@@ -118,7 +113,6 @@ object StorageSettings {
      * @param context context
      * @return download db file
      */
-    @JvmStatic
     fun getDbDownloadName(context: Context): String {
         // test if already already in preferences
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
@@ -151,7 +145,6 @@ object StorageSettings {
      * @param context context
      * @return download db source
      */
-    @JvmStatic
     fun getDbDownloadSourcePath(context: Context): String {
         return getDownloadSite(context) + '/' + getDbDownloadName(context)
     }
@@ -162,7 +155,6 @@ object StorageSettings {
      * @param context context
      * @return download db zip source
      */
-    @JvmStatic
     fun getDbDownloadZippedSourcePath(context: Context): String {
         return zipped(getDbDownloadSourcePath(context))
     }
@@ -174,7 +166,6 @@ object StorageSettings {
      * @param zipped  whether download mode needs zipped file or stream
      * @return download db zip source
      */
-    @JvmStatic
     fun getDbDownloadSourcePath(context: Context, zipped: Boolean): String {
         return if (zipped) getDbDownloadZippedSourcePath(context) else getDbDownloadSourcePath(context)
     }

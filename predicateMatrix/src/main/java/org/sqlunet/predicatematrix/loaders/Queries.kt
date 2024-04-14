@@ -8,7 +8,6 @@ import org.sqlunet.predicatematrix.provider.PredicateMatrixContract
 
 object Queries {
 
-    @JvmStatic
     fun preparePmFromWord(word: String, sortBy: String?): ContentProviderSql {
         val providerSql = preparePm()
         providerSql.selection = PredicateMatrixContract.PredicateMatrix.WORD + "= ?"
@@ -17,7 +16,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun preparePmFromWordGrouped(word: String, sortBy: String?): ContentProviderSql {
         val providerSql = preparePm()
         providerSql.selection = PredicateMatrixContract.PredicateMatrix.WORD + "= ?"
@@ -26,7 +24,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun preparePmFromRoleId(pmRoleId: Long, sortBy: String?): ContentProviderSql {
         val providerSql = preparePm()
         providerSql.selection = PredicateMatrixContract.PredicateMatrix.PMROLEID + "= ?"

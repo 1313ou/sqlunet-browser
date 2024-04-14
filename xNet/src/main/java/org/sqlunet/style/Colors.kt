@@ -44,34 +44,25 @@ object Colors {
     var posForeColor = Color.TRANSPARENT
 
     // TEXT
-    @JvmField
+
     var textBackColor = Color.TRANSPARENT
 
-    @JvmField
     var textForeColor = Color.TRANSPARENT
 
-    @JvmField
     var textNormalBackColor = Color.TRANSPARENT
 
-    @JvmField
     var textNormalForeColor = Color.TRANSPARENT
 
-    @JvmField
     var textHighlightBackColor = Color.TRANSPARENT
 
-    @JvmField
     var textHighlightForeColor = Color.TRANSPARENT
 
-    @JvmField
     var textDimmedBackColor = Color.TRANSPARENT
 
-    @JvmField
     var textDimmedForeColor = Color.TRANSPARENT
 
-    @JvmField
     var textMatchBackColor = Color.TRANSPARENT
 
-    @JvmField
     var textMatchForeColor = Color.TRANSPARENT
 
     // SQL
@@ -83,43 +74,31 @@ object Colors {
     var sqlQuestionMarkForeColor = Color.TRANSPARENT
 
     // REPORT
-    @JvmField
+
     var storageTypeBackColor = Color.TRANSPARENT
 
-    @JvmField
     var storageTypeForeColor = Color.TRANSPARENT
 
-    @JvmField
     var storageValueBackColor = Color.TRANSPARENT
 
-    @JvmField
     var storageValueForeColor = Color.TRANSPARENT
 
-    @JvmField
     var dirTypeBackColor = Color.TRANSPARENT
 
-    @JvmField
     var dirTypeForeColor = Color.TRANSPARENT
 
-    @JvmField
     var dirValueBackColor = Color.TRANSPARENT
 
-    @JvmField
     var dirValueForeColor = Color.TRANSPARENT
 
-    @JvmField
     var dirOkBackColor = Color.TRANSPARENT
 
-    @JvmField
     var dirOkForeColor = Color.TRANSPARENT
 
-    @JvmField
     var dirFailBackColor = Color.TRANSPARENT
 
-    @JvmField
     var dirFailForeColor = Color.TRANSPARENT
 
-    @JvmStatic
     fun setColorsFromResources(context: Context) {
         // do not reorder : dependent on resource array order
         val palette = context.resources.getIntArray(R.array.palette)
@@ -191,7 +170,6 @@ object Colors {
 
     private const val NOT_DEFINED = -0x55555556
 
-    @JvmStatic
     fun getColorAttrs(context: Context, @StyleRes themeId: Int, @StyleableRes vararg resIds: Int): IntArray {
         val result = IntArray(resIds.size)
         context.theme.obtainStyledAttributes(themeId, resIds).let {
@@ -205,7 +183,6 @@ object Colors {
 
     private const val DUMP = "Contrast"
 
-    @JvmStatic
     fun dumpColorAttrs(context: Context, @StyleRes themeId: Int, @StyleableRes vararg resIds: Int) {
         context.theme.obtainStyledAttributes(themeId, resIds).let {
             for (i in 0 until it.length()) {
@@ -217,7 +194,6 @@ object Colors {
         }
     }
 
-    @JvmStatic
     fun colorToString(color: Int): String {
         return when (color) {
             0 -> "transparent"

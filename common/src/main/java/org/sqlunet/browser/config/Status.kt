@@ -36,7 +36,6 @@ abstract class Status {
          * @param context context
          * @return _status
          */
-        @JvmStatic
         fun status(context: Context): Int {
             if (existsDatabase(context)) {
                 var status = EXISTS
@@ -79,8 +78,7 @@ abstract class Status {
          * @param context context
          * @return true if database exists
          */
-        @JvmStatic
-        protected fun existsDatabase(context: Context): Boolean {
+        fun existsDatabase(context: Context): Boolean {
             val databasePath = StorageSettings.getDatabasePath(context)
             val db = File(databasePath)
             return db.exists() && db.isFile() && db.canWrite()
@@ -92,7 +90,6 @@ abstract class Status {
          * @param context context
          * @return list of tables and indexes
          */
-        @JvmStatic
         fun tablesAndIndexes(context: Context): List<String>? {
             val order = ("CASE "
                     + "WHEN " + TablesAndIndices.TYPE + " = 'table' THEN '1' "
@@ -128,8 +125,7 @@ abstract class Status {
          * @param targets          targets
          * @return true if targets are contained in tables and indexes
          */
-        @JvmStatic
-        protected fun contains(tablesAndIndexes: Collection<String>?, vararg targets: String): Boolean {
+        fun contains(tablesAndIndexes: Collection<String>?, vararg targets: String): Boolean {
             if (tablesAndIndexes == null) {
                 return false
             }
@@ -144,7 +140,6 @@ abstract class Status {
             return result
         }
 
-        @JvmStatic
         fun toString(status: Int): CharSequence {
             val sb: Editable = SpannableStringBuilder()
             sb.append(Integer.toHexString(status))

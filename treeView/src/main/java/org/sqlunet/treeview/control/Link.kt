@@ -14,7 +14,7 @@ abstract class Link protected constructor(
     /**
      * Id used in link
      */
-    @JvmField val id: Long,
+    val id: Long,
 ) {
 
     /**

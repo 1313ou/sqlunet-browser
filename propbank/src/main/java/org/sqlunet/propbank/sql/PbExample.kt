@@ -16,15 +16,15 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal class PbExample private constructor(
-    @JvmField val exampleId: Long,
-    @JvmField val text: String,
-    @JvmField val rel: String,
-    @JvmField val args: List<PbArg>?,
-    @JvmField val aspect: String?,
-    @JvmField val form: String?,
-    @JvmField val tense: String?,
-    @JvmField val voice: String?,
-    @JvmField val person: String?,
+    val exampleId: Long,
+    val text: String,
+    val rel: String,
+    val args: List<PbArg>?,
+    val aspect: String?,
+    val form: String?,
+    val tense: String?,
+    val voice: String?,
+    val person: String?,
 ) {
 
     companion object {
@@ -35,7 +35,6 @@ internal class PbExample private constructor(
          * @param connection connection
          * @return list of PropBank examples
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, roleSetId: Long): List<PbExample?>? {
             var result: MutableList<PbExample?>? = null
             PbExampleQueryFromRoleSetId(connection, roleSetId).use {

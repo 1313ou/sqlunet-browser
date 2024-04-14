@@ -10,7 +10,6 @@ import org.hamcrest.Matcher
 
 object Actions {
 
-    @JvmStatic
     fun onlyIf(action: ViewAction, constraints: Matcher<View>): ViewAction {
 
         return object : ViewAction {

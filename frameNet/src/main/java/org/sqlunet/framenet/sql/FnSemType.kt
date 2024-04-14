@@ -13,9 +13,9 @@ package org.sqlunet.framenet.sql
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class FnSemType private constructor(
-    @JvmField val semTypeId: Long,
-    @JvmField val semTypeName: String,
-    @JvmField val semTypeDefinition: String,
+    val semTypeId: Long,
+    val semTypeName: String,
+    val semTypeDefinition: String,
 ) {
 
     companion object {

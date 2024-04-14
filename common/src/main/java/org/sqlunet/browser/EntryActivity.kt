@@ -123,7 +123,6 @@ class EntryActivity : AppCompatActivity() {
          *
          * @param context context
          */
-        @JvmStatic
         fun rerun(context: Context) {
             val intent = Intent(context, EntryActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)

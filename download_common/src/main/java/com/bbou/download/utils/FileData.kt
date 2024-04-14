@@ -19,7 +19,7 @@ import java.util.Date
  * @property staticVersion static version
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-data class FileData(@JvmField val name: String?, @JvmField val date: Long, @JvmField val size: Long, @JvmField val etag: String?, @JvmField val version: String?, @JvmField val staticVersion: String?) {
+data class FileData(val name: String?, val date: Long, val size: Long, val etag: String?, val version: String?, val staticVersion: String?) {
 
     /**
      * Get size
@@ -47,7 +47,6 @@ data class FileData(@JvmField val name: String?, @JvmField val date: Long, @JvmF
          * @param file file
          * @return filedata
          */
-        @JvmStatic
         fun makeFileDataFrom(file: File?): FileData? {
             return if (file != null && file.exists()) {
                 FileData(file.name, file.lastModified(), file.length(), null, null, null)

@@ -134,7 +134,6 @@ class DocumentFragmentParser private constructor() {
          * @param element  is the DOM element to attach to
          * @param xml      definition
          */
-        @JvmStatic
         fun mount(document: Document, element: Node, xml: String, tag: String) {
             val parser = DocumentFragmentParser()
             try {

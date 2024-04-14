@@ -116,7 +116,6 @@ open class Settings {
              * @param context context
              * @return preferred selector mode
              */
-            @JvmStatic
             fun getPref(context: Context): Selector {
                 val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
                 val name = sharedPref.getString(PREF_SELECTOR, SELECTOR.name)
@@ -159,7 +158,6 @@ open class Settings {
 
         var paneMode = 0
 
-        @JvmStatic
         @LayoutRes
         fun getPaneLayout(@LayoutRes defaultPaneLayout: Int, @LayoutRes onePaneLayout: Int, @LayoutRes twoPanesLayout: Int): Int {
             return when (paneMode) {
@@ -193,7 +191,6 @@ open class Settings {
          * @param context context
          * @return preferred selector view mode
          */
-        @JvmStatic
         fun getSelectorViewModePref(context: Context): SelectorViewMode {
             return SelectorViewMode.getPref(context)
         }
@@ -204,7 +201,6 @@ open class Settings {
          * @param context context
          * @return preferred detail view mode
          */
-        @JvmStatic
         fun getDetailViewModePref(context: Context): DetailViewMode {
             return DetailViewMode.getPref(context)
         }
@@ -215,7 +211,6 @@ open class Settings {
          * @param context context
          * @return preferred selector type
          */
-        @JvmStatic
         fun getSelectorPref(context: Context): Selector {
             return Selector.getPref(context)
         }
@@ -226,7 +221,6 @@ open class Settings {
          * @param context context
          * @return preferred XML output flag when view mode is WEB
          */
-        @JvmStatic
         fun getXmlPref(context: Context): Boolean {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             return sharedPref.getBoolean(PREF_XML, true)
@@ -238,7 +232,6 @@ open class Settings {
          * @param context context
          * @return preferred search mode
          */
-        @JvmStatic
         fun getSearchModePref(context: Context): Int {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             return sharedPref.getInt(PREF_TEXTSEARCH_MODE, 0)
@@ -250,7 +243,6 @@ open class Settings {
          * @param context context
          * @param value   preferred search mode
          */
-        @JvmStatic
         fun setSearchModePref(context: Context, value: Int) {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             sharedPref.edit().putInt(PREF_TEXTSEARCH_MODE, value).apply()
@@ -262,7 +254,6 @@ open class Settings {
          * @param context context
          * @return asset pack preference
          */
-        @JvmStatic
         fun getAssetPack(context: Context): String {
             val primary = context.getString(R.string.asset_primary)
             val alt = context.getString(R.string.asset_alt)
@@ -280,7 +271,6 @@ open class Settings {
          * @param context context
          * @return asset pack dir preference
          */
-        @JvmStatic
         fun getAssetPackDir(context: Context): String {
             val primary = context.getString(R.string.asset_dir_primary)
             val alt = context.getString(R.string.asset_dir_alt)
@@ -298,7 +288,6 @@ open class Settings {
          * @param context context
          * @return asset pack zip preference
          */
-        @JvmStatic
         fun getAssetPackZip(context: Context): String {
             val primary = context.getString(R.string.asset_zip_primary)
             val alt = context.getString(R.string.asset_zip_alt)
@@ -343,7 +332,6 @@ open class Settings {
             return sharedPref.getString(PREF_CACHE, null)
         }
 
-        @JvmStatic
         fun getZipEntry(context: Context, defaultValue: String?): String? {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             return sharedPref.getString(PREF_ZIP_ENTRY, defaultValue)
@@ -501,7 +489,6 @@ open class Settings {
          * @param context context
          * @param pkgName package name
          */
-        @JvmStatic
         fun applicationSettings(context: Context, pkgName: String) {
             val intent = Intent()
 

@@ -18,7 +18,6 @@ internal object Permissions {
 
     private const val PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1313
 
-    @JvmStatic
     fun check(activity: Activity): Boolean {
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             // Should we show an explanation?

@@ -5,7 +5,7 @@ package org.sqlunet.view
 
 import org.sqlunet.treeview.model.TreeNode
 
-class TreeOp private constructor(@JvmField val code: TreeOpCode, @JvmField val node: TreeNode) {
+class TreeOp private constructor(val code: TreeOpCode, val node: TreeNode) {
 
     enum class TreeOpCode {
         NOOP,
@@ -45,7 +45,6 @@ class TreeOp private constructor(@JvmField val code: TreeOpCode, @JvmField val n
 
     companion object {
 
-        @JvmStatic
         fun seq(vararg items: Any): Array<TreeOp> {
             val result = Array(items.size / 2) {
                 val j = 2 * it

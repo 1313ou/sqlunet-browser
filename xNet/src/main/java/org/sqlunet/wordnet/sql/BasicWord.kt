@@ -13,9 +13,9 @@ open class BasicWord(
     /**
      * `word` is the string
      */
-    @JvmField val word: String,
+    val word: String,
     /**
      * `id` is the word id
      */
-    @JvmField val id: Long
+    val id: Long
 ) 

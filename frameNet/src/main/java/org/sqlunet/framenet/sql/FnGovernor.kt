@@ -15,9 +15,9 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal class FnGovernor private constructor(
-    @JvmField val governorId: Long,
-    @JvmField val wordId: Long,
-    @JvmField val governor: String,
+    val governorId: Long,
+    val wordId: Long,
+    val governor: String,
 ) {
 
     companion object {
@@ -29,7 +29,6 @@ internal class FnGovernor private constructor(
          * @param luId       target lex unit id
          * @return list of governors
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, luId: Long): List<FnGovernor?>? {
             var result: MutableList<FnGovernor?>? = null
             FnGovernorQueryFromLexUnitId(connection, luId).use {

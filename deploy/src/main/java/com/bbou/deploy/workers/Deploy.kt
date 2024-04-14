@@ -642,7 +642,6 @@ object Deploy {
         }
     }
 
-    @JvmStatic
     fun computeDigest(path: String): String? {
         // Log.d(TAG, "MD5 " + path)
         val md: MessageDigest = try {
@@ -672,7 +671,6 @@ object Deploy {
      * @param byteArray digest
      * @return string
      */
-    @JvmStatic
     fun digestToString(vararg byteArray: Byte): String {
         val sb = StringBuilder()
         for (b in byteArray) {
@@ -688,7 +686,6 @@ object Deploy {
      *
      * @param dir file.
      */
-    @JvmStatic
     @Synchronized
     fun emptyDirectory(dir: File) {
         if (dir.isDirectory) {

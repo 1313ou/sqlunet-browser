@@ -30,7 +30,6 @@ object MD5Chooser {
      *
      * @param activity activity
      */
-    @JvmStatic
     fun md5(activity: FragmentActivity) {
         val nameValues1 = StorageReports.getStyledStorageDirectoriesShortNamesValues(activity)
         val nameValues2 = StorageReports.getStyledCachesNamesValues(activity)
@@ -43,7 +42,6 @@ object MD5Chooser {
      *
      * @param directories directory names-values arrays
      */
-    @JvmStatic
     fun md5(activity: FragmentActivity, directories: Pair<Array<out CharSequence>, Array<String>>) {
         val radioGroup = Chooser.toRadioGroup(activity, directories.first, directories.second)
         md5(activity, radioGroup)
@@ -54,7 +52,6 @@ object MD5Chooser {
      *
      * @param directories directory values array
      */
-    @JvmStatic
     fun md5(activity: FragmentActivity, directories: Array<String>) {
         val radioGroup = Chooser.toRadioGroup(activity, directories)
         md5(activity, radioGroup)
@@ -65,7 +62,6 @@ object MD5Chooser {
      *
      * @param radioGroup radioGroup
      */
-    @JvmStatic
     private fun md5(activity: FragmentActivity, radioGroup: RadioGroup?) {
 
         if (radioGroup == null) {

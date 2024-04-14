@@ -18,7 +18,6 @@ object Queries {
      *
      * @param word word
      */
-    @JvmStatic
     fun prepareWordSelect(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = XNetContract.Words_FnWords_PbWords_VnWords.URI
@@ -51,7 +50,6 @@ object Queries {
      *
      * @param word word
      */
-    @JvmStatic
     fun prepareWordPronunciationSelect(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.URI
@@ -89,7 +87,6 @@ object Queries {
      *
      * @param word word
      */
-    @JvmStatic
     fun prepareWordXSelect(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = XNetContract.Words_FnWords_PbWords_VnWords.URI
@@ -111,7 +108,6 @@ object Queries {
      *
      * @param word word
      */
-    @JvmStatic
     fun prepareWordPronunciationXSelect(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.URI
@@ -138,7 +134,6 @@ object Queries {
      *
      * @param wordId word id
      */
-    @JvmStatic
     fun prepareVnXSelect(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = XNetContract.Words_VnWords_VnClasses_U.URI
@@ -166,7 +161,6 @@ object Queries {
      *
      * @param wordId word id
      */
-    @JvmStatic
     fun preparePbXSelect(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = XNetContract.Words_PbWords_PbRoleSets_U.URI
@@ -195,7 +189,6 @@ object Queries {
      *
      * @param wordId word id
      */
-    @JvmStatic
     fun prepareFnXSelect(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = XNetContract.Words_FnWords_FnFrames_U.URI
@@ -225,7 +218,6 @@ object Queries {
      *
      * @param word word
      */
-    @JvmStatic
     fun prepareWordXSelectVn(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = XNetContract.Words_PbWords_VnWords.URI
@@ -246,7 +238,6 @@ object Queries {
      *
      * @param wordId word id
      */
-    @JvmStatic
     fun prepareVnXSelectVn(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = XNetContract.Words_VnWords_VnClasses.URI
@@ -274,7 +265,6 @@ object Queries {
      *
      * @param wordId word id
      */
-    @JvmStatic
     fun preparePbSelectVn(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = XNetContract.Words_PbWords_PbRoleSets.URI

@@ -24,7 +24,6 @@ object Utils {
      * @param tag              tag
      * @return result
      */
-    @JvmStatic
     fun makeUnionQuery(
         table1: String, table2: String,
         table1Projection: Array<String>, table2Projection: Array<String>,

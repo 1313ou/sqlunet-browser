@@ -17,7 +17,6 @@ class VnSynset(query: VnClassQueryFromWordAndPos) : BasicSynset(query.synsetId, 
     /**
      * `flag` is a selection flag used by some queries
      */
-    @JvmField
     val flag: Boolean
 
     init {

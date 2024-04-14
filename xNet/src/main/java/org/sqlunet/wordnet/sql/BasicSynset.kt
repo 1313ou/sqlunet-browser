@@ -12,20 +12,20 @@ open class BasicSynset protected constructor(
     /**
      * the synset's id in the database
      */
-    @JvmField val synsetId: Long,
+    val synsetId: Long,
 
     /**
      * `the synset's definition
      */
-    @JvmField val definition: String,
+    val definition: String,
 
     /**
      * the synset's domain
      */
-    @JvmField val domainId: Int,
+    val domainId: Int,
 
     /**
      * a string concatenating the synset's samples
      */
-    @JvmField val sample: String?,
+    val sample: String?,
 )

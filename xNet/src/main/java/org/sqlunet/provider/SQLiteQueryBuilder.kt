@@ -184,7 +184,6 @@ class SQLiteQueryBuilder {
             }
         }
 
-        @JvmStatic
         fun buildQueryString(distinct: Boolean, tables: String?, columns: Array<String>?, where: String?, groupBy: String?, having: String?, orderBy: String?, limit: String?): String {
             require(!(isEmpty(groupBy) && !isEmpty(having))) { "HAVING clauses are only permitted when using a groupBy clause" }
             val query = StringBuilder(120)

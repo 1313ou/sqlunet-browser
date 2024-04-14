@@ -44,7 +44,6 @@ object DeployOps {
      * @param publishRate publish rate
      * @return true if successful
      */
-    @JvmStatic
     @Synchronized
     fun copyFromFile(srcFile: String, destFile: String, task: Task<String, Pair<Number, Number>, Boolean>, publisher: Publisher, publishRate: Int): Boolean {
         Log.d(TAG, "Copying from $srcFile to $destFile")
@@ -96,7 +95,6 @@ object DeployOps {
      * @param publishRate publish rate
      * @return true if successful
      */
-    @JvmStatic
     @Synchronized
     fun copyFromUri(srcUri: Uri, resolver: ContentResolver, destFile: String, task: Task<Uri, Pair<Number, Number>, Boolean>, publisher: Publisher, publishRate: Int): Boolean {
         Log.d(TAG, "Copying from $srcUri to $destFile")
@@ -145,7 +143,6 @@ object DeployOps {
      * @param publishRate publish rate
      * @return true if successful
      */
-    @JvmStatic
     @Synchronized
     fun copyFromUrl(srcUrl: URL, destFile: String, task: Task<URL, Pair<Number, Number>, Boolean>, publisher: Publisher, publishRate: Int): Boolean {
         Log.d(TAG, "Copying from $srcUrl to $destFile")
@@ -196,7 +193,6 @@ object DeployOps {
      * @param publishRate publish rate
      * @return true if successful
      */
-    @JvmStatic
     @Synchronized
     fun unzipFromArchiveFile(srcArchive: String, destDir: String, task: Task<String, Pair<Number, Number>, Boolean>, publisher: Publisher, publishRate: Int): Boolean {
         Log.d(TAG, "Expanding from $srcArchive to $destDir")
@@ -283,7 +279,6 @@ object DeployOps {
      * @param publishRate publish rate
      * @return true if successful
      */
-    @JvmStatic
     @Synchronized
     fun unzipFromArchiveUri(srcUri: Uri, resolver: ContentResolver, destDir: String, task: Task<Uri, Pair<Number, Number>, Boolean>, publisher: Publisher, publishRate: Int): Boolean {
         Log.d(TAG, "Expanding from $srcUri to $destDir")
@@ -364,7 +359,6 @@ object DeployOps {
      * @param publishRate publish rate
      * @return true if successful
      */
-    @JvmStatic
     @Synchronized
     fun unzipFromArchiveUrl(srcUrl: URL, destDir: String, task: Task<URL, Pair<Number, Number>, Boolean>, publisher: Publisher, publishRate: Int): Boolean {
         Log.d(TAG, "Expanding from $srcUrl to $destDir")
@@ -446,7 +440,6 @@ object DeployOps {
      * @param publishRate publish rate
      * @return true if successful
      */
-    @JvmStatic
     @Synchronized
     fun unzipEntryFromArchiveFile(srcArchive: String, srcEntry: String, destFile: String, task: Task<String, Pair<Number, Number>, Boolean>, publisher: Publisher, publishRate: Int): Boolean {
         Log.d(TAG, "Expanding from $srcArchive (entry $srcEntry) to $destFile")
@@ -528,7 +521,6 @@ object DeployOps {
      * @param publishRate publish rate
      * @return true if successful
      */
-    @JvmStatic
     @Synchronized
     fun unzipEntryFromArchiveUri(srcUri: Uri, srcEntry: String, resolver: ContentResolver, destFile: String, task: Task<Uri, Pair<Number, Number>, Boolean>, publisher: Publisher, publishRate: Int): Boolean {
         Log.d(TAG, "Expanding from $srcUri (entry $srcEntry) to $destFile")
@@ -614,7 +606,6 @@ object DeployOps {
      * @param publishRate publish rate
      * @return true if successful
      */
-    @JvmStatic
     @Synchronized
     fun unzipEntryFromArchiveUrl(srcUrl: URL, srcEntry: String, destFile: String, task: Task<URL, Pair<Number, Number>, Boolean>, publisher: Publisher, publishRate: Int): Boolean {
         Log.d(TAG, "Expanding from $srcUrl (entry $srcEntry) to $destFile")
@@ -700,7 +691,6 @@ object DeployOps {
      * @param publishRate publish rate
      * @return digest if successful
      */
-    @JvmStatic
     @Synchronized
     fun md5FromFile(srcFile: String, task: Task<String, Pair<Number, Number>, String?>, publisher: Publisher, publishRate: Int): String? {
         Log.d(TAG, "Md5 $srcFile")
@@ -754,7 +744,6 @@ object DeployOps {
      * @param publishRate publish rate
      * @return digest if successful
      */
-    @JvmStatic
     @Synchronized
     fun md5FromUri(uri: Uri, resolver: ContentResolver, task: Task<Uri, Pair<Number, Number>, String?>, publisher: Publisher, publishRate: Int): String? {
         Log.d(TAG, "Md5 uri $uri")
@@ -805,7 +794,6 @@ object DeployOps {
      * @param publishRate publish rate
      * @return digest if successful
      */
-    @JvmStatic
     @Synchronized
     fun md5FromUrl(url: URL, task: Task<URL, Pair<Number, Number>, String?>, publisher: Publisher, publishRate: Int): String? {
         Log.d(TAG, "Md5 uri $url")

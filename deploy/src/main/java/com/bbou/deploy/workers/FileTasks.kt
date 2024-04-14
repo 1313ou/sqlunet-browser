@@ -679,7 +679,6 @@ class FileTasks(
          * @param dest       database path
          * @param whenDone   to run when done
          */
-        @JvmStatic
         fun launchCopy(activity: FragmentActivity, sourceFile: String, dest: String, whenDone: Consumer<Boolean>?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_copy_datapack_from_file))
@@ -696,7 +695,6 @@ class FileTasks(
          * @param dest       database path
          * @param whenDone   to run when done
          */
-        @JvmStatic
         fun launchCopy(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, sourceFile: String, dest: String, whenDone: Consumer<Boolean>?) {
             val consumer = Consumer { success: Boolean -> whenDone?.accept(success) }
             val task = FileTasks(observer, consumer, 1000).copyFromFile(dest)
@@ -712,7 +710,6 @@ class FileTasks(
          * @param dest     database path
          * @param whenDone to run when done
          */
-        @JvmStatic
         fun launchCopy(activity: FragmentActivity, uri: Uri, dest: String, whenDone: Consumer<Boolean>?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_copy_datapack_from_file))
@@ -729,7 +726,6 @@ class FileTasks(
          * @param dest     database path
          * @param whenDone to run when done
          */
-        @JvmStatic
         fun launchCopy(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, sourceUri: Uri, dest: String, whenDone: Consumer<Boolean>?) {
             val task = FileTasks(observer, whenDone, 1000).copyFromUri(activity.contentResolver, dest)
             task.execute(sourceUri)
@@ -744,7 +740,6 @@ class FileTasks(
          * @param dest     database path
          * @param whenDone to run when done
          */
-        @JvmStatic
         fun launchCopy(activity: FragmentActivity, url: URL, dest: String, whenDone: Consumer<Boolean>?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_copy_datapack_from_file))
@@ -761,7 +756,6 @@ class FileTasks(
          * @param dest  database path
          * @param whenDone to run when done
          */
-        @JvmStatic
         fun launchCopy(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, sourceUrl: URL, dest: String, whenDone: Consumer<Boolean>?) {
             val task = FileTasks(observer, whenDone, 1000).copyFromUrl(dest)
             task.execute(sourceUrl)
@@ -778,7 +772,6 @@ class FileTasks(
          * @param dest       database path
          * @param whenDone   to run when done
          */
-        @JvmStatic
         fun launchUnzip(activity: FragmentActivity, sourceFile: String, dest: String, whenDone: Consumer<Boolean>?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_unzip_datapack_from_archive))
@@ -795,7 +788,6 @@ class FileTasks(
          * @param dest       database path
          * @param whenDone   to run when done
          */
-        @JvmStatic
         fun launchUnzip(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, sourceFile: String, dest: String, whenDone: Consumer<Boolean>?) {
             val consumer = Consumer { success: Boolean -> whenDone?.accept(success) }
             val task = FileTasks(observer, consumer, 1000).unzipFromArchiveFile(dest)
@@ -811,7 +803,6 @@ class FileTasks(
          * @param dest      database path
          * @param whenDone  to run when done
          */
-        @JvmStatic
         fun launchUnzip(activity: FragmentActivity, sourceUri: Uri, dest: String, whenDone: Consumer<Boolean>?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_unzip_datapack_from_archive))
@@ -827,7 +818,6 @@ class FileTasks(
          * @param dest      database path
          * @param whenDone  to run when done
          */
-        @JvmStatic
         fun launchUnzip(activity: FragmentActivity, sourceUrl: URL, dest: String, whenDone: Consumer<Boolean>?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_unzip_datapack_from_archive))
@@ -844,7 +834,6 @@ class FileTasks(
          * @param dest      database path
          * @param whenDone  to run when done
          */
-        @JvmStatic
         fun launchUnzip(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, sourceUri: Uri, dest: String, whenDone: Consumer<Boolean>?) {
             val task = FileTasks(observer, whenDone, 1000).unzipFromArchiveUri(activity.contentResolver, dest)
             task.execute(sourceUri)
@@ -860,8 +849,6 @@ class FileTasks(
          * @param dest      database path
          * @param whenDone  to run when done
          */
-
-        @JvmStatic
         fun launchUnzip(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, sourceUrl: URL, dest: String, whenDone: Consumer<Boolean>?) {
             val task = FileTasks(observer, whenDone, 1000).unzipFromArchiveUrl(dest)
             task.execute(sourceUrl)
@@ -877,7 +864,6 @@ class FileTasks(
          * @param dest       database path
          * @param whenDone   to run when done
          */
-        @JvmStatic
         fun launchUnzip(activity: FragmentActivity, sourceFile: String, zipEntry: String, dest: String, whenDone: Consumer<Boolean>?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_unzip_datapack_from_archive))
@@ -895,7 +881,6 @@ class FileTasks(
          * @param dest       database path
          * @param whenDone   to run when done
          */
-        @JvmStatic
         fun launchUnzip(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, sourceFile: String, zipEntry: String, dest: String, whenDone: Consumer<Boolean>?) {
             val consumer = Consumer { success: Boolean -> whenDone?.accept(success) }
             val task = FileTasks(observer, consumer, 1000).unzipEntryFromArchiveFile(zipEntry, dest)
@@ -912,7 +897,6 @@ class FileTasks(
          * @param dest      database path
          * @param whenDone  to run when done
          */
-        @JvmStatic
         fun launchUnzip(activity: FragmentActivity, sourceUri: Uri, zipEntry: String, dest: String, whenDone: Consumer<Boolean>?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_unzip_datapack_from_archive))
@@ -929,7 +913,6 @@ class FileTasks(
          * @param dest      database path
          * @param whenDone  to run when done
          */
-        @JvmStatic
         fun launchUnzip(activity: FragmentActivity, sourceUrl: URL, zipEntry: String, dest: String, whenDone: Consumer<Boolean>?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_unzip_datapack_from_archive))
@@ -947,7 +930,6 @@ class FileTasks(
          * @param dest      database path
          * @param whenDone  to run when done
          */
-        @JvmStatic
         fun launchUnzip(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, sourceUri: Uri, zipEntry: String, dest: String, whenDone: Consumer<Boolean>?) {
             val task = FileTasks(observer, whenDone, 1000).unzipEntryFromArchiveUri(activity.contentResolver, zipEntry, dest)
             task.execute(sourceUri)
@@ -964,7 +946,6 @@ class FileTasks(
          * @param dest      database path
          * @param whenDone  to run when done
          */
-        @JvmStatic
         fun launchUnzip(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, sourceUrl: URL, zipEntry: String, dest: String, whenDone: Consumer<Boolean>?) {
             val task = FileTasks(observer, whenDone, 1000).unzipEntryFromArchiveUrl(zipEntry, dest)
             task.execute(sourceUrl)
@@ -980,7 +961,6 @@ class FileTasks(
          * @param sourceFile source file
          * @param whenDone   to run when done
          */
-        @JvmStatic
         fun launchMd5(activity: FragmentActivity, sourceFile: String, whenDone: Runnable?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_md5))
@@ -995,7 +975,6 @@ class FileTasks(
          * @param uri      uri
          * @param whenDone to run when done
          */
-        @JvmStatic
         fun launchMd5(activity: FragmentActivity, uri: Uri, whenDone: Runnable?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_md5))
@@ -1010,7 +989,6 @@ class FileTasks(
          * @param url      url
          * @param whenDone to run when done
          */
-        @JvmStatic
         fun launchMd5(activity: FragmentActivity, url: URL, whenDone: Runnable?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_md5))
@@ -1050,7 +1028,6 @@ class FileTasks(
          * @param uri      uri
          * @param whenDone to run when done
          */
-        @JvmStatic
         fun launchMd5(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, uri: Uri, whenDone: Runnable?) {
             val consumer = Consumer { md5: String? ->
                 val alert2 = AlertDialog.Builder(activity)
@@ -1075,7 +1052,6 @@ class FileTasks(
          * @param url      url
          * @param whenDone to run when done
          */
-        @JvmStatic
         fun launchMd5(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, url: URL, whenDone: Runnable?) {
             val consumer = Consumer { md5: String? ->
                 val alert2 = AlertDialog.Builder(activity)

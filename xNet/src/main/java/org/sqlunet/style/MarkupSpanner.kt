@@ -24,7 +24,6 @@ object MarkupSpanner : Spanner() {
      * @param extraPatterns more patterns
      * @return spannable string builder
      */
-    @JvmStatic
     fun setSpan(
         text: CharSequence,
         sb: SpannableStringBuilder, spanFactory: SpanFactory,
@@ -152,7 +151,6 @@ object MarkupSpanner : Spanner() {
              * @param flags flags
              * @return position
              */
-            @JvmStatic
             fun valueFrom(flags: Long): SpanPosition? {
                 when ((flags and 3L).toInt()) {
                     1 -> return TAG1

@@ -16,7 +16,6 @@ class Word : IPointer {
     /**
      * Word
      */
-    @JvmField
     val word: String?
 
     /**

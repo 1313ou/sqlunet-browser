@@ -8,13 +8,11 @@ import androidx.preference.PreferenceManager
 
 object SpeakSettings {
 
-    @JvmStatic
     fun findCountry(context: Context): String? {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
         return prefs.getString(SpeakSettingsFragment.COUNTRY_PREF, null)
     }
 
-    @JvmStatic
     fun findVoiceFor(country: String?, context: Context): String? {
         if (country == null) {
             return null

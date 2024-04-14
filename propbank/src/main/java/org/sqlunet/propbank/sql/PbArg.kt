@@ -15,11 +15,11 @@ package org.sqlunet.propbank.sql
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal class PbArg private constructor(
-    @JvmField val argType: String,
-    @JvmField val f: String?,
-    @JvmField val description: String,
-    @JvmField val vnTheta: String?,
-    @JvmField val subText: String,
+    val argType: String,
+    val f: String?,
+    val description: String,
+    val vnTheta: String?,
+    val subText: String,
 ) {
 
     /**

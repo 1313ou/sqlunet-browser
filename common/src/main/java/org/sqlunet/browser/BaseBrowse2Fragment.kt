@@ -22,25 +22,18 @@ import org.sqlunet.settings.Settings.DetailViewMode
  */
 abstract class BaseBrowse2Fragment : Fragment() {
 
-    @JvmField
     protected var pointer: Parcelable? = null
 
-    @JvmField
     protected var word: String? = null
 
-    @JvmField
     protected var cased: String? = null
 
-    @JvmField
     protected var pronunciation: String? = null
 
-    @JvmField
     protected var pos: String? = null
 
-    @JvmField
     protected var layoutId = R.layout.fragment_browse2_multi
 
-    @JvmField
     protected var targetView: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

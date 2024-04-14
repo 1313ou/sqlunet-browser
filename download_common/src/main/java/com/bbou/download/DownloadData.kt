@@ -8,35 +8,35 @@ data class DownloadData(
     /**
      * Source url
      */
-    @JvmField val fromUrl: String?,
+    val fromUrl: String?,
 
     /**
      * Local downloaded file
      */
-    @JvmField val toFile: String?,
+    val toFile: String?,
 
     /**
      * Data stamp
      */
-    @JvmField val date: Long? = null,
+    val date: Long? = null,
 
     /**
      * Size
      */
-    @JvmField val size: Long? = null,
+    val size: Long? = null,
 
     /**
      * Etag
      */
-    @JvmField val etag: String? = null,
+    val etag: String? = null,
 
     /**
      * Version
      */
-    @JvmField val version: String? = null,
+    val version: String? = null,
 
     /**
      * Static version
      */
-    @JvmField val staticVersion: String? = null,
+    val staticVersion: String? = null,
 )

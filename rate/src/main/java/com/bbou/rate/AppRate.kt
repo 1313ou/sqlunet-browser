@@ -187,7 +187,7 @@ class AppRate {
         }
 
         // Called from activity's onCreate()
-        @JvmStatic
+
         operator fun invoke(activity: Activity) {
             forActivity()!!.setStoreType(StoreType.GOOGLE) //default is Google, other option is Amazon
                 .setDebug(false) // default false.
@@ -196,7 +196,7 @@ class AppRate {
         }
 
         // Called from menu
-        @JvmStatic
+
         fun rate(activity: Activity) {
             forActivity()!!.showRateDialog(activity)
         }

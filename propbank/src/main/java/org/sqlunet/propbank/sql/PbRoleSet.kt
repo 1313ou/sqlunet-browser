@@ -16,11 +16,11 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal class PbRoleSet private constructor(
-    @JvmField val roleSetName: String,
-    @JvmField val roleSetHead: String,
-    @JvmField val roleSetDescr: String,
-    @JvmField val roleSetId: Long,
-    @JvmField val wordId: Long,
+    val roleSetName: String,
+    val roleSetHead: String,
+    val roleSetDescr: String,
+    val roleSetId: Long,
+    val wordId: Long,
 ) {
 
     companion object {
@@ -32,7 +32,6 @@ internal class PbRoleSet private constructor(
          * @param word       is the word to build query from
          * @return list of PropBank roleSets
          */
-        @JvmStatic
         fun makeFromWord(connection: SQLiteDatabase, word: String?): List<PbRoleSet?>? {
             var result: MutableList<PbRoleSet?>? = null
             PbRoleSetQueryFromWord(connection, word).use {
@@ -59,7 +58,6 @@ internal class PbRoleSet private constructor(
          * @param wordId     is the word id to build query from
          * @return list of PropBank roleSets
          */
-        @JvmStatic
         fun makeFromWordId(connection: SQLiteDatabase, wordId: Long): List<PbRoleSet?>? {
             var result: MutableList<PbRoleSet?>? = null
             PbRoleSetQueryFromWordId(connection, wordId).use {
@@ -85,7 +83,6 @@ internal class PbRoleSet private constructor(
          * @param roleSetId  is the role set id to build query from
          * @return list of PropBank role sets
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, roleSetId: Long): List<PbRoleSet?>? {
             var result: MutableList<PbRoleSet?>? = null
             PbRoleSetQuery(connection, roleSetId).use {

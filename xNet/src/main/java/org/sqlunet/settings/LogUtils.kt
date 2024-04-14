@@ -33,7 +33,6 @@ object LogUtils {
      * @param context  context
      * @param fileName file name
      */
-    @JvmStatic
     fun writeLog(text: CharSequence, append: Boolean, context: Context, fileName: String?): String? {
         val storage = context.cacheDir
         val logFile = File(storage, fileName ?: SQL_LOG)
@@ -47,7 +46,6 @@ object LogUtils {
      * @param append   whether to append to file
      * @param logFile  file to log to
      */
-    @JvmStatic
     fun writeLog(text: CharSequence, append: Boolean, logFile: File): String? {
         try {
             logFile.createNewFile()
@@ -76,7 +74,6 @@ object LogUtils {
      * @param fileName0 file name
      * @param docs      documents
      */
-    @JvmStatic
     fun writeLog(append: Boolean, context: Context, fileName0: String?, vararg docs: Document?): String? {
         val fileName = fileName0 ?: DOC_LOG
         val sb = StringBuilder()

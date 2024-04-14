@@ -16,7 +16,6 @@ open class Pointer : IPointer {
     /**
      * Id of pointed-to object
      */
-    @JvmField
     val id: Long
 
     /**

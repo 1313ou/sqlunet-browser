@@ -83,7 +83,6 @@ class Notifier {
          * @param type           notification
          * @param args           arguments
          */
-        @JvmStatic
         fun fireNotification(context: Context, notificationId: Int, type: NotificationType, contentText0: String?, vararg args: Any) {
             // get an instance of the NotificationManager service
             var contentText = contentText0
@@ -206,7 +205,6 @@ class Notifier {
          * @param notificationId notification id
          * @return
          */
-        @JvmStatic
         fun makeCancelIntent(context: Context, notificationId: Int): Intent {
             val intent = Intent()
             intent.setPackage(context.applicationContext.packageName)
@@ -223,7 +221,6 @@ class Notifier {
          * @param intent payload intent
          * @return pending intent
          */
-        @JvmStatic
         fun makePendingIntent(context: Context, intent: Intent): PendingIntent {
             val uid = System.currentTimeMillis().toInt()
             val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)

@@ -66,11 +66,11 @@ open class DownloadActivity : AppCompatActivity(), CompletionListener {
                 if (!broadcastAction.isNullOrEmpty() && !broadcastRequestKey.isNullOrEmpty()) {
                     val broadcastKillRequestValue = args.getString(BROADCAST_KILL_REQUEST_VALUE)
                     if (!broadcastKillRequestValue.isNullOrEmpty()) {
-                        downloadFragment.setRequestKill { broadcastRequest(this, broadcastAction, broadcastRequestKey, broadcastKillRequestValue) }
+                        downloadFragment.requestKill = Runnable { broadcastRequest(this, broadcastAction, broadcastRequestKey, broadcastKillRequestValue) }
                     }
                     val broadcastNewRequestValue = args.getString(BROADCAST_NEW_REQUEST_VALUE)
                     if (!broadcastNewRequestValue.isNullOrEmpty()) {
-                        downloadFragment.setRequestNew { broadcastRequest(this, broadcastAction, broadcastRequestKey, broadcastNewRequestValue) }
+                        downloadFragment.requestNew = Runnable { broadcastRequest(this, broadcastAction, broadcastRequestKey, broadcastNewRequestValue) }
                     }
                 }
             }

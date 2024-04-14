@@ -22,7 +22,6 @@ import org.sqlunet.settings.StorageSettings
 
 object DownloadIntentFactory {
 
-    @JvmStatic
     fun makeIntent(context: Context): Intent {
         var type = Mode.getModePref(context)
         if (type == null) {
@@ -76,7 +75,6 @@ object DownloadIntentFactory {
         return intent
     }
 
-    @JvmStatic
     fun makeIntentDownloadThenDeploy(context: Context): Intent {
         val dbZipSource = StorageSettings.getDbDownloadZippedSourcePath(context)
         val dbZipDest = StorageSettings.getCachedZippedPath(context)
@@ -99,7 +97,6 @@ object DownloadIntentFactory {
         return intent
     }
 
-    @JvmStatic
     fun makeUpdateIntent(context: Context): Intent {
         val downloadSourceType = Settings.getDatapackSourceType(context)
         val downloadSourceUrl = (if ("download" == downloadSourceType) Settings.getDatapackSource(context) else StorageSettings.getDbDownloadZippedSourcePath(context))!!

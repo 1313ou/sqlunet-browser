@@ -8,7 +8,6 @@ import org.sqlunet.syntagnet.provider.SyntagNetContract
 
 object Queries {
 
-    @JvmStatic
     fun prepareSnSelect(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI
@@ -29,7 +28,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareCollocation(collocationId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI
@@ -51,7 +49,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareCollocations(word1Id: Long?, word2Id: Long?, synset1Id: Long?, synset2Id: Long?): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI
@@ -78,7 +75,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareCollocations(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI
@@ -96,7 +92,6 @@ object Queries {
         return providerSql
     }
 
-    @JvmStatic
     fun prepareCollocations(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI

@@ -97,7 +97,6 @@ class SyntagNetProvider : BaseProvider() {
             uriMatcher.addURI(AUTHORITY, SnCollocations_X.URI, SyntagNetControl.COLLOCATIONS_X)
         }
 
-        @JvmStatic
         fun makeUri(table: String): String {
             return "$SCHEME$AUTHORITY/$table"
         }

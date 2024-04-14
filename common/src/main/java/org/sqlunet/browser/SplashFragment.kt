@@ -19,7 +19,6 @@ abstract class SplashFragment : Fragment() {
     /**
      * Layout id set bu super class
      */
-    @JvmField
     protected var layoutId = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

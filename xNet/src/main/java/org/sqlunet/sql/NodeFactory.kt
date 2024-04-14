@@ -26,7 +26,6 @@ object NodeFactory {
      * @param text     is the node's text content
      * @return newly created node
      */
-    @JvmStatic
     fun makeNode(document: Document, parent: Node?, name: String?, text: String?): Element {
         val element = document.createElement(name)
 
@@ -47,7 +46,6 @@ object NodeFactory {
      * @param text     is the node's text content
      * @return newly created node
      */
-    @JvmStatic
     fun makeNode(document: Document, parent: Node?, name: String?, text: String?, ns: String?): Element {
         val node = makeNode(document, parent, name, text)
         node.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", ns)
@@ -63,7 +61,6 @@ object NodeFactory {
      * @param text     is the node's text content
      * @return newly created node
      */
-    @JvmStatic
     fun makeRootNode(document: Document, parent: Node?, name: String?, text: String?, ns: String?): Element {
         val node = makeNode(document, parent, name, text, ns)
         node.setAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xs:schemaLocation", "$NS_URL $NS_XSD")
@@ -77,7 +74,6 @@ object NodeFactory {
      * @param name    is the attribute's name
      * @param value   is the attribute's value
      */
-    @JvmStatic
     fun makeAttribute(element: Element, name: String?, value: String?) {
         if (!value.isNullOrEmpty()) {
             element.setAttribute(name, value)
@@ -89,7 +85,6 @@ object NodeFactory {
      *
      * @param element DOM element to attach attributes to	 * @param args     name-value pairs
      */
-    @JvmStatic
     fun addAttributes(element: Element, vararg args: String) {
         // attributes
         var i = 0
@@ -107,7 +102,6 @@ object NodeFactory {
      * @param text     text
      * @return parent
      */
-    @JvmStatic
     fun makeText(document: Document, parent: Element, text: String?): Element {
         // text
         if (!text.isNullOrEmpty()) {

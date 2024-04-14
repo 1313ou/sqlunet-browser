@@ -31,7 +31,6 @@ object DomTransformer {
      * @param doc doc
      * @return xml
      */
-    @JvmStatic
     fun docToXml(doc: Document?): String {
         return try {
             docToString(doc, null, "xml")
@@ -49,7 +48,6 @@ object DomTransformer {
      * @param document org.w3.dom.Document to convert to XML form
      * @return XML string for Document
      */
-    @JvmStatic
     fun docToString(document: Document?): String {
         return try {
             val source: Source = DOMSource(document)
@@ -77,7 +75,6 @@ object DomTransformer {
      * @return XML String that represents DOM document
      * @throws TransformerException transformer exception
      */
-    @JvmStatic
     @Throws(TransformerException::class)
     fun docToString(doc: Document?, xslStream: InputStream?, method: String?): String {
         val source: Source = DOMSource(doc)

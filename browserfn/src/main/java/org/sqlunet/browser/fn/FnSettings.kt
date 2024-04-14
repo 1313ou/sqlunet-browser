@@ -25,7 +25,6 @@ object FnSettings : Settings() {
      * @param context context
      * @return preferred enable FrameNet flag
      */
-    @JvmStatic
     fun getFrameNetPref(context: Context): Boolean {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getBoolean(PREF_ENABLE_FRAMENET, true)

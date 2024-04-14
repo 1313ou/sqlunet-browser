@@ -39,31 +39,26 @@ abstract class DownloadBaseFragment : ProbedDownloadFragment() {
     /**
      * Result
      */
-    @JvmField
     protected var success: Boolean? = null
 
     /**
      * Cancel pending
      */
-    @JvmField
     protected var cancel = false
 
     /**
      * Cause
      */
-    @JvmField
     protected var cause: String? = null
 
     /**
      * Exception
      */
-    @JvmField
     protected var exception: String? = null
 
     /**
      * Downloading flag (prevents re-entrance)
      */
-    @JvmField
     protected var working = false
 
     // N O T I F I C A T I O N
@@ -83,7 +78,6 @@ abstract class DownloadBaseFragment : ProbedDownloadFragment() {
     /**
      * Observer
      */
-    @JvmField
     protected val observer = Observer { wi: WorkInfo ->
 
         @UiThread
@@ -186,7 +180,6 @@ abstract class DownloadBaseFragment : ProbedDownloadFragment() {
     /**
      * Work uuid
      */
-    @JvmField
     protected var uuid: UUID? = null
 
     /**

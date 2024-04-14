@@ -16,10 +16,10 @@ package org.sqlunet.framenet.sql
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class FnLabel(
-    @JvmField val from: String,
-    @JvmField val to: String,
-    @JvmField val label: String,
-    @JvmField val iType: String?,
+    val from: String,
+    val to: String,
+    val label: String,
+    val iType: String?,
     bgColor: String?,
     fgColor: String?,
 ) {

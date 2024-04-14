@@ -28,13 +28,11 @@ open class SynsetFragment : TreeFragment() {
     /**
      * Max recursion level
      */
-    @JvmField
     var maxRecursion = 0
 
     /**
      * Parameters
      */
-    @JvmField
     var parameters: Bundle? = null
 
     init {
@@ -90,7 +88,7 @@ open class SynsetFragment : TreeFragment() {
         if (parameters != null) {
             module.setDisplayRelationNames(parameters!!.getBoolean(ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, true), parameters!!.getBoolean(ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, true))
         }
-        module.setExpand(expand)
+        module.expand = this.expand
         return module
     }
 

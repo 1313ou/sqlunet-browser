@@ -55,7 +55,6 @@ object MenuHandler {
      * @param item     menu item
      * @return true if processed/consumed
      */
-    @JvmStatic
     fun menuDispatch(activity: AppCompatActivity, item: MenuItem): Boolean {
         val intent: Intent
         // main

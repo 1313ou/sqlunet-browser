@@ -134,25 +134,21 @@ abstract class BaseDownloadFragment : Fragment() {
     /**
      * Download uri
      */
-    @JvmField
     protected var downloadUrl: String? = null
 
     /**
      * Rename source
      */
-    @JvmField
     protected var renameFrom: String? = null
 
     /**
      * Rename destination
      */
-    @JvmField
     protected var renameTo: String? = null
 
     /**
      * Mode
      */
-    @JvmField
     protected var mode: Settings.Mode? = null
 
     /**
@@ -630,32 +626,12 @@ abstract class BaseDownloadFragment : Fragment() {
     /**
      * New data available request runnable, run when new data becomes available
      */
-    @JvmField
-    protected var requestNew: Runnable? = null
+    var requestNew: Runnable? = null
 
     /**
      * Kill old data request runnable, run when old data should be discarded
      */
-    @JvmField
-    protected var requestKill: Runnable? = null
-
-    /**
-     * Set new data available request runnable
-     *
-     * @param requestNew new data available request runnable
-     */
-    fun setRequestNew(requestNew: Runnable?) {
-        this.requestNew = requestNew
-    }
-
-    /**
-     * Set kill old data request runnable
-     *
-     * @param requestKill new data available request runnable
-     */
-    fun setRequestKill(requestKill: Runnable?) {
-        this.requestKill = requestKill
-    }
+    var requestKill: Runnable? = null
 
     // E V E N T S
 

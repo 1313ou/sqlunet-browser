@@ -16,7 +16,6 @@ import org.hamcrest.CoreMatchers
 
 internal object Do {
 
-    @JvmStatic
     fun ensureDownloaded(): Boolean {
         val notMain = ToBoolean.testAssertion(ViewMatchers.withId(R.id.drawer_layout), ViewAssertions.doesNotExist()) || !ToBoolean.test(ViewMatchers.withId(R.id.drawer_layout), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE))
         if (notMain) {
@@ -34,7 +33,6 @@ internal object Do {
         WaitUntilText.changesFrom(R.id.status, Seq.getResourceString(R.string.status_task_running))
     }
 
-    @JvmStatic
     fun ensureTextSearchSetup(@IdRes buttonId: Int) {
         val notSet = ToBoolean.testAssertion(ViewMatchers.withId(buttonId), ViewAssertions.doesNotExist()) || ToBoolean.test(ViewMatchers.withId(buttonId), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE))
         if (notSet) {
@@ -50,7 +48,6 @@ internal object Do {
         WaitUntilText.changesFrom(R.id.task_status, Seq.getResourceString(R.string.status_task_running))
     }
 
-    @JvmStatic
     fun searchRunFlat() {
         for (word in DataUtils.wordList!!) {
             Seq.doTypeSearch(R.id.search, word)
@@ -76,7 +73,6 @@ internal object Do {
         }
     }
 
-    @JvmStatic
     fun searchRunTree() {
         for (word in DataUtils.wordList!!) {
             Seq.doTypeSearch(R.id.search, word)
@@ -120,7 +116,6 @@ internal object Do {
         }
     }
 
-    @JvmStatic
     fun xselectorsRunTree() {
         for (word in DataUtils.wordList!!) {
             Seq.doTypeSearch(R.id.search, word)
@@ -143,7 +138,6 @@ internal object Do {
         }
     }
 
-    @JvmStatic
     fun textSearchRun(position: Int) {
         Seq.doChoose(R.id.spinner, position)
         for (word in DataUtils.wordList!!) {

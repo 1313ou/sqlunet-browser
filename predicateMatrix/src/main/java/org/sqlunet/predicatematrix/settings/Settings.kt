@@ -49,7 +49,6 @@ object Settings {
              * @param context context
              * @return mode preference
              */
-            @JvmStatic
             fun getPref(context: Context): PMMode {
                 val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
                 val modeString = sharedPref.getString(PREF_PM_MODE, ROLES.name)

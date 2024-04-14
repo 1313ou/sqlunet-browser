@@ -29,7 +29,6 @@ object VnSettings : Settings() {
      * @param context context
      * @return preferred selector type
      */
-    @JvmStatic
     fun getXSelectorPref(context: Context): Selector {
         return Selector.getPref(context)
     }
@@ -42,7 +41,6 @@ object VnSettings : Settings() {
      * @param context context
      * @return preferred enable WordNet flag
      */
-    @JvmStatic
     fun getAllPref(context: Context): Int {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         var result = 0

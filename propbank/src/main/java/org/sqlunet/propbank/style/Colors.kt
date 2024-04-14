@@ -14,16 +14,12 @@ import org.sqlunet.propbank.R
  */
 object Colors {
 
-    @JvmField
     var thetaBackColor = Color.TRANSPARENT
 
-    @JvmField
     var thetaForeColor = Color.TRANSPARENT
 
-    @JvmField
     var relationBackColor = Color.TRANSPARENT
 
-    @JvmField
     var relationForeColor = Color.TRANSPARENT
 
     fun setColorsFromResources(context: Context) {

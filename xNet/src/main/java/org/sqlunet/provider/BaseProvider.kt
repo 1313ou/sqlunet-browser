@@ -64,7 +64,7 @@ abstract class BaseProvider : ContentProvider() {
     // D A T A B A S E
 
     // database
-    @JvmField
+
     protected var db: SQLiteDatabase? = null
 
     // O P E N / S H U T D O W N
@@ -181,8 +181,7 @@ abstract class BaseProvider : ContentProvider() {
 
         // C O N T E N T   P R O V I D E R   A U T H O R I T Y
 
-        @JvmStatic
-        protected fun makeAuthority(configKey: String): String {
+        fun makeAuthority(configKey: String): String {
             try {
                 val `is` = BaseProvider::class.java.getResourceAsStream("/org/sqlunet/config.properties")
                 val properties = Properties()
@@ -220,13 +219,11 @@ abstract class BaseProvider : ContentProvider() {
         /**
          * SQL statement buffer
          */
-        @JvmField
         var sqlBuffer = CircularBuffer(DEFAULT_SQL_BUFFER_CAPACITY)
 
         /**
          * Record generated SQL
          */
-        @JvmField
         var logSql = false
 
         /**
@@ -240,7 +237,6 @@ abstract class BaseProvider : ContentProvider() {
          * @param context context
          * @param uri     provider uri
          */
-        @JvmStatic
         fun closeProvider(context: Context, uri: Uri) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 context.contentResolver.refresh(uri, null, null)
@@ -254,7 +250,6 @@ abstract class BaseProvider : ContentProvider() {
          *
          * @param context context
          */
-        @JvmStatic
         fun closeProviders(context: Context) {
             val uris = authorityUris
             for (uri in uris) {
@@ -271,7 +266,6 @@ abstract class BaseProvider : ContentProvider() {
          * @param item       item to addItem to projection
          * @return augmented projection
          */
-        @JvmStatic
         fun appendProjection(projection: Array<String>?, item: String): Array<String> {
             val projection2 = projection ?: arrayOf("*")
             val tail = arrayOf(item)
@@ -285,7 +279,6 @@ abstract class BaseProvider : ContentProvider() {
          * @param items      item to addItem to projection
          * @return augmented projection
          */
-        @JvmStatic
         fun appendProjection(projection: Array<String>?, items: Array<String>): Array<String> {
             val projection2 = projection ?: arrayOf("*")
             return projection2 + items
@@ -298,7 +291,6 @@ abstract class BaseProvider : ContentProvider() {
          * @param item       item to append to projection
          * @return augmented projection
          */
-        @JvmStatic
         fun prependProjection(projection: Array<String>?, item: String): Array<String> {
 
             val projection2 = projection ?: arrayOf("*")
@@ -312,7 +304,7 @@ abstract class BaseProvider : ContentProvider() {
         //  * @param args args
         //  * @return string
         //  */
-        // @JvmStatic
+        //
         // protected fun argsToString(vararg args: String): String {
         //     val sb = StringBuilder()
         //     if (args.isNotEmpty()) {
@@ -332,8 +324,7 @@ abstract class BaseProvider : ContentProvider() {
          * @param args args
          * @return string
          */
-        @JvmStatic
-        protected fun argsToString(args: Array<out String>?): String {
+        fun argsToString(args: Array<out String>?): String {
             val sb = StringBuilder()
             if (!args.isNullOrEmpty()) {
                 for (s in args) {
@@ -351,7 +342,6 @@ abstract class BaseProvider : ContentProvider() {
          *
          * @param capacity capacity
          */
-        @JvmStatic
         fun resizeSql(capacity: Int) {
             // Log.d(TAG, "Sql buffer capacity " + capacity)
             sqlBuffer = CircularBuffer(capacity)

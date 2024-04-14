@@ -8,7 +8,6 @@ import org.sqlunet.browser.Module.ContentProviderSql
 
 object Queries {
 
-    @JvmStatic
     fun prepareBnc(wordId: Long, pos: Char?): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = Words_BNCs.URI

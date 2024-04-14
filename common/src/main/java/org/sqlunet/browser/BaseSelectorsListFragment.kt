@@ -32,27 +32,23 @@ abstract class BaseSelectorsListFragment : LoggingFragment(), OnItemClickListene
     /**
      * List view
      */
-    @JvmField
     protected var listView: ListView? = null
 
     /**
      * Cursor adapter
      */
-    @JvmField
     protected var adapter: CursorAdapter? = null
 
     /**
      * Cursor loader id
      */
-    @JvmField
     @LayoutRes
     protected var layoutId = 0
 
     /**
      * Activate on click flag
      */
-    @JvmField
-    protected var activateOnItemClick = true
+    var activateOnItemClick = true
 
     // L I F E C Y C L E
 
@@ -124,19 +120,16 @@ abstract class BaseSelectorsListFragment : LoggingFragment(), OnItemClickListene
     /**
      * Data view model
      */
-    @JvmField
     protected var dataModel: SqlunetViewModel? = null
 
     /**
      * Position view model
      */
-    @JvmField
     protected var positionModel: PositionViewModel? = null
 
     /**
      * View Model key
      */
-    @JvmField
     protected var viewModelKey: String? = null
 
     /**
@@ -181,15 +174,6 @@ abstract class BaseSelectorsListFragment : LoggingFragment(), OnItemClickListene
         }
 
     // C L I C K   L I S T E N E R
-
-    /**
-     * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
-     *
-     * @param activateOnItemClick true if activate
-     */
-    fun setActivateOnItemClick(activateOnItemClick: Boolean) {
-        this.activateOnItemClick = activateOnItemClick
-    }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
         Log.d(TAG, "Select $position")

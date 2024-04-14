@@ -44,13 +44,10 @@ open class SetupStatusFragment : Fragment(), Updatable {
 
     private var imageIndexes: ImageView? = null
 
-    @JvmField
     protected var buttonDb: ImageButton? = null
 
-    @JvmField
     protected var buttonIndexes: ImageButton? = null
 
-    @JvmField
     protected var infoDatabaseButton: ImageButton? = null
 
     /**

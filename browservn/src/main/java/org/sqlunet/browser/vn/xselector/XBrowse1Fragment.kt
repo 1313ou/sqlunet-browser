@@ -58,7 +58,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
         // two-pane specific set up
         if (isTwoPane) {
             // in two-pane mode, list items should be given the 'activated' state when touched.
-            xSelectorsFragment.setActivateOnItemClick(true)
+            xSelectorsFragment.activateOnItemClick = true
 
             // detail fragment (rigid layout)
             var browse2Fragment: Fragment

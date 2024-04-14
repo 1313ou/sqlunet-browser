@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class VnRoleSet private constructor(
-    @JvmField val roles: MutableList<VnRole>,
+    val roles: MutableList<VnRole>,
 ) {
 
     companion object {
@@ -25,7 +25,6 @@ class VnRoleSet private constructor(
          * @param classId    is the class id to build query from
          * @return set of VerbNet roles
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, classId: Long): VnRoleSet? {
             VnRoleQueryFromClassId(connection, classId).use {
                 it.execute()
@@ -58,7 +57,6 @@ class VnRoleSet private constructor(
          * @param synsetId   is the synset id to build query from (null for any)
          * @return set of VerbNet roles
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, classId: Long, wordId: Long, synsetId: Long?): VnRoleSet? {
             VnRoleQueryFromClassIdAndSense(connection, classId, wordId, synsetId).use {
                 it.execute()

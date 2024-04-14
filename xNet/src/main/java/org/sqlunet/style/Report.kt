@@ -27,7 +27,6 @@ object Report {
      * @param text text
      * @return spannable string builder
      */
-    @JvmStatic
     fun appendHeader(sb: SpannableStringBuilder, text: CharSequence?): SpannableStringBuilder {
         return appendWithSpans(sb, text, StyleSpan(Typeface.BOLD))
     }
@@ -39,7 +38,6 @@ object Report {
      * @param sb      spannable string builder
      * @param resId   resource id
      */
-    @JvmStatic
     fun appendImage(context: Context, sb: SpannableStringBuilder, @DrawableRes resId: Int) {
         appendWithSpans(sb, "\u0000", makeImageSpan(context, resId))
     }

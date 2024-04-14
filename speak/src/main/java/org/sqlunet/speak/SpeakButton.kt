@@ -60,7 +60,6 @@ object SpeakButton {
      * @param caption     caption
      * @param listener    click listener
      */
-    @JvmStatic
     fun appendClickableImage(sb: SpannableStringBuilder, @DrawableRes drawableRes: Int, caption: CharSequence, listener: Runnable, context: Context) {
         val span: ImageSpan = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             ImageSpan(context, drawableRes, DynamicDrawableSpan.ALIGN_BOTTOM)

@@ -28,7 +28,6 @@ internal object Providers {
      *
      * @param activity activity
      */
-    @JvmStatic
     fun listProviders(activity: AppCompatActivity) {
         val sb = SpannableStringBuilder()
         append(sb, activity.getString(R.string.providers), 0, Factories.boldFactory)

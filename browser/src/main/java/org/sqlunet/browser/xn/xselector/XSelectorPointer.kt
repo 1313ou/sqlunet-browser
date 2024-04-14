@@ -43,7 +43,6 @@ class XSelectorPointer : SelectorPointer, HasXId {
     /**
      * xGroup (0=wordnet, 1=verbnet, 2=propbank, 3=framenet, 4=bnc)
      */
-    @JvmField
     val xGroup: Int
 
     /**
@@ -178,7 +177,6 @@ class XSelectorPointer : SelectorPointer, HasXId {
          * @param xSources x sources
          * @return mask
          */
-        @JvmStatic
         fun getMask(xSources: String): Long {
             var mask: Long = 0
             if (xSources.contains("wn")) {

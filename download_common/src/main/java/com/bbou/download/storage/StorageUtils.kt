@@ -736,7 +736,6 @@ object StorageUtils {
      * @param nameValues2 values 2
      * @return pair of names and values
      */
-    @JvmStatic
     fun mergeNamesValues(nameValues1: Pair<Array<out CharSequence>, Array<String>>, nameValues2: Pair<Array<out CharSequence>, Array<String>>): Pair<Array<out CharSequence>, Array<String>> {
         val names: MutableList<CharSequence> = ArrayList()
         val values: MutableList<String> = ArrayList()

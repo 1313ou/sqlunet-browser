@@ -32,7 +32,6 @@ internal object XnStatus : Status() {
      * @param context context
      * @return _status
      */
-    @JvmStatic
     fun status(context: Context): Int {
         if (existsDatabase(context)) {
             var status = EXISTS
@@ -94,7 +93,6 @@ internal object XnStatus : Status() {
         return status and (EXISTS or EXISTS_TABLES or EXISTS_INDEXES or EXISTS_PREDICATEMATRIX) == EXISTS or EXISTS_TABLES or EXISTS_INDEXES or EXISTS_PREDICATEMATRIX
     }
 
-    @JvmStatic
     fun toString(status: Int): CharSequence {
         val sb: Editable = SpannableStringBuilder()
         sb.append(Integer.toHexString(status))

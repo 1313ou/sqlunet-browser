@@ -34,7 +34,6 @@ object PropBankControl {
     const val SUGGEST_WORDS = 601
     const val SUGGEST_FTS_WORDS = 602
 
-    @JvmStatic
     fun queryMain(code: Int, uriLast: String, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
         val table: String
         var selection = selection0
@@ -70,7 +69,6 @@ object PropBankControl {
         return Result(table, projection0, selection, selectionArgs0, groupBy)
     }
 
-    @JvmStatic
     fun querySearch(code: Int, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
         val table: String
         var groupBy: String? = null
@@ -87,7 +85,6 @@ object PropBankControl {
         return Result(table, projection0, selection0, selectionArgs0, groupBy)
     }
 
-    @JvmStatic
     fun querySuggest(code: Int, uriLast: String): Result? {
         val table: String
         val projection: Array<String>
@@ -123,7 +120,7 @@ object PropBankControl {
         return Result(table, projection, selection, selectionArgs, null)
     }
 
-    data class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?) {
+    data class Result(val table: String, val projection: Array<String>?, val selection: String?, val selectionArgs: Array<String>?, val groupBy: String?) {
 
         override fun toString(): String {
             return "table='$table'\nprojection=${projection.contentToString()}\nselection='$selection'\nselectionArgs=${selectionArgs.contentToString()}\ngroupBy=$groupBy"

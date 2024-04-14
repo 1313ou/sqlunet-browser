@@ -16,7 +16,6 @@ object PredicateMatrixControl {
     // join codes
     const val PM_X = 11
 
-    @JvmStatic
     fun queryMain(code: Int, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
         val groupBy: String? = null
         val table: String = when (code) {
@@ -27,7 +26,7 @@ object PredicateMatrixControl {
         return Result(table, projection0, selection0, selectionArgs0, groupBy)
     }
 
-    data class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?) {
+    data class Result(val table: String, val projection: Array<String>?, val selection: String?, val selectionArgs: Array<String>?, val groupBy: String?) {
 
         override fun toString(): String {
             return "table='$table'\nprojection=${projection.contentToString()}\nselection='$selection'\nselectionArgs=${selectionArgs.contentToString()}\ngroupBy=$groupBy"

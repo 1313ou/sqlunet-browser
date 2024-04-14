@@ -11,22 +11,18 @@ import org.sqlunet.treeview.model.TreeNode
  * @param fragment fragment
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract class Module protected constructor(@JvmField protected val fragment: TreeFragment) {
+abstract class Module protected constructor(protected val fragment: TreeFragment) {
 
     class ContentProviderSql {
 
         lateinit var providerUri: String
 
-        @JvmField
         var projection: Array<String>? = null
 
-        @JvmField
         var selection: String? = null
 
-        @JvmField
         var selectionArgs: Array<String>? = null
 
-        @JvmField
         var sortBy: String? = null
 
         constructor()

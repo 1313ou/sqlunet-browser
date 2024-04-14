@@ -13,12 +13,11 @@ package org.sqlunet.wordnet.sql
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal class Domain(
-    @JvmField val id: Int,
-    @JvmField val posId: Int,
+    val id: Int,
+    val posId: Int,
     name: String,
 ) {
 
-    @JvmField
     val domainName: String
 
     init {

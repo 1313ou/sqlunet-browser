@@ -13,9 +13,9 @@ package org.sqlunet.wordnet.sql
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal class Relation(
-    @JvmField val id: Int,
-    @JvmField val name: String,
-    @JvmField val recurses: Boolean,
+    val id: Int,
+    val name: String,
+    val recurses: Boolean,
 ) {
 
     var pos = 0

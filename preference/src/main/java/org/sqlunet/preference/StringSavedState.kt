@@ -15,7 +15,6 @@ internal class StringSavedState : Preference.BaseSavedState {
     /**
      * The value
      */
-    @JvmField
     var value: String? = null
 
     /**

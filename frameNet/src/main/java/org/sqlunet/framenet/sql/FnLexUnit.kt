@@ -22,10 +22,10 @@ import android.util.Pair
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class FnLexUnit private constructor(
-    @JvmField val luId: Long,
-    @JvmField val lexUnit: String,
+    val luId: Long,
+    val lexUnit: String,
     val pos: String,
-    @JvmField val definition: String,
+    val definition: String,
     private val dictionary: String?,
     private val incorporatedFe: String?,
     frameId: Long,
@@ -36,7 +36,6 @@ class FnLexUnit private constructor(
     /**
      * Buddy frame
      */
-    @JvmField
     val frame: FnFrame?
 
     init {
@@ -52,7 +51,6 @@ class FnLexUnit private constructor(
          * @param luId       lex unit id
          * @return lex units
          */
-        @JvmStatic
         fun makeFromId(connection: SQLiteDatabase, luId: Long): FnLexUnit? {
             FnLexUnitQuery(connection, luId).use {
                 it.execute()
@@ -79,7 +77,6 @@ class FnLexUnit private constructor(
          * @param word       target word
          * @return paris of (word id-list of lex units)
          */
-        @JvmStatic
         fun makeFromWord(connection: SQLiteDatabase, word: String): Pair<Long, List<FnLexUnit>?> {
             var result: MutableList<FnLexUnit>? = null
             FnLexUnitQueryFromWord(connection, word).use {
@@ -112,7 +109,6 @@ class FnLexUnit private constructor(
          * @param fnWord     target fn word
          * @return pairs of (fn word id-list of lex units)
          */
-        @JvmStatic
         fun makeFromFnWord(connection: SQLiteDatabase, fnWord: String?): Pair<Long, List<FnLexUnit?>?> {
             var result: MutableList<FnLexUnit?>? = null
             FnLexUnitQueryFromFnWord(connection, fnWord).use {
@@ -146,7 +142,6 @@ class FnLexUnit private constructor(
          * @param pos        pos to build query from, null if any
          * @return list of lex units
          */
-        @JvmStatic
         fun makeFromWordId(connection: SQLiteDatabase, wordId: Long, pos: Char?): List<FnLexUnit?>? {
             var result: MutableList<FnLexUnit?>? = null
             FnLexUnitQueryFromWordId(connection, wordId, pos).use {
@@ -178,7 +173,6 @@ class FnLexUnit private constructor(
          * @param pos        pos to build query from, null if any
          * @return list of lex units
          */
-        @JvmStatic
         fun makeFromFnWordId(connection: SQLiteDatabase, fnWordId: Long, pos: Char?): List<FnLexUnit?>? {
             var result: MutableList<FnLexUnit?>? = null
             FnLexUnitQueryFromFnWordId(connection, fnWordId, pos).use {
@@ -209,7 +203,6 @@ class FnLexUnit private constructor(
          * @param frameId    frame id
          * @return list of lex units
          */
-        @JvmStatic
         fun makeFromFrame(connection: SQLiteDatabase, frameId: Long): List<FnLexUnit?>? {
             var result: MutableList<FnLexUnit?>? = null
             FnLexUnitQueryFromFrameId(connection, frameId).use {

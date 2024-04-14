@@ -27,25 +27,21 @@ open class DownloadCore(private val progressConsumer: BiConsumer<Long, Long>) {
     /**
      * From URL
      */
-    @JvmField
     protected var fromUrl: String? = null
 
     /**
      * To file
      */
-    @JvmField
     protected var toFile: String? = null
 
     /**
      * Rename source
      */
-    @JvmField
     protected var renameFrom: String? = null
 
     /**
      * Rename dest
      */
-    @JvmField
     protected var renameTo: String? = null
 
     /**

@@ -42,7 +42,6 @@ object FormatUtils {
      * @param count byte count, standard units starting from byte
      * @return string
      */
-    @JvmStatic
     fun formatAsInformationString(count: Long): String {
         if (count > 0) {
             var unit = 1024f * 1024f * 1024f

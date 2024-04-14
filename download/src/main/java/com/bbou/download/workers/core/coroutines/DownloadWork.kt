@@ -42,7 +42,6 @@ open class DownloadWork {
         /**
          * Progress consumer
          */
-        @JvmField
         protected val progressConsumer = BiConsumer { downloaded: Long, total: Long ->
             setProgressAsync(
                 Data.Builder()
@@ -210,7 +209,6 @@ open class DownloadWork {
          * @param owner lifecycle owner
          * @param observer work info observer
          */
-        @JvmStatic
         fun observe(context: Context, id: UUID, owner: LifecycleOwner, observer: Observer<WorkInfo>) {
             val live = WorkManager.getInstance(context).getWorkInfoByIdLiveData(id)
             live.observe(owner, observer)
@@ -228,7 +226,6 @@ open class DownloadWork {
          * @param observer observer
          * @return work uuid
          */
-        @JvmStatic
         fun startWork(context: Context, fromUrl: String, toFile: String, owner: LifecycleOwner, observer: Observer<WorkInfo>): UUID {
             val wm = WorkManager.getInstance(context)
 
@@ -259,7 +256,6 @@ open class DownloadWork {
          * @param context context
          * @param uuid    work uuid
          */
-        @JvmStatic
         fun stopWork(context: Context, uuid: UUID) {
             WorkManager.getInstance(context).cancelWorkById(uuid)
         }

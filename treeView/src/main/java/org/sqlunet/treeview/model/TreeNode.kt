@@ -12,10 +12,10 @@ import org.sqlunet.treeview.control.Controller
  * @author Bogdan Melnychuk on 2/10/15.
  */
 class TreeNode(
-    @JvmField var text: CharSequence?,
-    @JvmField @DrawableRes var icon: Int? = null,
+    var text: CharSequence?,
+    @DrawableRes var icon: Int? = null,
     val payload: Array<out Any?>? = null,
-    @JvmField var controller: Controller,
+    var controller: Controller,
     var isCollapsible: Boolean,
 ) {
 

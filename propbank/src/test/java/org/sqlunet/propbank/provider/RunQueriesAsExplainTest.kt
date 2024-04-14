@@ -66,6 +66,7 @@ class RunQueriesAsExplainTest {
     }
 
     companion object {
+
         private val uriLast = "LAST"
 
         private fun toSql(code: Int, providerSql: ContentProviderSql): String {

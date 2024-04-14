@@ -27,7 +27,6 @@ internal object SnStatus : Status() {
      * @param context context
      * @return _status
      */
-    @JvmStatic
     fun status(context: Context): Int {
         if (existsDatabase(context)) {
             var status = EXISTS
@@ -58,7 +57,6 @@ internal object SnStatus : Status() {
         return 0
     }
 
-    @JvmStatic
     fun toString(status: Int): CharSequence {
         val sb: Editable = SpannableStringBuilder()
         sb.append(Integer.toHexString(status))

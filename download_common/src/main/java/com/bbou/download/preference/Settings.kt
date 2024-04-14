@@ -122,7 +122,6 @@ object Settings {
      * @param context context
      * @return whether vital preferences have been initialized
      */
-    @JvmStatic
     fun getInitializedPref(context: Context): Boolean {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getBoolean(PREF_INITIALIZED, false)
@@ -134,7 +133,6 @@ object Settings {
      * @param context context
      * @param flag initialized flag
      */
-    @JvmStatic
     fun setInitializedPref(context: Context, flag: Boolean?) {
         val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
         if (flag == null) {
@@ -153,7 +151,6 @@ object Settings {
      * @param context context
      * @return download source
      */
-    @JvmStatic
     fun getDownloadSource(context: Context): String {
         val repo = getRepoPref(context)
         val name = getDatapackName(context)
@@ -169,7 +166,6 @@ object Settings {
      * @param name name, by default datapack name
      * @return download target
      */
-    @JvmStatic
     fun getDownloadTarget(context: Context, name: String? = getDatapackName(context)): String {
         val dest = getDatapackDir(context)
         return "${dest}/${name}"
@@ -182,7 +178,6 @@ object Settings {
      * @param name name, by default datapack name
      * @return download cache target
      */
-    @JvmStatic
     fun getDownloadCacheTarget(context: Context, name: String? = getDatapackName(context)): String {
         val dest = getCachePref(context)
         return "${dest}/${name}"
@@ -196,7 +191,6 @@ object Settings {
      * @param context context
      * @return repo preference
      */
-    @JvmStatic
     fun getRepoPref(context: Context): String? {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getString(PREF_REPO, null)
@@ -208,7 +202,6 @@ object Settings {
      * @param context context
      * @param repo repo
      */
-    @JvmStatic
     fun setRepoPref(context: Context, repo: String?) {
         val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
         if (repo == null) {
@@ -227,7 +220,6 @@ object Settings {
      * @param context context
      * @return datapack preference
      */
-    @JvmStatic
     fun getDatapackDir(context: Context): String? {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DEVICE, Context.MODE_PRIVATE)
         return sharedPref.getString(PREF_DATAPACK_DIR, null)
@@ -239,7 +231,6 @@ object Settings {
      * @param context context
      * @param dest datapack location on device
      */
-    @JvmStatic
     fun setDatapackDir(context: Context, dest: String?) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DEVICE, Context.MODE_PRIVATE)
         sharedPref.edit().putString(PREF_DATAPACK_DIR, dest).apply()
@@ -251,7 +242,6 @@ object Settings {
      * @param context context
      * @return cache location on device
      */
-    @JvmStatic
     fun getCachePref(context: Context): String? {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DEVICE, Context.MODE_PRIVATE)
         return sharedPref.getString(PREF_CACHE, null)
@@ -263,7 +253,6 @@ object Settings {
      * @param context context
      * @param cache cache location on device
      */
-    @JvmStatic
     fun setCachePref(context: Context, cache: String?) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DEVICE, Context.MODE_PRIVATE)
         sharedPref.edit().putString(PREF_CACHE, cache).apply()
@@ -277,7 +266,6 @@ object Settings {
      * @param context context
      * @return name
      */
-    @JvmStatic
     fun getDatapackName(context: Context): String? {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         return sharedPref.getString(PREF_DATAPACK_NAME, null)
@@ -289,7 +277,6 @@ object Settings {
      * @param context context
      * @param name    name
      */
-    @JvmStatic
     fun setDatapackName(context: Context, name: String?) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         sharedPref.edit().putString(PREF_DATAPACK_NAME, name).apply()
@@ -301,7 +288,6 @@ object Settings {
      * @param context context
      * @return timestamp
      */
-    @JvmStatic
     fun getDatapackDate(context: Context): Long {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         return sharedPref.getLong(PREF_DATAPACK_DATE, -1)
@@ -313,7 +299,6 @@ object Settings {
      * @param context   context
      * @param timestamp timestamp
      */
-    @JvmStatic
     fun setDatapackDate(context: Context, timestamp: Long) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         sharedPref.edit().putLong(PREF_DATAPACK_DATE, timestamp).apply()
@@ -325,7 +310,6 @@ object Settings {
      * @param context context
      * @return size
      */
-    @JvmStatic
     fun getDatapackSize(context: Context): Long {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         return sharedPref.getLong(PREF_DATAPACK_SIZE, -1)
@@ -337,7 +321,6 @@ object Settings {
      * @param context context
      * @param size    size
      */
-    @JvmStatic
     fun setDatapackSize(context: Context, size: Long) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         sharedPref.edit().putLong(PREF_DATAPACK_SIZE, size).apply()
@@ -349,7 +332,6 @@ object Settings {
      * @param context context
      * @return datapack source (repo)
      */
-    @JvmStatic
     fun getDatapackSource(context: Context): String? {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         return sharedPref.getString(PREF_DATAPACK_SOURCE, null)
@@ -361,7 +343,6 @@ object Settings {
      * @param context context
      * @return timestamp
      */
-    @JvmStatic
     fun getDatapackSourceDate(context: Context): Long {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         return sharedPref.getLong(PREF_DATAPACK_SOURCE_DATE, -1)
@@ -373,7 +354,6 @@ object Settings {
      * @param context context
      * @return size
      */
-    @JvmStatic
     fun getDatapackSourceSize(context: Context): Long {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         return sharedPref.getLong(PREF_DATAPACK_SOURCE_SIZE, -1)
@@ -385,7 +365,6 @@ object Settings {
      * @param context context
      * @return etag
      */
-    @JvmStatic
     fun getDatapackSourceEtag(context: Context): String? {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         return sharedPref.getString(PREF_DATAPACK_SOURCE_ETAG, null)
@@ -397,7 +376,6 @@ object Settings {
      * @param context context
      * @return version
      */
-    @JvmStatic
     fun getDatapackSourceVersion(context: Context): String? {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         return sharedPref.getString(PREF_DATAPACK_SOURCE_VERSION, null)
@@ -409,7 +387,6 @@ object Settings {
      * @param context context
      * @return static version
      */
-    @JvmStatic
     fun getDatapackSourceStaticVersion(context: Context): String? {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         return sharedPref.getString(PREF_DATAPACK_SOURCE_STATIC_VERSION, null)
@@ -421,7 +398,6 @@ object Settings {
      * @param context context
      * @return type
      */
-    @JvmStatic
     fun getDatapackSourceType(context: Context): String? {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         return sharedPref.getString(PREF_DATAPACK_SOURCE_TYPE, null)
@@ -433,7 +409,6 @@ object Settings {
      * @param context      context
      * @param datapackFile datapack file
      */
-    @JvmStatic
     fun recordDatapackFile(context: Context, datapackFile: File) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         val edit = sharedPref.edit()
@@ -480,7 +455,6 @@ object Settings {
      * @param context     context
      * @param datapackUri datapack uri
      */
-    @JvmStatic
     fun recordDatapackUri(context: Context, datapackUri: String?) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         val edit = sharedPref.edit()
@@ -499,7 +473,6 @@ object Settings {
      *
      * @param context context
      */
-    @JvmStatic
     fun unrecordDatapack(context: Context) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         val edit = sharedPref.edit()
@@ -516,7 +489,6 @@ object Settings {
      * @param dl downloadDat
      * @param sourceType source type ("download", "asset", ...)
      */
-    @JvmStatic
     fun recordDatapackSource(context: Context, dl: DownloadData, sourceType: String?) {
 
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
@@ -564,7 +536,6 @@ object Settings {
      *
      * @param context context
      */
-    @JvmStatic
     fun unrecordDatapackSource(context: Context) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
         sharedPref.edit()
@@ -628,7 +599,6 @@ object Settings {
 
         companion object {
 
-            @JvmStatic
             private fun getModePrefString(context: Context): String? {
                 val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
                 return sharedPref.getString(PREF_DOWNLOAD_MODE, null)
@@ -640,7 +610,6 @@ object Settings {
              * @param context context
              * @return mode preference
              */
-            @JvmStatic
             fun getModePref(context: Context): Mode? {
                 val str = getModePrefString(context) ?: return null
                 return valueOf(str)
@@ -652,7 +621,6 @@ object Settings {
              * @param context context
              * @param value mode value
              */
-            @JvmStatic
             fun setModePref(context: Context, value: Mode) {
                 val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
                 sharedPref.edit().putString(PREF_DOWNLOAD_MODE, value.toString()).apply()

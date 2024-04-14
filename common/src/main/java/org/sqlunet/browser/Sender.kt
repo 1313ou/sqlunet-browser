@@ -9,7 +9,6 @@ import org.sqlunet.browser.common.R
 
 object Sender {
 
-    @JvmStatic
     fun send(context: Context, title: String, content: CharSequence, vararg to: String) {
         val sendIntent = Intent(Intent.ACTION_SEND)
         sendIntent.putExtra(Intent.EXTRA_SUBJECT, title)

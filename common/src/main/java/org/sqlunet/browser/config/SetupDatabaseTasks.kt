@@ -26,7 +26,6 @@ object SetupDatabaseTasks {
      * @param databasePath path
      * @return true if successful
      */
-    @JvmStatic
     fun createDatabase(context: Context, databasePath: String?): Boolean {
         try {
             val db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null)
@@ -45,7 +44,6 @@ object SetupDatabaseTasks {
      * @param databasePath path
      * @return true if successful
      */
-    @JvmStatic
     fun deleteDatabase(context: Context, databasePath: String?): Boolean {
         // make sure you close all connections before deleting
         val authorities = context.resources.getStringArray(R.array.provider_authorities)
@@ -72,7 +70,6 @@ object SetupDatabaseTasks {
      *
      * @param context context
      */
-    @JvmStatic
     fun update(context: Context) {
         val success = deleteDatabase(context, StorageSettings.getDatabasePath(context))
         if (success) {

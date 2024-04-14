@@ -36,7 +36,6 @@ object TreeFactory {
      * @param breakExpand break expand flag
      * @return created node
      */
-    @JvmStatic
     fun makeTextNode(value: CharSequence, breakExpand: Boolean): TreeNode {
         return TreeNode(value, null, null, TextController(breakExpand), false)
     }
@@ -49,7 +48,6 @@ object TreeFactory {
      * @param breakExpand break expand flag
      * @return created node
      */
-    @JvmStatic
     fun makeIconTextNode(text: CharSequence, icon: Int, breakExpand: Boolean): TreeNode {
         return TreeNode(text, icon, null, IconTextController(breakExpand), false)
     }
@@ -62,7 +60,6 @@ object TreeFactory {
      * @param breakExpand break expand flag
      * @return created node
      */
-    @JvmStatic
     fun makeLeafNode(text: CharSequence, icon: Int, breakExpand: Boolean): TreeNode {
         return TreeNode(text, icon, null, LeafController(breakExpand), false)
     }
@@ -75,7 +72,6 @@ object TreeFactory {
      * @param breakExpand break expand flag
      * @return created node
      */
-    @JvmStatic
     fun makeMoreNode(text: CharSequence, icon: Int, breakExpand: Boolean): TreeNode {
         return TreeNode(text, icon, null, MoreController(breakExpand), false)
     }
@@ -89,7 +85,6 @@ object TreeFactory {
      * @param breakExpand break expand flag
      * @return created node
      */
-    @JvmStatic
     fun makeLinkNode(text: CharSequence, icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
         return TreeNode(text, icon, arrayOf(link), LinkController(breakExpand), false)
     }
@@ -103,7 +98,6 @@ object TreeFactory {
      * @param link        link
      * @return created node
      */
-    @JvmStatic
     fun makeLinkLeafNode(text: CharSequence, icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
         return TreeNode(text, icon, arrayOf(link), LinkLeafController(breakExpand), false)
     }
@@ -116,7 +110,6 @@ object TreeFactory {
      * @param breakExpand break expand flag
      * @return created node
      */
-    @JvmStatic
     fun makeTreeNode(value: CharSequence, icon: Int, breakExpand: Boolean): TreeNode {
         return TreeNode(value, icon, null, TreeController(breakExpand), true)
     }
@@ -130,7 +123,6 @@ object TreeFactory {
      * @param link        link
      * @return created node
      */
-    @JvmStatic
     fun makeLinkTreeNode(text: CharSequence, icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
         return TreeNode(text, icon, arrayOf(link), LinkTreeController(breakExpand), true)
     }
@@ -144,7 +136,6 @@ object TreeFactory {
      * @param query       query
      * @return created node
      */
-    @JvmStatic
     fun makeQueryNode(text: CharSequence, icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
         return TreeNode(text, icon, arrayOf(query), ColdQueryController(breakExpand), true)
     }
@@ -158,7 +149,6 @@ object TreeFactory {
      * @param query       query
      * @return created node
      */
-    @JvmStatic
     fun makeHotQueryNode(text: CharSequence, icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
         val controller = HotQueryController(breakExpand)
         val result = TreeNode(text, icon, arrayOf(query), controller, true)
@@ -178,7 +168,6 @@ object TreeFactory {
      * @param buttonImageRes image drawable id for button, 0 for default
      * @return created node
      */
-    @JvmStatic
     fun makeLinkHotQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?, link: Link?, @DrawableRes buttonImageRes: Int): TreeNode {
         val controller: HotQueryController = LinkHotQueryController(breakExpand, buttonImageRes)
         val result = TreeNode(text, icon, arrayOf(query, link), controller, true)
@@ -198,7 +187,6 @@ object TreeFactory {
      * @param buttonImageRes image drawable id for button, 0 for default
      * @return created node
      */
-    @JvmStatic
     fun makeLinkQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?, link: Link?, @DrawableRes buttonImageRes: Int): TreeNode {
         return TreeNode(text, icon, arrayOf(query, link), LinkQueryController(breakExpand, buttonImageRes), true)
     }
@@ -210,19 +198,16 @@ object TreeFactory {
      *
      * @param node node
      */
-    @JvmStatic
     fun setNoResult(node: TreeNode) {
         // Log.d(TAG, "Deadend " + node)
         node.isDeadend = true
         node.isEnabled = false
     }
 
-    @JvmStatic
     fun setTextNode(node: TreeNode, text: CharSequence?) {
         node.text = text
     }
 
-    @JvmStatic
     fun setTextNode(node: TreeNode, text: CharSequence, @DrawableRes icon: Int) {
         node.text = text
         node.icon = icon

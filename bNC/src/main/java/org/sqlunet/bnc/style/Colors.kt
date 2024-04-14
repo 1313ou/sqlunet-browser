@@ -17,7 +17,6 @@ object Colors {
     var bncHeaderBackColor = Color.TRANSPARENT
     var bncHeaderForeColor = Color.TRANSPARENT
 
-    @JvmStatic
     fun setColorsFromResources(context: Context) {
         // do not reorder : dependent on resource array order
         val palette = context.resources.getIntArray(R.array.palette_bnc)

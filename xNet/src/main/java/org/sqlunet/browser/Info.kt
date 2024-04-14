@@ -19,7 +19,6 @@ import org.sqlunet.xnet.R
  */
 object Info {
 
-    @JvmStatic
     fun build(sb: SpannableStringBuilder, vararg lines: CharSequence) {
         for ((i, line) in lines.withIndex()) {
             if (i % 2 == 0) {
@@ -31,7 +30,6 @@ object Info {
         }
     }
 
-    @JvmStatic
     fun info(activity: Activity, @StringRes messageId: Int, vararg lines: CharSequence) {
         val alert = AlertDialog.Builder(activity)
         alert.setTitle(R.string.action_info)

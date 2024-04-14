@@ -121,7 +121,6 @@ class PreparedStatement(
         /**
          * Whether to output SQL statements
          */
-        @JvmField
         var logSql = false
     }
 }

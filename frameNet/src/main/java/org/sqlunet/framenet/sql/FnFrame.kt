@@ -17,11 +17,11 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class FnFrame internal constructor(
-    @JvmField val frameId: Long,
-    @JvmField val frameName: String,
-    @JvmField val frameDefinition: String,
-    @JvmField val semTypes: List<FnSemType>?,
-    @JvmField val relatedFrames: List<FnRelatedFrame>?
+    val frameId: Long,
+    val frameName: String,
+    val frameDefinition: String,
+    val semTypes: List<FnSemType>?,
+    val relatedFrames: List<FnRelatedFrame>?
 ) {
 
     companion object {
@@ -33,7 +33,6 @@ class FnFrame internal constructor(
          * @param frameId    target frame id
          * @return frame
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, frameId: Long): FnFrame? {
             FnFrameQuery(connection, frameId).use {
                 it.execute()

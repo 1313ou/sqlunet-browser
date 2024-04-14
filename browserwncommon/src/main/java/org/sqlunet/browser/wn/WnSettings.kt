@@ -28,7 +28,6 @@ object WnSettings : Settings() {
      * @param context context
      * @return preferred enable WordNet flag
      */
-    @JvmStatic
     fun getAllPref(context: Context): Int {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         var result = 0
@@ -47,7 +46,6 @@ object WnSettings : Settings() {
      * @param context context
      * @return preferred enable WordNet flag
      */
-    @JvmStatic
     fun getWordNetPref(context: Context): Boolean {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getBoolean(PREF_ENABLE_WORDNET, true)
@@ -59,7 +57,6 @@ object WnSettings : Settings() {
      * @param context context
      * @return preferred enable BNC flag
      */
-    @JvmStatic
     fun getBncPref(context: Context): Boolean {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getBoolean(PREF_ENABLE_BNC, true)

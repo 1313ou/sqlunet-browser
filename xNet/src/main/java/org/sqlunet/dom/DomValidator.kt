@@ -43,7 +43,6 @@ object DomValidator {
      * @param xsdUrl  xsd url
      * @param strings files
      */
-    @JvmStatic
     fun validateStrings(xsdUrl: URL, vararg strings: String) {
         try {
             val validator = makeValidator(xsdUrl)
@@ -61,7 +60,6 @@ object DomValidator {
      * @param xsdUrl    xsd url
      * @param documents documents
      */
-    @JvmStatic
     fun validateDocs(xsdUrl: URL, vararg documents: Document?) {
         try {
             val validator = makeValidator(xsdUrl)

@@ -20,13 +20,11 @@ open class DBQuery protected constructor(connection: SQLiteDatabase, statement: 
     /**
      * `SQL statement
      */
-    @JvmField
     protected val statement: PreparedStatement
 
     /**
      * Result set/cursor
      */
-    @JvmField
     protected var cursor: Cursor? = null
 
     init {

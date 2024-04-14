@@ -65,7 +65,6 @@ object WordNetControl {
     const val SUGGEST_FTS_DEFINITIONS = 920
     const val SUGGEST_FTS_SAMPLES = 930
 
-    @JvmStatic
     fun queryMain(code: Int, uriLast: String, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
         val table: String
         var projection = projection0
@@ -164,7 +163,6 @@ object WordNetControl {
         return Result(table, projection, selection, selectionArgs0, groupBy)
     }
 
-    @JvmStatic
     fun queryAnyRelations(code: Int, projection0: Array<String>?, @Suppress("UNUSED_PARAMETER") selection0: String?, selectionArgs0: Array<String>?): Result? {
         if (code == ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET) {
             val table = Q.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE
@@ -174,7 +172,6 @@ object WordNetControl {
         return null
     }
 
-    @JvmStatic
     fun querySearch(code: Int, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
         val table: String = when (code) {
             LOOKUP_FTS_WORDS -> Q.LOOKUP_FTS_WORDS.TABLE
@@ -185,7 +182,6 @@ object WordNetControl {
         return Result(table, projection0, selection0, selectionArgs0, null)
     }
 
-    @JvmStatic
     fun querySuggest(code: Int, uriLast: String): Result? {
         val table: String
         val projection: Array<String>
@@ -245,7 +241,7 @@ object WordNetControl {
         return Result(table, projection, selection, selectionArgs, null)
     }
 
-    data class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?) {
+    data class Result(val table: String, val projection: Array<String>?, val selection: String?, val selectionArgs: Array<String>?, val groupBy: String?) {
 
         override fun toString(): String {
             return "table='$table'\nprojection=${projection.contentToString()}\nselection='$selection'\nselectionArgs=${selectionArgs.contentToString()}\ngroupBy=$groupBy"

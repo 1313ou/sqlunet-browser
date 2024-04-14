@@ -21,21 +21,20 @@ import android.database.sqlite.SQLiteDatabase
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 internal class FnFrameElement private constructor(
-    @JvmField val feId: Long,
+    val feId: Long,
     private val feTypeId: Long,
-    @JvmField val feType: String,
-    @JvmField val feDefinition: String,
+    val feType: String,
+    val feDefinition: String,
     private val feAbbrev: String,
-    @JvmField val coreType: String,
+    val coreType: String,
     semTypes: String?,
     private val isCore: Boolean,
-    @JvmField val coreSet: Int,
+    val coreSet: Int,
 ) {
 
     /**
      * FE sem types
      */
-    @JvmField
     val semTypes: Array<String>?
 
     init {
@@ -51,7 +50,6 @@ internal class FnFrameElement private constructor(
          * @param frameId    target frame id
          * @return list of FEs
          */
-        @JvmStatic
         fun make(connection: SQLiteDatabase, frameId: Long): List<FnFrameElement?>? {
             var result: MutableList<FnFrameElement?>? = null
             FnFrameElementQueryFromFrameId(connection, frameId).use {

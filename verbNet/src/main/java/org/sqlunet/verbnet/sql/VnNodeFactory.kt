@@ -25,7 +25,6 @@ internal object VnNodeFactory {
      * @param classId target class id
      * @return newly created node
      */
-    @JvmStatic
     fun makeVnRootClassNode(doc: Document, classId: Long): Node {
         val rootNode = makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS)
         addAttributes(rootNode, "classid", classId.toString())
@@ -40,7 +39,6 @@ internal object VnNodeFactory {
      * @param synsetId target synset id (0 for all)
      * @return newly created node
      */
-    @JvmStatic
     fun makeVnRootNode(doc: Document, wordId: Long, synsetId: Long?): Node {
         val rootNode = makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS)
         if (synsetId == null || synsetId == 0L) {
@@ -58,7 +56,6 @@ internal object VnNodeFactory {
      * @param word target word
      * @return newly created node
      */
-    @JvmStatic
     fun makeVnRootNode(doc: Document, word: String?): Node {
         val rootNode = makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS)
         addAttributes(rootNode, "word", word!!)
@@ -73,7 +70,6 @@ internal object VnNodeFactory {
      * @param vnClass is the class
      * @return newly created node
      */
-    @JvmStatic
     fun makeVnClassNode(doc: Document, parent: Node?, vnClass: VnClass): Node {
         val element = makeNode(doc, parent, "vnclass", null)
         makeAttribute(element, "name", vnClass.className)
@@ -87,7 +83,6 @@ internal object VnNodeFactory {
      * @param parent  is the parent node to attach this node to
      * @param vnClass is the vn class with sense
      */
-    @JvmStatic
     fun makeVnClassWithSenseNode(doc: Document, parent: Node?, vnClass: VnClassWithSense): Node {
         val element = makeNode(doc, parent, "vnclass", null)
         addAttributes(
@@ -116,7 +111,6 @@ internal object VnNodeFactory {
      * @param parent is the parent node to attach this node to
      * @return newly created node
      */
-    @JvmStatic
     fun makeVnRolesNode(doc: Document, parent: Node?): Node {
         return makeNode(doc, parent, "themroles", null)
     }
@@ -130,7 +124,6 @@ internal object VnNodeFactory {
      * @param i      is the indexOf
      * @return newly created node
      */
-    @JvmStatic
     fun makeVnRoleNode(doc: Document, parent: Node?, role: VnRole, i: Int): Node {
         val element = makeNode(doc, parent, "themrole", null)
         makeAttribute(element, "type", role.roleType)
@@ -150,7 +143,6 @@ internal object VnNodeFactory {
      * @param parent is the parent node to attach this node to
      * @return newly created node
      */
-    @JvmStatic
     fun makeVnFramesNode(doc: Document, parent: Node?): Node {
         return makeNode(doc, parent, "frames", null)
     }
@@ -164,7 +156,6 @@ internal object VnNodeFactory {
      * @param i      is the rank
      * @return newly created node
      */
-    @JvmStatic
     fun makeVnFrameNode(doc: Document, parent: Node?, frame: VnFrame, i: Int): Node {
         val element = makeNode(doc, parent, "frame", null)
         makeAttribute(element, "id", i.toString())

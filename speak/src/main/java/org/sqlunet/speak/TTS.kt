@@ -123,7 +123,6 @@ class TTS(context: Context?, written: String, ipa: String, locale: Locale?, voic
             }
         }
 
-        @JvmStatic
         fun pronounce(context: Context?, word: String, ipa: String, locale: String?, voiceName: String?) {
             TTS(context, word, ipa, toLocale(locale), voiceName)
         }
