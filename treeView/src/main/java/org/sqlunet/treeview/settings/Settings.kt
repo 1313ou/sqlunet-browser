@@ -7,7 +7,7 @@ import android.content.SharedPreferences
 
 object Settings {
 
-    const val PREF_TREE_INDENT = "pref_tree_indent"
+    private const val PREF_TREE_INDENT = "pref_tree_indent"
     private const val PREF_TREE_ROW_MIN_HEIGHT = "pref_tree_row_min_height"
     const val PREF_SCROLL_2D = "pref_scroll_2d"
     const val PREF_USE_ANIMATION = "pref_use_animation"
