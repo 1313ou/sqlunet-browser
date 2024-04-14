@@ -33,7 +33,7 @@ object Utils {
      * @return the labels from the result set
      */
     @JvmStatic
-    fun parseLabels(labelsString: String?): List<FnLabel>? {
+    fun parseLabels(labelsString: String?): MutableList<FnLabel>? {
         if (labelsString == null) {
             return null
         }
