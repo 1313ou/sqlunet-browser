@@ -1652,12 +1652,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         val from = label.from.toInt()
                         val to = label.to.toInt() + 1
                         var subtext: String
-                        val len = text.length
+                        val len = text?.length ?: 0
                         subtext = if (from < 0 || to > len || from > to) {
                             Log.d(TAG, "annoSetId=" + annoSetId + "annotations=" + annotations + "label=" + label + "text=" + text)
                             label.toString() + " ERROR [" + label.from + ',' + label.to + ']'
                         } else {
-                            text.substring(from, to)
+                            text?.substring(from, to) ?: "<null>"
                         }
                         val p = sb.length
                         append(
@@ -1706,12 +1706,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         val annotations: String,
         val annoSetId: Long,
         val rank: String,
-        val sentenceText: String,
+        val sentenceText: String?,
     )
 
-    private val importance = mapOf("Target" to 1, "FE" to 2, "PT" to 3, "GF" to 4, "BNC" to 5)
+    private val importance = mapOf("Target" to 1, "FE" to 2, "PT" to 3, "GF" to 4, "Verb" to 5, "Noun" to 6, "Adj" to 7, "Adv" to 8, "BNC" to 9)
 
-    private val byImportance = compareBy<Layer> { importance[it.layerType] ?: 6 }.thenBy { it.layerType }
+    private val byImportance = compareBy<Layer> { importance[it.layerType] ?: importance.size }.thenBy { it.layerType }
 
     private fun readLayers(cursor: Cursor, idSentenceText: Int, idLayerType: Int, idRank: Int, idAnnotations: Int, idAnnoSetId: Int): MutableList<Layer> {
         val layers = ArrayList<Layer>()
@@ -1720,7 +1720,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val annotations = cursor.getString(idAnnotations)
             val annoSetId = cursor.getLong(idAnnoSetId)
             val rank = cursor.getString(idRank)
-            val text = cursor.getString(idSentenceText)
+            val text = if (idSentenceText == -1) null else cursor.getString(idSentenceText)
             layers.add(Layer(layerType, annotations, annoSetId, rank, text))
         } while (cursor.moveToNext())
         layers.sortWith(byImportance)
