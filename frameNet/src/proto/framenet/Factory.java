@@ -186,7 +186,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"LEFT JOIN %s USING (%s) " + // 14
 								"WHERE %s = ? AND %s IS NOT NULL " + // 15
 								"GROUP BY %s " + // 16
-								"ORDER BY %s,%s,%s,%s)", // 17
+								"ORDER BY %s,%s)", // 17 "ORDER BY %s,%s,%s,%s)"
 						"${annosets.annosetid}", "${sentences.sentenceid}", "${layers.layerid}", "${layertypes.layertype}", "${layers.rank}", // 1
 						"${labels.start}", // 2
 						"${labels.end}", // 3
@@ -204,7 +204,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${labelitypes.table}", "${labelitypes.labelitypeid}", // 14
 						"${sentences.sentenceid}", "${labeltypes.labeltypeid}", // 15
 						"${layers.layerid}", // 16
-						"${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}"); // 17
+						"${layers.rank}", "${layertypes.layertypeid}"); // 17 "${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}");
 				break;
 
 			case ANNOSETS_LAYERS_X:
