@@ -1,0 +1,13 @@
+big header
+// [A-Z]( +[A-Z])+
+
+big header with no following empty line
+(// [A-Z]( +[A-Z])+)\n([^\n])
+replace with
+$1\n\n$3
+
+big header with preceding empty line
+([^\n])\n( +// [A-Z]( +[A-Z])+)
+replace with
+$1\n\n$2
+

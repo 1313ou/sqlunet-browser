@@ -1,0 +1,3 @@
+multiple space but not initial indent
+
+(?<!^\s*)\s{2,}

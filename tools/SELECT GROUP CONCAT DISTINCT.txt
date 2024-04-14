@@ -1,0 +1,76 @@
+SELECT
+        GROUP_CONCAT(DISTINCT source) AS sources,
+        wordid,
+        synsetid,
+        frameid AS xid,
+        frameid AS xclassid,
+        luid AS xmemberid,
+        GROUP_CONCAT(DISTINCT lexunit,
+        '
+') AS xname,
+        frame AS xheader,
+        GROUP_CONCAT(ludefinition,
+        '
+') AS xinfo,
+        definition AS xdefinition,
+        NULL AS pronunciations,
+        RANDOM() AS _id 
+    FROM
+        ( SELECT
+            wordid,
+            synsetid,
+            frameid,
+            frame,
+            framedefinition,
+            luid,
+            lexunit,
+            ludefinition,
+            definition,
+            'pmfn' AS source 
+        FROM
+            pm_fn 
+        INNER JOIN
+            fn_frames USING (frameid) 
+        LEFT JOIN
+            fn_lexunits USING (luid,frameid) 
+        LEFT JOIN
+            synsets USING (synsetid) 
+        WHERE
+            (
+                wordid = 435
+            ) 
+        UNION
+        SELECT
+            wordid,
+            NULL AS synsetid,
+            frameid,
+            frame,
+            framedefinition,
+            luid,
+            lexunit,
+            ludefinition,
+            NULL AS definition,
+            'fn' AS source 
+        FROM
+            fn_words 
+        INNER JOIN
+            fn_lexemes USING (fnwordid) 
+        INNER JOIN
+            fn_lexunits USING (luid,posid) 
+        INNER JOIN
+            fn_frames USING (frameid) 
+        WHERE
+            (
+                wordid = ?
+            ) 
+    ) 
+GROUP BY
+    wordid,
+    synsetid,
+    frameid 
+ORDER BY
+    luid IS NULL,
+    source,
+    frameid;
+
+
