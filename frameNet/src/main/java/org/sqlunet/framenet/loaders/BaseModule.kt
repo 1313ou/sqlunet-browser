@@ -1561,32 +1561,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         return changed
     }
 
-    data class Layer(
-        val layerType: String,
-        val annotations: String,
-        val annoSetId: Long,
-        val rank: Int,
-        val text: String,
-    )
-
-    private val importance = mapOf("Target" to 1, "FE" to 2, "PT" to 3, "GF" to 4, "BNC" to 5)
-
-    private val byImportance = compareBy<Layer> { importance[it.layerType] ?: 6 }.thenBy { it.layerType }
-
-    private fun readLayer(cursor: Cursor, idSentenceText: Int, idLayerType: Int, idRank: Int, idAnnotations: Int, idAnnoSetId: Int): MutableList<Layer> {
-        val layers = ArrayList<Layer>()
-        do {
-            val layerType = cursor.getString(idLayerType)
-            val annotations = cursor.getString(idAnnotations)
-            val annoSetId = cursor.getLong(idAnnoSetId)
-            val rank = cursor.getString(idRank)
-            val text = cursor.getString(idSentenceText)
-            layers.add(Layer(layerType, annotations, annoSetId, rank.toInt(), text))
-        } while (cursor.moveToNext())
-        layers.sortWith(byImportance)
-        return layers
-    }
-
     /**
      * AnnoSets helper function
      *
@@ -1613,14 +1587,19 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             var sba: SpannableStringBuilder? = null
 
             // read cursor
-            do {
-                val layerType = cursor.getString(idLayerType)
-                val annotations = cursor.getString(idAnnotations)
-                val annoSetId = cursor.getLong(idAnnoSetId)
-                val rank = cursor.getString(idRank)
+            val layers = readLayers(cursor, idSentenceText, idLayerType, idRank, idAnnotations, idAnnoSetId)
+
+            // process layers
+            for (layer in layers) {
+
+                // retrieve layer
+                val layerType = layer.layerType
+                val annotations = layer.annotations
+                val annoSetId = layer.annoSetId
+                val rank = layer.rank
                 val isTarget = "Target" == layerType
                 val isFE = "FE" == layerType
-                val text = sentenceText ?: cursor.getString(idSentenceText)
+                val text = sentenceText ?: layer.sentenceText
 
                 // annoSet grouping
                 if (currentAnnoSetId != annoSetId) {
@@ -1704,7 +1683,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         }
                     }
                 }
-            } while (cursor.moveToNext())
+            }
 
             // attach remaining result
             if (sb!!.isNotEmpty()) {
@@ -1721,6 +1700,32 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     // L A Y E R S
+
+    data class Layer(
+        val layerType: String,
+        val annotations: String,
+        val annoSetId: Long,
+        val rank: String,
+        val sentenceText: String,
+    )
+
+    private val importance = mapOf("Target" to 1, "FE" to 2, "PT" to 3, "GF" to 4, "BNC" to 5)
+
+    private val byImportance = compareBy<Layer> { importance[it.layerType] ?: 6 }.thenBy { it.layerType }
+
+    private fun readLayers(cursor: Cursor, idSentenceText: Int, idLayerType: Int, idRank: Int, idAnnotations: Int, idAnnoSetId: Int): MutableList<Layer> {
+        val layers = ArrayList<Layer>()
+        do {
+            val layerType = cursor.getString(idLayerType)
+            val annotations = cursor.getString(idAnnotations)
+            val annoSetId = cursor.getLong(idAnnoSetId)
+            val rank = cursor.getString(idRank)
+            val text = cursor.getString(idSentenceText)
+            layers.add(Layer(layerType, annotations, annoSetId, rank, text))
+        } while (cursor.moveToNext())
+        layers.sortWith(byImportance)
+        return layers
+    }
 
     /**
      * Layers for sentence
