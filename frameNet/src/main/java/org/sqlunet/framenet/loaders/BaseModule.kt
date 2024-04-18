@@ -494,10 +494,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 appendImage(sb2, metadefinitionDrawable)
                 sb2.append(' ')
                 sb2.append(frameDefinitionFields[0])
-                if (frameDefinitionFields.size > 1) {
+
+                // fe examples in definition
+                for (i in 1 until frameDefinitionFields.size) {
                     sb2.append('\n')
                     sb2.append('\t')
-                    sb2.append(frameDefinitionFields[1])
+                    sb2.append(frameDefinitionFields[i])
                 }
 
                 // core type
@@ -616,11 +618,11 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     sb.append(' ')
                     val definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF.toLong())
                     sb.append(definitionFields[0])
-                    // if (definitionFields.length > 1)
-                    // {
-                    // sb.append('\n')
-                    // sb.append('\t')
-                    // sb.append(definitionFields[1])
+                    // no examples
+                    // for (i in 1 until definitionFields.size) {
+                    //     sb.append('\n')
+                    //     sb.append('\t')
+                    //     sb.append(definitionFields[i])
                     // }
                 }
             }
@@ -746,11 +748,11 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         sb2.append(' ')
                         val definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF.toLong())
                         append(sb2, definitionFields[0], 0, FrameNetFactories.definitionFactory)
-                        // if (definitionFields.length > 1)
-                        // {
-                        // sb.append('\n');
-                        // sb.append('\t');
-                        // sb.append(definitionFields[1]);
+                        // no examples
+                        // for (i in 1 until definitionFields.size) {
+                        //     sb.append('\n')
+                        //     sb.append('\t')
+                        //     sb.append(definitionFields[i])
                         // }
                     }
                 }
@@ -850,11 +852,11 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         sb.append(' ')
                         val definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF.toLong())
                         sb.append(definitionFields[0])
-                        // if (definitionFields.length > 1)
-                        // {
-                        // sb.append('\n');
-                        // sb.append('\t');
-                        // sb.append(definitionFields[1]);
+                        // no examples
+                        // for (i in 1 until definitionFields.size) {
+                        //     sb.append('\n')
+                        //     sb.append('\t')
+                        //     sb.append(definitionFields[i])
                         // }
                     }
                 }
@@ -1714,7 +1716,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val annoSetId = cursor.getLong(idAnnoSetId)
             val rank = cursor.getString(idRank)
             val text = if (idSentenceText == -1) null else cursor.getString(idSentenceText)
-            layers.add(Layer(layerType, annotations, annoSetId, rank, text))
+            if (annotations != null)
+                layers.add(Layer(layerType, annotations, annoSetId, rank, text))
         } while (cursor.moveToNext())
         layers.sortWith(byImportance)
         return layers
