@@ -41,7 +41,7 @@ class FrameNetSpanner(context: Context) {
         if (factory != null) {
             setSpan(sb, 0, sb.length, 0, factory)
         }
-        setSpan(text, sb, this.factory, flags, pattern, pattern1)
+        setSpan(text, sb, this.factory, flags, pattern, pattern1, pattern2)
         return sb
     }
 
@@ -78,5 +78,6 @@ class FrameNetSpanner(context: Context) {
 
         private val pattern = Pattern.compile("<([^>]*)>([^<]*)</([^>]*)>")
         private val pattern1 = Pattern.compile("<(ex)>(.*)</(ex)>")
+        private val pattern2 = Pattern.compile("<(m)>(.*)</(m)>")
     }
 }
