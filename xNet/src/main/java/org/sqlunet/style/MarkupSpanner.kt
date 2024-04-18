@@ -116,7 +116,7 @@ object MarkupSpanner : Spanner() {
      */
     fun interface SpanFactory {
 
-        fun makeSpans(selector: String, flags: Long): Span
+        fun makeSpans(selector: String, flags: Long): Span?
     }
 
     /**
@@ -125,7 +125,6 @@ object MarkupSpanner : Spanner() {
      * @author [Bernard Bou](mailto:1313ou@gmail.com)
      */
     enum class SpanPosition {
-
         TAG1,
         TEXT,
         TAG2;
