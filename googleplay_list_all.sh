@@ -14,9 +14,9 @@ org.sqlunet.browser.ewn
 org.sqlunet.browser.sn
 "
 
-source define_colors.sh
+./find-version.sh
 
-echo -e "${M}build.gradle\n$(grep 'version' build.gradle)${Z}"
+source define_colors.sh
 
 for p in ${packages}; do
 	echo -e "${YELLOW}${p}${RESET}"
