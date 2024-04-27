@@ -49,7 +49,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     // Q U E R Y
 
-    protected lateinit var query: String
+    protected var query: String? = null
 
     // C O M P O N E N T S
 
@@ -90,7 +90,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             Log.d(TAG, "BackStack: $count")
             val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
             if (count > 0) {
-                toolbar.setSubtitle(query)
+                toolbar.setSubtitle(query ?: getString(R.string.app_subname))
             } else {
                 toolbar.setSubtitle(R.string.app_subname)
             }
