@@ -68,9 +68,6 @@ class SearchTextFragment : BaseSearchFragment() {
         // log
         Log.d(TAG, "Search text $trimmedQuery")
 
-        // mode
-        val modePosition = searchModePosition
-
         // status
         // var[] textSearches = getResources().getTextArray(R.array.searchtext_modes)
 
