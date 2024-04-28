@@ -41,7 +41,10 @@ object Queries {
         )
         providerSql.selection = XNetContract.AS_WORDS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?"
         providerSql.selectionArgs = arrayOf(word)
-        providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.TAGCOUNT + " DESC"
+        providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS +
+                ',' + XNetContract.Words_FnWords_PbWords_VnWords.TAGCOUNT + " DESC" +
+                ',' + XNetContract.Words_FnWords_PbWords_VnWords.CASED +
+                ',' + XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM
         return providerSql
     }
 
@@ -76,9 +79,12 @@ object Queries {
                     XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.VARIETY + "||'] '||'/'||" +
                     XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.PRONUNCIATION + "||'/' END) AS " + PRONUNCIATIONS
         )
-        providerSql.selection = XNetContract.AS_WORDS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?"
+        providerSql.selection = XNetContract.AS_WORDS + '.' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.WORD + " = ?"
         providerSql.selectionArgs = arrayOf(word)
-        providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.TAGCOUNT + " DESC"
+        providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.POS +
+                ',' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.TAGCOUNT + " DESC" +
+                ',' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.CASED +
+                ',' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.SENSENUM
         return providerSql
     }
 
@@ -99,7 +105,10 @@ object Queries {
         )
         providerSql.selection = XNetContract.AS_WORDS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?"
         providerSql.selectionArgs = arrayOf(word)
-        providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM
+        providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS +
+                ',' + XNetContract.Words_FnWords_PbWords_VnWords.TAGCOUNT + " DESC" +
+                ',' + XNetContract.Words_FnWords_PbWords_VnWords.CASED +
+                ',' + XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM
         return providerSql
     }
 
@@ -125,7 +134,10 @@ object Queries {
         )
         providerSql.selection = XNetContract.AS_WORDS + '.' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.WORD + " = ?"
         providerSql.selectionArgs = arrayOf(word)
-        providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.SENSENUM
+        providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.POS +
+                ',' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.TAGCOUNT + " DESC" +
+                ',' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.CASED +
+                ',' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.SENSENUM
         return providerSql
     }
 

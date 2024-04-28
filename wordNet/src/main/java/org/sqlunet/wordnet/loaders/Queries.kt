@@ -35,7 +35,10 @@ object Queries {
         )
         providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?" //
         providerSql.selectionArgs = arrayOf(word)
-        providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC"
+        providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID +
+                ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC" +
+                ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD +
+                ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM
         return providerSql
     }
 
@@ -60,7 +63,10 @@ object Queries {
         )
         providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORD + " = ?" //
         providerSql.selectionArgs = arrayOf(word)
-        providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT + " DESC"
+        providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID +
+                ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT + " DESC" +
+                ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD +
+                ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM
         return providerSql
     }
 
@@ -82,7 +88,10 @@ object Queries {
         )
         providerSql.selection = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID + " = ?"
         providerSql.selectionArgs = arrayOf(wordId.toString())
-        providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + "," + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC"
+        providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID +
+                ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC" +
+                ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD +
+                ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM
         return providerSql
     }
 
@@ -105,7 +114,10 @@ object Queries {
         )
         providerSql.selection = WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID + " = ?"
         providerSql.selectionArgs = arrayOf(wordId.toString())
-        providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID + "," + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT + " DESC"
+        providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID +
+                ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT + " DESC" +
+                ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD +
+                ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM
         return providerSql
     }
 
@@ -141,8 +153,10 @@ object Queries {
         )
         providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?"
         providerSql.selectionArgs = arrayOf(word)
-        providerSql.sortBy =
-            WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC ," + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM
+        providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID +
+                ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC" +
+                ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD +
+                ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM
         return providerSql
     }
 
@@ -166,7 +180,10 @@ object Queries {
         providerSql.selection = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID + " = ?"
         providerSql.selectionArgs = arrayOf(wordId.toString())
         providerSql.sortBy =
-            WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC ," + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM
+            WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID +
+                    ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC" +
+                    ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD +
+                    ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM
         return providerSql
     }
 
