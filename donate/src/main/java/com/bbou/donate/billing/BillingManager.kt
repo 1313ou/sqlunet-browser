@@ -27,6 +27,7 @@ import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.BillingFlowParams.ProductDetailsParams
 import com.android.billingclient.api.BillingResult
 import com.android.billingclient.api.ConsumeParams
+import com.android.billingclient.api.PendingPurchasesParams
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.ProductDetailsResponseListener
 import com.android.billingclient.api.Purchase
@@ -106,8 +107,11 @@ class BillingManager(activity: Activity, listener: BillingListener) {
         this.activity = activity
         this.listener = listener
         base64EncodedPublicKey = this.activity.getString(R.string.license_key)
+        val params = PendingPurchasesParams.newBuilder()
+            .enableOneTimeProducts()
+            .build()
         client = BillingClient.newBuilder(this.activity)
-            .enablePendingPurchases()
+            .enablePendingPurchases(params)
             .setListener { billingResult: BillingResult, purchases: List<Purchase>? -> handleNewPurchases(billingResult, purchases) }
             .build()
 
