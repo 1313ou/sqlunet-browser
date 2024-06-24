@@ -11,7 +11,7 @@ import org.sqlunet.provider.BaseProvider.Companion.appendProjection
  */
 object Expected {
 
-    fun expected(code: Int, uriLast: String, projection0: Array<String>, selection0: String?, selectionArgs0: Array<String>?, @Suppress("unused") sortOrder0: String?, subqueryFactory: WordNetControl.Factory): WordNetControl.Result? {
+    fun expected(code: Int, uriLast: String, projection0: Array<String>, selection0: String?, selectionArgs0: Array<String>?, @Suppress("UNUSED_PARAMETER") sortOrder0: String?, subqueryFactory: WordNetControl.Factory): WordNetControl.Result? {
         val table: String
         var projection = projection0
         var selection = selection0

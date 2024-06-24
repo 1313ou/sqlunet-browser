@@ -8,7 +8,7 @@ import com.bbou.concurrency.Task
 /**
  * Do in background, then run something on main thread
  */
-@Suppress("unused")
+@Suppress("UNUSED")
 object DoAsyncThen {
 
     /**

@@ -34,7 +34,7 @@ import java.util.function.BiConsumer
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-@Suppress("unused")
+@Suppress("UNUSED")
 class ContentDownloader(private val listener: Listener) : Task<String, Void, Array<String>?>() {
 
     /**

@@ -60,7 +60,7 @@ open class MyBaseTask : BaseTask<Parameters, Int, String>() {
      *
      * @param progress progress values
      */
-    override fun postProgress(@Suppress("unused") progress: Int) {
+    override fun postProgress(progress: Int) {
         assertIsNotOnMainThread()
     }
 }

@@ -19,7 +19,7 @@ import com.bbou.download.common.R
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-@Suppress("unused")
+@Suppress("UNUSED")
 object FileTaskChooser {
 
     /**

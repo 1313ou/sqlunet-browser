@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 open class BaseBrowse1Fragment : Fragment() {
     companion object {
 
-        @Suppress("unused")
+        @Suppress("UNUSED")
         private val TAG = "Browse1F"
 
         const val FRAGMENT_TAG = "browse1"

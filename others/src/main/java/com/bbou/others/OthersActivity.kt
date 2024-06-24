@@ -116,7 +116,7 @@ class OthersActivity : AppCompatActivity() {
             }
         }
 
-        @Suppress("unused")
+        @Suppress("UNUSED")
         private fun isAppInstalled(uri: String, context: Context): Boolean {
             val packageManager = context.packageManager
             val isInstalled: Boolean = try {

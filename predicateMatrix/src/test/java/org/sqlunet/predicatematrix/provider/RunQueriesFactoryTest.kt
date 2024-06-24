@@ -91,7 +91,7 @@ class RunQueriesFactoryTest {
             return queryProviderMain(code, uriLast, projection0, selection0, selectionArgs0)
         }
 
-        private fun queryProviderMain(code: Int, uriLast: String?, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): PredicateMatrixControl.Result? {
+        private fun queryProviderMain(code: Int, @Suppress("UNUSED_PARAMETER") uriLast: String?, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): PredicateMatrixControl.Result? {
             return queryMain(code, projection0, selection0, selectionArgs0)
         }
 

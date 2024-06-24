@@ -90,7 +90,7 @@ class RunQueriesFactoryTest {
         check(code, expected, r)
     }
 
-    private fun queryProvider(code: Int, uriLast: String, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?, @Suppress("unused") sortOrder0: String?): WordNetControl.Result? {
+    private fun queryProvider(code: Int, uriLast: String, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?, @Suppress("UNUSED_PARAMETER") sortOrder0: String?): WordNetControl.Result? {
         var r = queryMain(code, uriLast, projection0, selection0, selectionArgs0)
         if (r == null) {
             r = queryAnyRelations(code, projection0, selection0, selectionArgs0)

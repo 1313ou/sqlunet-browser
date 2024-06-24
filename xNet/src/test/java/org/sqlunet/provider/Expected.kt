@@ -10,7 +10,7 @@ import org.sqlunet.xnet.provider.Q
  */
 object Expected {
 
-    fun expected(code: Int, uriLast: String, projection0: Array<String>, selection0: String?, selectionArgs0: Array<String>?): XNetControl.Result? {
+    fun expected(code: Int, @Suppress("UNUSED_PARAMETER") uriLast: String, projection0: Array<String>, selection0: String?, selectionArgs0: Array<String>?): XNetControl.Result? {
         val table: String
         var projection = projection0
         var selection = selection0

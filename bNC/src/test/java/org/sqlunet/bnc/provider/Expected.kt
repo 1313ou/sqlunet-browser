@@ -8,7 +8,7 @@ package org.sqlunet.bnc.provider
  */
 object Expected {
 
-    fun expected(code: Int, uriLast: String, projection0: Array<String>, selection0: String?, selectionArgs0: Array<String>?): BNCControl.Result? {
+    fun expected(code: Int, @Suppress("UNUSED_PARAMETER") uriLast: String, projection0: Array<String>, selection0: String?, selectionArgs0: Array<String>?): BNCControl.Result? {
         val table: String
         var projection = projection0
         var selection = selection0
