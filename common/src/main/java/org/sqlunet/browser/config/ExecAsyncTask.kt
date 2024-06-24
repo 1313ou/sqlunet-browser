@@ -756,7 +756,7 @@ class ExecAsyncTask
 
         override fun onDone(result: Boolean?) {
             observer.taskFinish(true)
-            whenDone.accept(result)
+            whenDone.accept(result?:false)
         }
     }
 

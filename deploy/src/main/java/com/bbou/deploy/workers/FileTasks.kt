@@ -69,7 +69,7 @@ class FileTasks(
 
         override fun onDone(result: Boolean?) {
             observer.taskFinish(result == true)
-            consumer?.accept(result)
+            consumer?.accept(result?:false)
         }
 
         override fun onCancelled() {
@@ -115,7 +115,7 @@ class FileTasks(
 
         override fun onDone(result: Boolean?) {
             observer.taskFinish(result == true)
-            consumer?.accept(result)
+            consumer?.accept(result?:false)
         }
 
         override fun onCancelled() {
@@ -159,7 +159,7 @@ class FileTasks(
 
         override fun onDone(result: Boolean?) {
             observer.taskFinish(result == true)
-            consumer?.accept(result)
+            consumer?.accept(result?:false)
         }
 
         override fun onCancelled() {
@@ -203,7 +203,7 @@ class FileTasks(
 
         override fun onDone(result: Boolean?) {
             observer.taskFinish(result == true)
-            consumer?.accept(result)
+            consumer?.accept(result?:false)
         }
 
         override fun onCancelled() {
@@ -247,7 +247,7 @@ class FileTasks(
 
         override fun onDone(result: Boolean?) {
             observer.taskFinish(result == true)
-            consumer?.accept(result)
+            consumer?.accept(result?:false)
         }
 
         override fun onCancelled() {
@@ -289,7 +289,7 @@ class FileTasks(
 
         override fun onDone(result: Boolean?) {
             observer.taskFinish(result == true)
-            consumer?.accept(result)
+            consumer?.accept(result?:false)
         }
 
         override fun onCancelled() {
@@ -333,7 +333,7 @@ class FileTasks(
 
         override fun onDone(result: Boolean?) {
             observer.taskFinish(result == true)
-            consumer?.accept(result)
+            consumer?.accept(result?:false)
         }
 
         override fun onCancelled() {
@@ -380,7 +380,7 @@ class FileTasks(
 
         override fun onDone(result: Boolean?) {
             observer.taskFinish(result == true)
-            consumer?.accept(result)
+            consumer?.accept(result?:false)
         }
 
         override fun onCancelled() {
@@ -425,7 +425,7 @@ class FileTasks(
 
         override fun onDone(result: Boolean?) {
             observer.taskFinish(result == true)
-            consumer?.accept(result)
+            consumer?.accept(result?:false)
         }
 
         override fun onCancelled() {
