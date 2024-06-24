@@ -13,7 +13,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:8.3.2")
+        classpath("com.android.tools.build:gradle:8.5.0")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.23")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.7")
     }
@@ -32,23 +32,23 @@ allprojects {
     }
 
     ext {
-        set("versionCode", 162)
-        set("versionName", "4.162")
-        set("minSdk", 19)
-        set("targetSdk", 33)
+        set("versionCode", 163)
+        set("versionName", "4.163")
+        set("minSdk", 21)
+        set("targetSdk", 34)
         set("compileSdk", 34)
         set("desugarVersion", "2.0.4")
 
         set("coroutinesVersion", "1.7.1")
         set("workVersion", "2.9.0")
-        set("coreVersion", "1.12.0")
-        set("appcompatVersion", "1.6.1")
+        set("coreVersion", "1.13.1")
+        set("appcompatVersion", "1.7.0")
         set("activityVersion", "1.8.2")
-        set("fragmentVersion", "1.6.2")
-        set("lifecycleVersion", "2.7.0")
+        set("fragmentVersion", "1.8.0")
+        set("lifecycleVersion", "2.8.2")
         set("navVersion", "2.7.7")
         set("preferenceVersion", "1.2.1")
-        set("materialVersion", "1.11.0")
+        set("materialVersion", "1.12.0")
         set("constraintlayoutVersion", "2.1.4")
         set("annotationVersion", "1.7.1")
     }

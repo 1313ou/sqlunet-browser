@@ -53,8 +53,8 @@ android {
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
 
-    implementation("androidx.core:core-ktx:${coreVersion}")
-    implementation("androidx.appcompat:appcompat:${appcompatVersion}")
-    implementation("androidx.preference:preference-ktx:${preferenceVersion}")
-    implementation("com.google.android.material:material:${materialVersion}")
+    implementation("androidx.core:core-ktx:$coreVersion")
+    implementation("androidx.appcompat:appcompat:$appcompatVersion")
+    implementation("androidx.preference:preference-ktx:$preferenceVersion")
+    implementation("com.google.android.material:material:$materialVersion")
 }

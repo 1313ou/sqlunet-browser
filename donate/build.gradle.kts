@@ -54,7 +54,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:${activityVersion}")
     implementation("androidx.annotation:annotation:${annotationVersion}")
     implementation("com.google.android.material:material:${materialVersion}")
-    implementation("com.android.billingclient:billing:6.2.0")
+    implementation("com.android.billingclient:billing:7.0.0")
 
     testImplementation("junit:junit:4.13.2")
 
