@@ -22,7 +22,7 @@
 		android:required="true" />
 
 	<application
-		android:name="org.sqlunet.browser.wn.Application"
+		android:name="org.sqlunet.browser.ewn.Application"
 		android:allowBackup="true"
 		android:dataExtractionRules="@xml/data_extraction_rules"
 		android:enableOnBackInvokedCallback="true"
