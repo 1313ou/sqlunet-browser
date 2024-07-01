@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2024. Bernard Bou <1313ou@gmail.com>
  */
-package org.sqlunet.browser.wn
+package org.sqlunet.browser.wn.common
 
 import android.content.Context
 import org.sqlunet.browser.AbstractApplication
 import org.sqlunet.style.Colors
 
-class Application : AbstractApplication() {
+abstract class CommonApplication : AbstractApplication() {
 
     override fun onCreate() {
         super.onCreate()

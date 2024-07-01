@@ -69,6 +69,10 @@ abstract class AbstractApplication : Application() {
         }
     }
 
+    // F E A T U R E S
+
+    abstract fun dropData(): Boolean
+
     // T A S K S
 
     @RequiresApi(api = Build.VERSION_CODES.M)

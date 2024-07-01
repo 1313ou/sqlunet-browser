@@ -22,4 +22,13 @@ class Application : AbstractApplication() {
         org.sqlunet.wordnet.style.Colors.setColorsFromResources(newContext)
         org.sqlunet.bnc.style.Colors.setColorsFromResources(newContext)
     }
+
+    /**
+     * Drop data
+     *
+     * @return true if flagged in build config
+     */
+    override fun dropData(): Boolean {
+        return BuildConfig.DROP_DATA
+    }
 }

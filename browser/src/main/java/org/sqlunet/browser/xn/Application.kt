@@ -27,6 +27,15 @@ class Application : AbstractApplication() {
         org.sqlunet.bnc.style.Colors.setColorsFromResources(newContext)
     }
 
+    /**
+     * Drop data
+     *
+     * @return true if flagged in build config
+     */
+    override fun dropData(): Boolean {
+        return  org.sqlunet.browser.BuildConfig.DROP_DATA
+    }
+
     companion object {
         init {
             FnFlags.standAlone = false

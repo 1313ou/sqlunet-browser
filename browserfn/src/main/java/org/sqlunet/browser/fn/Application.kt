@@ -22,6 +22,15 @@ class Application : AbstractApplication() {
         Colors.setColorsFromResources(newContext)
     }
 
+    /**
+     * Drop data
+     *
+     * @return true if flagged in build config
+     */
+    override fun dropData(): Boolean {
+        return BuildConfig.DROP_DATA
+    }
+
     companion object {
         init {
             FnFlags.standAlone = true
