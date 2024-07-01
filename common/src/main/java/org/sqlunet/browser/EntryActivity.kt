@@ -32,7 +32,9 @@ class EntryActivity : AppCompatActivity() {
         // clear (some/all) settings on first run of this version
         val upgrade = Settings.isUpgrade(this) // upgrade[0]=recorded version, upgrade[1]=this build
         if (upgrade[0] < upgrade[1]) {
-            if (upgrade[0] < 94) {
+            // data
+            val app = application as AbstractApplication
+            if (app.dropData()) {
                 val success = SetupDatabaseTasks.deleteDatabase(this, StorageSettings.getDatabasePath(this))
                 if (success) {
                     Log.d(TAG, "Deleted database")
@@ -42,6 +44,7 @@ class EntryActivity : AppCompatActivity() {
                 com.bbou.download.preference.Settings.unrecordDatapack(this)
                 Toast.makeText(this, R.string.sqlunet2, Toast.LENGTH_LONG).show()
             }
+            // upgrade hook
             Settings.onUpgrade(this, upgrade[1])
         }
 
