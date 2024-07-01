@@ -40,6 +40,7 @@ android {
         // BuildConfig fields
         buildConfigField("int", "VERSION_CODE", vCode.toString())
         buildConfigField("String", "VERSION_NAME", "\"$vName\"")
+        buildConfigField("boolean", "DROP_DATA", "true")
     }
 
     compileSdk = vCompileSdk
