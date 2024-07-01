@@ -13,7 +13,7 @@
 
 	<!-- databases -->
 	<string name="sqlunet">SqlUNet</string>
-	<string name="sqlunet2">Semantikos needs SqlUNet version 2. Deleting current database.</string>
+	<string name="sqlunet2">Semantikos has new data. Deleting current database.</string>
 
 	<!-- ACTIONS -->
 	<!-- submenus -->
