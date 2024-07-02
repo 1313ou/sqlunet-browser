@@ -5,6 +5,9 @@
       <SelectionState runConfigName="android-sqlunet-as.semantikos.browser">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="android-sqlunet-as.semantikos.browserewn">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
