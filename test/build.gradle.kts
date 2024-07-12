@@ -49,7 +49,7 @@ dependencies {
 
     implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.annotation:annotation:$annotationVersion")
-    implementation("androidx.test:core:1.5.0")
-    implementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation("androidx.test.espresso:espresso-contrib:3.5.1")
+    implementation("androidx.test:core:1.6.1")
+    implementation("androidx.test.espresso:espresso-core:3.6.1")
+    implementation("androidx.test.espresso:espresso-contrib:3.6.1")
 }
