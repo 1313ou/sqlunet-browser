@@ -12,6 +12,7 @@ private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
 private val vTargetSdk by lazy { rootProject.extra["targetSdk"] as Int }
 private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
+private val preferenceVersion by lazy { rootProject.extra["preferenceVersion"] as String }
 private val materialVersion by lazy { rootProject.extra["materialVersion"] as String }
 private val annotationVersion by lazy { rootProject.extra["annotationVersion"] as String }
 private val coreVersion by lazy { rootProject.extra["coreVersion"] as String }
@@ -24,8 +25,6 @@ keystoreProperties.load(keystorePropertiesFile.inputStream())
 android {
 
     namespace = "org.sqlunet.browser.ewn"
-
-    compileSdk = vCompileSdk
 
     defaultConfig {
         applicationId = "org.sqlunet.browser.ewn"
