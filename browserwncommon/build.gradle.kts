@@ -1,9 +1,5 @@
 import java.util.Properties
 
-/*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
- */
-
 plugins {
     id("com.android.library")
     id("androidx.navigation.safeargs")
@@ -34,6 +30,7 @@ android {
 
     defaultConfig {
         minSdk = vMinSdk
+        targetSdk = vTargetSdk
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -75,16 +72,17 @@ android {
 }
 
 dependencies {
+    implementation("androidx.core:core-ktx:$coreVersion")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
 
     implementation(project(":common"))
     implementation(project(":expandableListFragment"))
-    implementation(project(":assetpacks"))
     implementation(project(":nightmode"))
+    implementation(project(":assetpacks"))
     implementation(project(":download"))
     implementation(project(":download_common"))
     implementation(project(":deploy"))
-    implementation(project(":speak"))
+	implementation(project(":speak"))
     implementation(project(":others"))
     implementation(project(":donate"))
     implementation(project(":xNet"))
