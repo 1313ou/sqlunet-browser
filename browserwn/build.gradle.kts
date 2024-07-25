@@ -95,7 +95,6 @@ dependencies {
 
     implementation(project(":browserwncommon"))
     implementation(project(":common"))
-    implementation(project(":others"))
     // for manifest
     implementation(project(":wordNet"))
     implementation(project(":bNC"))
@@ -103,13 +102,13 @@ dependencies {
     implementation(project(":download"))
     implementation(project(":download_common"))
     implementation(project(":donate"))
+    implementation(project(":others"))
 
-    implementation("androidx.preference:preference-ktx:$preferenceVersion")
     implementation("androidx.appcompat:appcompat:$appcompatVersion") // for resources validation
     implementation("com.google.android.material:material:$materialVersion") // for resource include
 
-    androidTestImplementation(project(":common"))
     androidTestImplementation(project(":browserwncommon"))
+    androidTestImplementation(project(":common"))
     androidTestImplementation(project(":xNet"))
     androidTestImplementation(project(":nightmode"))
     androidTestImplementation(project(":test"))
@@ -121,13 +120,4 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     androidTestImplementation("androidx.test.espresso:espresso-web:3.6.1")
     androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0")
-
-    constraints {
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.20") {
-            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
-        }
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22") {
-            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
-        }
-    }
 }
