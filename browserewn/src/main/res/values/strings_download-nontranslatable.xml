@@ -2,7 +2,11 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<!DOCTYPE resources [    <!ENTITY bbuser "semantikos2">    <!ENTITY bbrepo "semantikos22">    <!ENTITY bbcommit "268293cf22cb8cc6e3b26e36b2d0cfc9c58f8d04">    <!ENTITY bbcommit2 "488ae8169c871a0f17414950ce976c939e0362af">    ]>
+<!DOCTYPE resources [
+	<!ENTITY bbuser "semantikos2">
+	<!ENTITY bbrepo "semantikos22">
+	<!ENTITY bbcommit "9091573ff52775f8366c46392464eda54d7a8b9b">
+	]>
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
@@ -15,18 +19,12 @@
 
 	<!-- sites -->
 	<string name="bitbucket_XX_site_url" translatable="false" tools:keep="@string/bitbucket_XX_site_url">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;</string>
-	<string name="bitbucket_XX_site_url2" translatable="false" tools:keep="@string/bitbucket_XX_site_url">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit2;</string>
 	<string name="sourceforge_XX_site_url" translatable="false" tools:keep="@string/sourceforge_XX_site_url">https://sourceforge.net/projects/sqlunet/files/semantikos2/3</string>
-	<string name="sourceforge_XX_site_url2" translatable="false" tools:keep="@string/sourceforge_XX_site_url">https://sourceforge.net/projects/sqlunet/files/semantikos2/2</string>
-	<string name="sourceforge_XX_site_url_dev" translatable="false" tools:keep="@string/sourceforge_XX_site_url">https://sourceforge.net/projects/sqlunet/files/semantikos2/3b</string>
 
 	<string name="default_download_site_url" translatable="false" tools:keep="@string/default_download_site_url">@string/bitbucket_XX_site_url</string>
 	<string-array name="download_site_urls" translatable="false" tools:ignore="InconsistentArrays" tools:keep="@array/download_site_urls">
 		<item>@string/bitbucket_XX_site_url</item>
 		<item>@string/sourceforge_XX_site_url</item>
-		<item>@string/bitbucket_XX_site_url2</item>
-		<item>@string/sourceforge_XX_site_url2</item>
-		<item>@string/sourceforge_XX_site_url_dev</item>
 	</string-array>
 
 	<!-- directory -->
