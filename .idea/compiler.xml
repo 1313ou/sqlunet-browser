@@ -2,6 +2,35 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="17">
+      <module name="android-sqlunet-as.semantikos.assetpacks" target="21" />
+      <module name="android-sqlunet-as.semantikos.bNC" target="21" />
+      <module name="android-sqlunet-as.semantikos.browser" target="21" />
+      <module name="android-sqlunet-as.semantikos.browserewn" target="21" />
+      <module name="android-sqlunet-as.semantikos.browserfn" target="21" />
+      <module name="android-sqlunet-as.semantikos.browsersn" target="21" />
+      <module name="android-sqlunet-as.semantikos.browservn" target="21" />
+      <module name="android-sqlunet-as.semantikos.browserwn" target="21" />
+      <module name="android-sqlunet-as.semantikos.browserwncommon" target="21" />
+      <module name="android-sqlunet-as.semantikos.common" target="21" />
+      <module name="android-sqlunet-as.semantikos.concurrency" target="21" />
+      <module name="android-sqlunet-as.semantikos.deploy" target="21" />
+      <module name="android-sqlunet-as.semantikos.donate" target="21" />
+      <module name="android-sqlunet-as.semantikos.download" target="21" />
+      <module name="android-sqlunet-as.semantikos.expandableListFragment" target="21" />
+      <module name="android-sqlunet-as.semantikos.frameNet" target="21" />
+      <module name="android-sqlunet-as.semantikos.nightmode" target="21" />
+      <module name="android-sqlunet-as.semantikos.others" target="21" />
+      <module name="android-sqlunet-as.semantikos.predicateMatrix" target="21" />
+      <module name="android-sqlunet-as.semantikos.preference" target="21" />
+      <module name="android-sqlunet-as.semantikos.propbank" target="21" />
+      <module name="android-sqlunet-as.semantikos.rate" target="21" />
+      <module name="android-sqlunet-as.semantikos.speak" target="21" />
+      <module name="android-sqlunet-as.semantikos.syntagNet" target="21" />
+      <module name="android-sqlunet-as.semantikos.test" target="21" />
+      <module name="android-sqlunet-as.semantikos.treeView" target="21" />
+      <module name="android-sqlunet-as.semantikos.verbNet" target="21" />
+      <module name="android-sqlunet-as.semantikos.wordNet" target="21" />
+      <module name="android-sqlunet-as.semantikos.xNet" target="21" />
       <module name="semantikos.assetpacks" target="17" />
       <module name="semantikos.bNC" target="17" />
       <module name="semantikos.broadcast" target="17" />
@@ -14,9 +43,11 @@
       <module name="semantikos.browserwncommon" target="17" />
       <module name="semantikos.common" target="17" />
       <module name="semantikos.concurrency" target="17" />
+      <module name="semantikos.coroutines" target="21" />
       <module name="semantikos.deploy" target="17" />
       <module name="semantikos.donate" target="17" />
       <module name="semantikos.download" target="17" />
+      <module name="semantikos.download_common" target="21" />
       <module name="semantikos.expandableListFragment" target="17" />
       <module name="semantikos.frameNet" target="17" />
       <module name="semantikos.nightmode" target="17" />
