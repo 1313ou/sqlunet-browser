@@ -2,12 +2,6 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<!DOCTYPE resources [
-	<!ENTITY bbuser "semantikos2">
-	<!ENTITY bbrepo "semantikos22">
-	<!ENTITY bbcommit "9091573ff52775f8366c46392464eda54d7a8b9b">
-	]>
-
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- site files -->
@@ -18,13 +12,13 @@
 	<string name="default_entry_index" translatable="false" tools:keep="@string/default_entry_index">sqlunet-vn-index.sql</string>
 
 	<!-- sites -->
-	<string name="bitbucket_XX_site_url" translatable="false" tools:keep="@string/bitbucket_XX_site_url">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;</string>
-	<string name="sourceforge_XX_site_url" translatable="false" tools:keep="@string/sourceforge_XX_site_url">https://sourceforge.net/projects/sqlunet/files/semantikos2/3</string>
+	<string name="github_site_url" translatable="false" tools:keep="@string/github_site_url">https://github.com/x-englishwordnet/semantikos/releases/download/Semantikos-2024-1</string>
+	<string name="sourceforge_site_url" translatable="false" tools:keep="@string/sourceforge_site_url">https://sourceforge.net/projects/sqlunet/files/semantikos2/3</string>
 
-	<string name="default_download_site_url" translatable="false" tools:keep="@string/default_download_site_url">@string/bitbucket_XX_site_url</string>
+	<string name="default_download_site_url" translatable="false" tools:keep="@string/default_download_site_url">@string/github_site_url</string>
 	<string-array name="download_site_urls" translatable="false" tools:ignore="InconsistentArrays" tools:keep="@array/download_site_urls">
-		<item>@string/bitbucket_XX_site_url</item>
-		<item>@string/sourceforge_XX_site_url</item>
+		<item>@string/github_site_url</item>
+		<item>@string/sourceforge_site_url</item>
 	</string-array>
 
 	<!-- directory -->

@@ -6,8 +6,8 @@
 
 	<!-- sites -->
 	<string-array name="download_site_labels" tools:ignore="InconsistentArrays" tools:keep="@array/download_site_labels">
-		<item>English WordNet 2024 core (Bitbucket, zipped)</item>
-		<item>English WordNet 2024 core (Sourceforge, zipped)</item>
+		<item>Semantikos 2024 (Github, zipped)</item>
+		<item>Semantikos 2024 (Sourceforge, zipped)</item>
 	</string-array>
 
 </resources>
