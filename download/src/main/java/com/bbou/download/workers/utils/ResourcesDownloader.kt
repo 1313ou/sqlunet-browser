@@ -176,7 +176,7 @@ class ResourcesDownloader internal constructor(private val listener: Listener) :
                     val values: MutableList<String> = ArrayList()
                     val labels: MutableList<String> = ArrayList()
                     for (row in resources) {
-                        // ewn	OEWN	2023	Bitbucket	https://bitbucket.org/semantikos2/semantikos22/raw/53e04fe21bc901ee15631873972445c2c8725652	zipped
+                        // ewn	OEWN	2023	Github	https://github	zipped
                         val value = row[4]
                         val label = String.format("%s %s (%s %s)", row[1], row[2], row[3], row[5])
                         values.add(value)
