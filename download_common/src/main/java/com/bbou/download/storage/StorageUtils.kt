@@ -12,7 +12,6 @@ import android.os.Process
 import android.os.StatFs
 import android.os.UserManager
 import android.util.Log
-import androidx.core.content.ContextCompat
 import com.bbou.download.common.R
 import com.bbou.download.preference.Settings
 import java.io.File
@@ -57,7 +56,7 @@ object StorageUtils {
 
         // a p p - s p e c i f i c
         // application-specific secondary external storage or primary external
-        val dirs = ContextCompat.getExternalFilesDirs(context, null)
+        val dirs = context.getExternalFilesDirs(null)
         if (dirs.isNotEmpty()) {
             // preferably secondary storage (index >= 1)
             for (i in 1 until dirs.size) {
@@ -371,7 +370,7 @@ object StorageUtils {
                 (stat.availableBlocks * stat.blockSize).toFloat()
             }
             bytes / (1024f * 1024f)
-        } catch (e: Throwable) {
+        } catch (_: Throwable) {
             Float.NaN
         }
     }
@@ -413,7 +412,7 @@ object StorageUtils {
                 (stat.blockCount * stat.blockSize).toFloat()
             }
             bytes / (1024f * 1024f)
-        } catch (e: Throwable) {
+        } catch (_: Throwable) {
             Float.NaN
         }
     }

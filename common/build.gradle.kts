@@ -1,7 +1,8 @@
+
 plugins {
     id("com.android.library")
     id("androidx.navigation.safeargs")
-    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.android") version "2.0.20"
 }
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
@@ -13,6 +14,7 @@ private val navVersion by lazy { rootProject.extra["navVersion"] as String }
 private val lifecycleVersion by lazy { rootProject.extra["lifecycleVersion"] as String }
 private val preferenceVersion by lazy { rootProject.extra["preferenceVersion"] as String }
 private val materialVersion by lazy { rootProject.extra["materialVersion"] as String }
+private val constraintlayoutVersion by lazy { rootProject.extra["constraintlayoutVersion"] as String }
 private val annotationVersion by lazy { rootProject.extra["annotationVersion"] as String }
 private val coreVersion by lazy { rootProject.extra["coreVersion"] as String }
 private val desugarVersion by lazy { rootProject.extra["desugarVersion"] as String }
@@ -76,7 +78,7 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:$fragmentVersion")
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.constraintlayout:constraintlayout:$constraintlayoutVersion")
     implementation("androidx.preference:preference-ktx:$preferenceVersion")
     implementation("androidx.viewpager2:viewpager2:1.1.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")

@@ -209,7 +209,7 @@ open class DownloadWork {
          * @param owner lifecycle owner
          * @param observer work info observer
          */
-        fun observe(context: Context, id: UUID, owner: LifecycleOwner, observer: Observer<WorkInfo>) {
+        fun observe(context: Context, id: UUID, owner: LifecycleOwner, observer: Observer<WorkInfo?>) {
             val live = WorkManager.getInstance(context).getWorkInfoByIdLiveData(id)
             live.observe(owner, observer)
         }
@@ -226,7 +226,7 @@ open class DownloadWork {
          * @param observer observer
          * @return work uuid
          */
-        fun startWork(context: Context, fromUrl: String, toFile: String, owner: LifecycleOwner, observer: Observer<WorkInfo>): UUID {
+        fun startWork(context: Context, fromUrl: String, toFile: String, owner: LifecycleOwner, observer: Observer<WorkInfo?>): UUID {
             val wm = WorkManager.getInstance(context)
 
             // request

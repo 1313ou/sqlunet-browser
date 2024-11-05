@@ -45,8 +45,8 @@ class ManagerProvider : BaseProvider() {
         // choose the table to query and a sort order based on the code returned for the incoming URI
         val code = uriMatcher.match(uri)
         // Log.d(TAG + "URI", String.format("%s (code %s)\n", uri, code))
-        val table: String? = when (code) {
-            TABLES_AND_INDICES -> uri.lastPathSegment
+        val table: String = when (code) {
+            TABLES_AND_INDICES -> uri.lastPathSegment!!
             UriMatcher.NO_MATCH -> throw RuntimeException("Malformed URI $uri")
             else -> throw RuntimeException("Malformed URI $uri")
         }

@@ -41,7 +41,7 @@ object DownloadZipWork : DownloadWork() {
          * @param observer   observer
          * @return work uuid
          */
-        fun startWork(context: Context, fromUrl: String, entry: String?, toFile: String, renameFrom: String?, renameTo: String?, owner: LifecycleOwner, observer: Observer<WorkInfo>): UUID {
+        fun startWork(context: Context, fromUrl: String, entry: String?, toFile: String, renameFrom: String?, renameTo: String?, owner: LifecycleOwner, observer: Observer<WorkInfo?>): UUID {
             val wm = WorkManager.getInstance(context)
 
             // request

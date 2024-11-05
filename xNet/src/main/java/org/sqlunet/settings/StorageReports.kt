@@ -3,10 +3,8 @@
  */
 package org.sqlunet.settings
 
-import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.Typeface
-import android.os.Build
 import android.os.Environment
 import android.text.SpannableStringBuilder
 import android.text.style.BackgroundColorSpan
@@ -14,7 +12,6 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.util.Pair
-import androidx.core.content.ContextCompat
 import org.sqlunet.settings.StorageUtils.getExternalStorages
 import org.sqlunet.settings.StorageUtils.getSortedStorageDirectories
 import org.sqlunet.settings.StorageUtils.mbToString
@@ -202,7 +199,7 @@ object StorageReports {
 
         // external
         var i = 1
-        for (dir2 in ContextCompat.getExternalCacheDirs(context)) {
+        for (dir2 in context.externalCacheDirs) {
             if (dir2 == null) {
                 continue
             }
@@ -243,10 +240,8 @@ object StorageReports {
         val dirs: MutableList<File> = ArrayList()
         dirs.add(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS))
         dirs.addAll(listOf(*context.getExternalFilesDirs(Environment.DIRECTORY_DOWNLOADS)))
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            @Suppress("DEPRECATION")
-            dirs.addAll(listOf(*context.externalMediaDirs))
-        }
+        @Suppress("DEPRECATION")
+        dirs.addAll(listOf(*context.externalMediaDirs))
         for (dir in dirs) {
             value = dir.absolutePath
             name = SpannableStringBuilder()
@@ -315,12 +310,10 @@ object StorageReports {
                 sb.append(s)
                 sb.append(' ')
                 sb.append(mbToString(storageCapacity(s)))
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    sb.append(' ')
-                    try {
-                        sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                    } catch (_: Throwable) {
-                    }
+                sb.append(' ')
+                try {
+                    sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
+                } catch (_: Throwable) {
                 }
                 sb.append('\n')
             }
@@ -332,12 +325,10 @@ object StorageReports {
                 sb.append(s)
                 sb.append(' ')
                 sb.append(mbToString(storageCapacity(s)))
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    sb.append(' ')
-                    try {
-                        sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                    } catch (_: Throwable) {
-                    }
+                sb.append(' ')
+                try {
+                    sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
+                } catch (_: Throwable) {
                 }
                 sb.append('\n')
             }
@@ -349,12 +340,10 @@ object StorageReports {
                 sb.append(s)
                 sb.append(' ')
                 sb.append(mbToString(storageCapacity(s)))
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    sb.append(' ')
-                    try {
-                        sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                    } catch (_: Throwable) {
-                    }
+                sb.append(' ')
+                try {
+                    sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
+                } catch (_: Throwable) {
                 }
                 sb.append('\n')
             }
@@ -414,7 +403,6 @@ object StorageReports {
      * @param context context
      * @return report
      */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     fun reportStyledExternalStorage(context: Context): CharSequence {
         val storages = getExternalStorages(context)
         val physical = storages[StorageUtils.StorageType.PRIMARY_PHYSICAL]
@@ -431,12 +419,10 @@ object StorageReports {
                 appendWithSpans(sb, s, spans(Colors.storageValueBackColor, Colors.storageValueForeColor, StyleSpan(Typeface.ITALIC)))
                 sb.append('\n')
                 sb.append(mbToString(storageCapacity(s)))
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    sb.append(' ')
-                    try {
-                        sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                    } catch (_: Throwable) {
-                    }
+                sb.append(' ')
+                try {
+                    sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
+                } catch (_: Throwable) {
                 }
                 sb.append('\n')
             }
@@ -496,19 +482,19 @@ object StorageReports {
 
         // external files
         var i = 1
-        for (dir in ContextCompat.getExternalFilesDirs(context, null)) {
+        for (dir in context.getExternalFilesDirs(null)) {
             appendDir(sb, "external files dir [" + i++ + ']', dir)
         }
 
         // external caches
         i = 1
-        for (dir in ContextCompat.getExternalCacheDirs(context)) {
+        for (dir in context.externalCacheDirs) {
             appendDir(sb, "external cache dir [" + i++ + ']', dir)
         }
 
         // obbs
         i = 1
-        for (dir in ContextCompat.getObbDirs(context)) {
+        for (dir in context.obbDirs) {
             appendDir(sb, "external obb dir [" + i++ + ']', dir)
         }
         return sb

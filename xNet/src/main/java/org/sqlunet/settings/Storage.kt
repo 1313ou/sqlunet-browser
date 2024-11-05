@@ -7,7 +7,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.util.Log
-import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import java.io.File
 
@@ -29,26 +28,6 @@ object Storage {
      * SqlUNet DB filename
      */
     const val DBFILE = "$DBNAME.db"
-
-    /**
-     * SqlUNet DB zipped filename
-     */
-    const val DBFILEZIP = "$DBFILE.zip"
-
-    /*
-	 * SqlUNet DB sql filename
-	 */
-    //const val DBSQL = "$DBNAME.sql"
-
-    /*
-	 * SqlUNet DB zipped sql filename
-	 */
-    //const val DBSQLZIP = DBSQL + ".zip"
-
-    /**
-     * SqlUNet sub directory when external public
-     */
-    const val SQLUNETDIR = "sqlunet" + '/'
 
     /**
      * SqlUNet storage preference name
@@ -131,7 +110,7 @@ object Storage {
     private fun build(dir: File?): Boolean {
         return if (dir == null) {
             false
-        } else dir.mkdirs() || dir.isDirectory()
+        } else dir.mkdirs() || dir.isDirectory
 
         // make sure that path can be created and it is a directory
     }
@@ -153,7 +132,7 @@ object Storage {
             var cache: File? = null
 
             // consider external cache
-            for (externalCache in ContextCompat.getExternalCacheDirs(context)) {
+            for (externalCache in context.externalCacheDirs) {
                 if (externalCache != null) {
                     cache = externalCache
                     break

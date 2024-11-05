@@ -78,9 +78,10 @@ abstract class DownloadBaseFragment : ProbedDownloadFragment() {
     /**
      * Observer
      */
-    protected val observer = Observer { wi: WorkInfo ->
+    protected val observer = Observer<WorkInfo?> @UiThread { wi: WorkInfo? ->
 
-        @UiThread
+        if (wi == null)
+            return@Observer
 
         // progress
         if (working) // drop event if not

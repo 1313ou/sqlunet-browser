@@ -6,7 +6,6 @@ package org.sqlunet.assetpack
 import android.app.Activity
 import android.content.Context
 import android.util.Log
-import androidx.core.content.ContextCompat
 import com.bbou.concurrency.Cancelable
 import com.bbou.concurrency.observe.TaskObserver
 import com.google.android.gms.tasks.RuntimeExecutionException
@@ -285,10 +284,10 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
          * @param context context
          */
         fun dumpLocalTesting(context: Context) {
-            val ds = ContextCompat.getExternalFilesDirs(context, null)
+            val ds = context.getExternalFilesDirs(null)
             for (d in ds) {
                 val dir = File(d, "local_testing")
-                if (dir.exists() && dir.isDirectory()) {
+                if (dir.exists() && dir.isDirectory) {
                     val content = File(d, "local_testing").list()
                     if (content != null) {
                         for (f in content) {

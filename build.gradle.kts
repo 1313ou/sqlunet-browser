@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
- */
-
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
@@ -14,14 +10,14 @@ buildscript {
 
     dependencies {
         classpath("com.android.tools.build:gradle:8.7.2")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.23")
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.7")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.20")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.8.3")
     }
 }
 
 plugins {
     id("idea")
-    id("org.jetbrains.kotlin.android") version "1.9.23" apply false
+    id("org.jetbrains.kotlin.android") version "2.0.20" apply false
 }
 
 allprojects {
@@ -36,21 +32,22 @@ allprojects {
         set("versionName", "4.167")
         set("minSdk", 21)
         set("targetSdk", 34)
-        set("compileSdk", 34)
+        set("compileSdk", 35)
         set("desugarVersion", "2.0.4")
 
+        set("kotlinVersion", "2.0.20")
         set("coroutinesVersion", "1.8.1")
-        set("workVersion", "2.9.0")
-        set("coreVersion", "1.13.1")
+        set("workVersion", "2.10.0")
+        set("coreVersion", "1.15.0")
         set("appcompatVersion", "1.7.0")
-        set("activityVersion", "1.9.0")
-        set("fragmentVersion", "1.8.1")
-        set("lifecycleVersion", "2.8.3")
-        set("navVersion", "2.7.7")
+        set("activityVersion", "1.9.3")
+        set("fragmentVersion", "1.8.5")
+        set("lifecycleVersion", "2.8.7")
+        set("navVersion", "2.8.3")
         set("preferenceVersion", "1.2.1")
         set("materialVersion", "1.12.0")
-        set("constraintlayoutVersion", "2.1.4")
-        set("annotationVersion", "1.7.1")
+        set("constraintlayoutVersion", "2.2.0")
+        set("annotationVersion", "1.9.1")
     }
 
     gradle.projectsEvaluated {

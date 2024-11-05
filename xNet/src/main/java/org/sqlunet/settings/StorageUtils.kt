@@ -10,7 +10,6 @@ import android.os.Process
 import android.os.StatFs
 import android.os.UserManager
 import android.util.Log
-import androidx.core.content.ContextCompat
 import org.sqlunet.xnet.R
 import java.io.File
 import java.util.EnumMap
@@ -58,7 +57,7 @@ object StorageUtils {
 
         // application-specific secondary external storage or primary external (KITKAT)
         var dir: File
-        val dirs = ContextCompat.getExternalFilesDirs(context, null)
+        val dirs = context.getExternalFilesDirs(null)
         if (dirs.isNotEmpty()) {
 
             // preferably secondary storage
@@ -282,19 +281,17 @@ object StorageUtils {
         }
 
         // state
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            when (type) {
-                DirType.APP_EXTERNAL_SECONDARY, DirType.APP_EXTERNAL_PRIMARY, DirType.PUBLIC_EXTERNAL_PRIMARY, DirType.PUBLIC_EXTERNAL_SECONDARY -> try {
-                    val state = Environment.getExternalStorageState(dir)
-                    if (Environment.MEDIA_MOUNTED != state) {
-                        Log.d(TAG, "storage state of $dir: $state")
-                        status = StorageDirectory.NOT_MOUNTED
-                    }
-                } catch (_: Throwable) {
+        when (type) {
+            DirType.APP_EXTERNAL_SECONDARY, DirType.APP_EXTERNAL_PRIMARY, DirType.PUBLIC_EXTERNAL_PRIMARY, DirType.PUBLIC_EXTERNAL_SECONDARY -> try {
+                val state = Environment.getExternalStorageState(dir)
+                if (Environment.MEDIA_MOUNTED != state) {
+                    Log.d(TAG, "storage state of $dir: $state")
+                    status = StorageDirectory.NOT_MOUNTED
                 }
-
-                DirType.APP_INTERNAL, DirType.AUTO -> {}
+            } catch (_: Throwable) {
             }
+
+            DirType.APP_INTERNAL, DirType.AUTO -> {}
         }
 
         // exists
@@ -303,7 +300,7 @@ object StorageUtils {
         }
 
         // make sure it is a directory
-        if (!dir.isDirectory()) {
+        if (!dir.isDirectory) {
             status = status or StorageDirectory.NOT_DIR
         }
 
@@ -363,7 +360,7 @@ object StorageUtils {
 
     fun getFree(context: Context, target: String): String {
         val file = File(target)
-        val dir = if (file.isDirectory()) file.absolutePath else file.getParent()!!
+        val dir = if (file.isDirectory) file.absolutePath else file.parent!!
         val dataStats = storageStats(dir)
         val df = dataStats[STORAGE_FREE]
         val dc = dataStats[STORAGE_CAPACITY]
@@ -382,7 +379,7 @@ object StorageUtils {
             val stat = StatFs(path)
             val bytes = (stat.blockCountLong * stat.blockSizeLong).toFloat()
             bytes / (1024f * 1024f)
-        } catch (e: Throwable) {
+        } catch (_: Throwable) {
             Float.NaN
         }
     }
@@ -418,7 +415,7 @@ object StorageUtils {
             val stat = StatFs(path)
             val bytes = (stat.blockCountLong * stat.blockSizeLong).toFloat()
             bytes / (1024f * 1024f)
-        } catch (e: Throwable) {
+        } catch (_: Throwable) {
             Float.NaN
         }
     }

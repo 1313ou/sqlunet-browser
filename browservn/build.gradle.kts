@@ -1,13 +1,9 @@
 import java.util.Properties
 
-/*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
- */
-
 plugins {
     id("com.android.application")
     id("androidx.navigation.safeargs")
-    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.android") version "2.0.20"
 }
 
 private val vCode by lazy { rootProject.extra["versionCode"] as Int }
@@ -133,6 +129,6 @@ dependencies {
     androidTestImplementation("androidx.annotation:annotation:$annotationVersion")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test:rules:1.6.1")
-    androidTestImplementation("androidx.test:runner:1.6.1")
+    androidTestImplementation("androidx.test:runner:1.6.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
 }

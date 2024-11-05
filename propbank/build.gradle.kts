@@ -1,13 +1,9 @@
 import java.util.Date
 
-/*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
- */
-
 plugins {
     id("org.sqlunet.plugin.querybuilder") version "1.0.0"
     id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.android") version "2.0.20"
 }
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }

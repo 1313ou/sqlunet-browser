@@ -1,6 +1,7 @@
+
 plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.android") version "2.0.20"
 }
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
@@ -54,7 +55,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:${activityVersion}")
     implementation("androidx.annotation:annotation:${annotationVersion}")
     implementation("com.google.android.material:material:${materialVersion}")
-    implementation("com.android.billingclient:billing:7.0.0")
+    implementation("com.android.billingclient:billing:7.1.1")
 
     testImplementation("junit:junit:4.13.2")
 
