@@ -25,6 +25,9 @@
 		<item>senses_vtemplates</item>
 		<item>senses_adjpositions</item>
 		<item>lexes_morphs</item>
+		<!-- <item>usages</item> -->
+		<!-- <item>wikidatas</item> -->
+		<!-- <item>ilis</item> -->
 
 		<!-- verbnet -->
 		<item>vn_classes</item>
@@ -117,9 +120,9 @@
 		<item>pm_roles</item>
 		<item>pm_predicates</item>
 		<!-- predicate matrix DERIVED -->
-		<!--		<item>pmvn</item>-->
-		<!--		<item>pmpb</item>-->
-		<!--		<item>pmfn</item>-->
+		<!-- <item>pmvn</item>-->
+		<!-- <item>pmpb</item>-->
+		<!-- <item>pmfn</item>-->
 
 		<!-- bnc -->
 		<item>bnc_bncs</item>
@@ -157,6 +160,12 @@
 		<item>pk_domains</item>
 		<item>k_samples_synsetid</item>
 		<item>pk_lexes_morphs_wordid</item>
+		<!-- <item>pk_usages</item> -->
+		<!-- <item>k_usages_synsetid</item> -->
+		<!-- <item>k_usages_luid</item> -->
+		<!-- <item>k_usages_wordid</item> -->
+		<!-- <item>pk_wikidatas</item> -->
+		<!-- <item>pk_ilis</item> -->
 
 		<!-- verbnet -->
 		<item>pk_vn_words</item>

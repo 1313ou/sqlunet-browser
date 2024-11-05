@@ -45,7 +45,12 @@
 			CREATE INDEX IF NOT EXISTS `pk_vframes` ON `vframes` (`frameid`);
 			CREATE INDEX IF NOT EXISTS `pk_vtemplates` ON `vtemplates` (`templateid`);
 			CREATE INDEX IF NOT EXISTS `pk_lexes_morphs_wordid` ON `lexes_morphs` (`wordid`);
-			<!-- bnc -->
+			<!-- CREATE UNIQUE INDEX IF NOT EXISTS `pk_usages` ON `usages` (`synsetid`,`usageid`); -->
+			<!-- CREATE INDEX IF NOT EXISTS `k_usages_luid` ON `usages` (`luid`); -->
+			<!-- CREATE INDEX IF NOT EXISTS `k_usages_synsetid` ON `usages` (`synsetid`); -->
+			<!-- CREATE INDEX IF NOT EXISTS `k_usages_wordid` ON `usages` (`wordid`); -->
+			<!-- CREATE UNIQUE INDEX IF NOT EXISTS `pk_wikidatas` ON `wikidatas` (`synsetid`); -->
+			<!-- CREATE UNIQUE INDEX IF NOT EXISTS `pk_ilis` ON `ilis` (`synsetid`); -->
 		</item>
 		<item>
 			<!-- wordnet text search -->
@@ -79,7 +84,14 @@
 			DROP INDEX IF EXISTS `pk_samples`;
 			DROP INDEX IF EXISTS `pk_vframes`;
 			DROP INDEX IF EXISTS `pk_vtemplates`;
-			DROP INDEX IF EXISTS `pk_lexes_morphs_wordid`;</item>
+			DROP INDEX IF EXISTS `pk_lexes_morphs_wordid`;
+			<!-- DROP INDEX IF EXISTS `pk_usages`; -->
+			<!-- DROP INDEX IF EXISTS `k_usages_luid`; -->
+			<!-- DROP INDEX IF EXISTS `k_usages_synsetid`; -->
+			<!-- DROP INDEX IF EXISTS `k_usages_wordid`; -->
+			<!-- DROP INDEX IF EXISTS `pk_wikidatas`; -->
+			<!-- DROP INDEX IF EXISTS `pk_ilis`; -->
+		</item>
 		<item>
 			<!-- drop wordnet textsearch -->
 			DROP TABLE IF EXISTS `words_word_fts4`;

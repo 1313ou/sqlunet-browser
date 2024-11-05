@@ -25,6 +25,9 @@
 		<item>senses_vtemplates</item>
 		<item>senses_adjpositions</item>
 		<item>lexes_morphs</item>
+		<!-- <item>usages</item> -->
+		<!-- <item>wikidatas</item> -->
+		<!-- <item>ilis</item> -->
 
 		<!-- syntagnet -->
 		<item>sn_syntagms</item>
@@ -51,6 +54,12 @@
 		<item>k_semrelations_synset1id</item>
 		<item>k_semrelations_relationid</item>
 		<item>k_samples_synsetid</item>
+		<!-- <item>pk_usages</item> -->
+		<!-- <item>k_usages_synsetid</item> -->
+		<!-- <item>k_usages_luid</item> -->
+		<!-- <item>k_usages_wordid</item> -->
+		<!-- <item>pk_wikidatas</item> -->
+		<!-- <item>pk_ilis</item> -->
 
 		<!-- syntagnet -->
 		<item>k_sn_syntagms_word1id</item>

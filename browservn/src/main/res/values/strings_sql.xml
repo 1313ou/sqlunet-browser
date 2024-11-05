@@ -15,8 +15,6 @@
 		<item>Prepare PropBank text search</item>
 		<item>Create WordNet indexes</item>
 		<item>Drop WordNet indexes</item>
-		<!-- <item>Create BNC indexes</item>-->
-		<!-- <item>Drop BNC indexes</item>-->
 		<item>Create VerbNet indexes</item>
 		<item>Drop VerbNet indexes</item>
 		<item>Create PropBank indexes</item>
@@ -31,7 +29,7 @@
 	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statements_values">
 		<item />
 		<item>
-			<!-- wordnet -->
+			<!-- all -->
 			CREATE INDEX IF NOT EXISTS `pk_words` ON `words` (`wordid`);
 			CREATE INDEX IF NOT EXISTS `k_words_word` ON `words`(`word`);
 			CREATE INDEX IF NOT EXISTS `pk_casedwords` ON `casedwords` (`casedwordid`);
@@ -55,12 +53,16 @@
 			CREATE INDEX IF NOT EXISTS `pk_vframes` ON `vframes` (`frameid`);
 			CREATE INDEX IF NOT EXISTS `pk_vtemplates` ON `vtemplates` (`templateid`);
 			CREATE INDEX IF NOT EXISTS `pk_lexes_morphs_wordid` ON `lexes_morphs` (`wordid`);
-			<!-- bnc -->
+			<!-- CREATE UNIQUE INDEX IF NOT EXISTS `pk_usages` ON `usages` (`synsetid`,`usageid`); -->
+			<!-- CREATE INDEX IF NOT EXISTS `k_usages_luid` ON `usages` (`luid`); -->
+			<!-- CREATE INDEX IF NOT EXISTS `k_usages_synsetid` ON `usages` (`synsetid`); -->
+			<!-- CREATE INDEX IF NOT EXISTS `k_usages_wordid` ON `usages` (`wordid`); -->
+			<!-- CREATE UNIQUE INDEX IF NOT EXISTS `pk_wikidatas` ON `wikidatas` (`synsetid`); -->
+			<!-- CREATE UNIQUE INDEX IF NOT EXISTS `pk_ilis` ON `ilis` (`synsetid`); -->
 			<!-- CREATE INDEX IF NOT EXISTS `k_bnc_bncs_wordid_posid` ON `bnc_bncs` (`wordid`,`posid`); -->
 			<!-- CREATE INDEX IF NOT EXISTS `k_bnc_spwrs_wordid_posid` ON `bnc_spwrs` (`wordid`,`posid`); -->
 			<!-- CREATE INDEX IF NOT EXISTS `k_bnc_convtasks_wordid_posid` ON `bnc_convtasks` (`wordid`,`posid`); -->
 			<!-- CREATE INDEX IF NOT EXISTS `k_bnc_imaginfs_wordid_posid` ON `bnc_imaginfs` (`wordid`,`posid`); -->
-			<!--verbnet -->
 			CREATE INDEX IF NOT EXISTS `pk_vn_classes` ON `vn_classes` (`classid`);
 			CREATE INDEX IF NOT EXISTS `k_vn_classes_frames_classid` ON `vn_classes_frames`(`classid`);
 			CREATE INDEX IF NOT EXISTS `k_vn_roles_classid` ON `vn_roles`(`classid`);
@@ -83,7 +85,6 @@
 			CREATE INDEX IF NOT EXISTS `pk_vn_groupings` ON `vn_groupings` (`groupingid`);
 			CREATE INDEX IF NOT EXISTS `pk_vn_words` ON `vn_words` (`vnwordid`);
 			CREATE INDEX IF NOT EXISTS `k_vn_words_wordid` ON `vn_words`(`wordid`);
-			<!-- propbank -->
 			CREATE INDEX IF NOT EXISTS `pk_pb_rolesets` ON `pb_rolesets` (`rolesetid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_roles` ON `pb_roles` (`roleid`);
 			CREATE INDEX IF NOT EXISTS `k_pb_roles_rolesetid` ON `pb_roles`(`rolesetid`);
@@ -114,7 +115,7 @@
 			CREATE VIRTUAL TABLE IF NOT EXISTS `pb_examples_text_fts4` USING fts4(`exampleid` INTEGER NOT NNULL, `rolesetid` INTEGER NOT NULL, `text`);
 			INSERT INTO `pb_examples_text_fts4` SELECT `exampleid`, `rolesetid`, `text` FROM `pb_examples`;</item>
 		<item>
-			<!-- wordnet indexes -->
+		<!-- wordnet indexes -->
 			CREATE INDEX IF NOT EXISTS `pk_words` ON `words` (`wordid`);
 			CREATE INDEX IF NOT EXISTS `k_words_word` ON `words`(`word`);
 			CREATE INDEX IF NOT EXISTS `pk_casedwords` ON `casedwords` (`casedwordid`);
@@ -137,7 +138,14 @@
 			CREATE INDEX IF NOT EXISTS `pk_samples` ON `samples` (`synsetid`,`sampleid`);
 			CREATE INDEX IF NOT EXISTS `pk_vframes` ON `vframes` (`frameid`);
 			CREATE INDEX IF NOT EXISTS `pk_vtemplates` ON `vtemplates` (`templateid`);
-			CREATE INDEX IF NOT EXISTS `pk_lexes_morphs_wordid` ON `lexes_morphs` (`wordid`);</item>
+			CREATE INDEX IF NOT EXISTS `pk_lexes_morphs_wordid` ON `lexes_morphs` (`wordid`);
+			<!-- CREATE UNIQUE INDEX IF NOT EXISTS `pk_usages` ON `usages` (`synsetid`,`usageid`); -->
+			<!-- CREATE INDEX IF NOT EXISTS `k_usages_luid` ON `usages` (`luid`); -->
+			<!-- CREATE INDEX IF NOT EXISTS `k_usages_synsetid` ON `usages` (`synsetid`); -->
+			<!-- CREATE INDEX IF NOT EXISTS `k_usages_wordid` ON `usages` (`wordid`); -->
+			<!-- CREATE UNIQUE INDEX IF NOT EXISTS `pk_wikidatas` ON `wikidatas` (`synsetid`); -->
+			<!-- CREATE UNIQUE INDEX IF NOT EXISTS `pk_ilis` ON `ilis` (`synsetid`); -->
+		</item>
 		<item>
 			<!-- drop wordnet indexes -->
 			DROP INDEX IF EXISTS `pk_words`;
@@ -162,23 +170,13 @@
 			DROP INDEX IF EXISTS `pk_samples`;
 			DROP INDEX IF EXISTS `pk_vframes`;
 			DROP INDEX IF EXISTS `pk_vtemplates`;
-			DROP INDEX IF EXISTS `pk_lexes_morphs_wordid`;</item>
-		<!-- bnc indexes -->
-		<!--
-		<item>
-			CREATE INDEX IF NOT EXISTS `k_bnc_bncs_wordid_posid` ON `bnc_bncs` (`wordid`,`posid`);
-			CREATE INDEX IF NOT EXISTS `k_bnc_spwrs_wordid_posid` ON `bnc_spwrs` (`wordid`,`posid`);
-			CREATE INDEX IF NOT EXISTS `k_bnc_convtasks_wordid_posid` ON `bnc_convtasks` (`wordid`,`posid`);
-			CREATE INDEX IF NOT EXISTS `k_bnc_imaginfs_wordid_posid` ON `bnc_imaginfs` (`wordid`,`posid`);</item>
-		-->
-		<!-- drop bnc indexes -->
-		<!--
-		<item>
-			DROP INDEX IF EXISTS `k_bnc_bncs_wordid_posid`;
-			DROP INDEX IF EXISTS `k_bnc_spwrs_wordid_posid`;
-			DROP INDEX IF EXISTS `k_bnc_convtasks_wordid_posid`;
-			DROP INDEX IF EXISTS `k_bnc_imaginfs_wordid_posid`;</item>
-		-->
+			DROP INDEX IF EXISTS `pk_lexes_morphs_wordid`;
+			<!-- DROP INDEX IF EXISTS `pk_usages`; -->
+			<!-- DROP INDEX IF EXISTS `k_usages_luid`; -->
+			<!-- DROP INDEX IF EXISTS `k_usages_synsetid`; -->
+			<!-- DROP INDEX IF EXISTS `k_usages_wordid`; -->
+			<!-- DROP INDEX IF EXISTS `pk_wikidatas`; -->
+			<!-- DROP INDEX IF EXISTS `pk_ilis`; --></item>
 		<item>
 			<!-- verbnet indexes -->
 			CREATE INDEX IF NOT EXISTS `pk_vn_classes` ON `vn_classes` (`classid`);
