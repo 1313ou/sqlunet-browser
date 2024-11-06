@@ -12,7 +12,6 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.core.widget.ImageViewCompat
-import com.bbou.download.preference.Settings
 import com.bbou.download.preference.Settings.Mode
 import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.Info.info

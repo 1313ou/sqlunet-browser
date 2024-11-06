@@ -20,7 +20,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.bbou.download.preference.Settings
 import com.bbou.download.preference.Settings.Mode
 import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.EntryActivity.Companion.rerun
