@@ -24,6 +24,4 @@ class VnFrame(
     val syntax: String,
     val semantics: String,
     vararg val examples: String,
-) {
-
-}
+)
