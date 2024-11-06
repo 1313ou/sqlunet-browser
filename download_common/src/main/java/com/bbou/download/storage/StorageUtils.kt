@@ -340,7 +340,6 @@ object StorageUtils {
      * @param target directory or file system object
      * @return free storage report
      */
-    @Suppress("unused")
     fun getFree(context: Context, target: String): String {
         val file = File(target)
         val dir: String? = if (file.isDirectory) file.absolutePath else file.parent
@@ -721,7 +720,6 @@ object StorageUtils {
      * @param context context
      * @return
      */
-    @Suppress("unused")
     fun getDatapackFile(context: Context): File {
         return File(Settings.getDatapackDir(context), context.getString(R.string.default_target_file))
     }

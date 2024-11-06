@@ -109,7 +109,6 @@ object Deploy {
      * @param lang   default language, used if asset has to be expanded
      * @param getter input stream getter, used if asset has to be expanded
      */
-    @Suppress("unused")
     @Synchronized
     fun redeploy(toDir: File, lang: String, getter: InputStreamGetter) {
         emptyDirectory(toDir)
@@ -144,7 +143,6 @@ object Deploy {
      * @param getter   input stream getter
      * @return uri of copied file
      */
-    @Suppress("unused")
     @Synchronized
     fun copyFile(fromFilename: String, fromDir: File, toDir: File, getter: InputStreamGetter): Uri? {
         toDir.mkdirs()
@@ -162,7 +160,6 @@ object Deploy {
      * @param toPath   destination path
      * @return true if successful
      */
-    @Suppress("unused")
     @Synchronized
     fun copyFile(fromPath: String, toPath: String): Boolean {
         try {
@@ -237,7 +234,6 @@ object Deploy {
      * @param publishRate publish rate
      * @return true if successful
      */
-    @Suppress("unused")
     @Synchronized
     fun copyFile(fromPath: String, toPath: String, task: Cancelable, publisher: Publisher, publishRate: Int): Boolean {
         Log.d(TAG, "Copying from $fromPath to $toPath")
@@ -394,7 +390,6 @@ object Deploy {
      * @param publishRate publish rate
      * @return true if successful
      */
-    @Suppress("unused")
     @Synchronized
     fun unzipFromArchive(fromPath: String, toPath: String, task: Cancelable, publisher: Publisher, publishRate: Int): Boolean {
         Log.d(TAG, "Expanding from $fromPath to $toPath")
@@ -476,7 +471,6 @@ object Deploy {
      * @param publishRate publish rate
      * @return true if successful
      */
-    @Suppress("unused")
     @Synchronized
     fun unzipEntryFromArchive(fromPath: String, fromEntry: String, toFilePath: String, task: Cancelable, publisher: Publisher, publishRate: Int): Boolean {
         Log.d(TAG, "Expanding from $fromPath (entry $fromEntry) to $toFilePath")
@@ -536,7 +530,6 @@ object Deploy {
      * @param publishRate publish rate
      * @return digest if successful
      */
-    @Suppress("unused")
     @Synchronized
     fun md5FromFile(fromPath: String, task: Cancelable, publisher: Publisher, publishRate: Int): String? {
         Log.d(TAG, "MD5summing $fromPath")

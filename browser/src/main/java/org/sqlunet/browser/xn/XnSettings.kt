@@ -193,7 +193,6 @@ object XnSettings : Settings() {
          *
          * @param context context
          */
-        @Suppress("unused")
         fun setPref(context: Context) {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             sharedPref.edit().putString(PREF_SELECTOR, name).apply()

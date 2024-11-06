@@ -108,7 +108,6 @@ class SyntagNetProvider : BaseProvider() {
          *
          * @param context context
          */
-        @Suppress("unused")
         fun close(context: Context) {
             val uri = Uri.parse(SCHEME + AUTHORITY)
             closeProvider(context, uri)

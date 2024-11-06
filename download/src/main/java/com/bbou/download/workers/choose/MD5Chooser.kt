@@ -23,7 +23,6 @@ import java.io.File
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-@Suppress("unused")
 object MD5Chooser {
 
     /**

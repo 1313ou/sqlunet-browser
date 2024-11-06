@@ -232,7 +232,6 @@ object ReportUtils {
      *
      * @param context context
      */
-    @Suppress("unused")
     fun setColorsFromResources(context: Context) {
         // do not reorder : dependent on resource array order
         val palette = context.resources.getIntArray(R.array.palette_storage)

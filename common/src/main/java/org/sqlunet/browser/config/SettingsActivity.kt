@@ -261,7 +261,6 @@ class SettingsActivity : BaseSettingsActivity() {
          * @param context context
          * @param pref    preference
          */
-        @Suppress("unused")
         private fun populateCachePreference(context: Context, pref: Preference) {
             val listPreference = pref as ListPreference
             populateCacheListPreference(context, listPreference)

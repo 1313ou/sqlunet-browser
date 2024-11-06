@@ -91,12 +91,10 @@ object Wait {
         Espresso.onView(ViewMatchers.isRoot()).perform(waitId(resId, sec.toLong() * TIME_UNIT_IN_MS))
     }
 
-    @Suppress("unused")
     fun untilNotText(@IdRes resId: Int, target: String, sec: Int) {
         Espresso.onView(ViewMatchers.isRoot()).perform(waitIdText(resId, target, true, sec.toLong() * TIME_UNIT_IN_MS))
     }
 
-    @Suppress("unused")
     fun untilText(@IdRes resId: Int, target: String, sec: Int) {
         Espresso.onView(ViewMatchers.isRoot()).perform(waitIdText(resId, target, false, sec.toLong() * TIME_UNIT_IN_MS))
     }

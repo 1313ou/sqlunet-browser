@@ -119,7 +119,6 @@ class AssetLoadFragment : Fragment(), TaskObserver<Pair<Number, Number>> {
         return this
     }
 
-    @Suppress("unused")
     fun setMessage(message: CharSequence): TaskObserver<Pair<Number, Number>> {
         messageTextView!!.text = message
         return this

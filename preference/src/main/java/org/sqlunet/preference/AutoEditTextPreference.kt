@@ -220,7 +220,6 @@ class AutoEditTextPreference : DialogPreference {
          * @param preference   preference
          * @return false if not handled: call super.onDisplayPreferenceDialog(preference)
          */
-        @Suppress("unused")
         fun onDisplayPreferenceDialog(prefFragment: PreferenceFragmentCompat, preference: Preference?): Boolean {
             val manager: FragmentManager = try {
                 prefFragment.getParentFragmentManager()

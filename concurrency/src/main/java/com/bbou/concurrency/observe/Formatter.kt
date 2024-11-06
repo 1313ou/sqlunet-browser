@@ -6,7 +6,6 @@ import java.util.Locale
 /**
  * Formatter of progress information
  */
-@Suppress("unused")
 object Formatter {
 
     private val UNITS = arrayOf("B", "KB", "MB", "GB")

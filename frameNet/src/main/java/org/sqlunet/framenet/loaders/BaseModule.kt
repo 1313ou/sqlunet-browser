@@ -2055,7 +2055,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
          *
          * @param verbose flag
          */
-        @Suppress("unused")
         fun setVerbose(verbose: Boolean) {
             VERBOSE = verbose
         }

@@ -59,7 +59,6 @@ data class FileData(val name: String?, val date: Long, val size: Long, val etag:
          * @param context context
          * @return current data
          */
-        @Suppress("unused")
         fun getCurrentData(context: Context): FileData {
             val name = Settings.getDatapackName(context)
             val date = Settings.getDatapackDate(context)
@@ -76,7 +75,6 @@ data class FileData(val name: String?, val date: Long, val size: Long, val etag:
          * @param context context
          * @param datapackFile datapack file
          */
-        @Suppress("unused")
         fun recordDatapackFile(context: Context, datapackFile: File) {
             Settings.setDatapackName(context, datapackFile.name)
             val fileData = makeFileDataFrom(datapackFile)

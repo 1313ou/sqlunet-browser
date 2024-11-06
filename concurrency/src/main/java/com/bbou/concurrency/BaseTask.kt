@@ -281,7 +281,6 @@ abstract class BaseTask<Params, Progress, Result> : Cancelable {
          *
          * @param executor new default executor
          */
-        @Suppress("unused")
         fun setDefaultExecutor(executor: Executor) {
             defaultExecutor = executor
         }

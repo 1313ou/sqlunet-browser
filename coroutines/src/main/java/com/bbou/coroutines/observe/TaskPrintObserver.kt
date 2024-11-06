@@ -11,7 +11,6 @@ import java.util.function.Consumer
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-@Suppress("unused")
 class TaskPrintObserver<Progress : Pair<Number, Number>> : Consumer<Progress> {
 
     /**

@@ -205,7 +205,7 @@ class XSelectorPointer : SelectorPointer, HasXId {
 
         @Suppress("unused")
         @JvmField
-        val REATOR = object : Parcelable.Creator<XSelectorPointer> {
+        val CREATOR = object : Parcelable.Creator<XSelectorPointer> {
 
             override fun createFromParcel(parcel: Parcel): XSelectorPointer {
                 return XSelectorPointer(parcel)

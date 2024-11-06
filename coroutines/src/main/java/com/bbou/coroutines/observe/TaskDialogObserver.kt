@@ -24,7 +24,6 @@ import java.util.function.Consumer
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-@Suppress("unused")
 class TaskDialogObserver<Progress : Pair<Number, Number>>(private val fragmentManager: FragmentManager, task: Task<out Any, out Any, out Any?>) : Consumer<Progress> {
 
     private val progressDialogFragment: ProgressDialogFragment = ProgressDialogFragment(task)
@@ -59,7 +58,6 @@ class TaskDialogObserver<Progress : Pair<Number, Number>>(private val fragmentMa
     /**
      * Show dialog
      */
-    @Suppress("unused")
     fun show(): TaskDialogObserver<Progress> {
         if (!fragmentManager.isDestroyed) {
             progressDialogFragment.show(fragmentManager, "tag")
@@ -72,7 +70,6 @@ class TaskDialogObserver<Progress : Pair<Number, Number>>(private val fragmentMa
      *
      * @param result observed result
      */
-    @Suppress("unused")
     fun dismiss(result: Boolean) {
         if (progressDialogFragment.isAdded && result) {
             progressDialogFragment.dismissAllowingStateLoss()
@@ -82,7 +79,6 @@ class TaskDialogObserver<Progress : Pair<Number, Number>>(private val fragmentMa
     /**
      * Set status
      */
-    @Suppress("unused")
     fun setStatus(status: CharSequence): TaskDialogObserver<Progress> {
         if (progressDialogFragment.statusTextView != null) {
             progressDialogFragment.statusTextView!!.text = status
@@ -93,7 +89,6 @@ class TaskDialogObserver<Progress : Pair<Number, Number>>(private val fragmentMa
     /**
      * Set title
      */
-    @Suppress("unused")
     fun setTitle(title: CharSequence): TaskDialogObserver<Progress> {
         progressDialogFragment.title = title
         return this
@@ -102,7 +97,6 @@ class TaskDialogObserver<Progress : Pair<Number, Number>>(private val fragmentMa
     /**
      * Set message
      */
-    @Suppress("unused")
     fun setMessage(message: CharSequence): TaskDialogObserver<Progress> {
         progressDialogFragment.message = message
         return this

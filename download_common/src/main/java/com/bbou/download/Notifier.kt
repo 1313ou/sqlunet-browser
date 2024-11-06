@@ -235,7 +235,6 @@ class Notifier {
          * @param context context
          * @param notificationId notification id
          */
-        @Suppress("unused")
         fun requestCancel(context: Context, notificationId: Int) {
             val intent = makeCancelIntent(context, notificationId)
             Log.d(TAG, "Sending cancel request (broadcast intent)")
@@ -248,7 +247,6 @@ class Notifier {
          * @param context context
          * @param notificationId notification id
          */
-        @Suppress("unused")
         fun requestPendingCancel(context: Context, notificationId: Int) {
             try {
                 val intent = makeCancelIntent(context, notificationId)

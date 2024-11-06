@@ -301,7 +301,6 @@ class TreeNode(
      *
      * @return whether this node is selected
      */
-    @Suppress("unused")
     fun isSelected(): Boolean {
         return isSelectable && selected
     }

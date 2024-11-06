@@ -740,7 +740,6 @@ class FileTasks(
          * @param dest     database path
          * @param whenDone to run when done
          */
-        @Suppress("unused")
         fun launchCopy(activity: FragmentActivity, url: URL, dest: String, whenDone: Consumer<Boolean>?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_copy_datapack_from_file))
@@ -819,7 +818,6 @@ class FileTasks(
          * @param dest      database path
          * @param whenDone  to run when done
          */
-        @Suppress("unused")
         fun launchUnzip(activity: FragmentActivity, sourceUrl: URL, dest: String, whenDone: Consumer<Boolean>?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_unzip_datapack_from_archive))
@@ -915,7 +913,6 @@ class FileTasks(
          * @param dest      database path
          * @param whenDone  to run when done
          */
-        @Suppress("unused")
         fun launchUnzip(activity: FragmentActivity, sourceUrl: URL, zipEntry: String, dest: String, whenDone: Consumer<Boolean>?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_unzip_datapack_from_archive))
@@ -992,7 +989,6 @@ class FileTasks(
          * @param url      url
          * @param whenDone to run when done
          */
-        @Suppress("unused")
         fun launchMd5(activity: FragmentActivity, url: URL, whenDone: Runnable?) {
             val observer = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
                 .setTitle(activity.getString(R.string.action_md5))

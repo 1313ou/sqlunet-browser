@@ -1426,6 +1426,86 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.xn.xselector.XSelectorPointer CREATOR" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.sn.xselector.XSelectorPointer CREATOR" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.vn.xselector.XSelectorPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract AS_ANNOSETS" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract AS_ARGS" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract AS_CASEDS" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract AS_DOMAINS" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract AS_EXAMPLES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract AS_FES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract AS_FETYPES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.predicatematrix.provider.PredicateMatrixContract AS_FNFES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.predicatematrix.provider.PredicateMatrixContract AS_FNFRAMES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract AS_FUNCS" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract AS_MEMBERS" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.predicatematrix.provider.PredicateMatrixContract AS_PBROLES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.predicatematrix.provider.PredicateMatrixContract AS_PBROLESETS" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract AS_PBWORDS" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.predicatematrix.provider.PredicateMatrixContract AS_PMPREDICATES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract AS_RELATIONS" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract AS_SENSES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XNetContract AS_SENSES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract AS_SENTENCES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XNetContract AS_SYNSETS" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.predicatematrix.provider.PredicateMatrixContract AS_VNCLASSES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.predicatematrix.provider.PredicateMatrixContract AS_VNROLES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract AS_WORDS" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations COLLOCATIONID" />
+      <entry_point TYPE="method" FQNAME="com.bbou.concurrency.dos.DoAsyncThen$-1 void doJob(java.lang.Void params)" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.workers.utils.ContentDownloader exception" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.workers.utils.MD5Downloader exception" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.workers.utils.ResourcesDownloader exception" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.sql.RelatedsQueryFromSynsetIdAndRelationId fromRelationId" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.sn.xselector.XSelectorPointer$-1 long getMask(java.lang.String xSources)" />
+      <entry_point TYPE="field" FQNAME="com.bbou.coroutines.Task job" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.treeview.control.HotQueryController layoutResId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.treeview.control.LeafController layoutResId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.treeview.control.LinkController layoutResId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.treeview.control.LinkHotQueryController layoutResId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.treeview.control.LinkLeafController layoutResId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.treeview.control.LinkQueryController layoutResId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.treeview.control.LinkTreeController layoutResId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.treeview.control.MoreController layoutResId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.treeview.control.QueryController layoutResId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.treeview.control.TreeController layoutResId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract MEMBERS" />
+      <entry_point TYPE="field" FQNAME="com.bbou.coroutines.Task observer" />
+      <entry_point TYPE="method" FQNAME="com.bbou.concurrency.dos.DoAsyncThen$-1 void onDone(kotlin.Unit result)" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.speak.TTS$-1 void onError(java.lang.String utteranceId)" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.HelpFragment$-1 void onReceivedError(android.webkit.WebView webView, int errorCode, java.lang.String description, java.lang.String failingUrl)" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.sn.selector.PosSelectorPointer pos" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.bnc.provider.BNCContract.BNCs POSID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.style.FrameNetFrameProcessor replacers" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.style.VerbNetSemanticsProcessor replacers" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.HelpFragment$-1 boolean shouldOverrideUrlLoading(android.webkit.WebView webView, java.lang.String url)" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.wn.web.WebFragment$-1 boolean shouldOverrideUrlLoading(android.webkit.WebView view, java.lang.String urlString)" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.xn.web.WebFragment$-1 boolean shouldOverrideUrlLoading(android.webkit.WebView view, java.lang.String urlString)" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.fn.web.WebFragment$-1 boolean shouldOverrideUrlLoading(android.webkit.WebView view, java.lang.String urlString)" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.vn.web.WebFragment$-1 boolean shouldOverrideUrlLoading(android.webkit.WebView view, java.lang.String urlString)" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.browser.sn.web.WebFragment$-1 boolean shouldOverrideUrlLoading(android.webkit.WebView view, java.lang.String urlString)" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords SOURCES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.SemRelations_Synsets_Words_X SYNSETID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.LexRelations_Senses_Words_X SYNSETID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XNetContract.Words_VnWords_VnClasses_1U2 URI" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XNetContract.Words_VnWords_VnClasses_1 URI" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XNetContract.Words_VnWords_VnClasses_2 URI" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XNetContract.Words_PbWords_PbRoleSets_1 URI" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XNetContract.Words_PbWords_PbRoleSets_2 URI" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XNetContract.Words_PbWords_PbRoleSets_1U2 URI" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XNetContract.Words_FnWords_FnFrames_1U2 URI" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XNetContract.Words_FnWords_FnFrames_1 URI" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.provider.XNetContract.Words_FnWords_FnFrames_2 URI" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.LexUnits URI1" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Frames URI1" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Sentences URI1" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.AnnoSets URI1" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.PbRoleSets URI1" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.VnClasses URI1" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Words URI1" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Senses URI1" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Synsets URI1" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_X URI_BY_VNCLASS" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.SensePointer wordId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.settings.Settings.Selector XSELECTOR" />
     </entry_points>
     <pattern value="org.sqlunet.browser.AbstractApplication" method="dumpTasks" />
     <pattern value="org.sqlunet.browser.AbstractApplication" method="isNightMode" />
@@ -3052,13 +3132,594 @@
     <pattern value="org.sqlunet.browser.vn.web.WebFragment.WebDocumentStringLoader" method="getDoc" />
     <pattern value="org.sqlunet.browser.sn.web.WebFragment.WebDocumentStringLoader" method="getDoc" />
     <pattern value="org.sqlunet.browser.fn.web.WebFragment.WebDocumentStringLoader" method="getDoc" />
+    <pattern value="org.sqlunet.browser.Actions" />
+    <pattern value="com.bbou.download.workers.utils.ContentDownloader.Companion" method="addTargetToIntent" />
+    <pattern value="org.sqlunet.style.Spanner.Companion" method="appendClickableImage" />
+    <pattern value="org.sqlunet.browser.ewn.Application" />
+    <pattern value="org.sqlunet.browser.DataUtils" method="arrayToString" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncCopyFromUrl" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncMd5FromUrl" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipEntryFromArchiveUrl" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipFromArchiveUrl" />
+    <pattern value="com.bbou.download.BaseDownloadIntentFactory" />
+    <pattern value="com.bbou.concurrency.BaseTask" />
+    <pattern value="com.bbou.coroutines.BaseTask" />
+    <pattern value="com.bbou.coroutines.BaseTaskWithCallback" />
+    <pattern value="org.sqlunet.browser.BaseWaitUntil" />
+    <pattern value="org.sqlunet.bnc.sql.BncData" />
+    <pattern value="org.sqlunet.bnc.sql.BncNodeFactory" />
+    <pattern value="org.sqlunet.bnc.sql.BncQuery" />
+    <pattern value="com.bbou.coroutines.Callbacks" />
+    <pattern value="org.sqlunet.browser.xn.XnStatus" method="canRun" />
+    <pattern value="org.sqlunet.browser.WaitUntilText.Companion" method="changesFrom" />
+    <pattern value="org.sqlunet.browser.WaitUntilText.Companion" method="changesTo" />
+    <pattern value="com.bbou.deploy.workers.Deploy" method="check" />
+    <pattern value="org.sqlunet.bnc.provider.BNCProvider.Companion" method="close" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetProvider.Companion" method="close" />
+    <pattern value="org.sqlunet.provider.ManagerProvider.Companion" method="close" />
+    <pattern value="org.sqlunet.predicatematrix.provider.PredicateMatrixProvider.Companion" method="close" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankProvider.Companion" method="close" />
+    <pattern value="org.sqlunet.syntagnet.provider.SyntagNetProvider.Companion" method="close" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetProvider.Companion" method="close" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetProvider.Companion" method="close" />
+    <pattern value="org.sqlunet.provider.XSqlUNetProvider.Companion" method="close" />
+    <pattern value="org.sqlunet.style.Spanner.Companion" method="collapse" />
+    <pattern value="org.sqlunet.syntagnet.sql.Collocation" />
+    <pattern value="org.sqlunet.syntagnet.sql.CollocationQuery" />
+    <pattern value="org.sqlunet.syntagnet.sql.CollocationQueryFromWord" />
+    <pattern value="org.sqlunet.syntagnet.sql.CollocationQueryFromWordId" />
+    <pattern value="org.sqlunet.syntagnet.sql.CollocationQueryFromWordIdAndSynsetId" />
+    <pattern value="org.sqlunet.syntagnet.sql.CollocationQueryFromWordIds" />
+    <pattern value="org.sqlunet.syntagnet.sql.CollocationQueryFromWordIdsAndSynsetIds" />
+    <pattern value="org.sqlunet.browser.wn.common.CommonApplication" />
+    <pattern value="com.bbou.concurrency.BaseTask.Companion" />
+    <pattern value="com.bbou.concurrency.observe.TaskDialogObserver.Companion" />
+    <pattern value="com.bbou.concurrency.observe.TaskProgressDialogObserver.Companion" />
+    <pattern value="com.bbou.concurrency.Task.Companion" />
+    <pattern value="com.bbou.coroutines.observe.TaskDialogObserver.Companion" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.Companion" />
+    <pattern value="com.bbou.donate.billing.BillingManager.Companion" />
+    <pattern value="com.bbou.donate.DonateActivity.Companion" />
+    <pattern value="com.bbou.download.BaseDownloadFragment.Companion" />
+    <pattern value="com.bbou.download.Notifier.Companion" />
+    <pattern value="com.bbou.download.preference.DownloadedPreferenceFragment.Companion" />
+    <pattern value="com.bbou.download.preference.DownloadPreferenceFragment.Companion" />
+    <pattern value="com.bbou.download.preference.Settings.Mode.Companion" />
+    <pattern value="com.bbou.download.ProbedDownloadFragment.Companion" />
+    <pattern value="com.bbou.download.storage.StorageUtils.DirType.Companion" />
+    <pattern value="com.bbou.download.storage.StorageUtils.StorageDirectory.Companion" />
+    <pattern value="com.bbou.download.utils.FileData.Companion" />
+    <pattern value="com.bbou.download.workers.core.coroutines.DownloadCore.Companion" />
+    <pattern value="com.bbou.download.workers.core.coroutines.DownloadWork.DownloadWorker.Companion" />
+    <pattern value="com.bbou.download.workers.core.coroutines.DownloadZipCore.Companion" />
+    <pattern value="com.bbou.download.workers.core.DownloadCore.Companion" />
+    <pattern value="com.bbou.download.workers.core.DownloadZipCore.Companion" />
+    <pattern value="com.bbou.download.workers.DownloadActivity.Companion" />
+    <pattern value="com.bbou.download.workers.DownloadBaseFragment.Companion" />
+    <pattern value="com.bbou.download.workers.DownloadFragment.Companion" />
+    <pattern value="com.bbou.download.workers.DownloadZipFragment.Companion" />
+    <pattern value="com.bbou.download.workers.utils.ContentDownloader.Companion" />
+    <pattern value="com.bbou.download.workers.utils.FileDataDownloader.Companion" />
+    <pattern value="com.bbou.download.workers.utils.MD5Downloader.Companion" />
+    <pattern value="com.bbou.download.workers.utils.ResourcesDownloader.Companion" />
+    <pattern value="com.bbou.others.OthersActivity.Companion" />
+    <pattern value="com.bbou.rate.AppRate.Companion" />
+    <pattern value="com.bbou.rate.StoreType.Companion" />
+    <pattern value="org.sqlunet.bnc.provider.BNCProvider.Companion" />
+    <pattern value="org.sqlunet.bnc.sql.BncData.Companion" />
+    <pattern value="org.sqlunet.bnc.sql.BncQuery.Companion" />
+    <pattern value="org.sqlunet.browser.AbstractApplication.Companion" />
+    <pattern value="org.sqlunet.browser.BaseListFragment.Companion" />
+    <pattern value="org.sqlunet.browser.BaseSearchFragment.Companion" />
+    <pattern value="org.sqlunet.browser.BaseSelectorsListFragment.Companion" />
+    <pattern value="org.sqlunet.browser.BaseWaitUntil.Companion" />
+    <pattern value="org.sqlunet.browser.config.AssetLoadActivity.Companion" />
+    <pattern value="org.sqlunet.browser.config.AssetLoadFragment.Companion" />
+    <pattern value="org.sqlunet.browser.config.DownloadActivity.Companion" />
+    <pattern value="org.sqlunet.browser.config.LoadActivity.Companion" />
+    <pattern value="org.sqlunet.browser.config.SettingsActivity.Companion" />
+    <pattern value="org.sqlunet.browser.config.SettingsActivity.GeneralPreferenceFragment.Companion" />
+    <pattern value="org.sqlunet.browser.config.SetupActivity.Companion" />
+    <pattern value="org.sqlunet.browser.config.SetupStatusFragment.Companion" />
+    <pattern value="org.sqlunet.browser.config.Status.Companion" />
+    <pattern value="org.sqlunet.browser.fn.Application.Companion" />
+    <pattern value="org.sqlunet.browser.fn.BrowseFragment.Companion" />
+    <pattern value="org.sqlunet.browser.fn.DocumentTransformer.Companion" />
+    <pattern value="org.sqlunet.browser.fn.SearchTextFragment.Companion" />
+    <pattern value="org.sqlunet.browser.fn.SetupFnStatusFragment.Companion" />
+    <pattern value="org.sqlunet.browser.HelpFragment.Companion" />
+    <pattern value="org.sqlunet.browser.history.HistoryFragment.Companion" />
+    <pattern value="org.sqlunet.browser.history.SearchSuggestionsProvider.Companion" />
+    <pattern value="org.sqlunet.browser.LoggingFragment.Companion" />
+    <pattern value="org.sqlunet.browser.MainActivity.Companion" />
+    <pattern value="org.sqlunet.browser.sn.BrowseFragment.Companion" />
+    <pattern value="org.sqlunet.browser.sn.DocumentTransformer.Companion" />
+    <pattern value="org.sqlunet.browser.sn.SearchTextFragment.Companion" />
+    <pattern value="org.sqlunet.browser.sn.selector.CollocationSelectorPointer.Companion" />
+    <pattern value="org.sqlunet.browser.sn.selector.PosSelectorPointer.Companion" />
+    <pattern value="org.sqlunet.browser.sn.selector.SnSelectorsFragment.Companion" />
+    <pattern value="org.sqlunet.browser.sn.SetupSnStatusFragment.Companion" />
+    <pattern value="org.sqlunet.browser.sn.xselector.XSelectorPointer.Companion" />
+    <pattern value="org.sqlunet.browser.SqlDialogFragment.Companion" />
+    <pattern value="org.sqlunet.browser.SqlFragment.Companion" />
+    <pattern value="org.sqlunet.browser.SqlunetViewModel.Companion" />
+    <pattern value="org.sqlunet.browser.vn.BrowseFragment.Companion" />
+    <pattern value="org.sqlunet.browser.vn.DocumentTransformer.Companion" />
+    <pattern value="org.sqlunet.browser.vn.SearchTextFragment.Companion" />
+    <pattern value="org.sqlunet.browser.vn.SetupVnStatusFragment.Companion" />
+    <pattern value="org.sqlunet.browser.vn.xselector.XSelectorPointer.Companion" />
+    <pattern value="org.sqlunet.browser.WaitUntil.Companion" />
+    <pattern value="org.sqlunet.browser.WaitUntilText.Companion" />
+    <pattern value="org.sqlunet.browser.web.DocumentTransformer.Companion" />
+    <pattern value="org.sqlunet.browser.wn.BrowseFragment.Companion" />
+    <pattern value="org.sqlunet.browser.wn.DocumentTransformer.Companion" />
+    <pattern value="org.sqlunet.browser.wn.SearchTextFragment.Companion" />
+    <pattern value="org.sqlunet.browser.wn.SetupWnStatusFragment.Companion" />
+    <pattern value="org.sqlunet.browser.xn.Application.Companion" />
+    <pattern value="org.sqlunet.browser.xn.BrowseFragment.Companion" />
+    <pattern value="org.sqlunet.browser.xn.BrowsePredicateMatrixFragment.Companion" />
+    <pattern value="org.sqlunet.browser.xn.DocumentTransformer.Companion" />
+    <pattern value="org.sqlunet.browser.xn.HomeImageView.Companion" />
+    <pattern value="org.sqlunet.browser.xn.SearchTextFragment.Companion" />
+    <pattern value="org.sqlunet.browser.xn.selector.PosSelectorPointer.Companion" />
+    <pattern value="org.sqlunet.browser.xn.SetupXnStatusFragment.Companion" />
+    <pattern value="org.sqlunet.browser.xn.xselector.XBrowse1Fragment.Companion" />
+    <pattern value="org.sqlunet.browser.xn.xselector.XSelectorPointer.Companion" />
+    <pattern value="org.sqlunet.framenet.FnAnnoSetPointer.Companion" />
+    <pattern value="org.sqlunet.framenet.FnFramePointer.Companion" />
+    <pattern value="org.sqlunet.framenet.FnLexUnitPointer.Companion" />
+    <pattern value="org.sqlunet.framenet.FnPatternPointer.Companion" />
+    <pattern value="org.sqlunet.framenet.FnSentencePointer.Companion" />
+    <pattern value="org.sqlunet.framenet.FnValenceUnitPointer.Companion" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.Companion" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetProvider.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnAnnoSetQuery.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnFrameElementQueryFromFrameId.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnFrameQuery.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnGovernorQueryFromLexUnitId.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnLayer.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnLayerQueryFromAnnoSetId.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnLayerQueryFromSentenceId.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnit.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnitQuery.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnitQueryFromFnWord.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnitQueryFromFnWordId.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnitQueryFromFrameId.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnitQueryFromWord.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnitQueryFromWordId.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnSentence.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnSentenceQuery.Companion" />
+    <pattern value="org.sqlunet.framenet.sql.FnSentenceQueryFromLexUnitId.Companion" />
+    <pattern value="org.sqlunet.framenet.style.FrameNetProcessor.Companion" />
+    <pattern value="org.sqlunet.framenet.style.FrameNetSpanner.Companion" />
+    <pattern value="org.sqlunet.Pointer.Companion" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.Companion" />
+    <pattern value="org.sqlunet.predicatematrix.PmRolePointer.Companion" />
+    <pattern value="org.sqlunet.predicatematrix.provider.PredicateMatrixProvider.Companion" />
+    <pattern value="org.sqlunet.preference.AutoEditTextPreference.AutoEditTextPreferenceDialogFragmentCompat.Companion" />
+    <pattern value="org.sqlunet.preference.AutoEditTextPreference.Companion" />
+    <pattern value="org.sqlunet.preference.StringSavedState.Companion" />
+    <pattern value="org.sqlunet.propbank.PbRoleSetPointer.Companion" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankProvider.Companion" />
+    <pattern value="org.sqlunet.propbank.sql.PbExampleQueryFromRoleSetId.Companion" />
+    <pattern value="org.sqlunet.propbank.sql.PbRoleQueryFromRoleSetId.Companion" />
+    <pattern value="org.sqlunet.propbank.sql.PbRoleSetQuery.Companion" />
+    <pattern value="org.sqlunet.propbank.sql.PbRoleSetQueryFromWord.Companion" />
+    <pattern value="org.sqlunet.propbank.sql.PbRoleSetQueryFromWordId.Companion" />
+    <pattern value="org.sqlunet.propbank.style.PropBankSpanner.Companion" />
+    <pattern value="org.sqlunet.provider.ManagerProvider.Companion" />
+    <pattern value="org.sqlunet.provider.SQLiteQueryBuilder.Companion" />
+    <pattern value="org.sqlunet.provider.XSqlUNetProvider.Companion" />
+    <pattern value="org.sqlunet.settings.Settings.Companion" />
+    <pattern value="org.sqlunet.speak.Discover.Companion" />
+    <pattern value="org.sqlunet.speak.Pronunciation.Companion" />
+    <pattern value="org.sqlunet.speak.TTS.Companion" />
+    <pattern value="org.sqlunet.sql.DocumentFragmentParser.Companion" />
+    <pattern value="org.sqlunet.sql.SqlFormatter.FormatProcess.Companion" />
+    <pattern value="org.sqlunet.style.MarkupSpanner.SpanPosition.Companion" />
+    <pattern value="org.sqlunet.style.Spanner.Companion" />
+    <pattern value="org.sqlunet.syntagnet.provider.SyntagNetProvider.Companion" />
+    <pattern value="org.sqlunet.syntagnet.SnCollocationPointer.Companion" />
+    <pattern value="org.sqlunet.syntagnet.sql.Collocation.Companion" />
+    <pattern value="org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion" />
+    <pattern value="org.sqlunet.syntagnet.sql.CollocationQuery.Companion" />
+    <pattern value="org.sqlunet.syntagnet.sql.CollocationQueryFromWord.Companion" />
+    <pattern value="org.sqlunet.syntagnet.sql.CollocationQueryFromWordId.Companion" />
+    <pattern value="org.sqlunet.syntagnet.sql.CollocationQueryFromWordIdAndSynsetId.Companion" />
+    <pattern value="org.sqlunet.syntagnet.sql.CollocationQueryFromWordIds.Companion" />
+    <pattern value="org.sqlunet.syntagnet.sql.CollocationQueryFromWordIdsAndSynsetIds.Companion" />
+    <pattern value="org.sqlunet.treeview.model.TreeNode.Companion" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetProvider.Companion" />
+    <pattern value="org.sqlunet.verbnet.sql.VnClass.Companion" />
+    <pattern value="org.sqlunet.verbnet.sql.VnClassQuery.Companion" />
+    <pattern value="org.sqlunet.verbnet.sql.VnClassQueryFromSense.Companion" />
+    <pattern value="org.sqlunet.verbnet.sql.VnClassQueryFromWordAndPos.Companion" />
+    <pattern value="org.sqlunet.verbnet.sql.VnClassWithSense.Companion" />
+    <pattern value="org.sqlunet.verbnet.sql.VnEntry.Companion" />
+    <pattern value="org.sqlunet.verbnet.sql.VnFrameQueryFromClassId.Companion" />
+    <pattern value="org.sqlunet.verbnet.sql.VnFrameQueryFromClassIdAndSense.Companion" />
+    <pattern value="org.sqlunet.verbnet.sql.VnRoleQueryFromClassId.Companion" />
+    <pattern value="org.sqlunet.verbnet.sql.VnRoleQueryFromClassIdAndSense.Companion" />
+    <pattern value="org.sqlunet.verbnet.VnClassPointer.Companion" />
+    <pattern value="org.sqlunet.view.TreeOpExecute.Companion" />
+    <pattern value="org.sqlunet.Word.Companion" />
+    <pattern value="org.sqlunet.wordnet.browser.RelationFragment.Companion" />
+    <pattern value="org.sqlunet.wordnet.browser.SensesFragment.Companion" />
+    <pattern value="org.sqlunet.wordnet.browser.SynsetFragment.Companion" />
+    <pattern value="org.sqlunet.wordnet.loaders.BaseModule.Companion" />
+    <pattern value="org.sqlunet.wordnet.loaders.RelationModule.Companion" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetProvider.Companion" />
+    <pattern value="org.sqlunet.wordnet.SenseKeyPointer.Companion" />
+    <pattern value="org.sqlunet.wordnet.SensePointer.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.DomainsQuery.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.Related.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.RelatedsQueryFromSynsetId.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.RelatedsQueryFromSynsetIdAndRelationId.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.RelationsQuery.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.Synset.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.SynsetQuery.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.SynsetsQueryFromWordId.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.SynsetsQueryFromWordIdAndCondition.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.SynsetWordsQuery.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.Word.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.WordNetImplementation.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.WordQuery.Companion" />
+    <pattern value="org.sqlunet.wordnet.sql.WordQueryFromWord.Companion" />
+    <pattern value="org.sqlunet.wordnet.SynsetPointer.Companion" />
+    <pattern value="org.sqlunet.wordnet.WordPointer.Companion" />
+    <pattern value="com.bbou.download.workers.utils.ContentDownloader" />
+    <pattern value="com.bbou.coroutines.ExecuteAsync.ContextScope" />
+    <pattern value="com.bbou.coroutines.ExecuteAsync.ContextScope" method="ContextScope" />
+    <pattern value="com.bbou.deploy.workers.Deploy" method="copyFile" />
+    <pattern value="com.bbou.coroutines.ExecuteAsync" method="CoroutineScope" />
+    <pattern value="com.bbou.deploy.workers.Deploy" />
+    <pattern value="com.bbou.deploy.workers.DeployOps" />
+    <pattern value="com.bbou.download.storage.StorageUtils.Directory" />
+    <pattern value="com.bbou.download.storage.StorageUtils.Directory" method="Directory" />
+    <pattern value="com.bbou.download.storage.StorageUtils.DirType" />
+    <pattern value="com.bbou.coroutines.observe.TaskDialogObserver" method="dismiss" />
+    <pattern value="com.bbou.concurrency.dos.DoAsyncThen" />
+    <pattern value="org.sqlunet.browser.Seq" method="doChoose" />
+    <pattern value="org.sqlunet.browser.Seq" method="doClick" />
+    <pattern value="org.sqlunet.browser.fn.web.WebFragment" method="docsToString" />
+    <pattern value="org.sqlunet.browser.wn.web.WebFragment" method="docsToString" />
+    <pattern value="org.sqlunet.browser.vn.web.WebFragment" method="docsToString" />
+    <pattern value="org.sqlunet.browser.sn.web.WebFragment" method="docsToString" />
+    <pattern value="org.sqlunet.browser.xn.web.WebFragment" method="docsToString" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncVacuum" method="doJob" />
+    <pattern value="com.bbou.download.workers.utils.MD5Downloader" method="doJob" />
+    <pattern value="com.bbou.coroutines.BaseTask" method="doJob" />
+    <pattern value="com.bbou.download.workers.utils.ContentDownloader" method="doJob" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncCopyFromUrl" method="doJob" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipFromArchiveUrl" method="doJob" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipEntryFromArchiveUrl" method="doJob" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncMd5FromUrl" method="doJob" />
+    <pattern value="org.sqlunet.wordnet.sql.DomainsQuery" />
+    <pattern value="org.sqlunet.browser.Seq" method="doMenu" />
+    <pattern value="org.sqlunet.browser.Seq" method="doNavigate" />
+    <pattern value="org.sqlunet.browser.Seq" method="doOptionsMenu" />
+    <pattern value="org.sqlunet.browser.Seq" method="doPressBack" />
+    <pattern value="org.sqlunet.browser.Seq" method="doSwipeUp" />
+    <pattern value="org.sqlunet.browser.Seq" method="doType" />
+    <pattern value="org.sqlunet.browser.Seq" method="doTypeSearch" />
+    <pattern value="com.bbou.download.workers.DownloadActivity" />
+    <pattern value="com.bbou.download.workers.DownloadBaseFragment" />
+    <pattern value="com.bbou.download.workers.core.coroutines.DownloadCore" />
+    <pattern value="com.bbou.download.workers.core.DownloadCore" />
+    <pattern value="com.bbou.download.preference.DownloadedPreferenceFragment" />
+    <pattern value="com.bbou.download.workers.DownloadFragment" />
+    <pattern value="org.sqlunet.browser.config.DownloadIntentFactory" />
+    <pattern value="com.bbou.download.preference.DownloadPreferenceFragment" />
+    <pattern value="com.bbou.download.workers.core.coroutines.DownloadWork" />
+    <pattern value="com.bbou.download.workers.core.coroutines.DownloadWork.DownloadWorker" />
+    <pattern value="com.bbou.download.workers.core.coroutines.DownloadZipCore" />
+    <pattern value="com.bbou.download.workers.core.DownloadZipCore" />
+    <pattern value="com.bbou.download.workers.DownloadZipFragment" />
+    <pattern value="com.bbou.coroutines.ProgressEmitter" method="emitProgress" />
+    <pattern value="com.bbou.concurrency.BaseTask.Companion" method="execute" />
+    <pattern value="com.bbou.coroutines.ExecuteAsync" method="execute" />
+    <pattern value="com.bbou.coroutines.ExecuteAsync" method="executeAndWait" />
+    <pattern value="com.bbou.coroutines.ExecuteAsync" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetControl.Factory" />
+    <pattern value="com.bbou.download.utils.FileData" />
+    <pattern value="com.bbou.download.workers.utils.FileDataDownloader" />
+    <pattern value="com.bbou.download.workers.choose.FileTaskChooser" />
+    <pattern value="com.bbou.deploy.workers.FileTasks" />
+    <pattern value="org.sqlunet.framenet.sql.FnFrameElementQueryFromFrameId" />
+    <pattern value="org.sqlunet.framenet.sql.FnGovernorQueryFromLexUnitId" />
+    <pattern value="org.sqlunet.framenet.sql.FnLayer" />
+    <pattern value="org.sqlunet.framenet.sql.FnLayerQueryFromAnnoSetId" />
+    <pattern value="org.sqlunet.framenet.sql.FnLayerQueryFromSentenceId" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnitQueryFromFnWord" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnitQueryFromFnWordId" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnitQueryFromWord" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnitQueryFromWordId" />
+    <pattern value="org.sqlunet.framenet.sql.FnNodeFactory" />
+    <pattern value="org.sqlunet.framenet.sql.FnSentence" />
+    <pattern value="org.sqlunet.framenet.sql.FnSentenceQueryFromLexUnitId" />
+    <pattern value="org.sqlunet.browser.fn.FnSettings" />
+    <pattern value="org.sqlunet.browser.fn.FnStatus" />
+    <pattern value="org.sqlunet.sql.SqlFormatter.FormatProcess" />
+    <pattern value="com.bbou.concurrency.observe.Formatter" />
+    <pattern value="com.bbou.coroutines.observe.Formatter" />
+    <pattern value="com.bbou.download.storage.FormatUtils" />
+    <pattern value="com.bbou.concurrency.BaseTask" method="get" />
+    <pattern value="org.sqlunet.settings.Settings.Companion" method="getCachePref" />
+    <pattern value="com.bbou.download.utils.FileData.Companion" method="getCurrentData" />
+    <pattern value="com.bbou.download.storage.StorageUtils" method="getDatapackFile" />
+    <pattern value="org.sqlunet.settings.Settings.Companion" method="getDbDate" />
+    <pattern value="org.sqlunet.settings.Settings.Companion" method="getDbSize" />
+    <pattern value="com.bbou.download.preference.Settings" method="getDownloadCacheTarget" />
+    <pattern value="org.sqlunet.settings.Settings.Companion" method="getDownloadModePref" />
+    <pattern value="com.bbou.download.preference.Settings" method="getDownloadSource" />
+    <pattern value="org.sqlunet.browser.ContainerUtils" method="getExpandableListViewItemCounts" />
+    <pattern value="com.bbou.download.storage.StorageUtils" method="getFree" />
+    <pattern value="com.bbou.download.preference.Settings" method="getInitializedPref" />
+    <pattern value="org.sqlunet.browser.ContainerUtils" method="getItemCount" />
+    <pattern value="org.sqlunet.browser.vn.VnSettings" method="getPropBankPref" />
+    <pattern value="org.sqlunet.browser.Seq" method="getResourceString" />
+    <pattern value="org.sqlunet.browser.BaseSearchFragment" method="getSpinnerSearchModePosition" />
+    <pattern value="com.bbou.download.storage.StorageReports" method="getStyledDownloadNamesValues" />
+    <pattern value="com.bbou.download.storage.StorageReports" method="getStyledStorageDirectoriesNamesValues" />
+    <pattern value="org.sqlunet.provider.ManagerProvider.Companion" method="getTables" />
+    <pattern value="org.sqlunet.browser.vn.VnSettings" method="getVerbNetPref" />
+    <pattern value="org.sqlunet.browser.DataUtils" method="getWordList" />
+    <pattern value="org.sqlunet.browser.vn.VnSettings" method="getWordNetPref" />
+    <pattern value="org.sqlunet.verbnet.loaders.BaseModule" method="groupItems" />
+    <pattern value="org.sqlunet.browser.history.History" />
+    <pattern value="org.sqlunet.browser.history.HistoryActivity" />
+    <pattern value="org.sqlunet.browser.history.HistoryFragment" />
+    <pattern value="org.sqlunet.treeview.control.HotQueryController" />
+    <pattern value="org.sqlunet.browser.Info" />
+    <pattern value="org.sqlunet.style.Spanner.Companion" method="insertTag" />
+    <pattern value="com.bbou.others.OthersActivity.Companion" method="isAppInstalled" />
+    <pattern value="org.sqlunet.treeview.model.TreeNode" method="isSelected" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.Companion" method="launchCopy" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.Companion" method="launchMd5" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.Companion" method="launchUnzip" />
+    <pattern value="org.sqlunet.treeview.control.LeafController" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetContract.LexRelations_Senses_Words_X" />
+    <pattern value="org.sqlunet.treeview.control.LinkController" />
+    <pattern value="org.sqlunet.treeview.control.LinkHotQueryController" />
+    <pattern value="org.sqlunet.treeview.control.LinkLeafController" />
+    <pattern value="org.sqlunet.treeview.control.LinkQueryController" />
+    <pattern value="org.sqlunet.browser.wn.web.WebFragment" method="load" />
+    <pattern value="org.sqlunet.browser.xn.web.WebFragment" method="load" />
+    <pattern value="org.sqlunet.browser.fn.web.WebFragment" method="load" />
+    <pattern value="org.sqlunet.browser.vn.web.WebFragment" method="load" />
+    <pattern value="org.sqlunet.browser.sn.web.WebFragment" method="load" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetControl.Factory" method="make" />
+    <pattern value="com.bbou.download.BaseDownloadIntentFactory" method="makeIntentDownloadThenDeploy" />
+    <pattern value="com.bbou.download.BaseDownloadIntentFactory" method="makeIntentPlainDownload" />
+    <pattern value="com.bbou.download.BaseDownloadIntentFactory" method="makeIntentZipDownload" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetProvider.Companion" method="makeSelection" />
+    <pattern value="org.sqlunet.provider.Utils" method="makeUnionQuery" />
+    <pattern value="com.bbou.deploy.workers.MD5" />
+    <pattern value="com.bbou.download.workers.choose.MD5Chooser" method="md5" />
+    <pattern value="com.bbou.deploy.workers.MD5" method="md5" />
+    <pattern value="com.bbou.download.workers.choose.MD5Chooser" />
+    <pattern value="com.bbou.download.workers.utils.MD5Downloader" />
+    <pattern value="com.bbou.download.workers.choose.FileTaskChooser" method="md5FromFile" />
+    <pattern value="com.bbou.deploy.workers.Deploy" method="md5FromFile" />
+    <pattern value="com.bbou.download.preference.Settings.Mode" />
+    <pattern value="org.sqlunet.treeview.control.MoreController" />
+    <pattern value="com.bbou.download.storage.StorageReports" method="namesValuesToReportStyled" />
+    <pattern value="org.sqlunet.browser.wn.Oewn" />
+    <pattern value="com.bbou.download.workers.utils.ContentDownloader" method="onCancelled" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncCopyFromUrl" method="onCancelled" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipFromArchiveUrl" method="onCancelled" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipEntryFromArchiveUrl" method="onCancelled" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncMd5FromUrl" method="onCancelled" />
+    <pattern value="org.sqlunet.preference.AutoEditTextPreference.Companion" method="onDisplayPreferenceDialog" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncCopyFromUrl" method="onDone" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipFromArchiveUrl" method="onDone" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipEntryFromArchiveUrl" method="onDone" />
+    <pattern value="com.bbou.download.workers.utils.ResourcesDownloader" method="onDone" />
+    <pattern value="com.bbou.coroutines.ResultCallback" method="onDone" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncMd5FromUrl" method="onDone" />
+    <pattern value="com.bbou.download.workers.utils.ContentDownloader" method="onDone" />
+    <pattern value="org.sqlunet.browser.wn.BrowseFragment" method="onOptionsItemSelected" />
+    <pattern value="org.sqlunet.browser.xn.BrowseFragment" method="onOptionsItemSelected" />
+    <pattern value="org.sqlunet.browser.fn.BrowseFragment" method="onOptionsItemSelected" />
+    <pattern value="org.sqlunet.browser.vn.BrowseFragment" method="onOptionsItemSelected" />
+    <pattern value="org.sqlunet.browser.sn.BrowseFragment" method="onOptionsItemSelected" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncCopyFromUrl" method="onPreExecute" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipFromArchiveUrl" method="onPreExecute" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipEntryFromArchiveUrl" method="onPreExecute" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncMd5FromUrl" method="onPreExecute" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncCopyFromUrl" method="onProgress" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipFromArchiveUrl" method="onProgress" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipEntryFromArchiveUrl" method="onProgress" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncMd5FromUrl" method="onProgress" />
+    <pattern value="com.bbou.coroutines.Callbacks" method="onProgress" />
+    <pattern value="org.sqlunet.treeview.control.Controller" method="onSelectedEvent" />
+    <pattern value="org.sqlunet.browser.HelpFragment" method="onViewCreated" />
+    <pattern value="org.sqlunet.preference.OpenEditTextPreference.OpenEditTextPreferenceDialogFragmentCompat" />
+    <pattern value="org.sqlunet.propbank.sql.PbExampleQueryFromRoleSetId" />
+    <pattern value="org.sqlunet.propbank.sql.PbNodeFactory" />
+    <pattern value="org.sqlunet.propbank.sql.PbRoleSetQueryFromWord" />
+    <pattern value="org.sqlunet.propbank.sql.PbRoleSetQueryFromWordId" />
+    <pattern value="org.sqlunet.browser.config.Permissions" />
+    <pattern value="org.sqlunet.browser.config.SettingsActivity.Companion" method="populateCachePreference" />
+    <pattern value="com.bbou.download.workers.utils.ResourcesDownloader.Companion" method="populateRadioGroup" />
+    <pattern value="org.sqlunet.sql.PreparedStatement" />
+    <pattern value="org.sqlunet.wordnet.loaders.Queries" method="prepareSense" />
+    <pattern value="org.sqlunet.wordnet.loaders.Queries" method="prepareWnXSelect" />
+    <pattern value="org.sqlunet.loaders.Queries" method="prepareWordSelect" />
+    <pattern value="org.sqlunet.wordnet.loaders.Queries" method="prepareWordSelect" />
+    <pattern value="org.sqlunet.loaders.Queries" method="prepareWordXSelect" />
+    <pattern value="com.bbou.download.ProbedDownloadFragment" />
+    <pattern value="org.sqlunet.test.SqlProcessor" method="process" />
+    <pattern value="com.bbou.concurrency.observe.TaskDialogObserver.ProgressDialogFragment" />
+    <pattern value="com.bbou.coroutines.observe.TaskDialogObserver.ProgressDialogFragment" />
+    <pattern value="com.bbou.coroutines.ProgressEmitter" />
+    <pattern value="org.sqlunet.propbank.style.PropBankSpanner" />
+    <pattern value="org.sqlunet.browser.Providers" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncCopyFromUrl" method="publish" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipFromArchiveUrl" method="publish" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncUnzipEntryFromArchiveUrl" method="publish" />
+    <pattern value="com.bbou.deploy.workers.FileTasks.AsyncMd5FromUrl" method="publish" />
+    <pattern value="org.sqlunet.bnc.loaders.Queries" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.Queries" />
+    <pattern value="org.sqlunet.propbank.loaders.Queries" />
+    <pattern value="org.sqlunet.verbnet.loaders.Queries" />
+    <pattern value="org.sqlunet.wordnet.loaders.Queries" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetControl" method="queryAnyRelations" />
+    <pattern value="org.sqlunet.treeview.control.QueryController" />
+    <pattern value="com.bbou.download.utils.FileData.Companion" method="recordDatapackFile" />
+    <pattern value="com.bbou.download.preference.Settings" method="recordDatapackUri" />
+    <pattern value="com.bbou.deploy.workers.Deploy" method="redeploy" />
+    <pattern value="org.sqlunet.wordnet.sql.RelatedsQueryFromSynsetId" />
+    <pattern value="org.sqlunet.wordnet.sql.RelatedsQueryFromSynsetIdAndRelationId" />
+    <pattern value="org.sqlunet.wordnet.sql.RelationsQuery" />
+    <pattern value="org.sqlunet.style.Report" />
+    <pattern value="com.bbou.download.storage.StorageReports" method="reportExternalStorage" />
+    <pattern value="com.bbou.download.storage.StorageReports" method="reportStorageDirectories" />
+    <pattern value="com.bbou.download.storage.StorageReports" method="reportStyledDirs" />
+    <pattern value="com.bbou.download.storage.StorageReports" method="reportStyledExternalStorage" />
+    <pattern value="com.bbou.download.storage.StorageReports" method="reportStyledStorageDirectories" />
+    <pattern value="com.bbou.download.storage.ReportUtils" />
+    <pattern value="com.bbou.download.Notifier.Companion" method="requestCancel" />
+    <pattern value="com.bbou.download.Notifier.Companion" method="requestPendingCancel" />
+    <pattern value="com.bbou.download.workers.utils.ResourcesDownloader" />
+    <pattern value="com.bbou.coroutines.ResultCallback" />
+    <pattern value="com.bbou.concurrency.dos.DoAsyncThen" method="run" />
+    <pattern value="com.bbou.coroutines.BaseTaskWithCallback" method="runAndCallback" />
+    <pattern value="com.bbou.coroutines.TaskWithCallbacks" method="runAndCallback" />
+    <pattern value="org.sqlunet.browser.history.SearchSuggestionsProvider" />
+    <pattern value="org.sqlunet.browser.vn.VnSettings.Selector" />
+    <pattern value="org.sqlunet.browser.xn.XnSettings.Selector" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetContract.SemRelations_Synsets_Words_X" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.Sentences" />
+    <pattern value="org.sqlunet.browser.vn.VnSettings.Source" method="set" />
+    <pattern value="com.bbou.download.preference.Settings" method="setCachePref" />
+    <pattern value="com.bbou.download.storage.ReportUtils" method="setColorsFromResources" />
+    <pattern value="com.bbou.download.preference.Settings" method="setDatapackDir" />
+    <pattern value="org.sqlunet.settings.Settings.Companion" method="setDbDate" />
+    <pattern value="org.sqlunet.settings.Settings.Companion" method="setDbSize" />
+    <pattern value="com.bbou.concurrency.BaseTask.Companion" method="setDefaultExecutor" />
+    <pattern value="com.bbou.download.preference.Settings" method="setInitializedPref" />
+    <pattern value="org.sqlunet.browser.config.AssetLoadFragment" method="setMessage" />
+    <pattern value="com.bbou.coroutines.observe.TaskDialogObserver" method="setMessage" />
+    <pattern value="com.bbou.concurrency.observe.TaskProgressDialogObserver" method="setMessage" />
+    <pattern value="com.bbou.download.preference.Settings.Mode.Companion" method="setModePref" />
+    <pattern value="org.sqlunet.sql.PreparedStatement" method="setNull" />
+    <pattern value="org.sqlunet.browser.vn.VnSettings.Selector" method="setPref" />
+    <pattern value="org.sqlunet.browser.xn.XnSettings.Selector" method="setPref" />
+    <pattern value="com.bbou.download.preference.Settings" method="setRepoPref" />
+    <pattern value="com.bbou.coroutines.observe.TaskDialogObserver" method="setStatus" />
+    <pattern value="com.bbou.download.preference.Settings" />
+    <pattern value="org.sqlunet.predicatematrix.settings.Settings" />
+    <pattern value="org.sqlunet.browser.config.AssetLoadFragment" method="setTitle" />
+    <pattern value="com.bbou.coroutines.observe.TaskDialogObserver" method="setTitle" />
+    <pattern value="com.bbou.concurrency.observe.TaskProgressDialogObserver" method="setTitle" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.Companion" method="setVerbose" />
+    <pattern value="com.bbou.coroutines.observe.TaskDialogObserver" method="show" />
+    <pattern value="org.sqlunet.browser.SqlDialogFragment.Companion" method="show" />
+    <pattern value="com.bbou.download.workers.utils.ContentDownloader.Companion" method="showContents" />
+    <pattern value="org.sqlunet.browser.WaitUntil.Companion" method="shown" />
+    <pattern value="org.sqlunet.browser.sn.SnSettings" />
+    <pattern value="org.sqlunet.browser.sn.SnStatus" />
+    <pattern value="org.sqlunet.browser.fn.FnSettings.Source" />
+    <pattern value="org.sqlunet.browser.sn.SnSettings.Source" />
+    <pattern value="org.sqlunet.browser.vn.VnSettings.Source" />
+    <pattern value="org.sqlunet.browser.wn.WnSettings.Source" />
+    <pattern value="org.sqlunet.browser.xn.XnSettings.Source" />
+    <pattern value="org.sqlunet.browser.fn.FnSettings.Source" method="Source" />
+    <pattern value="org.sqlunet.browser.sn.SnSettings.Source" method="Source" />
+    <pattern value="org.sqlunet.browser.vn.VnSettings.Source" method="Source" />
+    <pattern value="org.sqlunet.browser.wn.WnSettings.Source" method="Source" />
+    <pattern value="org.sqlunet.browser.xn.XnSettings.Source" method="Source" />
+    <pattern value="org.sqlunet.style.MarkupSpanner.SpanPosition" />
+    <pattern value="org.sqlunet.speak.SpeakButton" />
+    <pattern value="org.sqlunet.sql.SqlFormatter" />
+    <pattern value="org.sqlunet.test.SqlProcessor" method="SqlProcessor" />
+    <pattern value="com.bbou.download.workers.UpdateStarter" method="start" />
+    <pattern value="com.bbou.download.BaseDownloadFragment.Status" />
+    <pattern value="org.sqlunet.browser.config.Status" />
+    <pattern value="com.bbou.download.BaseDownloadFragment.Status" method="Status" />
+    <pattern value="com.bbou.download.workers.core.coroutines.DownloadWork.Utils" method="stopWork" />
+    <pattern value="com.bbou.download.storage.StorageUtils.StorageDirectory" />
+    <pattern value="com.bbou.download.storage.StorageUtils.StorageDirectory" method="StorageDirectory" />
+    <pattern value="com.bbou.download.storage.StorageReports" />
+    <pattern value="com.bbou.download.storage.FormatUtils.StorageType" />
+    <pattern value="com.bbou.download.storage.StorageUtils" />
+    <pattern value="org.sqlunet.wordnet.sql.SynsetQuery" />
+    <pattern value="org.sqlunet.wordnet.sql.SynsetWordsQuery" />
+    <pattern value="com.bbou.coroutines.Task" />
+    <pattern value="com.bbou.concurrency.observe.TaskDialogObserver" />
+    <pattern value="com.bbou.coroutines.observe.TaskDialogObserver" />
+    <pattern value="com.bbou.coroutines.observe.TaskDialogObserver" method="TaskDialogObserver" />
+    <pattern value="com.bbou.concurrency.observe.TaskProgressDialogObserver" method="taskFinish" />
+    <pattern value="com.bbou.concurrency.observe.TaskToastObserver.WithProgress" method="taskFinish" />
+    <pattern value="com.bbou.coroutines.observe.TaskPrintObserver" />
+    <pattern value="com.bbou.concurrency.observe.TaskProgressDialogObserver" method="taskProgress" />
+    <pattern value="com.bbou.concurrency.observe.TaskToastObserver.WithProgress" method="taskProgress" />
+    <pattern value="com.bbou.concurrency.observe.TaskProgressDialogObserver" />
+    <pattern value="com.bbou.concurrency.observe.TaskProgressDialogObserver" method="TaskProgressDialogObserver" />
+    <pattern value="com.bbou.concurrency.observe.TaskProgressDialogObserver" method="taskStart" />
+    <pattern value="com.bbou.concurrency.observe.TaskToastObserver.WithProgress" method="taskStart" />
+    <pattern value="com.bbou.concurrency.observe.TaskToastObserver" />
+    <pattern value="com.bbou.concurrency.observe.TaskProgressDialogObserver" method="taskUpdate" />
+    <pattern value="com.bbou.coroutines.TaskWithCallbacks" />
+    <pattern value="org.sqlunet.browser.ToBoolean" method="test" />
+    <pattern value="org.sqlunet.browser.ToBoolean" method="testAssertion" />
+    <pattern value="org.sqlunet.browser.ToBoolean" />
+    <pattern value="org.sqlunet.nightmode.NightMode" method="toConfigurationUiMode" />
+    <pattern value="org.sqlunet.browser.fn.FnStatus" method="toString" />
+    <pattern value="org.sqlunet.browser.sn.SnStatus" method="toString" />
+    <pattern value="org.sqlunet.browser.config.Status.Companion" method="toString" />
+    <pattern value="org.sqlunet.browser.vn.VnStatus" method="toString" />
+    <pattern value="org.sqlunet.browser.wn.WnStatus" method="toString" />
+    <pattern value="org.sqlunet.browser.xn.XnStatus" method="toString" />
+    <pattern value="org.sqlunet.treeview.control.TreeController" />
+    <pattern value="org.sqlunet.treeview.model.TreeNode" method="TreeNode" />
+    <pattern value="com.bbou.download.preference.Settings" method="unrecordDatapackSource" />
+    <pattern value="org.sqlunet.browser.Wait" method="until" />
+    <pattern value="org.sqlunet.browser.Wait" method="untilNotText" />
+    <pattern value="org.sqlunet.browser.Wait" method="untilText" />
+    <pattern value="com.bbou.deploy.workers.Deploy" method="unzipEntryFromArchive" />
+    <pattern value="com.bbou.download.workers.choose.FileTaskChooser" method="unzipFromArchive" />
+    <pattern value="com.bbou.deploy.workers.Deploy" method="unzipFromArchive" />
+    <pattern value="com.bbou.download.workers.UpdateStarter" />
+    <pattern value="com.bbou.download.workers.core.coroutines.DownloadWork.Utils" />
+    <pattern value="org.sqlunet.browser.config.Utils" />
+    <pattern value="org.sqlunet.verbnet.sql.VnClassQueryFromSense" />
+    <pattern value="org.sqlunet.verbnet.sql.VnClassQueryFromWordAndPos" />
+    <pattern value="org.sqlunet.verbnet.sql.VnEntry" />
+    <pattern value="org.sqlunet.browser.vn.VnSettings" />
+    <pattern value="org.sqlunet.browser.vn.VnStatus" />
+    <pattern value="org.sqlunet.browser.WaitUntil" />
+    <pattern value="org.sqlunet.browser.xn.web.WebActivity" />
+    <pattern value="org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos" />
+    <pattern value="com.bbou.concurrency.observe.TaskToastObserver.WithProgress" />
+    <pattern value="com.bbou.concurrency.observe.TaskToastObserver.WithProgress" method="WithProgress" />
+    <pattern value="org.sqlunet.wordnet.sql.WnNodeFactory" />
+    <pattern value="org.sqlunet.browser.wn.WnSettings" />
+    <pattern value="org.sqlunet.browser.wn.WnStatus" />
+    <pattern value="org.sqlunet.wordnet.sql.Word" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetControl" />
+    <pattern value="org.sqlunet.wordnet.sql.WordQuery" />
+    <pattern value="org.sqlunet.wordnet.sql.WordQueryFromWord" />
+    <pattern value="org.sqlunet.provider.XNetContract.Words_FnWords_FnFrames_1" />
+    <pattern value="org.sqlunet.provider.XNetContract.Words_FnWords_FnFrames_1U2" />
+    <pattern value="org.sqlunet.provider.XNetContract.Words_FnWords_FnFrames_2" />
+    <pattern value="org.sqlunet.provider.XNetContract.Words_PbWords_PbRoleSets_1" />
+    <pattern value="org.sqlunet.provider.XNetContract.Words_PbWords_PbRoleSets_1U2" />
+    <pattern value="org.sqlunet.provider.XNetContract.Words_PbWords_PbRoleSets_2" />
+    <pattern value="org.sqlunet.provider.XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords" />
+    <pattern value="org.sqlunet.provider.XNetContract.Words_VnWords_VnClasses_1" />
+    <pattern value="org.sqlunet.provider.XNetContract.Words_VnWords_VnClasses_1U2" />
+    <pattern value="org.sqlunet.provider.XNetContract.Words_VnWords_VnClasses_2" />
+    <pattern value="org.sqlunet.browser.xn.XnSettings" />
+    <pattern value="org.sqlunet.browser.xn.XnStatus" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />
     <option name="myDefaultNotNull" value="androidx.annotation.NonNull" />
     <option name="myNullables">
       <value>
-        <list size="16">
+        <list size="17">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
           <item index="1" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
           <item index="2" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
@@ -3075,12 +3736,13 @@
           <item index="13" class="java.lang.String" itemvalue="io.reactivex.rxjava3.annotations.Nullable" />
           <item index="14" class="java.lang.String" itemvalue="org.jspecify.nullness.Nullable" />
           <item index="15" class="java.lang.String" itemvalue="jakarta.annotation.Nullable" />
+          <item index="16" class="java.lang.String" itemvalue="org.jspecify.annotations.Nullable" />
         </list>
       </value>
     </option>
     <option name="myNotNulls">
       <value>
-        <list size="16">
+        <list size="17">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
           <item index="1" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
           <item index="2" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />
@@ -3097,6 +3759,7 @@
           <item index="13" class="java.lang.String" itemvalue="lombok.NonNull" />
           <item index="14" class="java.lang.String" itemvalue="org.jspecify.nullness.NonNull" />
           <item index="15" class="java.lang.String" itemvalue="jakarta.annotation.Nonnull" />
+          <item index="16" class="java.lang.String" itemvalue="org.jspecify.annotations.NonNull" />
         </list>
       </value>
     </option>

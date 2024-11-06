@@ -177,7 +177,6 @@ open class Spanner {
          * @param listener click listener
          * @param context  context
          */
-        @Suppress("unused")
         fun appendClickableImage(sb: SpannableStringBuilder, caption: CharSequence, listener: OnClickImage, context: Context) {
             val collapsedDrawable = getDrawable(context, R.drawable.ic_collapsed)
             val expandedDrawable = getDrawable(context, R.drawable.ic_expanded)
@@ -241,7 +240,6 @@ open class Spanner {
          * @param position insert position
          * @param tag      tag
          */
-        @Suppress("unused")
         fun insertTag(sb: SpannableStringBuilder, position: Int, tag: CharSequence) {
             val insert = "$tag\n$EOEXPANDEDSTRING"
             sb.insert(position, insert)
