@@ -17,8 +17,8 @@ open class PosSelectorPointer : SelectorPointer, HasPos {
     /**
      * POS
      */
-    @Suppress("EmptyMethod")
-    protected val pos: Char
+     protected val pos: Char
+        @Suppress("EmptyMethod")
         @JvmName("getPosProperty")
         get
 
