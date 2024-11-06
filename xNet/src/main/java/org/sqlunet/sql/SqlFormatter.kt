@@ -108,14 +108,10 @@ object SqlFormatter {
         private val afterByOrFromOrSelects = LinkedList<Boolean>()
         var indent = 1
         val result = SpannableStringBuilder()
-        val tokens: StringTokenizer
+        val tokens: StringTokenizer = StringTokenizer(sql.toString(), "()+*/-=<>'`\"[],$WHITESPACE", true)
         var lastToken: String? = null
         var token: String? = null
         var lcToken: String? = null
-
-        init {
-            tokens = StringTokenizer(sql.toString(), "()+*/-=<>'`\"[],$WHITESPACE", true)
-        }
 
         fun perform(): CharSequence {
             initial()

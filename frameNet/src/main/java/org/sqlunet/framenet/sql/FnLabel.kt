@@ -27,7 +27,7 @@ class FnLabel(
     /**
      * Background color
      */
-    val bgColor: String?
+    val bgColor: String? = if (bgColor != null && bgColor.isEmpty()) null else bgColor
 
     /**
      * Foreground color
@@ -35,7 +35,6 @@ class FnLabel(
     val fgColor: String?
 
     init {
-        this.bgColor = if (bgColor != null && bgColor.isEmpty()) null else bgColor
         this.fgColor = if (fgColor != null && fgColor.isEmpty()) null else fgColor
     }
 

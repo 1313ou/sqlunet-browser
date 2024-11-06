@@ -142,7 +142,7 @@ class AutoEditTextPreference : DialogPreference {
             // when the user selects "OK", persist the new value
             if (positiveResult) {
                 val pref = getPreference() as AutoEditTextPreference
-                val editable = editView!!.getText()
+                val editable = editView!!.text
                 val newValue = editable?.toString()
                 if (pref.callChangeListener(newValue)) {
                     pref.setValue(newValue)

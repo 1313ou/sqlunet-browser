@@ -223,7 +223,7 @@ class WebFragment : Fragment() {
     @SuppressLint("SetJavaScriptEnabled")
     private fun load() {
         // settings
-        val webSettings = webview!!.getSettings()
+        val webSettings = webview!!.settings
 
         // enable javascript
         webSettings.javaScriptEnabled = true
@@ -300,7 +300,7 @@ class WebFragment : Fragment() {
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse)
                         targetIntent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
                     }
-                    targetIntent.setAction(ProviderArgs.ACTION_QUERY)
+                    targetIntent.action = ProviderArgs.ACTION_QUERY
                     startActivity(targetIntent)
                     return true
                 } catch (e: Exception) {
@@ -309,7 +309,7 @@ class WebFragment : Fragment() {
                 return false
             }
         }
-        webview!!.setWebViewClient(webClient)
+        webview!!.webViewClient = webClient
 
         // settings sources
         var mask = 0

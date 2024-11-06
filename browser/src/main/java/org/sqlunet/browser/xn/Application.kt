@@ -5,6 +5,7 @@ package org.sqlunet.browser.xn
 
 import android.content.Context
 import org.sqlunet.browser.AbstractApplication
+import org.sqlunet.browser.BuildConfig
 import org.sqlunet.framenet.FnFlags
 import org.sqlunet.style.Colors
 
@@ -33,7 +34,8 @@ class Application : AbstractApplication() {
      * @return true if flagged in build config
      */
     override fun dropData(): Boolean {
-        return  org.sqlunet.browser.BuildConfig.DROP_DATA
+        @Suppress("KotlinConstantConditions")
+        return BuildConfig.DROP_DATA
     }
 
     companion object {

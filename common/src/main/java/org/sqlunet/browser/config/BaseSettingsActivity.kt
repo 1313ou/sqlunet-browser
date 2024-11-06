@@ -39,7 +39,7 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
                 .commit()
             setTitle(R.string.title_settings)
         } else {
-            setTitle(savedInstanceState.getCharSequence(TITLE_TAG))
+            title = savedInstanceState.getCharSequence(TITLE_TAG)
         }
         fm.addOnBackStackChangedListener {
             if (fm.backStackEntryCount == 0) {
@@ -47,7 +47,7 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
             } else {
                 var title: CharSequence? = null
                 val fragments = fm.fragments
-                if (fragments.size > 0) {
+                if (fragments.isNotEmpty()) {
                     val fragment = fragments[0] // only one at a time
                     val preferenceFragment = fragment as PreferenceFragmentCompat
                     title = preferenceFragment.preferenceScreen.title

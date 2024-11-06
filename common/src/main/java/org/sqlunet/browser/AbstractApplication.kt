@@ -88,7 +88,7 @@ abstract class AbstractApplication : Application() {
         @RequiresApi(api = Build.VERSION_CODES.M)
         fun dumpTasks(context: Context) {
             val manager = context.getSystemService(ACTIVITY_SERVICE) as ActivityManager
-            val tasks = manager.getAppTasks()
+            val tasks = manager.appTasks
             for (task in tasks) {
                 val info = task.taskInfo
                 Log.i("task", info.baseActivity.toString())

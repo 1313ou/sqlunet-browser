@@ -109,7 +109,7 @@ class SensesFragment : ListFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-        getListView().setChoiceMode(if (activateOnItemClick) AbsListView.CHOICE_MODE_SINGLE else AbsListView.CHOICE_MODE_NONE)
+        getListView().choiceMode = if (activateOnItemClick) AbsListView.CHOICE_MODE_SINGLE else AbsListView.CHOICE_MODE_NONE
     }
 
     override fun onStart() {
@@ -193,7 +193,7 @@ class SensesFragment : ListFragment() {
                 }
 
                 else -> {
-                    throw IllegalStateException(view.javaClass.getName() + " is not a view that can be bound by this SimpleCursorAdapter")
+                    throw IllegalStateException(view.javaClass.name + " is not a view that can be bound by this SimpleCursorAdapter")
                 }
             }
         }

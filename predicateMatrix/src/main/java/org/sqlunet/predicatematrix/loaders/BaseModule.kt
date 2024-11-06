@@ -1102,7 +1102,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val intent = Intent(context, VnClassActivity::class.java)
             intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS)
             intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
-            intent.setAction(ProviderArgs.ACTION_QUERY)
+            intent.action = ProviderArgs.ACTION_QUERY
             context.startActivity(intent)
         }
     }
@@ -1118,7 +1118,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val intent = Intent(context, PbRoleSetActivity::class.java)
             intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET)
             intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
-            intent.setAction(ProviderArgs.ACTION_QUERY)
+            intent.action = ProviderArgs.ACTION_QUERY
             context.startActivity(intent)
         }
     }
@@ -1134,7 +1134,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val intent = Intent(context, FnFrameActivity::class.java)
             intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME)
             intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
-            intent.setAction(ProviderArgs.ACTION_QUERY)
+            intent.action = ProviderArgs.ACTION_QUERY
             context.startActivity(intent)
         }
     }

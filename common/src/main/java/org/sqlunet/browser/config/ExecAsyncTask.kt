@@ -377,7 +377,7 @@ class ExecAsyncTask
 
         override fun doJob(params: Uri?): Boolean {
 
-            Log.d(TAG, params.toString() + " -> " + dataBase)
+            Log.d(TAG, "$params -> $dataBase")
             if (!resolver.getType(params!!)!!.startsWith("text/plain")) {
                 Log.e(TAG, "Illegal mime type " + resolver.getType(params))
                 return false
@@ -565,7 +565,7 @@ class ExecAsyncTask
 
         override fun doJob(params: Uri?): Boolean {
 
-            Log.d(TAG, params.toString() + '!' + entry + " -> " + dataBase)
+            Log.d(TAG, "$params!$entry -> $dataBase")
             if (!resolver.getType(params!!)!!.startsWith("application/zip")) {
                 Log.e(TAG, "Illegal mime type " + resolver.getType(params))
                 return false
@@ -586,7 +586,7 @@ class ExecAsyncTask
 
                                         // zip
                                         var zipEntry: ZipEntry
-                                        while (zis.getNextEntry().also { zipEntry = it } != null) {
+                                        while (zis.nextEntry.also { zipEntry = it } != null) {
                                             if (zipEntry.name != entry) {
                                                 continue
                                             }
@@ -735,6 +735,7 @@ class ExecAsyncTask
 
         ) : Task<Pair<String, String>, Void, Boolean>() {
 
+        @Suppress("SameReturnValue")
         override fun doJob(params: Pair<String, String>?): Boolean {
 
             val databasePathArg = params!!.first
@@ -756,7 +757,7 @@ class ExecAsyncTask
 
         override fun onDone(result: Boolean?) {
             observer.taskFinish(true)
-            whenDone.accept(result?:false)
+            whenDone.accept(result == true)
         }
     }
 

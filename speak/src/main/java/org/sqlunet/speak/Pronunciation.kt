@@ -5,9 +5,9 @@ package org.sqlunet.speak
 
 import java.util.regex.Pattern
 
-open class Pronunciation(val ipa: String, variety: String?) : Comparable<Pronunciation> {
+open class Pronunciation(val ipa: String, variety0: String?) : Comparable<Pronunciation> {
 
-    val variety: String?
+    val variety: String? = variety0
 
     fun hasVariety(): Boolean {
         return variety != null
@@ -19,10 +19,6 @@ open class Pronunciation(val ipa: String, variety: String?) : Comparable<Pronunc
 
     override fun toString(): String {
         return if (variety == null) String.format("/%s/", ipa) else String.format("[%s] /%s/", variety, ipa)
-    }
-
-    init {
-        this.variety = variety
     }
 
     companion object {

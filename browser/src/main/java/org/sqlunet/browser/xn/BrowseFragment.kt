@@ -99,7 +99,7 @@ class BrowseFragment : BaseSearchFragment() {
         spinner.visibility = View.VISIBLE
 
         // apply spinner adapter
-        spinner.setAdapter(spinnerAdapter)
+        spinner.adapter = spinnerAdapter
 
         // spinner listener
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -368,7 +368,7 @@ class BrowseFragment : BaseSearchFragment() {
 
             Settings.SelectorViewMode.WEB -> Intent(requireContext(), WebActivity::class.java)
         }
-        intent.setAction(ProviderArgs.ACTION_QUERY)
+        intent.action = ProviderArgs.ACTION_QUERY
         return intent
     }
 
@@ -388,7 +388,7 @@ class BrowseFragment : BaseSearchFragment() {
             Settings.DetailViewMode.VIEW -> Intent(context, intentClass)
             Settings.DetailViewMode.WEB -> Intent(context, WebActivity::class.java)
         }
-        intent.setAction(ProviderArgs.ACTION_QUERY)
+        intent.action = ProviderArgs.ACTION_QUERY
         return intent
     }
 

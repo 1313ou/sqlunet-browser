@@ -44,7 +44,7 @@ class LogsActivity : AppCompatActivity() {
         // action button
         val fab = findViewById<FloatingActionButton>(R.id.send_fab)
         fab.visibility = View.GONE
-        fab.setOnClickListener { Sender.send(this, "Semantikos log", textView.getText(), "semantikos.org@gmail.com") }
+        fab.setOnClickListener { Sender.send(this, "Semantikos log", textView.text, "semantikos.org@gmail.com") }
 
         // logs
         val logArg = intent.getStringExtra(ARG_LOG)
@@ -56,7 +56,7 @@ class LogsActivity : AppCompatActivity() {
             progress.isIndeterminate = false
             progress.visibility = View.GONE
             fab.visibility = View.VISIBLE
-            fab.setEnabled(true)
+            fab.isEnabled = true
         } else {
             val resId = when (logArg) {
                 LogUtils.SQL_LOG -> R.string.status_log_not_exists

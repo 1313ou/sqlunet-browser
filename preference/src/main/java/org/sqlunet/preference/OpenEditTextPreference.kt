@@ -197,7 +197,7 @@ class OpenEditTextPreference : DialogPreference {
                 val radioButton = RadioButton(requireContext())
                 radioButton.text = label
                 radioButton.tag = value
-                radioButton.setEnabled(enable)
+                radioButton.isEnabled = enable
                 optionsView!!.addView(radioButton)
                 i++
             }
@@ -210,7 +210,7 @@ class OpenEditTextPreference : DialogPreference {
                     val radioButton = RadioButton(requireContext())
                     radioButton.text = label
                     radioButton.tag = value
-                    radioButton.setEnabled(enable)
+                    radioButton.isEnabled = enable
                     optionsView!!.addView(radioButton)
                     j++
                 }
@@ -232,7 +232,7 @@ class OpenEditTextPreference : DialogPreference {
         override fun onDialogClosed(positiveResult: Boolean) {
             // when the user selects "OK", persist the new value
             if (positiveResult) {
-                val editable = editView!!.getText()
+                val editable = editView!!.text
                 val pref = getPreference() as OpenEditTextPreference
                 val newValue = editable?.toString()
                 if (pref.callChangeListener(newValue)) {

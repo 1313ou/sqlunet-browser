@@ -113,7 +113,7 @@ open class DownloadActivity : AppCompatActivity(), CompletionListener {
             Log.d(TAG, "Send broadcast request $broadcastRequestValue")
             val intent = Intent()
             intent.setPackage(context.packageName)
-            intent.setAction(broadcastAction)
+            intent.action = broadcastAction
             intent.putExtra(broadcastRequestKey, broadcastRequestValue)
             context.sendBroadcast(intent)
         }

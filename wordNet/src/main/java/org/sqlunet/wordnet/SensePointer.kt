@@ -17,6 +17,7 @@ open class SensePointer : SynsetPointer, HasWordId {
     /**
      * Word id
      */
+    @Suppress("EmptyMethod")
     val wordId: Long
         @JvmName("getWordIdProperty")
         get

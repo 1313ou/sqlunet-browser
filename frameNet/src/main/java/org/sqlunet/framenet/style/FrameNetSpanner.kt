@@ -23,11 +23,7 @@ class FrameNetSpanner(context: Context) {
     /**
      * Span factory
      */
-    private val factory: FrameNetMarkupFactory
-
-    init {
-        factory = FrameNetMarkupFactory(context)
-    }
+    private val factory: FrameNetMarkupFactory = FrameNetMarkupFactory(context)
 
     /**
      * Process

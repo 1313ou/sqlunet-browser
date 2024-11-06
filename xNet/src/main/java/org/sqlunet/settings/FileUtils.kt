@@ -131,7 +131,7 @@ internal object FileUtils {
      * @return dest dir
      */
     @Throws(IOException::class)
-    private fun expandZip(`is`: InputStream, pathPrefixFilter0: String?, destDir: File): File {
+    private fun expandZip(`is`: InputStream, @Suppress("SameParameterValue") pathPrefixFilter0: String?, destDir: File): File {
         // prefix
         var pathPrefixFilter = pathPrefixFilter0
         if (!pathPrefixFilter.isNullOrEmpty() && pathPrefixFilter[0] == File.separatorChar) {
@@ -143,17 +143,17 @@ internal object FileUtils {
         ZipInputStream(`is`).use { zis ->
             // get the zipped file list entry
             val buffer = ByteArray(1024)
-            var entry = zis.getNextEntry()
+            var entry = zis.nextEntry
             while (entry != null) {
                 if (!entry.isDirectory) {
                     val entryName = entry.name
                     if (!entryName.endsWith("MANIFEST.MF")) {
                         if (pathPrefixFilter.isNullOrEmpty() || entryName.startsWith(pathPrefixFilter)) {
                             // flatten zip hierarchy
-                            val outFile = File(destDir.toString() + File.separator + File(entryName).getName())
+                            val outFile = File(destDir.toString() + File.separator + File(entryName).name)
 
                             // create all non exists folders else you will hit FileNotFoundException for compressed folder
-                            val parent = outFile.getParent()
+                            val parent = outFile.parent
                             if (parent != null) {
                                 val dir = File(parent)
                                 /* boolean created = */dir.mkdirs()
@@ -168,7 +168,7 @@ internal object FileUtils {
                     }
                 }
                 zis.closeEntry()
-                entry = zis.getNextEntry()
+                entry = zis.nextEntry
             }
         }
         return destDir

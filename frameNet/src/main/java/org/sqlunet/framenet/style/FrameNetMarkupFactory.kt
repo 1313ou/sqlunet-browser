@@ -31,29 +31,22 @@ class FrameNetMarkupFactory internal constructor(context: Context) : MarkupSpann
     /**
      * Top role drawable
      */
-    private val role2Drawable: Drawable
+    private val role2Drawable: Drawable = getDrawable(context, R.drawable.role1)
 
     /**
      * Role drawable
      */
-    private val roleDrawable: Drawable
+    private val roleDrawable: Drawable = getDrawable(context, R.drawable.role)
 
     /**
      * Relation drawable
      */
-    private val relationDrawable: Drawable
+    private val relationDrawable: Drawable = getDrawable(context, R.drawable.relation)
 
     /**
      * Sample drawable
      */
-    private val sampleDrawable: Drawable
-
-    init {
-        roleDrawable = getDrawable(context, R.drawable.role)
-        role2Drawable = getDrawable(context, R.drawable.role1)
-        relationDrawable = getDrawable(context, R.drawable.relation)
-        sampleDrawable = getDrawable(context, R.drawable.sample)
-    }
+    private val sampleDrawable: Drawable = getDrawable(context, R.drawable.sample)
 
     /**
      * Make spans

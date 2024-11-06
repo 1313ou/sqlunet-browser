@@ -40,7 +40,7 @@ class DiagnosticsActivity : AppCompatActivity() {
         // action button
         val fab = findViewById<FloatingActionButton>(R.id.send_fab)
         fab.visibility = View.GONE
-        fab.setOnClickListener { Sender.send(this, "Semantikos diagnostics", textView.getText(), "semantikos.org@gmail.com") }
+        fab.setOnClickListener { Sender.send(this, "Semantikos diagnostics", textView.text, "semantikos.org@gmail.com") }
 
         // diagnostics
         // var diagnostics = Diagnostics.report(this)
@@ -49,7 +49,7 @@ class DiagnosticsActivity : AppCompatActivity() {
             progress.visibility = View.GONE
             textView.text = text
             fab.visibility = View.VISIBLE
-            fab.setEnabled(true)
+            fab.isEnabled = true
         }.execute(this)
     }
 }

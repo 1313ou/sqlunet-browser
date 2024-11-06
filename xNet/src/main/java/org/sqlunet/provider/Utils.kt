@@ -262,7 +262,7 @@ object Utils {
      * @param tokens    tokens
      * @return joined
      */
-    private fun join(delimiter: CharSequence, tokens: Array<String>): String {
+    private fun join(@Suppress("SameParameterValue") delimiter: CharSequence, tokens: Array<String>): String {
         val length = tokens.size
         if (length == 0) {
             return ""

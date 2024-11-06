@@ -21,7 +21,7 @@ object History {
         return try {
             val browserClass = context.getString(R.string.activity_browse)
             val intent = Intent(context, Class.forName(browserClass))
-            intent.setAction(Intent.ACTION_VIEW)
+            intent.action = Intent.ACTION_VIEW
             intent.putExtra(SearchManager.QUERY, query)
             intent
         } catch (e: ClassNotFoundException) {

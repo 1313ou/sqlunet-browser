@@ -198,19 +198,19 @@ class SetupXnStatusFragment : SetupStatusFragment() {
                 ImageViewCompat.setImageTintMode(imageTextSearchVn!!, if (existsTsVn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
                 imageTextSearchPb!!.setImageDrawable(if (existsTsPb) okDrawable else failDrawable)
                 ImageViewCompat.setImageTintMode(imageTextSearchPb!!, if (existsTsPb) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
-                buttonPm!!.setVisibility(if (existsPm) View.GONE else View.VISIBLE)
-                buttonTextSearchFn!!.setVisibility(if (existsTsFn) View.GONE else View.VISIBLE)
-                buttonTextSearchWn!!.setVisibility(if (existsTsWn) View.GONE else View.VISIBLE)
-                buttonTextSearchVn!!.setVisibility(if (existsTsVn) View.GONE else View.VISIBLE)
-                buttonTextSearchPb!!.setVisibility(if (existsTsPb) View.GONE else View.VISIBLE)
-                buttonTextSearchFn!!.setVisibility(if (existsTsFn) View.GONE else View.VISIBLE)
+                buttonPm!!.visibility = if (existsPm) View.GONE else View.VISIBLE
+                buttonTextSearchFn!!.visibility = if (existsTsFn) View.GONE else View.VISIBLE
+                buttonTextSearchWn!!.visibility = if (existsTsWn) View.GONE else View.VISIBLE
+                buttonTextSearchVn!!.visibility = if (existsTsVn) View.GONE else View.VISIBLE
+                buttonTextSearchPb!!.visibility = if (existsTsPb) View.GONE else View.VISIBLE
+                buttonTextSearchFn!!.visibility = if (existsTsFn) View.GONE else View.VISIBLE
             } else {
-                buttonPm!!.setVisibility(View.GONE)
-                buttonTextSearchFn!!.setVisibility(View.GONE)
-                buttonTextSearchWn!!.setVisibility(View.GONE)
-                buttonTextSearchVn!!.setVisibility(View.GONE)
-                buttonTextSearchPb!!.setVisibility(View.GONE)
-                buttonTextSearchFn!!.setVisibility(View.GONE)
+                buttonPm!!.visibility = View.GONE
+                buttonTextSearchFn!!.visibility = View.GONE
+                buttonTextSearchWn!!.visibility = View.GONE
+                buttonTextSearchVn!!.visibility = View.GONE
+                buttonTextSearchPb!!.visibility = View.GONE
+                buttonTextSearchFn!!.visibility = View.GONE
                 imagePm!!.setImageResource(R.drawable.ic_unknown)
                 imageTextSearchFn!!.setImageResource(R.drawable.ic_unknown)
                 imageTextSearchWn!!.setImageResource(R.drawable.ic_unknown)

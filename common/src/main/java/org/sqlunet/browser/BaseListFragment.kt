@@ -150,7 +150,7 @@ abstract class BaseListFragment : ListFragment() {
         val listView = getListView()
         val adapter = listAdapter as CursorAdapter?
         Log.d(TAG, "Nullify listview adapter. Lifecycle: onStop()")
-        listView.setAdapter(null)
+        listView.adapter = null
         // the cursor will be saved along with fragment state if any
         Log.d(TAG, "Nullify adapter cursor but do not close cursor. Lifecycle: onStop()")
         adapter!!.swapCursor(null)

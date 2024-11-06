@@ -63,7 +63,7 @@ abstract class BaseTaskFragment : Fragment() {
         val adapter = makeAdapter()
 
         // apply the adapter to the spinner
-        spinner!!.setAdapter(adapter)
+        spinner!!.adapter = adapter
         spinner!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
             override fun onItemSelected(parent: AdapterView<*>?, view0: View, position: Int, id: Long) {

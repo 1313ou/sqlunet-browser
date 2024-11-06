@@ -46,6 +46,7 @@ import java.io.IOException
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 import kotlin.math.abs
+import kotlin.math.roundToInt
 
 /**
  * History fragment
@@ -90,7 +91,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
         listView = view.findViewById(android.R.id.list)
 
         // bind to adapter
-        listView!!.setAdapter(adapter)
+        listView!!.adapter = adapter
 
         // click listener
         listView!!.onItemClickListener = this
@@ -182,7 +183,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
             if (e1 == null) {
                 return false
             }
-            val position = listView!!.pointToPosition(Math.round(e1.x), Math.round(e1.y))
+            val position = listView!!.pointToPosition(e1.x.roundToInt(), e1.y.roundToInt())
             if (abs((e1.y - e2.y).toDouble()) <= SWIPE_MAX_OFF_PATH) {
                 if (abs(velocityX.toDouble()) >= SWIPE_THRESHOLD_VELOCITY) {
                     if (e2.x - e1.x > SWIPE_MIN_DISTANCE) {

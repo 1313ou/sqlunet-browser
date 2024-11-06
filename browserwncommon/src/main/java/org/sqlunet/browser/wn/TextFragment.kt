@@ -85,7 +85,7 @@ class TextFragment : BaseListFragment() {
                 }
 
                 else -> {
-                    throw IllegalStateException(view.javaClass.getName() + " is not a view that can be bound by this SimpleCursorAdapter")
+                    throw IllegalStateException(view.javaClass.name + " is not a view that can be bound by this SimpleCursorAdapter")
                 }
             }
         }
@@ -124,7 +124,7 @@ class TextFragment : BaseListFragment() {
 
                     // intent
                     val targetIntent = Intent(requireContext(), SynsetActivity::class.java)
-                    targetIntent.setAction(ProviderArgs.ACTION_QUERY)
+                    targetIntent.action = ProviderArgs.ACTION_QUERY
                     targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET)
                     targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer)
                     targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse)
@@ -144,7 +144,7 @@ class TextFragment : BaseListFragment() {
 
                     // intent
                     val targetIntent = Intent(requireContext(), WordActivity::class.java)
-                    targetIntent.setAction(ProviderArgs.ACTION_QUERY)
+                    targetIntent.action = ProviderArgs.ACTION_QUERY
                     targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD)
                     targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, wordPointer)
 

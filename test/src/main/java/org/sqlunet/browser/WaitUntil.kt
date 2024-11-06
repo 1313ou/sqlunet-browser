@@ -17,7 +17,7 @@ class WaitUntil  // private static final String TAG = WaitUntil.class.getSimpleN
 
     override fun isIdleNow(): Boolean {
         val view = getView(viewMatcher)
-        val idle = view == null || view.isShown()
+        val idle = view == null || view.isShown
         if (idle && resourceCallback != null) {
             resourceCallback!!.onTransitionToIdle()
         }

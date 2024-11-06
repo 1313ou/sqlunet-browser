@@ -59,7 +59,7 @@ class SourceFragment : ListFragment() {
         super.onStop()
         val listView = getListView()
         val adapter = listAdapter as CursorAdapter?
-        listView.setAdapter(null)
+        listView.adapter = null
         adapter!!.swapCursor(null)
     }
 

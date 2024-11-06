@@ -16,7 +16,7 @@ object Sender {
         if (to.isNotEmpty()) {
             sendIntent.putExtra(Intent.EXTRA_EMAIL, to)
         }
-        sendIntent.setType("message/rfc822") // prompts email client only
+        sendIntent.type = "message/rfc822" // prompts email client only
         context.startActivity(Intent.createChooser(sendIntent, context.getString(R.string.title_dialog_select_email)))
     }
 }

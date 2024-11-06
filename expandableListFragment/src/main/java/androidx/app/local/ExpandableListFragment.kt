@@ -106,11 +106,11 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
             // empty view
             if (mEmptyView != null) {
                 // custom empty view
-                mExpandableList!!.setEmptyView(mEmptyView)
+                mExpandableList!!.emptyView = mEmptyView
             } else if (mEmptyText != null) {
                 // standard empty text view
                 mStandardEmptyView!!.text = mEmptyText
-                mExpandableList!!.setEmptyView(mStandardEmptyView)
+                mExpandableList!!.emptyView = mStandardEmptyView
             }
         }
         mExpandableListShown = true
@@ -221,7 +221,7 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
      */
     val selectedPosition: Long
         get() {
-            return mExpandableList!!.getSelectedPosition()
+            return mExpandableList!!.selectedPosition
         }
 
     /**
@@ -238,7 +238,7 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
      */
     val selectedId: Long
         get() {
-            return mExpandableList!!.getSelectedId()
+            return mExpandableList!!.selectedId
         }
 
     /**
@@ -300,7 +300,7 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
         checkNotNull(mStandardEmptyView) { "Can't be used with a custom content view" }
         mStandardEmptyView!!.text = text
         if (mEmptyText == null) {
-            mExpandableList!!.setEmptyView(mStandardEmptyView)
+            mExpandableList!!.emptyView = mStandardEmptyView
         }
         mEmptyText = text
     }
@@ -393,6 +393,7 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
      * @param position The position of the view in the list
      * @param id       The row id of the item that was clicked
      */
+    @Suppress("EmptyMethod")
     private fun onListItemClick(@Suppress("UNUSED_PARAMETER") l: ExpandableListView?, @Suppress("UNUSED_PARAMETER") v: View?, @Suppress("UNUSED_PARAMETER") position: Int, @Suppress("UNUSED_PARAMETER") id: Long) {
         // empty
     }

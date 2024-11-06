@@ -81,7 +81,7 @@ abstract class Status {
         fun existsDatabase(context: Context): Boolean {
             val databasePath = StorageSettings.getDatabasePath(context)
             val db = File(databasePath)
-            return db.exists() && db.isFile() && db.canWrite()
+            return db.exists() && db.isFile && db.canWrite()
         }
 
         /**

@@ -79,14 +79,14 @@ abstract class Controller protected constructor(
     open fun createNodeView(context: Context, node: TreeNode, minHeight: Int): View? {
         val textView = TextView(context)
         if (minHeight > 0) {
-            textView.setMinimumHeight(minHeight)
+            textView.minimumHeight = minHeight
         }
         // text
         textView.text = node.text
 
         // icon
         if (node.icon != null) {
-            textView.setCompoundDrawablePadding(10)
+            textView.compoundDrawablePadding = 10
             textView.setCompoundDrawablesWithIntrinsicBounds(node.icon!!, 0, 0, 0)
         }
         return textView
@@ -160,6 +160,7 @@ abstract class Controller protected constructor(
      *
      * @param selected selected flag
      */
+    @Suppress("EmptyMethod")
     fun onSelectedEvent(@Suppress("UNUSED_PARAMETER") selected: Boolean) {
         // empty
     }

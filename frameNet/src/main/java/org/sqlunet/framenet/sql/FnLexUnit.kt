@@ -36,11 +36,7 @@ class FnLexUnit private constructor(
     /**
      * Buddy frame
      */
-    val frame: FnFrame?
-
-    init {
-        this.frame = if (frameId == 0L) null else FnFrame(frameId, frame!!, frameDefinition!!, null, null)
-    }
+    val frame: FnFrame? = if (frameId == 0L) null else FnFrame(frameId, frame!!, frameDefinition!!, null, null)
 
     companion object {
 

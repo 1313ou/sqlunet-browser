@@ -69,7 +69,7 @@ class SearchTextFragment : BaseSearchFragment() {
         spinner.visibility = View.VISIBLE
 
         // apply spinner adapter
-        spinner.setAdapter(spinnerAdapter)
+        spinner.adapter = spinnerAdapter
 
         // spinner listener
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

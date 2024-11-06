@@ -120,7 +120,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-        listView!!.setChoiceMode(if (activateOnItemClick) AbsListView.CHOICE_MODE_SINGLE else AbsListView.CHOICE_MODE_NONE)
+        listView!!.choiceMode = if (activateOnItemClick) AbsListView.CHOICE_MODE_SINGLE else AbsListView.CHOICE_MODE_NONE
 
         // data view models
         makeModels()

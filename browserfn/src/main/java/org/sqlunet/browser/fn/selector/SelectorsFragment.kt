@@ -93,10 +93,10 @@ class SelectorsFragment : BaseSelectorsListFragment() {
                     val idName = cursor.getColumnIndex(LexUnits_or_Frames.NAME)
                     val text = cursor.getString(columnIndex)
                     if (text == null || "0" == text) {
-                        view.setVisibility(View.GONE)
+                        view.visibility = View.GONE
                         return@setViewBinder true
                     } else {
-                        view.setVisibility(View.VISIBLE)
+                        view.visibility = View.VISIBLE
                     }
                     view.text = text
                     if (idName == columnIndex) {
@@ -113,7 +113,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
                 }
 
                 else -> {
-                    throw IllegalStateException(view.javaClass.getName() + " is not a view that can be bound by this SimpleCursorAdapter")
+                    throw IllegalStateException(view.javaClass.name + " is not a view that can be bound by this SimpleCursorAdapter")
                 }
             }
         }

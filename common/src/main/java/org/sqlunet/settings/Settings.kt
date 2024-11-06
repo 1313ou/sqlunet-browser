@@ -492,8 +492,8 @@ open class Settings {
         fun applicationSettings(context: Context, pkgName: String) {
             val intent = Intent()
 
-            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-            intent.setData(Uri.parse("package:$pkgName"))
+            intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+            intent.data = Uri.parse("package:$pkgName")
 
             // start activity
             context.startActivity(intent)

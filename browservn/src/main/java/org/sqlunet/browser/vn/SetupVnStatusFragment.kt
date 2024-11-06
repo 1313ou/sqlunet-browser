@@ -125,12 +125,12 @@ class SetupVnStatusFragment : SetupStatusFragment() {
                 ImageViewCompat.setImageTintMode(imageTextSearchVn!!, if (existsTsPb) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
                 imageTextSearchPb!!.setImageDrawable(if (existsTsPb) okDrawable else failDrawable)
                 ImageViewCompat.setImageTintMode(imageTextSearchPb!!, if (existsTsPb) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
-                buttonTextSearchVn!!.setVisibility(if (existsTsVn) View.GONE else View.VISIBLE)
-                buttonTextSearchPb!!.setVisibility(if (existsTsPb) View.GONE else View.VISIBLE)
+                buttonTextSearchVn!!.visibility = if (existsTsVn) View.GONE else View.VISIBLE
+                buttonTextSearchPb!!.visibility = if (existsTsPb) View.GONE else View.VISIBLE
             } else {
-                buttonTextSearchVn!!.setVisibility(View.GONE)
+                buttonTextSearchVn!!.visibility = View.GONE
                 imageTextSearchVn!!.setImageResource(R.drawable.ic_unknown)
-                buttonTextSearchPb!!.setVisibility(View.GONE)
+                buttonTextSearchPb!!.visibility = View.GONE
                 imageTextSearchPb!!.setImageResource(R.drawable.ic_unknown)
             }
         }

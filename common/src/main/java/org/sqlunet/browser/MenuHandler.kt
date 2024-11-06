@@ -327,7 +327,7 @@ object MenuHandler {
     private fun setAssetActionTitle(res: Resources, menuItem: MenuItem?, @StringRes formatId: Int, @StringRes assetNameId: Int) {
         if (menuItem != null) {
             val title = String.format(res.getString(formatId), res.getString(assetNameId))
-            menuItem.setTitle(title)
+            menuItem.title = title
         }
     }
 

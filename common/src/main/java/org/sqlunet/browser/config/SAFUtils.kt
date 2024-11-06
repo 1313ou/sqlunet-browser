@@ -31,7 +31,7 @@ object SAFUtils {
                 val resultData = result.data
                 if (resultData != null) {
                     val uri = resultData.data
-                    Log.i(TAG, "Uri: " + uri.toString())
+                    Log.i(TAG, "Uri: $uri")
                     consumer.accept(uri)
                 }
             }
@@ -53,7 +53,7 @@ object SAFUtils {
     }
 
     private fun setType(intent: Intent, vararg mimeTypes: String) {
-        intent.setType(if (mimeTypes.size == 1) mimeTypes[0] else "*/*")
+        intent.type = if (mimeTypes.size == 1) mimeTypes[0] else "*/*"
         if (mimeTypes.isNotEmpty()) {
             intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
         }

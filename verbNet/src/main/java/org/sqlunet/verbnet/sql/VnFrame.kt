@@ -23,12 +23,7 @@ class VnFrame(
     val description2: String,
     val syntax: String,
     val semantics: String,
-    vararg examples: String,
+    vararg val examples: String,
 ) {
 
-    val examples: Array<out String>
-
-    init {
-        this.examples = examples
-    }
 }

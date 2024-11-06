@@ -71,7 +71,7 @@ object Wait {
                             if (child !is TextView) {
                                 throw PerformException.Builder().withActionDescription(this.description).withViewDescription(HumanReadables.describe(view)).withCause(ClassCastException()).build()
                             }
-                            val text = child.getText().toString()
+                            val text = child.text.toString()
                             if (not && text != target) {
                                 return
                             } else if (!not && text == target) {

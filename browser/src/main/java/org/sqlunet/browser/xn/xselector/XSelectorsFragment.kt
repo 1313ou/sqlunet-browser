@@ -137,7 +137,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-        listView!!.setChoiceMode(if (activateOnItemClick) AbsListView.CHOICE_MODE_SINGLE else AbsListView.CHOICE_MODE_NONE)
+        listView!!.choiceMode = if (activateOnItemClick) AbsListView.CHOICE_MODE_SINGLE else AbsListView.CHOICE_MODE_NONE
 
         // data view models
         makeModels()
@@ -285,12 +285,12 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
                     for (field2 in fields2) {
                         if (field2.startsWith("pm")) {
                             v.setImageResource(R.drawable.predicatematrix)
-                            v.setVisibility(View.VISIBLE)
+                            v.visibility = View.VISIBLE
                             return
                         }
                     }
                     v.setImageDrawable(null)
-                    v.setVisibility(View.GONE)
+                    v.visibility = View.GONE
                 } else {
                     super.setViewImage(v, value)
                 }

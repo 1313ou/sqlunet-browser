@@ -114,10 +114,10 @@ class SetupSnStatusFragment : SetupStatusFragment() {
                 val failDrawable = getDrawable(context, R.drawable.ic_fail)
                 imageTextSearchWn!!.setImageDrawable(if (existsTsWn) okDrawable else failDrawable)
                 ImageViewCompat.setImageTintMode(imageTextSearchWn!!, if (existsTsWn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
-                buttonTextSearchWn!!.setVisibility(if (existsTsWn) View.GONE else View.VISIBLE)
+                buttonTextSearchWn!!.visibility = if (existsTsWn) View.GONE else View.VISIBLE
             } else {
                 imageTextSearchWn!!.setImageResource(R.drawable.ic_unknown)
-                buttonTextSearchWn!!.setVisibility(View.GONE)
+                buttonTextSearchWn!!.visibility = View.GONE
             }
         }
     }

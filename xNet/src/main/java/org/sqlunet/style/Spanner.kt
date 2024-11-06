@@ -199,7 +199,7 @@ open class Spanner {
                 override fun onClick(view: View) {
                     // Log.d(TAG, "Click image")
                     val textView = view as TextView
-                    val sb1 = textView.getText() as SpannableStringBuilder
+                    val sb1 = textView.text as SpannableStringBuilder
                     val clickableStart = textView.selectionStart
                     val clickableEnd = textView.selectionEnd
                     val spans: Array<out ImageSpan>? = sb1.getSpans(clickableStart, clickableEnd, ImageSpan::class.java)
@@ -346,7 +346,7 @@ open class Spanner {
          * @param delimiter delimiter
          * @return delimiter position or -1 if not found
          */
-        private fun find(sb: SpannableStringBuilder, start: Int, delimiter: Char): Int {
+        private fun find(sb: SpannableStringBuilder, start: Int, @Suppress("SameParameterValue") delimiter: Char): Int {
             var i = start
             while (i < sb.length) {
                 if (sb[i] == delimiter) {

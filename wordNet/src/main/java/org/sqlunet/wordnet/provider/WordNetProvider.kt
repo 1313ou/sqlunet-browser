@@ -339,9 +339,9 @@ class WordNetProvider : BaseProvider() {
             projection1: Array<String>,
             projection2: Array<String>,
             unionProjection: Array<String>,
-            discriminator: String,
-            value1: String,
-            value2: String,
+            @Suppress("SameParameterValue") discriminator: String,
+            @Suppress("SameParameterValue") value1: String,
+            @Suppress("SameParameterValue") value2: String,
             selection1: String,
             selection2: String,
         ): String {

@@ -10,6 +10,7 @@ import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import org.sqlunet.browser.common.R
+import kotlin.math.roundToLong
 
 /**
  * Utils
@@ -47,11 +48,11 @@ object Utils {
         var x = x0.toFloat()
         for (unit in units) {
             if (x > -1024.0 && x < 1024.0) {
-                return String.format(FORMAT, Math.round(x), unit)
+                return String.format(FORMAT, x.roundToLong(), unit)
             }
             x /= 1024.0f
         }
-        return String.format(FORMAT, Math.round(x), "TB")
+        return String.format(FORMAT, x.roundToLong(), "TB")
     }
 
     fun hrSize(@IntegerRes id: Int, context: Context): String {

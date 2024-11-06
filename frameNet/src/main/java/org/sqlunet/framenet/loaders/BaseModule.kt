@@ -669,7 +669,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @param parent    parent node
      * @param withFrame whether to include frame
      */
-    private fun lexUnitsForFrame(frameId: Long, parent: TreeNode, withFrame: Boolean) {
+    private fun lexUnitsForFrame(frameId: Long, parent: TreeNode, @Suppress("SameParameterValue") withFrame: Boolean) {
         val sql = prepareLexUnitsForFrame(frameId)
         val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
         lexUnitsFromFrameIdModel.loadData(uri, sql) { cursor: Cursor -> lexUnitsCursorToTreeModel(cursor, frameId, parent, withFrame) }
@@ -1990,7 +1990,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val intent = Intent(context, FnFrameActivity::class.java)
             intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME)
             intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
-            intent.setAction(ProviderArgs.ACTION_QUERY)
+            intent.action = ProviderArgs.ACTION_QUERY
             context.startActivity(intent)
         }
 
@@ -2010,7 +2010,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val intent = Intent(context, FnLexUnitActivity::class.java)
             intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT)
             intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
-            intent.setAction(ProviderArgs.ACTION_QUERY)
+            intent.action = ProviderArgs.ACTION_QUERY
             context.startActivity(intent)
         }
 
@@ -2030,7 +2030,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val intent = Intent(context, FnSentenceActivity::class.java)
             intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE)
             intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
-            intent.setAction(ProviderArgs.ACTION_QUERY)
+            intent.action = ProviderArgs.ACTION_QUERY
             context.startActivity(intent)
         }
 

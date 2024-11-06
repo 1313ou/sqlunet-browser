@@ -33,7 +33,7 @@ class TreeNode(
     /**
      * Children nodes
      */
-    val children: MutableList<TreeNode>
+    val children: MutableList<TreeNode> = ArrayList()
 
     /**
      * Click listener
@@ -68,7 +68,6 @@ class TreeNode(
     constructor(text: CharSequence, controller: Controller, collapsible: Boolean) : this(text, null, null, controller, collapsible)
 
     init {
-        children = ArrayList()
         controller.attachNode(this)
     }
 
@@ -340,7 +339,7 @@ class TreeNode(
         }
         sb
             .append("controller=")
-            .append(controller.javaClass.getSimpleName())
+            .append(controller.javaClass.simpleName)
             .append(' ')
             .append("parent=")
             .append(parent?.id ?: "none")

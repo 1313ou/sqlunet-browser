@@ -76,7 +76,7 @@ class SpeakSettingsFragment : PreferenceFragmentCompat() {
         val entryValues = pref.entryValues
         val persisted = pref.getPersistedStringSet(null)
         if (persisted != null) {
-            if (persisted.size == 0) {
+            if (persisted.isEmpty()) {
                 return noneString
             } else {
                 if (entryValues != null) {

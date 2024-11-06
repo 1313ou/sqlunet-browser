@@ -80,7 +80,7 @@ object Diagnostics {
             sb.append("exists: ")
             sb.append(databaseExists.toString())
             sb.append('\n')
-            val parent = databaseFile.getParent()!!
+            val parent = databaseFile.parent!!
             val dataStats = storageStats(parent)
             val df = dataStats[StorageUtils.STORAGE_FREE]
             val dc = dataStats[StorageUtils.STORAGE_CAPACITY]
@@ -96,7 +96,7 @@ object Diagnostics {
             sb.append('%')
             sb.append('\n')
             if (databaseExists) {
-                val databaseIsFile = databaseFile.isFile()
+                val databaseIsFile = databaseFile.isFile
                 val databaseLastModified = databaseFile.lastModified()
                 val databaseSize = databaseFile.length()
                 val databaseCanRead = databaseFile.canRead()
@@ -424,6 +424,7 @@ object Diagnostics {
         return null
     }
 
+    @Suppress("SameReturnValue")
     @Throws(SQLiteCantOpenDatabaseException::class)
     private fun canOpen(path: String): Boolean {
         SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY).use { return true }

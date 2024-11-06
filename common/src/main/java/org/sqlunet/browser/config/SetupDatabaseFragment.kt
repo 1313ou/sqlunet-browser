@@ -78,6 +78,7 @@ class SetupDatabaseFragment : BaseTaskFragment() {
 
     // U P D A T E
 
+    @Suppress("EmptyMethod")
     private fun update() {
         // empty
     }

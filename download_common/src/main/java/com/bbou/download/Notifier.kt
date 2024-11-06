@@ -208,7 +208,7 @@ class Notifier {
         fun makeCancelIntent(context: Context, notificationId: Int): Intent {
             val intent = Intent()
             intent.setPackage(context.applicationContext.packageName)
-            intent.setAction(ACTION_DOWNLOAD_CANCEL)
+            intent.action = ACTION_DOWNLOAD_CANCEL
             intent.addCategory(Intent.CATEGORY_DEFAULT)
             intent.putExtra(NOTIFICATION_ID, notificationId)
             return intent

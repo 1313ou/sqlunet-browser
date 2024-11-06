@@ -97,7 +97,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         spinner.visibility = View.VISIBLE
 
         // apply spinner adapter
-        spinner.setAdapter(spinnerAdapter)
+        spinner.adapter = spinnerAdapter
 
         // saved mode
         val mode = PMMode.getPref(requireContext())

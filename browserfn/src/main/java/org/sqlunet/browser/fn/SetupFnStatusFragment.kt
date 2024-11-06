@@ -113,9 +113,9 @@ class SetupFnStatusFragment : SetupStatusFragment() {
                 val existsTsFn = status and FnStatus.EXISTS_TS_FN != 0
                 imageTextSearchFn!!.setImageDrawable(if (existsTsFn) okDrawable else failDrawable)
                 ImageViewCompat.setImageTintMode(imageTextSearchFn!!, if (existsTsFn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
-                buttonTextSearchFn!!.setVisibility(if (existsTsFn) View.GONE else View.VISIBLE)
+                buttonTextSearchFn!!.visibility = if (existsTsFn) View.GONE else View.VISIBLE
             } else {
-                buttonTextSearchFn!!.setVisibility(View.GONE)
+                buttonTextSearchFn!!.visibility = View.GONE
                 imageTextSearchFn!!.setImageResource(R.drawable.ic_unknown)
             }
         }

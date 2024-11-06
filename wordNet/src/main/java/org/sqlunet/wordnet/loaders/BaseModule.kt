@@ -721,7 +721,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @param parent     parent node
      * @param addNewNode whether to addItem to (or set) node
      */
-    private fun samples(synsetId: Long, parent: TreeNode, addNewNode: Boolean) {
+    private fun samples(synsetId: Long, parent: TreeNode, @Suppress("SameParameterValue") addNewNode: Boolean) {
         val sql = Queries.prepareSamples(synsetId)
         val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
         samplesFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> samplesCursorToTreeModel(cursor, parent, addNewNode) }
@@ -773,7 +773,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @param parent                  parent node
      * @param deadendParentIfNoResult mark parent node as deadend if there is no result
      */
-    private fun relations(synsetId: Long, wordId: Long, parent: TreeNode, deadendParentIfNoResult: Boolean) {
+    private fun relations(synsetId: Long, wordId: Long, parent: TreeNode, @Suppress("SameParameterValue") deadendParentIfNoResult: Boolean) {
         val sql = Queries.prepareRelations(synsetId, wordId)
         val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
         relationsFromSynsetIdWordIdModel.loadData(uri, sql) { cursor: Cursor -> relationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult) }
@@ -843,7 +843,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @param parent                  parent node
      * @param deadendParentIfNoResult mark parent node as deadend if there is no result
      */
-    private fun semRelations(synsetId: Long, parent: TreeNode, deadendParentIfNoResult: Boolean) {
+    private fun semRelations(synsetId: Long, parent: TreeNode, @Suppress("SameParameterValue") deadendParentIfNoResult: Boolean) {
         val sql = Queries.prepareSemRelations(synsetId)
         val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
         semRelationsFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> semRelationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult) }
@@ -907,7 +907,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @param parent                  parent node
      * @param deadendParentIfNoResult mark parent node as deadend if there is no result
      */
-    private fun semRelations(synsetId: Long, relationId: Int, recurseLevel: Int, hot: Boolean, parent: TreeNode, deadendParentIfNoResult: Boolean) {
+    private fun semRelations(synsetId: Long, relationId: Int, recurseLevel: Int, @Suppress("SameParameterValue") hot: Boolean, parent: TreeNode, @Suppress("SameParameterValue") deadendParentIfNoResult: Boolean) {
         val sql = Queries.prepareSemRelations(synsetId, relationId)
         val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
         semRelationsFromSynsetIdRelationIdModel.loadData(uri, sql) { cursor: Cursor -> semRelationsFromSynsetIdRelationIdCursorToTreeModel(cursor, relationId, recurseLevel, hot, parent, deadendParentIfNoResult) }
@@ -1511,7 +1511,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val intent = Intent(context, WordActivity::class.java)
             intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD)
             intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
-            intent.setAction(ProviderArgs.ACTION_QUERY)
+            intent.action = ProviderArgs.ACTION_QUERY
             context.startActivity(intent)
         }
 
@@ -1552,7 +1552,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
             intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse)
             intent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
-            intent.setAction(ProviderArgs.ACTION_QUERY)
+            intent.action = ProviderArgs.ACTION_QUERY
             context.startActivity(intent)
         }
 
@@ -1594,7 +1594,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
             intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse)
             intent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
-            intent.setAction(ProviderArgs.ACTION_QUERY)
+            intent.action = ProviderArgs.ACTION_QUERY
             context.startActivity(intent)
         }
 
@@ -1621,7 +1621,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
             intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse)
             intent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
-            intent.setAction(ProviderArgs.ACTION_QUERY)
+            intent.action = ProviderArgs.ACTION_QUERY
             context.startActivity(intent)
         }
 

@@ -46,7 +46,7 @@ class TableFragment : BaseListFragment() {
                 }
 
                 else -> {
-                    throw IllegalStateException(view.javaClass.getName() + " is not a view that can be bound by this SimpleCursorAdapter")
+                    throw IllegalStateException(view.javaClass.name + " is not a view that can be bound by this SimpleCursorAdapter")
                 }
             }
         }

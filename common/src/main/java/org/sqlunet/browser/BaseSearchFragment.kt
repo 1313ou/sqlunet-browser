@@ -283,7 +283,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     private fun releaseSpinner(spinner: Spinner) {
         spinner.setSelection(0)
         spinner.onItemSelectedListener = null
-        spinner.setAdapter(null)
+        spinner.adapter = null
         spinner.visibility = View.GONE
     }
 

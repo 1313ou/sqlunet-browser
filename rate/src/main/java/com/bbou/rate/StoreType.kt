@@ -65,7 +65,7 @@ enum class StoreType {
                 if (app.activityInfo.applicationInfo.packageName == "com.android.vending") {
                     val activity = app.activityInfo
                     val componentName = ComponentName(activity.applicationInfo.packageName, activity.name)
-                    intent.setComponent(componentName)
+                    intent.component = componentName
                     return intent
                 }
             }

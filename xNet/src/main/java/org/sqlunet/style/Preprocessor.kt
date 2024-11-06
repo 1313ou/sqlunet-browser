@@ -27,14 +27,7 @@ open class Preprocessor protected constructor(vararg data: String) {
         /**
          * Replaced pattern
          */
-        private val pattern: Pattern
-
-        /**
-         * Constructor
-         */
-        init {
-            pattern = Pattern.compile(regexpr)
-        }
+        private val pattern: Pattern = Pattern.compile(regexpr)
 
         /**
          * Replace

@@ -20,16 +20,12 @@ open class DBQuery protected constructor(connection: SQLiteDatabase, statement: 
     /**
      * `SQL statement
      */
-    protected val statement: PreparedStatement
+    protected val statement: PreparedStatement = PreparedStatement(connection, statement)
 
     /**
      * Result set/cursor
      */
     protected var cursor: Cursor? = null
-
-    init {
-        this.statement = PreparedStatement(connection, statement)
-    }
 
     /**
      * Execute query

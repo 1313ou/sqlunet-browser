@@ -49,9 +49,9 @@ class HelpFragment : Fragment() {
             val webView = view.findViewById<WebView>(R.id.webView)
             webView.clearCache(true)
             webView.clearHistory()
-            webView.getSettings().javaScriptEnabled = true
-            webView.getSettings().javaScriptCanOpenWindowsAutomatically = true
-            webView.setWebViewClient(object : WebViewClient() {
+            webView.settings.javaScriptEnabled = true
+            webView.settings.javaScriptCanOpenWindowsAutomatically = true
+            webView.webViewClient = object : WebViewClient() {
 
                 @Deprecated("Deprecated in Java")
                 override fun onReceivedError(webView: WebView, errorCode: Int, description: String, failingUrl: String) {
@@ -92,7 +92,7 @@ class HelpFragment : Fragment() {
                     webView.loadUrl(uri.toString())
                     return false
                 }
-            })
+            }
             val lang = getString(R.string.lang_tag)
             var url = "file:///android_asset/help/"
             if (lang.isNotEmpty()) {
@@ -111,11 +111,11 @@ class HelpFragment : Fragment() {
         actionBar.setBackgroundDrawable(null)
     }
 
-    private fun handleUri(uri: Uri, mime: String): Boolean {
+    private fun handleUri(uri: Uri, @Suppress("SameParameterValue") mime: String): Boolean {
         try {
             val intentUrl = Intent(Intent.ACTION_VIEW)
             intentUrl.setDataAndType(uri, mime)
-            intentUrl.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intentUrl.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intentUrl)
             return true
         } catch (e: ActivityNotFoundException) {

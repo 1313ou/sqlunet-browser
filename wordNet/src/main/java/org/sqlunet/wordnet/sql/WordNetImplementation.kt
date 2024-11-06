@@ -465,7 +465,7 @@ class WordNetImplementation : WordNetInterface {
             parent: Node,
             withRelations: Boolean,
             recurse: Boolean,
-            targetRelationId: Int,
+            @Suppress("SameParameterValue") targetRelationId: Int,
         ) {
             if (synsetId == null) {
                 val query = SynsetsQueryFromWordId(connection, wordId)

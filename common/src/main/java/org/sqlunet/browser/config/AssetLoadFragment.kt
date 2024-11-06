@@ -92,7 +92,7 @@ class AssetLoadFragment : Fragment(), TaskObserver<Pair<Number, Number>> {
         task = null
         cancelButton!!.visibility = View.GONE
         progressBar!!.isIndeterminate = false
-        progressBar!!.setMax(100)
+        progressBar!!.max = 100
         progressBar!!.progress = 100
         messageTextView!!.setText(if (result) R.string.result_success else R.string.result_fail)
     }
@@ -105,7 +105,7 @@ class AssetLoadFragment : Fragment(), TaskObserver<Pair<Number, Number>> {
         progressBar!!.isIndeterminate = indeterminate
         if (!indeterminate) {
             val percent = (longProgress * 100f / longLength).toInt()
-            progressBar!!.setMax(100)
+            progressBar!!.max = 100
             progressBar!!.progress = percent
         }
     }

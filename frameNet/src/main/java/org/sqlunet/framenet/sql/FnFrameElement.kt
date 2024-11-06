@@ -35,11 +35,7 @@ internal class FnFrameElement private constructor(
     /**
      * FE sem types
      */
-    val semTypes: Array<String>?
-
-    init {
-        this.semTypes = semTypes?.split(",".toRegex())?.dropLastWhile { it.isEmpty() }?.toTypedArray()
-    }
+    val semTypes: Array<String>? = semTypes?.split(",".toRegex())?.dropLastWhile { it.isEmpty() }?.toTypedArray()
 
     companion object {
 

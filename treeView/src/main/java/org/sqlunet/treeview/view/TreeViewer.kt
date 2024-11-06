@@ -131,11 +131,11 @@ class TreeViewer(
 
         // content
         val contentView = LinearLayout(containerContext, null, containerStyle)
-        contentView.setId(R.id.tree_view)
+        contentView.id = R.id.tree_view
         contentView.orientation = LinearLayout.VERTICAL
         contentView.isFocusable = true
-        contentView.setFocusableInTouchMode(true)
-        contentView.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS)
+        contentView.isFocusableInTouchMode = true
+        contentView.descendantFocusability = ViewGroup.FOCUS_BLOCK_DESCENDANTS
         contentView.visibility = View.GONE
         anchor.addView(contentView)
 
@@ -409,10 +409,10 @@ class TreeViewer(
 
     fun scrollToDeferred(view: View) {
         // scroll when dimensions are available
-        val viewTreeObserver = view.getViewTreeObserver()
+        val viewTreeObserver = view.viewTreeObserver
         viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
             override fun onPreDraw(): Boolean {
-                view.getViewTreeObserver().removeOnPreDrawListener(this)
+                view.viewTreeObserver.removeOnPreDrawListener(this)
                 return scrollTo(view) // false = cancel the current drawing pass
             }
         })
@@ -884,11 +884,11 @@ class TreeViewer(
             ValueAnimator.setFrameDelay(250)
             val animator = ValueAnimator.ofFloat(0f, 1f)
             animator.repeatCount = 0
-            animator.setDuration(duration.toLong())
-            animator.setStartDelay(0)
+            animator.duration = duration.toLong()
+            animator.startDelay = 0
             animator.interpolator = LinearInterpolator()
             animator.addUpdateListener { valueAnimator: ValueAnimator ->
-                val value = valueAnimator.getAnimatedValue() as Float
+                val value = valueAnimator.animatedValue as Float
                 view.layoutParams.height = if (value == 1f) ViewGroup.LayoutParams.WRAP_CONTENT else (targetHeight * value).toInt()
                 view.requestLayout()
             }
@@ -924,11 +924,11 @@ class TreeViewer(
             ValueAnimator.setFrameDelay(250)
             val animator = ValueAnimator.ofFloat(0f, 1f)
             animator.repeatCount = 0
-            animator.setDuration(duration.toLong())
-            animator.setStartDelay(0)
+            animator.duration = duration.toLong()
+            animator.startDelay = 0
             animator.interpolator = LinearInterpolator()
             animator.addUpdateListener { valueAnimator: ValueAnimator ->
-                val value = valueAnimator.getAnimatedValue() as Float
+                val value = valueAnimator.animatedValue as Float
                 view.layoutParams.height = initialHeight - (initialHeight * value).toInt()
                 view.requestLayout()
             }

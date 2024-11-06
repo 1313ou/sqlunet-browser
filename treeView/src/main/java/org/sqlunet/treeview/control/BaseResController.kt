@@ -29,7 +29,7 @@ abstract class BaseResController(breakExpand: Boolean) : Controller(breakExpand)
         val inflater = LayoutInflater.from(context)
         @SuppressLint("InflateParams") val view = inflater.inflate(layoutResId, null, false)!!
         if (minHeight > 0) {
-            view.setMinimumHeight(minHeight)
+            view.minimumHeight = minHeight
         }
         // text
         val valueView = view.findViewById<TextView>(R.id.node_value)

@@ -15,11 +15,7 @@ class DataSource(path: String) : AutoCloseable {
     /**
      * Connection as database
      */
-    val connection: SQLiteDatabase
-
-    init {
-        connection = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY)
-    }
+    val connection: SQLiteDatabase = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY)
 
     /**
      * Close

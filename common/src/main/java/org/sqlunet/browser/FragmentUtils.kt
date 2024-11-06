@@ -67,7 +67,7 @@ object FragmentUtils {
                 .append(' ')
                 .append(entry.id)
                 .append(' ')
-                .append(entry.javaClass.getName())
+                .append(entry.javaClass.name)
         }
         return sb.toString()
     }

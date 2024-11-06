@@ -17,9 +17,5 @@ class VnSynset(query: VnClassQueryFromWordAndPos) : BasicSynset(query.synsetId, 
     /**
      * `flag` is a selection flag used by some queries
      */
-    val flag: Boolean
-
-    init {
-        flag = query.synsetSpecific
-    }
+    val flag: Boolean = query.synsetSpecific
 }

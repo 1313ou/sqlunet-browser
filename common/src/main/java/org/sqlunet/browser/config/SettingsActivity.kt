@@ -62,7 +62,7 @@ class SettingsActivity : BaseSettingsActivity() {
             detailPreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance())
             detailPreference.onPreferenceChangeListener = listener
             val sqlBufferCapacityPreference = preferenceManager.findPreference<EditTextPreference>(BaseProvider.CircularBuffer.PREF_SQL_BUFFER_CAPACITY)!!
-            sqlBufferCapacityPreference.setOnBindEditTextListener { editText: EditText -> editText.setInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED) }
+            sqlBufferCapacityPreference.setOnBindEditTextListener { editText: EditText -> editText.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED }
             sqlBufferCapacityPreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance())
             sqlBufferCapacityPreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener setOnPreferenceChangeListener@{ _: Preference?, value: Any? ->
                 val sqlBufferCapacity = value as String?

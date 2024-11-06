@@ -439,6 +439,7 @@ abstract class BaseDownloadFragment : Fragment() {
      *
      * @noinspection EmptyMethod
      */
+    @Suppress("EmptyMethod")
     protected abstract fun cleanup()
 
     // S T A T U S
@@ -638,6 +639,7 @@ abstract class BaseDownloadFragment : Fragment() {
     /**
      * Event sink for download events fired by downloader
      */
+    @Suppress("EmptyMethod")
     @CallSuper
     open fun onDownloadStart() {
     }

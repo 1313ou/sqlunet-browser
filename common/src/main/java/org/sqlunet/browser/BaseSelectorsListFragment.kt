@@ -64,7 +64,7 @@ abstract class BaseSelectorsListFragment : LoggingFragment(), OnItemClickListene
         listView = view.findViewById(android.R.id.list)
 
         // bind to adapter
-        listView!!.setChoiceMode(if (activateOnItemClick) AbsListView.CHOICE_MODE_SINGLE else AbsListView.CHOICE_MODE_NONE)
+        listView!!.choiceMode = if (activateOnItemClick) AbsListView.CHOICE_MODE_SINGLE else AbsListView.CHOICE_MODE_NONE
         listView!!.onItemClickListener = this
 
         // data view models
@@ -79,7 +79,7 @@ abstract class BaseSelectorsListFragment : LoggingFragment(), OnItemClickListene
         Log.d(TAG, "Make adapter. Lifecycle: onStart()")
         adapter = makeAdapter()
         Log.d(TAG, "Set listview adapter. Lifecycle: onStart()")
-        listView!!.setAdapter(adapter)
+        listView!!.adapter = adapter
 
         // load data
         Log.d(TAG, "Load data. Lifecycle: onStart()")
@@ -90,7 +90,7 @@ abstract class BaseSelectorsListFragment : LoggingFragment(), OnItemClickListene
         super.onStop()
 
         Log.d(TAG, "Nullify listview adapter. Lifecycle: onStop()")
-        listView!!.setAdapter(null)
+        listView!!.adapter = null
         // the cursor will be saved along with fragment state if any
         Log.d(TAG, "Nullify adapter cursor but do not close cursor. Lifecycle: onStop()")
         adapter!!.swapCursor(null)

@@ -492,7 +492,7 @@ class FrameNetImplementation(private val queryFromFnWord: Boolean) : FrameNetInt
          * @param lexUnits lexunits
          * @param doFrame  whether to include frame data
          */
-        private fun makeSelector(doc: Document, parent: Node, lexUnits: Iterable<FnLexUnit?>, doFrame: Boolean) {
+        private fun makeSelector(doc: Document, parent: Node, lexUnits: Iterable<FnLexUnit?>, @Suppress("SameParameterValue") doFrame: Boolean) {
             // lexunits
             for (lexUnit in lexUnits) {
                 // lexunit

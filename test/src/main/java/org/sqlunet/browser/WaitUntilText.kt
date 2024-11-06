@@ -35,10 +35,10 @@ class WaitUntilText(
             if (view !is TextView) {
                 throw PerformException.Builder().withActionDescription(this.name).withViewDescription(HumanReadables.describe(view)).withCause(ClassCastException()).build()
             }
-            val content = view.getText()
+            val content = view.text
             val text = content.toString()
             val condition = not != (text == target)
-            view.isShown() && condition
+            view.isShown && condition
         }
         if (idle && resourceCallback != null) {
             resourceCallback!!.onTransitionToIdle()

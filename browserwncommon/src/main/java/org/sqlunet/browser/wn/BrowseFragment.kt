@@ -291,7 +291,7 @@ class BrowseFragment : BaseSearchFragment() {
 
             SelectorViewMode.WEB -> intent = Intent(requireContext(), WebActivity::class.java)
         }
-        intent.setAction(ProviderArgs.ACTION_QUERY)
+        intent.action = ProviderArgs.ACTION_QUERY
         return intent
     }
 
@@ -311,7 +311,7 @@ class BrowseFragment : BaseSearchFragment() {
             DetailViewMode.VIEW -> Intent(context, intentClass)
             DetailViewMode.WEB -> Intent(requireContext(), WebActivity::class.java)
         }
-        intent.setAction(ProviderArgs.ACTION_QUERY)
+        intent.action = ProviderArgs.ACTION_QUERY
         return intent
     }
 

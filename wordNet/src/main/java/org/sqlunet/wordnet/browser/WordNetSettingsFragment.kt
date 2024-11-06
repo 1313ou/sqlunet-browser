@@ -18,6 +18,6 @@ class WordNetSettingsFragment : PreferenceFragmentCompat() {
 
         // does not respond to XML attr inputType
         val recursePreference = preferenceManager.findPreference<EditTextPreference>(Settings.PREF_RELATION_RECURSE)!!
-        recursePreference.setOnBindEditTextListener { editText: EditText -> editText.setInputType(InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED) }
+        recursePreference.setOnBindEditTextListener { editText: EditText -> editText.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_SIGNED }
     }
 }

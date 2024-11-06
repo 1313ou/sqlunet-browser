@@ -126,8 +126,8 @@ class SubtreeView : LinearLayout {
         // node container for children
         val containerContext = ContextThemeWrapper(context, containerStyle)
         val nodeChildrenContainer = LinearLayout(containerContext, null, containerStyle)
-        nodeChildrenContainer.setLayoutParams(LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
-        nodeChildrenContainer.setId(R.id.node_children)
+        nodeChildrenContainer.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        nodeChildrenContainer.id = R.id.node_children
         nodeChildrenContainer.orientation = VERTICAL
         nodeChildrenContainer.visibility = GONE
         if (treeIndent != -1) {
@@ -143,7 +143,7 @@ class SubtreeView : LinearLayout {
      * @param nodeView node view
      */
     fun insertNodeView(nodeView: View) {
-        nodeView.setId(R.id.node_label)
+        nodeView.id = R.id.node_label
         addView(nodeView, 0, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
     }
 

@@ -101,7 +101,7 @@ class TextFragment : BaseListFragment() {
                 }
 
                 else -> {
-                    throw IllegalStateException(view.javaClass.getName() + " is not a view that can be bound by this SimpleCursorAdapter")
+                    throw IllegalStateException(view.javaClass.name + " is not a view that can be bound by this SimpleCursorAdapter")
                 }
             }
         }
@@ -179,7 +179,7 @@ class TextFragment : BaseListFragment() {
             }
         }
         targetIntent!!.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
-        targetIntent.setAction(ProviderArgs.ACTION_QUERY)
+        targetIntent.action = ProviderArgs.ACTION_QUERY
 
         // start
         startActivity(targetIntent)

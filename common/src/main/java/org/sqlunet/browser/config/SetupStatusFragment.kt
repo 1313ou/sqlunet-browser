@@ -176,16 +176,16 @@ open class SetupStatusFragment : Fragment(), Updatable {
             if (existsDb && existsTables) {
                 imageDb!!.setImageDrawable(okDrawable)
                 ImageViewCompat.setImageTintMode(imageDb!!, PorterDuff.Mode.SRC_IN)
-                buttonDb!!.setVisibility(View.GONE)
+                buttonDb!!.visibility = View.GONE
                 val existsIndexes = status and Status.EXISTS_INDEXES != 0
                 imageIndexes!!.setImageDrawable(if (existsIndexes) okDrawable else failDrawable)
                 ImageViewCompat.setImageTintMode(imageIndexes!!, if (existsIndexes) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
-                buttonIndexes!!.setVisibility(if (existsIndexes) View.GONE else View.VISIBLE)
+                buttonIndexes!!.visibility = if (existsIndexes) View.GONE else View.VISIBLE
             } else {
                 imageDb!!.setImageDrawable(failDrawable)
                 ImageViewCompat.setImageTintMode(imageDb!!, PorterDuff.Mode.DST)
-                buttonDb!!.setVisibility(View.VISIBLE)
-                buttonIndexes!!.setVisibility(View.GONE)
+                buttonDb!!.visibility = View.VISIBLE
+                buttonIndexes!!.visibility = View.GONE
                 imageIndexes!!.setImageResource(R.drawable.ic_unknown)
             }
         }

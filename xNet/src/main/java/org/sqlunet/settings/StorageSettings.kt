@@ -57,6 +57,7 @@ object StorageSettings {
      *
      * @return database path
      */
+    @Suppress("SameReturnValue")
     fun getDatabaseName(): String {
         return Storage.DBFILE
     }
