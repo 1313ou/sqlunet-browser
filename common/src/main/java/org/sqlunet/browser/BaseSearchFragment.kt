@@ -341,6 +341,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     /**
      * Search type position, obtained by peeking at spinner state
      */
+    @Suppress("unused")
     protected val spinnerSearchModePosition: Int
         get() {
             if (spinner != null) {

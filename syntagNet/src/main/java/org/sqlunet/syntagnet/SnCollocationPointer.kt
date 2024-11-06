@@ -34,6 +34,7 @@ class SnCollocationPointer : Pointer {
 
     companion object {
 
+        @Suppress("unused")
         @JvmField
         val CREATOR = object : Parcelable.Creator<SnCollocationPointer> {
 

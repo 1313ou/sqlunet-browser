@@ -62,6 +62,7 @@ class WaitUntilText(
             }
         }
 
+        @Suppress("unused")
         fun changesTo(@IdRes viewId: Int, target: String) {
             waitTextView(ViewMatchers.withId(viewId), target, false)
         }

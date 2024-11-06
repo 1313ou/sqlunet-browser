@@ -62,6 +62,7 @@ object VnSettings : Settings() {
      * @param context context
      * @return preferred enable VerbNet flag
      */
+    @Suppress("unused")
     fun getVerbNetPref(context: Context): Boolean {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getBoolean(PREF_ENABLE_VERBNET, true)
@@ -73,6 +74,7 @@ object VnSettings : Settings() {
      * @param context context
      * @return preferred enable PropBank flag
      */
+    @Suppress("unused")
     fun getPropBankPref(context: Context): Boolean {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getBoolean(PREF_ENABLE_PROPBANK, true)
@@ -84,6 +86,7 @@ object VnSettings : Settings() {
      * @param context context
      * @return preferred enable WordNet flag
      */
+    @Suppress("unused")
     fun getWordNetPref(context: Context): Boolean {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getBoolean(PREF_ENABLE_WORDNET, true)
@@ -139,6 +142,7 @@ object VnSettings : Settings() {
          *
          * @param context context
          */
+        @Suppress("unused")
         fun setPref(context: Context) {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             sharedPref.edit().putString(PREF_SELECTOR, name).apply()

@@ -15,6 +15,7 @@ object FrameNetFrameProcessor : Preprocessor() {
     /**
      * Replacers for preprocessor
      */
+    @Suppress("unused")
     private val replacers = arrayOf(
         "<fex name=[\"']([^\"']+)[\"']>([^<]*)</fex>", "<fex>$2</fex> <xfen>[$1]</xfen>"
     )

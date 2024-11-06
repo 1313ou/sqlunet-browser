@@ -23,6 +23,7 @@ internal class VnFrameQueryFromClassId(connection: SQLiteDatabase, classId: Long
     /**
      * Frame id from the result set
      */
+    @Suppress("unused")
     val frameId: Long
         get() = cursor!!.getLong(0)
 

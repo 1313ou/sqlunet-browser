@@ -32,6 +32,7 @@ class VnClassPointer : Pointer {
 
     companion object {
 
+        @Suppress("unused")
         @JvmField
         val CREATOR = object : Parcelable.Creator<VnClassPointer> {
 

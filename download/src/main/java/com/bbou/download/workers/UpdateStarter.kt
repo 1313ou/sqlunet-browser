@@ -19,6 +19,7 @@ import java.util.Date
 /**
  * Update launcher
  */
+@Suppress("unused")
 object UpdateStarter {
 
     /**

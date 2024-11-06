@@ -114,6 +114,7 @@ class ManagerProvider : BaseProvider() {
          * @param context context
          * @return collection of tables
          */
+        @Suppress("unused")
         fun getTables(context: Context): Collection<String> {
             val tables: MutableCollection<String> = ArrayList()
             val uri = Uri.parse(makeUri(TablesAndIndices.URI))

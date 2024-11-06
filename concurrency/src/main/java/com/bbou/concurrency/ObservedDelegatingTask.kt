@@ -21,6 +21,7 @@ class ObservedDelegatingTask<Params, Progress : Pair<Number, Number>, Result>(pr
         this.observer = observer
     }
 
+    @Suppress("unused")
     private val task: Task<Params, Progress, Result>
         get() = this
 

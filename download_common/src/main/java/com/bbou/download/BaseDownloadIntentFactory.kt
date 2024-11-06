@@ -20,6 +20,7 @@ import com.bbou.download.preference.Settings
 /**
  * Download intent factory
  */
+@Suppress("unused")
 object BaseDownloadIntentFactory {
 
     /**
@@ -30,6 +31,7 @@ object BaseDownloadIntentFactory {
      * @param dbSource source
      * @return
      */
+    @Suppress("unused")
     fun makeIntentPlainDownload(context: Context, activityClass: Class<out Activity>, dbSource: String?): Intent {
         val dbDest = Settings.getDownloadTarget(context)
         val intent = Intent(context, activityClass).apply {
@@ -49,6 +51,7 @@ object BaseDownloadIntentFactory {
      * @param dbZipSource zip source
      * @return
      */
+    @Suppress("unused")
     fun makeIntentZipDownload(context: Context, activityClass: Class<out Activity>, dbZipSource: String?): Intent {
         val dbZipEntry: String? = null
         val dbDestDir = Settings.getDatapackDir(context)
@@ -75,6 +78,7 @@ object BaseDownloadIntentFactory {
      * @param dbZipDest zip destination
      * @return intent
      */
+    @Suppress("unused")
     fun makeIntentDownloadThenDeploy(context: Context, activityClass: Class<out Activity>, dbZipSource: String?, dbZipDest: String?): Intent {
         val dbDir = Settings.getDatapackDir(context)
         val dbRenameFrom = Settings.getDatapackName(context)

@@ -23,6 +23,7 @@ internal class VnRoleQueryFromClassId(connection: SQLiteDatabase, classId: Long)
     /**
      * Role id from the result set
      */
+    @Suppress("unused")
     val roleId: Long
         get() = cursor!!.getLong(0)
 
@@ -31,6 +32,7 @@ internal class VnRoleQueryFromClassId(connection: SQLiteDatabase, classId: Long)
      *
      * @return the role type id from the result set
      */
+    @Suppress("unused")
     val roleTypeId: Long
         get() = cursor!!.getLong(1)
 

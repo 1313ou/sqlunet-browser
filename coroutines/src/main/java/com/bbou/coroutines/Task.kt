@@ -37,6 +37,7 @@ abstract class Task<Params, Progress, Result> : BaseTask<Params, Result>(), Prog
     /**
      * Job (prejob + worker job)
      */
+    @Suppress("unused")
     private lateinit var job: Job
 
     /**

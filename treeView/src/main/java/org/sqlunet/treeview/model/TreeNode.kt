@@ -273,6 +273,7 @@ class TreeNode(
     /**
      * Whether node is first child
      */
+    @Suppress("unused")
     val isFirstChild: Boolean
         get() = if (isNotRoot) {
             parent!!.children[0].id == id
@@ -281,6 +282,7 @@ class TreeNode(
     /**
      * Whether node is last child
      */
+    @Suppress("unused")
     val isLastChild: Boolean
         get() {
             if (isNotRoot) {
@@ -299,6 +301,7 @@ class TreeNode(
      *
      * @return whether this node is selected
      */
+    @Suppress("unused")
     fun isSelected(): Boolean {
         return isSelectable && selected
     }

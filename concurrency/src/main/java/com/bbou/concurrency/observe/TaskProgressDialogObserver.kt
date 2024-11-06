@@ -18,6 +18,7 @@ import com.bbou.concurrency.observe.Formatter.formatAsString
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
+@Suppress("unused")
 class TaskProgressDialogObserver<Progress : Pair<Number, Number>>(activity: Activity, title: CharSequence, message: CharSequence) : TaskObserver<Progress> {
 
     private var task: Cancelable? = null

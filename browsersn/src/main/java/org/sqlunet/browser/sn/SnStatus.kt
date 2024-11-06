@@ -57,6 +57,7 @@ internal object SnStatus : Status() {
         return 0
     }
 
+    @Suppress("unused")
     fun toString(status: Int): CharSequence {
         val sb: Editable = SpannableStringBuilder()
         sb.append(Integer.toHexString(status))

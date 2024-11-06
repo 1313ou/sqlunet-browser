@@ -37,14 +37,17 @@ object Factories {
 
     val casedFactory = Spanner.SpanFactory { _: Long -> spans(Colors.casedBackColor, Colors.casedForeColor, StyleSpan(Typeface.BOLD)) }
 
+    @Suppress("unused")
     val pronunciationFactory = Spanner.SpanFactory { _: Long -> spans(Colors.pronunciationBackColor, Colors.pronunciationForeColor) }
 
     val posFactory = Spanner.SpanFactory { _: Long -> spans(Colors.posBackColor, Colors.posForeColor, StyleSpan(Typeface.ITALIC)) }
 
     val boldFactory = Spanner.SpanFactory { _: Long -> StyleSpan(Typeface.BOLD) }
 
+    @Suppress("unused")
     val italicFactory = Spanner.SpanFactory { _: Long -> StyleSpan(Typeface.ITALIC) }
 
+    @Suppress("unused")
     val hiddenFactory = Spanner.SpanFactory { _: Long -> HiddenSpan() }
 
     /**

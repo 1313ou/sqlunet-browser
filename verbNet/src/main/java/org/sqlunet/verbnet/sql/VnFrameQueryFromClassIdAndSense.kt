@@ -31,7 +31,8 @@ internal class VnFrameQueryFromClassIdAndSense(connection: SQLiteDatabase, class
     /**
      * Frame id from the result set
      */
-    val frameId: Long
+    @Suppress("unused")
+    val rameId: Long
         get() = cursor!!.getLong(0)
 
     /**
@@ -85,6 +86,7 @@ internal class VnFrameQueryFromClassIdAndSense(connection: SQLiteDatabase, class
     /**
      * Synset-specific flag from the result set
      */
+    @Suppress("unused")
     val synsetSpecific: Boolean
         get() =
             cursor!!.getInt(9) == 0

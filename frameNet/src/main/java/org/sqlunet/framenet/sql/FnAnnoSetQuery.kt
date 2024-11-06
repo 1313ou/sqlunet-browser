@@ -36,6 +36,7 @@ internal class FnAnnoSetQuery(connection: SQLiteDatabase, annoSetId: Long) : DBQ
     /**
      * AnnoSet ids from the result set
      */
+    @Suppress("unused")
     val annoSetIds: LongArray
         get() = toIds(cursor!!.getString(2))
 

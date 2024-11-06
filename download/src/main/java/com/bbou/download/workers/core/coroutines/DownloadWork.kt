@@ -256,6 +256,7 @@ open class DownloadWork {
          * @param context context
          * @param uuid    work uuid
          */
+        @Suppress("unused")
         fun stopWork(context: Context, uuid: UUID) {
             WorkManager.getInstance(context).cancelWorkById(uuid)
         }

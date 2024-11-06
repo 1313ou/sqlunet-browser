@@ -106,6 +106,7 @@ class CollocationSelectorPointer : PosSelectorPointer, Has2SynsetId, Has2WordId,
 
     companion object {
 
+        @Suppress("unused")
         @JvmField
         val CREATOR = object : Parcelable.Creator<CollocationSelectorPointer> {
 

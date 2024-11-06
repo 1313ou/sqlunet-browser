@@ -766,6 +766,7 @@ class TreeViewer(
 
     // S T A T E
 
+    @Suppress("unused")
     val saveState: String
         /**
          * Get save state

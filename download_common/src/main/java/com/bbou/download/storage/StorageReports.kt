@@ -29,6 +29,7 @@ object StorageReports {
      * @param context context
      * @return pair of names and values
      */
+    @Suppress("unused")
     fun getStyledDownloadNamesValues(context: Context): Pair<Array<out CharSequence>, Array<String>> {
         val names: MutableList<CharSequence> = ArrayList()
         val values: MutableList<String> = ArrayList()
@@ -120,6 +121,7 @@ object StorageReports {
      * @param context context
      * @return pair of names (user-friendly styled display) and values (dir absolute path)
      */
+    @Suppress("unused")
     fun getStyledStorageDirectoriesNamesValues(context: Context): Pair<Array<out CharSequence>, Array<String>> {
         val names: MutableList<CharSequence> = ArrayList()
         val values: MutableList<String> = ArrayList()
@@ -169,6 +171,7 @@ object StorageReports {
      * @param context context
      * @return report
      */
+    @Suppress("unused")
     fun reportStorageDirectories(context: Context): CharSequence {
         val sb = StringBuilder()
         var i = 1
@@ -193,6 +196,7 @@ object StorageReports {
      * @param context context
      * @return report
      */
+    @Suppress("unused")
     fun reportExternalStorage(context: Context): CharSequence {
         val storages: Map<FormatUtils.StorageType, Array<File>> = StorageUtils.getExternalStorages(context)
         val physical = storages[FormatUtils.StorageType.PRIMARY_PHYSICAL]
@@ -254,6 +258,7 @@ object StorageReports {
      * @param context context
      * @return directories report
      */
+    @Suppress("unused")
     fun reportStyledDirs(context: Context): CharSequence {
         val sb = SpannableStringBuilder()
         appendStyledDir(sb, "files dir", context.filesDir)
@@ -287,6 +292,7 @@ object StorageReports {
      * @param context context
      * @return report
      */
+    @Suppress("unused")
     fun reportStyledStorageDirectories(context: Context): CharSequence {
         val sb = SpannableStringBuilder()
         val dirs: List<StorageUtils.StorageDirectory> = StorageUtils.getSortedStorageDirectories(context)
@@ -317,6 +323,7 @@ object StorageReports {
      * @param context context
      * @return report
      */
+    @Suppress("unused")
     fun reportStyledExternalStorage(context: Context): CharSequence {
         val storages: Map<FormatUtils.StorageType, Array<File>> = StorageUtils.getExternalStorages(context)
         val physical = storages[FormatUtils.StorageType.PRIMARY_PHYSICAL]
@@ -396,6 +403,7 @@ object StorageReports {
      * @param directories name-value pairs
      * @return styled report
      */
+    @Suppress("unused")
     @SafeVarargs
     fun namesValuesToReportStyled(vararg directories: Pair<Array<out CharSequence>, Array<String>>): CharSequence {
         val sb = SpannableStringBuilder()

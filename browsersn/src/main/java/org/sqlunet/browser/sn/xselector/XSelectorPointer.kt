@@ -166,6 +166,7 @@ class XSelectorPointer : SelectorPointer, HasXId {
         private const val WORDNETSOURCE = 0x00001
         private const val SYNTAGNETSOURCE = 0x00100
 
+        @Suppress("unused")
         @JvmField
         val CREATOR = object : Parcelable.Creator<XSelectorPointer> {
 

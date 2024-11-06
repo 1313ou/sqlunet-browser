@@ -316,6 +316,7 @@ open class Settings {
          * @param context context
          * @return preferred download mode
          */
+        @Suppress("unused")
         fun getDownloadModePref(context: Context): String? {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             return sharedPref.getString(PREF_DOWNLOAD_MODE, null)
@@ -327,6 +328,7 @@ open class Settings {
          * @param context context
          * @return preferred cache
          */
+        @Suppress("unused")
         fun getCachePref(context: Context): String? {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             return sharedPref.getString(PREF_CACHE, null)
@@ -343,6 +345,7 @@ open class Settings {
          * @param context context
          * @return timestamp
          */
+        @Suppress("unused")
         fun getDbDate(context: Context): Long {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             return sharedPref.getLong(PREF_DB_DATE, -1)
@@ -354,6 +357,7 @@ open class Settings {
          * @param context   context
          * @param timestamp timestamp
          */
+        @Suppress("unused")
         fun setDbDate(context: Context, timestamp: Long) {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             sharedPref.edit().putLong(PREF_DB_DATE, timestamp).apply()
@@ -365,6 +369,7 @@ open class Settings {
          * @param context context
          * @return size
          */
+        @Suppress("unused")
         fun getDbSize(context: Context): Long {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             return sharedPref.getLong(PREF_DB_SIZE, -1)
@@ -376,6 +381,7 @@ open class Settings {
          * @param context context
          * @param size    size
          */
+        @Suppress("unused")
         fun setDbSize(context: Context, size: Long) {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             sharedPref.edit().putLong(PREF_DB_SIZE, size).apply()

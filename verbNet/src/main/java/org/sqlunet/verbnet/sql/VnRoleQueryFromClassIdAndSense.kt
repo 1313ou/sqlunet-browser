@@ -31,13 +31,14 @@ internal class VnRoleQueryFromClassIdAndSense(connection: SQLiteDatabase, classI
     /**
      * Role id from the result set
      */
+    @Suppress("unused")
     val roleId: Long
         get() = cursor!!.getLong(0)
 
     /**
      * Role type id from the result set
-
      */
+    @Suppress("unused")
     val roleTypeId: Long
         get() = cursor!!.getLong(1)
 
@@ -62,6 +63,7 @@ internal class VnRoleQueryFromClassIdAndSense(connection: SQLiteDatabase, classI
     /**
      * Synset-specific flag from the result set
      */
+    @Suppress("unused")
     val synsetSpecific: Boolean
         get() = cursor!!.getInt(5) == 0
 

@@ -104,7 +104,8 @@ class BNCProvider : BaseProvider() {
          *
          * @param context context
          */
-        fun close(context: Context) {
+        @Suppress("unused")
+        fun lose(context: Context) {
             val uri = Uri.parse(SCHEME + AUTHORITY)
             closeProvider(context, uri)
         }

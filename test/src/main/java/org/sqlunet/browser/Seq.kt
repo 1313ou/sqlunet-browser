@@ -40,6 +40,7 @@ object Seq {
      * @param editTextViewId EditTextView id
      * @param text           text
      */
+    @Suppress("unused")
     fun doType(@IdRes editTextViewId: Int, text: String) {
         Espresso.onView(ViewMatchers.withId(editTextViewId))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
@@ -88,6 +89,7 @@ object Seq {
      * @param menuId   Menu id
      * @param menuText Text in menu item to click
      */
+    @Suppress("unused")
     fun doMenu(@IdRes menuId: Int, @StringRes menuText: Int) {
         Espresso.onView(Matchers.withMenuIdOrText(menuId, menuText)).perform(ViewActions.click())
     }
@@ -97,6 +99,7 @@ object Seq {
      *
      * @param menuText Text in menu item to click
      */
+    @Suppress("unused")
     fun doOptionsMenu(@StringRes menuText: Int) {
         Espresso.openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().targetContext)
         Espresso.onView(ViewMatchers.withText(menuText)).perform(ViewActions.click())
@@ -188,6 +191,7 @@ object Seq {
      *
      * @param viewId View id
      */
+    @Suppress("unused")
     fun doSwipeUp(@IdRes viewId: Int) {
         Espresso.onView(ViewMatchers.withId(viewId))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))

@@ -48,6 +48,7 @@ internal class StringSavedState : Preference.BaseSavedState {
 
     companion object {
 
+        @Suppress("unused")
         @JvmField
         val CREATOR = object : Parcelable.Creator<StringSavedState> {
 

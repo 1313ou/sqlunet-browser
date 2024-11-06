@@ -8,7 +8,6 @@ plugins {
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
-private val vTargetSdk by lazy { rootProject.extra["targetSdk"] as Int }
 private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
 private val lifecycleVersion by lazy { rootProject.extra["lifecycleVersion"] as String }
 private val annotationVersion by lazy { rootProject.extra["annotationVersion"] as String }

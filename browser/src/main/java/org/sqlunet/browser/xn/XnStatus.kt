@@ -88,11 +88,13 @@ internal object XnStatus : Status() {
      * @param context context
      * @return true if app is ready to run
      */
+    @Suppress("unused")
     fun canRun(context: Context): Boolean {
         val status = status(context)
         return status and (EXISTS or EXISTS_TABLES or EXISTS_INDEXES or EXISTS_PREDICATEMATRIX) == EXISTS or EXISTS_TABLES or EXISTS_INDEXES or EXISTS_PREDICATEMATRIX
     }
 
+    @Suppress("unused")
     fun toString(status: Int): CharSequence {
         val sb: Editable = SpannableStringBuilder()
         sb.append(Integer.toHexString(status))

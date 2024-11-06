@@ -33,6 +33,7 @@ object ExecuteAsync {
      * @param runnable runnable
      * @return job
      */
+    @Suppress("unused")
     suspend fun execute(runnable: Runnable): Job {
         return coroutineScope {
             return@coroutineScope execute(runnable)
@@ -44,6 +45,7 @@ object ExecuteAsync {
      *
      * @param runnable runnable
      */
+    @Suppress("unused")
     suspend fun executeAndWait(runnable: Runnable) {
         coroutineScope {
             val job = execute(runnable)
@@ -58,6 +60,7 @@ object ExecuteAsync {
      *
      * @return CoroutineScope
      */
+    @Suppress("unused")
     fun CoroutineScope(): CoroutineScope = CoroutineScope(Job())
 
     /**

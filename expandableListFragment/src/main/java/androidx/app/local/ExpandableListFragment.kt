@@ -209,6 +209,7 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
     /**
      * Position of the currently selected list item.
      */
+    @Suppress("unused")
     val selectedItemPosition: Int
         get() {
             ensureList()
@@ -219,6 +220,7 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
      * Position (in packed position representation) of the currently selected group or child. Use [ExpandableListView.getPackedPositionType],
      * [ExpandableListView.getPackedPositionGroup], and [ExpandableListView.getPackedPositionChild] to unpack the returned packed position.
      */
+    @Suppress("unused")
     val selectedPosition: Long
         get() {
             return mExpandableList!!.selectedPosition
@@ -227,6 +229,7 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
     /**
      * Cursor row ID of the currently selected list item.
      */
+    @Suppress("unused")
     val selectedItemId: Long
         get() {
             ensureList()
@@ -236,6 +239,7 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
     /**
      * ID of the currently selected group or child.
      */
+    @Suppress("unused")
     val selectedId: Long
         get() {
             return mExpandableList!!.selectedId

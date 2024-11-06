@@ -15,6 +15,7 @@ object VerbNetSemanticsProcessor : Preprocessor() {
     /**
      * Replacers
      */
+    @Suppress("unused")
     private val replacers = arrayOf<String>(
         // "([^\\(\n]*)\\((.*)\\)","<pred>$1</pred> ($2)",
         // "(event:E|(?:start|end|result)\\(E\\))","<event>$1</event>"

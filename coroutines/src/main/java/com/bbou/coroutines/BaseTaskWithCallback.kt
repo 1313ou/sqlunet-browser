@@ -24,6 +24,7 @@ interface ResultCallback<Result> {
 /**
  * With no consumer, the standard callbacks
  */
+@Suppress("unused")
 abstract class BaseTaskWithCallback<Params, Result> : BaseTask<Params, Result>(), ResultCallback<Result> {
 
     // API extension
@@ -42,6 +43,7 @@ abstract class BaseTaskWithCallback<Params, Result> : BaseTask<Params, Result>()
      * @param params parameters for job
      * @return result
      */
+    @Suppress("unused")
     suspend fun runAndCallback(dispatcher: CoroutineDispatcher, params: Params): Result {
         return runAndConsumeResult(
             dispatcher,
