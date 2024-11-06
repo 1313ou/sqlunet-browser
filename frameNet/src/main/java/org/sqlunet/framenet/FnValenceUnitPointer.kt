@@ -30,14 +30,18 @@ class FnValenceUnitPointer : Pointer {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<FnValenceUnitPointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): FnValenceUnitPointer {
-            return FnValenceUnitPointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<FnValenceUnitPointer> {
 
-        override fun newArray(size: Int): Array<FnValenceUnitPointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): FnValenceUnitPointer {
+                return FnValenceUnitPointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<FnValenceUnitPointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

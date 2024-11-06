@@ -30,14 +30,18 @@ class FnFramePointer : Pointer {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<FnFramePointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): FnFramePointer {
-            return FnFramePointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<FnFramePointer> {
 
-        override fun newArray(size: Int): Array<FnFramePointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): FnFramePointer {
+                return FnFramePointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<FnFramePointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

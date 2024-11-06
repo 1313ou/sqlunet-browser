@@ -161,7 +161,7 @@ class XSelectorPointer : SelectorPointer, HasXId {
         return result
     }
 
-    companion object CREATOR : Parcelable.Creator<XSelectorPointer> {
+    companion object {
 
         private const val WORDNETSOURCE = 0x00001
         private const val VERBNETSOURCE = 0x00002
@@ -203,12 +203,16 @@ class XSelectorPointer : SelectorPointer, HasXId {
             return mask
         }
 
-        override fun createFromParcel(parcel: Parcel): XSelectorPointer {
-            return XSelectorPointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<XSelectorPointer> {
 
-        override fun newArray(size: Int): Array<XSelectorPointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): XSelectorPointer {
+                return XSelectorPointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<XSelectorPointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

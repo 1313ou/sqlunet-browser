@@ -30,14 +30,18 @@ class FnPatternPointer : Pointer {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<FnPatternPointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): FnPatternPointer {
-            return FnPatternPointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<FnPatternPointer> {
 
-        override fun newArray(size: Int): Array<FnPatternPointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): FnPatternPointer {
+                return FnPatternPointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<FnPatternPointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

@@ -30,14 +30,18 @@ class VnClassPointer : Pointer {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<VnClassPointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): VnClassPointer {
-            return VnClassPointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<VnClassPointer> {
 
-        override fun newArray(size: Int): Array<VnClassPointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): VnClassPointer {
+                return VnClassPointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<VnClassPointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

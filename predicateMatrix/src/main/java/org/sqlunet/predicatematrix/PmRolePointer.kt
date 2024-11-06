@@ -32,14 +32,18 @@ class PmRolePointer : Pointer {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<PmRolePointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): PmRolePointer {
-            return PmRolePointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<PmRolePointer> {
 
-        override fun newArray(size: Int): Array<PmRolePointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): PmRolePointer {
+                return PmRolePointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<PmRolePointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

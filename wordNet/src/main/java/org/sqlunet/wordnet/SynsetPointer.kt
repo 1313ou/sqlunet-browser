@@ -39,14 +39,18 @@ open class SynsetPointer : Pointer, HasSynsetId {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<SynsetPointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): SynsetPointer {
-            return SynsetPointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<SynsetPointer> {
 
-        override fun newArray(size: Int): Array<SynsetPointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): SynsetPointer {
+                return SynsetPointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<SynsetPointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

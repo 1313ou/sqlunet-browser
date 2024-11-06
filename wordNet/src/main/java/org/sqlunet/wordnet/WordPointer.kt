@@ -39,14 +39,18 @@ class WordPointer : Pointer, HasWordId {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<WordPointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): WordPointer {
-            return WordPointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<WordPointer> {
 
-        override fun newArray(size: Int): Array<WordPointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): WordPointer {
+                return WordPointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<WordPointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

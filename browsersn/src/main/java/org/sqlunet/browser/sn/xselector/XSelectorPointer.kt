@@ -161,34 +161,38 @@ class XSelectorPointer : SelectorPointer, HasXId {
         return result
     }
 
-    companion object CREATOR : Parcelable.Creator<XSelectorPointer> {
+    companion object {
 
         private const val WORDNETSOURCE = 0x00001
         private const val SYNTAGNETSOURCE = 0x00100
 
-        /**
-         * Set x sources
-         *
-         * @param xSources x sources
-         * @return mask
-         */
-        fun getMask(xSources: String): Long {
-            var mask: Long = 0
-            if (xSources.contains("wn")) {
-                mask = mask or WORDNETSOURCE.toLong()
-            }
-            if (xSources.contains("sn")) {
-                mask = mask or SYNTAGNETSOURCE.toLong()
-            }
-            return mask
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<XSelectorPointer> {
 
-        override fun createFromParcel(parcel: Parcel): XSelectorPointer {
-            return XSelectorPointer(parcel)
-        }
+            /**
+             * Set x sources
+             *
+             * @param xSources x sources
+             * @return mask
+             */
+            fun getMask(xSources: String): Long {
+                var mask: Long = 0
+                if (xSources.contains("wn")) {
+                    mask = mask or WORDNETSOURCE.toLong()
+                }
+                if (xSources.contains("sn")) {
+                    mask = mask or SYNTAGNETSOURCE.toLong()
+                }
+                return mask
+            }
 
-        override fun newArray(size: Int): Array<XSelectorPointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): XSelectorPointer {
+                return XSelectorPointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<XSelectorPointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

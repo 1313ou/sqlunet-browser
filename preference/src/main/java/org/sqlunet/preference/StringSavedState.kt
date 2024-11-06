@@ -46,14 +46,18 @@ internal class StringSavedState : Preference.BaseSavedState {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<StringSavedState> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): StringSavedState {
-            return StringSavedState(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<StringSavedState> {
 
-        override fun newArray(size: Int): Array<StringSavedState?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): StringSavedState {
+                return StringSavedState(parcel)
+            }
+
+            override fun newArray(size: Int): Array<StringSavedState?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

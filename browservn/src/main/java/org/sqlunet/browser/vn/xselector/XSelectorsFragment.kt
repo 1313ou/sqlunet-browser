@@ -23,7 +23,7 @@ import org.sqlunet.browser.BaseSelectorsExpandableListFragment
 import org.sqlunet.browser.SqlunetViewModel
 import org.sqlunet.browser.vn.R
 import org.sqlunet.browser.vn.VnSettings
-import org.sqlunet.browser.vn.xselector.XSelectorPointer.CREATOR.getMask
+import org.sqlunet.browser.vn.xselector.XSelectorPointer.Companion.getMask
 import org.sqlunet.loaders.Queries.preparePbSelectVn
 import org.sqlunet.loaders.Queries.prepareVnXSelectVn
 import org.sqlunet.loaders.Queries.prepareWordXSelectVn

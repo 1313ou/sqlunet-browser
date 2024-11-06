@@ -104,14 +104,18 @@ class CollocationSelectorPointer : PosSelectorPointer, Has2SynsetId, Has2WordId,
         return super.toString() + ' ' + "word2=" + word2Id + ' ' + "synset2=" + synset2Id + ' ' + "pos2=" + pos2 + ' ' + "target=" + target
     }
 
-    companion object CREATOR : Parcelable.Creator<CollocationSelectorPointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): CollocationSelectorPointer {
-            return CollocationSelectorPointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<CollocationSelectorPointer> {
 
-        override fun newArray(size: Int): Array<CollocationSelectorPointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): CollocationSelectorPointer {
+                return CollocationSelectorPointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<CollocationSelectorPointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

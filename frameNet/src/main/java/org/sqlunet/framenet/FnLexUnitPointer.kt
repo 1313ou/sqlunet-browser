@@ -30,14 +30,18 @@ class FnLexUnitPointer : Pointer {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<FnLexUnitPointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): FnLexUnitPointer {
-            return FnLexUnitPointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<FnLexUnitPointer> {
 
-        override fun newArray(size: Int): Array<FnLexUnitPointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): FnLexUnitPointer {
+                return FnLexUnitPointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<FnLexUnitPointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

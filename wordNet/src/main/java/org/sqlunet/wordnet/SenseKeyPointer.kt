@@ -49,14 +49,18 @@ class SenseKeyPointer : Parcelable, HasSenseKey {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<SenseKeyPointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): SenseKeyPointer {
-            return SenseKeyPointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<SenseKeyPointer> {
 
-        override fun newArray(size: Int): Array<SenseKeyPointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): SenseKeyPointer {
+                return SenseKeyPointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<SenseKeyPointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

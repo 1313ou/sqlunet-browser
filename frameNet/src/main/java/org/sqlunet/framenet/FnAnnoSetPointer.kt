@@ -30,14 +30,18 @@ class FnAnnoSetPointer : Pointer {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<FnAnnoSetPointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): FnAnnoSetPointer {
-            return FnAnnoSetPointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<FnAnnoSetPointer> {
 
-        override fun newArray(size: Int): Array<FnAnnoSetPointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): FnAnnoSetPointer {
+                return FnAnnoSetPointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<FnAnnoSetPointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

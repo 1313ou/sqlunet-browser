@@ -46,14 +46,18 @@ open class Pointer : IPointer {
         return id.toString()
     }
 
-    companion object CREATOR : Parcelable.Creator<Pointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): Pointer {
-            return Pointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<Pointer> {
 
-        override fun newArray(size: Int): Array<Pointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): Pointer {
+                return Pointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<Pointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

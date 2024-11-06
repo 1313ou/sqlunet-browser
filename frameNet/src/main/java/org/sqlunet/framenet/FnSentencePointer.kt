@@ -30,14 +30,18 @@ class FnSentencePointer : Pointer {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<FnSentencePointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): FnSentencePointer {
-            return FnSentencePointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<FnSentencePointer> {
 
-        override fun newArray(size: Int): Array<FnSentencePointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): FnSentencePointer {
+                return FnSentencePointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<FnSentencePointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

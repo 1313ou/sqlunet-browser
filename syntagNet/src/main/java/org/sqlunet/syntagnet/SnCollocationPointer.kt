@@ -32,14 +32,18 @@ class SnCollocationPointer : Pointer {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<SnCollocationPointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): SnCollocationPointer {
-            return SnCollocationPointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<SnCollocationPointer> {
 
-        override fun newArray(size: Int): Array<SnCollocationPointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): SnCollocationPointer {
+                return SnCollocationPointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<SnCollocationPointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

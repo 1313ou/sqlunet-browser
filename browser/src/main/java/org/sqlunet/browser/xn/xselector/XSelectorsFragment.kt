@@ -25,7 +25,7 @@ import org.sqlunet.browser.BaseSelectorsExpandableListFragment
 import org.sqlunet.browser.R
 import org.sqlunet.browser.SqlunetViewModel
 import org.sqlunet.browser.xn.XnSettings
-import org.sqlunet.browser.xn.xselector.XSelectorPointer.CREATOR.getMask
+import org.sqlunet.browser.xn.xselector.XSelectorPointer.Companion.getMask
 import org.sqlunet.loaders.Queries.prepareFnXSelect
 import org.sqlunet.loaders.Queries.preparePbXSelect
 import org.sqlunet.loaders.Queries.prepareVnXSelect

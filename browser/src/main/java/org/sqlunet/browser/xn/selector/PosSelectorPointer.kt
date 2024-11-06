@@ -57,14 +57,18 @@ class PosSelectorPointer : SelectorPointer, HasPos {
         return super.toString() + ' ' + "pos=" + pos
     }
 
-    companion object CREATOR : Parcelable.Creator<PosSelectorPointer> {
+    companion object {
 
-        override fun createFromParcel(parcel: Parcel): PosSelectorPointer {
-            return PosSelectorPointer(parcel)
-        }
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<PosSelectorPointer> {
 
-        override fun newArray(size: Int): Array<PosSelectorPointer?> {
-            return arrayOfNulls(size)
+            override fun createFromParcel(parcel: Parcel): PosSelectorPointer {
+                return PosSelectorPointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<PosSelectorPointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }
