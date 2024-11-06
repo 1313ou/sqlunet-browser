@@ -383,7 +383,7 @@ class SetupFileFragment : BaseTaskFragment() {
     private fun statusDownload(): SpannableStringBuilder {
         val context = requireContext()
         val mode = Mode.getModePref(context)
-        val from = StorageSettings.getDbDownloadSourcePath(context, mode == com.bbou.download.preference.Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == com.bbou.download.preference.Settings.Mode.DOWNLOAD_ZIP)
+        val from = StorageSettings.getDbDownloadSourcePath(context, mode == Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Mode.DOWNLOAD_ZIP)
         val to = StorageSettings.getDatabasePath(context)
         val free = getFree(context, to)
         val targetExists = File(to).exists()

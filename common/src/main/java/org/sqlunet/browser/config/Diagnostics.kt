@@ -378,7 +378,7 @@ object Diagnostics {
 
         // DOWNLOAD
         val mode = Mode.getModePref(context)
-        val dbDownloadSource = StorageSettings.getDbDownloadSourcePath(context, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
+        val dbDownloadSource = StorageSettings.getDbDownloadSourcePath(context, mode == Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Mode.DOWNLOAD_ZIP)
         val dbDownloadTarget = StorageSettings.getDatabasePath(context)
         sb.append('\n')
         append(sb, "download", StyleSpan(Typeface.BOLD))

@@ -60,7 +60,7 @@ class SetupFnStatusFragment : SetupStatusFragment() {
             val database = StorageSettings.getDatabasePath(activity)
             val free = getFree(requireContext(), database)
             val mode = Mode.getModePref(activity)
-            val source = StorageSettings.getDbDownloadSourcePath(activity, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
+            val source = StorageSettings.getDbDownloadSourcePath(activity, mode == Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Mode.DOWNLOAD_ZIP)
             val status = FnStatus.status(activity)
             val existsDb = status and org.sqlunet.browser.config.Status.EXISTS != 0
             val existsTables = status and org.sqlunet.browser.config.Status.EXISTS_TABLES != 0

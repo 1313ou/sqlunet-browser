@@ -192,7 +192,7 @@ class BrowseFragment : BaseSearchFragment() {
         // mode
         val selectorMode: Settings.SelectorViewMode = Settings.getSelectorViewModePref(context)
         when (selectorMode) {
-            Settings.SelectorViewMode.VIEW -> if (selectorType == org.sqlunet.browser.vn.VnSettings.Selector.XSELECTOR) {
+            Settings.SelectorViewMode.VIEW -> if (selectorType == VnSettings.Selector.XSELECTOR) {
                 return XBrowse1Fragment()
             }
 
@@ -221,7 +221,7 @@ class BrowseFragment : BaseSearchFragment() {
         when (selectorMode) {
             Settings.SelectorViewMode.VIEW -> {
                 var intentClass: Class<*>? = null
-                if (selectorType == org.sqlunet.browser.vn.VnSettings.Selector.XSELECTOR) {
+                if (selectorType == VnSettings.Selector.XSELECTOR) {
                     intentClass = XBrowse1Activity::class.java
                 }
                 intent = Intent(requireContext(), intentClass)

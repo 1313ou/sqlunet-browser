@@ -273,7 +273,7 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
         /**
          * Provide the adapter for the list view.
          */
-        protected set(adapter) {
+        set(adapter) {
             synchronized(this) {
                 val hadAdapter = expandableListAdapter != null
                 expandableListAdapter = adapter

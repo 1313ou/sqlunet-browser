@@ -61,7 +61,7 @@ class SetupWnStatusFragment : SetupStatusFragment() {
             val database = StorageSettings.getDatabasePath(activity)
             val free = getFree(activity, database)
             val mode = Mode.getModePref(activity)
-            val source = StorageSettings.getDbDownloadSourcePath(activity, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
+            val source = StorageSettings.getDbDownloadSourcePath(activity, mode == Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Mode.DOWNLOAD_ZIP)
             val status = WnStatus.status(activity)
             val existsDb = status and Status.EXISTS != 0
             val existsTables = status and Status.EXISTS_TABLES != 0
