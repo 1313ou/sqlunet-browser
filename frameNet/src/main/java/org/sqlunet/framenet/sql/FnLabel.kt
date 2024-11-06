@@ -32,11 +32,7 @@ class FnLabel(
     /**
      * Foreground color
      */
-    val fgColor: String?
-
-    init {
-        this.fgColor = if (fgColor != null && fgColor.isEmpty()) null else fgColor
-    }
+    val fgColor: String? = if (fgColor != null && fgColor.isEmpty()) null else fgColor
 
     override fun toString(): String {
         return "$label[$from,$to] type=$iType"
