@@ -16,6 +16,11 @@
 		app:showAsAction="never"
 		tools:ignore="AppCompatResource" />
 	<item
+		android:id="@+id/action_tables_and_indices"
+		android:title="@string/action_tables_and_indices"
+		app:showAsAction="never"
+		tools:ignore="AppCompatResource" />
+	<item
 		android:id="@+id/action_logs"
 		android:title="@string/action_logs"
 		app:showAsAction="never"

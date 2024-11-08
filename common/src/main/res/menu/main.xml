@@ -84,13 +84,14 @@
 					android:title="@string/action_update"
 					app:showAsAction="never"
 					tools:ignore="AppCompatResource" />
-				<item
-					android:id="@+id/action_resources_directory"
-					android:title="@string/action_resources_directory"
-					app:showAsAction="never"
-					tools:ignore="AppCompatResource" />
+
 			</group>
 
+			<item
+				android:id="@+id/action_resources_directory"
+				android:title="@string/action_resources_directory"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
 			<item
 				android:id="@+id/action_storage"
 				android:title="@string/action_storage"
@@ -99,6 +100,11 @@
 			<item
 				android:id="@+id/action_diagnostics"
 				android:title="@string/action_diagnostics"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_tables_and_indices"
+				android:title="@string/action_tables_and_indices"
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource" />
 			<item
@@ -121,6 +127,7 @@
 				android:title="@string/action_clear_logs"
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource" />
+
 		</menu>
 	</item>
 

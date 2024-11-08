@@ -38,6 +38,8 @@ import org.sqlunet.browser.config.StorageActivity
 import org.sqlunet.browser.history.HistoryActivity
 import org.sqlunet.provider.BaseProvider
 import org.sqlunet.provider.BaseProvider.Companion.closeProviders
+import org.sqlunet.provider.ManagerContract
+import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.LogUtils
 import org.sqlunet.settings.Settings
 
@@ -103,6 +105,11 @@ object MenuHandler {
                 edit.clear().apply()
                 intent = Intent(activity, SettingsActivity::class.java)
                 intent.addFlags(0)
+            }
+
+            R.id.action_tables_and_indices -> {
+                intent = ManagerContract.makeTablesAndIndexesIntent(activity)
+                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_dbobject)
             }
 
             R.id.action_sql_clear -> {
