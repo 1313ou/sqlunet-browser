@@ -144,4 +144,24 @@
 		<item>pb_examples_text_fts4</item>
 	</string-array>
 
+	<string-array name="non_required_tables">
+		<item>usages</item>
+		<item>wikidatas</item>
+		<item>ilis</item>
+		<item>sources</item>
+	</string-array>
+
+	<string-array name="non_required_indexes">
+		<item>pk_usages</item>
+		<item>k_usages_synsetid</item>
+		<item>k_usages_luid</item>
+		<item>k_usages_wordid</item>
+		<item>pk_wikidatas</item>
+		<item>pk_ilis</item>
+		<item>k_bnc_bncs_wordid_posid</item>
+		<item>k_bnc_spwrs_wordid_posid</item>
+		<item>k_bnc_convtasks_wordid_posid</item>
+		<item>k_bnc_imaginfs_wordid_posid</item>
+	</string-array>
+
 </resources>

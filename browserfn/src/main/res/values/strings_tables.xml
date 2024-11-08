@@ -77,4 +77,11 @@
 		<item>fn_sentences_text_fts4</item>
 	</string-array>
 
+
+	<string-array name="non_required_tables">
+		<item>sources</item>
+	</string-array>
+
+	<string-array name="non_required_indexes" />
+
 </resources>

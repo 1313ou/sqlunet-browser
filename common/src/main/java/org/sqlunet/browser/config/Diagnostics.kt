@@ -136,6 +136,8 @@ object Diagnostics {
                         val res = context.resources
                         val requiredTables = res.getStringArray(R.array.required_tables)
                         val requiredIndexes = res.getStringArray(R.array.required_indexes)
+                        val nonRequiredTables = res.getStringArray(R.array.non_required_tables)
+                        val nonRequiredIndexes = res.getStringArray(R.array.non_required_indexes)
                         val requiredPmTablesResId = res.getIdentifier("required_pm", "array", packageName)
                         val requiredTSWnResId = res.getIdentifier("required_texts_wn", "array", packageName)
                         val requiredTSVnResId = res.getIdentifier("required_texts_vn", "array", packageName)
@@ -243,6 +245,27 @@ object Diagnostics {
                                         }
                                         sb.append('\n')
                                     }
+                                }
+                                sb.append('\n')
+                                for (table in nonRequiredTables) {
+                                    sb.append("non required table ")
+                                    sb.append(table)
+                                    sb.append(" exists: ")
+                                    val exists = existingTablesAndIndexes.contains(table)
+                                    sb.append(exists.toString())
+                                    if (exists) {
+                                        sb.append(" rows: ")
+                                        sb.append(rowCount(database, table).toString())
+                                    }
+                                    sb.append('\n')
+                                }
+                                sb.append('\n')
+                                for (index in nonRequiredIndexes) {
+                                    sb.append("non required index ")
+                                    sb.append(index)
+                                    sb.append(": ")
+                                    sb.append(existingTablesAndIndexes.contains(index).toString())
+                                    sb.append('\n')
                                 }
                             } else {
                                 sb.append("null existing tables or indexes")
@@ -418,7 +441,7 @@ object Diagnostics {
                     return meta
                 }
             }
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
 
         }
         return null
