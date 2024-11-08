@@ -10,7 +10,6 @@ private val vCode by lazy { rootProject.extra["versionCode"] as Int }
 private val vName by lazy { rootProject.extra["versionName"] as String }
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
-private val vTargetSdk by lazy { rootProject.extra["targetSdk"] as Int }
 private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
 private val lifecycleVersion by lazy { rootProject.extra["lifecycleVersion"] as String }
 private val navVersion by lazy { rootProject.extra["navVersion"] as String }
@@ -30,7 +29,6 @@ android {
 
     defaultConfig {
         minSdk = vMinSdk
-        targetSdk = vTargetSdk
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
