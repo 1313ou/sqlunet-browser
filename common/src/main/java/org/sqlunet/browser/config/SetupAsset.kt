@@ -4,6 +4,7 @@
 package org.sqlunet.browser.config
 
 import android.app.Activity
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.util.Consumer
@@ -17,11 +18,13 @@ import org.sqlunet.assetpack.AssetPackLoader
 import org.sqlunet.assetpack.Settings
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.config.SetupDatabaseTasks.deleteDatabase
+import org.sqlunet.provider.BaseProvider.Companion.closeProviders
 import org.sqlunet.settings.StorageSettings
 import java.io.File
 
 object SetupAsset {
 
+    const val TAG = "SetupAsset"
     const val PREF_ASSET_PRIMARY_DEFAULT = "pref_asset_primary_default"
     const val PREF_ASSET_AUTO_CLEANUP = "pref_asset_auto_cleanup"
 
@@ -74,14 +77,19 @@ object SetupAsset {
         // if already installed
         if (path0 != null) {
             if (view != null) {
-                Snackbar.make(view, R.string.action_asset_installed, Snackbar.LENGTH_LONG) //.setAction(R.string.action_asset_md5, (view2) -> FileAsyncTask.launchMd5(activity, new File(activity.getFilesDir(), TARGET_DB).getAbsolutePath()))
+                Snackbar.make(view, R.string.action_asset_installed, Snackbar.LENGTH_LONG)
+                    //.setAction(R.string.action_asset_md5, (view2) -> FileAsyncTask.launchMd5(activity, new File(activity.getFilesDir(), TARGET_DB).getAbsolutePath()))
                     //.setAction(R.string.action_asset_dispose, (view2) -> disposeAsset(assetPack, activity, view2))
                     .show()
             } else {
                 Toast.makeText(activity, R.string.action_asset_installed, Toast.LENGTH_LONG).show()
             }
-
-            /* boolean success = */deleteDatabase(activity, StorageSettings.getDatabasePath(activity))
+            val success = deleteDatabase(activity, StorageSettings.getDatabasePath(activity))
+            if (success) {
+                Log.d(TAG, "Deleted database")
+            } else {
+                Log.e(TAG, "Error deleting database")
+            }
             val zipFile = File(File(path0, assetDir), assetZip)
             val zipFilePath = zipFile.absolutePath
             if (zipFile.exists()) {
