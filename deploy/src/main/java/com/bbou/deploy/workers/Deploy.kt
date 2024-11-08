@@ -366,9 +366,9 @@ object Deploy {
                     if (parent != null) {
                         val dir = File(parent)
                         val created = dir.mkdirs()
-                        Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists())
+                        Log.d(TAG, "Created dir : " + dir + " result=" + created + " exists=" + dir.exists())
                     }
-                    Log.d(TAG, "Created : $outFile")
+                    Log.d(TAG, "Created file : $outFile")
                     FileOutputStream(outFile).use { os ->
                         var len: Int
                         while (zis.read(buffer).also { len = it } > 0) {
@@ -412,7 +412,7 @@ object Deploy {
                     if (parent != null) {
                         val dir = File(parent)
                         val created = dir.mkdirs()
-                        Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists())
+                        Log.d(TAG, "Created dir : " + dir + " result=" + created + " exists=" + dir.exists())
                     }
 
                     // input
@@ -450,7 +450,7 @@ object Deploy {
                     } catch (e1: IOException) {
                         Log.e(TAG, "While executing from archive", e1)
                     }
-                    Log.d(TAG, "Created : " + outFile + " exists=" + outFile.exists())
+                    Log.d(TAG, "Created file : " + outFile + " exists=" + outFile.exists())
                 }
                 return true
             }

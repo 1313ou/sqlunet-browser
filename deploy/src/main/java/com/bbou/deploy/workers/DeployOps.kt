@@ -215,7 +215,7 @@ object DeployOps {
                     if (parent != null) {
                         val dir = File(parent)
                         val created = dir.mkdirs()
-                        Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists())
+                        Log.d(TAG, "Created dir : " + dir + " result=" + created + " exists=" + dir.exists())
                     }
 
                     // input
@@ -255,7 +255,7 @@ object DeployOps {
                         Log.e(TAG, "While executing from archive", e1)
                     }
                     if (outFile.exists()) {
-                        Log.d(TAG, "Created : " + outFile + " exists=" + outFile.exists())
+                        Log.d(TAG, "Created file : " + outFile + " exists=" + outFile.exists())
                         val stamp = zipEntry.time
                         outFile.setLastModified(stamp)
                     }
@@ -297,7 +297,7 @@ object DeployOps {
                             if (parent != null) {
                                 val dir = File(parent)
                                 val created = dir.mkdirs()
-                                Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists())
+                                Log.d(TAG, "Created dir : " + dir + " result=" + created + " exists=" + dir.exists())
                             }
 
                             // input
@@ -335,7 +335,7 @@ object DeployOps {
                                 Log.e(TAG, "While executing from archive", e1)
                             }
                             if (outFile.exists()) {
-                                Log.d(TAG, "Created : " + outFile + " exists=" + outFile.exists())
+                                Log.d(TAG, "Created file : " + outFile + " exists=" + outFile.exists())
                                 val stamp = it.time
                                 outFile.setLastModified(stamp)
                             }
@@ -377,7 +377,7 @@ object DeployOps {
                             if (parent != null) {
                                 val dir = File(parent)
                                 val created = dir.mkdirs()
-                                Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists())
+                                Log.d(TAG, "Created dir : " + dir + " result=" + created + " exists=" + dir.exists())
                             }
 
                             // input
@@ -415,7 +415,7 @@ object DeployOps {
                                 Log.e(TAG, "While executing from archive", e1)
                             }
                             if (outFile.exists()) {
-                                Log.d(TAG, "Created : " + outFile + " exists=" + outFile.exists())
+                                Log.d(TAG, "Created file : " + outFile + " exists=" + outFile.exists())
                                 val stamp = it.time
                                 outFile.setLastModified(stamp)
                             }
@@ -457,7 +457,7 @@ object DeployOps {
                 if (parent != null) {
                     val dir = File(parent)
                     val created = dir.mkdirs()
-                    Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists())
+                    Log.d(TAG, "Created dir : " + dir + " result=" + created + " exists=" + dir.exists())
                 }
 
                 // unzip
@@ -497,7 +497,7 @@ object DeployOps {
 
                 // inherit time stamp and return
                 if (outFile.exists()) {
-                    Log.d(TAG, "Created : " + outFile + " exist=" + outFile.exists())
+                    Log.d(TAG, "Created file : " + outFile + " exists=" + outFile.exists())
                     val stamp = zipEntry.time
                     outFile.setLastModified(stamp)
                     return true
@@ -541,7 +541,7 @@ object DeployOps {
                             if (parent != null) {
                                 val dir = File(parent)
                                 val created = dir.mkdirs()
-                                Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists())
+                                Log.d(TAG, "Created dir : " + dir + " result=" + created + " exists=" + dir.exists())
                             }
 
                             // unzip
@@ -581,7 +581,7 @@ object DeployOps {
 
                             // inherit time stamp and return
                             if (outFile.exists()) {
-                                Log.d(TAG, "Created : " + outFile + " exists=" + outFile.exists())
+                                Log.d(TAG, "Created file : " + outFile + " exists=" + outFile.exists())
                                 val stamp = it.time
                                 outFile.setLastModified(stamp)
                                 return true
@@ -626,7 +626,7 @@ object DeployOps {
                             if (parent != null) {
                                 val dir = File(parent)
                                 val created = dir.mkdirs()
-                                Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists())
+                                Log.d(TAG, "Created dir : " + dir + " result=" + created + " exists=" + dir.exists())
                             }
 
                             // unzip
@@ -666,7 +666,7 @@ object DeployOps {
 
                             // inherit time stamp and return
                             if (outFile.exists()) {
-                                Log.d(TAG, "Created : " + outFile + " exists=" + outFile.exists())
+                                Log.d(TAG, "Created file : " + outFile + " exists=" + outFile.exists())
                                 val stamp = it.time
                                 outFile.setLastModified(stamp)
                                 return true
