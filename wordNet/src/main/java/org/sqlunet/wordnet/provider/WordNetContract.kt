@@ -258,9 +258,55 @@ object WordNetContract {
         const val SYNSETID = V.SYNSETID
         /*
         CREATE TABLE ${samples.table} (
-        ${samples.sampleid} INT        NOT NULL,
-        ${samples.sample}   MEDIUMTEXT NOT NULL,
-        ${samples.synsetid} INT        NOT NULL)
+        ${samples.sampleid} INT NOT NULL,
+        ${samples.sample} MEDIUMTEXT NOT NULL,
+        ${samples.source} MEDIUMTEXT NULL,
+        ${samples.synsetid} INT NOT NULL,
+        ${samples.luid} INT DEFAULT NULL,
+        ${samples.wordid} INT DEFAULT NULL)
+        */
+    }
+
+    object Usages {
+
+        const val TABLE = Q.USAGES.TABLE
+        const val URI = TABLE
+        const val USAGEID = V.USAGEID
+        const val USAGENOTE = V.USAGENOTE
+        const val SYNSETID = V.SYNSETID
+        /*
+        CREATE TABLE ${usages.table} (
+        ${usages.usageid} INT NOT NULL,
+        ${usages.usagenote} MEDIUMTEXT NOT NULL,
+        ${usages.synsetid} INT NOT NULL,
+        ${usages.luid} INT DEFAULT NULL,
+        ${usages.wordid} INT DEFAULT NULL)
+        */
+    }
+
+    object Ilis {
+
+        const val TABLE = Q.ILIS.TABLE
+        const val URI = TABLE
+        const val ILI = V.ILI
+        const val SYNSETID = V.SYNSETID
+        /*
+        CREATE TABLE ${ilis.table} (
+        ${ilis.ili} VARCHAR(7) NOT NULL,
+        ${ilis.synsetid} INT NOT NULL)
+        */
+    }
+
+    object Wikidatas {
+
+        const val TABLE = Q.WIKIDATAS.TABLE
+        const val URI = TABLE
+        const val WIKIDATA = V.WIKIDATA
+        const val SYNSETID = V.SYNSETID
+        /*
+        CREATE TABLE ${wikidatas.table} (
+        ${wikidatas.wikidata} VARCHAR(8) NOT NULL,
+        ${wikidatas.synsetid} INT NOT NULL)
         */
     }
 

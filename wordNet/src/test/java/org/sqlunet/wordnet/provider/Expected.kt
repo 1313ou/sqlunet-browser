@@ -29,6 +29,9 @@ object Expected {
             WordNetControl.DOMAINS -> table = Q.DOMAINS.TABLE
             WordNetControl.ADJPOSITIONS -> table = Q.ADJPOSITIONS.TABLE
             WordNetControl.SAMPLES -> table = Q.SAMPLES.TABLE
+            WordNetControl.USAGES -> table = Q.USAGES.TABLE
+            WordNetControl.ILIS -> table = Q.ILIS.TABLE
+            WordNetControl.WIKIDATAS -> table = Q.WIKIDATAS.TABLE
             WordNetControl.WORD -> {
                 table = Q.WORD1.TABLE
                 if (selection != null) {
@@ -51,6 +54,46 @@ object Expected {
 
             WordNetControl.SYNSET -> {
                 table = Q.SYNSET1.TABLE
+                if (selection != null) {
+                    selection += " AND "
+                } else {
+                    selection = ""
+                }
+                selection += V.SYNSETID + " = " + uriLast
+            }
+
+            WordNetControl.SAMPLE -> {
+                table = Q.SAMPLE1.TABLE
+                if (selection != null) {
+                    selection += " AND "
+                } else {
+                    selection = ""
+                }
+                selection += V.SAMPLEID + " = " + uriLast
+            }
+
+            WordNetControl.USAGE -> {
+                table = Q.USAGE1.TABLE
+                if (selection != null) {
+                    selection += " AND "
+                } else {
+                    selection = ""
+                }
+                selection += V.SYNSETID + " = " + uriLast
+            }
+
+            WordNetControl.ILI -> {
+                table = Q.ILI1.TABLE
+                if (selection != null) {
+                    selection += " AND "
+                } else {
+                    selection = ""
+                }
+                selection += V.SYNSETID + " = " + uriLast
+            }
+
+            WordNetControl.WIKIDATA -> {
+                table = Q.WIKIDATA1.TABLE
                 if (selection != null) {
                     selection += " AND "
                 } else {

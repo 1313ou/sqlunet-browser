@@ -27,6 +27,13 @@ object WordNetControl {
     const val DOMAINS = 80
     const val ADJPOSITIONS = 90
     const val SAMPLES = 100
+    const val SAMPLE = 101
+    const val USAGES = 110
+    const val USAGE = 111
+    const val ILIS = 120
+    const val ILI = 121
+    const val WIKIDATAS = 130
+    const val WIKIDATA = 131
 
     // view codes
     const val DICT = 200
@@ -81,6 +88,9 @@ object WordNetControl {
             DOMAINS -> table = Q.DOMAINS.TABLE
             ADJPOSITIONS -> table = Q.ADJPOSITIONS.TABLE
             SAMPLES -> table = Q.SAMPLES.TABLE
+            USAGES -> table = Q.USAGES.TABLE
+            ILIS -> table = Q.ILIS.TABLE
+            WIKIDATAS -> table = Q.WIKIDATAS.TABLE
             WORD -> {
                 table = Q.WORD1.TABLE
                 if (selection != null) {
@@ -112,6 +122,50 @@ object WordNetControl {
                 }
                 //selection += Q.SYNSETID + " = " + uriLast
                 selection += Q.SYNSET1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.SYNSETID + " = " + uriLast
+            }
+
+            SAMPLE -> {
+                table = Q.SAMPLES.TABLE
+                if (selection != null) {
+                    selection += " AND "
+                } else {
+                    selection = ""
+                }
+                //selection += Q.SAMPLEID + " = " + uriLast
+                selection += Q.SAMPLE1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.SAMPLEID + " = " + uriLast
+            }
+
+            USAGE -> {
+                table = Q.USAGES.TABLE
+                if (selection != null) {
+                    selection += " AND "
+                } else {
+                    selection = ""
+                }
+                //selection += Q.SYNSETID + " = " + uriLast
+                selection += Q.USAGE1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.SYNSETID + " = " + uriLast
+            }
+
+            ILI -> {
+                table = Q.ILIS.TABLE
+                if (selection != null) {
+                    selection += " AND "
+                } else {
+                    selection = ""
+                }
+                //selection += Q.SYNSETID + " = " + uriLast
+                selection += Q.ILI1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.SYNSETID + " = " + uriLast
+            }
+
+            WIKIDATA -> {
+                table = Q.WIKIDATAS.TABLE
+                if (selection != null) {
+                    selection += " AND "
+                } else {
+                    selection = ""
+                }
+                //selection += Q.SYNSETID + " = " + uriLast
+                selection += Q.WIKIDATA1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast) // V.SYNSETID + " = " + uriLast
             }
 
             DICT -> table = Q.DICT.TABLE

@@ -94,6 +94,15 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			case SAMPLES:
 				r.table = "${samples.table}";
 				break;
+			case USAGES:
+				r.table = "${usages.table}";
+				break;
+			case ILIS:
+				r.table = "${ilis.table}";
+				break;
+			case WIKIDATAS:
+				r.table = "${wikidatas.table}";
+				break;
 
 			// I T E M
 
@@ -113,6 +122,26 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			case SYNSET1:
 				r.table = "${synsets.table}";
 				r.selection = "${synsets.synsetid} = #{uri_last}";
+				break;
+
+			case SAMPLE1:
+				r.table = "${samples.table}";
+				r.selection = "${samples.sampleid} = #{uri_last}";
+				break;
+
+			case USAGE1:
+				r.table = "${usages.table}";
+				r.selection = "${usages.synsetid} = #{uri_last}";
+				break;
+
+			case ILI1:
+				r.table = "${ilis.table}";
+				r.selection = "${ilis.synsetid} = #{uri_last}";
+				break;
+
+			case WIKIDATA1:
+				r.table = "${wikidatas.table}";
+				r.selection = "${wikidatas.synsetid} = #{uri_last}";
 				break;
 
 			// V I E W S
@@ -452,8 +481,10 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 		RELATIONS, SEMRELATIONS, LEXRELATIONS, //
 		ADJPOSITIONS, MORPHS, SAMPLES, VFRAMES, VTEMPLATES, //
 		LEXES_MORPHS, SENSES_VFRAMES, SENSES_VTEMPLATES, SENSES_ADJPOSITIONS, //
+		USAGES, ILIS, WIKIDATAS, //
 		DICT, //
 		WORD1, SENSE1, SYNSET1, //
+		SAMPLE1, USAGE1, ILI1, WIKIDATA1, //
 		WORDS_LEXES_MORPHS, WORDS_LEXES_MORPHS_BY_WORD, WORDS_SENSES_SYNSETS, WORDS_SENSES_CASEDWORDS_SYNSETS, WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS, WORDS_SENSES_CASEDWORDS_PRONUNCIATIONS_SYNSETS_POSES_DOMAINS, //
 		SENSES_WORDS, SENSES_WORDS_BY_SYNSET, SENSES_SYNSETS_POSES_DOMAINS, //
 		SYNSETS_POSES_DOMAINS, //
@@ -462,7 +493,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 		SEMRELATIONS_SYNSETS, SEMRELATIONS_SYNSETS_X, SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET, //
 		LEXRELATIONS_SENSES, LEXRELATIONS_SENSES_X, LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET, //
 		LOOKUP_FTS_DEFINITIONS, LOOKUP_FTS_SAMPLES, LOOKUP_FTS_WORDS, //
-		SUGGEST_FTS_DEFINITIONS, SUGGEST_FTS_SAMPLES, SUGGEST_FTS_WORDS, SUGGEST_WORDS
+		SUGGEST_FTS_DEFINITIONS, SUGGEST_FTS_SAMPLES, SUGGEST_FTS_WORDS, SUGGEST_WORDS,
 	}
 
 	static class Result

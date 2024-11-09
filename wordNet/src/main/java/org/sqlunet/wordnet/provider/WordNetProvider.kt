@@ -19,6 +19,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.AnyRelations
 import org.sqlunet.wordnet.provider.WordNetContract.AnyRelations_Senses_Words_X
 import org.sqlunet.wordnet.provider.WordNetContract.Dict
 import org.sqlunet.wordnet.provider.WordNetContract.Domains
+import org.sqlunet.wordnet.provider.WordNetContract.Ilis
 import org.sqlunet.wordnet.provider.WordNetContract.LexRelations
 import org.sqlunet.wordnet.provider.WordNetContract.LexRelations_Senses
 import org.sqlunet.wordnet.provider.WordNetContract.LexRelations_Senses_Words_X
@@ -46,6 +47,8 @@ import org.sqlunet.wordnet.provider.WordNetContract.Suggest_FTS_Words
 import org.sqlunet.wordnet.provider.WordNetContract.Suggest_Words
 import org.sqlunet.wordnet.provider.WordNetContract.Synsets
 import org.sqlunet.wordnet.provider.WordNetContract.Synsets_Poses_Domains
+import org.sqlunet.wordnet.provider.WordNetContract.Usages
+import org.sqlunet.wordnet.provider.WordNetContract.Wikidatas
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Lexes_Morphs
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains
@@ -78,6 +81,13 @@ class WordNetProvider : BaseProvider() {
             WordNetControl.ADJPOSITIONS -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + AdjPositions.URI
             WordNetControl.DOMAINS -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + Domains.URI
             WordNetControl.SAMPLES -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + Samples.URI
+            WordNetControl.SAMPLE -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + Samples.URI
+            WordNetControl.USAGES -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + Usages.URI
+            WordNetControl.USAGE -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + Usages.URI
+            WordNetControl.ILIS -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + Ilis.URI
+            WordNetControl.ILI -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + Ilis.URI
+            WordNetControl.WIKIDATAS -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + Wikidatas.URI
+            WordNetControl.WIKIDATA -> VENDOR + ".android.cursor.item/" + VENDOR + '.' + AUTHORITY + '.' + Wikidatas.URI
             WordNetControl.DICT -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + Dict.URI
             WordNetControl.WORDS_SENSES_SYNSETS -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + Words_Senses_Synsets.URI
             WordNetControl.WORDS_SENSES_CASEDWORDS_SYNSETS -> VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + Words_Senses_CasedWords_Synsets.URI
@@ -126,7 +136,7 @@ class WordNetProvider : BaseProvider() {
         if (db == null) {
             try {
                 openReadOnly()
-            } catch (e: SQLiteCantOpenDatabaseException) {
+            } catch (_: SQLiteCantOpenDatabaseException) {
                 return null
             }
         }
@@ -257,6 +267,13 @@ class WordNetProvider : BaseProvider() {
             uriMatcher.addURI(AUTHORITY, Domains.URI, WordNetControl.DOMAINS)
             uriMatcher.addURI(AUTHORITY, AdjPositions.URI, WordNetControl.ADJPOSITIONS)
             uriMatcher.addURI(AUTHORITY, Samples.URI, WordNetControl.SAMPLES)
+            uriMatcher.addURI(AUTHORITY, Samples.URI + "/#", WordNetControl.SAMPLE)
+            uriMatcher.addURI(AUTHORITY, Usages.URI, WordNetControl.USAGES)
+            uriMatcher.addURI(AUTHORITY, Usages.URI + "/#", WordNetControl.USAGE)
+            uriMatcher.addURI(AUTHORITY, Ilis.URI, WordNetControl.ILIS)
+            uriMatcher.addURI(AUTHORITY, Ilis.URI + "/#", WordNetControl.ILI)
+            uriMatcher.addURI(AUTHORITY, Wikidatas.URI, WordNetControl.WIKIDATAS)
+            uriMatcher.addURI(AUTHORITY, Wikidatas.URI + "/#", WordNetControl.WIKIDATA)
 
             // view
             uriMatcher.addURI(AUTHORITY, Dict.URI, WordNetControl.DICT)
@@ -302,18 +319,6 @@ class WordNetProvider : BaseProvider() {
 
         fun makeUri(table: String): String {
             return "$SCHEME$AUTHORITY/$table"
-        }
-
-        // C L O S E
-
-        /**
-         * Close provider
-         *
-         * @param context context
-         */
-        fun close(context: Context) {
-            val uri = Uri.parse(SCHEME + AUTHORITY)
-            closeProvider(context, uri)
         }
 
         /**
@@ -388,8 +393,20 @@ class WordNetProvider : BaseProvider() {
             //return embed(uQuery, projection, selection, groupBy, sortOrder)
         }
 
-        private fun makeSelection(@Suppress("UNUSED_PARAMETER") projection: Array<String>, selection: String): String {
+        private fun makeSelection(@Suppress("unused") projection: Array<String>, selection: String): String {
             return selection
         }
+    }
+
+    // C L O S E
+
+    /**
+     * Close provider
+     *
+     * @param context context
+     */
+    fun close(context: Context) {
+        val uri = Uri.parse(SCHEME + AUTHORITY)
+        closeProvider(context, uri)
     }
 }
