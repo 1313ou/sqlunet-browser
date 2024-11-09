@@ -65,7 +65,7 @@ pos_v
 '
 
 top_list="up.svg down.svg"
-icon_list="wordnet.svg synset.svg synsetmember.svg domain.svg morph.svg adjposition.svg verbtemplate.svg verbframe.svg error.svg"
+icon_list="wordnet.svg synset.svg synsetmember.svg domain.svg morph.svg adjposition.svg verbtemplate.svg verbframe.svg external.svg usage.svg ili.svg wikidata.svg error.svg"
 link_list="ic_link_relation.svg"
 settings_list="ic_settings_wordnet.svg"
 asset_list="closed.svg open.svg pointer.svg"
