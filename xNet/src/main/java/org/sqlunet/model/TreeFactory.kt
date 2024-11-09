@@ -29,6 +29,7 @@ import org.sqlunet.treeview.model.TreeNode
  */
 object TreeFactory {
     // NON-TREE (without tree junction icon)
+
     /**
      * Make text node
      *
@@ -48,7 +49,7 @@ object TreeFactory {
      * @param breakExpand break expand flag
      * @return created node
      */
-    fun makeIconTextNode(text: CharSequence, icon: Int, breakExpand: Boolean): TreeNode {
+    fun makeIconTextNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean): TreeNode {
         return TreeNode(text, icon, null, IconTextController(breakExpand), false)
     }
 
@@ -60,7 +61,7 @@ object TreeFactory {
      * @param breakExpand break expand flag
      * @return created node
      */
-    fun makeLeafNode(text: CharSequence, icon: Int, breakExpand: Boolean): TreeNode {
+    fun makeLeafNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean): TreeNode {
         return TreeNode(text, icon, null, LeafController(breakExpand), false)
     }
 
@@ -72,7 +73,7 @@ object TreeFactory {
      * @param breakExpand break expand flag
      * @return created node
      */
-    fun makeMoreNode(text: CharSequence, icon: Int, breakExpand: Boolean): TreeNode {
+    fun makeMoreNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean): TreeNode {
         return TreeNode(text, icon, null, MoreController(breakExpand), false)
     }
 
@@ -85,7 +86,7 @@ object TreeFactory {
      * @param breakExpand break expand flag
      * @return created node
      */
-    fun makeLinkNode(text: CharSequence, icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
+    fun makeLinkNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
         return TreeNode(text, icon, arrayOf(link), LinkController(breakExpand), false)
     }
 
@@ -98,10 +99,12 @@ object TreeFactory {
      * @param link        link
      * @return created node
      */
-    fun makeLinkLeafNode(text: CharSequence, icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
+    fun makeLinkLeafNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
         return TreeNode(text, icon, arrayOf(link), LinkLeafController(breakExpand), false)
     }
+
     // TREE
+
     /**
      * Add tree node
      *
@@ -110,7 +113,7 @@ object TreeFactory {
      * @param breakExpand break expand flag
      * @return created node
      */
-    fun makeTreeNode(value: CharSequence, icon: Int, breakExpand: Boolean): TreeNode {
+    fun makeTreeNode(value: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean): TreeNode {
         return TreeNode(value, icon, null, TreeController(breakExpand), true)
     }
 
@@ -123,7 +126,7 @@ object TreeFactory {
      * @param link        link
      * @return created node
      */
-    fun makeLinkTreeNode(text: CharSequence, icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
+    fun makeLinkTreeNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
         return TreeNode(text, icon, arrayOf(link), LinkTreeController(breakExpand), true)
     }
 
@@ -136,7 +139,7 @@ object TreeFactory {
      * @param query       query
      * @return created node
      */
-    fun makeQueryNode(text: CharSequence, icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
+    fun makeQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
         return TreeNode(text, icon, arrayOf(query), ColdQueryController(breakExpand), true)
     }
 
@@ -149,7 +152,7 @@ object TreeFactory {
      * @param query       query
      * @return created node
      */
-    fun makeHotQueryNode(text: CharSequence, icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
+    fun makeHotQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
         val controller = HotQueryController(breakExpand)
         val result = TreeNode(text, icon, arrayOf(query), controller, true)
         val handler = Handler(Looper.getMainLooper())
