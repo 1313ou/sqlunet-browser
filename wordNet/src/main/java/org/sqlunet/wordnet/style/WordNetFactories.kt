@@ -24,6 +24,12 @@ object WordNetFactories {
 
     val sampleFactory = Factories.exampleFactory
 
+    val usageFactory = Factories.usageFactory
+
+    val iliFactory = Factories.dataFactory
+
+    val wikidataFactory = Factories.dataFactory
+
     val relationFactory = Factories.relationFactory
 
     val dataFactory = Factories.dataFactory

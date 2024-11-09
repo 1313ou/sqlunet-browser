@@ -211,7 +211,7 @@ object Queries {
         return providerSql
     }
 
-    fun prepareSense(synsetId: Long, @Suppress("UNUSED_PARAMETER") wordId: Long): ContentProviderSql {
+    fun prepareSense(synsetId: Long, @Suppress("unused") wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Synsets_Poses_Domains.URI
         providerSql.projection = arrayOf(
@@ -267,6 +267,43 @@ object Queries {
         providerSql.selection = WordNetContract.Samples.SYNSETID + " = ?"
         providerSql.selectionArgs = arrayOf(synsetId.toString())
         providerSql.sortBy = WordNetContract.Samples.SAMPLEID
+        return providerSql
+    }
+
+    fun prepareUsages(synsetId: Long): ContentProviderSql {
+        val providerSql = ContentProviderSql()
+        providerSql.providerUri = WordNetContract.Usages.URI
+        providerSql.projection = arrayOf(
+            WordNetContract.Usages.USAGEID,
+            WordNetContract.Usages.USAGENOTE
+        )
+        providerSql.selection = WordNetContract.Usages.SYNSETID + " = ?"
+        providerSql.selectionArgs = arrayOf(synsetId.toString())
+        providerSql.sortBy = WordNetContract.Usages.USAGEID
+        return providerSql
+    }
+
+    fun prepareIli(synsetId: Long): ContentProviderSql {
+        val providerSql = ContentProviderSql()
+        providerSql.providerUri = WordNetContract.Ilis.URI
+        providerSql.projection = arrayOf(
+            WordNetContract.Ilis.SYNSETID,
+            WordNetContract.Ilis.ILI
+        )
+        providerSql.selection = WordNetContract.Ilis.SYNSETID + " = ?"
+        providerSql.selectionArgs = arrayOf(synsetId.toString())
+        return providerSql
+    }
+
+    fun prepareWikidata(synsetId: Long): ContentProviderSql {
+        val providerSql = ContentProviderSql()
+        providerSql.providerUri = WordNetContract.Wikidatas.URI
+        providerSql.projection = arrayOf(
+            WordNetContract.Wikidatas.SYNSETID,
+            WordNetContract.Wikidatas.WIKIDATA
+        )
+        providerSql.selection = WordNetContract.Wikidatas.SYNSETID + " = ?"
+        providerSql.selectionArgs = arrayOf(synsetId.toString())
         return providerSql
     }
 

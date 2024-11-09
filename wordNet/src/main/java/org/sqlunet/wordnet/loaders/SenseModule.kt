@@ -56,17 +56,38 @@ class SenseModule(fragment: TreeFragment) : SynsetModule(fragment) {
             val morphsNode = makeTreeNode(morphsLabel, R.drawable.morph, false).addTo(node)
             morphs(wordId!!, morphsNode)
 
-            // relations and samples
+            // relations
             if (expand) {
                 val link: Link = RelationLink(synsetId!!, maxRecursion, fragment)
                 makeLinkHotQueryNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId!!, wordId!!), link, R.drawable.ic_link_relation).addTo(node)
             } else {
                 makeQueryNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId!!, wordId!!)).addTo(node)
             }
+
+            // samples
             if (expand) {
                 makeHotQueryNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
             } else {
                 makeQueryNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
+            }
+
+            // usages
+            if (expand) {
+                makeHotQueryNode(usagesLabel, R.drawable.usage, false, UsagesQuery(synsetId!!)).addTo(node)
+            } else {
+                makeQueryNode(usagesLabel, R.drawable.usage, false, UsagesQuery(synsetId!!)).addTo(node)
+            }
+
+            // externals
+            if (expand) {
+                makeHotQueryNode(iliLabel, R.drawable.ili, false, IliQuery(synsetId!!)).addTo(node)
+            } else {
+                makeQueryNode(iliLabel, R.drawable.ili, false, IliQuery(synsetId!!)).addTo(node)
+            }
+            if (expand) {
+                makeHotQueryNode(wikidataLabel, R.drawable.wikidata, false, WikidataQuery(synsetId!!)).addTo(node)
+            } else {
+                makeQueryNode(wikidataLabel, R.drawable.wikidata, false, WikidataQuery(synsetId!!)).addTo(node)
             }
 
             // special

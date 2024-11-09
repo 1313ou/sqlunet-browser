@@ -19,6 +19,9 @@
 	<string name="wordnet_senses_" tools:keep="@string/wordnet_members_">Senses</string>
 	<string name="wordnet_members_" tools:keep="@string/wordnet_members_">Members</string>
 	<string name="wordnet_samples_" tools:keep="@string/wordnet_samples_">Samples</string>
+	<string name="wordnet_usages_" tools:keep="@string/wordnet_usages_">Usages</string>
+	<string name="wordnet_ili_" tools:keep="@string/wordnet_ili_">ILI</string>
+	<string name="wordnet_wikidata_" tools:keep="@string/wordnet_wikidata_">Wikidata</string>
 	<string name="wordnet_relations_" tools:keep="@string/wordnet_relations_">Relations</string>
 	<string name="wordnet_up_" tools:keep="@string/wordnet_up_">↑ Up</string> <!-- ⮤⇧↑↖↥↰↸⇈⏶ -->
 	<string name="wordnet_down_" tools:keep="@string/wordnet_down_">↓ Down</string> <!-- ⮦⇩↓↙↧↲⇊⏷ -->

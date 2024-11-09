@@ -31,6 +31,8 @@ object Factories {
 
     val exampleFactory = Spanner.SpanFactory { _: Long -> spans(Colors.exampleBackColor, Colors.exampleForeColor, StyleSpan(Typeface.ITALIC)) }
 
+    val usageFactory = Spanner.SpanFactory { _: Long -> spans(Colors.exampleBackColor, Colors.exampleForeColor, StyleSpan(Typeface.ITALIC)) }
+
     val relationFactory = Spanner.SpanFactory { _: Long -> spans(Colors.relationBackColor, Colors.relationForeColor, StyleSpan(Typeface.ITALIC)) }
 
     val wordFactory = Spanner.SpanFactory { _: Long -> spans(Colors.wordBackColor, Colors.wordForeColor, StyleSpan(Typeface.BOLD)) }

@@ -48,6 +48,7 @@ import org.sqlunet.wordnet.provider.V
 import org.sqlunet.wordnet.provider.WordNetContract
 import org.sqlunet.wordnet.provider.WordNetContract.AnyRelations_Senses_Words_X
 import org.sqlunet.wordnet.provider.WordNetContract.Domains
+import org.sqlunet.wordnet.provider.WordNetContract.Ilis
 import org.sqlunet.wordnet.provider.WordNetContract.LexRelations_Senses_Words_X
 import org.sqlunet.wordnet.provider.WordNetContract.Lexes_Morphs
 import org.sqlunet.wordnet.provider.WordNetContract.Poses
@@ -60,6 +61,8 @@ import org.sqlunet.wordnet.provider.WordNetContract.Senses_VerbFrames
 import org.sqlunet.wordnet.provider.WordNetContract.Senses_VerbTemplates
 import org.sqlunet.wordnet.provider.WordNetContract.Senses_Words
 import org.sqlunet.wordnet.provider.WordNetContract.Synsets
+import org.sqlunet.wordnet.provider.WordNetContract.Usages
+import org.sqlunet.wordnet.provider.WordNetContract.Wikidatas
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Lexes_Morphs
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains
 import org.sqlunet.wordnet.provider.WordNetProvider
@@ -78,34 +81,28 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     // resources
 
     protected val wordLabel: String
-
     protected val senseLabel: String
-
     protected val synsetLabel: String
-
     private val sensesLabel: String
-
     protected val membersLabel: String
-
     protected val samplesLabel: String
-
+    protected val usagesLabel: String
+    protected val iliLabel: String
+    protected val wikidataLabel: String
     protected val relationsLabel: String
-
     protected val upLabel: String
-
     protected val downLabel: String
-
     protected val verbFramesLabel: String
-
     protected val verbTemplatesLabel: String
-
     protected val adjPositionsLabel: String
-
     protected val morphsLabel: String
     private val synsetDrawable: Drawable
     private val memberDrawable: Drawable
     private val definitionDrawable: Drawable
     private val sampleDrawable: Drawable
+    private val usageDrawable: Drawable
+    private val iliDrawable: Drawable
+    private val wikidataDrawable: Drawable
     private val posDrawable: Drawable
     private val domainDrawable: Drawable
     private val verbframeDrawable: Drawable
@@ -138,6 +135,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     private lateinit var membersFromSynsetIdModel: SqlunetViewTreeModel
     private lateinit var members2FromSynsetIdModel: SqlunetViewTreeModel
     private lateinit var samplesFromSynsetIdModel: SqlunetViewTreeModel
+    private lateinit var usagesFromSynsetIdModel: SqlunetViewTreeModel
+    private lateinit var iliFromSynsetIdModel: SqlunetViewTreeModel
+    private lateinit var wikidataFromSynsetIdModel: SqlunetViewTreeModel
     private lateinit var relationsFromSynsetIdWordIdModel: SqlunetViewTreeModel
     private lateinit var semRelationsFromSynsetIdModel: SqlunetViewTreeModel
     private lateinit var semRelationsFromSynsetIdRelationIdModel: SqlunetViewTreeModel
@@ -164,6 +164,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         sensesLabel = context.getString(R.string.wordnet_senses_)
         membersLabel = context.getString(R.string.wordnet_members_)
         samplesLabel = context.getString(R.string.wordnet_samples_)
+        usagesLabel = context.getString(R.string.wordnet_usages_)
+        iliLabel = context.getString(R.string.wordnet_ili_)
+        wikidataLabel = context.getString(R.string.wordnet_wikidata_)
         upLabel = context.getString(R.string.wordnet_up_)
         relationsLabel = context.getString(R.string.wordnet_relations_)
         downLabel = context.getString(R.string.wordnet_down_)
@@ -175,6 +178,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         memberDrawable = getDrawable(context, R.drawable.synsetmember)
         definitionDrawable = getDrawable(context, R.drawable.definition)
         sampleDrawable = getDrawable(context, R.drawable.sample)
+        usageDrawable = getDrawable(context, R.drawable.usage)
+        iliDrawable = getDrawable(context, R.drawable.ili)
+        wikidataDrawable = getDrawable(context, R.drawable.wikidata)
         posDrawable = getDrawable(context, R.drawable.pos)
         domainDrawable = getDrawable(context, R.drawable.domain)
         verbframeDrawable = getDrawable(context, R.drawable.verbframe)
@@ -205,6 +211,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         members2FromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
         samplesFromSynsetIdModel = ViewModelProvider(fragment)["wn.samples(synsetid)", SqlunetViewTreeModel::class.java]
         samplesFromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        usagesFromSynsetIdModel = ViewModelProvider(fragment)["wn.usages(synsetid)", SqlunetViewTreeModel::class.java]
+        usagesFromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        iliFromSynsetIdModel = ViewModelProvider(fragment)["wn.ili(synsetid)", SqlunetViewTreeModel::class.java]
+        iliFromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        wikidataFromSynsetIdModel = ViewModelProvider(fragment)["wn.wikidata(synsetid)", SqlunetViewTreeModel::class.java]
+        wikidataFromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
         relationsFromSynsetIdWordIdModel = ViewModelProvider(fragment)["wn.relations(synsetid,wordid)", SqlunetViewTreeModel::class.java]
         relationsFromSynsetIdWordIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
         semRelationsFromSynsetIdModel = ViewModelProvider(fragment)["wn.semrelations(synsetid)", SqlunetViewTreeModel::class.java]
@@ -753,6 +765,137 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
                 setTextNode(parent, sb, R.drawable.sample)
+                seq(TreeOpCode.UPDATE, parent)
+            }
+        } else {
+            setNoResult(parent)
+            changed = seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    // U S A G E S
+
+    /**
+     * Usages
+     *
+     * @param synsetId   synset id
+     * @param parent     parent node
+     * @param addNewNode whether to addItem to (or set) node
+     */
+    private fun usages(synsetId: Long, parent: TreeNode, @Suppress("SameParameterValue") addNewNode: Boolean) {
+        val sql = Queries.prepareUsages(synsetId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        usagesFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> usagesCursorToTreeModel(cursor, parent, addNewNode) }
+    }
+
+    private fun usagesCursorToTreeModel(cursor: Cursor, parent: TreeNode, addNewNode: Boolean): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val idUsage = cursor.getColumnIndex(Usages.USAGENOTE)
+            val sb = SpannableStringBuilder()
+            do {
+                val usage = cursor.getString(idUsage)
+                // var usageId = cursor.getInt(idUsageId)
+                if (sb.isNotEmpty()) {
+                    sb.append('\n')
+                }
+                appendImage(sb, usageDrawable)
+                sb.append(' ')
+                // sb.append(usageId)
+                // sb.append(' ')
+                append(sb, usage, 0, WordNetFactories.usageFactory)
+                // var formattedUsage = String.format(Locale.ENGLISH, "[%d] %s", usageId, usageNote)
+                // sb.append(formattedUsage)
+            } while (cursor.moveToNext())
+
+            // result
+            changed = if (addNewNode) {
+                val node = makeTextNode(sb, false).addTo(parent)
+                seq(TreeOpCode.NEWUNIQUE, node)
+            } else {
+                setTextNode(parent, sb, R.drawable.usage)
+                seq(TreeOpCode.UPDATE, parent)
+            }
+        } else {
+            setNoResult(parent)
+            changed = seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    // E X T E R N A L   L I N K S
+
+    /**
+     * Ili
+     *
+     * @param synsetId   synset id
+     * @param parent     parent node
+     * @param addNewNode whether to addItem to (or set) node
+     */
+    private fun ili(synsetId: Long, parent: TreeNode, @Suppress("SameParameterValue") addNewNode: Boolean) {
+        val sql = Queries.prepareIli(synsetId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        iliFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> iliCursorToTreeModel(cursor, parent, addNewNode) }
+    }
+
+    private fun iliCursorToTreeModel(cursor: Cursor, parent: TreeNode, addNewNode: Boolean): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val idIli = cursor.getColumnIndex(Ilis.ILI)
+            val sb = SpannableStringBuilder()
+            val ili = cursor.getString(idIli)
+            appendImage(sb, iliDrawable)
+            sb.append(' ')
+            append(sb, ili, 0, WordNetFactories.iliFactory)
+
+            // result
+            changed = if (addNewNode) {
+                val node = makeTextNode(sb, false).addTo(parent)
+                seq(TreeOpCode.NEWUNIQUE, node)
+            } else {
+                setTextNode(parent, sb, R.drawable.ili)
+                seq(TreeOpCode.UPDATE, parent)
+            }
+        } else {
+            setNoResult(parent)
+            changed = seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    /**
+     * Wikidata
+     *
+     * @param synsetId   synset id
+     * @param parent     parent node
+     * @param addNewNode whether to addItem to (or set) node
+     */
+    private fun wikidata(synsetId: Long, parent: TreeNode, @Suppress("SameParameterValue") addNewNode: Boolean) {
+        val sql = Queries.prepareWikidata(synsetId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        wikidataFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> wikidataCursorToTreeModel(cursor, parent, addNewNode) }
+    }
+
+    private fun wikidataCursorToTreeModel(cursor: Cursor, parent: TreeNode, addNewNode: Boolean): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val idWikidata = cursor.getColumnIndex(Wikidatas.WIKIDATA)
+            val sb = SpannableStringBuilder()
+            val wikidata = cursor.getString(idWikidata)
+            appendImage(sb, wikidataDrawable)
+            sb.append(' ')
+            append(sb, wikidata, 0, WordNetFactories.wikidataFactory)
+
+            // result
+            changed = if (addNewNode) {
+                val node = makeTextNode(sb, false).addTo(parent)
+                seq(TreeOpCode.NEWUNIQUE, node)
+            } else {
+                setTextNode(parent, sb, R.drawable.wikidata)
                 seq(TreeOpCode.UPDATE, parent)
             }
         } else {
@@ -1494,6 +1637,54 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
         override fun toString(): String {
             return "samples for $id"
+        }
+    }
+
+    /**
+     * Usages query
+     *
+     * @param synsetId synset id
+     */
+    internal inner class UsagesQuery(synsetId: Long) : Query(synsetId) {
+
+        override fun process(node: TreeNode) {
+            usages(id, node, true)
+        }
+
+        override fun toString(): String {
+            return "usages for $id"
+        }
+    }
+
+    /**
+     * Ili query
+     *
+     * @param synsetId synset id
+     */
+    internal inner class IliQuery(synsetId: Long) : Query(synsetId) {
+
+        override fun process(node: TreeNode) {
+            ili(id, node, true)
+        }
+
+        override fun toString(): String {
+            return "ili for $id"
+        }
+    }
+
+    /**
+     * Wikidata query
+     *
+     * @param synsetId synset id
+     */
+    internal inner class WikidataQuery(synsetId: Long) : Query(synsetId) {
+
+        override fun process(node: TreeNode) {
+            wikidata(id, node, true)
+        }
+
+        override fun toString(): String {
+            return "wikidata for $id"
         }
     }
 
