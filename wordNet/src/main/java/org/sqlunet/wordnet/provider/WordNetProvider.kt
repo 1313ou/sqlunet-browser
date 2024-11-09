@@ -126,7 +126,7 @@ class WordNetProvider : BaseProvider() {
         if (db == null) {
             try {
                 openReadOnly()
-            } catch (e: SQLiteCantOpenDatabaseException) {
+            } catch (_: SQLiteCantOpenDatabaseException) {
                 return null
             }
         }
@@ -304,18 +304,6 @@ class WordNetProvider : BaseProvider() {
             return "$SCHEME$AUTHORITY/$table"
         }
 
-        // C L O S E
-
-        /**
-         * Close provider
-         *
-         * @param context context
-         */
-        fun close(context: Context) {
-            val uri = Uri.parse(SCHEME + AUTHORITY)
-            closeProvider(context, uri)
-        }
-
         /**
          * Make union query.
          * Requirements on selection : expr1 AND expr2
@@ -388,8 +376,20 @@ class WordNetProvider : BaseProvider() {
             //return embed(uQuery, projection, selection, groupBy, sortOrder)
         }
 
-        private fun makeSelection(@Suppress("UNUSED_PARAMETER") projection: Array<String>, selection: String): String {
+        private fun makeSelection(@Suppress("unused") projection: Array<String>, selection: String): String {
             return selection
         }
+    }
+
+    // C L O S E
+
+    /**
+     * Close provider
+     *
+     * @param context context
+     */
+    fun close(context: Context) {
+        val uri = Uri.parse(SCHEME + AUTHORITY)
+        closeProvider(context, uri)
     }
 }

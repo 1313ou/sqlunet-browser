@@ -63,6 +63,8 @@ class SenseModule(fragment: TreeFragment) : SynsetModule(fragment) {
             } else {
                 makeQueryNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId!!, wordId!!)).addTo(node)
             }
+
+            // samples
             if (expand) {
                 makeHotQueryNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
             } else {

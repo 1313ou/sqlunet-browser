@@ -163,7 +163,7 @@ object WordNetControl {
         return Result(table, projection, selection, selectionArgs0, groupBy)
     }
 
-    fun queryAnyRelations(code: Int, projection0: Array<String>?, @Suppress("UNUSED_PARAMETER") selection0: String?, selectionArgs0: Array<String>?): Result? {
+    fun queryAnyRelations(code: Int, projection0: Array<String>?, @Suppress("unused") selection0: String?, selectionArgs0: Array<String>?): Result? {
         if (code == ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET) {
             val table = Q.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE
             val groupBy = Q.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY

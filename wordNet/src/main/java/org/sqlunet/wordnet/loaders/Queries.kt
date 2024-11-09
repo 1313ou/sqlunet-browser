@@ -211,7 +211,7 @@ object Queries {
         return providerSql
     }
 
-    fun prepareSense(synsetId: Long, @Suppress("UNUSED_PARAMETER") wordId: Long): ContentProviderSql {
+    fun prepareSense(synsetId: Long, @Suppress("unused") wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Synsets_Poses_Domains.URI
         providerSql.projection = arrayOf(

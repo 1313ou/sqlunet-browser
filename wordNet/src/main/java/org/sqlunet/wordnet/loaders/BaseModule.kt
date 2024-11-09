@@ -78,29 +78,18 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     // resources
 
     protected val wordLabel: String
-
     protected val senseLabel: String
-
     protected val synsetLabel: String
-
     private val sensesLabel: String
-
     protected val membersLabel: String
-
     protected val samplesLabel: String
 
     protected val relationsLabel: String
-
     protected val upLabel: String
-
     protected val downLabel: String
-
     protected val verbFramesLabel: String
-
     protected val verbTemplatesLabel: String
-
     protected val adjPositionsLabel: String
-
     protected val morphsLabel: String
     private val synsetDrawable: Drawable
     private val memberDrawable: Drawable
