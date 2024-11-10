@@ -131,7 +131,7 @@ object TreeFactory {
     }
 
     /**
-     * Make query node
+     * Make query tree node
      *
      * @param text        label text
      * @param icon        icon
@@ -144,7 +144,7 @@ object TreeFactory {
     }
 
     /**
-     * Make hot (self-triggered) query node
+     * Make hot (self-triggered) tree query node
      *
      * @param text        label text
      * @param icon        icon
@@ -161,7 +161,7 @@ object TreeFactory {
     }
 
     /**
-     * Make hot (self-triggered) query node
+     * Make hot (self-triggered) tree query node
      *
      * @param text           label text
      * @param icon           icon
@@ -180,7 +180,7 @@ object TreeFactory {
     }
 
     /**
-     * Make link query node
+     * Make link query tree node
      *
      * @param text           label text
      * @param icon           icon
