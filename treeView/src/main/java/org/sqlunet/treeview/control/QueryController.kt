@@ -14,7 +14,7 @@ import org.sqlunet.treeview.R
 open class QueryController(breakExpand: Boolean) : BaseResController(breakExpand) {
 
     @LayoutRes
-    override val layoutResId = R.layout.layout_query
+    override val layoutResId = R.layout.layout_node_query
 
     private var processed = false
 
