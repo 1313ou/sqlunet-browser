@@ -6,7 +6,9 @@ package org.sqlunet.model
 import android.os.Handler
 import android.os.Looper
 import androidx.annotation.DrawableRes
+import org.sqlunet.treeview.control.ColdQueryController
 import org.sqlunet.treeview.control.ColdQueryTreeController
+import org.sqlunet.treeview.control.HotQueryController
 import org.sqlunet.treeview.control.HotQueryTreeController
 import org.sqlunet.treeview.control.IconTextController
 import org.sqlunet.treeview.control.LeafController
@@ -101,6 +103,36 @@ object TreeFactory {
      */
     fun makeLinkLeafNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
         return TreeNode(text, icon, arrayOf(link), LinkLeafController(breakExpand), false)
+    }
+
+    /**
+     * Make query node
+     *
+     * @param text        label text
+     * @param icon        icon
+     * @param breakExpand break expand flag
+     * @param query       query
+     * @return created node
+     */
+    fun makeQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
+        return TreeNode(text, icon, arrayOf(query), ColdQueryController(breakExpand), false)
+    }
+
+    /**
+     * Make hot (self-triggered) query node
+     *
+     * @param text        label text
+     * @param icon        icon
+     * @param breakExpand break expand flag
+     * @param query       query
+     * @return created node
+     */
+    fun makeHotQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
+        val controller = HotQueryController(breakExpand)
+        val result = TreeNode(text, icon, arrayOf(query), controller, false)
+        val handler = Handler(Looper.getMainLooper())
+        handler.post { controller.processQuery() }
+        return result
     }
 
     // TREE

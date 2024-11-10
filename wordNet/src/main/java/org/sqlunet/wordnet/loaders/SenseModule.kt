@@ -6,9 +6,11 @@ package org.sqlunet.wordnet.loaders
 import android.os.Parcelable
 import org.sqlunet.HasWordId
 import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.makeHotQueryNode
 import org.sqlunet.model.TreeFactory.makeHotQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeIconTextNode
 import org.sqlunet.model.TreeFactory.makeLinkHotQueryTreeNode
+import org.sqlunet.model.TreeFactory.makeQueryNode
 import org.sqlunet.model.TreeFactory.makeQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeTextNode
 import org.sqlunet.model.TreeFactory.makeTreeNode
@@ -80,14 +82,14 @@ class SenseModule(fragment: TreeFragment) : SynsetModule(fragment) {
 
             // externals
             if (expand) {
-                makeHotQueryTreeNode(iliLabel, R.drawable.ili, false, IliQuery(synsetId!!)).addTo(node)
+                makeHotQueryNode(iliLabel, R.drawable.ili, false, IliQuery(synsetId!!)).addTo(node)
             } else {
-                makeQueryTreeNode(iliLabel, R.drawable.ili, false, IliQuery(synsetId!!)).addTo(node)
+                makeQueryNode(iliLabel, R.drawable.ili, false, IliQuery(synsetId!!)).addTo(node)
             }
             if (expand) {
-                makeHotQueryTreeNode(wikidataLabel, R.drawable.wikidata, false, WikidataQuery(synsetId!!)).addTo(node)
+                makeHotQueryNode(wikidataLabel, R.drawable.wikidata, false, WikidataQuery(synsetId!!)).addTo(node)
             } else {
-                makeQueryTreeNode(wikidataLabel, R.drawable.wikidata, false, WikidataQuery(synsetId!!)).addTo(node)
+                makeQueryNode(wikidataLabel, R.drawable.wikidata, false, WikidataQuery(synsetId!!)).addTo(node)
             }
 
             // special
