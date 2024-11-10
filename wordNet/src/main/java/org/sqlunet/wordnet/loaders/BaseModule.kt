@@ -15,12 +15,12 @@ import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.browser.Module
 import org.sqlunet.browser.SqlunetViewTreeModel
 import org.sqlunet.browser.TreeFragment
-import org.sqlunet.model.TreeFactory.makeHotQueryNode
+import org.sqlunet.model.TreeFactory.makeHotQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeLeafNode
-import org.sqlunet.model.TreeFactory.makeLinkHotQueryNode
+import org.sqlunet.model.TreeFactory.makeLinkHotQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeLinkLeafNode
 import org.sqlunet.model.TreeFactory.makeLinkNode
-import org.sqlunet.model.TreeFactory.makeLinkQueryNode
+import org.sqlunet.model.TreeFactory.makeLinkQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeMoreNode
 import org.sqlunet.model.TreeFactory.makeTextNode
 import org.sqlunet.model.TreeFactory.setNoResult
@@ -485,8 +485,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val node = makeTextNode(sb, false).addTo(parent)
 
             // subnodes
-            val relationsNode = makeHotQueryNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId, wordId)).addTo(parent)
-            val samplesNode = makeHotQueryNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId)).addTo(parent)
+            val relationsNode = makeHotQueryTreeNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId, wordId)).addTo(parent)
+            val samplesNode = makeHotQueryTreeNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId)).addTo(parent)
             changed = seq(TreeOpCode.NEWMAIN, node, TreeOpCode.NEWEXTRA, relationsNode, TreeOpCode.NEWEXTRA, samplesNode, TreeOpCode.NEWTREE, parent)
         } else {
             setNoResult(parent)
@@ -957,7 +957,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                 // recursion
                 if (relationCanRecurse) {
-                    val relationsNode = makeLinkQueryNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, maxRecursion), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
+                    val relationsNode = makeLinkQueryTreeNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, maxRecursion), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
                     changedList.add(TreeOpCode.NEWCHILD, relationsNode)
                 } else {
                     val node = makeLinkLeafNode(sb, getRelationRes(relationId), false, if (targetWordId == null) SynsetLink(targetSynsetId, maxRecursion, fragment) else SenseLink(targetSynsetId, targetWordId, maxRecursion, fragment)).addTo(parent)
@@ -1020,7 +1020,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                 // recursion
                 if (relationCanRecurse) {
-                    val relationsNode = makeLinkQueryNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, maxRecursion), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
+                    val relationsNode = makeLinkQueryTreeNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, maxRecursion), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
                     changedList.add(TreeOpCode.NEWCHILD, relationsNode)
                 } else {
                     val node = makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent)
@@ -1084,14 +1084,14 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (relationCanRecurse) {
                     if (recurseLevel > 1) {
                         val newRecurseLevel = recurseLevel - 1
-                        val relationsNode = if (hot) makeLinkHotQueryNode(
+                        val relationsNode = if (hot) makeLinkHotQueryTreeNode(
                             sb,
                             getRelationRes(relationId),
                             false,
                             SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel, true),
                             SynsetLink(targetSynsetId, maxRecursion, fragment),
                             0
-                        ).addTo(parent) else makeLinkQueryNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
+                        ).addTo(parent) else makeLinkQueryTreeNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
                         changedList.add(TreeOpCode.NEWCHILD, relationsNode)
                     } else {
                         val moreNode = makeMoreNode(sb, getRelationRes(relationId), false).addTo(parent)

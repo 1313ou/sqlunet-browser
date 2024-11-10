@@ -139,7 +139,7 @@ object TreeFactory {
      * @param query       query
      * @return created node
      */
-    fun makeQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
+    fun makeQueryTreeNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
         return TreeNode(text, icon, arrayOf(query), ColdQueryController(breakExpand), true)
     }
 
@@ -152,7 +152,7 @@ object TreeFactory {
      * @param query       query
      * @return created node
      */
-    fun makeHotQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
+    fun makeHotQueryTreeNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
         val controller = HotQueryController(breakExpand)
         val result = TreeNode(text, icon, arrayOf(query), controller, true)
         val handler = Handler(Looper.getMainLooper())
@@ -171,7 +171,7 @@ object TreeFactory {
      * @param buttonImageRes image drawable id for button, 0 for default
      * @return created node
      */
-    fun makeLinkHotQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?, link: Link?, @DrawableRes buttonImageRes: Int): TreeNode {
+    fun makeLinkHotQueryTreeNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?, link: Link?, @DrawableRes buttonImageRes: Int): TreeNode {
         val controller: HotQueryController = LinkHotQueryController(breakExpand, buttonImageRes)
         val result = TreeNode(text, icon, arrayOf(query, link), controller, true)
         val handler = Handler(Looper.getMainLooper())
@@ -190,7 +190,7 @@ object TreeFactory {
      * @param buttonImageRes image drawable id for button, 0 for default
      * @return created node
      */
-    fun makeLinkQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?, link: Link?, @DrawableRes buttonImageRes: Int): TreeNode {
+    fun makeLinkQueryTreeNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?, link: Link?, @DrawableRes buttonImageRes: Int): TreeNode {
         return TreeNode(text, icon, arrayOf(query, link), LinkQueryController(breakExpand, buttonImageRes), true)
     }
 

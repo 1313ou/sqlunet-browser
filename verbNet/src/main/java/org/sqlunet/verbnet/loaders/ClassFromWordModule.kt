@@ -12,8 +12,8 @@ import org.sqlunet.HasSynsetId
 import org.sqlunet.HasWordId
 import org.sqlunet.browser.SqlunetViewTreeModel
 import org.sqlunet.browser.TreeFragment
-import org.sqlunet.model.TreeFactory.makeHotQueryNode
-import org.sqlunet.model.TreeFactory.makeQueryNode
+import org.sqlunet.model.TreeFactory.makeHotQueryTreeNode
+import org.sqlunet.model.TreeFactory.makeQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeTextNode
 import org.sqlunet.model.TreeFactory.setNoResult
 import org.sqlunet.style.Spanner.Companion.append
@@ -133,11 +133,11 @@ class ClassFromWordModule(fragment: TreeFragment) : BaseModule(fragment) {
                 changedList.add(TreeOpCode.NEWCHILD, node)
 
                 // sub nodes
-                val membersNode = makeHotQueryNode(membersLabel, R.drawable.members, false, MembersQuery(classId.toLong())).addTo(parent)
+                val membersNode = makeHotQueryTreeNode(membersLabel, R.drawable.members, false, MembersQuery(classId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, membersNode)
-                val rolesNode = makeHotQueryNode(rolesLabel, R.drawable.roles, false, RolesQuery(classId.toLong())).addTo(parent)
+                val rolesNode = makeHotQueryTreeNode(rolesLabel, R.drawable.roles, false, RolesQuery(classId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, rolesNode)
-                val framesNode = makeQueryNode(framesLabel, R.drawable.vnframe, false, FramesQuery(classId.toLong())).addTo(parent)
+                val framesNode = makeQueryTreeNode(framesLabel, R.drawable.vnframe, false, FramesQuery(classId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, framesNode)
             } while (cursor.moveToNext())
             changed = changedList.toArray()

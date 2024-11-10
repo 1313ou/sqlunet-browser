@@ -7,9 +7,9 @@ import android.os.Parcelable
 import org.sqlunet.HasPos
 import org.sqlunet.HasSynsetId
 import org.sqlunet.browser.TreeFragment
-import org.sqlunet.model.TreeFactory.makeHotQueryNode
+import org.sqlunet.model.TreeFactory.makeHotQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeIconTextNode
-import org.sqlunet.model.TreeFactory.makeQueryNode
+import org.sqlunet.model.TreeFactory.makeQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeTextNode
 import org.sqlunet.model.TreeFactory.setNoResult
 import org.sqlunet.treeview.model.TreeNode
@@ -70,15 +70,15 @@ class RelationModule(fragment: TreeFragment) : BaseModule(fragment) {
 
             // up relations
             if (expand) {
-                makeHotQueryNode(upLabel, R.drawable.up, false, SubRelationsQuery(synsetId!!, HYPERNYM, maxRecursion, true)).addTo(node)
+                makeHotQueryTreeNode(upLabel, R.drawable.up, false, SubRelationsQuery(synsetId!!, HYPERNYM, maxRecursion, true)).addTo(node)
             } else {
-                makeQueryNode(upLabel, R.drawable.up, false, SubRelationsQuery(synsetId!!, HYPERNYM, maxRecursion, false)).addTo(node)
+                makeQueryTreeNode(upLabel, R.drawable.up, false, SubRelationsQuery(synsetId!!, HYPERNYM, maxRecursion, false)).addTo(node)
             }
             // down relations
             if (expand) {
-                makeHotQueryNode(downLabel, R.drawable.down, false, SubRelationsQuery(synsetId!!, HYPONYM, maxRecursion, false)).addTo(node)
+                makeHotQueryTreeNode(downLabel, R.drawable.down, false, SubRelationsQuery(synsetId!!, HYPONYM, maxRecursion, false)).addTo(node)
             } else {
-                makeQueryNode(downLabel, R.drawable.down, false, SubRelationsQuery(synsetId!!, HYPONYM, maxRecursion, false)).addTo(node)
+                makeQueryTreeNode(downLabel, R.drawable.down, false, SubRelationsQuery(synsetId!!, HYPONYM, maxRecursion, false)).addTo(node)
             }
         } else {
             setNoResult(node)

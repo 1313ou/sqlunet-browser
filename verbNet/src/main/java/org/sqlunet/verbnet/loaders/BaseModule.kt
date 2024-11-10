@@ -11,10 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.browser.Module
 import org.sqlunet.browser.SqlunetViewTreeModel
 import org.sqlunet.browser.TreeFragment
-import org.sqlunet.model.TreeFactory.makeHotQueryNode
+import org.sqlunet.model.TreeFactory.makeHotQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeIconTextNode
 import org.sqlunet.model.TreeFactory.makeLeafNode
-import org.sqlunet.model.TreeFactory.makeQueryNode
+import org.sqlunet.model.TreeFactory.makeQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeTextNode
 import org.sqlunet.model.TreeFactory.makeTreeNode
 import org.sqlunet.model.TreeFactory.setNoResult
@@ -225,9 +225,9 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val node = makeTextNode(sb, false).addTo(parent)
 
             // sub nodes
-            val membersNode = makeHotQueryNode(membersLabel, R.drawable.members, false, MembersQuery(classId)).addTo(parent)
-            val rolesNode = makeHotQueryNode(rolesLabel, R.drawable.roles, false, RolesQuery(classId)).addTo(parent)
-            val framesNode = makeQueryNode(framesLabel, R.drawable.vnframe, false, FramesQuery(classId)).addTo(parent)
+            val membersNode = makeHotQueryTreeNode(membersLabel, R.drawable.members, false, MembersQuery(classId)).addTo(parent)
+            val rolesNode = makeHotQueryTreeNode(rolesLabel, R.drawable.roles, false, RolesQuery(classId)).addTo(parent)
+            val framesNode = makeQueryTreeNode(framesLabel, R.drawable.vnframe, false, FramesQuery(classId)).addTo(parent)
 
             // changed
             changed = seq(TreeOpCode.NEWMAIN, node, TreeOpCode.NEWEXTRA, membersNode, TreeOpCode.NEWEXTRA, rolesNode, TreeOpCode.NEWEXTRA, framesNode, TreeOpCode.NEWTREE, parent)

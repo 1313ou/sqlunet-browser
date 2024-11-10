@@ -65,10 +65,10 @@ import org.sqlunet.framenet.style.FrameNetFrameProcessor
 import org.sqlunet.framenet.style.FrameNetMarkupFactory
 import org.sqlunet.framenet.style.FrameNetProcessor
 import org.sqlunet.framenet.style.FrameNetSpanner
-import org.sqlunet.model.TreeFactory.makeHotQueryNode
+import org.sqlunet.model.TreeFactory.makeHotQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeLinkNode
 import org.sqlunet.model.TreeFactory.makeLinkTreeNode
-import org.sqlunet.model.TreeFactory.makeQueryNode
+import org.sqlunet.model.TreeFactory.makeQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeTextNode
 import org.sqlunet.model.TreeFactory.makeTreeNode
 import org.sqlunet.model.TreeFactory.setNoResult
@@ -292,9 +292,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val node = makeTextNode(sb, false).addTo(parent)
 
             // sub nodes
-            val fesNode = makeHotQueryNode(fesLabel, R.drawable.roles, false, FEsQuery(frameId)).addTo(parent)
-            val lexUnitsNode = makeHotQueryNode(lexunitsLabel, R.drawable.members, false, LexUnitsQuery(frameId)).addTo(parent)
-            val relatedNode = makeQueryNode(relatedLabel, R.drawable.roleclass, false, RelatedQuery(frameId)).addTo(parent)
+            val fesNode = makeHotQueryTreeNode(fesLabel, R.drawable.roles, false, FEsQuery(frameId)).addTo(parent)
+            val lexUnitsNode = makeHotQueryTreeNode(lexunitsLabel, R.drawable.members, false, LexUnitsQuery(frameId)).addTo(parent)
+            val relatedNode = makeQueryTreeNode(relatedLabel, R.drawable.roleclass, false, RelatedQuery(frameId)).addTo(parent)
             changed = seq(TreeOpCode.NEWMAIN, node, TreeOpCode.NEWEXTRA, fesNode, TreeOpCode.NEWEXTRA, lexUnitsNode, TreeOpCode.NEWEXTRA, relatedNode, TreeOpCode.NEWTREE, parent)
         } else {
             setNoResult(parent)
@@ -633,10 +633,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 sb2.append("Frame")
                 sb2.append(' ')
                 append(sb2, frame, 0, FrameNetFactories.boldFactory)
-                val frameNode = makeHotQueryNode(sb2, R.drawable.roleclass, false, FrameQuery(frameId.toLong())).addTo(parent)
+                val frameNode = makeHotQueryTreeNode(sb2, R.drawable.roleclass, false, FrameQuery(frameId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, frameNode)
                 if (withFes) {
-                    val fesNode = makeQueryNode(fesLabel, R.drawable.roles, false, FEsQuery(frameId.toLong())).addTo(parent)
+                    val fesNode = makeQueryTreeNode(fesLabel, R.drawable.roles, false, FEsQuery(frameId.toLong())).addTo(parent)
                     changedList.add(TreeOpCode.NEWCHILD, fesNode)
                 }
             } else {
@@ -645,13 +645,13 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             }
 
             // sub nodes
-            val realizationsNode = makeQueryNode(realizationsLabel, R.drawable.realization, false, RealizationsQuery(luId)).addTo(parent)
+            val realizationsNode = makeQueryTreeNode(realizationsLabel, R.drawable.realization, false, RealizationsQuery(luId)).addTo(parent)
             changedList.add(TreeOpCode.NEWCHILD, realizationsNode)
-            val groupRealizationsNode = makeQueryNode(grouprealizationsLabel, R.drawable.grouprealization, false, GroupRealizationsQuery(luId)).addTo(parent)
+            val groupRealizationsNode = makeQueryTreeNode(grouprealizationsLabel, R.drawable.grouprealization, false, GroupRealizationsQuery(luId)).addTo(parent)
             changedList.add(TreeOpCode.NEWCHILD, groupRealizationsNode)
-            val governorsNode = makeQueryNode(governorsLabel, R.drawable.governor, false, GovernorsQuery(luId)).addTo(parent)
+            val governorsNode = makeQueryTreeNode(governorsLabel, R.drawable.governor, false, GovernorsQuery(luId)).addTo(parent)
             changedList.add(TreeOpCode.NEWCHILD, governorsNode)
-            val sentencesNode = makeQueryNode(sentencesLabel, R.drawable.sentence, false, SentencesForLexUnitQuery(luId)).addTo(parent)
+            val sentencesNode = makeQueryTreeNode(sentencesLabel, R.drawable.sentence, false, SentencesForLexUnitQuery(luId)).addTo(parent)
             changedList.add(TreeOpCode.NEWCHILD, sentencesNode)
             changed = changedList.toArray()
         } else {
@@ -714,9 +714,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                 // frame
                 if (withFrame) {
-                    val frameNode = makeQueryNode(frameLabel, R.drawable.roleclass, false, FrameQuery(frameId)).addTo(luNode)
+                    val frameNode = makeQueryTreeNode(frameLabel, R.drawable.roleclass, false, FrameQuery(frameId)).addTo(luNode)
                     changedList.add(TreeOpCode.NEWCHILD, frameNode)
-                    val fesNode = makeQueryNode(fesLabel, R.drawable.roles, false, FEsQuery(frameId)).addTo(luNode)
+                    val fesNode = makeQueryTreeNode(fesLabel, R.drawable.roles, false, FEsQuery(frameId)).addTo(luNode)
                     changedList.add(TreeOpCode.NEWCHILD, fesNode)
                 }
 
@@ -762,13 +762,13 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 changedList.add(TreeOpCode.NEWCHILD, extraNode)
 
                 // sub nodes
-                val realizationsNode = makeQueryNode(realizationsLabel, R.drawable.realization, false, RealizationsQuery(luId)).addTo(luNode)
+                val realizationsNode = makeQueryTreeNode(realizationsLabel, R.drawable.realization, false, RealizationsQuery(luId)).addTo(luNode)
                 changedList.add(TreeOpCode.NEWCHILD, realizationsNode)
-                val groupRealizationsNode = makeQueryNode(grouprealizationsLabel, R.drawable.grouprealization, false, GroupRealizationsQuery(luId)).addTo(luNode)
+                val groupRealizationsNode = makeQueryTreeNode(grouprealizationsLabel, R.drawable.grouprealization, false, GroupRealizationsQuery(luId)).addTo(luNode)
                 changedList.add(TreeOpCode.NEWCHILD, groupRealizationsNode)
-                val governorsNode = makeQueryNode(governorsLabel, R.drawable.governor, false, GovernorsQuery(luId)).addTo(luNode)
+                val governorsNode = makeQueryTreeNode(governorsLabel, R.drawable.governor, false, GovernorsQuery(luId)).addTo(luNode)
                 changedList.add(TreeOpCode.NEWCHILD, governorsNode)
-                val sentencesNode = makeQueryNode(sentencesLabel, R.drawable.sentence, false, SentencesForLexUnitQuery(luId)).addTo(luNode)
+                val sentencesNode = makeQueryTreeNode(sentencesLabel, R.drawable.sentence, false, SentencesForLexUnitQuery(luId)).addTo(luNode)
                 changedList.add(TreeOpCode.NEWCHILD, sentencesNode)
             } while (cursor.moveToNext())
             changed = changedList.toArray()
@@ -865,17 +865,17 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 changedList.add(TreeOpCode.NEWCHILD, node)
 
                 // sub nodes
-                val frameNode = makeHotQueryNode(frameLabel, R.drawable.roleclass, false, FrameQuery(frameId.toLong())).addTo(parent)
+                val frameNode = makeHotQueryTreeNode(frameLabel, R.drawable.roleclass, false, FrameQuery(frameId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, frameNode)
-                val fesNode = makeQueryNode(fesLabel, R.drawable.roles, false, FEsQuery(frameId.toLong())).addTo(parent)
+                val fesNode = makeQueryTreeNode(fesLabel, R.drawable.roles, false, FEsQuery(frameId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, fesNode)
-                val realizationsNode = makeQueryNode(realizationsLabel, R.drawable.realization, false, RealizationsQuery(luId.toLong())).addTo(parent)
+                val realizationsNode = makeQueryTreeNode(realizationsLabel, R.drawable.realization, false, RealizationsQuery(luId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, realizationsNode)
-                val groupRealizationsNode = makeQueryNode(grouprealizationsLabel, R.drawable.grouprealization, false, GroupRealizationsQuery(luId.toLong())).addTo(parent)
+                val groupRealizationsNode = makeQueryTreeNode(grouprealizationsLabel, R.drawable.grouprealization, false, GroupRealizationsQuery(luId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, groupRealizationsNode)
-                val governorsNode = makeQueryNode(governorsLabel, R.drawable.governor, false, GovernorsQuery(luId.toLong())).addTo(parent)
+                val governorsNode = makeQueryTreeNode(governorsLabel, R.drawable.governor, false, GovernorsQuery(luId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, governorsNode)
-                val sentencesNode = makeQueryNode(sentencesLabel, R.drawable.sentence, false, SentencesForLexUnitQuery(luId.toLong())).addTo(parent)
+                val sentencesNode = makeQueryTreeNode(sentencesLabel, R.drawable.sentence, false, SentencesForLexUnitQuery(luId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, sentencesNode)
             } while (cursor.moveToNext())
             changed = changedList.toArray()
@@ -934,7 +934,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 append(sb, word, 0, FrameNetFactories.governorFactory)
 
                 // attach annoSets node
-                val annoSetsNode = makeQueryNode(sb, R.drawable.governor, false, AnnoSetsForGovernorQuery(governorId)).addTo(parent)
+                val annoSetsNode = makeQueryTreeNode(sb, R.drawable.governor, false, AnnoSetsForGovernorQuery(governorId)).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, annoSetsNode)
             } while (cursor.moveToNext())
             changed = changedList.toArray()
@@ -1018,7 +1018,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     }
 
                     // attach fer node
-                    val ferNode = makeQueryNode(sb1, R.drawable.realization, false, SentencesForValenceUnitQuery(vuId)).addTo(feNode)
+                    val ferNode = makeQueryTreeNode(sb1, R.drawable.realization, false, SentencesForValenceUnitQuery(vuId)).addTo(feNode)
                     changedList.add(TreeOpCode.NEWCHILD, ferNode)
                 }
             } while (cursor.moveToNext())
@@ -1088,7 +1088,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 parseGroupRealizations(groupRealizations, sb)
 
                 // attach sentences node
-                val sentencesNode = makeQueryNode(sb, R.drawable.grouprealization, false, SentencesForPatternQuery(patternId.toLong())).addTo(groupNode!!)
+                val sentencesNode = makeQueryTreeNode(sb, R.drawable.grouprealization, false, SentencesForPatternQuery(patternId.toLong())).addTo(groupNode!!)
                 changedList.add(TreeOpCode.NEWCHILD, sentencesNode)
             } while (cursor.moveToNext())
             changed = changedList.toArray()
@@ -1275,7 +1275,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 }
 
                 // attach annoSet node
-                val annoSetNode = makeQueryNode(sb, R.drawable.sentence, false, AnnoSetQuery(annotationId, false)).addTo(parent)
+                val annoSetNode = makeQueryTreeNode(sb, R.drawable.sentence, false, AnnoSetQuery(annotationId, false)).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, annoSetNode)
             } while (cursor.moveToNext())
             changed = changedList.toArray()
@@ -1326,7 +1326,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 }
 
                 // pattern
-                val annoSetNode = makeQueryNode(sb, R.drawable.sentence, false, AnnoSetQuery(annotationId, false)).addTo(parent)
+                val annoSetNode = makeQueryTreeNode(sb, R.drawable.sentence, false, AnnoSetQuery(annotationId, false)).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, annoSetNode)
             } while (cursor.moveToNext())
             changed = changedList.toArray()
@@ -1496,7 +1496,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 }
 
                 // attach annoSet node
-                val annoSetNode = makeQueryNode(sb, R.drawable.annoset, false, AnnoSetQuery(annoSetId, false)).addTo(parent)
+                val annoSetNode = makeQueryTreeNode(sb, R.drawable.annoset, false, AnnoSetQuery(annoSetId, false)).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, annoSetNode)
             } while (cursor.moveToNext())
             changed = changedList.toArray()

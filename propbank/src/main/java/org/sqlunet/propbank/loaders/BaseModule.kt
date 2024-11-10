@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.browser.Module
 import org.sqlunet.browser.SqlunetViewTreeModel
 import org.sqlunet.browser.TreeFragment
-import org.sqlunet.model.TreeFactory.makeHotQueryNode
-import org.sqlunet.model.TreeFactory.makeQueryNode
+import org.sqlunet.model.TreeFactory.makeHotQueryTreeNode
+import org.sqlunet.model.TreeFactory.makeQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeTextNode
 import org.sqlunet.model.TreeFactory.setNoResult
 import org.sqlunet.propbank.R
@@ -197,8 +197,8 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val node = makeTextNode(sb, false).addTo(parent)
 
             // sub nodes
-            val rolesNode = makeHotQueryNode(rolesLabel, R.drawable.roles, false, RolesQuery(roleSetId)).addTo(parent)
-            val examplesNode = makeQueryNode(examplesLabel, R.drawable.sample, false, ExamplesQuery(roleSetId)).addTo(parent)
+            val rolesNode = makeHotQueryTreeNode(rolesLabel, R.drawable.roles, false, RolesQuery(roleSetId)).addTo(parent)
+            val examplesNode = makeQueryTreeNode(examplesLabel, R.drawable.sample, false, ExamplesQuery(roleSetId)).addTo(parent)
             changed = seq(TreeOpCode.NEWMAIN, node, TreeOpCode.NEWEXTRA, rolesNode, TreeOpCode.NEWEXTRA, examplesNode, TreeOpCode.NEWTREE, parent)
         } else {
             setNoResult(parent)
@@ -256,9 +256,9 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 changedList.add(TreeOpCode.NEWCHILD, node)
 
                 // sub nodes
-                val rolesNode = makeHotQueryNode(rolesLabel, R.drawable.roles, false, RolesQuery(roleSetId.toLong())).addTo(parent)
+                val rolesNode = makeHotQueryTreeNode(rolesLabel, R.drawable.roles, false, RolesQuery(roleSetId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, rolesNode)
-                val examplesNode = makeQueryNode(examplesLabel, R.drawable.sample, false, ExamplesQuery(roleSetId.toLong())).addTo(parent)
+                val examplesNode = makeQueryTreeNode(examplesLabel, R.drawable.sample, false, ExamplesQuery(roleSetId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, examplesNode)
             } while (cursor.moveToNext())
             changed = changedList.toArray()

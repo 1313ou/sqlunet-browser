@@ -7,10 +7,10 @@ import android.os.Parcelable
 import org.sqlunet.HasPos
 import org.sqlunet.HasSynsetId
 import org.sqlunet.browser.TreeFragment
-import org.sqlunet.model.TreeFactory.makeHotQueryNode
+import org.sqlunet.model.TreeFactory.makeHotQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeIconTextNode
-import org.sqlunet.model.TreeFactory.makeLinkHotQueryNode
-import org.sqlunet.model.TreeFactory.makeQueryNode
+import org.sqlunet.model.TreeFactory.makeLinkHotQueryTreeNode
+import org.sqlunet.model.TreeFactory.makeQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeTextNode
 import org.sqlunet.model.TreeFactory.setNoResult
 import org.sqlunet.treeview.control.Link
@@ -85,14 +85,14 @@ open class SynsetModule(fragment: TreeFragment) : BaseModule(fragment) {
             // relations and samples
             if (expand) {
                 val link: Link = RelationLink(synsetId!!, maxRecursion, fragment)
-                makeLinkHotQueryNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId!!, 0), link, R.drawable.ic_link_relation).addTo(node)
+                makeLinkHotQueryTreeNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId!!, 0), link, R.drawable.ic_link_relation).addTo(node)
             } else {
-                makeQueryNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId!!, 0)).addTo(node)
+                makeQueryTreeNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId!!, 0)).addTo(node)
             }
             if (expand) {
-                makeHotQueryNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
+                makeHotQueryTreeNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
             } else {
-                makeQueryNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
+                makeQueryTreeNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
             }
         } else {
             setNoResult(node)
