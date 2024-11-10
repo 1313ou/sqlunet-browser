@@ -11,12 +11,24 @@ import org.sqlunet.treeview.R
  *
  * @param breakExpand whether this controller breaks expansion
  */
-open class QueryController(breakExpand: Boolean) : BaseResController(breakExpand) {
+open class QueryTreeController(breakExpand: Boolean) : TreeController(breakExpand) {
 
     @LayoutRes
     override val layoutResId = R.layout.layout_query
 
     private var processed = false
+
+    override fun markExpanded() {
+        junctionView.setImageResource(R.drawable.ic_query_expanded)
+    }
+
+    override fun markCollapsed() {
+        junctionView.setImageResource(R.drawable.ic_query_collapsed)
+    }
+
+    override fun markDeadend() {
+        junctionView.setImageResource(R.drawable.ic_query_deadend)
+    }
 
     /**
      * Add data to tree by launching the query

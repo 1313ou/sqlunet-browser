@@ -7,7 +7,7 @@ import androidx.annotation.LayoutRes
 import org.sqlunet.treeview.R
 
 /**
- * Query controller (expanding this controller will trigger query)
+ * Hot Query controller (expanding this controller will trigger query)
  *
  * @param breakExpand whether this controller breaks expansion
  *
@@ -17,16 +17,4 @@ open class HotQueryController(breakExpand: Boolean) : QueryController(breakExpan
 
     @LayoutRes
     override val layoutResId = R.layout.layout_query
-
-    override fun markExpanded() {
-        junctionView.setImageResource(R.drawable.ic_hotquery_expanded)
-    }
-
-    override fun markCollapsed() {
-        junctionView.setImageResource(R.drawable.ic_hotquery_collapsed)
-    }
-
-    override fun markDeadend() {
-        junctionView.setImageResource(R.drawable.ic_hotquery_deadend)
-    }
 }

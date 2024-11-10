@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
+ * Copyright (c) 2023. Bernard Bou
  */
 package org.sqlunet.treeview.control
 
@@ -7,21 +7,21 @@ import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
-import androidx.annotation.LayoutRes
 import androidx.appcompat.content.res.AppCompatResources
 import org.sqlunet.treeview.R
 import org.sqlunet.treeview.model.TreeNode
 
 /**
- * Link and hot query controller
+ * Query controller (expanding this controller will trigger query)
  *
- * @param breakExpand    whether this controller breaks expansion
+ * @param breakExpand whether this controller breaks expansion
  * @param buttonImageRes image drawable id for button, 0 for default
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class LinkHotQueryController(breakExpand: Boolean, @DrawableRes private val buttonImageRes: Int) : HotQueryController(breakExpand) {
+class LinkQueryTreeController(breakExpand: Boolean, @DrawableRes private val buttonImageRes: Int) : ColdQueryTreeController(breakExpand) {
 
-    @LayoutRes
-    override val layoutResId = R.layout.layout_query_link
+    override val layoutResId = R.layout.layout_tree_link
 
     override fun createNodeView(context: Context, node: TreeNode, minHeight: Int): View {
         val view = super.createNodeView(context, node, minHeight)
@@ -32,10 +32,6 @@ class LinkHotQueryController(breakExpand: Boolean, @DrawableRes private val butt
         }
         hotLink.setOnClickListener { followLink() }
         return view
-    }
-
-    override fun fire() {
-        followLink()
     }
 
     /**
