@@ -847,7 +847,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val idIli = cursor.getColumnIndex(Ilis.ILI)
             val sb = SpannableStringBuilder()
             val ili = cursor.getString(idIli)
-            appendImage(sb, iliDrawable)
+            //appendImage(sb, iliDrawable)
             sb.append(' ')
             append(sb, ili, 0, WordNetFactories.iliFactory)
 
@@ -886,7 +886,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val idWikidata = cursor.getColumnIndex(Wikidatas.WIKIDATA)
             val sb = SpannableStringBuilder()
             val wikidata = cursor.getString(idWikidata)
-            appendImage(sb, wikidataDrawable)
+            // appendImage(sb, wikidataDrawable)
             sb.append(' ')
             append(sb, wikidata, 0, WordNetFactories.wikidataFactory)
 
@@ -1664,7 +1664,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     internal inner class IliQuery(synsetId: Long) : Query(synsetId) {
 
         override fun process(node: TreeNode) {
-            ili(id, node, true)
+            ili(id, node, false)
         }
 
         override fun toString(): String {
@@ -1680,7 +1680,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     internal inner class WikidataQuery(synsetId: Long) : Query(synsetId) {
 
         override fun process(node: TreeNode) {
-            wikidata(id, node, true)
+            wikidata(id, node, false)
         }
 
         override fun toString(): String {
