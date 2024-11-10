@@ -300,7 +300,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 // data
 
                 // n
-                sb.append(cursor.getString(idArgType))
+                sb.append(cursor.getString(idArgType) ?: "-")
                 sb.append(' ')
 
                 // role
