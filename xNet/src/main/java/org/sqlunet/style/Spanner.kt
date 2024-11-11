@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.TextPaint
+import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.DynamicDrawableSpan
 import android.text.style.ImageSpan
@@ -19,7 +20,6 @@ import android.text.style.ReplacementSpan
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
 import org.sqlunet.xnet.R
@@ -162,6 +162,13 @@ open class Spanner {
 
         // C L I C K A B L E
 
+        // how to use:
+        // val tv: TextView = ...
+        // prepareTextViewForClickableSpan(tv)
+        // val sb = SpannableStringBuilder()
+        // appendClickableText(sb, "text", callback)
+        // tv.text = sb
+
         /**
          * Append clickable text
          *
@@ -176,7 +183,7 @@ open class Spanner {
                 override fun onClick(view: View) {
                     Log.d(TAG, "Click text $text")
                     listener()
-                 }
+                }
 
                 override fun updateDrawState(drawState: TextPaint) {
                     super.updateDrawState(drawState)
@@ -185,6 +192,16 @@ open class Spanner {
                 }
             }
             appendWithSpans(sb, text, span)
+        }
+
+        fun prepareTextViewForClickableSpan(tv: TextView) {
+            tv.movementMethod = LinkMovementMethod.getInstance()
+            tv.isFocusable = true
+            tv.isFocusableInTouchMode = true
+            tv.isClickable = true
+            tv.isLongClickable = true
+            tv.isLongClickable = true
+            tv.setOnClickListener {}
         }
 
         /**
