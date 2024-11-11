@@ -10,6 +10,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.text.SpannableStringBuilder
+import android.text.method.LinkMovementMethod
+import android.util.Log
+import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.browser.Module
@@ -27,6 +32,7 @@ import org.sqlunet.model.TreeFactory.setNoResult
 import org.sqlunet.model.TreeFactory.setTextNode
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.style.Spanner.Companion.append
+import org.sqlunet.style.Spanner.Companion.appendClickableText
 import org.sqlunet.style.Spanner.Companion.appendImage
 import org.sqlunet.style.Spanner.Companion.getDrawable
 import org.sqlunet.treeview.control.Link
@@ -184,7 +190,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         posDrawable = getDrawable(context, R.drawable.pos)
         domainDrawable = getDrawable(context, R.drawable.domain)
         verbframeDrawable = getDrawable(context, R.drawable.verbframe)
-        morphDrawable = verbframeDrawable
+        morphDrawable = getDrawable(context, R.drawable.morph)
     }
 
     /**
@@ -845,17 +851,24 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         val changed: Array<TreeOp>
         if (cursor.moveToFirst()) {
             val idIli = cursor.getColumnIndex(Ilis.ILI)
-            val sb = SpannableStringBuilder()
             val ili = cursor.getString(idIli)
-            //appendImage(sb, iliDrawable)
-            sb.append(' ')
-            append(sb, ili, 0, WordNetFactories.iliFactory)
+            val callback = {
+                Log.d(TAG, "ILI $ili clicked!")
+                val context = this@BaseModule.fragment.requireContext()
+                Toast.makeText(context, "ILI $ili clicked!", Toast.LENGTH_SHORT).show()
+            }
+            val sb = SpannableStringBuilder()
+            appendClickableText(sb, ili, callback)
 
             // result
             changed = if (addNewNode) {
                 val node = makeTextNode(sb, false).addTo(parent)
+                val tv = node.controller.nodeView?.findViewById<TextView>(R.id.node_value)
+                prepareTextView(tv!!)
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
+                val tv = parent.controller.nodeView?.findViewById<TextView>(R.id.node_value)
+                prepareTextView(tv!!)
                 setTextNode(parent, sb, R.drawable.ili)
                 seq(TreeOpCode.UPDATE, parent)
             }
@@ -884,17 +897,31 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         val changed: Array<TreeOp>
         if (cursor.moveToFirst()) {
             val idWikidata = cursor.getColumnIndex(Wikidatas.WIKIDATA)
-            val sb = SpannableStringBuilder()
             val wikidata = cursor.getString(idWikidata)
-            // appendImage(sb, wikidataDrawable)
-            sb.append(' ')
-            append(sb, wikidata, 0, WordNetFactories.wikidataFactory)
+            val callback = {
+                Log.d(TAG, "Wikidata $wikidata clicked!")
+                val context = this@BaseModule.fragment.requireContext()
+                Toast.makeText(context, "Wikidata $wikidata clicked!", Toast.LENGTH_SHORT).show()
+            }
+            // TODO testing
+            val testTv: TextView? = this@BaseModule.fragment.view?.findViewById<TextView>(R.id.testTreeView)
+            prepareTextView(testTv!!)
+            val sb2 = SpannableStringBuilder()
+            appendClickableText(sb2, wikidata, callback)
+            testTv.text = sb2
+
+            val sb = SpannableStringBuilder()
+            appendClickableText(sb, wikidata, callback)
 
             // result
             changed = if (addNewNode) {
                 val node = makeTextNode(sb, false).addTo(parent)
+                val tv = node.controller.nodeView?.findViewById<TextView>(R.id.node_value)
+                prepareTextView(tv!!)
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
+                val tv = parent.controller.nodeView?.findViewById<TextView>(R.id.node_value)
+                prepareTextView(tv!!)
                 setTextNode(parent, sb, R.drawable.wikidata)
                 seq(TreeOpCode.UPDATE, parent)
             }
@@ -904,6 +931,32 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         }
         cursor.close()
         return changed
+    }
+
+    private fun prepareTextView(tv: TextView) {
+        fragment.activity?.runOnUiThread {
+            tv.movementMethod = LinkMovementMethod.getInstance()
+            tv.isFocusable = true
+            tv.isFocusableInTouchMode = true
+            tv.isClickable = true
+            tv.isLongClickable = true
+            tv.isLongClickable = true
+            tv.setOnClickListener { v -> Log.d(TAG, "TextView clicked!") }
+            prepareTextViewParent(tv.parent as ViewGroup) // node label
+            prepareTextViewParent(tv.parent.parent as ViewGroup) // subtreeview
+            // prepareTextViewParent(tv.parent.parent.parent as ViewGroup)
+        }
+    }
+
+    private fun prepareTextViewParent(p: ViewGroup) {
+        p.isFocusable = false
+        p.isFocusableInTouchMode = false
+        p.isClickable = false
+        p.isLongClickable = false
+        p.isLongClickable = false
+        p.requestDisallowInterceptTouchEvent(true)
+        p.setOnTouchListener { _, _ -> false }
+        p.setOnClickListener { v -> Log.d(TAG, "Parent $p clicked!") }
     }
 
     // R E L A T I O N S
@@ -1832,6 +1885,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     class SenseLink internal constructor(synsetId: Long, wordId: Long, recurse: Int, fragment: Fragment) : BaseSenseLink(synsetId, wordId, recurse, fragment)
 
     companion object {
+
+        private const val TAG = "BaseModule"
 
         private const val TARGET_MEMBER_CHAR = '*'
     }
