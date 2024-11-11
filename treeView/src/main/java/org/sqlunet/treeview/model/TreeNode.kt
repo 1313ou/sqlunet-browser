@@ -14,7 +14,7 @@ import org.sqlunet.treeview.control.Controller
 class TreeNode(
     var text: CharSequence?,
     @DrawableRes var icon: Int? = null,
-    val payload: Array<out Any?>? = null,
+    val payload: Array<Any?>? = null,
     var controller: Controller,
     var isCollapsible: Boolean,
 ) {
@@ -360,7 +360,7 @@ class TreeNode(
 
     private fun toStringWithChildren(sb: StringBuilder, level: Int) {
         if (level > 0) {
-            for (i in 0 until level - 1) {
+            repeat(level) {
                 sb.append("     ")
             }
             sb.append("└")

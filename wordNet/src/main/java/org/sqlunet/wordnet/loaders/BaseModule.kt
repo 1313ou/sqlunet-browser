@@ -10,10 +10,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.text.SpannableStringBuilder
-import android.text.method.LinkMovementMethod
 import android.util.Log
-import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -32,7 +29,6 @@ import org.sqlunet.model.TreeFactory.setNoResult
 import org.sqlunet.model.TreeFactory.setTextNode
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.style.Spanner.Companion.append
-import org.sqlunet.style.Spanner.Companion.appendClickableText
 import org.sqlunet.style.Spanner.Companion.appendImage
 import org.sqlunet.style.Spanner.Companion.getDrawable
 import org.sqlunet.treeview.control.Link
@@ -73,6 +69,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.Words_Lexes_Morphs
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains
 import org.sqlunet.wordnet.provider.WordNetProvider
 import org.sqlunet.wordnet.style.WordNetFactories
+import org.sqlunet.wordnet.style.WordNetFactories.dataFactory
 import java.util.Locale
 
 /**
@@ -303,7 +300,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             append(sb, word, 0, WordNetFactories.wordFactory)
             if (morphs != null && morphs.isNotEmpty()) {
                 sb.append(' ')
-                append(sb, morphs, 0, WordNetFactories.dataFactory)
+                append(sb, morphs, 0, dataFactory)
             }
 
             // result
@@ -524,7 +521,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         }
         if (tagCount > 0) {
             sb.append(' ')
-            append(sb, "tagcount:$tagCount", 0, WordNetFactories.dataFactory)
+            append(sb, "tagcount:$tagCount", 0, dataFactory)
         }
         sb.append('\n')
         synsetDefinition(sb, definition)
@@ -614,7 +611,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         sb.append(' ')
         sb.append(domain)
         sb.append(' ')
-        append(sb, synsetId.toString(), 0, WordNetFactories.dataFactory)
+        append(sb, synsetId.toString(), 0, dataFactory)
         return sb
     }
 
@@ -851,24 +848,26 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         val changed: Array<TreeOp>
         if (cursor.moveToFirst()) {
             val idIli = cursor.getColumnIndex(Ilis.ILI)
-            val ili = cursor.getString(idIli)
+            val ili = cursor.getString(idIli).substring(1)
             val callback = {
                 Log.d(TAG, "ILI $ili clicked!")
                 val context = this@BaseModule.fragment.requireContext()
+                val url = String.format(context.resources.getString(R.string.ili_url), ili)
                 Toast.makeText(context, "ILI $ili clicked!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(url)
+                context.startActivity(intent)
             }
             val sb = SpannableStringBuilder()
-            appendClickableText(sb, ili, callback)
+            append(sb, ili, 0, dataFactory)
 
             // result
             changed = if (addNewNode) {
                 val node = makeTextNode(sb, false).addTo(parent)
-                val tv = node.controller.nodeView?.findViewById<TextView>(R.id.node_value)
-                prepareTextView(tv!!)
+                node.payload!![1] = callback
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
-                val tv = parent.controller.nodeView?.findViewById<TextView>(R.id.node_value)
-                prepareTextView(tv!!)
+                parent.payload!![1] = callback
                 setTextNode(parent, sb, R.drawable.ili)
                 seq(TreeOpCode.UPDATE, parent)
             }
@@ -900,28 +899,23 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val wikidata = cursor.getString(idWikidata)
             val callback = {
                 Log.d(TAG, "Wikidata $wikidata clicked!")
-                val context = this@BaseModule.fragment.requireContext()
+                val context = fragment.requireContext()
+                val url = String.format(context.resources.getString(R.string.wikidata_url), wikidata)
                 Toast.makeText(context, "Wikidata $wikidata clicked!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(url)
+                context.startActivity(intent)
             }
-            // TODO testing
-            val testTv: TextView? = this@BaseModule.fragment.view?.findViewById<TextView>(R.id.testTreeView)
-            prepareTextView(testTv!!)
-            val sb2 = SpannableStringBuilder()
-            appendClickableText(sb2, wikidata, callback)
-            testTv.text = sb2
-
             val sb = SpannableStringBuilder()
-            appendClickableText(sb, wikidata, callback)
+            append(sb, wikidata, 0, dataFactory)
 
             // result
             changed = if (addNewNode) {
                 val node = makeTextNode(sb, false).addTo(parent)
-                val tv = node.controller.nodeView?.findViewById<TextView>(R.id.node_value)
-                prepareTextView(tv!!)
+                node.payload!![1] = callback
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
-                val tv = parent.controller.nodeView?.findViewById<TextView>(R.id.node_value)
-                prepareTextView(tv!!)
+                parent.payload!![1] = callback
                 setTextNode(parent, sb, R.drawable.wikidata)
                 seq(TreeOpCode.UPDATE, parent)
             }
@@ -931,32 +925,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         }
         cursor.close()
         return changed
-    }
-
-    private fun prepareTextView(tv: TextView) {
-        fragment.activity?.runOnUiThread {
-            tv.movementMethod = LinkMovementMethod.getInstance()
-            tv.isFocusable = true
-            tv.isFocusableInTouchMode = true
-            tv.isClickable = true
-            tv.isLongClickable = true
-            tv.isLongClickable = true
-            tv.setOnClickListener { v -> Log.d(TAG, "TextView clicked!") }
-            prepareTextViewParent(tv.parent as ViewGroup) // node label
-            prepareTextViewParent(tv.parent.parent as ViewGroup) // subtreeview
-            // prepareTextViewParent(tv.parent.parent.parent as ViewGroup)
-        }
-    }
-
-    private fun prepareTextViewParent(p: ViewGroup) {
-        p.isFocusable = false
-        p.isFocusableInTouchMode = false
-        p.isClickable = false
-        p.isLongClickable = false
-        p.isLongClickable = false
-        p.requestDisallowInterceptTouchEvent(true)
-        p.setOnTouchListener { _, _ -> false }
-        p.setOnClickListener { v -> Log.d(TAG, "Parent $p clicked!") }
     }
 
     // R E L A T I O N S

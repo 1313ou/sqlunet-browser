@@ -115,7 +115,7 @@ object TreeFactory {
      * @return created node
      */
     fun makeQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
-        return TreeNode(text, icon, arrayOf(query), ColdQueryController(breakExpand), false)
+        return TreeNode(text, icon, arrayOf(query, null), ColdQueryController(breakExpand), false)
     }
 
     /**
@@ -129,7 +129,7 @@ object TreeFactory {
      */
     fun makeHotQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
         val controller = HotQueryController(breakExpand)
-        val result = TreeNode(text, icon, arrayOf(query), controller, false)
+        val result = TreeNode(text, icon, arrayOf(query, null), controller, false)
         val handler = Handler(Looper.getMainLooper())
         handler.post { controller.processQuery() }
         return result
