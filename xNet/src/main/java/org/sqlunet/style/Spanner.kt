@@ -5,11 +5,13 @@ package org.sqlunet.style
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Paint.FontMetricsInt
 import android.graphics.drawable.Drawable
 import android.text.SpannableStringBuilder
 import android.text.Spanned
+import android.text.TextPaint
 import android.text.style.ClickableSpan
 import android.text.style.DynamicDrawableSpan
 import android.text.style.ImageSpan
@@ -17,6 +19,7 @@ import android.text.style.ReplacementSpan
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
 import org.sqlunet.xnet.R
@@ -40,16 +43,6 @@ open class Spanner {
     fun interface SpanFactory {
 
         fun make(flags: Long): Span?
-    }
-
-    /**
-     * Click image interface
-     *
-     * @author [Bernard Bou](mailto:1313ou@gmail.com)
-     */
-    fun interface OnClickImage {
-
-        fun onClickImage(sb: SpannableStringBuilder?, position: Int, collapsed: Boolean)
     }
 
     // H I D D E N S P A N
@@ -170,6 +163,31 @@ open class Spanner {
         // C L I C K A B L E
 
         /**
+         * Append clickable text
+         *
+         * @param sb       spannable string builder
+         * @param text     text
+         * @param listener click listener
+         * @param context  context
+         */
+        fun appendClickableText(sb: SpannableStringBuilder, text: CharSequence, listener: () -> Unit) {
+            val span: ClickableSpan = object : ClickableSpan() {
+
+                override fun onClick(view: View) {
+                    Log.d(TAG, "Click text $text")
+                    listener()
+                 }
+
+                override fun updateDrawState(drawState: TextPaint) {
+                    super.updateDrawState(drawState)
+                    drawState.isUnderlineText = true // Optional: underline the text
+                    drawState.color = Color.RED // Optional: change text color
+                }
+            }
+            appendWithSpans(sb, text, span)
+        }
+
+        /**
          * Append clickable image
          *
          * @param sb       spannable string builder
@@ -177,7 +195,7 @@ open class Spanner {
          * @param listener click listener
          * @param context  context
          */
-        fun appendClickableImage(sb: SpannableStringBuilder, caption: CharSequence, listener: OnClickImage, context: Context) {
+        fun appendClickableImage(sb: SpannableStringBuilder, caption: CharSequence, listener: (sb: SpannableStringBuilder?, position: Int, collapsed: Boolean) -> Unit, context: Context) {
             val collapsedDrawable = getDrawable(context, R.drawable.ic_collapsed)
             val expandedDrawable = getDrawable(context, R.drawable.ic_expanded)
             appendClickableImage(sb, collapsedDrawable, expandedDrawable, caption, listener)
@@ -192,7 +210,7 @@ open class Spanner {
          * @param caption           caption
          * @param listener          click listener
          */
-        private fun appendClickableImage(sb: SpannableStringBuilder, collapsedDrawable: Drawable, expandedDrawable: Drawable, caption: CharSequence, listener: OnClickImage) {
+        private fun appendClickableImage(sb: SpannableStringBuilder, collapsedDrawable: Drawable, expandedDrawable: Drawable, caption: CharSequence, listener: (sb: SpannableStringBuilder?, position: Int, collapsed: Boolean) -> Unit) {
             val span = ImageSpan(collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
             val span2: ClickableSpan = object : ClickableSpan() {
                 @Synchronized
@@ -223,7 +241,7 @@ open class Spanner {
 
                             // fire click
                             Log.d(TAG, "$from->$to")
-                            listener.onClickImage(sb1, to + caption.length + 2, collapsed)
+                            listener(sb1, to + caption.length + 2, collapsed)
                         }
                     }
                     textView.text = sb1
