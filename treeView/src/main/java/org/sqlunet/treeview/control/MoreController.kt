@@ -13,7 +13,7 @@ import org.sqlunet.treeview.R
  *
  * @author Bogdan Melnychuk on 2/12/15.
  */
-class MoreController(breakExpand: Boolean) : BaseResController(breakExpand) {
+class MoreController(breakExpand: Boolean) : BaseController(breakExpand) {
 
     @LayoutRes
     override val layoutResId = R.layout.layout_node_link

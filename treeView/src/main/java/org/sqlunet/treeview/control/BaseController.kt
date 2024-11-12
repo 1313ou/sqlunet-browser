@@ -14,13 +14,13 @@ import org.sqlunet.treeview.R
 import org.sqlunet.treeview.model.TreeNode
 
 /**
- * Link leaf controller
+ * Base class for all controllerx
  *
  * @param breakExpand whether this controller breaks expansion
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract class BaseResController(breakExpand: Boolean) : Controller(breakExpand) {
+abstract class BaseController(breakExpand: Boolean) : Controller(breakExpand) {
 
     abstract val layoutResId: Int
 
