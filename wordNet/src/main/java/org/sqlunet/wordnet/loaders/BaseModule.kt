@@ -807,8 +807,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (sb.isNotEmpty()) {
                     sb.append('\n')
                 }
-                appendImage(sb, usageDrawable)
-                sb.append(' ')
+                // appendImage(sb, usageDrawable)
+                // sb.append(' ')
                 // sb.append(usageId)
                 // sb.append(' ')
                 append(sb, usage, 0, WordNetFactories.usageFactory)
@@ -1676,7 +1676,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     internal inner class UsagesQuery(synsetId: Long) : Query(synsetId) {
 
         override fun process(node: TreeNode) {
-            usages(id, node, true)
+            usages(id, node, false)
         }
 
         override fun toString(): String {

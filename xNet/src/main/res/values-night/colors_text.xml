@@ -20,6 +20,9 @@
 	<color name="exampleBackColor">#00000000</color>
 	<color name="exampleForeColor">#FFFFA0</color>
 
+	<color name="usageBackColor">#00000000</color>
+	<color name="usageForeColor">#B1EF9D</color>
+
 	<color name="relationBackColor">#00000000</color>
 	<color name="relationForeColor">#F3805C</color>
 

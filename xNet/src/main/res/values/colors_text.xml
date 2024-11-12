@@ -19,6 +19,9 @@
 	<color name="exampleBackColor">#FFFFFF</color>
 	<color name="exampleForeColor">#000000</color>
 
+	<color name="usageBackColor">#FFFFFF</color>
+	<color name="usageForeColor">#000000</color>
+
 	<color name="relationBackColor">#FFFFFF</color>
 	<color name="relationForeColor">#000000</color>
 
@@ -101,6 +104,9 @@
 
 		<item>@color/exampleBackColor</item>
 		<item>@color/exampleForeColor</item>
+
+		<item>@color/usageBackColor</item>
+		<item>@color/usageForeColor</item>
 
 		<item>@color/relationBackColor</item>
 		<item>@color/relationForeColor</item>

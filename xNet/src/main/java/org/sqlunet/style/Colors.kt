@@ -30,6 +30,8 @@ object Colors {
     var definitionForeColor = Color.TRANSPARENT
     var exampleBackColor = Color.TRANSPARENT
     var exampleForeColor = Color.TRANSPARENT
+    var usageBackColor = Color.TRANSPARENT
+    var usageForeColor = Color.TRANSPARENT
     var relationBackColor = Color.TRANSPARENT
     var relationForeColor = Color.TRANSPARENT
     var dataBackColor = Color.TRANSPARENT
@@ -114,6 +116,8 @@ object Colors {
         definitionForeColor = palette[i++]
         exampleBackColor = palette[i++]
         exampleForeColor = palette[i++]
+        usageBackColor = palette[i++]
+        usageForeColor = palette[i++]
         relationBackColor = palette[i++]
         relationForeColor = palette[i++]
         dataBackColor = palette[i++]

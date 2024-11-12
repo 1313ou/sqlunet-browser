@@ -6,6 +6,7 @@ package org.sqlunet.wordnet.loaders
 import android.os.Parcelable
 import org.sqlunet.HasWordId
 import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.makeHotQueryLinkNode
 import org.sqlunet.model.TreeFactory.makeHotQueryNode
 import org.sqlunet.model.TreeFactory.makeHotQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeIconTextNode
@@ -73,15 +74,11 @@ class SenseModule(fragment: TreeFragment) : SynsetModule(fragment) {
             }
 
             // usages
-            if (expand) {
-                makeHotQueryTreeNode(usagesLabel, R.drawable.usage, false, UsagesQuery(synsetId!!)).addTo(node)
-            } else {
-                makeQueryTreeNode(usagesLabel, R.drawable.usage, false, UsagesQuery(synsetId!!)).addTo(node)
-            }
+            makeHotQueryNode(usagesLabel, R.drawable.usage, false, UsagesQuery(synsetId!!)).addTo(node)
 
             // externals
-            makeHotQueryNode(iliLabel, R.drawable.ili, false, IliQuery(synsetId!!)).addTo(node)
-            makeHotQueryNode(wikidataLabel, R.drawable.wikidata, false, WikidataQuery(synsetId!!)).addTo(node)
+            makeHotQueryLinkNode(iliLabel, R.drawable.ili, false, IliQuery(synsetId!!)).addTo(node)
+            makeHotQueryLinkNode(wikidataLabel, R.drawable.wikidata, false, WikidataQuery(synsetId!!)).addTo(node)
 
             // special
             if (pos != null) {
