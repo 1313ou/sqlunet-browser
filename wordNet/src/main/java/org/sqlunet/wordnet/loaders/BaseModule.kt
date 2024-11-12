@@ -28,6 +28,7 @@ import org.sqlunet.model.TreeFactory.makeTextNode
 import org.sqlunet.model.TreeFactory.setNoResult
 import org.sqlunet.model.TreeFactory.setTextNode
 import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.style.Factories.boldFactory
 import org.sqlunet.style.Spanner.Companion.append
 import org.sqlunet.style.Spanner.Companion.appendImage
 import org.sqlunet.style.Spanner.Companion.getDrawable
@@ -70,6 +71,8 @@ import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Syns
 import org.sqlunet.wordnet.provider.WordNetProvider
 import org.sqlunet.wordnet.style.WordNetFactories
 import org.sqlunet.wordnet.style.WordNetFactories.dataFactory
+import org.sqlunet.wordnet.style.WordNetFactories.iliFactory
+import org.sqlunet.wordnet.style.WordNetFactories.wikidataFactory
 import java.util.Locale
 
 /**
@@ -859,7 +862,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 context.startActivity(intent)
             }
             val sb = SpannableStringBuilder()
-            append(sb, ili, 0, dataFactory)
+            append(sb, "ILI", 0, boldFactory)
+            sb.append(' ')
+            append(sb, ili, 0, iliFactory)
 
             // result
             changed = if (addNewNode) {
@@ -907,7 +912,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 context.startActivity(intent)
             }
             val sb = SpannableStringBuilder()
-            append(sb, wikidata, 0, dataFactory)
+            append(sb, "Wikidata", 0, boldFactory)
+            sb.append(' ')
+            append(sb, wikidata, 0, wikidataFactory)
 
             // result
             changed = if (addNewNode) {
