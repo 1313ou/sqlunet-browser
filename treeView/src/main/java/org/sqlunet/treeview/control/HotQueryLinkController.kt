@@ -10,16 +10,16 @@ import org.sqlunet.treeview.R
 import org.sqlunet.treeview.model.TreeNode
 
 /**
- * Query controller
+ * Hot Query controller (expanding this controller will trigger query)
  *
  * @param breakExpand whether this controller breaks expansion
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-open class QueryController(breakExpand: Boolean) : BaseController(breakExpand) {
+open class HotQueryLinkController(breakExpand: Boolean) : HotQueryController(breakExpand) {
 
     @LayoutRes
-    override val layoutResId = R.layout.layout_node_query
-
-    private var processed = false
+    override val layoutResId = R.layout.layout_node_query_link
 
     override fun createNodeView(context: Context, node: TreeNode, minHeight: Int): View {
         val view = super.createNodeView(context, node, minHeight)
@@ -28,26 +28,6 @@ open class QueryController(breakExpand: Boolean) : BaseController(breakExpand) {
         hotLink.setOnClickListener { followLink() }
         return view
     }
-
-    /**
-     * Add data to tree by launching the query
-     */
-    @Synchronized
-    fun processQuery() {
-        if (!processed) {
-            processed = true
-            val query = query!!
-            query.process(node)
-        }
-    }
-
-    private val query: Query?
-        get() {
-            if (node.payload != null) {
-                return node.payload!![0] as Query
-            }
-            return null
-        }
 
     /**
      * Follow link
