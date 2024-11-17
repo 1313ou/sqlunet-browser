@@ -321,13 +321,14 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 if (!cursor.isNull(idFunc)) {
                     sb.append(' ')
                     sb.append("func=")
-                    sb.append(cursor.getInt(idFunc).toString())
+                    sb.append(cursor.getString(idFunc))
                 }
 
                 // var roleId = cursor.getInt(idRoleId)
                 // sb.append(" role id=")
                 // sb.append(Integer.toString(roleId))
                 // sb.append(' ')
+
                 if (!cursor.moveToNext()) {
                     break
                 }
