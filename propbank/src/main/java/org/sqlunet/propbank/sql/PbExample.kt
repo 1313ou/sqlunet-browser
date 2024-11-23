@@ -20,11 +20,6 @@ internal class PbExample private constructor(
     val text: String,
     val rel: String,
     val args: List<PbArg>?,
-    val aspect: String?,
-    val form: String?,
-    val tense: String?,
-    val voice: String?,
-    val person: String?,
 ) {
 
     companion object {
@@ -45,15 +40,10 @@ internal class PbExample private constructor(
                     val text = it.text
                     val rel = it.rel
                     val args = it.args
-                    val aspect = it.aspect
-                    val form = it.form
-                    val tense = it.tense
-                    val voice = it.voice
-                    val person = it.person
                     if (result == null) {
                         result = ArrayList()
                     }
-                    result!!.add(PbExample(exampleId, text, rel, args, aspect, form, tense, voice, person))
+                    result.add(PbExample(exampleId, text, rel, args))
                 }
             }
             return result
