@@ -37,9 +37,9 @@ class SqLiteDialect
 	// EXAMPLES
 	// query for examples rel(n~arg|n~arg|..)
 	static final String PropBankExamplesQueryFromRoleSetId = "SELECT ${examples.exampleid},${examples.text},${rels.rel}," +
-			"GROUP_CONCAT(DISTINCT ${args.argtypeid}||'~'||(CASE WHEN ${funcs.func} IS NULL THEN '*' ELSE ${funcs.func} END)||'~'||${roles.roledescr}||'~'||(CASE WHEN ${vnroles.vnrole} IS NULL THEN '*' ELSE ${vnroles.vnrole} END)||'~'||${args.arg})," +
-			"${aspects.aspect},${forms.form},${tenses.tense},${voices.voice},${persons.person} " +
-			"FROM ${rolesets.table} " + "INNER JOIN ${examples.table} AS ${as_examples} USING (${rolesets.rolesetid}) " +
+			"GROUP_CONCAT(DISTINCT ${args.argtypeid}||'~'||(CASE WHEN ${funcs.func} IS NULL THEN '*' ELSE ${funcs.func} END)||'~'||${roles.roledescr}||'~'||(CASE WHEN ${vnroles.vnrole} IS NULL THEN '*' ELSE ${vnroles.vnrole} END)||'~'||${args.arg})" +
+			"FROM ${rolesets.table} " +
+			"INNER JOIN ${examples.table} AS ${as_examples} USING (${rolesets.rolesetid}) " +
 			"LEFT JOIN ${rels.table} AS ${as_relations} USING (${examples.exampleid}) " +
 			"LEFT JOIN ${args.table} AS ${as_args} USING (${examples.exampleid}) " +
 			"LEFT JOIN ${funcs.table} AS ${as_funcs} USING (${funcs.funcid}) " +
