@@ -69,11 +69,6 @@ object Queries {
                     "||'~'" +
                     "||" + PropBankContract.PbRoleSets_PbExamples.ARG +
                     ",',','#')),',','|'),'#',',') AS " + PropBankContract.PbRoleSets_PbExamples.ARGS,
-            PropBankContract.PbRoleSets_PbExamples.ASPECT,
-            PropBankContract.PbRoleSets_PbExamples.FORM,
-            PropBankContract.PbRoleSets_PbExamples.TENSE,
-            PropBankContract.PbRoleSets_PbExamples.VOICE,
-            PropBankContract.PbRoleSets_PbExamples.PERSON
         )
         providerSql.selection = PropBankContract.PbRoleSets_PbExamples.ROLESETID + "= ?"
         providerSql.selectionArgs = arrayOf(roleSetId.toString())
