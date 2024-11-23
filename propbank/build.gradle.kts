@@ -62,7 +62,6 @@ dependencies {
     implementation("androidx.annotation:annotation:$annotationVersion")
     implementation("com.google.android.material:material:$materialVersion")
 
-
     testImplementation(project(":test-sql"))
     testImplementation("junit:junit:4.13.2")
 }
