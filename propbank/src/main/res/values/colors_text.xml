@@ -4,16 +4,24 @@
 
 <resources>
 
+	<color name="funcBackColor">#FFFFFF</color>
+	<color name="funcForeColor">#000000</color>
 	<color name="vnroleBackColor">#FFFFFF</color>
 	<color name="vnroleForeColor">#000000</color>
+	<color name="fnfeBackColor">#FFFFFF</color>
+	<color name="fnfeForeColor">#000000</color>
 
 	<color name="pbrelationBackColor">#FFFFFF</color>
 	<color name="pbrelationForeColor">#000000</color>
 
 	<array name="palette_pb">
 
+		<item>@color/funcBackColor</item>
+		<item>@color/funcForeColor</item>
 		<item>@color/vnroleBackColor</item>
 		<item>@color/vnroleForeColor</item>
+		<item>@color/fnfeBackColor</item>
+		<item>@color/fnfeForeColor</item>
 
 		<item>@color/pbrelationBackColor</item>
 		<item>@color/pbrelationForeColor</item>

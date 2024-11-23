@@ -89,12 +89,14 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"INNER JOIN %s USING (%s) " + //
 								"LEFT JOIN %s USING (%s) " + //
 								"LEFT JOIN %s USING (%s) " + //
+								"LEFT JOIN %s USING (%s) " + //
 								"LEFT JOIN %s USING (%s)", //
 						"${rolesets.table}", //
 						"${roles.table}", "${rolesets.rolesetid}", //
 						"${argtypes.table}", "${argtypes.argtypeid}", //
 						"${funcs.table}", "${funcs.funcid}", //
-						"${vnroles.table}", "${vnroles.vnroleid}");
+						"${vnroles.table}", "${vnroles.vnroleid}", //
+						"${fnfes.table}", "${fnfes.fnfeid}");
 				sortOrder = "${roles.argtypeid}";
 				break;
 
@@ -110,13 +112,9 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"LEFT JOIN %s AS %s USING (%s) " + // 4
 								"LEFT JOIN %s USING (%s) " + // 5
 								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s) " + // 6
-								"LEFT JOIN %s USING (%s) " + // 7
-								"LEFT JOIN %s USING (%s) " + // 8
-								"LEFT JOIN %s USING (%s) " + // 9
-								"LEFT JOIN %s USING (%s) " + // 10
-								"LEFT JOIN %s USING (%s) " + // 11
 								"LEFT JOIN %s USING (%s,%s) " + // 12
-								"LEFT JOIN %s USING (%s)", // 13
+								"LEFT JOIN %s USING (%s)" + // 13
+								"LEFT JOIN %s USING (%s)", // 14
 						"${rolesets.table}", // 1
 						"${examples.table}", "${as_examples}", "${rolesets.rolesetid}", // 2
 						"${rels.table}", "${as_relations}", "${examples.exampleid}", // 3
@@ -124,7 +122,8 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${argtypes.table}", "${argtypes.argtypeid}", // 5
 						"${funcs.table}", "${as_funcs}", "${as_args}", "${funcs.funcid}", "${as_funcs}", "${funcs.funcid}", // 6
 						"${roles.table}", "${rolesets.rolesetid}", "${args.argtypeid}", // 12
-						"${vnroles.table}", "${vnroles.vnroleid}"); // 13
+						"${vnroles.table}", "${vnroles.vnroleid}", // 13
+						"${fnfes.table}", "${fnfes.fnfeid}"); // 14
 				sortOrder = String.format("%s.%s,%s", "${as_examples}", "${examples.exampleid}", "${args.arg}");
 				break;
 

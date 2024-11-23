@@ -18,8 +18,10 @@ object PropBankFactories {
 
     val roleSetFactory = Factories.classFactory
     val roleFactory = Factories.roleFactory
-    val vnroleFactory = Spanner.SpanFactory { _: Long -> spans(Colors.vnroleBackColor, Colors.vnroleForeColor, StyleSpan(Typeface.BOLD)) }
     val definitionFactory = Factories.definitionFactory
+    val funcFactory = { _: Long -> spans(Colors.funcBackColor, Colors.funcForeColor, StyleSpan(Typeface.BOLD)) }
+    val vnroleFactory = Spanner.SpanFactory { _: Long -> spans(Colors.vnroleBackColor, Colors.vnroleForeColor, StyleSpan(Typeface.BOLD)) }
+    val fnfeFactory = Spanner.SpanFactory { _: Long -> spans(Colors.fnfeBackColor, Colors.fnfeForeColor, StyleSpan(Typeface.BOLD)) }
     val exampleFactory = Factories.exampleFactory
     val relationFactory = Spanner.SpanFactory { _: Long -> spans(Colors.relationBackColor, Colors.relationForeColor, StyleSpan(Typeface.BOLD)) }
 }
