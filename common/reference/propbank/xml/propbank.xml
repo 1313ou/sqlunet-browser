@@ -58,9 +58,9 @@
 	</concept>
 
 	<concept
-		name="Theta"
-		id="pbtheta">
-		<img src="pbtheta.png" />
+		name="VN role"
+		id="pbvnrole">
+		<img src="pbvnrole.png" />
 		<description>Another name given to the argument role.</description>
 		<examples>
 			<context><name>Arg-1</name>role

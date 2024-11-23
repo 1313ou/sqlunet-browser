@@ -14,9 +14,9 @@ import org.sqlunet.propbank.R
  */
 object Colors {
 
-    var thetaBackColor = Color.TRANSPARENT
+    var vnroleBackColor = Color.TRANSPARENT
 
-    var thetaForeColor = Color.TRANSPARENT
+    var vnroleForeColor = Color.TRANSPARENT
 
     var relationBackColor = Color.TRANSPARENT
 
@@ -26,8 +26,8 @@ object Colors {
         // do not reorder : dependent on resource array order
         val palette = context.resources.getIntArray(R.array.palette_pb)
         var i = 0
-        thetaBackColor = palette[i++]
-        thetaForeColor = palette[i++]
+        vnroleBackColor = palette[i++]
+        vnroleForeColor = palette[i++]
         relationBackColor = palette[i++]
         relationForeColor = palette[i]
         // increment i if colors added

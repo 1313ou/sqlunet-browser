@@ -9,7 +9,7 @@ package org.sqlunet.propbank.sql
  * @param argType     n
  * @param f           f
  * @param description description
- * @param vnTheta     VerbNet theta
+ * @param vnRole      VerbNet role
  * @param subText     sub text
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
@@ -18,7 +18,7 @@ internal class PbArg private constructor(
     val argType: String,
     val f: String?,
     val description: String,
-    val vnTheta: String?,
+    val vnRole: String?,
     val subText: String,
 ) {
 

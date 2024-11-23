@@ -54,20 +54,15 @@
 		<!-- propbank -->
 		<item>pb_argtypes</item>
 		<item>pb_args</item>
-		<item>pb_aspects</item>
 		<item>pb_examples</item>
-		<item>pb_forms</item>
 		<item>pb_funcs</item>
 		<item>pb_members</item>
-		<item>pb_persons</item>
 		<item>pb_rels</item>
 		<item>pb_roles</item>
 		<item>pb_rolesets</item>
-		<item>pb_tenses</item>
 		<item>pb_pbrolesets_vnclasses</item>
 		<item>pb_pbroles_vnroles</item>
-		<item>pb_thetas</item>
-		<item>pb_voices</item>
+		<item>pb_vnroles</item>
 		<item>pb_words</item>
 
 		<!-- sources -->

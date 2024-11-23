@@ -66,8 +66,8 @@
 		<xs:complexType mixed='true'>
 			<xs:attribute name='roleid' type='xs:int' use='required' />
 			<xs:attribute name='argtype' type='xs:string' use='required' />
-			<xs:attribute name='theta' type='xs:string' />
 			<xs:attribute name='func' type='xs:string' use='required' />
+			<xs:attribute name='vnrole' type='xs:string' />
 		</xs:complexType>
 	</xs:element>
 
@@ -95,7 +95,7 @@
 		<xs:complexType mixed='true'>
 			<xs:attribute name='argtype' type='xs:string' use='required' />
 			<xs:attribute name='descr' type='xs:string' use='required' />
-			<xs:attribute name='theta' type='xs:string' />
+			<xs:attribute name='vnrole' type='xs:string' />
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

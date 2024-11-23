@@ -94,7 +94,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${roles.table}", "${rolesets.rolesetid}", //
 						"${argtypes.table}", "${argtypes.argtypeid}", //
 						"${funcs.table}", "${funcs.funcid}", //
-						"${thetas.table}", "${thetas.thetaid}");
+						"${vnroles.table}", "${vnroles.vnroleid}");
 				sortOrder = "${roles.argtypeid}";
 				break;
 
@@ -123,13 +123,8 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${args.table}", "${as_args}", "${examples.exampleid}", // 4
 						"${argtypes.table}", "${argtypes.argtypeid}", // 5
 						"${funcs.table}", "${as_funcs}", "${as_args}", "${funcs.funcid}", "${as_funcs}", "${funcs.funcid}", // 6
-						"${aspects.table}", "${aspects.aspectid}", // 7
-						"${forms.table}", "${forms.formid}", // 8
-						"${tenses.table}", "${tenses.tenseid}", // 9
-						"${voices.table}", "${voices.voiceid}", // 10
-						"${persons.table}", "${persons.personid}", // 11
 						"${roles.table}", "${rolesets.rolesetid}", "${args.argtypeid}", // 12
-						"${thetas.table}", "${thetas.thetaid}"); // 13
+						"${vnroles.table}", "${vnroles.vnroleid}"); // 13
 				sortOrder = String.format("%s.%s,%s", "${as_examples}", "${examples.exampleid}", "${args.arg}");
 				break;
 

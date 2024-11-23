@@ -86,24 +86,19 @@
 			CREATE INDEX IF NOT EXISTS `pk_vn_words` ON `vn_words` (`vnwordid`);
 			CREATE INDEX IF NOT EXISTS `k_vn_words_wordid` ON `vn_words`(`wordid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_rolesets` ON `pb_rolesets` (`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_rolesets_pbwordid` ON `pb_rolesets`(`pbwordid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_members_rolesetid` ON `pb_members` (`rolesetid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_roles` ON `pb_roles` (`roleid`);
 			CREATE INDEX IF NOT EXISTS `k_pb_roles_rolesetid` ON `pb_roles`(`rolesetid`);
-			CREATE INDEX IF NOT EXISTS `k_pb_rels_exampleid` ON `pb_rels`(`exampleid`);
-			CREATE INDEX IF NOT EXISTS `k_pb_args_exampleid` ON `pb_args`(`exampleid`);
-			CREATE INDEX IF NOT EXISTS `k_pb_examples_rolesetid` ON `pb_examples`(`rolesetid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_examples` ON `pb_examples` (`exampleid`);
-			CREATE INDEX IF NOT EXISTS `k_pb_rolesets_pbwordid` ON `pb_rolesets`(`pbwordid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_rels` ON `pb_rels` (`relid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_args` ON `pb_args` (`argid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_thetas` ON `pb_thetas` (`thetaid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_argtypes` ON `pb_argtypes` (`argtypeid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_aspects` ON `pb_aspects` (`aspectid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_forms` ON `pb_forms` (`formid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_funcs` ON `pb_funcs` (`funcid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_persons` ON `pb_persons` (`personid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_tenses` ON `pb_tenses` (`tenseid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_voices` ON `pb_voices` (`voiceid`);
-			CREATE INDEX IF NOT EXISTS `k_pb_members_rolesetid` ON `pb_members` (`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_vnroles` ON `pb_vnroles` (`vnroleid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_examples` ON `pb_examples` (`exampleid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_examples_rolesetid` ON `pb_examples`(`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_rels` ON `pb_rels` (`relid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_rels_exampleid` ON `pb_rels`(`exampleid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_args` ON `pb_args` (`argid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_args_exampleid` ON `pb_args`(`exampleid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_words` ON `pb_words` (`pbwordid`);
 			CREATE INDEX IF NOT EXISTS `k_pb_words_wordid` ON `pb_words` (`wordid`);</item>
 		<item>
@@ -228,47 +223,37 @@
 		<item>
 			<!-- propbank indexes -->
 			CREATE INDEX IF NOT EXISTS `pk_pb_rolesets` ON `pb_rolesets` (`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_rolesets_pbwordid` ON `pb_rolesets`(`pbwordid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_members_rolesetid` ON `pb_members` (`rolesetid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_roles` ON `pb_roles` (`roleid`);
 			CREATE INDEX IF NOT EXISTS `k_pb_roles_rolesetid` ON `pb_roles`(`rolesetid`);
-			CREATE INDEX IF NOT EXISTS `k_pb_rels_exampleid` ON `pb_rels`(`exampleid`);
-			CREATE INDEX IF NOT EXISTS `k_pb_args_exampleid` ON `pb_args`(`exampleid`);
-			CREATE INDEX IF NOT EXISTS `k_pb_examples_rolesetid` ON `pb_examples`(`rolesetid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_examples` ON `pb_examples` (`exampleid`);
-			CREATE INDEX IF NOT EXISTS `k_pb_rolesets_pbwordid` ON `pb_rolesets`(`pbwordid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_rels` ON `pb_rels` (`relid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_args` ON `pb_args` (`argid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_thetas` ON `pb_thetas` (`thetaid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_argtypes` ON `pb_argtypes` (`argtypeid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_aspects` ON `pb_aspects` (`aspectid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_forms` ON `pb_forms` (`formid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_funcs` ON `pb_funcs` (`funcid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_persons` ON `pb_persons` (`personid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_tenses` ON `pb_tenses` (`tenseid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_voices` ON `pb_voices` (`voiceid`);
-			CREATE INDEX IF NOT EXISTS `k_pb_members_rolesetid` ON `pb_members` (`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_vnroles` ON `pb_vnroles` (`vnroleid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_examples` ON `pb_examples` (`exampleid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_examples_rolesetid` ON `pb_examples`(`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_rels` ON `pb_rels` (`relid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_rels_exampleid` ON `pb_rels`(`exampleid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_args` ON `pb_args` (`argid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_args_exampleid` ON `pb_args`(`exampleid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_words` ON `pb_words` (`pbwordid`);
 			CREATE INDEX IF NOT EXISTS `k_pb_words_wordid` ON `pb_words` (`wordid`);</item>
 		<item>
 			<!-- drop propbank indexes -->
 			DROP INDEX IF EXISTS `pk_pb_rolesets`;
+			DROP INDEX IF EXISTS `k_pb_rolesets_pbwordid`;
+			DROP INDEX IF EXISTS `k_pb_members_rolesetid`;
 			DROP INDEX IF EXISTS `pk_pb_roles`;
 			DROP INDEX IF EXISTS `k_pb_roles_rolesetid`;
-			DROP INDEX IF EXISTS `k_pb_rels_exampleid`;
-			DROP INDEX IF EXISTS `k_pb_args_exampleid`;
-			DROP INDEX IF EXISTS `k_pb_examples_rolesetid`;
-			DROP INDEX IF EXISTS `pk_pb_examples`;
-			DROP INDEX IF EXISTS `k_pb_rolesets_pbwordid`;
-			DROP INDEX IF EXISTS `pk_pb_rels`;
-			DROP INDEX IF EXISTS `pk_pb_args`;
-			DROP INDEX IF EXISTS `pk_pb_thetas`;
 			DROP INDEX IF EXISTS `pk_pb_argtypes`;
-			DROP INDEX IF EXISTS `pk_pb_aspects`;
-			DROP INDEX IF EXISTS `pk_pb_forms`;
 			DROP INDEX IF EXISTS `pk_pb_funcs`;
-			DROP INDEX IF EXISTS `pk_pb_persons`;
-			DROP INDEX IF EXISTS `pk_pb_tenses`;
-			DROP INDEX IF EXISTS `pk_pb_voices`;
-			DROP INDEX IF EXISTS `k_pb_members_rolesetid`;
+			DROP INDEX IF EXISTS `pk_pb_vnroles`;
+			DROP INDEX IF EXISTS `pk_pb_examples`;
+			DROP INDEX IF EXISTS `k_pb_examples_rolesetid`;
+			DROP INDEX IF EXISTS `pk_pb_rels`;
+			DROP INDEX IF EXISTS `k_pb_rels_exampleid`;
+			DROP INDEX IF EXISTS `pk_pb_args`;
+			DROP INDEX IF EXISTS `k_pb_args_exampleid`;
 			DROP INDEX IF EXISTS `pk_pb_words`;
 			DROP INDEX IF EXISTS `k_pb_words_wordid`;</item>
 		<item>

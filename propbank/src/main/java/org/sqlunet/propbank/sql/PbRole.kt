@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteDatabase
  * @param roleDescr role description
  * @param argType   role arg type
  * @param roleFunc  role f
- * @param roleTheta role theta
+ * @param roleVn    role vn
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
@@ -21,7 +21,7 @@ internal class PbRole private constructor(
     val roleDescr: String,
     val argType: String,
     val roleFunc: String,
-    val roleTheta: String?,
+    val roleVn: String?,
 ) {
 
     companion object {
@@ -38,15 +38,10 @@ internal class PbRole private constructor(
             PbRoleQueryFromRoleSetId(connection, roleSetId).use {
                 it.execute()
                 while (it.next()) {
-                    val roleId = it.roleId
-                    val roleDescr = it.roleDescr
-                    val roleArgType = it.argType
-                    val roleFunc = it.roleFunc
-                    val roleTheta = it.roleTheta
                     if (result == null) {
                         result = ArrayList()
                     }
-                    result!!.add(PbRole(roleId, roleDescr, roleArgType, roleFunc, roleTheta))
+                    result!!.add(PbRole(it.roleId, it.roleDescr, it.argType, it.roleFunc, it.roleVn))
                 }
             }
             return result

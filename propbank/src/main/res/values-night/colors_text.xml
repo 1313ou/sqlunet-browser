@@ -4,8 +4,8 @@
 
 <resources>
 
-	<color name="thetaBackColor">#00000000</color>
-	<color name="thetaForeColor">#5A5ACA</color>
+	<color name="vnroleBackColor">#00000000</color>
+	<color name="vnroleForeColor">#5A5ACA</color>
 
 	<color name="pbrelationBackColor">#00000000</color>
 	<color name="pbrelationForeColor">#CCCCCC</color>
