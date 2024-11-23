@@ -2,7 +2,7 @@
 
 source "./lib-artwork.sh"
 
-icon_list="propbank.svg alias.svg theta.svg trace.svg"
+icon_list="propbank.svg alias.svg vnrole.svg fnfe.svg trace.svg"
 asset_list="closed.svg open.svg pointer.svg"
 asset_list_propbank="propbank.svg"
 asset_list_xnet="roleclass.svg role.svg relation.svg definition.svg sample.svg"
