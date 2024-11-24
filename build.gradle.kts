@@ -3,9 +3,9 @@
 buildscript {
 
     repositories {
+        mavenLocal()
         mavenCentral()
         google()
-        maven(url = System.getenv("HOME") + "/.m2/repository/")
     }
 
     dependencies {
@@ -23,6 +23,7 @@ plugins {
 allprojects {
 
     repositories {
+        mavenLocal()
         mavenCentral()
         google()
     }
