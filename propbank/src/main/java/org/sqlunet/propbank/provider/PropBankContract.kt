@@ -74,6 +74,7 @@ object PropBankContract {
         const val ROLEID = V.ROLEID
         const val ROLEDESCR = V.ROLEDESCR
         const val ARGTYPE = V.ARGTYPE
+        const val ARGTYPEID = V.ARGTYPEID
         const val FUNC = V.FUNC
         const val FUNCDESCR = V.FUNCDESCR
         const val VNROLE = V.VNROLE
@@ -88,6 +89,7 @@ object PropBankContract {
         const val TEXT = V.TEXT
         const val REL = V.REL
         const val ARGTYPE = V.ARGTYPE
+        const val ARGTYPEID = V.ARGTYPEID
         const val FUNCNAME = V.FUNC
         const val ROLEDESCR = V.ROLEDESCR
         const val VNROLE = V.VNROLE

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2024. Bernard Bou <1313ou@gmail.com>
+#
+
 source define_colors.sh
 
 SRCDIR=/opt/devel/sqlbuilder/sqlbuilder2

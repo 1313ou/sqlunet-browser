@@ -43,6 +43,7 @@ object Queries {
         providerSql.projection = arrayOf(
             PropBankContract.PbRoleSets_PbRoles.ROLEID,
             PropBankContract.PbRoleSets_PbRoles.ROLEDESCR,
+            PropBankContract.PbRoleSets_PbRoles.ARGTYPEID,
             PropBankContract.PbRoleSets_PbRoles.ARGTYPE,
             PropBankContract.PbRoleSets_PbRoles.FUNC,
             PropBankContract.PbRoleSets_PbRoles.FUNCDESCR,
@@ -61,11 +62,11 @@ object Queries {
             PropBankContract.PbRoleSets_PbExamples.TEXT,
             PropBankContract.PbRoleSets_PbExamples.REL,
             "REPLACE(REPLACE(GROUP_CONCAT(DISTINCT REPLACE(" +
-                    PropBankContract.PbRoleSets_PbExamples.ARGTYPE +
+                    PropBankContract.PbRoleSets_PbExamples.ARGTYPEID +
                     "||'~'" +
                     "||(CASE WHEN " + PropBankContract.PbRoleSets_PbExamples.FUNCNAME + " IS NULL THEN '*' ELSE " + PropBankContract.PbRoleSets_PbExamples.FUNCNAME + " END)" +
                     "||'~'" +
-                    "||" + PropBankContract.PbRoleSets_PbExamples.ROLEDESCR +
+                    "||(CASE WHEN " + PropBankContract.PbRoleSets_PbExamples.ROLEDESCR + " IS NULL THEN '*' ELSE " + PropBankContract.PbRoleSets_PbExamples.ROLEDESCR + " END)" +
                     "||'~'" +
                     "||(CASE WHEN " + PropBankContract.PbRoleSets_PbExamples.VNROLE + " IS NULL THEN '*' ELSE " + PropBankContract.PbRoleSets_PbExamples.VNROLE + " END)" +
                     "||'~'" +

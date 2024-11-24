@@ -323,7 +323,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     append(sb, func, 0, PropBankFactories.funcFactory)
                     sb.append(' ')
                     sb.append(cursor.getString(idFuncDescr))
-              }
+                }
 
                 // vnrole
                 val vnRole = cursor.getString(idVnRole)
@@ -343,7 +343,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     sb.append(' ')
                     appendImage(sb, fnfeDrawable)
                     sb.append(' ')
-                    append(sb, vnRole, 0, PropBankFactories.fnfeFactory)
+                    append(sb, fnFe, 0, PropBankFactories.fnfeFactory)
                 }
 
                 // var roleId = cursor.getInt(idRoleId)
@@ -419,39 +419,55 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                         sb.append("\n\t")
 
                         // n
-                        sb.append(fields[0])
+                        val n = fields[0]
+                        sb.append('[')
+                        sb.append(n)
+                        sb.append(']')
                         sb.append(' ')
 
                         // role
+                        val roleDescr = fields[2]
                         appendImage(sb, roleDrawable)
-                        sb.append(' ')
-                        append(sb, capitalize1(fields[2]), 0, PropBankFactories.roleFactory)
-                        sb.append(' ')
+                        if (roleDescr.isNotEmpty()) {
+                            sb.append(' ')
+                            if (roleDescr != "*") {
+                                append(sb, capitalize1(roleDescr), 0, PropBankFactories.roleFactory)
+                            } else if (n == "M") {
+                                sb.append("modifier")
+                            }
+                            sb.append(' ')
+                        }
 
                         // func
-                        if (fields[1].isNotEmpty()) {
+                        val func = fields[1]
+                        if (func.isNotEmpty() && func != "*") {
                             // sb.append(" func=")
                             sb.append(' ')
-                            sb.append(fields[1])
+                            append(sb, func, 0, PropBankFactories.funcFactory)
                         }
 
                         // vnrole
-                        sb.append("\n\t\t\t ")
-                        appendImage(sb, vnroleDrawable)
-                        sb.append(' ')
-                        append(sb, fields[3], 0, PropBankFactories.vnroleFactory)
+                        val vnRole = fields[3]
+                        if (!vnRole.isEmpty() && vnRole != "*") {
+                            sb.append("\n\t\t\t ")
+                            appendImage(sb, vnroleDrawable)
+                            sb.append(' ')
+                            append(sb, vnRole, 0, PropBankFactories.vnroleFactory)
+                        }
 
                         // fnfe
-                        sb.append("\n\t\t\t ")
-                        appendImage(sb, fnfeDrawable)
-                        sb.append(' ')
-                        append(sb, fields[4], 0, PropBankFactories.fnfeFactory)
+                        val fnFe = fields[4]
+                        if (!fnFe.isEmpty() && fnFe != "*") {
+                            sb.append("\n\t\t\t ")
+                            appendImage(sb, fnfeDrawable)
+                            sb.append(' ')
+                            append(sb, fnFe, 0, PropBankFactories.fnfeFactory)
+                        }
 
                         // subtext
-                        sb.append(' ')
-                        // sb.append("subtext=");
+                        sb.append("\n\t\t\t ")
                         sb.append(fields[5])
-                        // Spanner.append(sb, fields[4], 0, PropBankFactories.textFactory);
+                        //append(sb, fields[5], 0, PropBankFactories.textFactory)
                     }
                 }
                 if (!cursor.moveToNext()) {
