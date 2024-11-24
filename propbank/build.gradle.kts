@@ -62,9 +62,9 @@ dependencies {
     implementation("androidx.annotation:annotation:$annotationVersion")
     implementation("com.google.android.material:material:$materialVersion")
 
-
     testImplementation(project(":test-sql"))
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.querybuilder:querybuilder:1.1.0")
 }
 
 // C O D E   G E N E R A T I O N
