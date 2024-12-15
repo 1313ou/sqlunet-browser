@@ -47,6 +47,9 @@ pertainym
 derivation
 adjderived"
 
+collocation="
+collocation"
+
 both="
 also
 other
@@ -97,6 +100,7 @@ backtofore=(
 [base_dom]="$dom" 
 [base_morph]="$morph" 
 [base_pos]="$pos"
+[base_collocation]="$collocation"
 )
 
 # composite

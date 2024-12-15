@@ -41,6 +41,9 @@ pertainym
 derivation
 adjderived"
 
+[collocation]="
+collocation"
+
 [both]="
 also
 other
