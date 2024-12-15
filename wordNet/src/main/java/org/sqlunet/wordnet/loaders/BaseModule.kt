@@ -1560,6 +1560,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             150 -> R.drawable.ic_material
             160 -> R.drawable.ic_vehicle
             170 -> R.drawable.ic_bodypart
+            200 -> R.drawable.ic_collocation
             else -> R.drawable.error
         }
     }
