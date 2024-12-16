@@ -19,7 +19,7 @@ rm -f ${appdir}/xnet-ewn.html
 rm -f ${appdir}/xnet-vn.html
 rm -f ${appdir}/xnet-fn.html
 rm -f ${appdir}/relations/index*.html
-mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
+#mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 
 #W N
 
@@ -53,7 +53,7 @@ rm -f ${appdir}/images/syntagnet.png
 rm -f ${appdir}/images/predicatematrix.png
 
 rm -f ${appdir}/relations/index*.html
-mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
+#mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 
 #E W N
 
@@ -87,7 +87,7 @@ rm -f ${appdir}/images/syntagnet.png
 rm -f ${appdir}/images/predicatematrix.png
 
 rm -f ${appdir}/relations/index*.html
-mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
+#mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 
 # F N
 
@@ -148,7 +148,7 @@ rm -f ${appdir}/images/syntagnet.png
 rm -f ${appdir}/images/predicatematrix.png
 
 rm -f ${appdir}/relations/index*.html
-mv -f ${appdir}/relations/android-index.html ${appdir}/relations/index.html
+#mv -f ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 
 # S N
 
@@ -179,5 +179,5 @@ rm -f ${appdir}/images/framenet.png
 rm -f ${appdir}/images/predicatematrix.png
 
 rm -f ${appdir}/relations/index*.html
-mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
+#mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 
