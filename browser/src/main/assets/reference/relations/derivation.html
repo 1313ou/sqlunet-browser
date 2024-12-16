@@ -2,18 +2,21 @@
 <HEAD>
 	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<TITLE>Relations</TITLE>
-	<LINK rel="stylesheet" type="text/css" href="style.css">
+	<LINK rel="stylesheet" type="text/css" href="relations.css">
 </HEAD>
 <BODY>
-<TABLE class="relations">
-	<TR class="relation" name="relation" id="derivation">
-		<TD>
-			<TABLE>
-				<TR>
-					<TD class="relationimage"><IMG src="./images/derivation.png" alt="Derivation"></TD>
-					<TD class="relationheader"><SPAN class="name">Derivation</SPAN></TD>
+<TABLE class="relations full-width">
+	<TR class="relation full-width" name="relation" id="derivation">
+		<TD class="full-width">
+			<TABLE class="full-width">
+				<TR class="full-width">
+					<TD colspan="2">
+						<DIV class="relationheader">
+							<IMG class="relationimage" src="images/derivation.png" alt="Derivation"><SPAN class="relationname">Derivation</SPAN>
+						</DIV>
+					</TD>
 				</TR>
-				<TR>
+				<TR class="full-width">
 					<TD colspan="2">
 						<DIV class="description">
 							<span>Derivationally-related</span>
@@ -24,56 +27,135 @@
 					<TD colspan="2"></TD>
 				</TR>
 				<TR>
-					<TD colspan="2">
+					<TD class="colfeatures">
 						<DIV class="features">
-							<IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/reflexive.png" alt="reflexive" title="reflexive"><IMG class="featureimage" src="./images/pos_n.png"
-							                                                                                                                                                                                 alt="noun" title="noun"><IMG class="featureimage"
-							                                                                                                                                                                                                              src="./images/pos_v.png"
-							                                                                                                                                                                                                              alt="verb"
-							                                                                                                                                                                                                              title="verb"><IMG
-								class="featureimage" src="./images/pos_a.png" alt="adj" title="adjective"><IMG class="featureimage" src="./images/pos_r.png" alt="adv" title="adverb"><IMG class="featureimage" src="./images/pos_s.png" alt="satellite"
-							                                                                                                                                                               title="satellite adj">
+							<IMG class="featureimage" src="images/feature_lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="images/feature_symmetric.png" alt="symmetric" title="symmetric"><IMG class="featureimage"
+							                                                                                                                                                                                             src="images/pos_n.png" alt="noun"
+							                                                                                                                                                                                             title="noun"><IMG class="featureimage"
+							                                                                                                                                                                                                               src="images/pos_v.png"
+							                                                                                                                                                                                                               alt="verb"
+							                                                                                                                                                                                                               title="verb"><IMG
+								class="featureimage" src="images/pos_a.png" alt="adj" title="adjective"><IMG class="featureimage" src="images/pos_r.png" alt="adv" title="adverb"><IMG class="featureimage" src="images/pos_s.png" alt="satellite"
+							                                                                                                                                                           title="satellite adj">
 						</DIV>
 					</TD>
+					<TD class="colother">
+						<TABLE class="toright">
+							<TR>
+								<TD>
+									<DIV class="inverse">
+										inverse: <A href="derivation.html">derivation</A> <IMG class="otherimage" src="images/derivation.png">
+									</DIV>
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<DIV class="see"></DIV>
+								</TD>
+							</TR>
+						</TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD colspan="2"></TD>
 				</TR>
 				<TR>
 					<TD colspan="2">
 						<DIV class="examples">
 							<TABLE class="exampletable">
 								<TR>
-									<TD class="from">abstraction</TD>
-									<TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD>
-									<TD class="to">abstract</TD>
+									<TD class="fromguide"></TD>
+									<TD></TD>
+									<TD class="toguide">derivationally-related</TD>
+									<TD class="gloss"></TD>
+								</TR>
+								<TR>
+									<TD class="from">abstract</TD>
+									<TD class="rel"><IMG src="images/derivation.png" alt="Derivation"></TD>
+									<TD class="to">abstraction</TD>
 								</TR>
 								<TR>
 									<TD class="from">object</TD>
-									<TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD>
+									<TD class="rel"><IMG src="images/derivation.png" alt="Derivation"></TD>
 									<TD class="to">objectify</TD>
 								</TR>
 								<TR>
 									<TD class="from">unit</TD>
-									<TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD>
+									<TD class="rel"><IMG src="images/derivation.png" alt="Derivation"></TD>
 									<TD class="to">unify</TD>
 								</TR>
 								<TR>
-									<TD class="from">being</TD>
-									<TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD>
-									<TD class="to">be</TD>
+									<TD class="from">be</TD>
+									<TD class="rel"><IMG src="images/derivation.png" alt="Derivation"></TD>
+									<TD class="to">being</TD>
 								</TR>
 								<TR>
 									<TD class="from">cause</TD>
-									<TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD>
+									<TD class="rel"><IMG src="images/derivation.png" alt="Derivation"></TD>
 									<TD class="to">causal</TD>
 								</TR>
 								<TR>
-									<TD class="from">being</TD>
-									<TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD>
-									<TD class="to">be</TD>
+									<TD class="from">locate</TD>
+									<TD class="rel"><IMG src="images/derivation.png" alt="Derivation"></TD>
+									<TD class="to">location</TD>
 								</TR>
 								<TR>
 									<TD class="from">location</TD>
-									<TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD>
+									<TD class="rel"><IMG src="images/derivation.png" alt="Derivation"></TD>
 									<TD class="to">locate</TD>
+								</TR>
+								<TR>
+									<TD class="from">being</TD>
+									<TD class="rel"><IMG src="images/derivation.png" alt="Derivation"></TD>
+									<TD class="to">be</TD>
+								</TR>
+							</TABLE>
+						</DIV>
+					</TD>
+				</TR>
+				<TR>
+					<TD colspan="2">
+						<DIV class="phrases">
+							<TABLE class="phrasetable">
+								<TR>
+									<TD class="fromphrase">abstract</TD>
+									<TD class="phrase">is derivationally-related to</TD>
+									<TD class="tophrase">abstraction</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">object</TD>
+									<TD class="phrase">is derivationally-related to</TD>
+									<TD class="tophrase">objectify</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">unit</TD>
+									<TD class="phrase">is derivationally-related to</TD>
+									<TD class="tophrase">unify</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">be</TD>
+									<TD class="phrase">is derivationally-related to</TD>
+									<TD class="tophrase">being</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">cause</TD>
+									<TD class="phrase">is derivationally-related to</TD>
+									<TD class="tophrase">causal</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">locate</TD>
+									<TD class="phrase">is derivationally-related to</TD>
+									<TD class="tophrase">location</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">location</TD>
+									<TD class="phrase">is derivationally-related to</TD>
+									<TD class="tophrase">locate</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">being</TD>
+									<TD class="phrase">is derivationally-related to</TD>
+									<TD class="tophrase">be</TD>
 								</TR>
 							</TABLE>
 						</DIV>

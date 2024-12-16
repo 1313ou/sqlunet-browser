@@ -2,21 +2,24 @@
 <HEAD>
 	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<TITLE>Relations</TITLE>
-	<LINK rel="stylesheet" type="text/css" href="style.css">
+	<LINK rel="stylesheet" type="text/css" href="relations.css">
 </HEAD>
 <BODY>
-<TABLE class="relations">
-	<TR class="relation" name="relation" id="hypernym">
-		<TD>
-			<TABLE>
-				<TR>
-					<TD class="relationimage"><IMG src="./images/hypernym.png" alt="Hypernym"></TD>
-					<TD class="relationheader"><SPAN class="name">Hypernym</SPAN></TD>
+<TABLE class="relations full-width">
+	<TR class="relation full-width" name="relation" id="hypernym">
+		<TD class="full-width">
+			<TABLE class="full-width">
+				<TR class="full-width">
+					<TD colspan="2">
+						<DIV class="relationheader">
+							<IMG class="relationimage" src="images/hypernym.png" alt="Hypernym"><SPAN class="relationname">Hypernym</SPAN>
+						</DIV>
+					</TD>
 				</TR>
-				<TR>
+				<TR class="full-width">
 					<TD colspan="2">
 						<DIV class="description">
-							<span>Superordinate (i.e. more generic). The generic term used to designate a whole class of specific instances.</span>
+							<span>Superordinate (i.e. more generic). The generic term used to designate a whole class of specific instances. A concept that is more general than a given concept. A hypernym of something is its supertype.</span>
 						</DIV>
 					</TD>
 				</TR>
@@ -24,122 +27,275 @@
 					<TD colspan="2">
 						<DIV class="logical">
 							<DIV class="def">
-                                        <span>
-				<b>X</b>
-				is a hypernym of
-				<b>Y</b>
-			</span>iff
+								<span><b>H</b> is a hypernym of <b>V</b></span> iff
 							</DIV>
 							<DIV class="cond">
-								&rarr;<span>
-				<b>Y</b>
-				is a (kind of)
-				<b>X</b>
-				<i>(nouns)</i>
-			</span>
+								&rarr;<span><b>V</b> is a (kind of) <b>H</b> <i>(nouns)</i></span>
 							</DIV>
 							<DIV class="cond">
-								&rarr;<span>
-				to
-				<b>Y</b>
-				is to
-				<b>X</b>
-				in some particular manner
-				<i>(verbs)</i>
-			</span>
+								&rarr;<span>to <b>V</b> is to <b>H</b> in some particular manner <i>(verbs)</i></span>
 							</DIV>
 						</DIV>
 					</TD>
 				</TR>
 				<TR>
-					<TD colspan="2">
+					<TD class="colfeatures">
 						<DIV class="features">
-							<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb"
-							                                                                                                                                                                      title="verb">
+							<IMG class="featureimage" src="images/feature_semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="images/pos_v.png" alt="verb"
+							                                                                                                                                                                          title="verb">
 						</DIV>
 					</TD>
+					<TD class="colother">
+						<TABLE class="toright">
+							<TR>
+								<TD>
+									<DIV class="inverse">
+										inverse: <A href="hyponym.html">hyponym</A> <IMG class="otherimage" src="images/hyponym.png">
+									</DIV>
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<DIV class="see"></DIV>
+								</TD>
+							</TR>
+						</TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD colspan="2"></TD>
 				</TR>
 				<TR>
 					<TD colspan="2">
 						<DIV class="examples">
 							<TABLE class="exampletable">
 								<TR>
+									<TD class="fromguide"></TD>
+									<TD></TD>
+									<TD class="toguide">hypernym</TD>
+									<TD class="gloss"></TD>
+								</TR>
+								<TR>
+									<TD class="fromguide">V</TD>
+									<TD></TD>
+									<TD class="toguide">H</TD>
+									<TD class="gloss"></TD>
+								</TR>
+								<TR>
 									<TD class="from">oak</TD>
-									<TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD>
+									<TD class="rel"><IMG src="images/hypernym.png" alt="Hypernym"></TD>
 									<TD class="to">tree</TD>
 									<TD class="gloss">an oak is a kind of tree</TD>
 								</TR>
 								<TR>
 									<TD class="from">tree</TD>
-									<TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD>
+									<TD class="rel"><IMG src="images/hypernym.png" alt="Hypernym"></TD>
 									<TD class="to">plant</TD>
 									<TD class="gloss">a tree is a kind of plant</TD>
 								</TR>
 								<TR>
 									<TD class="from">house</TD>
-									<TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD>
+									<TD class="rel"><IMG src="images/hypernym.png" alt="Hypernym"></TD>
 									<TD class="to">dwelling</TD>
 									<TD class="gloss">a house is a kind of dwelling</TD>
 								</TR>
 								<TR>
 									<TD class="from">disappointment</TD>
-									<TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD>
+									<TD class="rel"><IMG src="images/hypernym.png" alt="Hypernym"></TD>
 									<TD class="to">disatisfaction</TD>
 									<TD class="gloss">disappointment is a kind of disatisfaction</TD>
 								</TR>
 								<TR>
 									<TD class="from">amble</TD>
-									<TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD>
+									<TD class="rel"><IMG src="images/hypernym.png" alt="Hypernym"></TD>
 									<TD class="to">walk</TD>
 									<TD class="gloss">to amble is to walk in some manner</TD>
 								</TR>
 								<TR>
 									<TD class="from">march</TD>
-									<TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD>
+									<TD class="rel"><IMG src="images/hypernym.png" alt="Hypernym"></TD>
 									<TD class="to">walk</TD>
 									<TD class="gloss">to march is to walk in some manner</TD>
 								</TR>
 								<TR>
 									<TD class="from">lisp</TD>
-									<TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD>
+									<TD class="rel"><IMG src="images/hypernym.png" alt="Hypernym"></TD>
 									<TD class="to">say</TD>
 									<TD class="gloss">to lisp is to say in some manner</TD>
 								</TR>
 								<TR>
 									<TD class="from">slam</TD>
-									<TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD>
+									<TD class="rel"><IMG src="images/hypernym.png" alt="Hypernym"></TD>
 									<TD class="to">hit</TD>
 									<TD class="gloss">to slam is to hit in some manner</TD>
 								</TR>
 								<TR>
 									<TD class="from">Dien Bien Phu</TD>
-									<TD class="rel"><IMG src="./images/instance_hypernym.png" alt="Hypernym"></TD>
+									<TD class="rel"><IMG src="images/hypernym_instance.png" alt="Hypernym"></TD>
 									<TD class="to">siege</TD>
 									<TD class="gloss">instance hypernym</TD>
 								</TR>
 								<TR>
 									<TD class="from">Korean war</TD>
-									<TD class="rel"><IMG src="./images/instance_hypernym.png" alt="Hypernym"></TD>
+									<TD class="rel"><IMG src="images/hypernym_instance.png" alt="Hypernym"></TD>
 									<TD class="to">war</TD>
 									<TD class="gloss">instance hypernym</TD>
 								</TR>
 								<TR>
 									<TD class="from">Chartres cathedral</TD>
-									<TD class="rel"><IMG src="./images/instance_hypernym.png" alt="Hypernym"></TD>
+									<TD class="rel"><IMG src="images/hypernym_instance.png" alt="Hypernym"></TD>
 									<TD class="to">cathedral</TD>
 									<TD class="gloss">instance hypernym</TD>
 								</TR>
 								<TR>
 									<TD class="from">Carnegie Mellon University</TD>
-									<TD class="rel"><IMG src="./images/instance_hypernym.png" alt="Hypernym"></TD>
+									<TD class="rel"><IMG src="images/hypernym_instance.png" alt="Hypernym"></TD>
 									<TD class="to">university</TD>
 									<TD class="gloss">instance hypernym</TD>
 								</TR>
 								<TR>
 									<TD class="from">Mayflower</TD>
-									<TD class="rel"><IMG src="./images/instance_hypernym.png" alt="Hypernym"></TD>
+									<TD class="rel"><IMG src="images/hypernym_instance.png" alt="Hypernym"></TD>
 									<TD class="to">ship</TD>
 									<TD class="gloss">instance hypernym</TD>
+								</TR>
+							</TABLE>
+						</DIV>
+					</TD>
+				</TR>
+				<TR>
+					<TD colspan="2">
+						<DIV class="phrases">
+							<TABLE class="phrasetable">
+								<TR>
+									<TD class="fromphrase">oak</TD>
+									<TD class="phrase">is more general than</TD>
+									<TD class="tophrase">tree</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">tree</TD>
+									<TD class="phrase">is more general than</TD>
+									<TD class="tophrase">plant</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">house</TD>
+									<TD class="phrase">is more general than</TD>
+									<TD class="tophrase">dwelling</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">disappointment</TD>
+									<TD class="phrase">is more general than</TD>
+									<TD class="tophrase">disatisfaction</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">amble</TD>
+									<TD class="phrase">is more general than</TD>
+									<TD class="tophrase">walk</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">march</TD>
+									<TD class="phrase">is more general than</TD>
+									<TD class="tophrase">walk</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">lisp</TD>
+									<TD class="phrase">is more general than</TD>
+									<TD class="tophrase">say</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">slam</TD>
+									<TD class="phrase">is more general than</TD>
+									<TD class="tophrase">hit</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Dien Bien Phu</TD>
+									<TD class="phrase">is more general than</TD>
+									<TD class="tophrase">siege</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Korean war</TD>
+									<TD class="phrase">is more general than</TD>
+									<TD class="tophrase">war</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Chartres cathedral</TD>
+									<TD class="phrase">is more general than</TD>
+									<TD class="tophrase">cathedral</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Carnegie Mellon University</TD>
+									<TD class="phrase">is more general than</TD>
+									<TD class="tophrase">university</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Mayflower</TD>
+									<TD class="phrase">is more general than</TD>
+									<TD class="tophrase">ship</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">oak</TD>
+									<TD class="phrase">is a supertype of</TD>
+									<TD class="tophrase">tree</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">tree</TD>
+									<TD class="phrase">is a supertype of</TD>
+									<TD class="tophrase">plant</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">house</TD>
+									<TD class="phrase">is a supertype of</TD>
+									<TD class="tophrase">dwelling</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">disappointment</TD>
+									<TD class="phrase">is a supertype of</TD>
+									<TD class="tophrase">disatisfaction</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">amble</TD>
+									<TD class="phrase">is a supertype of</TD>
+									<TD class="tophrase">walk</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">march</TD>
+									<TD class="phrase">is a supertype of</TD>
+									<TD class="tophrase">walk</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">lisp</TD>
+									<TD class="phrase">is a supertype of</TD>
+									<TD class="tophrase">say</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">slam</TD>
+									<TD class="phrase">is a supertype of</TD>
+									<TD class="tophrase">hit</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Dien Bien Phu</TD>
+									<TD class="phrase">is a supertype of</TD>
+									<TD class="tophrase">siege</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Korean war</TD>
+									<TD class="phrase">is a supertype of</TD>
+									<TD class="tophrase">war</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Chartres cathedral</TD>
+									<TD class="phrase">is a supertype of</TD>
+									<TD class="tophrase">cathedral</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Carnegie Mellon University</TD>
+									<TD class="phrase">is a supertype of</TD>
+									<TD class="tophrase">university</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Mayflower</TD>
+									<TD class="phrase">is a supertype of</TD>
+									<TD class="tophrase">ship</TD>
 								</TR>
 							</TABLE>
 						</DIV>

@@ -1,1 +1,3 @@
-# sqlunet-browser
+# SEMANTIKOS browsers
+
+# A series of browsers

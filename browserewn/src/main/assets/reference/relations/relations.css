@@ -1,0 +1,271 @@
+/* WordNet Relations */
+
+* {
+	color: black;
+	font-family: Arial,sans-serif;
+}
+
+body {
+	background-color: #F3F1E2;
+	font-size: small;
+	padding: 0px;
+}
+
+/*
+table td:last-child {
+    width: 100%;
+}
+*/
+
+/******* hyperlink and anchor tag styles *******/
+
+a:relation,a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/********* custom *********/
+
+.header {
+	background-color: gray;
+	color: orange;
+}
+
+.menu {
+	background-color: orange;
+}
+
+.title {
+	font-size: xx-large;
+	font-weight: bold;
+	letter-spacing: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: orange;
+}
+
+/* P A G E */
+
+.toc {
+	display: none;
+}
+
+.main {
+	width: 100%;
+}
+
+/* R E L A T I O N */
+
+/* HEADER */
+
+.relation {
+	visibility: visible;
+	width: 100%;
+	margin-bottom: 100px;
+}
+
+.relationheader {
+}
+
+.relationimage {
+	width: 36px;
+	vertical-align: middle;
+}
+
+.relationname {
+	font-size: x-large;
+	font-weight: bold;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-left: 25px;
+	padding-right: 25px;
+	background-color: orange;
+	color: black;
+	vertical-align: middle;
+}
+
+/* DESCRIPTION */
+
+.description {
+	font-size: large;
+	margin-top: 20px;
+}
+
+/* FEATURES */
+
+.features {
+    float: left;
+}
+
+.type {
+}
+
+.symmetric {
+}
+
+.inverse {
+    float: right;
+}
+
+.see {
+    float: right;
+}
+
+.featureimage {
+	margin-right: 20px;
+	vertical-align: middle;
+}
+
+.otherimage {
+	vertical-align: middle;
+}
+
+.colfeatures {
+    width: 50%;
+	margin: 20px;
+}
+
+.colother {
+    width: 50%;
+	margin: 20px;
+}
+
+/* LOGICAL */
+
+.logical {
+	font-style: italic;
+	margin-top: 20px;
+}
+
+.def {
+	background-color: #F5F2C3;
+	color: black;
+}
+
+.cond {
+	background-color: #E5E2B3;
+	color: dark-gray;
+}
+
+/* EXAMPLES */
+
+.exampletable {
+}
+
+.examples {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.example {
+}
+
+.from {
+	font-size: small;
+	font-family: serif;
+	border-style:solid;
+	border-width: 1;
+}
+
+.to {
+	background-color: #FFFF99;
+	font-size: small;
+	font-family: serif;
+	border-style:solid;
+	border-width: 1;
+}
+
+.gloss {
+	color: gray;
+	font-size: small;
+	font-style: italic;
+}
+
+/* guides */
+
+.fromguide {
+	background-color: #FF8099;
+	font-size: small;
+	font-family: sans-serif;
+	border-style:solid;
+	border-width: 1;
+}
+
+.toguide {
+	background-color: #FF0099;
+	font-size: small;
+	font-family: sans-serif;
+	border-style:solid;
+	border-width: 1;
+}
+
+/* phrases */
+
+.phrasetable {
+}
+
+.phrases {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.fromphrase {
+	font-size: small;
+	font-family: serif;
+	font-style: bold;
+	border-style:solid;
+	border-width: 1;
+}
+
+.relphrase {
+	font-size: small;
+	font-family: sans-serif;
+}
+
+.tophrase {
+	font-size: small;
+	font-family: serif;
+	font-style: bold;
+	border-style:solid;
+	border-width: 1;
+}
+
+/** GENERAL */
+
+.backimage {
+	background-repeat: repeat;
+}
+
+.inline-image {
+    width: "32px";
+    height: "32px";
+    vertical-align:middle;
+}
+
+.splash {
+	height: 100%;
+	background-color: #E5E2B3;
+	background-repeat: no-repeat;
+	background-position: center center;
+    background-attachment: fixed;
+	background-image: url('images/splash.png');
+}
+
+.selectorname {
+	margin-left:10px;
+}
+
+.toright {
+	float: right;
+}
+
+.totop {
+	100%;vertical-align: top;
+}
+
+.full-width {
+	width: 100%;
+}

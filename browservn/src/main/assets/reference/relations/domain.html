@@ -2,21 +2,24 @@
 <HEAD>
 	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<TITLE>Relations</TITLE>
-	<LINK rel="stylesheet" type="text/css" href="style.css">
+	<LINK rel="stylesheet" type="text/css" href="relations.css">
 </HEAD>
 <BODY>
-<TABLE class="relations">
-	<TR class="relation" name="relation" id="domain">
-		<TD>
-			<TABLE>
-				<TR>
-					<TD class="relationimage"><IMG src="./images/domain.png" alt="Domain"></TD>
-					<TD class="relationheader"><SPAN class="name">Domain</SPAN></TD>
+<TABLE class="relations full-width">
+	<TR class="relation full-width" name="relation" id="domain">
+		<TD class="full-width">
+			<TABLE class="full-width">
+				<TR class="full-width">
+					<TD colspan="2">
+						<DIV class="relationheader">
+							<IMG class="relationimage" src="images/domain.png" alt="Domain"><SPAN class="relationname">Domain</SPAN>
+						</DIV>
+					</TD>
 				</TR>
-				<TR>
+				<TR class="full-width">
 					<TD colspan="2">
 						<DIV class="description">
-							<span>Domain of synset</span>
+							<span>Domain of synset.</span>
 						</DIV>
 					</TD>
 				</TR>
@@ -24,92 +27,274 @@
 					<TD colspan="2"></TD>
 				</TR>
 				<TR>
-					<TD colspan="2">
+					<TD class="colfeatures">
 						<DIV class="features">
-							<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png"
-							                                                                                                                                                                              alt="noun" title="noun"><IMG class="featureimage"
-							                                                                                                                                                                                                           src="./images/pos_v.png"
-							                                                                                                                                                                                                           alt="verb" title="verb"><IMG
-								class="featureimage" src="./images/pos_a.png" alt="adj" title="adjective"><IMG class="featureimage" src="./images/pos_r.png" alt="adv" title="adverb"><IMG class="featureimage" src="./images/pos_s.png" alt="satellite"
-							                                                                                                                                                               title="satellite adj">
+							<IMG class="featureimage" src="images/feature_semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="images/feature_lexical.png" alt="lexical" title="lexical"><IMG class="featureimage"
+							                                                                                                                                                                                          src="images/pos_n.png" alt="noun"
+							                                                                                                                                                                                          title="noun"><IMG class="featureimage"
+							                                                                                                                                                                                                            src="images/pos_v.png"
+							                                                                                                                                                                                                            alt="verb"
+							                                                                                                                                                                                                            title="verb"><IMG
+								class="featureimage" src="images/pos_a.png" alt="adj" title="adjective"><IMG class="featureimage" src="images/pos_r.png" alt="adv" title="adverb"><IMG class="featureimage" src="images/pos_s.png" alt="satellite"
+							                                                                                                                                                           title="satellite adj">
 						</DIV>
 					</TD>
+					<TD class="colother">
+						<TABLE class="toright">
+							<TR>
+								<TD>
+									<DIV class="inverse">
+										inverse: <A href="hasdomain.html">hasdomain</A> <IMG class="otherimage" src="images/hasdomain.png">
+									</DIV>
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<DIV class="see"></DIV>
+								</TD>
+							</TR>
+						</TABLE>
+					</TD>
+				</TR>
+				<TR>
+					<TD colspan="2"></TD>
 				</TR>
 				<TR>
 					<TD colspan="2">
 						<DIV class="examples">
 							<TABLE class="exampletable">
 								<TR>
-									<TD class="from">mitzvah</TD>
-									<TD class="rel"><IMG src="./images/domain_topic.png" alt="Domain"></TD>
-									<TD class="to">judaism</TD>
+									<TD class="fromguide">domain</TD>
+									<TD></TD>
+									<TD class="toguide">domain member</TD>
+									<TD class="gloss"></TD>
+								</TR>
+								<TR>
+									<TD class="from">judaism</TD>
+									<TD class="rel"><IMG src="images/domain_topic.png" alt="Domain"></TD>
+									<TD class="to">mitzvah</TD>
 									<TD class="gloss">domain topic</TD>
 								</TR>
 								<TR>
-									<TD class="from">cell</TD>
-									<TD class="rel"><IMG src="./images/domain_topic.png" alt="Domain"></TD>
-									<TD class="to">biology</TD>
+									<TD class="from">biology</TD>
+									<TD class="rel"><IMG src="images/domain_topic.png" alt="Domain"></TD>
+									<TD class="to">cell</TD>
 									<TD class="gloss">domain topic</TD>
 								</TR>
 								<TR>
-									<TD class="from">plant</TD>
-									<TD class="rel"><IMG src="./images/domain_topic.png" alt="Domain"></TD>
-									<TD class="to">botany</TD>
+									<TD class="from">botany</TD>
+									<TD class="rel"><IMG src="images/domain_topic.png" alt="Domain"></TD>
+									<TD class="to">plant</TD>
 									<TD class="gloss">domain topic</TD>
 								</TR>
 								<TR>
-									<TD class="from">zebra crossing</TD>
-									<TD class="rel"><IMG src="./images/domain_region.png" alt="Domain"></TD>
-									<TD class="to">Britain</TD>
+									<TD class="from">Britain</TD>
+									<TD class="rel"><IMG src="images/domain_region.png" alt="Domain"></TD>
+									<TD class="to">zebra crossing</TD>
 									<TD class="gloss">domain region</TD>
 								</TR>
 								<TR>
-									<TD class="from">tramcar</TD>
-									<TD class="rel"><IMG src="./images/domain_region.png" alt="Domain"></TD>
-									<TD class="to">Britain</TD>
+									<TD class="from">Britain</TD>
+									<TD class="rel"><IMG src="images/domain_region.png" alt="Domain"></TD>
+									<TD class="to">tramcar</TD>
 									<TD class="gloss">domain region</TD>
 								</TR>
 								<TR>
-									<TD class="from">centre</TD>
-									<TD class="rel"><IMG src="./images/domain_region.png" alt="Domain"></TD>
-									<TD class="to">Britain</TD>
+									<TD class="from">Britain</TD>
+									<TD class="rel"><IMG src="images/domain_region.png" alt="Domain"></TD>
+									<TD class="to">centre</TD>
 									<TD class="gloss">domain region</TD>
 								</TR>
 								<TR>
-									<TD class="from">walkabout</TD>
-									<TD class="rel"><IMG src="./images/domain_region.png" alt="Domain"></TD>
-									<TD class="to">Australia</TD>
+									<TD class="from">Australia</TD>
+									<TD class="rel"><IMG src="images/domain_region.png" alt="Domain"></TD>
+									<TD class="to">walkabout</TD>
 									<TD class="gloss">domain region</TD>
 								</TR>
 								<TR>
-									<TD class="from">trek</TD>
-									<TD class="rel"><IMG src="./images/domain_region.png" alt="Domain"></TD>
-									<TD class="to">South Africa</TD>
+									<TD class="from">South Africa</TD>
+									<TD class="rel"><IMG src="images/domain_region.png" alt="Domain"></TD>
+									<TD class="to">trek</TD>
 									<TD class="gloss">domain region</TD>
 								</TR>
 								<TR>
-									<TD class="from">curling</TD>
-									<TD class="rel"><IMG src="./images/domain_region.png" alt="Domain"></TD>
-									<TD class="to">Scotland</TD>
+									<TD class="from">Scotland</TD>
+									<TD class="rel"><IMG src="images/domain_region.png" alt="Domain"></TD>
+									<TD class="to">curling</TD>
 									<TD class="gloss">domain region</TD>
 								</TR>
 								<TR>
-									<TD class="from">snafu</TD>
-									<TD class="rel"><IMG src="./images/exemplifies.png" alt="Domain"></TD>
-									<TD class="to">acronym</TD>
-									<TD class="gloss">exemplifies</TD>
+									<TD class="from">acronym</TD>
+									<TD class="rel"><IMG src="images/domain_usage.png" alt="Domain"></TD>
+									<TD class="to">snafu</TD>
 								</TR>
 								<TR>
 									<TD class="from">neutralization</TD>
-									<TD class="rel"><IMG src="./images/exemplifies.png" alt="Domain"></TD>
+									<TD class="rel"><IMG src="images/domain_usage.png" alt="Domain"></TD>
 									<TD class="to">euphemism</TD>
-									<TD class="gloss">exemplifies</TD>
 								</TR>
 								<TR>
-									<TD class="from">scrabble</TD>
-									<TD class="rel"><IMG src="./images/exemplifies.png" alt="Domain"></TD>
-									<TD class="to">trademark</TD>
-									<TD class="gloss">exemplifies</TD>
+									<TD class="from">trademark</TD>
+									<TD class="rel"><IMG src="images/domain_usage.png" alt="Domain"></TD>
+									<TD class="to">Scrabble</TD>
+								</TR>
+								<TR>
+									<TD class="from">trademark</TD>
+									<TD class="rel"><IMG src="images/domain_usage.png" alt="Domain"></TD>
+									<TD class="to">Band Aid</TD>
+								</TR>
+							</TABLE>
+						</DIV>
+					</TD>
+				</TR>
+				<TR>
+					<TD colspan="2">
+						<DIV class="phrases">
+							<TABLE class="phrasetable">
+								<TR>
+									<TD class="fromphrase">judaism</TD>
+									<TD class="phrase">is domain for</TD>
+									<TD class="tophrase">mitzvah</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">biology</TD>
+									<TD class="phrase">is domain for</TD>
+									<TD class="tophrase">cell</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">botany</TD>
+									<TD class="phrase">is domain for</TD>
+									<TD class="tophrase">plant</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Britain</TD>
+									<TD class="phrase">is domain for</TD>
+									<TD class="tophrase">zebra crossing</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Britain</TD>
+									<TD class="phrase">is domain for</TD>
+									<TD class="tophrase">tramcar</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Britain</TD>
+									<TD class="phrase">is domain for</TD>
+									<TD class="tophrase">centre</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Australia</TD>
+									<TD class="phrase">is domain for</TD>
+									<TD class="tophrase">walkabout</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">South Africa</TD>
+									<TD class="phrase">is domain for</TD>
+									<TD class="tophrase">trek</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Scotland</TD>
+									<TD class="phrase">is domain for</TD>
+									<TD class="tophrase">curling</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">acronym</TD>
+									<TD class="phrase">is domain for</TD>
+									<TD class="tophrase">snafu</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">neutralization</TD>
+									<TD class="phrase">is domain for</TD>
+									<TD class="tophrase">euphemism</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">trademark</TD>
+									<TD class="phrase">is domain for</TD>
+									<TD class="tophrase">Scrabble</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">trademark</TD>
+									<TD class="phrase">is domain for</TD>
+									<TD class="tophrase">Band Aid</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">judaism</TD>
+									<TD class="relphrase"><span>categorizes</span></TD>
+									<TD class="tophrase">mitzvah</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">biology</TD>
+									<TD class="relphrase"><span>categorizes</span></TD>
+									<TD class="tophrase">cell</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">botany</TD>
+									<TD class="relphrase"><span>categorizes</span></TD>
+									<TD class="tophrase">plant</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">judaism</TD>
+									<TD class="relphrase"><span>categorizes</span></TD>
+									<TD class="tophrase">mitzvah</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">biology</TD>
+									<TD class="relphrase"><span>categorizes</span></TD>
+									<TD class="tophrase">cell</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">botany</TD>
+									<TD class="relphrase"><span>categorizes</span></TD>
+									<TD class="tophrase">plant</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Britain</TD>
+									<TD class="relphrase"><span>is a domain region of</span></TD>
+									<TD class="tophrase">zebra crossing</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Britain</TD>
+									<TD class="relphrase"><span>is a domain region of</span></TD>
+									<TD class="tophrase">tramcar</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Britain</TD>
+									<TD class="relphrase"><span>is a domain region of</span></TD>
+									<TD class="tophrase">centre</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Australia</TD>
+									<TD class="relphrase"><span>is a domain region of</span></TD>
+									<TD class="tophrase">walkabout</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">South Africa</TD>
+									<TD class="relphrase"><span>is a domain region of</span></TD>
+									<TD class="tophrase">trek</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">Scotland</TD>
+									<TD class="relphrase"><span>is a domain region of</span></TD>
+									<TD class="tophrase">curling</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">acronym</TD>
+									<TD class="relphrase"><span>is exemplified by</span></TD>
+									<TD class="tophrase">snafu</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">neutralization</TD>
+									<TD class="relphrase"><span>is exemplified by</span></TD>
+									<TD class="tophrase">euphemism</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">trademark</TD>
+									<TD class="relphrase"><span>is exemplified by</span></TD>
+									<TD class="tophrase">Scrabble</TD>
+								</TR>
+								<TR>
+									<TD class="fromphrase">trademark</TD>
+									<TD class="relphrase"><span>is exemplified by</span></TD>
+									<TD class="tophrase">Band Aid</TD>
 								</TR>
 							</TABLE>
 						</DIV>

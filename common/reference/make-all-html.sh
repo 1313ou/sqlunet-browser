@@ -14,4 +14,3 @@ for d in xnet wordnet verbnet propbank framenet bnc syntagnet; do
 	./make-html.sh $d "${whereto}"
 done
 cp style.css ${whereto}
-
