@@ -12,7 +12,8 @@ M='\u001b[35m'
 C='\u001b[36m'
 Z='\u001b[0m'
 
-from=/opt/devel/sqlbuilder2/semantikos
+from=../../semantikos-builder/semantikos-android
+from=$(readlink -m ${from})
 
 declare -A distribtag
 distribtag=(

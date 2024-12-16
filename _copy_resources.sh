@@ -2,11 +2,11 @@
 
 source define_colors.sh
 
-SRCDIR=/opt/devel/sqlbuilder/sqlbuilder2
+SRCDIR=../../semantikos-builder/semantikos-android
+SRCDIR=$(readlink -m ${SRCDIR})
 
 declare -A modules_short=(['verbNet']='vn'      ['propbank']='pb'       ['frameNet']='fn'       ['syntagNet']='sn'        ['bNC']='bnc' )
 declare -A modules_lower=(['verbNet']='verbnet' ['propbank']='propbank' ['frameNet']='framenet' ['syntagNet']='syntagnet' ['bNC']='bnc' )
-
 
 for m in  "${!modules_short[@]}"; do
         echo -e "${Y}${m}${Z} ${modules_lower[$m]} ${modules_short[$m]}"
