@@ -2,7 +2,7 @@
 
 source define_colors.sh
 
-SRCDIR=../../semantikos-builder/semantikos-android
+SRCDIR=../../semantikos-builder
 SRCDIR=$(readlink -m ${SRCDIR})
 
 declare -A modules_short=(['verbNet']='vn'      ['propbank']='pb'       ['frameNet']='fn'       ['syntagNet']='sn'        ['bNC']='bnc' )
