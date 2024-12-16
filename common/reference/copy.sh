@@ -15,10 +15,10 @@ appdir="../../${app}/src/main/assets/reference"
 appdir=`readlink -m "${appdir}"`
 rm -fR "${appdir}"
 cp -RT "${wherefrom}" "${appdir}"
-rm ${appdir}/xnet-ewn.html
-rm ${appdir}/xnet-vn.html
-rm ${appdir}/xnet-fn.html
-rm ${appdir}/relations/index*.html
+rm -f ${appdir}/xnet-ewn.html
+rm -f ${appdir}/xnet-vn.html
+rm -f ${appdir}/xnet-fn.html
+rm -f ${appdir}/relations/index*.html
 mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 
 #W N
@@ -29,30 +29,30 @@ appdir="../../${app}/src/main/assets/reference"
 appdir=`readlink -m "${appdir}"`
 rm -fR "${appdir}"
 cp -RT "${wherefrom}" "${appdir}"
-rm ${appdir}/verbnet.html
-rm ${appdir}/propbank.html
-rm ${appdir}/framenet.html
-rm ${appdir}/syntagnet.html
+rm -f ${appdir}/verbnet.html
+rm -f ${appdir}/propbank.html
+rm -f ${appdir}/framenet.html
+rm -f ${appdir}/syntagnet.html
 
-rm ${appdir}/xnet.html
-#rm ${appdir}/xnet-wn.html
-#rm ${appdir}/xnet-ewn.html
-rm ${appdir}/xnet-vn.html
-rm ${appdir}/xnet-fn.html
-rm ${appdir}/xnet-sn.html
+rm -f ${appdir}/xnet.html
+#rm -f ${appdir}/xnet-wn.html
+#rm -f ${appdir}/xnet-ewn.html
+rm -f ${appdir}/xnet-vn.html
+rm -f ${appdir}/xnet-fn.html
+rm -f ${appdir}/xnet-sn.html
 
-rm ${appdir}/images/vn*.png
-rm ${appdir}/images/pb*.png
-rm ${appdir}/images/fn*.png
-rm ${appdir}/images/sn*.png
+rm -f ${appdir}/images/vn*.png
+rm -f ${appdir}/images/pb*.png
+rm -f ${appdir}/images/fn*.png
+rm -f ${appdir}/images/sn*.png
 
-rm ${appdir}/images/verbnet.png
-rm ${appdir}/images/propbank.png
-rm ${appdir}/images/framenet.png
-rm ${appdir}/images/syntagnet.png
-rm ${appdir}/images/predicatematrix.png
+rm -f ${appdir}/images/verbnet.png
+rm -f ${appdir}/images/propbank.png
+rm -f ${appdir}/images/framenet.png
+rm -f ${appdir}/images/syntagnet.png
+rm -f ${appdir}/images/predicatematrix.png
 
-rm ${appdir}/relations/index*.html
+rm -f ${appdir}/relations/index*.html
 mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 
 #E W N
@@ -63,30 +63,30 @@ appdir="../../${app}/src/main/assets/reference"
 appdir=`readlink -m "${appdir}"`
 rm -fR "${appdir}"
 cp -RT "${wherefrom}"  "${appdir}"
-rm ${appdir}/verbnet.html
-rm ${appdir}/propbank.html
-rm ${appdir}/framenet.html
-rm ${appdir}/syntagnet.html
+rm -f ${appdir}/verbnet.html
+rm -f ${appdir}/propbank.html
+rm -f ${appdir}/framenet.html
+rm -f ${appdir}/syntagnet.html
 
-rm ${appdir}/xnet.html
-#rm ${appdir}/xnet-wn.html
-#rm ${appdir}/xnet-ewn.html
-rm ${appdir}/xnet-vn.html
-rm ${appdir}/xnet-fn.html
-rm ${appdir}/xnet-sn.html
+rm -f ${appdir}/xnet.html
+#rm -f ${appdir}/xnet-wn.html
+#rm -f ${appdir}/xnet-ewn.html
+rm -f ${appdir}/xnet-vn.html
+rm -f ${appdir}/xnet-fn.html
+rm -f ${appdir}/xnet-sn.html
 
-rm ${appdir}/images/vn*.png
-rm ${appdir}/images/pb*.png
-rm ${appdir}/images/fn*.png
-rm ${appdir}/images/sn*.png
+rm -f ${appdir}/images/vn*.png
+rm -f ${appdir}/images/pb*.png
+rm -f ${appdir}/images/fn*.png
+rm -f ${appdir}/images/sn*.png
 
-rm ${appdir}/images/verbnet.png
-rm ${appdir}/images/propbank.png
-rm ${appdir}/images/framenet.png
-rm ${appdir}/images/syntagnet.png
-rm ${appdir}/images/predicatematrix.png
+rm -f ${appdir}/images/verbnet.png
+rm -f ${appdir}/images/propbank.png
+rm -f ${appdir}/images/framenet.png
+rm -f ${appdir}/images/syntagnet.png
+rm -f ${appdir}/images/predicatematrix.png
 
-rm ${appdir}/relations/index*.html
+rm -f ${appdir}/relations/index*.html
 mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 
 # F N
@@ -98,30 +98,30 @@ appdir=`readlink -m "${appdir}"`
 rm -fR "${appdir}"
 cp -RT "${wherefrom}"  "${appdir}"
 rm -fR ${appdir}/relations
-rm ${appdir}/wordnet.html
-rm ${appdir}/verbnet.html
-rm ${appdir}/propbank.html
-rm ${appdir}/syntagnet.html
-rm ${appdir}/bnc.html
+rm -f ${appdir}/wordnet.html
+rm -f ${appdir}/verbnet.html
+rm -f ${appdir}/propbank.html
+rm -f ${appdir}/syntagnet.html
+rm -f ${appdir}/bnc.html
 
-rm ${appdir}/xnet.html
-rm ${appdir}/xnet-wn.html
-rm ${appdir}/xnet-ewn.html
-#rm ${appdir}/xnet-fn.html
-rm ${appdir}/xnet-vn.html
-rm ${appdir}/xnet-sn.html
+rm -f ${appdir}/xnet.html
+rm -f ${appdir}/xnet-wn.html
+rm -f ${appdir}/xnet-ewn.html
+#rm -f ${appdir}/xnet-fn.html
+rm -f ${appdir}/xnet-vn.html
+rm -f ${appdir}/xnet-sn.html
 
-rm ${appdir}/images/wn*.png
-rm ${appdir}/images/vn*.png
-rm ${appdir}/images/pb*.png
-rm ${appdir}/images/sn*.png
-rm ${appdir}/images/bnc*.png
+rm -f ${appdir}/images/wn*.png
+rm -f ${appdir}/images/vn*.png
+rm -f ${appdir}/images/pb*.png
+rm -f ${appdir}/images/sn*.png
+rm -f ${appdir}/images/bnc*.png
 
-rm ${appdir}/images/wordnet.png
-rm ${appdir}/images/verbnet.png
-rm ${appdir}/images/propbank.png
-rm ${appdir}/images/syntagnet.png
-rm ${appdir}/images/predicatematrix.png
+rm -f ${appdir}/images/wordnet.png
+rm -f ${appdir}/images/verbnet.png
+rm -f ${appdir}/images/propbank.png
+rm -f ${appdir}/images/syntagnet.png
+rm -f ${appdir}/images/predicatematrix.png
 
 # V N
 
@@ -131,24 +131,24 @@ appdir="../../${app}/src/main/assets/reference"
 appdir=`readlink -m "${appdir}"`
 rm -fR "${appdir}"
 cp -RT "${wherefrom}" "${appdir}"
-rm ${appdir}/framenet.html
+rm -f ${appdir}/framenet.html
 
-rm ${appdir}/xnet.html
-rm ${appdir}/xnet-wn.html
-rm ${appdir}/xnet-ewn.html
-#rm ${appdir}/xnet-vn.html
-rm ${appdir}/xnet-fn.html
-rm ${appdir}/xnet-sn.html
+rm -f ${appdir}/xnet.html
+rm -f ${appdir}/xnet-wn.html
+rm -f ${appdir}/xnet-ewn.html
+#rm -f ${appdir}/xnet-vn.html
+rm -f ${appdir}/xnet-fn.html
+rm -f ${appdir}/xnet-sn.html
 
-rm ${appdir}/images/fn*.png
-rm ${appdir}/images/sn*.png
+rm -f ${appdir}/images/fn*.png
+rm -f ${appdir}/images/sn*.png
 
-rm ${appdir}/images/framenet.png
-rm ${appdir}/images/syntagnet.png
-rm ${appdir}/images/predicatematrix.png
+rm -f ${appdir}/images/framenet.png
+rm -f ${appdir}/images/syntagnet.png
+rm -f ${appdir}/images/predicatematrix.png
 
-rm ${appdir}/relations/index*.html
-mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
+rm -f ${appdir}/relations/index*.html
+mv -f ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 
 # S N
 
@@ -158,26 +158,26 @@ appdir="../../${app}/src/main/assets/reference"
 appdir=`readlink -m "${appdir}"`
 rm -fR "${appdir}"
 cp -RT "${wherefrom}"  "${appdir}"
-rm ${appdir}/verbnet.html
-rm ${appdir}/propbank.html
-rm ${appdir}/framenet.html
+rm -f ${appdir}/verbnet.html
+rm -f ${appdir}/propbank.html
+rm -f ${appdir}/framenet.html
 
-rm ${appdir}/xnet.html
-rm ${appdir}/xnet-wn.html
-rm ${appdir}/xnet-ewn.html
-rm ${appdir}/xnet-vn.html
-rm ${appdir}/xnet-fn.html
-#rm ${appdir}/xnet-sn.html
+rm -f ${appdir}/xnet.html
+rm -f ${appdir}/xnet-wn.html
+rm -f ${appdir}/xnet-ewn.html
+rm -f ${appdir}/xnet-vn.html
+rm -f ${appdir}/xnet-fn.html
+#rm -f ${appdir}/xnet-sn.html
 
-rm ${appdir}/images/vn*.png
-rm ${appdir}/images/pb*.png
-rm ${appdir}/images/fn*.png
+rm -f ${appdir}/images/vn*.png
+rm -f ${appdir}/images/pb*.png
+rm -f ${appdir}/images/fn*.png
 
-rm ${appdir}/images/verbnet.png
-rm ${appdir}/images/propbank.png
-rm ${appdir}/images/framenet.png
-rm ${appdir}/images/predicatematrix.png
+rm -f ${appdir}/images/verbnet.png
+rm -f ${appdir}/images/propbank.png
+rm -f ${appdir}/images/framenet.png
+rm -f ${appdir}/images/predicatematrix.png
 
-rm ${appdir}/relations/index*.html
+rm -f ${appdir}/relations/index*.html
 mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 

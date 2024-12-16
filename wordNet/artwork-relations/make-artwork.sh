@@ -24,4 +24,3 @@ for r in ${!res[@]}; do
 	mkdir -p ${dirdest}
 	lists_svg2png "${rv}" "${dirsrc}" "${dirdest}" "ic_"
 done
-
