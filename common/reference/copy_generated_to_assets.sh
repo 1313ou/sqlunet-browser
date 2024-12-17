@@ -8,6 +8,8 @@ source ./define_colors.sh
 
 wherefrom="generated"
 wherefrom=`readlink -m "${wherefrom}"`
+wherefrom31="generated31"
+wherefrom31=`readlink -m "${wherefrom31}"`
 
 # X N
 
