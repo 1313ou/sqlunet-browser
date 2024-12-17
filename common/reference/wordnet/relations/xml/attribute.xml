@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Attribute" id="attribute" type="semantic" inverse="attribute" symmetric="true" n="true" a="true">
+
+  <img src="attribute.png"/>
+
+  <description>
+    <span>Attribute. A relation between nominal and adjectival concepts where the concept A is an attribute of concept B. It is a self-reciprocal link (the two directions of this relation share the same meaning).</span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is an attribute of</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>attribute</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>adj</from>
+      <to>noun</to>
+      <gloss>self-reciprocal link</gloss>>
+    </guide>
+    <guide>
+      <from>noun</from>
+      <to>adj</to>
+      <gloss>self-reciprocal link</gloss>>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>emotionality</from>
+      <to>cold</to>
+    </example>
+    <example>
+      <from>emotionality</from>
+      <to>warm</to>
+    </example>
+    <example>
+      <from>emotionality</from>
+      <to>cool</to>
+    </example>
+    <example>
+      <from>beauty</from>
+      <to>beautiful</to>
+    </example>
+    <example>
+      <from>beauty</from>
+      <to>ugly</to>
+    </example>
+    <example>
+      <from>morality</from>
+      <to>immoral</to>
+    </example>
+    <example>
+      <from>morality</from>
+      <to>pure</to>
+    </example>
+    <example>
+      <from>morality</from>
+      <to>impure</to>
+    </example>
+    <example>
+      <from>age</from>
+      <to>old</to>
+    </example>
+    <example>
+      <from>age</from>
+      <to>new</to>
+    </example>
+    <example>
+      <from>strength</from>
+      <to>strong</to>
+    </example>
+    <example>
+      <from>strength</from>
+      <to>weak</to>
+    </example>
+    <example>
+      <from>quantity</from>
+      <to>abundant</to>
+    </example>
+    <example>
+      <from>quantity</from>
+      <to>scarce</to>
+    </example>
+    <example>
+      <from>quantity</from>
+      <to>sufficient</to>
+    </example>
+    <example>
+      <to>emotionality</to>
+      <from>cold</from>
+    </example>
+    <example>
+      <to>emotionality</to>
+      <from>warm</from>
+    </example>
+  </examples>
+
+</relation>
+

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Domain" id="domain" type="both" inverse="hasdomain" n="true" v="true" a="true" r="true" s="true">
+
+  <img src="domain.png"/>
+
+  <description>
+    <span>Domain of synset.</span>
+    <!-- @formatter:off -->
+    <ul>
+      <li>A concept which is a Topic, Region or Usage pointer of a given concept.</li>
+      <li>A concept which is the scientific category pointer of a given concept.</li>
+      <li>A concept which is a geographical / cultural domain pointer of a given concept.</li>
+      <li>A concept which is the type of a given concept.</li>
+    </ul>
+    <ul>
+      <li><b>Domain</b> is an underspecified relation between two concepts where Concept B is a Topic (scientific category), Region or Usage pointer of Concept A.</li>
+      <li><b>Domain Topic</b> is a relation between two concepts where Concept B is a <i>scientific category</i> (e.g. computing, sport, biology, etc.) of concept A.</li>
+      <li><b>Domain Region</b> is a relation between two concepts where Concept B is a <i>geographical / cultural</i> domain of concept A.</li>
+      <li><b>Is Exemplified By</b> is a relation between two concepts where Concept B is a type of Concept A, such as idiom, honorific or classifier. The name was changed from "Domain - USAGE".</li>
+    </ul>
+    <!-- @formatter:on -->
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is domain for</span>
+    </phrase>
+    <phrase scope="topic">
+      <span>categorizes</span>
+    </phrase>
+    <phrase scope="topic">
+      <span>categorizes</span>
+    </phrase>
+    <phrase scope="region">
+      <span>is a domain region of</span>
+    </phrase>
+    <phrase scope="usage">
+      <span>is exemplified by</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from>domain</from>
+      <to>domain member</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example scope="topic">
+      <from>judaism</from>
+      <to>mitzvah</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>biology</from>
+      <to>cell</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>botany</from>
+      <to>plant</to>
+      <gloss>domain topic</gloss>
+    </example>
+
+    <example scope="region">
+      <from>Britain</from>
+      <to>zebra crossing</to>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <from>Britain</from>
+      <to>tramcar</to>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <to>centre</to>
+      <from>Britain</from>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <from>Australia</from>
+      <to>walkabout</to>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <from>South Africa</from>
+      <to>trek</to>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <from>Scotland</from>
+      <to>curling</to>
+      <gloss>domain region</gloss>
+    </example>
+
+    <example scope="usage">
+      <from>acronym</from>
+      <to>snafu</to>
+    </example>
+    <example scope="usage">
+      <from>neutralization</from>
+      <to>euphemism</to>
+    </example>
+    <example scope="usage">
+      <from>trademark</from>
+      <to>Scrabble</to>
+    </example>
+    <example scope="usage">
+      <from>trademark</from>
+      <to>Band Aid</to>
+    </example>
+
+  </examples>
+
+</relation>
+

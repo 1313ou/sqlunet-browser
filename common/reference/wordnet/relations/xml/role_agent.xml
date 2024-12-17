@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Agent" id="role_agent" type="lexical" v="true" n="true">
+
+  <img src="role_agent.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type
+      <strong>Agent</strong>
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>agent</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>employ</from>
+      <to>employer</to>
+    </example>
+    <example>
+      <from>abduct</from>
+      <to>abductor</to>
+    </example>
+    <example>
+      <from>absorb</from>
+      <to>absorber</to>
+    </example>
+  </examples>
+
+</relation>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Is entailed by" id="entailed" type="semantic" inverse="entails" v="true">
+
+  <img src="entailed.png"/>
+
+  <description>
+    <span>Is entailed by</span>
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span>A verb <b>E</b> is entailed by<b>A</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>A</b> cannot be done unless <b>E</b> is, or has been, done</span><!-- @formatter:on --></cond>
+    <cond><!-- @formatter:off --><span>there is no conceivable state of affairs that could make <b>A</b> true and <b>E</b> false</span><!-- @formatter:on --></cond>
+  </logical>
+
+  <phrases>
+    <phrase><span>is entailed by</span></phrase>
+<!--    <phrase><span>is the result of</span></phrase>-->
+<!--    <phrase><span>happens because of the occurrence of</span></phrase>-->
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>is entailed by</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>E</from>
+      <to>A</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>walk</from>
+      <to>limp</to>
+      <gloss>temporal inclusion - coextensive</gloss>
+    </example>
+    <example>
+      <from>talk</from>
+      <to>lisp</to>
+      <gloss>temporal inclusion - coextensive</gloss>
+    </example>
+    <example>
+      <from>sleep</from>
+      <to>snore</to>
+      <gloss>temporal inclusion - proper inclusion</gloss>
+    </example>
+    <example>
+      <from>pay</from>
+      <to>buy</to>
+      <gloss>temporal inclusion - proper inclusion</gloss>
+    </example>
+    <example>
+      <from>try</from>
+      <to>succeed</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>try</from>
+      <to>fail</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>tie</from>
+      <to>untie</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>aim</from>
+      <to>hit</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>aim</from>
+      <to>miss</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>rise</from>
+      <to>raise</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+    <example>
+      <from>have</from>
+      <to>give</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+    <example>
+      <from>fear</from>
+      <to>scare</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+    <example>
+      <from>eat</from>
+      <to>feed</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+    <example>
+      <from>learn</from>
+      <to>teach</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+  </examples>
+
+  <see tag="caused"/>
+
+</relation>

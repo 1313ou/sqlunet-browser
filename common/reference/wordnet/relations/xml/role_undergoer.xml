@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Undergoer" id="role_undergoer" type="lexical" v="true" n="true">
+
+  <img src="role_undergoer.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type
+      <strong>Undergoer</strong>
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>undergoer</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>employ</from>
+      <to>employee</to>
+    </example>
+    <example>
+      <from>address</from>
+      <to>adressee</to>
+    </example>
+    <example>
+      <from>authorise</from>
+      <to>authorisation</to>
+    </example>
+  </examples>
+
+</relation>

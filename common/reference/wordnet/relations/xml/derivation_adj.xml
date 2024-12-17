@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Derived from adjective" id="derivation_adj" type="lexical" r="true">
+
+  <img src="derivation_adj.png"/>
+
+  <description>
+    <span>Derived from adjective</span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>derives from adjective</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>adj-derived</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from/>
+      <to>adjective</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>gradually</from>
+      <to>gradual</to>
+    </example>
+    <example>
+      <from>really</from>
+      <to>real</to>
+    </example>
+    <example>
+      <from>truly</from>
+      <to>true</to>
+    </example>
+  </examples>
+
+</relation>
+

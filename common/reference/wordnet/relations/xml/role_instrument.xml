@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Instrument" id="role_instrument" type="lexical" v="true" n="true">
+
+  <img src="role_instrument.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type
+      <strong>Instrument</strong>
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>instrument</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>poke</from>
+      <to>poker</to>
+    </example>
+    <example>
+      <from>air-condition</from>
+      <to>air-conditioner</to>
+    </example>
+    <example>
+      <from>axe</from>
+      <to>axe</to>
+    </example>
+  </examples>
+
+</relation>

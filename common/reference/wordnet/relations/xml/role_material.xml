@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Material" id="role_material" type="lexical" v="true" n="true">
+
+  <img src="role_material.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type
+      <strong>Material</strong>
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>material</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>insulate</from>
+      <to>insulator</to>
+    </example>
+    <example>
+      <from>paper</from>
+      <to>paper</to>
+    </example>
+    <example>
+      <from>thin</from>
+      <to>thinner</to>
+    </example>
+  </examples>
+
+</relation>

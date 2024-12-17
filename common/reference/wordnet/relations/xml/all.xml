@@ -1,0 +1,1857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relations>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Hypernym" id="hypernym" type="semantic" inverse="hyponym" n="true" v="true">
+
+  <img src="hypernym.png"/>
+
+  <description>
+    <span>Superordinate (i.e. more generic). The generic term used to designate a whole class of specific instances. A concept that is more general than a given concept. A hypernym of something is its supertype.</span>
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span><b>H</b> is a hypernym of <b>V</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>V</b> is a (kind of) <b>H</b> <i>(nouns)</i></span><!-- @formatter:on --></cond>
+    <cond><!-- @formatter:off --><span>to <b>V</b> is to <b>H</b> in some particular manner <i>(verbs)</i></span><!-- @formatter:on --></cond>
+  </logical>
+
+  <phrases>
+    <phrase><span>is more general than</span></phrase>
+    <phrase><span>is a supertype of</span></phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>hypernym</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>V</from>
+      <to>H</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>oak</from>
+      <to>tree</to>
+      <gloss>an oak is a kind of tree</gloss>
+    </example>
+    <example>
+      <from>tree</from>
+      <to>plant</to>
+      <gloss>a tree is a kind of plant</gloss>
+    </example>
+    <example>
+      <from>house</from>
+      <to>dwelling</to>
+      <gloss>a house is a kind of dwelling</gloss>
+    </example>
+    <example>
+      <from>disappointment</from>
+      <to>disatisfaction</to>
+      <gloss>disappointment is a kind of disatisfaction</gloss>
+    </example>
+    <example>
+      <from>amble</from>
+      <to>walk</to>
+      <gloss>to amble is to walk in some manner</gloss>
+    </example>
+    <example>
+      <from>march</from>
+      <to>walk</to>
+      <gloss>to march is to walk in some manner</gloss>
+    </example>
+    <example>
+      <from>lisp</from>
+      <to>say</to>
+      <gloss>to lisp is to say in some manner</gloss>
+    </example>
+    <example>
+      <from>slam</from>
+      <to>hit</to>
+      <gloss>to slam is to hit in some manner</gloss>
+    </example>
+
+    <example scope="instance">
+      <from>Dien Bien Phu</from>
+      <to>siege</to>
+      <gloss>instance hypernym</gloss>
+     </example>
+    <example scope="instance">
+      <from>Korean war</from>
+      <to>war</to>
+      <gloss>instance hypernym</gloss>
+    </example>
+    <example scope="instance">
+      <from>Chartres cathedral</from>
+      <to>cathedral</to>
+      <gloss>instance hypernym</gloss>
+     </example>
+    <example scope="instance">
+      <from>Carnegie Mellon University</from>
+      <to>university</to>
+      <gloss>instance hypernym</gloss>
+    </example>
+    <example scope="instance">
+      <from>Mayflower</from>
+      <to>ship</to>
+      <gloss>instance hypernym</gloss>
+    </example>
+  </examples>
+
+</relation>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Hyponym" id="hyponym" type="semantic" inverse="hypernym" n="true" v="true">
+
+  <img src="hyponym.png"/>
+
+  <description>
+    <span>Subordinate (i.e. more specific). The specific term used to designate a member of a class. A concept that is more specific than a given concept. A hyponym of something is its subtype.</span>
+  </description>
+  <description>
+    <!-- @formatter:off --><span><b>Troponym</b>. A verb expressing a specific manner elaboration of another verb. Manner name (a word that denotes a manner of doing something).</span><!-- @formatter:on -->
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span><b>H</b> is a hyponym of <b>X</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>H</b> is a (kind of) <b>X</b></span><!-- @formatter:on --></cond>
+  </logical>
+
+  <logical>
+    <def><!-- @formatter:off --><span><b>H</b> is a troponym of <b>X</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span>to <b>H</b> is to <b>X</b> in some manner </span><!-- @formatter:on --></cond>
+  </logical>
+
+  <phrases>
+    <phrase><span>is more specific than</span></phrase>
+    <phrase><span>is a subtype of</span></phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>hyponym</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from/>
+      <to>troponym</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>X</from>
+      <to>H</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>tree</from>
+      <to>oak</to>
+      <gloss>an oak is a kind of tree</gloss>
+    </example>
+    <example>
+      <from>plant</from>
+      <to>tree</to>
+      <gloss>a tree is a kind of plant</gloss>
+    </example>
+    <example>
+      <from>tree</from>
+      <to>oak</to>
+      <gloss>a oak is a kind of tree</gloss>
+    </example>
+    <example>
+      <from>roadster</from>
+      <to>car</to>
+      <gloss>a roadster is a kind of car</gloss>
+    </example>
+    <example>
+      <from>car</from>
+      <to>motor vehicle</to>
+      <gloss>a car is a kind of motor vehicle</gloss>
+    </example>
+    <example>
+      <from>motor vehicle</from>
+      <to>wheeled vehicle</to>
+      <gloss>a motor vehicle is a kind of wheeled vehicle</gloss>
+    </example>
+    <example>
+      <from>dwelling</from>
+      <to>house</to>
+      <gloss>a house is a kind of dwelling</gloss>
+    </example>
+    <example>
+      <from>dissatisfaction</from>
+      <to>disappointment</to>
+      <gloss>disappointment is a kind of dissatisfaction</gloss>
+    </example>
+
+    <example scope="instance">
+      <from>group</from>
+      <to>the Great Lakes</to>
+      <gloss>instance hypernym</gloss>
+    </example>
+    <example scope="instance">
+      <from>evacuation</from>
+      <to>Dunkirk</to>
+      <gloss>instance hypernym</gloss>
+    </example>
+    <example scope="instance">
+      <from>revolution</from>
+      <to>French revolution</to>
+      <gloss>instance hypernym</gloss>
+    </example>
+
+    <example>
+      <from>walk</from>
+      <to>amble</to>
+      <gloss>to amble is to walk in some manner</gloss>
+    </example>
+    <example>
+      <from>walk</from>
+      <to>march</to>
+      <gloss>to march is to walk in some manner</gloss>
+    </example>
+    <example>
+      <from>say</from>
+      <to>lisp</to>
+      <gloss>to lisp is to say in some manner</gloss>
+    </example>
+    <example>
+      <from>hit</from>
+      <to>slam</to>
+      <gloss>to slam is to hit in some manner</gloss>
+    </example>
+
+  </examples>
+
+</relation>
+
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Holonym" id="holonym" type="semantic" inverse="meronym" n="true">
+
+  <img src="holonym.png"/>
+
+  <description>
+    <span>The name of the whole of which the meronym names a part, a member or the substance. Whole name (a word that names the whole of which a given word is a part).</span>
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span><b>W/O/C</b> is a holonym of <b>P/S/M</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>P</b> is a part of <b>W</b></span><!-- @formatter:on --></cond>
+    <cond><!-- @formatter:off --><span><b>S</b> is a substance of <b>O</b> </span><!-- @formatter:on --></cond>
+    <cond><!-- @formatter:off --><span><b>M</b> is a member of <b>C</b> </span><!-- @formatter:on --></cond>
+  </logical>
+
+  <phrases>
+    <phrase scope="part">
+      <span>is a component of</span>
+    </phrase>
+    <phrase scope="substance">
+      <span>is a substance of</span>
+    </phrase>
+    <phrase scope="member">
+      <span>is a member of</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>holonym</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>P/S/M</from>
+      <to>W</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>part/substance/member</from>
+      <to>whole/object/collection</to>
+      <gloss/>
+    </guide>
+  </guides>
+  
+  <examples>
+    <example scope="part">
+      <from>wing</from>
+      <to>bird</to>
+      <gloss>component-object</gloss>
+    </example>
+    <example scope="part">
+      <from>mouth</from>
+      <to>face</to>
+      <gloss>component-object</gloss>
+    </example>
+    <example scope="part">
+      <from>arm</from>
+      <to>body</to>
+      <gloss>component-object</gloss>
+    </example>
+    <example scope="part">
+      <from>handle</from>
+      <to>door</to>
+      <gloss>object-component</gloss>
+    </example>
+    <example scope="part">
+      <from>branch</from>
+      <to>tree</to>
+      <gloss>component-object</gloss>
+    </example>
+    <example scope="member">
+      <from>tree</from>
+      <to>forest</to>
+      <gloss>member-collection</gloss>
+     </example>
+    <example scope="substance">
+      <from>oxygen</from>
+      <to>air</to>
+      <gloss>substance-object</gloss>
+     </example>
+    <example scope="substance">
+      <from>cellulose</from>
+      <to>paper</to>
+      <gloss>substance-object</gloss>
+     </example>
+    <example>
+      <from>adolescence</from>
+      <to>growing up</to>
+      <gloss>phase-process</gloss>
+    </example>
+    <example>
+      <from>slice</from>
+      <to>cake</to>
+      <gloss>portion-mass</gloss>
+    </example>
+    <example>
+      <from>paying</from>
+      <to>shopping</to>
+      <gloss>feature-activity</gloss>
+    </example>
+  </examples>
+
+</relation>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Meronym" id="meronym" type="semantic" inverse="holonym" n="true">
+
+  <img src="meronym.png"/>
+
+  <description>
+    <span>The name of a constituent part of, the substance of, or a member of something. Part name (a word that names a part of a larger whole).</span>
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span><b>P/S/M</b> is a meronym of <b>W/O/C</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>P</b> is a part of <b>W</b></span><!-- @formatter:on --></cond>
+    <cond><!-- @formatter:off --><span><b>S</b> is a substance of <b>O</b></span><!-- @formatter:on --></cond>
+    <cond><!-- @formatter:off --><span><b>M</b> is a member of <b>C</b></span><!-- @formatter:on --></cond>
+  </logical>
+
+  <phrases>
+    <phrase scope="part">
+      <span>is a whole/system/complex/network/arrangement/construction of parts/components among which</span>
+    </phrase>
+    <phrase scope="substance">
+      <span>is a concrete object made of</span>
+    </phrase>
+    <phrase scope="member">
+      <span>is a collection of members among which</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>meronym</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>W/O/C</from>
+      <to>P/S/M</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>whole/object/collection</from>
+      <to>part/substance/member</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example scope="part">
+      <from>bird</from>
+      <to>wing</to>
+      <gloss>object-component</gloss>
+    </example>
+    <example scope="part">
+      <from>face</from>
+      <to>mouth</to>
+      <gloss>object-component</gloss>
+    </example>
+    <example scope="part">
+      <from>body</from>
+      <to>arm</to>
+      <gloss>object-component</gloss>
+    </example>
+    <example scope="part">
+      <from>door</from>
+      <to>handle</to>
+      <gloss>object-component</gloss>
+    </example>
+    <example scope="part">
+      <from>tree</from>
+      <to>branch</to>
+      <gloss>object-component</gloss>
+     </example>
+    <example scope="member">
+      <from>forest</from>
+      <to>tree</to>
+      <gloss>collection-member</gloss>
+    </example>
+    <example scope="substance">
+      <from>air</from>
+      <to>oxygen</to>
+      <gloss>object-substance</gloss>
+    </example>
+    <example scope="substance">
+      <from>olive oil</from>
+      <to>olive</to>
+      <gloss>object-substance</gloss>
+    </example>
+    <example>
+      <from>cake</from>
+      <to>slice</to>
+      <gloss>mass-portion</gloss>
+    </example>
+    <example>
+      <from>growing up</from>
+      <to>adolescence</to>
+      <gloss>process-phase</gloss>
+    </example>
+    <example>
+      <from>shopping</from>
+      <to>paying</to>
+      <gloss>activity-feature</gloss>
+    </example>
+  </examples>
+
+</relation>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Direct antonym" id="antonym" type="lexical" inverse="antonym" symmetric="true" n="true" v="true" a="true" r="true">
+
+  <img src="antonym.png"/>
+
+  <description>
+    <!-- @formatter:off -->
+    <span>A pair of words between which there is an opposition relation.
+    An opposite and inherently incompatible word.
+    Antonymy is a <strong>lexical relation</strong>, not a semantic one.
+    <em>Heavy</em> and <em>light</em> are antonyms while <em>ponderous</em> and <em>light</em>,
+    <em>heavy</em> and <em>weightless</em> are not (they're indirect antonyms).
+    Two words are antonyms if their meanings are opposite in some way such as:
+    </span><!-- @formatter:on -->
+    <ul>
+      <li>The two words show binary opposition: superior vs inferior (simple)</li>
+      <li>The two words are near the opposite ends of a spectrum: hot vs cold (gradable)</li>
+      <li>The two words express change or movement in opposite directions: buy vs sell (converse)</li>
+    </ul>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is the opposite of</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>opposite</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>happy</from>
+      <to>unhappy</to>
+      <gloss>adj</gloss>
+    </example>
+    <example>
+      <from>heavy</from>
+      <to>light</to>
+      <gloss>adj</gloss>
+    </example>
+    <example>
+      <from>wet</from>
+      <to>dry</to>
+      <gloss>adj</gloss>
+    </example>
+    <example>
+      <from>rich</from>
+      <to>poor</to>
+      <gloss>adj</gloss>
+    </example>
+    <example>
+      <from>long</from>
+      <to>short</to>
+      <gloss>adj</gloss>
+    </example>
+    <example>
+      <from>dead</from>
+      <to>alive</to>
+      <gloss>adj</gloss>
+    </example>
+    <example>
+      <from>man</from>
+      <to>woman</to>
+      <gloss>noun</gloss>
+    </example>
+    <example>
+      <from>actor</from>
+      <to>actress</to>
+      <gloss>noun</gloss>
+    </example>
+    <example>
+      <from>king</from>
+      <to>queen</to>
+      <gloss>noun</gloss>
+    </example>
+    <example>
+      <from>promotion</from>
+      <to>demotion</to>
+      <gloss>noun</gloss>
+    </example>
+    <example>
+      <from>demotion</from>
+      <to>promotion</to>
+      <gloss>noun</gloss>
+    </example>
+    <example>
+      <from>deceleration</from>
+      <to>acceleration</to>
+      <gloss>noun</gloss>
+    </example>
+    <example>
+      <from>opening</from>
+      <to>closing</to>
+      <gloss>noun</gloss>
+    </example>
+    <example>
+      <from>finish</from>
+      <to>start</to>
+      <gloss>verb</gloss>
+    </example>
+    <example>
+      <from>increase</from>
+      <to>decrease</to>
+      <gloss>verb</gloss>
+    </example>
+    <example>
+      <from>wake</from>
+      <to>sleep</to>
+      <gloss>verb</gloss>
+    </example>
+    <example>
+      <from>rise</from>
+      <to>fall</to>
+      <gloss>verb</gloss>
+    </example>
+    <example>
+      <from>give</from>
+      <to>take</to>
+      <gloss>verb</gloss>
+    </example>
+    <example>
+      <from>teach</from>
+      <to>learn</to>
+      <gloss>verb</gloss>
+    </example>
+    <example>
+      <from>live</from>
+      <to>die</to>
+      <gloss>verb</gloss>
+    </example>
+    <example>
+      <from>bottlefeed</from>
+      <to>breastfeed</to>
+      <gloss>verb</gloss>
+    </example>
+    <example>
+      <from>appear</from>
+      <to>disappear</to>
+      <gloss>verb</gloss>
+    </example>
+    <example>
+      <from>walk</from>
+      <to>run</to>
+      <gloss>verb</gloss>
+    </example>
+  </examples>
+
+  <see tag="similar">(among adjectives)</see>
+
+</relation>
+
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Causes" id="causes" type="semantic" inverse="caused" v="true">
+
+  <img src="causes.png"/>
+
+  <description>
+    <span>Causes</span>
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span>A verb <b>C</b> causes <b>R</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>C</b> denotes the causation of the state or activity referred to by <b>R</b></span></cond><!-- @formatter:on -->
+  </logical>
+
+  <phrases>
+    <phrase><span>causes</span></phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>causes</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>C</from>
+      <to>R</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>give</from>
+      <to>have</to>
+      <gloss>resultative</gloss>
+    </example>
+    <example>
+      <from>show</from>
+      <to>see</to>
+      <gloss>resultative</gloss>
+    </example>
+    <example>
+      <from>raise</from>
+      <to>rise</to>
+      <gloss>resultative</gloss>
+    </example>
+    <example>
+      <from>teach</from>
+      <to>learn</to>
+      <gloss>resultative</gloss>
+    </example>
+    <example>
+      <from>feed</from>
+      <to>eat</to>
+      <gloss>resultative</gloss>
+    </example>
+    <example>
+      <from>scare</from>
+      <to>fear</to>
+      <gloss>resultative</gloss>
+    </example>
+    <example>
+      <from>fell</from>
+      <to>fall</to>
+      <gloss>resultative</gloss>
+    </example>
+  </examples>
+
+  <see tag="entails"/>
+
+</relation>
+
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Caused" id="caused" type="semantic" inverse="causes" v="true">
+
+  <img src="caused.png"/>
+
+  <description>
+    <span>Is caused by</span>
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span>A verb <b>R</b> is caused by <b>C</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>C</b> denotes the causation of the state or activity referred to by <b>R</b></span><!-- @formatter:on --></cond>
+  </logical>
+
+  <phrases>
+    <phrase><span>is caused by</span></phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>is caused by</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>R</from>
+      <to>C</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>have</from>
+      <to>give</to>
+      <gloss>causative</gloss>
+    </example>
+    <example>
+      <from>see</from>
+      <to>show</to>
+      <gloss>causative</gloss>
+    </example>
+    <example>
+      <from>rise</from>
+      <to>raise</to>
+      <gloss>causative</gloss>
+    </example>
+    <example>
+      <from>learn</from>
+      <to>teach</to>
+      <gloss>causative</gloss>
+    </example>
+    <example>
+      <from>eat</from>
+      <to>feed</to>
+      <gloss>causative</gloss>
+    </example>
+    <example>
+      <from>fear</from>
+      <to>scare</to>
+      <gloss>causative</gloss>
+    </example>
+    <example>
+      <from>fall</from>
+      <to>fell</to>
+      <gloss>causative</gloss>
+    </example>
+  </examples>
+
+  <see tag="entailed"/>
+
+</relation>
+
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Entails" id="entails" type="semantic" inverse="entailed" v="true">
+
+  <img src="entails.png"/>
+
+  <description>
+    <span>Entails</span>
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span>A verb <b>A</b> entails <b>E</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>A</b> cannot be done unless <b>E</b> is, or has been, done</span><!-- @formatter:on --></cond>
+    <cond><!-- @formatter:off --><span>there is no conceivable state of affairs that could make <b>A</b> true and <b>E</b> false</span><!-- @formatter:on --></cond>
+  </logical>
+
+  <phrases>
+    <phrase><span>entails</span></phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>entails</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>A</from>
+      <to>E</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>limp</from>
+      <to>walk</to>
+      <gloss>temporal inclusion - coextensive</gloss>
+    </example>
+    <example>
+      <from>lisp</from>
+      <to>talk</to>
+      <gloss>temporal inclusion - coextensive</gloss>
+    </example>
+    <example>
+      <from>snore</from>
+      <to>sleep</to>
+      <gloss>temporal inclusion - proper inclusion</gloss>
+    </example>
+    <example>
+      <from>buy</from>
+      <to>pay</to>
+      <gloss>temporal inclusion - proper inclusion</gloss>
+    </example>
+    <example>
+      <from>succeed</from>
+      <to>try</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>fail</from>
+      <to>try</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>untie</from>
+      <to>tie</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>hit</from>
+      <to>aim</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>miss</from>
+      <to>aim</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>raise</from>
+      <to>rise</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+    <example>
+      <from>give</from>
+      <to>have</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+    <example>
+      <from>scare</from>
+      <to>fear</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+    <example>
+      <from>feed</from>
+      <to>eat</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+    <example>
+      <from>teach</from>
+      <to>learn</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+  </examples>
+
+  <see tag="causes"/>
+
+</relation>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Is entailed by" id="entailed" type="semantic" inverse="entails" v="true">
+
+  <img src="entailed.png"/>
+
+  <description>
+    <span>Is entailed by</span>
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span>A verb <b>E</b> is entailed by<b>A</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>A</b> cannot be done unless <b>E</b> is, or has been, done</span><!-- @formatter:on --></cond>
+    <cond><!-- @formatter:off --><span>there is no conceivable state of affairs that could make <b>A</b> true and <b>E</b> false</span><!-- @formatter:on --></cond>
+  </logical>
+
+  <phrases>
+    <phrase><span>is entailed by</span></phrase>
+<!--    <phrase><span>is the result of</span></phrase>-->
+<!--    <phrase><span>happens because of the occurrence of</span></phrase>-->
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>is entailed by</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>E</from>
+      <to>A</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>walk</from>
+      <to>limp</to>
+      <gloss>temporal inclusion - coextensive</gloss>
+    </example>
+    <example>
+      <from>talk</from>
+      <to>lisp</to>
+      <gloss>temporal inclusion - coextensive</gloss>
+    </example>
+    <example>
+      <from>sleep</from>
+      <to>snore</to>
+      <gloss>temporal inclusion - proper inclusion</gloss>
+    </example>
+    <example>
+      <from>pay</from>
+      <to>buy</to>
+      <gloss>temporal inclusion - proper inclusion</gloss>
+    </example>
+    <example>
+      <from>try</from>
+      <to>succeed</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>try</from>
+      <to>fail</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>tie</from>
+      <to>untie</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>aim</from>
+      <to>hit</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>aim</from>
+      <to>miss</to>
+      <gloss>no temporal inclusion - backward presupposition</gloss>
+    </example>
+    <example>
+      <from>rise</from>
+      <to>raise</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+    <example>
+      <from>have</from>
+      <to>give</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+    <example>
+      <from>fear</from>
+      <to>scare</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+    <example>
+      <from>eat</from>
+      <to>feed</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+    <example>
+      <from>learn</from>
+      <to>teach</to>
+      <gloss>no temporal inclusion - cause</gloss>
+    </example>
+  </examples>
+
+  <see tag="caused"/>
+
+</relation>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Verb Group" id="verbgroup" type="semantic" inverse="verbgroup" symmetric="true" v="true">
+
+  <img src="verbgroup.png"/>
+
+  <description>
+    <span>Verb group. Some similar senses of verbs have been grouped. Transitivity is used to combine groups of overlapping senses into the largest sense groups possible.
+    </span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is verb group of</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>verb group</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>block up</from>
+      <to>block</to>
+    </example>
+    <example>
+      <from>block off</from>
+      <to>block</to>
+    </example>
+    <example>
+      <from>blockade</from>
+      <to>block</to>
+    </example>
+    <example>
+      <from>barricade</from>
+      <to>block</to>
+    </example>
+    <example>
+      <from>bar</from>
+      <to>block</to>
+    </example>
+    <example>
+      <from>stop</from>
+      <to>block</to>
+    </example>
+  </examples>
+
+</relation>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Similar" id="similar" type="semantic" inverse="similar" symmetric="true" a="true" s="true">
+
+  <img src="similar.png"/>
+
+  <description>
+    <span>Similarity among adjectives</span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is similar to</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>similar</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>moist</from>
+      <to>wet</to>
+    </example>
+    <example>
+      <from>ponderous</from>
+      <to>heavy</to>
+    </example>
+    <example>
+      <from>dying</from>
+      <to>moribund</to>
+    </example>
+    <example>
+      <from>dying</from>
+      <to>last</to>
+    </example>
+    <example>
+      <from>moribund</from>
+      <to>dying</to>
+    </example>
+    <example>
+      <from>last</from>
+      <to>dying</to>
+    </example>
+    <example>
+      <from>abridged</from>
+      <to>cut</to>
+    </example>
+    <example>
+      <from>abridged</from>
+      <to>shortened</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>plentiful</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>rampant</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>rank</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>superabundant</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>teeming</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>torrential</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>verdant</to>
+    </example>
+  </examples>
+
+</relation>
+
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Attribute" id="attribute" type="semantic" inverse="attribute" symmetric="true" n="true" a="true">
+
+  <img src="attribute.png"/>
+
+  <description>
+    <span>Attribute. A relation between nominal and adjectival concepts where the concept A is an attribute of concept B. It is a self-reciprocal link (the two directions of this relation share the same meaning).</span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is an attribute of</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>attribute</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>adj</from>
+      <to>noun</to>
+      <gloss>self-reciprocal link</gloss>>
+    </guide>
+    <guide>
+      <from>noun</from>
+      <to>adj</to>
+      <gloss>self-reciprocal link</gloss>>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>emotionality</from>
+      <to>cold</to>
+    </example>
+    <example>
+      <from>emotionality</from>
+      <to>warm</to>
+    </example>
+    <example>
+      <from>emotionality</from>
+      <to>cool</to>
+    </example>
+    <example>
+      <from>beauty</from>
+      <to>beautiful</to>
+    </example>
+    <example>
+      <from>beauty</from>
+      <to>ugly</to>
+    </example>
+    <example>
+      <from>morality</from>
+      <to>immoral</to>
+    </example>
+    <example>
+      <from>morality</from>
+      <to>pure</to>
+    </example>
+    <example>
+      <from>morality</from>
+      <to>impure</to>
+    </example>
+    <example>
+      <from>age</from>
+      <to>old</to>
+    </example>
+    <example>
+      <from>age</from>
+      <to>new</to>
+    </example>
+    <example>
+      <from>strength</from>
+      <to>strong</to>
+    </example>
+    <example>
+      <from>strength</from>
+      <to>weak</to>
+    </example>
+    <example>
+      <from>quantity</from>
+      <to>abundant</to>
+    </example>
+    <example>
+      <from>quantity</from>
+      <to>scarce</to>
+    </example>
+    <example>
+      <from>quantity</from>
+      <to>sufficient</to>
+    </example>
+    <example>
+      <to>emotionality</to>
+      <from>cold</from>
+    </example>
+    <example>
+      <to>emotionality</to>
+      <from>warm</from>
+    </example>
+  </examples>
+
+</relation>
+
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Derivation" id="derivation" type="lexical" inverse="derivation" symmetric="true" n="true" v="true" a="true" r="true" s="true">
+
+  <img src="derivation.png"/>
+
+  <description>
+    <span>Derivationally-related</span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is derivationally-related to</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>derivationally-related</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>abstract</from>
+      <to>abstraction</to>
+    </example>
+    <example>
+      <from>object</from>
+      <to>objectify</to>
+    </example>
+    <example>
+      <from>unit</from>
+      <to>unify</to>
+    </example>
+    <example>
+      <from>be</from>
+      <to>being</to>
+    </example>
+    <example>
+      <from>cause</from>
+      <to>causal</to>
+    </example>
+    <example>
+      <from>locate</from>
+      <to>location</to>
+    </example>
+    <example>
+      <from>location</from>
+      <to>locate</to>
+    </example>
+    <example>
+      <from>being</from>
+      <to>be</to>
+    </example>
+  </examples>
+
+</relation>
+
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Derived from adjective" id="derivation_adj" type="lexical" r="true">
+
+  <img src="derivation_adj.png"/>
+
+  <description>
+    <span>Derived from adjective</span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>derives from adjective</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>adj-derived</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from/>
+      <to>adjective</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>gradually</from>
+      <to>gradual</to>
+    </example>
+    <example>
+      <from>really</from>
+      <to>real</to>
+    </example>
+    <example>
+      <from>truly</from>
+      <to>true</to>
+    </example>
+  </examples>
+
+</relation>
+
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Participle" id="participle" type="lexical" v="true">
+
+  <img src="participle.png"/>
+
+  <description>
+    <span>Verb participle</span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is verb participle of</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>participle</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from/>
+      <to>verb</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>beaten</from>
+      <to>beat</to>
+    </example>
+    <example>
+      <from>collected</from>
+      <to>collect</to>
+    </example>
+    <example>
+      <from>transpiring</from>
+      <to>transpire</to>
+    </example>
+    <example>
+      <from>ungathered</from>
+      <to>gather</to>
+    </example>
+  </examples>
+
+</relation>
+
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Pertainym" id="pertainym" type="lexical" a="true" r="true">
+
+  <img src="pertainym.png"/>
+
+  <description>
+    <span>A relational adjective. Adjectives that are pertainyms are usually defined by such phrases as &quot;of or pertaining to&quot; and do not have antonyms. A pertainym can point to a noun or another pertainym.</span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is of or pertaining to</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>pertainym</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from/>
+      <to>noun</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>fraternal</from>
+      <to>brother</to>
+    </example>
+    <example>
+      <from>dental</from>
+      <to>tooth</to>
+    </example>
+    <example>
+      <from>musical</from>
+      <to>music</to>
+    </example>
+    <example>
+      <from>interstellar</from>
+      <to>star</to>
+    </example>
+    <example>
+      <from>medical</from>
+      <to>medicine</to>
+    </example>
+    <example>
+      <from>abbatial</from>
+      <to>abbey</to>
+    </example>
+    <example>
+      <from>academic</from>
+      <to>academia</to>
+    </example>
+    <example>
+      <from>agronomical</from>
+      <to>agronomy</to>
+    </example>
+    <example>
+      <from>alimentative</from>
+      <to>alimentation</to>
+    </example>
+    <example>
+      <from>alphabetic</from>
+      <to>alphabet</to>
+    </example>
+    <example>
+      <from>analphabetic</from>
+      <to>alphabet</to>
+    </example>
+    <example>
+      <from>archaistic</from>
+      <to>archaism</to>
+    </example>
+    <example>
+      <from>archangelical</from>
+      <to>archangel</to>
+    </example>
+  </examples>
+
+</relation>
+
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Also See" id="also" type="both" inverse="also" symmetric="true" v="true" a="true">
+
+  <img src="also.png"/>
+
+  <description>
+    <span>See Also/Also See is a self-reciprocal link (the two directions of this relation share the same meaning). Concept-A relates to Concept-B, and Concept-B relates to Concept-A. It denotes a relation of related meaning with another concept (going beyond synonymy and similarity).</span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>relates to</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from>also</from>
+      <to>also</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>A</from>
+      <to>B</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>scarce</from>
+      <to>stingy</to>
+    </example>
+    <example>
+      <from>scarce</from>
+      <to>scrimpy</to>
+    </example>
+    <example>
+      <from>acceptable</from>
+      <to>satisfactory</to>
+    </example>
+    <example>
+      <from>unacceptable</from>
+      <to>satisfactory</to>
+    </example>
+    <example>
+      <from>unacceptable</from>
+      <to>unwelcome</to>
+    </example>
+    <example>
+      <from>accessible</from>
+      <to>convenient</to>
+    </example>
+
+    <example>
+      <from>breathe</from>
+      <to>breathe out</to>
+    </example>
+    <example>
+      <from>breathe</from>
+      <to>breathe in</to>
+    </example>
+    <example>
+      <from>cough</from>
+      <to>cough up</to>
+    </example>
+    <example>
+      <from>cough</from>
+      <to>cough out</to>
+    </example>
+    <example>
+      <from>act</from>
+      <to>act up</to>
+    </example>
+    <example>
+      <from>sleep</from>
+      <to>sleep in</to>
+    </example>
+    <example>
+      <from>sleep</from>
+      <to>sleep late</to>
+    </example>
+  </examples>
+
+</relation>
+
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Domain" id="domain" type="both" inverse="hasdomain" n="true" v="true" a="true" r="true" s="true">
+
+  <img src="domain.png"/>
+
+  <description>
+    <span>Domain of synset.</span>
+    <!-- @formatter:off -->
+    <ul>
+      <li>A concept which is a Topic, Region or Usage pointer of a given concept.</li>
+      <li>A concept which is the scientific category pointer of a given concept.</li>
+      <li>A concept which is a geographical / cultural domain pointer of a given concept.</li>
+      <li>A concept which is the type of a given concept.</li>
+    </ul>
+    <ul>
+      <li><b>Domain</b> is an underspecified relation between two concepts where Concept B is a Topic (scientific category), Region or Usage pointer of Concept A.</li>
+      <li><b>Domain Topic</b> is a relation between two concepts where Concept B is a <i>scientific category</i> (e.g. computing, sport, biology, etc.) of concept A.</li>
+      <li><b>Domain Region</b> is a relation between two concepts where Concept B is a <i>geographical / cultural</i> domain of concept A.</li>
+      <li><b>Is Exemplified By</b> is a relation between two concepts where Concept B is a type of Concept A, such as idiom, honorific or classifier. The name was changed from "Domain - USAGE".</li>
+    </ul>
+    <!-- @formatter:on -->
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is domain for</span>
+    </phrase>
+    <phrase scope="topic">
+      <span>categorizes</span>
+    </phrase>
+    <phrase scope="topic">
+      <span>categorizes</span>
+    </phrase>
+    <phrase scope="region">
+      <span>is a domain region of</span>
+    </phrase>
+    <phrase scope="usage">
+      <span>is exemplified by</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from>domain</from>
+      <to>domain member</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example scope="topic">
+      <from>judaism</from>
+      <to>mitzvah</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>biology</from>
+      <to>cell</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>botany</from>
+      <to>plant</to>
+      <gloss>domain topic</gloss>
+    </example>
+
+    <example scope="region">
+      <from>Britain</from>
+      <to>zebra crossing</to>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <from>Britain</from>
+      <to>tramcar</to>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <to>centre</to>
+      <from>Britain</from>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <from>Australia</from>
+      <to>walkabout</to>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <from>South Africa</from>
+      <to>trek</to>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <from>Scotland</from>
+      <to>curling</to>
+      <gloss>domain region</gloss>
+    </example>
+
+    <example scope="usage">
+      <from>acronym</from>
+      <to>snafu</to>
+    </example>
+    <example scope="usage">
+      <from>neutralization</from>
+      <to>euphemism</to>
+    </example>
+    <example scope="usage">
+      <from>trademark</from>
+      <to>Scrabble</to>
+    </example>
+    <example scope="usage">
+      <from>trademark</from>
+      <to>Band Aid</to>
+    </example>
+
+  </examples>
+
+</relation>
+
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Has domain" id="hasdomain" type="both" inverse="domain" n="true" v="true" a="true" r="true" s="true">
+
+  <img src="hasdomain.png"/>
+
+  <description>
+    <span>Has domain. Domain member. In domain. Is member of this domain.</span>
+    <!-- @formatter:off -->
+      <ul>
+        <li>A concept which is a term of a given Topic, Region or Usage concept.</li>
+        <li>A concept which is a term in the scientific category of a given concept.</li>
+        <li>A concept which is the term in the geographical / cultural domain of a given concept.</li>
+        <li>A concept which is the example of a given concept.</li>
+      </ul>
+      <ul>
+        <li><B>In Domain</B> is an underspecified relation between two concepts where Concept A is a Topic (scientific category), Region or Usage term of Concept B.</li>
+        <li><B>Has Domain Topic</B> is a relation between two concepts where Concept A is a <i>scientific category</i> (e.g. computing, sport, biology, etc.) of concept B.</li>
+        <li><B>Has Domain Region</B> is a relation between two concepts where Concept A is a <i>term of the geographical / cultural</i> domain of concept B.</li>
+        <li><B>Exemplifies</B> is a relation between two concepts where Concept A is the example of Concept B. The name was changed from "Member of this domain - USAGE".</li>
+      </ul>
+     <!-- @formatter:on -->
+  </description>
+
+  <phrases>
+    <phrase scope="topic">
+      <span>has category</span>
+    </phrase>
+    <phrase scope="topic">
+      <span>is classified as</span>
+    </phrase>
+    <phrase scope="region">
+      <span>has region domain</span>
+    </phrase>
+    <phrase scope="region">
+      <span>has geographical/cultural domain</span>
+    </phrase>
+    <phrase scope="usage">
+      <span>exemplifies</span>
+    </phrase>
+    <phrase scope="usage">
+      <span>is an example of</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from>domain member</from>>
+      <to>domain</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example scope="topic">
+      <from>marinate</from>
+      <to>cooking</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>reduce</from>
+      <to>cooking</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>bake</from>
+      <to>cooking</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>souse</from>
+      <to>cooking</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>sing</from>
+      <to>music</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>psalm</from>
+      <to>music</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>hymn</from>
+      <to>music</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>choir</from>
+      <to>music</to>
+      <gloss>domain topic</gloss>
+    </example>
+
+    <example scope="region">
+      <from>chili con carne</from>
+      <to>Mexico</to>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <from>taco</from>
+      <to>Mexico</to>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <from>burrito</from>
+      <to>Mexico</to>
+      <gloss>domain region</gloss>
+    </example>
+
+    <example scope="usage">
+      <from>motel</from>
+      <to>portmanteau word</to>
+    </example>
+    <example scope="usage">
+      <from>high jinx</from>
+      <to>plural</to>
+    </example>
+    <example scope="usage">
+      <from>like clockwork</from>
+      <to>idiom</to>
+    </example>
+
+  </examples>
+
+</relation>
+
+</relations>

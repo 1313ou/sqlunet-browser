@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Meronym" id="meronym" type="semantic" inverse="holonym" n="true">
+
+  <img src="meronym.png"/>
+
+  <description>
+    <span>The name of a constituent part of, the substance of, or a member of something. Part name (a word that names a part of a larger whole).</span>
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span><b>P/S/M</b> is a meronym of <b>W/O/C</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>P</b> is a part of <b>W</b></span><!-- @formatter:on --></cond>
+    <cond><!-- @formatter:off --><span><b>S</b> is a substance of <b>O</b></span><!-- @formatter:on --></cond>
+    <cond><!-- @formatter:off --><span><b>M</b> is a member of <b>C</b></span><!-- @formatter:on --></cond>
+  </logical>
+
+  <phrases>
+    <phrase scope="part">
+      <span>is a whole/system/complex/network/arrangement/construction of parts/components among which</span>
+    </phrase>
+    <phrase scope="substance">
+      <span>is a concrete object made of</span>
+    </phrase>
+    <phrase scope="member">
+      <span>is a collection of members among which</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>meronym</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>W/O/C</from>
+      <to>P/S/M</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>whole/object/collection</from>
+      <to>part/substance/member</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example scope="part">
+      <from>bird</from>
+      <to>wing</to>
+      <gloss>object-component</gloss>
+    </example>
+    <example scope="part">
+      <from>face</from>
+      <to>mouth</to>
+      <gloss>object-component</gloss>
+    </example>
+    <example scope="part">
+      <from>body</from>
+      <to>arm</to>
+      <gloss>object-component</gloss>
+    </example>
+    <example scope="part">
+      <from>door</from>
+      <to>handle</to>
+      <gloss>object-component</gloss>
+    </example>
+    <example scope="part">
+      <from>tree</from>
+      <to>branch</to>
+      <gloss>object-component</gloss>
+     </example>
+    <example scope="member">
+      <from>forest</from>
+      <to>tree</to>
+      <gloss>collection-member</gloss>
+    </example>
+    <example scope="substance">
+      <from>air</from>
+      <to>oxygen</to>
+      <gloss>object-substance</gloss>
+    </example>
+    <example scope="substance">
+      <from>olive oil</from>
+      <to>olive</to>
+      <gloss>object-substance</gloss>
+    </example>
+    <example>
+      <from>cake</from>
+      <to>slice</to>
+      <gloss>mass-portion</gloss>
+    </example>
+    <example>
+      <from>growing up</from>
+      <to>adolescence</to>
+      <gloss>process-phase</gloss>
+    </example>
+    <example>
+      <from>shopping</from>
+      <to>paying</to>
+      <gloss>activity-feature</gloss>
+    </example>
+  </examples>
+
+</relation>

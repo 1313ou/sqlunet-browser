@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Hypernym" id="hypernym" type="semantic" inverse="hyponym" n="true" v="true">
+
+  <img src="hypernym.png"/>
+
+  <description>
+    <span>Superordinate (i.e. more generic). The generic term used to designate a whole class of specific instances. A concept that is more general than a given concept. A hypernym of something is its supertype.</span>
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span><b>H</b> is a hypernym of <b>V</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>V</b> is a (kind of) <b>H</b> <i>(nouns)</i></span><!-- @formatter:on --></cond>
+    <cond><!-- @formatter:off --><span>to <b>V</b> is to <b>H</b> in some particular manner <i>(verbs)</i></span><!-- @formatter:on --></cond>
+  </logical>
+
+  <phrases>
+    <phrase><span>is more general than</span></phrase>
+    <phrase><span>is a supertype of</span></phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>hypernym</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>V</from>
+      <to>H</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>oak</from>
+      <to>tree</to>
+      <gloss>an oak is a kind of tree</gloss>
+    </example>
+    <example>
+      <from>tree</from>
+      <to>plant</to>
+      <gloss>a tree is a kind of plant</gloss>
+    </example>
+    <example>
+      <from>house</from>
+      <to>dwelling</to>
+      <gloss>a house is a kind of dwelling</gloss>
+    </example>
+    <example>
+      <from>disappointment</from>
+      <to>disatisfaction</to>
+      <gloss>disappointment is a kind of disatisfaction</gloss>
+    </example>
+    <example>
+      <from>amble</from>
+      <to>walk</to>
+      <gloss>to amble is to walk in some manner</gloss>
+    </example>
+    <example>
+      <from>march</from>
+      <to>walk</to>
+      <gloss>to march is to walk in some manner</gloss>
+    </example>
+    <example>
+      <from>lisp</from>
+      <to>say</to>
+      <gloss>to lisp is to say in some manner</gloss>
+    </example>
+    <example>
+      <from>slam</from>
+      <to>hit</to>
+      <gloss>to slam is to hit in some manner</gloss>
+    </example>
+
+    <example scope="instance">
+      <from>Dien Bien Phu</from>
+      <to>siege</to>
+      <gloss>instance hypernym</gloss>
+     </example>
+    <example scope="instance">
+      <from>Korean war</from>
+      <to>war</to>
+      <gloss>instance hypernym</gloss>
+    </example>
+    <example scope="instance">
+      <from>Chartres cathedral</from>
+      <to>cathedral</to>
+      <gloss>instance hypernym</gloss>
+     </example>
+    <example scope="instance">
+      <from>Carnegie Mellon University</from>
+      <to>university</to>
+      <gloss>instance hypernym</gloss>
+    </example>
+    <example scope="instance">
+      <from>Mayflower</from>
+      <to>ship</to>
+      <gloss>instance hypernym</gloss>
+    </example>
+  </examples>
+
+</relation>

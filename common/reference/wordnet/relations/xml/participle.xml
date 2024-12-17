@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Participle" id="participle" type="lexical" v="true">
+
+  <img src="participle.png"/>
+
+  <description>
+    <span>Verb participle</span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is verb participle of</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>participle</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from/>
+      <to>verb</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>beaten</from>
+      <to>beat</to>
+    </example>
+    <example>
+      <from>collected</from>
+      <to>collect</to>
+    </example>
+    <example>
+      <from>transpiring</from>
+      <to>transpire</to>
+    </example>
+    <example>
+      <from>ungathered</from>
+      <to>gather</to>
+    </example>
+  </examples>
+
+</relation>
+

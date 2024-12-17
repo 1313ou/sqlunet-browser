@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Causes" id="causes" type="semantic" inverse="caused" v="true">
+
+  <img src="causes.png"/>
+
+  <description>
+    <span>Causes</span>
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span>A verb <b>C</b> causes <b>R</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>C</b> denotes the causation of the state or activity referred to by <b>R</b></span></cond><!-- @formatter:on -->
+  </logical>
+
+  <phrases>
+    <phrase><span>causes</span></phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>causes</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>C</from>
+      <to>R</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>give</from>
+      <to>have</to>
+      <gloss>resultative</gloss>
+    </example>
+    <example>
+      <from>show</from>
+      <to>see</to>
+      <gloss>resultative</gloss>
+    </example>
+    <example>
+      <from>raise</from>
+      <to>rise</to>
+      <gloss>resultative</gloss>
+    </example>
+    <example>
+      <from>teach</from>
+      <to>learn</to>
+      <gloss>resultative</gloss>
+    </example>
+    <example>
+      <from>feed</from>
+      <to>eat</to>
+      <gloss>resultative</gloss>
+    </example>
+    <example>
+      <from>scare</from>
+      <to>fear</to>
+      <gloss>resultative</gloss>
+    </example>
+    <example>
+      <from>fell</from>
+      <to>fall</to>
+      <gloss>resultative</gloss>
+    </example>
+  </examples>
+
+  <see tag="entails"/>
+
+</relation>
+

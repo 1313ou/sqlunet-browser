@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="By Means Of" id="role_bymeansof" type="lexical" v="true" n="true">
+
+  <img src="role_bymeansof.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type
+      <strong>By Means Of</strong>
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>by means of</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>dilate</from>
+      <to>dilator</to>
+    </example>
+    <example>
+      <from>acidify</from>
+      <to>acid</to>
+    </example>
+    <example>
+      <from>argue</from>
+      <to>argument</to>
+    </example>
+  </examples>
+
+</relation>

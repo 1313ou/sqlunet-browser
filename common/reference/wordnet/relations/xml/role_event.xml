@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Event" id="role_event" type="lexical" v="true" n="true">
+
+  <img src="role_event.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>Event</strong> (in essence an identity or equality relation)
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>event</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>employ</from>
+      <to>employment</to>
+    </example>
+    <example>
+      <from>abandon</from>
+      <to>abandonment</to>
+    </example>
+    <example>
+      <from>abdicate</from>
+      <to>abdication</to>
+    </example>
+  </examples>
+
+</relation>

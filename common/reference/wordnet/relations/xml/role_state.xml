@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="State" id="role_state" type="lexical" v="true" n="true">
+
+  <img src="role_state.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type
+      <strong>State</strong>
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>state</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>transcend</from>
+      <to>transcendence</to>
+    </example>
+    <example>
+      <from>abase</from>
+      <to>abasement</to>
+    </example>
+    <example>
+      <from>abhor</from>
+      <to>abhorrence</to>
+    </example>
+  </examples>
+
+</relation>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Location" id="role_location" type="lexical" v="true" n="true">
+
+  <img src="role_location.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type
+      <strong>Location</strong>
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>location</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>bath</from>
+      <to>bath</to>
+      <gloss>verb-noun</gloss>
+    </example>
+    <example>
+      <from>burn</from>
+      <to>burn</to>
+      <gloss>verb-noun</gloss>
+    </example>
+    <example>
+      <from>camp</from>
+      <to>camp</to>
+      <gloss>verb-noun</gloss>
+    </example>
+  </examples>
+
+</relation>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Also See" id="also" type="both" inverse="also" symmetric="true" v="true" a="true">
+
+  <img src="also.png"/>
+
+  <description>
+    <span>See Also/Also See is a self-reciprocal link (the two directions of this relation share the same meaning). Concept-A relates to Concept-B, and Concept-B relates to Concept-A. It denotes a relation of related meaning with another concept (going beyond synonymy and similarity).</span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>relates to</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from>also</from>
+      <to>also</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>A</from>
+      <to>B</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>scarce</from>
+      <to>stingy</to>
+    </example>
+    <example>
+      <from>scarce</from>
+      <to>scrimpy</to>
+    </example>
+    <example>
+      <from>acceptable</from>
+      <to>satisfactory</to>
+    </example>
+    <example>
+      <from>unacceptable</from>
+      <to>satisfactory</to>
+    </example>
+    <example>
+      <from>unacceptable</from>
+      <to>unwelcome</to>
+    </example>
+    <example>
+      <from>accessible</from>
+      <to>convenient</to>
+    </example>
+
+    <example>
+      <from>breathe</from>
+      <to>breathe out</to>
+    </example>
+    <example>
+      <from>breathe</from>
+      <to>breathe in</to>
+    </example>
+    <example>
+      <from>cough</from>
+      <to>cough up</to>
+    </example>
+    <example>
+      <from>cough</from>
+      <to>cough out</to>
+    </example>
+    <example>
+      <from>act</from>
+      <to>act up</to>
+    </example>
+    <example>
+      <from>sleep</from>
+      <to>sleep in</to>
+    </example>
+    <example>
+      <from>sleep</from>
+      <to>sleep late</to>
+    </example>
+  </examples>
+
+</relation>
+

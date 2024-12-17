@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Verb Group" id="verbgroup" type="semantic" inverse="verbgroup" symmetric="true" v="true">
+
+  <img src="verbgroup.png"/>
+
+  <description>
+    <span>Verb group. Some similar senses of verbs have been grouped. Transitivity is used to combine groups of overlapping senses into the largest sense groups possible.
+    </span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is verb group of</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>verb group</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>block up</from>
+      <to>block</to>
+    </example>
+    <example>
+      <from>block off</from>
+      <to>block</to>
+    </example>
+    <example>
+      <from>blockade</from>
+      <to>block</to>
+    </example>
+    <example>
+      <from>barricade</from>
+      <to>block</to>
+    </example>
+    <example>
+      <from>bar</from>
+      <to>block</to>
+    </example>
+    <example>
+      <from>stop</from>
+      <to>block</to>
+    </example>
+  </examples>
+
+</relation>

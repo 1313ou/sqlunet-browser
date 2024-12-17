@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Similar" id="similar" type="semantic" inverse="similar" symmetric="true" a="true" s="true">
+
+  <img src="similar.png"/>
+
+  <description>
+    <span>Similarity among adjectives</span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is similar to</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>similar</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>moist</from>
+      <to>wet</to>
+    </example>
+    <example>
+      <from>ponderous</from>
+      <to>heavy</to>
+    </example>
+    <example>
+      <from>dying</from>
+      <to>moribund</to>
+    </example>
+    <example>
+      <from>dying</from>
+      <to>last</to>
+    </example>
+    <example>
+      <from>moribund</from>
+      <to>dying</to>
+    </example>
+    <example>
+      <from>last</from>
+      <to>dying</to>
+    </example>
+    <example>
+      <from>abridged</from>
+      <to>cut</to>
+    </example>
+    <example>
+      <from>abridged</from>
+      <to>shortened</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>plentiful</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>rampant</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>rank</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>superabundant</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>teeming</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>torrential</to>
+    </example>
+    <example>
+      <from>abundant</from>
+      <to>verdant</to>
+    </example>
+  </examples>
+
+</relation>
+

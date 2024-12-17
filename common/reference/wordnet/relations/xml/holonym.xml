@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Holonym" id="holonym" type="semantic" inverse="meronym" n="true">
+
+  <img src="holonym.png"/>
+
+  <description>
+    <span>The name of the whole of which the meronym names a part, a member or the substance. Whole name (a word that names the whole of which a given word is a part).</span>
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span><b>W/O/C</b> is a holonym of <b>P/S/M</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>P</b> is a part of <b>W</b></span><!-- @formatter:on --></cond>
+    <cond><!-- @formatter:off --><span><b>S</b> is a substance of <b>O</b> </span><!-- @formatter:on --></cond>
+    <cond><!-- @formatter:off --><span><b>M</b> is a member of <b>C</b> </span><!-- @formatter:on --></cond>
+  </logical>
+
+  <phrases>
+    <phrase scope="part">
+      <span>is a component of</span>
+    </phrase>
+    <phrase scope="substance">
+      <span>is a substance of</span>
+    </phrase>
+    <phrase scope="member">
+      <span>is a member of</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>holonym</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>P/S/M</from>
+      <to>W</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>part/substance/member</from>
+      <to>whole/object/collection</to>
+      <gloss/>
+    </guide>
+  </guides>
+  
+  <examples>
+    <example scope="part">
+      <from>wing</from>
+      <to>bird</to>
+      <gloss>component-object</gloss>
+    </example>
+    <example scope="part">
+      <from>mouth</from>
+      <to>face</to>
+      <gloss>component-object</gloss>
+    </example>
+    <example scope="part">
+      <from>arm</from>
+      <to>body</to>
+      <gloss>component-object</gloss>
+    </example>
+    <example scope="part">
+      <from>handle</from>
+      <to>door</to>
+      <gloss>object-component</gloss>
+    </example>
+    <example scope="part">
+      <from>branch</from>
+      <to>tree</to>
+      <gloss>component-object</gloss>
+    </example>
+    <example scope="member">
+      <from>tree</from>
+      <to>forest</to>
+      <gloss>member-collection</gloss>
+     </example>
+    <example scope="substance">
+      <from>oxygen</from>
+      <to>air</to>
+      <gloss>substance-object</gloss>
+     </example>
+    <example scope="substance">
+      <from>cellulose</from>
+      <to>paper</to>
+      <gloss>substance-object</gloss>
+     </example>
+    <example>
+      <from>adolescence</from>
+      <to>growing up</to>
+      <gloss>phase-process</gloss>
+    </example>
+    <example>
+      <from>slice</from>
+      <to>cake</to>
+      <gloss>portion-mass</gloss>
+    </example>
+    <example>
+      <from>paying</from>
+      <to>shopping</to>
+      <gloss>feature-activity</gloss>
+    </example>
+  </examples>
+
+</relation>

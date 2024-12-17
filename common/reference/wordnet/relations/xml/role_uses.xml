@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Uses" id="role_uses" type="lexical" v="true" n="true">
+
+  <img src="role_uses.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type
+      <strong>Uses</strong>
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>uses</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>harness</from>
+      <to>harness</to>
+      <gloss>verb-noun</gloss>
+    </example>
+    <example>
+      <from>carpet</from>
+      <to>carpet</to>
+      <gloss>verb-noun</gloss>
+    </example>
+    <example>
+      <from>cement</from>
+      <to>cement</to>
+      <gloss>verb-noun</gloss>
+    </example>
+  </examples>
+
+</relation>

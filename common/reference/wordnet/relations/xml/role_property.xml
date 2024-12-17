@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Property" id="role_property" type="lexical" v="true" n="true">
+
+  <img src="role_property.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type
+      <strong>Property</strong>
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>property</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>cool</from>
+      <to>cool</to>
+      <gloss>verb/adj-noun</gloss>
+    </example>
+    <example>
+      <from>adhere</from>
+      <to>adhesion</to>
+    </example>
+    <example>
+      <from>attract</from>
+      <to>attraction</to>
+    </example>
+  </examples>
+
+</relation>

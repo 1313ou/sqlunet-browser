@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Caused" id="caused" type="semantic" inverse="causes" v="true">
+
+  <img src="caused.png"/>
+
+  <description>
+    <span>Is caused by</span>
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span>A verb <b>R</b> is caused by <b>C</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>C</b> denotes the causation of the state or activity referred to by <b>R</b></span><!-- @formatter:on --></cond>
+  </logical>
+
+  <phrases>
+    <phrase><span>is caused by</span></phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>is caused by</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>R</from>
+      <to>C</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>have</from>
+      <to>give</to>
+      <gloss>causative</gloss>
+    </example>
+    <example>
+      <from>see</from>
+      <to>show</to>
+      <gloss>causative</gloss>
+    </example>
+    <example>
+      <from>rise</from>
+      <to>raise</to>
+      <gloss>causative</gloss>
+    </example>
+    <example>
+      <from>learn</from>
+      <to>teach</to>
+      <gloss>causative</gloss>
+    </example>
+    <example>
+      <from>eat</from>
+      <to>feed</to>
+      <gloss>causative</gloss>
+    </example>
+    <example>
+      <from>fear</from>
+      <to>scare</to>
+      <gloss>causative</gloss>
+    </example>
+    <example>
+      <from>fall</from>
+      <to>fell</to>
+      <gloss>causative</gloss>
+    </example>
+  </examples>
+
+  <see tag="entailed"/>
+
+</relation>
+

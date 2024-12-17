@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Derivation" id="derivation" type="lexical" inverse="derivation" symmetric="true" n="true" v="true" a="true" r="true" s="true">
+
+  <img src="derivation.png"/>
+
+  <description>
+    <span>Derivationally-related</span>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is derivationally-related to</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>derivationally-related</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>abstract</from>
+      <to>abstraction</to>
+    </example>
+    <example>
+      <from>object</from>
+      <to>objectify</to>
+    </example>
+    <example>
+      <from>unit</from>
+      <to>unify</to>
+    </example>
+    <example>
+      <from>be</from>
+      <to>being</to>
+    </example>
+    <example>
+      <from>cause</from>
+      <to>causal</to>
+    </example>
+    <example>
+      <from>locate</from>
+      <to>location</to>
+    </example>
+    <example>
+      <from>location</from>
+      <to>locate</to>
+    </example>
+    <example>
+      <from>being</from>
+      <to>be</to>
+    </example>
+  </examples>
+
+</relation>
+

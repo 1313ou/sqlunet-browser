@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Result" id="role_result" type="lexical" v="true" n="true">
+
+  <img src="role_result.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type
+      <strong>Result</strong>
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>result</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>liquify</from>
+      <to>liquid</to>
+    </example>
+    <example>
+      <from>abbreviate</from>
+      <to>abbreviation</to>
+    </example>
+    <example>
+      <from>absorb</from>
+      <to>absorption</to>
+    </example>
+  </examples>
+
+</relation>

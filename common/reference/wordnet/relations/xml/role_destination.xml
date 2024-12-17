@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Destination" id="role_destination" type="lexical" v="true" n="true">
+
+  <img src="role_destination.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type
+      <strong>Destination</strong>
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>destination</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>tee</from>
+      <to>tee</to>
+    </example>
+    <example>
+      <from>classify</from>
+      <to>class</to>
+    </example>
+    <example>
+      <from>trust</from>
+      <to>trustee</to>
+    </example>
+  </examples>
+
+</relation>

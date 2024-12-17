@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Collocation" id="collocation" type="lexical" inverse="collocation" symmetric="true" n="true" v="true" a="true" r="true">
+
+  <img src="collocation.png"/>
+
+  <description>
+    <!-- @formatter:off -->
+    <span>A pair of words which <strong>co-occur more often</strong> than would be expected by chance.</span>
+    <!-- @formatter:on -->
+    <ul>
+      <li>The two words show binary opposition: superior vs inferior (simple)</li>
+      <li>The two words are near the opposite ends of a spectrum: hot vs cold (gradable)</li>
+      <li>The two words express change or movement in opposite directions: buy vs sell (converse)</li>
+    </ul>
+  </description>
+
+  <phrases>
+    <phrase>
+      <span>is commonly found with</span>
+    </phrase>
+    <phrase>
+      <span>co-occurs with</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>opposite</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>abandon</from>
+      <to>ship</to>
+      <gloss>in 'abandon ship'</gloss>
+    </example>
+    <example>
+      <from>cause</from>
+      <to>disturbance</to>
+      <gloss>in 'cause disturbances'</gloss>
+    </example>
+    <example>
+      <from>respect</from>
+      <to>command</to>
+      <gloss>in 'command respect'</gloss>
+    </example>
+    <example>
+      <from>clarify</from>
+      <to>issue</to>
+      <gloss>in 'clarify an issue'</gloss>
+    </example>
+
+  </examples>
+
+</relation>
+

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Hyponym" id="hyponym" type="semantic" inverse="hypernym" n="true" v="true">
+
+  <img src="hyponym.png"/>
+
+  <description>
+    <span>Subordinate (i.e. more specific). The specific term used to designate a member of a class. A concept that is more specific than a given concept. A hyponym of something is its subtype.</span>
+  </description>
+  <description>
+    <!-- @formatter:off --><span><b>Troponym</b>. A verb expressing a specific manner elaboration of another verb. Manner name (a word that denotes a manner of doing something).</span><!-- @formatter:on -->
+  </description>
+
+  <logical>
+    <def><!-- @formatter:off --><span><b>H</b> is a hyponym of <b>X</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span><b>H</b> is a (kind of) <b>X</b></span><!-- @formatter:on --></cond>
+  </logical>
+
+  <logical>
+    <def><!-- @formatter:off --><span><b>H</b> is a troponym of <b>X</b></span><!-- @formatter:on --></def>
+    <cond><!-- @formatter:off --><span>to <b>H</b> is to <b>X</b> in some manner </span><!-- @formatter:on --></cond>
+  </logical>
+
+  <phrases>
+    <phrase><span>is more specific than</span></phrase>
+    <phrase><span>is a subtype of</span></phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>hyponym</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from/>
+      <to>troponym</to>
+      <gloss/>
+    </guide>
+    <guide>
+      <from>X</from>
+      <to>H</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>tree</from>
+      <to>oak</to>
+      <gloss>an oak is a kind of tree</gloss>
+    </example>
+    <example>
+      <from>plant</from>
+      <to>tree</to>
+      <gloss>a tree is a kind of plant</gloss>
+    </example>
+    <example>
+      <from>tree</from>
+      <to>oak</to>
+      <gloss>a oak is a kind of tree</gloss>
+    </example>
+    <example>
+      <from>roadster</from>
+      <to>car</to>
+      <gloss>a roadster is a kind of car</gloss>
+    </example>
+    <example>
+      <from>car</from>
+      <to>motor vehicle</to>
+      <gloss>a car is a kind of motor vehicle</gloss>
+    </example>
+    <example>
+      <from>motor vehicle</from>
+      <to>wheeled vehicle</to>
+      <gloss>a motor vehicle is a kind of wheeled vehicle</gloss>
+    </example>
+    <example>
+      <from>dwelling</from>
+      <to>house</to>
+      <gloss>a house is a kind of dwelling</gloss>
+    </example>
+    <example>
+      <from>dissatisfaction</from>
+      <to>disappointment</to>
+      <gloss>disappointment is a kind of dissatisfaction</gloss>
+    </example>
+
+    <example scope="instance">
+      <from>group</from>
+      <to>the Great Lakes</to>
+      <gloss>instance hypernym</gloss>
+    </example>
+    <example scope="instance">
+      <from>evacuation</from>
+      <to>Dunkirk</to>
+      <gloss>instance hypernym</gloss>
+    </example>
+    <example scope="instance">
+      <from>revolution</from>
+      <to>French revolution</to>
+      <gloss>instance hypernym</gloss>
+    </example>
+
+    <example>
+      <from>walk</from>
+      <to>amble</to>
+      <gloss>to amble is to walk in some manner</gloss>
+    </example>
+    <example>
+      <from>walk</from>
+      <to>march</to>
+      <gloss>to march is to walk in some manner</gloss>
+    </example>
+    <example>
+      <from>say</from>
+      <to>lisp</to>
+      <gloss>to lisp is to say in some manner</gloss>
+    </example>
+    <example>
+      <from>hit</from>
+      <to>slam</to>
+      <gloss>to slam is to hit in some manner</gloss>
+    </example>
+
+  </examples>
+
+</relation>
+

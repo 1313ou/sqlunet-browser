@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Vehicle" id="role_vehicle" type="lexical" v="true" n="true">
+
+  <img src="role_vehicle.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type
+      <strong>Vehicle</strong>
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>vehicle</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>kayak</from>
+      <to>kayak</to>
+      <gloss>verb-noun</gloss>
+    </example>
+    <example>
+      <from>bus</from>
+      <to>bus</to>
+      <gloss>verb-noun</gloss>
+    </example>
+    <example>
+      <from>ferry</from>
+      <to>ferry</to>
+      <gloss>verb-noun</gloss>
+    </example>
+  </examples>
+
+</relation>

@@ -3,13 +3,8 @@
 #
 # Copyright (c) 2023. Bernard Bou
 #
-R='\u001b[31m'
-G='\u001b[32m'
-B='\u001b[34m'
-Y='\u001b[33m'
-M='\u001b[35m'
-C='\u001b[36m'
-Z='\u001b[0m'
+
+source ./define_colors.sh
 
 wherefrom="generated"
 wherefrom=`readlink -m "${wherefrom}"`

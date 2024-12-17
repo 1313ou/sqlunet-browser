@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Has domain" id="hasdomain" type="both" inverse="domain" n="true" v="true" a="true" r="true" s="true">
+
+  <img src="hasdomain.png"/>
+
+  <description>
+    <span>Has domain. Domain member. In domain. Is member of this domain.</span>
+    <!-- @formatter:off -->
+      <ul>
+        <li>A concept which is a term of a given Topic, Region or Usage concept.</li>
+        <li>A concept which is a term in the scientific category of a given concept.</li>
+        <li>A concept which is the term in the geographical / cultural domain of a given concept.</li>
+        <li>A concept which is the example of a given concept.</li>
+      </ul>
+      <ul>
+        <li><B>In Domain</B> is an underspecified relation between two concepts where Concept A is a Topic (scientific category), Region or Usage term of Concept B.</li>
+        <li><B>Has Domain Topic</B> is a relation between two concepts where Concept A is a <i>scientific category</i> (e.g. computing, sport, biology, etc.) of concept B.</li>
+        <li><B>Has Domain Region</B> is a relation between two concepts where Concept A is a <i>term of the geographical / cultural</i> domain of concept B.</li>
+        <li><B>Exemplifies</B> is a relation between two concepts where Concept A is the example of Concept B. The name was changed from "Member of this domain - USAGE".</li>
+      </ul>
+     <!-- @formatter:on -->
+  </description>
+
+  <phrases>
+    <phrase scope="topic">
+      <span>has category</span>
+    </phrase>
+    <phrase scope="topic">
+      <span>is classified as</span>
+    </phrase>
+    <phrase scope="region">
+      <span>has region domain</span>
+    </phrase>
+    <phrase scope="region">
+      <span>has geographical/cultural domain</span>
+    </phrase>
+    <phrase scope="usage">
+      <span>exemplifies</span>
+    </phrase>
+    <phrase scope="usage">
+      <span>is an example of</span>
+    </phrase>
+  </phrases>
+
+  <guides>
+    <guide>
+      <from>domain member</from>>
+      <to>domain</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example scope="topic">
+      <from>marinate</from>
+      <to>cooking</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>reduce</from>
+      <to>cooking</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>bake</from>
+      <to>cooking</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>souse</from>
+      <to>cooking</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>sing</from>
+      <to>music</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>psalm</from>
+      <to>music</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>hymn</from>
+      <to>music</to>
+      <gloss>domain topic</gloss>
+    </example>
+    <example scope="topic">
+      <from>choir</from>
+      <to>music</to>
+      <gloss>domain topic</gloss>
+    </example>
+
+    <example scope="region">
+      <from>chili con carne</from>
+      <to>Mexico</to>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <from>taco</from>
+      <to>Mexico</to>
+      <gloss>domain region</gloss>
+    </example>
+    <example scope="region">
+      <from>burrito</from>
+      <to>Mexico</to>
+      <gloss>domain region</gloss>
+    </example>
+
+    <example scope="usage">
+      <from>motel</from>
+      <to>portmanteau word</to>
+    </example>
+    <example scope="usage">
+      <from>high jinx</from>
+      <to>plural</to>
+    </example>
+    <example scope="usage">
+      <from>like clockwork</from>
+      <to>idiom</to>
+    </example>
+
+  </examples>
+
+</relation>
+

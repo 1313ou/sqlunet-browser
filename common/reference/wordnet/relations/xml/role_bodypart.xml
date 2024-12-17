@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<relation name="Body Part" id="role_bodypart" type="lexical" v="true" n="true">
+
+  <img src="role_bodypart.png"/>
+
+  <description>
+    <span>Derivational relation connecting verb and noun senses, with semantic type
+      <strong>Body Part</strong>
+    </span>
+  </description>
+
+  <guides>
+    <guide>
+      <from/>
+      <to>body part</to>
+      <gloss/>
+    </guide>
+  </guides>
+
+  <examples>
+    <example>
+      <from>abduct</from>
+      <to>abductor</to>
+    </example>
+    <example>
+      <from>feel</from>
+      <to>feeler</to>
+    </example>
+    <example>
+      <from>finger</from>
+      <to>finger</to>
+    </example>
+  </examples>
+
+</relation>
