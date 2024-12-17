@@ -57,6 +57,7 @@ export Y=$YELLOW
 export M=$MAGENTA
 export C=$CYAN
 export W=$WHITE
+export K=$BLACK
 
 export Rl=$LIGHT_RED
 export Gl=$LIGHT_GREEN
