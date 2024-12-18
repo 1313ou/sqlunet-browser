@@ -976,10 +976,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     append(sb, relation, 0, WordNetFactories.relationFactory)
                     sb.append(' ')
                 }
-                if (targetWord != null) {
-                    targetMembers = targetMembers.replace("\\b$targetWord\\b".toRegex(), targetWord + TARGET_MEMBER_CHAR)
-                }
-                append(sb, targetMembers, 0, WordNetFactories.membersFactory)
+                appendMembers(sb, targetMembers, targetWord)
                 sb.append(' ')
                 append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
 
@@ -1003,6 +1000,25 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         }
         cursor.close()
         return changed
+    }
+
+    private fun appendMembers(sb: SpannableStringBuilder, members: String, targetWord: String?) {
+        if (targetWord != null) {
+            append(sb, targetWord, 0, WordNetFactories.targetMemberFactory)
+            val otherMembers = members
+                .splitToSequence(",")
+                .filterNot { it == targetWord }
+                .joinToString(separator = ",")
+            if (!otherMembers.isEmpty())
+                sb.append(',')
+            append(sb, otherMembers, 0, WordNetFactories.otherMembersFactory)
+        } else {
+            append(sb, members, 0, WordNetFactories.membersFactory)
+        }
+    }
+
+    private fun appendMembers(sb: SpannableStringBuilder, members: String) {
+        append(sb, members, 0, WordNetFactories.membersFactory)
     }
 
     // S E M R E L A T I O N S
@@ -1042,7 +1058,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     append(sb, relation, 0, WordNetFactories.relationFactory)
                     sb.append(' ')
                 }
-                append(sb, targetMembers, 0, WordNetFactories.membersFactory)
+                appendMembers(sb, targetMembers)
                 sb.append(' ')
                 append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
 
@@ -1097,14 +1113,16 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val idRecurses = cursor.getColumnIndex(SemRelations_Synsets_Words_X.RECURSES)
             do {
                 val sb = SpannableStringBuilder()
-
                 // var relationId = cursor.getInt(idRelationId)
                 // var relation = cursor.getString(idRelation)
                 val targetSynsetId = cursor.getLong(idTargetSynsetId)
                 val targetDefinition = cursor.getString(idTargetDefinition)
                 val targetMembers = cursor.getString(idTargetMembers)
                 val relationCanRecurse = cursor.getInt(idRecurses) != 0
-                append(sb, targetMembers, 0, WordNetFactories.membersFactory)
+                if (sb.isNotEmpty()) {
+                    sb.append('\n')
+                }
+                appendMembers(sb, targetMembers)
                 sb.append(' ')
                 append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
 
@@ -1149,69 +1167,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Lexical relations
      *
      * @param synsetId                synset id
-     * @param parent                  parent
-     * @param deadendParentIfNoResult mark parent node as deadend if there is no result
-     */
-    fun lexRelations(synsetId: Long, parent: TreeNode, deadendParentIfNoResult: Boolean) {
-        val sql = Queries.prepareLexRelations(synsetId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
-        lexRelationsFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> lexRelationsFromSynsetIdCursorToTreeModel(cursor, parent, deadendParentIfNoResult) }
-    }
-
-    private fun lexRelationsFromSynsetIdCursorToTreeModel(cursor: Cursor, parent: TreeNode, deadendParentIfNoResult: Boolean): Array<TreeOp> {
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
-            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
-            val idRelationId = cursor.getColumnIndex(Relations.RELATIONID)
-            val idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2)
-            val idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2)
-            val idTargetWord = cursor.getColumnIndex(V.WORD2)
-            val sb = SpannableStringBuilder()
-            do {
-                val relationId = cursor.getInt(idRelationId)
-                val targetDefinition = cursor.getString(idTargetDefinition)
-                val targetWord = cursor.getString(idTargetWord)
-                var targetMembers = cursor.getString(idTargetMembers)
-                if (targetWord != null) {
-                    targetMembers = targetMembers.replace("\\b$targetWord\\b".toRegex(), targetWord + TARGET_MEMBER_CHAR)
-                }
-                if (sb.isNotEmpty()) {
-                    sb.append('\n')
-                }
-                append(sb, targetWord, 0, WordNetFactories.wordFactory)
-                sb.append(" in ")
-                sb.append(' ')
-                sb.append('{')
-                append(sb, targetMembers, 0, WordNetFactories.membersFactory)
-                sb.append('}')
-                sb.append(' ')
-                append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
-
-                // attach result
-                val relationNode = makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent)
-                changedList.add(TreeOpCode.NEWCHILD, relationNode)
-            } while (cursor.moveToNext())
-
-            // attach result
-            val node = makeTextNode(sb, false).addTo(parent)
-            changedList.add(TreeOpCode.NEWCHILD, node)
-            changed = changedList.toArray()
-        } else {
-            changed = if (deadendParentIfNoResult) {
-                setNoResult(parent)
-                seq(TreeOpCode.DEADEND, parent)
-            } else {
-                seq(TreeOpCode.NOOP, parent)
-            }
-        }
-        cursor.close()
-        return changed
-    }
-
-    /**
-     * Lexical relations
-     *
-     * @param synsetId                synset id
      * @param wordId                  word id
      * @param parent                  parent node
      * @param deadendParentIfNoResult mark parent node as deadend if there is no result
@@ -1241,9 +1196,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val targetDefinition = cursor.getString(idTargetDefinition)
                 val targetWord = cursor.getString(idTargetWord)
                 var targetMembers = cursor.getString(idTargetMembers)
-                if (targetWord != null) {
-                    targetMembers = targetMembers.replace("\\b$targetWord\\b".toRegex(), targetWord + TARGET_MEMBER_CHAR)
-                }
                 if (sb.isNotEmpty()) {
                     sb.append('\n')
                 }
@@ -1251,7 +1203,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     append(sb, relation, 0, WordNetFactories.relationFactory)
                     sb.append(' ')
                 }
-                append(sb, targetMembers, 0, WordNetFactories.membersFactory)
+                appendMembers(sb, targetMembers, targetWord)
                 sb.append(' ')
                 append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
 
@@ -1259,6 +1211,63 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val relationNode = makeLinkLeafNode(sb, getRelationRes(relationId), false, SenseLink(targetSynsetId, idTargetWordId.toLong(), maxRecursion, fragment)).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, relationNode)
             } while (cursor.moveToNext())
+            changed = changedList.toArray()
+        } else {
+            changed = if (deadendParentIfNoResult) {
+                setNoResult(parent)
+                seq(TreeOpCode.DEADEND, parent)
+            } else {
+                seq(TreeOpCode.NOOP, parent)
+            }
+        }
+        cursor.close()
+        return changed
+    }
+
+    /**
+     * Lexical relations
+     *
+     * @param synsetId                synset id
+     * @param parent                  parent
+     * @param deadendParentIfNoResult mark parent node as deadend if there is no result
+     */
+    fun lexRelations(synsetId: Long, parent: TreeNode, deadendParentIfNoResult: Boolean) {
+        val sql = Queries.prepareLexRelations(synsetId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        lexRelationsFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> lexRelationsFromSynsetIdCursorToTreeModel(cursor, parent, deadendParentIfNoResult) }
+    }
+
+    private fun lexRelationsFromSynsetIdCursorToTreeModel(cursor: Cursor, parent: TreeNode, deadendParentIfNoResult: Boolean): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
+            val idRelationId = cursor.getColumnIndex(Relations.RELATIONID)
+            val idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2)
+            val idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2)
+            val idTargetWord = cursor.getColumnIndex(V.WORD2)
+            val sb = SpannableStringBuilder()
+            do {
+                val relationId = cursor.getInt(idRelationId)
+                // var relationId = cursor.getInt(idRelationId)
+                // var relation = cursor.getString(idRelation)
+                val targetDefinition = cursor.getString(idTargetDefinition)
+                val targetWord = cursor.getString(idTargetWord)
+                var targetMembers = cursor.getString(idTargetMembers)
+                if (sb.isNotEmpty()) {
+                    sb.append('\n')
+                }
+                appendMembers(sb, targetMembers, targetWord)
+                sb.append(' ')
+                append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
+
+                // attach result
+                val relationNode = makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent)
+                changedList.add(TreeOpCode.NEWCHILD, relationNode)
+            } while (cursor.moveToNext())
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+            changedList.add(TreeOpCode.NEWCHILD, node)
             changed = changedList.toArray()
         } else {
             changed = if (deadendParentIfNoResult) {
@@ -1863,7 +1872,5 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     companion object {
 
         private const val TAG = "BaseModule"
-
-        private const val TARGET_MEMBER_CHAR = '*'
     }
 }
