@@ -469,6 +469,7 @@ object WordNetContract {
         const val WORD = Words.WORD
         const val WORDID = Words.WORDID
         const val SYNSETID = Senses.SYNSETID
+        const val TAGCOUNT = Senses.TAGCOUNT
     }
 
     object Senses_Synsets_Poses_Domains { // : Senses, Synsets, Poses, Domains
