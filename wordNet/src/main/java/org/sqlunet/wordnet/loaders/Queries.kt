@@ -243,7 +243,7 @@ object Queries {
         providerSql.projection = arrayOf(WordNetContract.Senses_Words.WORDID, WordNetContract.Senses_Words.WORD)
         providerSql.selection = WordNetContract.Senses_Words.SYNSETID + " = ?"
         providerSql.selectionArgs = arrayOf(synsetId.toString())
-        providerSql.sortBy = WordNetContract.Senses_Words.WORD
+        providerSql.sortBy = WordNetContract.Senses_Words.TAGCOUNT + " DESC," + WordNetContract.Senses_Words.WORD
         return providerSql
     }
 
@@ -253,7 +253,7 @@ object Queries {
         providerSql.projection = if (membersGrouped) arrayOf(WordNetContract.Senses_Words.SYNSETID) else arrayOf(WordNetContract.Words.WORD)
         providerSql.selection = WordNetContract.Senses_Words.SYNSETID + " = ?"
         providerSql.selectionArgs = arrayOf(synsetId.toString())
-        providerSql.sortBy = WordNetContract.Words.WORD
+        providerSql.sortBy = WordNetContract.Senses_Words.TAGCOUNT + " DESC," + WordNetContract.Words.WORD
         return providerSql
     }
 
