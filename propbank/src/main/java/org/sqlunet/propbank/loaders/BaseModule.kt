@@ -80,9 +80,9 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
     private val aliasDrawable: Drawable
 
     /**
-     * Drawable for theta role
+     * Drawable for VN role
      */
-    private val thetaDrawable: Drawable
+    private val vnRoleDrawable: Drawable
 
     /**
      * Drawable for definition
@@ -121,7 +121,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
         rolesDrawable = getDrawable(context, R.drawable.roles)
         relationDrawable = getDrawable(context, R.drawable.relation)
         roleDrawable = getDrawable(context, R.drawable.role)
-        thetaDrawable = getDrawable(context, R.drawable.theta)
+        vnRoleDrawable = getDrawable(context, R.drawable.vnrole)
         aliasDrawable = getDrawable(context, R.drawable.alias)
         definitionDrawable = getDrawable(context, R.drawable.definition)
         sampleDrawable = getDrawable(context, R.drawable.sample)
@@ -292,7 +292,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             // var idRoleId = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEID)
             val idRoleDescr = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEDESCR)
             val idFunc = cursor.getColumnIndex(PbRoleSets_PbRoles.FUNC)
-            val idTheta = cursor.getColumnIndex(PbRoleSets_PbRoles.THETA)
+            val idVnRole = cursor.getColumnIndex(PbRoleSets_PbRoles.VNROLE)
             val idArgType = cursor.getColumnIndex(PbRoleSets_PbRoles.ARGTYPE)
 
             // read cursor
@@ -308,13 +308,13 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 sb.append(' ')
                 append(sb, capitalize1(cursor.getString(idRoleDescr)), 0, PropBankFactories.roleFactory)
 
-                // theta
-                val theta = cursor.getString(idTheta)
-                if (theta != null && theta.isNotEmpty()) {
+                // vn role
+                val vnRole = cursor.getString(idVnRole)
+                if (vnRole != null && vnRole.isNotEmpty()) {
                     sb.append(' ')
-                    appendImage(sb, thetaDrawable)
+                    appendImage(sb, vnRoleDrawable)
                     sb.append(' ')
-                    append(sb, theta, 0, PropBankFactories.thetaFactory)
+                    append(sb, vnRole, 0, PropBankFactories.vnRoleFactory)
                 }
 
                 // func
@@ -407,10 +407,10 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                         append(sb, capitalize1(fields[2]), 0, PropBankFactories.roleFactory)
                         sb.append(' ')
 
-                        // theta
-                        appendImage(sb, thetaDrawable)
+                        // vnrole
+                        appendImage(sb, vnRoleDrawable)
                         sb.append(' ')
-                        append(sb, fields[3], 0, PropBankFactories.thetaFactory)
+                        append(sb, fields[3], 0, PropBankFactories.vnRoleFactory)
 
                         // func
                         if (fields[1].isNotEmpty()) {

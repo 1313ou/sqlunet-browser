@@ -18,7 +18,7 @@ object PropBankFactories {
 
     val roleSetFactory = Factories.classFactory
     val roleFactory = Factories.roleFactory
-    val thetaFactory = Spanner.SpanFactory { _: Long -> spans(Colors.thetaBackColor, Colors.thetaForeColor, StyleSpan(Typeface.BOLD)) }
+    val vnRoleFactory = Spanner.SpanFactory { _: Long -> spans(Colors.vnRoleBackColor, Colors.vnRoleForeColor, StyleSpan(Typeface.BOLD)) }
     val definitionFactory = Factories.definitionFactory
     val exampleFactory = Factories.exampleFactory
     val relationFactory = Spanner.SpanFactory { _: Long -> spans(Colors.relationBackColor, Colors.relationForeColor, StyleSpan(Typeface.BOLD)) }

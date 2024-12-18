@@ -93,10 +93,10 @@
 				<SPAN class="pbrolename">
 					<xsl:value-of select="./text()" />
 				</SPAN>
-				<xsl:if test="./@theta != ''">
+				<xsl:if test="./@vnrole != ''">
 					<xsl:text><![CDATA[-]]></xsl:text>
-					<SPAN class="pbthetaname">
-						<xsl:value-of select="./@theta" />
+					<SPAN class="pbvnrolename">
+						<xsl:value-of select="./@vnrole" />
 					</SPAN>
 				</xsl:if>
 			</SPAN>
@@ -155,10 +155,10 @@
 				<SPAN class="pbargname">
 					<xsl:value-of select="./@descr" />
 				</SPAN>
-				<xsl:if test="./@theta != ''">
+				<xsl:if test="./@vnrole != ''">
 					<xsl:text><![CDATA[-]]></xsl:text>
-					<SPAN class="pbargtheta">
-						<xsl:value-of select="./@theta" />
+					<SPAN class="pbargvnrole">
+						<xsl:value-of select="./@vnrole" />
 					</SPAN>
 				</xsl:if>
 			</SPAN>

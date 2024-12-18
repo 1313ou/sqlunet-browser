@@ -75,7 +75,7 @@ object PropBankContract {
         const val ROLEDESCR = V.ROLEDESCR
         const val ARGTYPE = V.ARGTYPE
         const val FUNC = V.FUNC
-        const val THETA = V.VNROLE
+        const val VNROLE = V.VNROLE
     }
 
     object PbRoleSets_PbExamples {
@@ -88,7 +88,7 @@ object PropBankContract {
         const val ARGTYPE = V.ARGTYPE
         const val FUNCNAME = V.FUNC
         const val ROLEDESCR = V.ROLEDESCR
-        const val THETA = V.VNROLE
+        const val VNROLE = V.VNROLE
         const val ARG = V.ARG
         const val ARGS = V.ARGS
         const val EXAMPLEID = V.EXAMPLEID

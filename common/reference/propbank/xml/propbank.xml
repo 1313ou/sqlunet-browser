@@ -58,42 +58,37 @@
 	</concept>
 
 	<concept
-		name="Theta"
-		id="pbtheta">
-		<img src="pbtheta.png" />
-		<description>Another name given to the argument role.</description>
+		name="RoleSet Alias"
+		id="pbaliasroleset">
+		<img src="pbaliasroleset.png" />
+		<description>Another name given to the role set in VerbNet or FrameNet</description>
 		<examples>
-			<context><name>Arg-1</name>role
+			<context><name>abandon.01 (v.)</name>roleset
 			</context>
-			<example>Theme</example>
-		</examples>
-		<examples>
-			<context><name>Arg-2</name>role
-			</context>
-			<example>Extent</example>
-		</examples>
-		<examples>
-			<context><name>Arg-3</name>role
-			</context>
-			<example>Initial location</example>
-		</examples>
-		<examples>
-			<context><name>Arg-4</name>role
-			</context>
-			<example>Destination</example>
+			<example>leave-51.2 (VerbNet)</example>
+			<example>Departing (FrameNet)</example>
+			<example>Quitting a place (FrameNet)</example>
 		</examples>
 	</concept>
 
 	<concept
-		name="Alias"
-		id="pbalias">
-		<img src="pbalias.png" />
-		<description>Aliases in VerbNet or FrameNet</description>
+		name="Role Alias"
+		id="pbaliasrole">
+		<img src="pbaliasrole.png" />
+		<description>Another name given to the argument role in VerbNet or FrameNet.</description>
 		<examples>
-			<context><name>abandon (v.)</name>roleset
+			<context><name>Arg-0, abandoner</name>role
 			</context>
-			<example>Quitting_a_place (FrameNet)</example>
-			<example>Departing (FrameNet)</example>
+			<example>leave-51.2, Theme (VerbNet)</example>
+			<example>Departing, Theme (FrameNet)</example>
+			<example>Quitting a place, Self Mover (FrameNet)</example>
+		</examples>
+		<examples>
+			<context><name>Arg-1, entity left behind</name>role
+			</context>
+			<example>leave-51.2, Initial Location (VerbNet)</example>
+			<example>Departing, Source (FrameNet)</example>
+			<example>Quitting a place, Source (FrameNet)</example>
 		</examples>
 	</concept>
 

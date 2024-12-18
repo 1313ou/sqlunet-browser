@@ -111,15 +111,10 @@
 			CREATE INDEX IF NOT EXISTS `k_pb_rolesets_pbwordid` ON `pb_rolesets`(`pbwordid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_rels` ON `pb_rels` (`relid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_args` ON `pb_args` (`argid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_thetas` ON `pb_thetas` (`thetaid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_argtypes` ON `pb_argtypes` (`argtypeid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_aspects` ON `pb_aspects` (`aspectid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_forms` ON `pb_forms` (`formid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_funcs` ON `pb_funcs` (`funcid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_persons` ON `pb_persons` (`personid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_tenses` ON `pb_tenses` (`tenseid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_voices` ON `pb_voices` (`voiceid`);
 			CREATE INDEX IF NOT EXISTS `k_pb_members_rolesetid` ON `pb_members` (`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_vnroles` ON `pb_vnroles` (`vnroleid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_words` ON `pb_words` (`pbwordid`);
 			CREATE INDEX IF NOT EXISTS `k_pb_words_wordid` ON `pb_words` (`wordid`);
 			CREATE INDEX IF NOT EXISTS `pk_fn_lexunits_governors` ON `fn_lexunits_governors` (`luid`,`governorid`);
@@ -177,6 +172,13 @@
 			CREATE INDEX IF NOT EXISTS `pk_fn_valenceunits_annosets` ON `fn_valenceunits_annosets` (`vuid`,`annosetid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_valenceunits_vuid` ON `fn_valenceunits`(`vuid`);
 			CREATE INDEX IF NOT EXISTS `pk_fn_words` ON `fn_words` (`fnwordid`);</item>
+			<!--
+			CREATE INDEX IF NOT EXISTS `pk_pb_aspects` ON `pb_aspects` (`aspectid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_forms` ON `pb_forms` (`formid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_persons` ON `pb_persons` (`personid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_tenses` ON `pb_tenses` (`tenseid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_voices` ON `pb_voices` (`voiceid`);
+			-->
 		<item>
 			<!-- predicatematrix subtables -->
 			DROP TABLE IF EXISTS `pm_vn`;
@@ -347,17 +349,19 @@
 			CREATE INDEX IF NOT EXISTS `k_pb_rolesets_pbwordid` ON `pb_rolesets`(`pbwordid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_rels` ON `pb_rels` (`relid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_args` ON `pb_args` (`argid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_thetas` ON `pb_thetas` (`thetaid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_argtypes` ON `pb_argtypes` (`argtypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_funcs` ON `pb_funcs` (`funcid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_members_rolesetid` ON `pb_members` (`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_vnroles` ON `pb_vnroles` (`vnroleid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_words` ON `pb_words` (`pbwordid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_words_wordid` ON `pb_words` (`wordid`);</item>
+			<!--
 			CREATE INDEX IF NOT EXISTS `pk_pb_aspects` ON `pb_aspects` (`aspectid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_forms` ON `pb_forms` (`formid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_funcs` ON `pb_funcs` (`funcid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_persons` ON `pb_persons` (`personid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_tenses` ON `pb_tenses` (`tenseid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_voices` ON `pb_voices` (`voiceid`);
-			CREATE INDEX IF NOT EXISTS `k_pb_members_rolesetid` ON `pb_members` (`rolesetid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_words` ON `pb_words` (`pbwordid`);
-			CREATE INDEX IF NOT EXISTS `k_pb_words_wordid` ON `pb_words` (`wordid`);</item>
+			-->
 		<item>
 			<!-- drop propbank indexes -->
 			DROP INDEX IF EXISTS `pk_pb_rolesets`;
@@ -370,17 +374,19 @@
 			DROP INDEX IF EXISTS `k_pb_rolesets_pbwordid`;
 			DROP INDEX IF EXISTS `pk_pb_rels`;
 			DROP INDEX IF EXISTS `pk_pb_args`;
-			DROP INDEX IF EXISTS `pk_pb_thetas`;
 			DROP INDEX IF EXISTS `pk_pb_argtypes`;
+			DROP INDEX IF EXISTS `pk_pb_funcs`;
+			DROP INDEX IF EXISTS `k_pb_members_rolesetid`;
+			DROP INDEX IF EXISTS `pk_pb_vnroles`;
+			DROP INDEX IF EXISTS `pk_pb_words`;
+			DROP INDEX IF EXISTS `k_pb_words_wordid`;</item>
+			<!--
 			DROP INDEX IF EXISTS `pk_pb_aspects`;
 			DROP INDEX IF EXISTS `pk_pb_forms`;
-			DROP INDEX IF EXISTS `pk_pb_funcs`;
 			DROP INDEX IF EXISTS `pk_pb_persons`;
 			DROP INDEX IF EXISTS `pk_pb_tenses`;
 			DROP INDEX IF EXISTS `pk_pb_voices`;
-			DROP INDEX IF EXISTS `k_pb_members_rolesetid`;
-			DROP INDEX IF EXISTS `pk_pb_words`;
-			DROP INDEX IF EXISTS `k_pb_words_wordid`;</item>
+			-->
 		<item>
 			<!-- framenet indexes -->
 			CREATE INDEX IF NOT EXISTS `pk_fn_lexunits_governors` ON `fn_lexunits_governors` (`luid`,`governorid`);

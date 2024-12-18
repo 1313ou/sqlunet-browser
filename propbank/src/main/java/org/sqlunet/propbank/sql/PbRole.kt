@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteDatabase
  * @param roleDescr role description
  * @param argType   role arg type
  * @param roleFunc  role f
- * @param roleTheta role theta
+ * @param vnRole    vn role name
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
@@ -21,7 +21,7 @@ internal class PbRole private constructor(
     val roleDescr: String,
     val argType: String,
     val roleFunc: String,
-    val roleTheta: String?,
+    val vnRole: String?,
 ) {
 
     companion object {
@@ -33,8 +33,8 @@ internal class PbRole private constructor(
          * @param roleSetId  role set id to build query from
          * @return list of PropBank roles
          */
-        fun make(connection: SQLiteDatabase, roleSetId: Long): List<PbRole?>? {
-            var result: MutableList<PbRole?>? = null
+        fun make(connection: SQLiteDatabase, roleSetId: Long): List<PbRole>? {
+            var result: MutableList<PbRole>? = null
             PbRoleQueryFromRoleSetId(connection, roleSetId).use {
                 it.execute()
                 while (it.next()) {
@@ -42,11 +42,11 @@ internal class PbRole private constructor(
                     val roleDescr = it.roleDescr
                     val roleArgType = it.argType
                     val roleFunc = it.roleFunc
-                    val roleTheta = it.roleTheta
+                    val vnRole = it.vnRole
                     if (result == null) {
                         result = ArrayList()
                     }
-                    result!!.add(PbRole(roleId, roleDescr, roleArgType, roleFunc, roleTheta))
+                    result.add(PbRole(roleId, roleDescr, roleArgType, roleFunc, vnRole))
                 }
             }
             return result

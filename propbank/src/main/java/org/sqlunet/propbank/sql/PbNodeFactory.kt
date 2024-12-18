@@ -88,7 +88,7 @@ internal object PbNodeFactory {
         val element = makeNode(doc, parent, "role", null)
         makeAttribute(element, "roleid", role.roleId.toString())
         makeAttribute(element, "argtype", role.argType)
-        makeAttribute(element, "theta", role.roleTheta)
+        makeAttribute(element, "vnrole", role.vnRole)
         makeAttribute(element, "func", role.roleFunc)
         makeText(doc, element, role.roleDescr)
         return element
@@ -112,8 +112,8 @@ internal object PbNodeFactory {
                     makeAttribute(element3, "f", arg.f)
                 }
                 makeAttribute(element3, "descr", arg.description)
-                if (arg.vnTheta != null) {
-                    makeAttribute(element3, "theta", arg.vnTheta)
+                if (arg.vnRole != null) {
+                    makeAttribute(element3, "vnrole", arg.vnRole)
                 }
                 makeText(doc, element3, arg.subText)
             }

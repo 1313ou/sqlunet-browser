@@ -45,7 +45,7 @@ object Queries {
             PropBankContract.PbRoleSets_PbRoles.ROLEDESCR,
             PropBankContract.PbRoleSets_PbRoles.ARGTYPE,
             PropBankContract.PbRoleSets_PbRoles.FUNC,
-            PropBankContract.PbRoleSets_PbRoles.THETA
+            PropBankContract.PbRoleSets_PbRoles.VNROLE
         )
         providerSql.selection = PropBankContract.PbRoleSets_PbRoles.ROLESETID + "= ?"
         providerSql.selectionArgs = arrayOf(roleSetId.toString())
@@ -65,7 +65,7 @@ object Queries {
                     "||'~'" +
                     "||" + PropBankContract.PbRoleSets_PbExamples.ROLEDESCR +
                     "||'~'" +
-                    "||(CASE WHEN " + PropBankContract.PbRoleSets_PbExamples.THETA + " IS NULL THEN '*' ELSE " + PropBankContract.PbRoleSets_PbExamples.THETA + " END)" +
+                    "||(CASE WHEN " + PropBankContract.PbRoleSets_PbExamples.VNROLE + " IS NULL THEN '*' ELSE " + PropBankContract.PbRoleSets_PbExamples.VNROLE + " END)" +
                     "||'~'" +
                     "||" + PropBankContract.PbRoleSets_PbExamples.ARG +
                     ",',','#')),',','|'),'#',',') AS " + PropBankContract.PbRoleSets_PbExamples.ARGS,
