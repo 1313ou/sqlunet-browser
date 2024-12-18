@@ -18,6 +18,10 @@ object WordNetFactories {
 
     val membersFactory = Spanner.SpanFactory { _: Long -> spans(Colors.membersBackColor, Colors.membersForeColor, StyleSpan(Typeface.BOLD)) }
 
+    val targetMemberFactory = Spanner.SpanFactory { _: Long -> spans(Colors.membersBackColor, Colors.membersForeColor, StyleSpan(Typeface.BOLD)) }
+
+    val otherMembersFactory = Spanner.SpanFactory { _: Long -> spans(Colors.membersBackColor, Colors.membersForeColor) }
+
     val wordFactory = Spanner.SpanFactory { _: Long -> spans(Colors.wordBackColor, Colors.wordForeColor, StyleSpan(Typeface.BOLD)) }
 
     val definitionFactory = Factories.definitionFactory
