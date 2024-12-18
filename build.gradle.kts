@@ -11,7 +11,7 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:8.7.3")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0")
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.8.4")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.8.5")
     }
 }
 
@@ -34,10 +34,10 @@ allprojects {
         set("minSdk", 21)
         set("targetSdk", 34)
         set("compileSdk", 35)
-        set("desugarVersion", "2.0.4")
+        set("desugarVersion", "2.1.3")
 
         set("kotlinVersion", "2.1.0")
-        set("coroutinesVersion", "1.8.1")
+        set("coroutinesVersion", "1.9.0")
         set("workVersion", "2.10.0")
         set("coreVersion", "1.15.0")
         set("appcompatVersion", "1.7.0")
