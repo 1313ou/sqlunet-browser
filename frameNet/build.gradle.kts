@@ -3,7 +3,7 @@ import java.util.Date
 plugins {
     id("org.sqlunet.plugin.querybuilder") version "1.0.0"
     id("com.android.library")
-    id("org.jetbrains.kotlin.android") version "2.0.20"
+    id("org.jetbrains.kotlin.android") version "2.1.0"
 }
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
@@ -64,6 +64,7 @@ dependencies {
 
     testImplementation(project(":test-sql"))
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.querybuilder:querybuilder:1.1.0")
 }
 
 // C O D E   G E N E R A T I O N
