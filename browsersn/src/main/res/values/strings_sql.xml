@@ -155,7 +155,7 @@
 		<item>
 			DROP VIEW IF EXISTS `samplesets`;</item>
 		<item>
-			DELETE FROM lexrelations WHERE relationid IN (SELECT DISTINCT `relationid` FROM `lexrelations` JOIN `relations` USING (`relationid`)  WHERE `relation` = 'collocation');</item>
+			DELETE FROM `lexrelations` WHERE `relationid` IN (SELECT DISTINCT `relationid` FROM `lexrelations` JOIN `relations` USING (`relationid`)  WHERE `relation` = 'collocation');</item>
 		<item>EXEC_URI</item>
 		<item>EXEC_ZIPPED_URI</item>
 	</string-array>

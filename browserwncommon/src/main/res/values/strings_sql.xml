@@ -111,7 +111,7 @@
 			DROP INDEX IF EXISTS `k_bnc_convtasks_wordid_posid`;
 			DROP INDEX IF EXISTS `k_bnc_imaginfs_wordid_posid`;</item>
 		<item>
-			DELETE FROM lexrelations WHERE relationid IN (SELECT DISTINCT `relationid` FROM `lexrelations` JOIN `relations` USING (`relationid`)  WHERE `relation` = 'collocation');</item>
+			DELETE FROM `lexrelations` WHERE `relationid` IN (SELECT DISTINCT `relationid` FROM `lexrelations` JOIN `relations` USING (`relationid`)  WHERE `relation` = 'collocation');</item>
 		<item>EXEC_URI</item>
 		<item>EXEC_ZIPPED_URI</item>
 	</string-array>
