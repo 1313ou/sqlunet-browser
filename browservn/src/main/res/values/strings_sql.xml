@@ -23,6 +23,7 @@
 		<item>Drop PropBank text search</item>
 		<item>Prepare WordNet text search</item>
 		<item>Drop WordNet text search</item>
+		<item>Delete collocation relations</item>
 		<item>@string/action_exec_from_uri</item>
 		<item>@string/action_exec_from_zipped_uri</item>
 	</string-array>
@@ -288,6 +289,8 @@
 		<item>
 			<!-- drop wordnet text search -->
 			DROP TABLE IF EXISTS `words_word_fts4`;</item>
+		<item>
+			DELETE FROM lexrelations WHERE relationid IN (SELECT DISTINCT `relationid` FROM `lexrelations` JOIN `relations` USING (`relationid`)  WHERE `relation` = 'collocation');</item>
 		<item>EXEC_URI</item>
 		<item>EXEC_ZIPPED_URI</item>
 	</string-array>

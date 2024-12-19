@@ -7,7 +7,7 @@
 	<integer name="sql_statement_do_indexes_position">1</integer>
 	<integer name="sql_statement_do_ts_wn_position">2</integer>
 
-	<string-array name="sql_statement_titles" tools:ignore="InconsistentArrays">
+	<string-array name="sql_statement_titles" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statement_titles">
 		<item>[SELECT OPERATION]</item>
 		<item>Create WordNet indexes</item>
 		<item>Prepare WordNet text search</item>
@@ -15,6 +15,7 @@
 		<item>Drop WordNet text search</item>
 		<item>Create BNC indexes</item>
 		<item>Drop BNC indexes</item>
+		<item>Delete collocation relations</item>
 		<item>@string/action_exec_from_uri</item>
 		<item>@string/action_exec_from_zipped_uri</item>
 	</string-array>
@@ -109,6 +110,8 @@
 			DROP INDEX IF EXISTS `k_bnc_spwrs_wordid_posid`;
 			DROP INDEX IF EXISTS `k_bnc_convtasks_wordid_posid`;
 			DROP INDEX IF EXISTS `k_bnc_imaginfs_wordid_posid`;</item>
+		<item>
+			DELETE FROM lexrelations WHERE relationid IN (SELECT DISTINCT `relationid` FROM `lexrelations` JOIN `relations` USING (`relationid`)  WHERE `relation` = 'collocation');</item>
 		<item>EXEC_URI</item>
 		<item>EXEC_ZIPPED_URI</item>
 	</string-array>
