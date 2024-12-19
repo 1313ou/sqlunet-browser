@@ -83,6 +83,5 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.annotation:annotation:$annotationVersion")
     implementation("com.google.android.material:material:$materialVersion")
-    implementation("com.google.android.play:asset-delivery:2.3.0")
     implementation("com.google.android.play:asset-delivery-ktx:2.3.0")
 }

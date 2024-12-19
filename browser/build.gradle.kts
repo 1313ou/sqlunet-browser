@@ -92,6 +92,7 @@ android {
 }
 
 dependencies {
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22")) // Use the Kotlin BOM
     implementation("androidx.core:core-ktx:$coreVersion")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
 
