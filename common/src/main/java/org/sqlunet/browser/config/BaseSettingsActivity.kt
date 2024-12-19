@@ -16,6 +16,8 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import org.sqlunet.browser.common.R
+import org.sqlunet.provider.ManagerContract
+import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.LogUtils
 
 abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
@@ -104,6 +106,13 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
 
             R.id.action_diagnostics -> {
                 val intent = Intent(this, DiagnosticsActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+
+            R.id.action_tables_and_indices -> {
+                val intent = ManagerContract.makeTablesAndIndexesIntent(this)
+                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_dbobject)
                 startActivity(intent)
                 return true
             }
