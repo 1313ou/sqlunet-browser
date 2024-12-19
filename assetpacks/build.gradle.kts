@@ -49,7 +49,6 @@ dependencies {
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
     implementation("androidx.preference:preference-ktx:$preferenceVersion")
     implementation("com.google.android.material:material:$materialVersion")
-    implementation("com.google.android.play:asset-delivery:2.3.0")
     implementation("com.google.android.play:asset-delivery-ktx:2.3.0")
 
     testImplementation("junit:junit:4.13.2")
