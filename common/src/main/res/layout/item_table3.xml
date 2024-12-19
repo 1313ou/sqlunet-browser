@@ -14,7 +14,7 @@
 		style="@style/ListItemColumn.Minor"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:layout_weight=".1"
+		android:layout_weight=".15"
 		android:contentDescription="@string/description_column_id" />
 
 	<TextView
