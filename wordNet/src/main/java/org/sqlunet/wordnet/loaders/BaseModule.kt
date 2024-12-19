@@ -1196,9 +1196,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val targetDefinition = cursor.getString(idTargetDefinition)
                 val targetWord = cursor.getString(idTargetWord)
                 var targetMembers = cursor.getString(idTargetMembers)
-                if (sb.isNotEmpty()) {
-                    sb.append('\n')
-                }
                 if (displayLexRelationName) {
                     append(sb, relation, 0, WordNetFactories.relationFactory)
                     sb.append(' ')
