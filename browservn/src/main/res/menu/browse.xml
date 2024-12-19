@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	<!-- <group> -->
+	<item
+		android:id="@+id/search"
+		android:iconifiedByDefault="true"
+		android:title="@string/hint_search"
+		app:actionViewClass="androidx.appcompat.widget.SearchView"
+		app:showAsAction="always"
+		tools:ignore="AlwaysShowAction" />
+	<item
+		android:id="@+id/action_main"
+		android:title="@string/action_main"
+		app:showAsAction="never"
+		tools:ignore="AppCompatResource" />
+	<item
+		android:id="@+id/action_table_domains"
+		android:title="@string/action_table_domains"
+		app:showAsAction="never" />
+	<item
+		android:id="@+id/action_table_relations"
+		android:title="@string/action_table_relations"
+		app:showAsAction="never" />
+	<item
+		android:id="@+id/action_table_poses"
+		android:title="@string/action_table_poses"
+		app:showAsAction="never" />
+	<item
+		android:id="@+id/action_table_adjpositions"
+		android:title="@string/action_table_adjpositions"
+		app:showAsAction="never" />
+	<!-- </group> -->
+</menu>

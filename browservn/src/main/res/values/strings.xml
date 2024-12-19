@@ -31,4 +31,11 @@
 	<string name="verbnet" tools:keep="@string/verbnet">VerbNet</string>
 	<string name="propbank" tools:keep="@string/propbank">PropBank</string>
 
+	<!-- database info -->
+	<!--	<string name="action_tables_and_indices">Tables and Indices</string>-->
+	<string name="action_table_domains">Domains</string>
+	<string name="action_table_relations">Relations</string>
+	<string name="action_table_poses">POSes</string>
+	<string name="action_table_adjpositions">Adjective Positions</string>
+
 </resources>

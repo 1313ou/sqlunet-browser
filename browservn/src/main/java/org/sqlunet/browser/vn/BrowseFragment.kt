@@ -14,6 +14,7 @@ import org.sqlunet.browser.BaseBrowse1Fragment
 import org.sqlunet.browser.BaseSearchFragment
 import org.sqlunet.browser.BrowseSplashFragment
 import org.sqlunet.browser.SplashFragment
+import org.sqlunet.browser.config.TableActivity
 import org.sqlunet.browser.history.History.recordQuery
 import org.sqlunet.browser.vn.web.WebActivity
 import org.sqlunet.browser.vn.web.WebFragment
@@ -29,6 +30,11 @@ import org.sqlunet.wordnet.SynsetPointer
 import org.sqlunet.wordnet.WordPointer
 import org.sqlunet.wordnet.browser.SynsetActivity
 import org.sqlunet.wordnet.browser.WordActivity
+import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions
+import org.sqlunet.wordnet.provider.WordNetContract.Domains
+import org.sqlunet.wordnet.provider.WordNetContract.Poses
+import org.sqlunet.wordnet.provider.WordNetContract.Relations
+import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
 
 /**
  * Browse fragment
@@ -69,7 +75,52 @@ class BrowseFragment : BaseSearchFragment() {
 
     @Deprecated("Deprecated in Java", ReplaceWith("Add a MenuHost"))
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return false
+        // intent
+        val intent: Intent
+
+        // handle item selection
+        when (item.itemId) {
+            R.id.action_table_domains -> {
+                intent = Intent(requireContext(), TableActivity::class.java)
+                intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(Domains.URI))
+                intent.putExtra(ProviderArgs.ARG_QUERYID, Domains.DOMAINID)
+                intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Domains.DOMAINID, Domains.DOMAIN, Domains.POSID))
+                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3)
+            }
+
+            R.id.action_table_poses -> {
+                intent = Intent(requireContext(), TableActivity::class.java)
+                intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(Poses.URI))
+                intent.putExtra(ProviderArgs.ARG_QUERYID, Poses.POSID)
+                intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Poses.POSID, Poses.POS))
+                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2)
+            }
+
+            R.id.action_table_adjpositions -> {
+                intent = Intent(requireContext(), TableActivity::class.java)
+                intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(AdjPositions.URI))
+                intent.putExtra(ProviderArgs.ARG_QUERYID, AdjPositions.POSITIONID)
+                intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(AdjPositions.POSITIONID, AdjPositions.POSITION))
+                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2)
+            }
+
+            R.id.action_table_relations -> {
+                intent = Intent(requireContext(), TableActivity::class.java)
+                intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(Relations.URI))
+                intent.putExtra(ProviderArgs.ARG_QUERYID, Relations.RELATIONID)
+                intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Relations.RELATIONID, Relations.RELATION, Relations.RECURSES_SELECT))
+                intent.putExtra(ProviderArgs.ARG_QUERYSORT, Relations.RELATIONID + " ASC")
+                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3)
+            }
+
+            else -> {
+                return false
+            }
+        }
+
+        // start activity
+        startActivity(intent)
+        return true
     }
 
     // S E A R C H
