@@ -82,8 +82,7 @@ class BrowseFragment : BaseSearchFragment() {
         val intent: Intent
 
         // handle item selection
-        val itemId = item.itemId
-        when (itemId) {
+        when (item.itemId) {
             R.id.action_table_domains -> {
                 intent = Intent(requireContext(), TableActivity::class.java)
                 intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(Domains.URI))
