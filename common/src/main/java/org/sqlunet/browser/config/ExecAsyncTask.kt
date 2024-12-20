@@ -9,7 +9,6 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.net.Uri
-import android.os.Build
 import android.os.PowerManager
 import android.util.Log
 import android.view.Window

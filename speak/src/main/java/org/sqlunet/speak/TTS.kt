@@ -4,13 +4,11 @@
 package org.sqlunet.speak
 
 import android.content.Context
-import android.os.Build
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
 import android.speech.tts.Voice
 import android.util.Log
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import java.util.Locale
 
 class TTS(context: Context?, written: String, ipa: String, locale: Locale?, voiceName: String?) {

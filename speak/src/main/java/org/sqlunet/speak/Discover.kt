@@ -4,13 +4,11 @@
 package org.sqlunet.speak
 
 import android.content.Context
-import android.os.Build
 import android.speech.tts.TextToSpeech
 import android.speech.tts.TextToSpeech.EngineInfo
 import android.speech.tts.TextToSpeech.OnInitListener
 import android.speech.tts.Voice
 import android.util.Log
-import androidx.annotation.RequiresApi
 import java.util.Locale
 import java.util.function.Consumer
 
