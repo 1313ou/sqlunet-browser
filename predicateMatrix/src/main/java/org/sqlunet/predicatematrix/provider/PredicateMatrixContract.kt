@@ -66,7 +66,7 @@ object PredicateMatrixContract {
         const val PBROLEDESCR = V.PBROLEDESCR
         const val PBROLEARGTYPE = V.PBARGTYPE
         const val FNFETYPEID = V.FNFETYPEID
-        const val FNFRAME = V._FNFRAME
+        const val FNFRAME = V.FNFRAME
         const val FNFRAMEDEFINITION = V.FNFRAMEDEFINITION
         const val FNFETYPE = V.FNFETYPE
         const val FNFEABBREV = V.FNFEABBREV

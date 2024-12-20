@@ -42,7 +42,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				table = "${pms.table} " + //
 						"LEFT JOIN ${roles.table} AS ${as_pmroles} USING (${roles.roleid}) " + //
 						"LEFT JOIN ${predicates.table} AS ${as_pmpredicates} USING (${predicates.predicateid}) " + //
-						"LEFT JOIN ${wn_synsets.table} USING (${wn_synsets.synsetid}) " + //
+						"LEFT JOIN ${wnsynsets.table} USING (${wnsynsets.synsetid}) " + //
 
 						"LEFT JOIN ${vn_classes.table} AS ${as_vnclasses} ON ${pms.vn_classid} = ${as_vnclasses}.${vn_classes.vnclassid} " + //
 						"LEFT JOIN ${vn_roles.table} AS ${as_vnroles} ON ${pms.vn_roleid} = ${as_vnroles}.${vn_roles.vnroleid} " + //
