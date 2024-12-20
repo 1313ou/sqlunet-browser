@@ -67,13 +67,13 @@ object PredicateMatrixContract {
         const val PBROLEARGTYPE = V.PBARGTYPE
         const val FNFETYPEID = V.FNFETYPEID
         const val FNFRAME = V._FNFRAME
-        const val FNFRAMEDEFINITION = V._FNFRAMEDEFINITION
-        const val FNFETYPE = V._FNFETYPE
-        const val FNFEABBREV = V._FNFEABBREV
-        const val FNFEDEFINITION = V._FNFEDEFINITION
+        const val FNFRAMEDEFINITION = V.FNFRAMEDEFINITION
+        const val FNFETYPE = V.FNFETYPE
+        const val FNFEABBREV = V.FNFEABBREV
+        const val FNFEDEFINITION = V.FNFEDEFINITION
         const val PBROLEID = PredicateMatrix.PBROLEID
-        // const val FNLEXUNIT = V._FNLEXUNIT
-        // const val FNLUDEFINITION = V._FNLUDEFINITION
-        // const val FNLUDICT = V._FNLUDICT
+        // const val FNLEXUNIT = V.FNLEXUNIT
+        // const val FNLUDEFINITION = V.FNLUDEFINITION
+        // const val FNLUDICT = V.FNLUDICT
     }
 }
