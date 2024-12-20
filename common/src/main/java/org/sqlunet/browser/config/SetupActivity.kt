@@ -179,53 +179,69 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        val itemId = item.itemId
         if (MenuHandler.menuDispatch(this, item)) {
             return true
-        } else if (itemId == R.id.action_diagnostics) {
-            val intent = Intent(this, DiagnosticsActivity::class.java)
-            startActivity(intent)
-            return true
-        } else if (itemId == R.id.action_logs) {
-            val intent = Intent(this, LogsActivity::class.java)
-            startActivity(intent)
-            return true
-        } else if (itemId == R.id.action_tables_and_indices) {
-            val intent = ManagerContract.makeTablesAndIndexesIntent(this)
-            intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_dbobject)
-            startActivity(intent)
-            return true
-        } else if (itemId == R.id.action_dirs) {
-            val message = reportStyledDirs(this)
-            AlertDialog.Builder(this)
-                .setTitle(R.string.action_dirs)
-                .setMessage(message)
-                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
-                .show()
-        } else if (itemId == R.id.action_storage_dirs) {
-            val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledStorageDirectoriesNamesValues(this)
-            val message = namesValuesToReportStyled(dirs)
-            AlertDialog.Builder(this)
-                .setTitle(R.string.action_storage_dirs)
-                .setMessage(message)
-                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
-                .show()
-        } else if (itemId == R.id.action_cache_dirs) {
-            val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledCachesNamesValues(this)
-            val message = namesValuesToReportStyled(dirs)
-            AlertDialog.Builder(this)
-                .setTitle(R.string.action_cache_dirs)
-                .setMessage(message)
-                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
-                .show()
-        } else if (itemId == R.id.action_download_dirs) {
-            val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledDownloadNamesValues(this)
-            val message = namesValuesToReportStyled(dirs)
-            AlertDialog.Builder(this)
-                .setTitle(R.string.action_download_dirs)
-                .setMessage(message)
-                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
-                .show()
+        }
+        when (item.itemId) {
+            R.id.action_diagnostics -> {
+                val intent = Intent(this, DiagnosticsActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+
+            R.id.action_logs -> {
+                val intent = Intent(this, LogsActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+
+            R.id.action_tables_and_indices -> {
+                val intent = ManagerContract.makeTablesAndIndexesIntent(this)
+                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_dbobject)
+                startActivity(intent)
+                return true
+            }
+
+            R.id.action_dirs -> {
+                val message = reportStyledDirs(this)
+                AlertDialog.Builder(this)
+                    .setTitle(R.string.action_dirs)
+                    .setMessage(message)
+                    .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
+                    .show()
+            }
+
+            R.id.action_storage_dirs -> {
+                val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledStorageDirectoriesNamesValues(this)
+                val message = namesValuesToReportStyled(dirs)
+                AlertDialog.Builder(this)
+                    .setTitle(R.string.action_storage_dirs)
+                    .setMessage(message)
+                    .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
+                    .show()
+            }
+
+            R.id.action_cache_dirs -> {
+                val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledCachesNamesValues(this)
+                val message = namesValuesToReportStyled(dirs)
+                AlertDialog.Builder(this)
+                    .setTitle(R.string.action_cache_dirs)
+                    .setMessage(message)
+                    .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
+                    .show()
+            }
+
+            R.id.action_download_dirs -> {
+                val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledDownloadNamesValues(this)
+                val message = namesValuesToReportStyled(dirs)
+                AlertDialog.Builder(this)
+                    .setTitle(R.string.action_download_dirs)
+                    .setMessage(message)
+                    .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
+                    .show()
+            }
+
+            else -> {}
         }
         return super.onOptionsItemSelected(item)
     }

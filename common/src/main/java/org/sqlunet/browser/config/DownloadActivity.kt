@@ -47,8 +47,8 @@ class DownloadActivity : com.bbou.download.workers.DownloadActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // handle home
         if (item.itemId == android.R.id.home) {
+            // handle home
             Log.d(TAG, "onHomePressed")
             rerun(this)
             return true

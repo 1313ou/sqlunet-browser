@@ -96,8 +96,7 @@ class SqlFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                val itemId = menuItem.itemId
-                return when (itemId) {
+                return when (menuItem.itemId) {
                     R.id.action_copy -> {
                         val sqls = stylizedSqls()
                         val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager

@@ -59,8 +59,7 @@ object MenuHandler {
      */
     fun menuDispatch(activity: AppCompatActivity, item: MenuItem): Boolean {
         val intent: Intent
-        // main
-        when (val itemId = item.itemId) {
+        when (item.itemId) {
             R.id.action_main -> {
                 intent = Intent(activity, MainActivity::class.java)
                 intent.addFlags(0)
@@ -143,7 +142,7 @@ object MenuHandler {
             }
 
             else -> {
-                return menuDispatchCommon(activity, itemId)
+                return menuDispatchCommon(activity, item.itemId)
             }
         }
         // start activity
@@ -160,9 +159,7 @@ object MenuHandler {
      */
     fun menuDispatchWhenCantRun(activity: AppCompatActivity, item: MenuItem): Boolean {
         val intent: Intent
-        // handle item selection
-        // status
-        when (val itemId = item.itemId) {
+        when (item.itemId) {
             R.id.action_status -> {
                 intent = Intent(activity, StatusActivity::class.java)
                 intent.addFlags(0)
@@ -193,7 +190,7 @@ object MenuHandler {
             }
 
             else -> {
-                return menuDispatchCommon(activity, itemId)
+                return menuDispatchCommon(activity, item.itemId)
             }
         }
         // start activity

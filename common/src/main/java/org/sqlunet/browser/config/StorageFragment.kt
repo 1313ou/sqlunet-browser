@@ -78,8 +78,7 @@ class StorageFragment : Fragment() {
                 val context = requireContext()
 
                 // handle item selection
-                val itemId = menuItem.itemId
-                when (itemId) {
+                when (menuItem.itemId) {
                     R.id.action_dirs -> {
                         val message = reportStyledDirs(context)
                         AlertDialog.Builder(context)

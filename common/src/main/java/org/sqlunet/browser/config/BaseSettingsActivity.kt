@@ -96,8 +96,7 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val itemId = item.itemId
-        when (itemId) {
+        when (item.itemId) {
             R.id.action_clear_settings -> {
                 resetSettings()
                 restart()
