@@ -269,7 +269,7 @@ class ExecAsyncTask
                                             sql = null
 
                                             // progress
-                                            val isInteractive = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) powerManager.isInteractive else @Suppress("DEPRECATION") powerManager.isScreenOn
+                                            val isInteractive = powerManager.isInteractive
                                             if (isInteractive) {
                                                 if (count % publishRate == 0) {
                                                     postProgress(Pair<Number, Number>(count, -1))
@@ -450,7 +450,7 @@ class ExecAsyncTask
                                         sql = null
 
                                         // progress
-                                        val isInteractive = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) powerManager.isInteractive else @Suppress("DEPRECATION") powerManager.isScreenOn
+                                        val isInteractive = powerManager.isInteractive
                                         if (isInteractive) {
                                             if (count % publishRate == 0) {
                                                 postProgress(Pair<Number, Number>(count, -1))
@@ -648,7 +648,7 @@ class ExecAsyncTask
                                                 sql = null
 
                                                 // progress
-                                                val isInteractive = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) powerManager.isInteractive else @Suppress("DEPRECATION") powerManager.isScreenOn
+                                                val isInteractive = powerManager.isInteractive
                                                 if (isInteractive) {
                                                     if (count % publishRate == 0) {
                                                         postProgress(Pair<Number, Number>(count, -1))

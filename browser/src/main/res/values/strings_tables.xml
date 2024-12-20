@@ -237,14 +237,14 @@
 		<item>fn_sentences_text_fts4</item>
 	</string-array>
 
-	<string-array name="non_required_tables">
+	<string-array name="non_required_tables" tools:ignore="InconsistentArrays">
 		<item>usages</item>
 		<item>wikidatas</item>
 		<item>ilis</item>
 		<item>sources</item>
 	</string-array>
 
-	<string-array name="non_required_indexes">
+	<string-array name="non_required_indexes" tools:ignore="InconsistentArrays">
 		<item>pk_usages</item>
 		<item>k_usages_synsetid</item>
 		<item>k_usages_luid</item>

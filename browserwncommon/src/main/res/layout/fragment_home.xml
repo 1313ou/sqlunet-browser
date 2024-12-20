@@ -4,7 +4,6 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/container_home"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
@@ -36,7 +35,6 @@
 		app:layout_anchorGravity="bottom|end"
 		app:srcCompat="@drawable/ic_search_browse"
 		app:tint="?attr/colorOnSecondary"
-		app:useCompatPadding="true"
-		tools:targetApi="lollipop" />
+		app:useCompatPadding="true" />
 
 </FrameLayout>

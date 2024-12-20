@@ -18,7 +18,6 @@ import org.sqlunet.assetpack.AssetPackLoader
 import org.sqlunet.assetpack.Settings
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.config.SetupDatabaseTasks.deleteDatabase
-import org.sqlunet.provider.BaseProvider.Companion.closeProviders
 import org.sqlunet.settings.StorageSettings
 import java.io.File
 

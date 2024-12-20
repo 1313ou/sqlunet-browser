@@ -18,7 +18,6 @@ class Discover {
 
     private var tts: TextToSpeech? = null
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun discoverVoices(context: Context, consumer: Consumer<List<Voice>>) {
         tts = TextToSpeech(context, OnInitListener { status: Int ->
             if (status != TextToSpeech.SUCCESS) {
@@ -40,7 +39,6 @@ class Discover {
         })
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     fun discoverVoice(context: Context, consumer: Consumer<Voice>) {
         tts = TextToSpeech(context, OnInitListener { status: Int ->
             if (status != TextToSpeech.SUCCESS) {
@@ -86,7 +84,6 @@ class Discover {
         })
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     fun discoverLanguages(context: Context, consumer: Consumer<List<Locale>>) {
         tts = TextToSpeech(context, OnInitListener { status: Int ->
             if (status != TextToSpeech.SUCCESS) {

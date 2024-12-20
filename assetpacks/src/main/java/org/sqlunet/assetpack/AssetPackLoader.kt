@@ -147,6 +147,11 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
                     observer.taskProgress(Pair<Number, Number>(percent2, -1))
                 }
 
+                AssetPackStatus.REQUIRES_USER_CONFIRMATION -> {
+                    Log.i(TAG, "Requires user confirmation")
+                    observer.taskUpdate(statusStr)
+                }
+
                 AssetPackStatus.WAITING_FOR_WIFI -> {
                     observer.taskUpdate(statusStr)
                     if (!waitForWifiConfirmationShown) {
@@ -234,6 +239,7 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
                 AssetPackStatus.CANCELED -> return "canceled"
                 AssetPackStatus.WAITING_FOR_WIFI -> return "waiting for wifi"
                 AssetPackStatus.NOT_INSTALLED -> return "not installed"
+                AssetPackStatus.REQUIRES_USER_CONFIRMATION -> return "requires user confirmation"
             }
             return "illegal"
         }

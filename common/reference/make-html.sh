@@ -29,7 +29,7 @@ for xml in ${wherefrom}/*.xml; do
 	trans=`basename ${xsl}`
 	echo -en "${C}xslt${Z} ${M}${src}${Z}${K}-${trans}->${dst}${Z}"
 	if ! ./xsl-transform.sh "${xml}" "${whereto}/${html}" "${xsl}" html; then
-		echo -e "${R} XST failes ${xml}${Z}"
+		echo -e "${R} XST failed ${xml}${Z}"
 	else
 	        echo -e "${G} OK${Z}"
 	fi

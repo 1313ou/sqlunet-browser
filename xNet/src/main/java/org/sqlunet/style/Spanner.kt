@@ -175,8 +175,8 @@ open class Spanner {
          * @param sb       spannable string builder
          * @param text     text
          * @param listener click listener
-         * @param context  context
          */
+        @Suppress("unused")
         fun appendClickableText(sb: SpannableStringBuilder, text: CharSequence, listener: () -> Unit) {
             val span: ClickableSpan = object : ClickableSpan() {
 
@@ -194,6 +194,7 @@ open class Spanner {
             appendWithSpans(sb, text, span)
         }
 
+        @Suppress("unused")
         fun prepareTextViewForClickableSpan(tv: TextView) {
             tv.movementMethod = LinkMovementMethod.getInstance()
             tv.isFocusable = true

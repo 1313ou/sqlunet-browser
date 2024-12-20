@@ -78,7 +78,7 @@
 	</string-array>
 
 
-	<string-array name="non_required_tables">
+	<string-array name="non_required_tables" tools:ignore="InconsistentArrays">
 		<item>sources</item>
 	</string-array>
 

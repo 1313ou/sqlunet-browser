@@ -30,12 +30,8 @@ object ColorUtils {
     }
 
     fun tint(drawable: Drawable, color: Int) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            drawable.setTint(color)
-            //DrawableCompat.setTint(drawable, iconTint)
-        } else {
-            DrawableCompat.setTint(DrawableCompat.wrap(drawable), color)
-        }
+        drawable.setTint(color)
+        //DrawableCompat.setTint(drawable, iconTint)
     }
 
     fun getColors(context: Context, vararg colorRes: Int): IntArray {

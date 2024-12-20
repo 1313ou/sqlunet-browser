@@ -13,7 +13,6 @@ class Application : CommonApplication() {
      * @return true if flagged in build config
      */
     override fun dropData(): Boolean {
-        @Suppress("KotlinConstantConditions")
         return BuildConfig.DROP_DATA
     }
 }

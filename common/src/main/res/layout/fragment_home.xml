@@ -21,11 +21,11 @@
 
 	<com.google.android.material.floatingactionbutton.FloatingActionButton
 		android:id="@+id/fab"
-		android:background="@null"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="bottom|end"
 		android:layout_margin="@dimen/fab_margin"
+		android:background="@null"
 		android:clickable="true"
 		android:contentDescription="@string/title_activity_browse"
 		android:elevation="4dp"
@@ -37,7 +37,6 @@
 		app:layout_anchorGravity="bottom|end"
 		app:srcCompat="@drawable/ic_search_browse"
 		app:tint="?attr/colorOnSecondary"
-		app:useCompatPadding="true"
-		tools:targetApi="lollipop" />
+		app:useCompatPadding="true" />
 
 </FrameLayout>

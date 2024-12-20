@@ -33,7 +33,7 @@ class TTS(context: Context?, written: String, ipa: String, locale: Locale?, voic
                     return@TextToSpeech
                 }
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && voiceName != null) {
+            if (voiceName != null) {
                 val voice = getVoice(voiceName)
                 if (voice != null) {
                     if (locale != null && voice.locale.country == locale.country) {
@@ -74,18 +74,10 @@ class TTS(context: Context?, written: String, ipa: String, locale: Locale?, voic
                 }
             })
             Log.d(TAG, "pronounce $written $ipa \"$text\"")
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, written + '_' + ipa)
-            } else {
-                val params = HashMap<String, String>()
-                params[TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID] = written + '_' + ipa
-                @Suppress("DEPRECATION")
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, params)
-            }
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, written + '_' + ipa)
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private fun getVoice(voiceName: String): Voice? {
         val voices = tts.voices
         if (voices == null) {

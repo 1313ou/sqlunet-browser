@@ -37,8 +37,7 @@
 		app:layout_anchorGravity="bottom|end"
 		app:srcCompat="@drawable/ic_search_browse"
 		app:tint="?attr/colorOnSecondary"
-		app:useCompatPadding="true"
-		tools:targetApi="lollipop" />
+		app:useCompatPadding="true" />
 
 </FrameLayout>
 

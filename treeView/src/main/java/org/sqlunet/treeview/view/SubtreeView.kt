@@ -103,7 +103,6 @@ class SubtreeView : LinearLayout {
      * @param treeIndent     tree indent
      * @param nodeView       node view (group)
      */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int, containerStyle: Int, treeIndent: Int, nodeView: View) : super(context, attrs, defStyleAttr, defStyleRes) {
         this.containerStyle = containerStyle
         this.treeIndent = treeIndent

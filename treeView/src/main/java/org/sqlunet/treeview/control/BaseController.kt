@@ -14,7 +14,7 @@ import org.sqlunet.treeview.R
 import org.sqlunet.treeview.model.TreeNode
 
 /**
- * Base class for all controllerx
+ * Base class for all controllers
  *
  * @param breakExpand whether this controller breaks expansion
  *
