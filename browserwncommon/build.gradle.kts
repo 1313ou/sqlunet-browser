@@ -2,9 +2,9 @@ import java.util.Properties
 
 plugins {
     id("com.android.library")
-    id("androidx.navigation.safeargs")
-    id("org.jetbrains.kotlin.android") version "2.1.0"
-}
+    kotlin("android") version "2.1.0"
+    id("androidx.navigation.safeargs.kotlin")
+ }
 
 private val vCode by lazy { rootProject.extra["versionCode"] as Int }
 private val vName by lazy { rootProject.extra["versionName"] as String }

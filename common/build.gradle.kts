@@ -1,9 +1,9 @@
 
 plugins {
     id("com.android.library")
-    id("androidx.navigation.safeargs")
-    id("org.jetbrains.kotlin.android") version "2.1.0"
-}
+    kotlin("android") version "2.1.0"
+    id("androidx.navigation.safeargs.kotlin")
+ }
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
