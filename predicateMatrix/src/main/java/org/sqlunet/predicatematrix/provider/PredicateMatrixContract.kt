@@ -60,11 +60,11 @@ object PredicateMatrixContract {
         const val VNCLASS = V.CLASS
         const val VNROLETYPEID = V.VNROLETYPEID
         const val VNROLETYPE = V.VNROLETYPE
-        const val PBROLESETNAME = V._PBROLESETNAME
-        const val PBROLESETDESCR = V._PBROLESETDESCR
-        const val PBROLESETHEAD = V._PBROLESETHEAD
-        const val PBROLEDESCR = V._PBROLEDESCR
-        const val PBROLEARGTYPE = V._PBARGTYPE
+        const val PBROLESETNAME = V.PBROLESETNAME
+        const val PBROLESETDESCR = V.PBROLESETDESCR
+        const val PBROLESETHEAD = V.PBROLESETHEAD
+        const val PBROLEDESCR = V.PBROLEDESCR
+        const val PBROLEARGTYPE = V.PBARGTYPE
         const val FNFETYPEID = V.FNFETYPEID
         const val FNFRAME = V._FNFRAME
         const val FNFRAMEDEFINITION = V._FNFRAMEDEFINITION
