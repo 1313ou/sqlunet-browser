@@ -9,7 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.NavOptions
+import androidx.navigation.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.sqlunet.browser.common.R
 
@@ -31,8 +32,14 @@ open class HomeFragment : Fragment() {
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
             val activity = requireActivity()
-            val navHostFragment = (activity.supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?)!!
-            navHostFragment.navController.navigate(R.id.nav_search_browse)
+            val navController = activity.findNavController(R.id.nav_host_fragment)
+            navController.navigate(
+                R.id.nav_search_browse,
+                null,
+                NavOptions.Builder()
+                    .setPopUpTo(R.id.nav_home, true)  // clear back stack up to nav_home inclusive
+                    .build()
+            )
         }
     }
 
