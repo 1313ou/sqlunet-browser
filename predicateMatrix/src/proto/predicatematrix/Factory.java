@@ -44,9 +44,9 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"LEFT JOIN ${predicates.table} AS ${as_pmpredicates} USING (${predicates.predicateid}) " + //
 						"LEFT JOIN ${wnsynsets.table} USING (${wnsynsets.synsetid}) " + //
 
-						"LEFT JOIN ${vn_classes.table} AS ${as_vnclasses} ON ${pms.vn_classid} = ${as_vnclasses}.${vn_classes.vnclassid} " + //
-						"LEFT JOIN ${vn_roles.table} AS ${as_vnroles} ON ${pms.vn_roleid} = ${as_vnroles}.${vn_roles.vnroleid} " + //
-						"LEFT JOIN ${vn_roletypes.table} AS ${as_vnroletypes} ON ${as_vnroles}.${vn_roletypes.vnroletypeid} = ${as_vnroletypes}.${vn_roletypes.vnroletypeid} " + //
+						"LEFT JOIN ${vnclasses.table} AS ${as_vnclasses} ON ${pms.vn_classid} = ${as_vnclasses}.${vnclasses.vnclassid} " + //
+						"LEFT JOIN ${vnroles.table} AS ${as_vnroles} ON ${pms.vn_roleid} = ${as_vnroles}.${vnroles.vnroleid} " + //
+						"LEFT JOIN ${vnroletypes.table} AS ${as_vnroletypes} ON ${as_vnroles}.${vnroletypes.vnroletypeid} = ${as_vnroletypes}.${vnroletypes.vnroletypeid} " + //
 
 						"LEFT JOIN ${pb_rolesets.table} AS ${as_pbrolesets} ON ${pms.pb_rolesetid} = ${as_pbrolesets}.${pb_rolesets.pbrolesetid} " + //
 						"LEFT JOIN ${pb_roles.table} AS ${as_pbroles} ON ${pms.pb_roleid} = ${as_pbroles}.${pb_roles.pbroleid} " + //
