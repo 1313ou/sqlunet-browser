@@ -57,7 +57,7 @@ object PredicateMatrixContract {
     object Pm_X { // : PredicateMatrix
         const val URI = "pm_x"
         const val DEFINITION = V.DEFINITION
-        const val VNCLASS = V.CLASS
+        const val VNCLASS = V.VNCLASS
         const val VNROLETYPEID = V.VNROLETYPEID
         const val VNROLETYPE = V.VNROLETYPE
         const val PBROLESETNAME = V.PBROLESETNAME
