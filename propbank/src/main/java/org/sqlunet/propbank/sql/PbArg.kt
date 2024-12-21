@@ -28,8 +28,10 @@ internal class PbArg private constructor(
      * @param argFields argument fields
      */
     constructor(vararg argFields: String) : this(
-        argFields[0], if ("*" == argFields[1])
-            null else argFields[1], argFields[2].lowercase(), if ("*" == argFields[3])
-            null else argFields[3], argFields[4]
+        argFields[0],
+        if ("*" == argFields[1]) null else argFields[1],
+        argFields[2].lowercase(),
+        if ("*" == argFields[3]) null else argFields[3],
+        argFields[4]
     )
 }

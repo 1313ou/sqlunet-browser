@@ -52,36 +52,6 @@ internal class PbExampleQueryFromRoleSetId(connection: SQLiteDatabase, roleSetId
             return args
         }
 
-    /**
-     * Aspect from cursor
-     */
-    val aspect: String?
-        get() = cursor!!.getString(4)
-
-    /**
-     * Form from cursor
-     */
-    val form: String?
-        get() = cursor!!.getString(5)
-
-    /**
-     * Tense from cursor
-     */
-    val tense: String?
-        get() = cursor!!.getString(6)
-
-    /**
-     * Get voice from cursor
-     */
-    val voice: String?
-        get() = cursor!!.getString(7)
-
-    /**
-     * Person from cursor
-     */
-    val person: String?
-        get() = cursor!!.getString(8)
-
     companion object {
 
         /**
