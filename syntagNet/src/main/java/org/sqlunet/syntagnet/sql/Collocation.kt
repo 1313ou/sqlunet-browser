@@ -126,7 +126,7 @@ internal open class Collocation private constructor(
              */
             fun makeFromWordIdAndSynsetIds(connection: SQLiteDatabase, targetWordId: Long, targetSynsetId: Long, targetWord2Id: Long, targetSynset2Id: Long): List<WithDefinitionAndPos> {
                 val result: MutableList<WithDefinitionAndPos> = ArrayList()
-                CollocationNullableQueryFromWordIdsAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id).use {
+                CollocationQueryFromWordIdsAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id).use {
                     it.execute()
                     while (it.next()) {
                         val collocation = makeCollocationWithDefinitionAndPos(it)

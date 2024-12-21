@@ -4,6 +4,7 @@
 package org.sqlunet.syntagnet.sql
 
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 import org.sqlunet.dom.DomFactory.makeDocument
 import org.sqlunet.dom.DomTransformer.docToString
 import org.sqlunet.sql.NodeFactory.makeNode
@@ -127,6 +128,7 @@ class SyntagNetImplementation : SyntagNetInterface {
     override fun queryDoc(connection: SQLiteDatabase, wordId: Long, synsetId: Long?, word2Id: Long, synset2Id: Long?): Document {
         val doc = makeDocument()
         val wordNode = makeSnRootNode(doc, wordId)
+        Log.d(TAG, "wordId: $wordId, synsetId: $synsetId, word2Id: $word2Id, synset2Id: $synset2Id")
         if ((synsetId == null || synsetId < 1L) || (synset2Id == null || synset2Id < 1L)) {
             walk2(connection, doc, wordNode, wordId, word2Id)
         } else {
@@ -177,6 +179,8 @@ class SyntagNetImplementation : SyntagNetInterface {
     }
 
     companion object {
+
+        const val TAG = "SyntagNetImpl"
 
         const val SN_NS = "http://org.sqlunet/sn"
 
