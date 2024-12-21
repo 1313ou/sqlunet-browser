@@ -11,16 +11,17 @@ class SqLiteDialect
 {
 	// collocations
 	// query for collocation from collocation id
-	private static final String SyntagNetBaseCollocationQuery = "SELECT	${syntagms.syntagmid}, " + //
-			"${syntagms.word1id}, ${as_words1}.${wnwords.word} AS ${word1}, ${syntagms.synset1id}, ${as_synsets1}.${wnsynsets.posid} AS ${pos1}, ${as_synsets1}.${wnsynsets.definition} AS ${definition1}, " + //
-			"${syntagms.word2id}, ${as_words2}.${wnwords.word} AS ${word2}, ${syntagms.synset2id}, ${as_synsets2}.${wnsynsets.posid} AS ${pos2}, ${as_synsets2}.${wnsynsets.definition} AS ${definition2} " + //
-			"FROM ${syntagms.table} " + //
-			"JOIN ${wnwords.table} AS ${as_words1} ON (${syntagms.word1id} = ${as_words1}.${wnwords.wordid}) " + //
-			"JOIN ${wnwords.table} AS ${as_words2} ON (${syntagms.word2id} = ${as_words2}.${wnwords.wordid}) " + //
-			"JOIN ${wnsynsets.table} AS ${as_synsets1} ON (${syntagms.synset1id} = ${as_synsets1}.${wnsynsets.synsetid}) " + //
-			"JOIN ${wnsynsets.table} AS ${as_synsets2} ON (${syntagms.synset2id} = ${as_synsets2}.${wnsynsets.synsetid}) ";
+	private static final String SyntagNetBaseCollocationQuery = //
+			"SELECT	${syntagms.syntagmid}, " + //
+					"${syntagms.word1id}, ${as_words1}.${wnwords.word} AS ${word1}, ${syntagms.synset1id}, ${as_synsets1}.${wnsynsets.posid} AS ${pos1}, ${as_synsets1}.${wnsynsets.definition} AS ${definition1}, " + //
+					"${syntagms.word2id}, ${as_words2}.${wnwords.word} AS ${word2}, ${syntagms.synset2id}, ${as_synsets2}.${wnsynsets.posid} AS ${pos2}, ${as_synsets2}.${wnsynsets.definition} AS ${definition2} " + //
+					"FROM ${syntagms.table} " + //
+					"JOIN ${wnwords.table} AS ${as_words1} ON (${syntagms.word1id} = ${as_words1}.${wnwords.wordid}) " + //
+					"JOIN ${wnwords.table} AS ${as_words2} ON (${syntagms.word2id} = ${as_words2}.${wnwords.wordid}) " + //
+					"JOIN ${wnsynsets.table} AS ${as_synsets1} ON (${syntagms.synset1id} = ${as_synsets1}.${wnsynsets.synsetid}) " + //
+					"JOIN ${wnsynsets.table} AS ${as_synsets2} ON (${syntagms.synset2id} = ${as_synsets2}.${wnsynsets.synsetid}) ";
 
-	private static final String SyntagNetBaseCollocationOrder = "ORDER BY ${as_words1}.${wnwords.word}, ${as_words2}.${wnwords.word}";
+	public static final String SyntagNetBaseCollocationOrder = "ORDER BY ${as_words1}.${wnwords.word}, ${as_words2}.${wnwords.word}";
 
 	// query for collocation from collocation id
 	static final String SyntagNetCollocationQuery = SyntagNetBaseCollocationQuery + //
@@ -47,8 +48,25 @@ class SqLiteDialect
 			"WHERE (${as_words1}.${wnwords.wordid} = ? AND ${as_synsets1}.${wnsynsets.synsetid} = ?) OR (${as_words2}.${wnwords.wordid} = ? AND ${as_synsets2}.${wnsynsets.synsetid} = ?) " + //
 			SyntagNetBaseCollocationOrder + ";";
 
+	static final String SyntagNetCollocationWhereSynsetIdClause = //
+			"${as_synsets1}.${wnsynsets.synsetid} = ?"
+
+	static final String SyntagNetCollocationWhereSynset2IdClause = //
+			"${as_synsets2}.${wnsynsets.synsetid} = ?"
+
+	static final String SyntagNetCollocationWhereWordIdClause = //
+			"${as_words1}.${wnsynsets.synsetid} = ?"
+
+	static final String SyntagNetCollocationWhereWord2IdClause = //
+			"${as_words2}.${wnsynsets.synsetid} = ?"
+
 	// query for collocation from word ids and synset ids
 	static final String SyntagNetCollocationQueryFromWordIdsAndSynsetIds = SyntagNetBaseCollocationQuery +//
-			"WHERE (${as_words1}.${wnwords.wordid} = ? AND ${as_synsets1}.${wnsynsets.synsetid} = ?) AND (${as_words2}.${wnwords.wordid} = ? AND ${as_synsets2}.${wnsynsets.synsetid} = ?) " + //
-			SyntagNetBaseCollocationOrder + ";";
+			"WHERE " + //
+			SyntagNetCollocationWhereWordIdClause + " AND " + //
+			SyntagNetCollocationWhereSynsetIdClause + " AND " + //
+			SyntagNetCollocationWhereWord2IdClause + " AND " + //
+			SyntagNetCollocationWhereSynset2IdClause + " " + //
+			SyntagNetBaseCollocationOrder + //
+			";";
 }

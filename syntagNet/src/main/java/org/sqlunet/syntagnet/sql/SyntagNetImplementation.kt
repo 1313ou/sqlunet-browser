@@ -114,10 +114,20 @@ class SyntagNetImplementation : SyntagNetInterface {
         return docToString(doc)
     }
 
+    /**
+     * Business method that returns SyntagNet data as DOM document from word ids and synset ids
+     *
+     * @param connection connection
+     * @param wordId     target word id
+     * @param synsetId   is the synset id to build query from (nullable)
+     * @param word2Id    target word id
+     * @param synset2Id  is the synset id to build query from (nullable)
+     * @return SyntagNet data as DOM document
+     */
     override fun queryDoc(connection: SQLiteDatabase, wordId: Long, synsetId: Long?, word2Id: Long, synset2Id: Long?): Document {
         val doc = makeDocument()
         val wordNode = makeSnRootNode(doc, wordId)
-        if (synsetId == null || synset2Id == null) {
+        if ((synsetId == null || synsetId < 1L) || (synset2Id == null || synset2Id < 1L)) {
             walk2(connection, doc, wordNode, wordId, word2Id)
         } else {
             walk2(connection, doc, wordNode, wordId, synsetId, word2Id, synset2Id)
@@ -125,6 +135,16 @@ class SyntagNetImplementation : SyntagNetInterface {
         return doc
     }
 
+    /**
+     * Business method that returns SyntagNet data as XML from word ids and synset ids
+     *
+     * @param connection connection
+     * @param wordId     target word id
+     * @param synsetId   is the synset id to build query from (nullable)
+     * @param word2Id    target word id
+     * @param synset2Id  is the synset id to build query from (nullable)
+     * @return SyntagNet data as XML
+     */
     override fun queryXML(connection: SQLiteDatabase, wordId: Long, synsetId: Long?, word2Id: Long, synset2Id: Long?): String {
         val doc = queryDoc(connection, wordId, synsetId, word2Id, synset2Id)
         return docToString(doc)
