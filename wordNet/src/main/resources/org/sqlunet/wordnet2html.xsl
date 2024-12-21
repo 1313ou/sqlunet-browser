@@ -210,12 +210,14 @@
 	</xsl:template>
 
 	<xsl:template match="sample">
-		<LI class="treeitem">
-			<IMG class="dataimg" src="images/xnet/sample.png" />
-			<SPAN class="wnsample">
-				<xsl:apply-templates select="./text()" />
-			</SPAN>
-		</LI>
+		<xsl:if test="./text()">
+			<LI class="treeitem">
+				<IMG class="dataimg" src="images/xnet/sample.png" />
+				<SPAN class="wnsample">
+					<xsl:apply-templates select="./text()" />
+				</SPAN>
+			</LI>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="relations">
