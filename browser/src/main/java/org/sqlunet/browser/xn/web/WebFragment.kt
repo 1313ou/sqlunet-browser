@@ -485,7 +485,7 @@ class WebFragment : Fragment() {
                 writeLog(data, false, requireContext(), LogUtils.DOC_LOG)
                 val xsd = DocumentTransformer::class.java.getResource("/org/sqlunet/SqlUNet.xsd")!!
                 validateStrings(xsd, data)
-                Log.d(TAG, "output=\n$data")
+                // Log.d(TAG, "output=\n$data")
             }
         } else {
             val sb = StringBuilder()
@@ -571,7 +571,7 @@ class WebFragment : Fragment() {
                 validateDocs(xsd, wnDomDoc, vnDomDoc, pbDomDoc, fnDomDoc, bncDomDoc)
                 writeLog(false, requireContext(), null, wnDomDoc, vnDomDoc, pbDomDoc, fnDomDoc, bncDomDoc)
                 writeLog(data, false, requireContext(), LogUtils.DOC_LOG)
-                Log.d(TAG, "output=\n$data")
+                // Log.d(TAG, "output=\n$data")
             }
         }
         return data
