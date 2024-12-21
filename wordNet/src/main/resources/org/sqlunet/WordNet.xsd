@@ -275,6 +275,8 @@
 
 	<xs:element name='is_exemplified_by' type="bothrelationType" />
 
+	<xs:element name='collocation' type="lexrelationType" />
+
 	<xs:element name='relations'>
 		<xs:complexType>
 			<xs:sequence>
@@ -306,6 +308,7 @@
 				<xs:element minOccurs='0' ref='domain_member_region' />
 				<xs:element minOccurs='0' ref='exemplifies' />
 				<xs:element minOccurs='0' ref='is_exemplified_by' />
+				<xs:element minOccurs='0' ref='collocation' />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
