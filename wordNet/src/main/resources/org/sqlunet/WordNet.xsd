@@ -21,9 +21,10 @@
 
 	<xs:simpleType name="domainType">
 		<xs:restriction base='xs:string'>
-			<xs:enumeration value='all' />
+			<xs:enumeration value='adjs' />
 			<xs:enumeration value='pert' />
 			<xs:enumeration value='ppl' />
+			<xs:enumeration value='advs' />
 			<xs:enumeration value='tops' />
 			<xs:enumeration value='act' />
 			<xs:enumeration value='animal' />
