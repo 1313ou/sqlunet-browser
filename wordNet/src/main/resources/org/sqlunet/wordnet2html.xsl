@@ -235,7 +235,7 @@
 	</xsl:template>
 
 	<!-- lexical -->
-	<xsl:template match="antonym|participle|pertainym|derivation">
+	<xsl:template match="antonym|participle|pertainym|derivation|collocation">
 		<xsl:call-template name="_relation">
 			<xsl:with-param name="type" select="name()" />
 			<xsl:with-param name="relationclass" select="'[lex]'" />
