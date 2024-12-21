@@ -77,7 +77,7 @@ class WordNetImplementation : WordNetInterface {
         addAttributes(
             rootNode,
             "word", word,
-            "withRelations", withRelations.toString(),
+            "withrelations", withRelations.toString(),
             "recurse", recurse.toString()
         )
         walk(connection, word, doc, rootNode, withRelations, recurse, Mapping.ANY_TYPE, Mapping.ANY_TYPE, Mapping.ANY_TYPE)
@@ -101,7 +101,7 @@ class WordNetImplementation : WordNetInterface {
             rootNode,
             "wordid", wordId.toString(),
             "synsetid", synsetId.toString(),
-            "withRelations", withRelations.toString(),
+            "withrelations", withRelations.toString(),
             "recurse", recurse.toString()
         )
         walkSense(connection, wordId, synsetId, doc, rootNode, withRelations, recurse, Mapping.ANY_TYPE)
