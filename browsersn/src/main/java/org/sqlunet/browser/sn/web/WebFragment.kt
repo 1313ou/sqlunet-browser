@@ -83,10 +83,10 @@ class WebFragment : Fragment() {
                     if (isSelector) {
                         // this is a selector query
                         if (org.sqlunet.browser.sn.SnSettings.Source.WORDNET.test(sources)) {
-                            wnDomDoc = WordNetImplementation().querySelectorDoc(db, data!!)
+                            wnDomDoc = WordNetImplementation().querySelectorDoc(db, data)
                         }
                         if (org.sqlunet.browser.sn.SnSettings.Source.SYNTAGNET.test(sources)) {
-                            snDomDoc = SyntagNetImplementation().querySelectorDoc(db, data!!)
+                            snDomDoc = SyntagNetImplementation().querySelectorDoc(db, data)
                         }
                     } else {
                         // this is a detail query
@@ -184,7 +184,7 @@ class WebFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return try {
             inflater.inflate(R.layout.fragment_web, container, false)
-        } catch (e: InflateException) {
+        } catch (_: InflateException) {
             Toast.makeText(requireContext(), "No WebView support", Toast.LENGTH_LONG).show()
             null
         }
@@ -213,7 +213,8 @@ class WebFragment : Fragment() {
             Log.d(TAG, "onLoadFinished")
             val mimeType = if (xml) "text/xml" else "text/html"
             val baseUrl = "file:///android_asset/"
-            webview!!.loadDataWithBaseURL(baseUrl, doc!!, mimeType, "utf-8", null)
+            if (webview != null && doc != null)
+                webview!!.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", null)
         }
     }
 
