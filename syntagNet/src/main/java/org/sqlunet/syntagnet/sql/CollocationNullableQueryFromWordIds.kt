@@ -18,10 +18,10 @@ import org.sqlunet.syntagnet.sql.SqLiteDialect.SyntagNetBaseCollocationQuery
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class CollocationNullableQueryFromWordIdsAndSynsetIds(connection: SQLiteDatabase, wordid: Long?, synsetid: Long?, word2id: Long?, synset2id: Long?) : BaseCollocationQuery(connection, getQuery(wordid, synsetid, word2id, synset2id)) {
+internal class CollocationNullableQueryFromWordIds(connection: SQLiteDatabase, wordid: Long?, word2id: Long?) : BaseCollocationQuery(connection, getQuery(wordid, word2id)) {
 
     init {
-        val ids = listOf(wordid, synsetid, word2id, synset2id)
+        val ids = listOf(wordid, word2id)
         val params = ids
             .asSequence()
             .withIndex()
@@ -36,19 +36,17 @@ internal class CollocationNullableQueryFromWordIdsAndSynsetIds(connection: SQLit
 
         val wheres = mapOf(
             0 to SqLiteDialect.SyntagNetCollocationWhereWordIdClause,
-            1 to SqLiteDialect.SyntagNetCollocationWhereSynsetIdClause,
-            2 to SqLiteDialect.SyntagNetCollocationWhereWord2IdClause,
-            3 to SqLiteDialect.SyntagNetCollocationWhereSynset2IdClause,
-        )
+            1 to SqLiteDialect.SyntagNetCollocationWhereWord2IdClause,
+         )
 
-        private fun getQuery(wordid: Long?, synsetid: Long?, word2id: Long?, synset2id: Long?): String {
-            val ids = listOf(wordid, synsetid, word2id, synset2id)
+        private fun getQuery(wordid: Long?, word2id: Long?): String {
+            val ids = listOf(wordid, word2id)
             return SyntagNetBaseCollocationQuery + " WHERE "  + ids
                 .asSequence()
                 .withIndex()
                 .filter { (i, _) -> ids[i] != null && ids[i]!! > 0L }
                 .map { (i, _) -> wheres[i] }
-                .joinToString(separator = " AND ") + ' ' + SyntagNetBaseCollocationOrder
+                .joinToString(separator = " OR ") + ' ' + SyntagNetBaseCollocationOrder
         }
     }
 }
