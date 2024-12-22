@@ -14,7 +14,7 @@ import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion.make
 import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion.makeFromWord
 import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion.makeFromWordId
 import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion.makeFromWordIdAndSynsetId
-import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion.makeFromWordIdAndSynsetIds
+import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion.makeFromWordIdsAndSynsetIds
 import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion.makeFromWordIds
 import org.sqlunet.syntagnet.sql.SnNodeFactory.makeCollocationNode
 import org.sqlunet.syntagnet.sql.SnNodeFactory.makeSelectorCollocationNode
@@ -281,7 +281,7 @@ class SyntagNetImplementation : SyntagNetInterface {
          */
         private fun walk2(connection: SQLiteDatabase, doc: Document, parent: Node, targetWordId: Long, targetSynsetId: Long, targetWord2Id: Long, targetSynset2Id: Long) {
             // collocations
-            val collocations = makeFromWordIdAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id)
+            val collocations = makeFromWordIdsAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id)
             walk(doc, parent, collocations)
         }
 
