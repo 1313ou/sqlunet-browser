@@ -272,7 +272,7 @@
 				<xsl:value-of select="name()" />
 			</SPAN>
 			<![CDATA[ ]]>
-			<xsl:value-of select="$relationclass" />
+			<!-- <xsl:value-of select="$relationclass" /> -->
 			<xsl:if test="count(./wn:synset)&gt;0">
 				<UL style="display: block;">
 					<xsl:apply-templates select="./wn:synset" />
