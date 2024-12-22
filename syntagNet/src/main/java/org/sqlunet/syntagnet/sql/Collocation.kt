@@ -45,7 +45,7 @@ internal open class Collocation private constructor(
              * @return list of SyntagNet collocations
              */
             fun makeFromWord(connection: SQLiteDatabase, targetWord: String): List<WithDefinitionAndPos> {
-                val result: MutableList<WithDefinitionAndPos> = ArrayList()
+                val result = ArrayList<WithDefinitionAndPos>()
                 CollocationQueryFromWord(connection, targetWord).use {
                     it.execute()
                     while (it.next()) {
@@ -64,7 +64,7 @@ internal open class Collocation private constructor(
              * @return list of SyntagNet collocations
              */
             fun makeFromWordId(connection: SQLiteDatabase, targetWordId: Long): List<WithDefinitionAndPos> {
-                val result: MutableList<WithDefinitionAndPos> = ArrayList()
+                val result = ArrayList<WithDefinitionAndPos>()
                 CollocationQueryFromWordId(connection, targetWordId).use {
                     it.execute()
                     while (it.next()) {
@@ -84,7 +84,7 @@ internal open class Collocation private constructor(
              * @return list of SyntagNet collocations
              */
             fun makeFromWordIds(connection: SQLiteDatabase, targetWordId: Long, targetWord2Id: Long): List<WithDefinitionAndPos> {
-                val result: MutableList<WithDefinitionAndPos> = ArrayList()
+                val result = ArrayList<WithDefinitionAndPos>()
                 CollocationQueryFromWordIds(connection, targetWordId, targetWord2Id).use {
                     it.execute()
                     while (it.next()) {
@@ -103,7 +103,7 @@ internal open class Collocation private constructor(
              * @return list of SyntagNet collocations
              */
             fun makeFromWordIdAndSynsetId(connection: SQLiteDatabase, targetWordId: Long, targetSynsetId: Long): List<WithDefinitionAndPos> {
-                val result: MutableList<WithDefinitionAndPos> = ArrayList()
+                val result = ArrayList<WithDefinitionAndPos>()
                 CollocationQueryFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId).use {
                     it.execute()
                     while (it.next()) {
@@ -124,8 +124,8 @@ internal open class Collocation private constructor(
              * @param targetSynset2Id is the synset 2 id to build query from
              * @return list of SyntagNet collocations
              */
-            fun makeFromWordIdAndSynsetIds(connection: SQLiteDatabase, targetWordId: Long, targetSynsetId: Long, targetWord2Id: Long, targetSynset2Id: Long): List<WithDefinitionAndPos> {
-                val result: MutableList<WithDefinitionAndPos> = ArrayList()
+            fun makeFromWordIdsAndSynsetIds(connection: SQLiteDatabase, targetWordId: Long, targetSynsetId: Long, targetWord2Id: Long, targetSynset2Id: Long): List<WithDefinitionAndPos> {
+                val result = ArrayList<WithDefinitionAndPos>()
                 CollocationQueryFromWordIdsAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id).use {
                     it.execute()
                     while (it.next()) {
@@ -144,7 +144,7 @@ internal open class Collocation private constructor(
              * @return list of SyntagNet collocations
              */
             fun make(connection: SQLiteDatabase, collocationId: Long): List<WithDefinitionAndPos> {
-                val result: MutableList<WithDefinitionAndPos> = ArrayList()
+                val result = ArrayList<WithDefinitionAndPos>()
                 CollocationQuery(connection, collocationId).use {
                     it.execute()
                     while (it.next()) {
