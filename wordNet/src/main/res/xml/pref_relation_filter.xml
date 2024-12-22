@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	app:title="@string/pref_header_relation_filter">
+
+	<!-- app:index is to follow ordinal of Settings.RelationReference -->
+	<PreferenceCategory android:title="@string/pref_subheader_relation_filter_general">
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_hypernym"
+			android:title="@string/pref_title_hypernym"
+			app:aggregateKey="pref_relation_filter"
+			app:index="0"
+			app:icon="@drawable/ic_hypernym"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_hypernym_instance"
+			android:title="@string/pref_title_hypernym_instance"
+			app:aggregateKey="pref_relation_filter"
+			app:index="1"
+			app:icon="@drawable/ic_instance_hypernym"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_hyponym"
+			android:title="@string/pref_title_hyponym"
+			app:aggregateKey="pref_relation_filter"
+			app:index="2"
+			app:icon="@drawable/ic_hyponym"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_hyponym_instance"
+			android:title="@string/pref_title_hyponym_instance"
+			app:aggregateKey="pref_relation_filter"
+			app:index="3"
+			app:icon="@drawable/ic_instance_hyponym"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_holonym_member"
+			android:title="@string/pref_title_holonym_member"
+			app:aggregateKey="pref_relation_filter"
+			app:index="4"
+			app:icon="@drawable/ic_member_holonym"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_holonym_substance"
+			android:title="@string/pref_title_holonym_substance"
+			app:aggregateKey="pref_relation_filter"
+			app:index="5"
+			app:icon="@drawable/ic_substance_holonym"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_holonym_part"
+			android:title="@string/pref_title_holonym_part"
+			app:aggregateKey="pref_relation_filter"
+			app:index="6"
+			app:icon="@drawable/ic_part_holonym"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_meronym_member"
+			android:title="@string/pref_title_meronym_member"
+			app:aggregateKey="pref_relation_filter"
+			app:index="7"
+			app:icon="@drawable/ic_member_meronym"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_meronym_substance"
+			android:title="@string/pref_title_meronym_substance"
+			app:aggregateKey="pref_relation_filter"
+			app:index="8"
+			app:icon="@drawable/ic_substance_meronym"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_meronym_part"
+			android:title="@string/pref_title_meronym_part"
+			app:aggregateKey="pref_relation_filter"
+			app:index="9"
+			app:icon="@drawable/ic_part_meronym"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_antonym"
+			android:title="@string/pref_title_antonym"
+			app:aggregateKey="pref_relation_filter"
+			app:index="10"
+			app:icon="@drawable/ic_antonym"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_entails"
+			android:title="@string/pref_title_entails"
+			app:aggregateKey="pref_relation_filter"
+			app:index="11"
+			app:icon="@drawable/ic_entails"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_entailed"
+			android:title="@string/pref_title_entailed"
+			app:aggregateKey="pref_relation_filter"
+			app:index="29"
+			app:icon="@drawable/ic_entailed"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_causes"
+			android:title="@string/pref_title_causes"
+			app:aggregateKey="pref_relation_filter"
+			app:index="12"
+			app:icon="@drawable/ic_causes"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_caused"
+			android:title="@string/pref_title_caused"
+			app:aggregateKey="pref_relation_filter"
+			app:index="30"
+			app:icon="@drawable/ic_caused"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_similar"
+			android:title="@string/pref_title_similar"
+			app:aggregateKey="pref_relation_filter"
+			app:index="13"
+			app:icon="@drawable/ic_similar"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_also"
+			android:title="@string/pref_title_also"
+			app:aggregateKey="pref_relation_filter"
+			app:index="14"
+			app:icon="@drawable/ic_also"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_attribute"
+			android:title="@string/pref_title_attribute"
+			app:aggregateKey="pref_relation_filter"
+			app:index="15"
+			app:icon="@drawable/ic_attribute"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_pertainym"
+			android:title="@string/pref_title_pertainym"
+			app:aggregateKey="pref_relation_filter"
+			app:index="16"
+			app:icon="@drawable/ic_pertainym"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_derivation"
+			android:title="@string/pref_title_derivation"
+			app:aggregateKey="pref_relation_filter"
+			app:icon="@drawable/ic_derivation"
+			app:index="17"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_derivation_adj"
+			android:title="@string/pref_title_derivation_adj"
+			app:aggregateKey="pref_relation_filter"
+			app:icon="@drawable/ic_adjderived"
+			app:index="18"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_verbgroup"
+			android:title="@string/pref_title_verbgroup"
+			app:aggregateKey="pref_relation_filter"
+			app:icon="@drawable/ic_verb_group"
+			app:index="19"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_participle"
+			android:title="@string/pref_title_participle"
+			app:aggregateKey="pref_relation_filter"
+			app:icon="@drawable/ic_participle"
+			app:index="20"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_domain"
+			android:title="@string/pref_title_domain"
+			app:aggregateKey="pref_relation_filter"
+			app:icon="@drawable/ic_domain"
+			app:index="21"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_topic"
+			android:title="@string/pref_title_topic"
+			app:aggregateKey="pref_relation_filter"
+			app:icon="@drawable/ic_domain_topic"
+			app:index="22"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_usage"
+			android:title="@string/pref_title_usage"
+			app:aggregateKey="pref_relation_filter"
+			app:icon="@drawable/ic_exemplified"
+			app:index="23"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_region"
+			android:title="@string/pref_title_region"
+			app:aggregateKey="pref_relation_filter"
+			app:icon="@drawable/ic_domain_region"
+			app:index="24"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_hasdomain"
+			android:title="@string/pref_title_has_domain"
+			app:aggregateKey="pref_relation_filter"
+			app:icon="@drawable/ic_domain_member"
+			app:index="25"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_hasdomain_topic"
+			android:title="@string/pref_title_has_topic"
+			app:aggregateKey="pref_relation_filter"
+			app:icon="@drawable/ic_domain_member_topic"
+			app:index="26"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_hasdomain_usage"
+			android:title="@string/pref_title_has_usage"
+			app:aggregateKey="pref_relation_filter"
+			app:icon="@drawable/ic_exemplifies"
+			app:index="27"
+			app:persist="true" />
+		<org.sqlunet.settings.BitAggregatePreference
+			android:key="pref_hasdomain_region"
+			android:title="@string/pref_title_has_region"
+			app:aggregateKey="pref_relation_filter"
+			app:icon="@drawable/ic_domain_member_region"
+			app:index="28"
+			app:persist="true" />
+	</PreferenceCategory>
+
+	<PreferenceCategory android:title="@string/pref_subheader_relation_filter_all">
+		<Preference
+			android:key="pref_set"
+			android:summary="@string/description_set_all"
+			android:title="@string/title_set_all" />
+		<Preference
+			android:key="pref_unset"
+			android:summary="@string/description_unset_all"
+			android:title="@string/title_unset_all" />
+	</PreferenceCategory>
+
+</PreferenceScreen>

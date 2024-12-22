@@ -11,7 +11,11 @@ import org.sqlunet.provider.ProviderArgs
 object Settings {
 
     const val PREF_RELATION_RECURSE = "pref_relation_recurse"
+
+    const val PREF_RELATION_FILTER = "pref_relation_filter"
+
     private const val PREF_DISPLAY_SEM_RELATION_NAME = "pref_display_sem_relation_name"
+
     private const val PREF_DISPLAY_LEX_RELATION_NAME = "pref_display_lex_relation_name"
 
     /**
