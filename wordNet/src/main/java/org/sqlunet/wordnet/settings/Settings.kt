@@ -80,6 +80,9 @@ object Settings {
      */
     fun marshalRelationFilterParametersPref(context: Context, bundle: Bundle?): Bundle? {
         val relationFilter = getRelationFilter(context)
+        if (relationFilter == null) {
+            return bundle
+        }
         val bundle2 = bundle ?: Bundle()
         bundle2.putSerializable(ProviderArgs.ARG_RELATION_FILTER_KEY, relationFilter as Serializable)
         return bundle2

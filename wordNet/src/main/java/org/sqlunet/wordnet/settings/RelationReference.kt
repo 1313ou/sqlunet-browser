@@ -86,11 +86,14 @@ enum class RelationReference(
          * Default filter
          */
         @JvmField
-        val FILTER_DEFAULT: Long = HYPERNYM.mask() or HYPONYM.mask() or
+        val FILTER_DEFAULT: Long = (1L shl RelationReference.entries.size.toInt()) - 1
+        /*
+                HYPERNYM.mask() or HYPONYM.mask() or
                 HOLONYM_MEMBER.mask() or HOLONYM_SUBSTANCE.mask() or HOLONYM_PART.mask() or
                 MERONYM_MEMBER.mask() or MERONYM_SUBSTANCE.mask() or MERONYM_PART.mask() or
                 CAUSES.mask() or CAUSED.mask() or ENTAILS.mask() or ENTAILED.mask() or
                 SIMILAR.mask() or
                 ANTONYM.mask()
+         */
     }
 }
