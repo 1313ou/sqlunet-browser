@@ -6,6 +6,8 @@ package org.sqlunet.wordnet.settings
 
 private const val PREFIX = "pref_"
 
+val roleDummyId = -100
+
 /**
  * Relation reference
  *
@@ -13,8 +15,9 @@ private const val PREFIX = "pref_"
  */
 enum class RelationReference(
     @JvmField val key: String,
+
     /**
-     * NID in relation table
+     * NID in relation table (hardwired from database)
      */
     @JvmField val id: Int
 ) {
@@ -39,20 +42,20 @@ enum class RelationReference(
     SIMILAR("similar", 40), // 15
     ALSO("also", 50), // 16
     ATTRIBUTE("attribute", 60), // 17
-    PERTAINYM("pertainym",80), // 18
-    DERIVATION("derivation",81), // 19
+    PERTAINYM("pertainym", 80), // 18
+    DERIVATION("derivation", 81), // 19
     VERBGROUP("verbgroup", 70), // 20
-    PARTICIPLE("participle",71), // 21
+    PARTICIPLE("participle", 71), // 21
 
-    USAGE("usage",96), // 22 is exemplified by
-    TOPIC("topic",91), // 23
-    REGION("region",93), // 24
-    USAGE_MEMBER("hasdomain_usage",95), // 25 exemplifies
+    USAGE("usage", 96), // 22 is exemplified by
+    TOPIC("topic", 91), // 23
+    REGION("region", 93), // 24
+    USAGE_MEMBER("hasdomain_usage", 95), // 25 exemplifies
     TOPIC_MEMBER("hasdomain_topic", 92), // 26
-    REGION_MEMBER("hasdomain_region",94), // 27
+    REGION_MEMBER("hasdomain_region", 94), // 27
 
     COLLOCATION("collocation", 200), // 28
-    ROLES("roles", -100), // 29 state(100) -> bodypart 170
+    ROLES("roles", roleDummyId), // 29 state(100) -> bodypart 170
     ;
 
     /**
@@ -81,6 +84,25 @@ enum class RelationReference(
     }
 
     companion object {
+
+        /**
+         * Role relation NIDs (hardwired from database)
+         * 100	state
+         * 101	result
+         * 102	event
+         * 110	property
+         * 120	location
+         * 121	destination
+         * 130	agent
+         * 131	undergoer
+         * 140	uses
+         * 141	instrument
+         * 142	by means of
+         * 150	material
+         * 160	vehicle
+         * 170	body part
+         */
+        val roleRelationIds = arrayOf(100, 101, 102, 110, 120, 121, 130, 131, 140, 141, 142, 150, 160, 170)
 
         /**
          * Default filter

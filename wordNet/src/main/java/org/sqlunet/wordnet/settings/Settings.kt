@@ -7,6 +7,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.preference.PreferenceManager
 import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.wordnet.settings.RelationReference.Companion.roleRelationIds
 import java.io.Serializable
 
 object Settings {
@@ -89,7 +90,7 @@ object Settings {
     }
 
     /**
-     * Retrieve map
+     * Retrieve filter
      */
     private fun getRelationFilter(context: Context): Set<Int>? {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
@@ -97,9 +98,14 @@ object Settings {
         if (filter == -1L) {
             return null
         }
-        return RelationReference.entries
+        val s = RelationReference.entries
             .filter { !it.test(filter) }
             .map { it.id }
-            .toSet()
+            .toMutableSet()
+        if (s.contains(roleDummyId)) {
+            s.remove(roleDummyId)
+            s.addAll(roleRelationIds)
+        }
+        return s
     }
 }
