@@ -35,25 +35,54 @@ object Settings {
     }
 
     /**
-     * Get render  parameters
+     * Make render  parameters
      *
      * @param context context
      * @return bundle
      */
-    fun getRenderParametersPref(context: Context): Bundle? {
+    fun makeParametersPref(context: Context): Bundle? {
+        var b = marshalRenderParametersPref(context, null)
+        b = marshalRelationFilterParametersPref(context, b)
+        return b
+    }
+
+    /**
+     * Marshal render parameters
+     *
+     * @param context context
+     * @param bundle current bundle
+     * @return bundle
+     */
+    fun marshalRenderParametersPref(context: Context, bundle: Bundle?): Bundle? {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         val displaySemRelationName = sharedPref.getBoolean(PREF_DISPLAY_SEM_RELATION_NAME, true)
         val displayLexRelationName = sharedPref.getBoolean(PREF_DISPLAY_LEX_RELATION_NAME, true)
         if (displaySemRelationName && displayLexRelationName) {
-            return null
+            return bundle
         }
-        val bundle = Bundle()
+        val bundle2 = bundle ?: Bundle()
         if (!displaySemRelationName) {
-            bundle.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, false)
+            bundle2.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, false)
         }
         if (!displayLexRelationName) {
-            bundle.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, false)
+            bundle2.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, false)
         }
-        return bundle
+        return bundle2
+    }
+
+    /**
+     * Marshal relation filter parameters
+     *
+     * @param context context
+     * @param bundle current bundle
+     * @return bundle
+     */
+    fun marshalRelationFilterParametersPref(context: Context, bundle: Bundle?): Bundle? {
+        val relationFilter = Bundle()
+        relationFilter.putBoolean("hyponym", false)
+        relationFilter.putBoolean("derivation", false)
+        val bundle2 = bundle ?: Bundle()
+        bundle2.putBundle(ProviderArgs.ARG_RELATION_FILTER_KEY, relationFilter)
+        return bundle2
     }
 }

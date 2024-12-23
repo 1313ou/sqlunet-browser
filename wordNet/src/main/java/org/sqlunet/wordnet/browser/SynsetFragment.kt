@@ -3,11 +3,13 @@
  */
 package org.sqlunet.wordnet.browser
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import org.sqlunet.browser.Module
 import org.sqlunet.browser.TreeFragment
 import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.provider.ProviderArgs.ARG_RELATION_FILTER_KEY
 import org.sqlunet.provider.ProviderArgs.ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY
 import org.sqlunet.provider.ProviderArgs.ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY
 import org.sqlunet.wordnet.R
@@ -84,12 +86,19 @@ open class SynsetFragment : TreeFragment() {
      */
     protected open fun makeModule(): Module {
         val module = SynsetModule(this)
-        module.setMaxRecursionLevel(maxRecursion)
-        if (parameters != null) {
-            module.setDisplayRelationNames(parameters!!.getBoolean(ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, true), parameters!!.getBoolean(ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, true))
-        }
-        module.expand = this.expand
+        baseModuleSettings(module)
+        module.expand = expand
         return module
+    }
+
+    fun baseModuleSettings(module: SynsetModule) {
+        module.maxRecursion = maxRecursion
+        module.maxRecursion = maxRecursion
+        if (parameters != null) {
+            module.displaySemRelationName = parameters!!.getBoolean(ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, true)
+            module.displayLexRelationName = parameters!!.getBoolean(ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, true)
+            module.relationFilter = unmarshalRelationFilter(parameters!!)
+        }
     }
 
     /**
@@ -107,5 +116,24 @@ open class SynsetFragment : TreeFragment() {
          * State of tree
          */
         private const val STATE_EXPAND = "state_expand"
+
+        /**
+         * Unmarshal relation filter
+         *
+         * @param parcel
+         * @return
+         */
+        fun unmarshalRelationFilter(parcel: Bundle): (String) -> Boolean {
+            val b: Bundle? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                parcel.getParcelable(ARG_RELATION_FILTER_KEY, Bundle::class.java)
+            } else {
+                @Suppress("DEPRECATION", "UNCHECKED_CAST")
+                parcel.getParcelable(ARG_RELATION_FILTER_KEY) as Bundle?
+            }
+            return if (b != null)
+                { k -> b.getBoolean(k, true) }
+            else
+                { k -> true }
+        }
     }
 }
