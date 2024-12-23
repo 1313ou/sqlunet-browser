@@ -11,7 +11,7 @@ source lib-artwork.sh
 
 testres=128
 echo -e "${Y}Temp${Z} ${B}$r ${testres}${Z}"
-dirdest="${dirtest}/images"
+dirdest="${dirtest}"
 mkdir -p ${dirdest}
 lists_svg2png ${testres} "${dirsrc}" "${dirdest}" ""
 

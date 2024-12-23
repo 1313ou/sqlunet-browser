@@ -8,6 +8,10 @@ dirsrc=composite
 
 source lib-artwork.sh
 
+# C O M P O S I T E S
+
+./make-artwork-composite-svg.sh
+
 # A S S E T S
 
 echo -e "${Y}Assets${Z} ${B}$r ${webres}${Z}"

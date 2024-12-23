@@ -41,6 +41,7 @@
 	<string name="pref_title_has_usage">Exemplifies / Has usage</string>
 	<string name="pref_title_has_region">Has region</string>
 	<string name="pref_title_collocation">Collocation</string>
+	<string name="pref_title_roles">Roles</string>
 
 	<!-- Ops -->
 	<string name="title_set_all">Set</string>
