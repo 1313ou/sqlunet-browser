@@ -14,37 +14,42 @@ private const val PREFIX = "pref_"
 enum class RelationReference(
     @JvmField val pref: String
 ) {
-    HYPERNYM(PREFIX + "hypernym"),
-    HYPERNYM_INSTANCE(PREFIX + "hypernym_instance"),
-    HYPONYM(PREFIX + "hyponym"),
-    HYPONYM_INSTANCE(PREFIX + "hyponym_instance"),
-    HOLONYM_MEMBER(PREFIX + "holonym_member"),
-    HOLONYM_SUBSTANCE(PREFIX + "holonym_substance"),
-    HOLONYM_PART(PREFIX + "holonym_part"),
-    MERONYM_MEMBER(PREFIX + "meronym_member"),
-    MERONYM_SUBSTANCE(PREFIX + "meronym_substance"),
-    MERONYM_PART(PREFIX + "meronym_part"),
-    ANTONYM(PREFIX + "antonym"),
-    ENTAILS(PREFIX + "entails"),
-    CAUSES(PREFIX + "causes"),
-    SIMILAR(PREFIX + "similar"),
-    ALSO(PREFIX + "also"),
-    ATTRIBUTE(PREFIX + "attribute"),
-    PERTAINYM(PREFIX + "pertainym"),
-    DERIVATION(PREFIX + "derivation"),
-    DERIVATION_ADJ(PREFIX + "derivation_adj"),
-    VERBGROUP(PREFIX + "verbgroup"),
-    PARTICIPLE(PREFIX + "participle"),
-    DOMAIN(PREFIX + "domain"),
-    TOPIC(PREFIX + "topic"),
-    USAGE(PREFIX + "usage"),
-    REGION(PREFIX + "region"),
-    MEMBER(PREFIX + "hasdomain"),
-    TOPIC_MEMBER(PREFIX + "hasdomain_topic"),
-    USAGE_MEMBER(PREFIX + "hasdomain_usage"),
-    REGION_MEMBER(PREFIX + "hasdomain_region"),
-    ENTAILED(PREFIX + "entailed"),
-    CAUSED(PREFIX + "caused");
+    HYPERNYM(PREFIX + "hypernym"), // 0
+    HYPONYM(PREFIX + "hyponym"), // 1
+    HYPERNYM_INSTANCE(PREFIX + "hypernym_instance"), // 2
+    HYPONYM_INSTANCE(PREFIX + "hyponym_instance"), // 3
+    HOLONYM_MEMBER(PREFIX + "holonym_member"), // 4
+    HOLONYM_SUBSTANCE(PREFIX + "holonym_substance"), // 5
+    HOLONYM_PART(PREFIX + "holonym_part"), // 6
+    MERONYM_MEMBER(PREFIX + "meronym_member"), // 7
+    MERONYM_SUBSTANCE(PREFIX + "meronym_substance"), // 8
+    MERONYM_PART(PREFIX + "meronym_part"), // 9
+
+    ENTAILS(PREFIX + "entails"), // 10
+    CAUSES(PREFIX + "causes"), // 11
+    ENTAILED(PREFIX + "entailed"), // 12
+    CAUSED(PREFIX + "caused"), // 13
+
+    ANTONYM(PREFIX + "antonym"), // 14
+    SIMILAR(PREFIX + "similar"), // 15
+    ALSO(PREFIX + "also"), // 16
+    ATTRIBUTE(PREFIX + "attribute"), // 17
+    PERTAINYM(PREFIX + "pertainym"), // 18
+    DERIVATION(PREFIX + "derivation"), // 19
+    DERIVATION_ADJ(PREFIX + "derivation_adj"), // 20
+    VERBGROUP(PREFIX + "verbgroup"), // 21
+    PARTICIPLE(PREFIX + "participle"), // 22
+
+    USAGE(PREFIX + "usage"), // 23
+    TOPIC(PREFIX + "topic"), // 24
+    REGION(PREFIX + "region"), // 25
+    USAGE_MEMBER(PREFIX + "hasdomain_usage"), // 26
+    TOPIC_MEMBER(PREFIX + "hasdomain_topic"), // 27
+    REGION_MEMBER(PREFIX + "hasdomain_region"), // 28
+
+    COLLOCATION(PREFIX + "collocation"), // 29
+    ROLES(PREFIX + "roles"), // 30
+    ;
 
     /**
      * Mask
