@@ -52,7 +52,7 @@ class RelationFilterPreferenceFragment : PreferenceFragmentCompat() {
         val sharedPrefs = checkNotNull(preferenceManager.sharedPreferences)
         var filter = sharedPrefs.getLong(PREF_RELATION_FILTER, -1)
         if (filter == -1L) {
-            filter = RelationReference.FILTERDEFAULT
+            filter = RelationReference.FILTER_DEFAULT
             sharedPrefs.edit().putLong(PREF_RELATION_FILTER, filter).apply()
         }
         return filter

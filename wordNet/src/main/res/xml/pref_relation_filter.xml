@@ -153,25 +153,18 @@
 			app:index="19"
 			app:persist="true" />
 		<org.sqlunet.settings.BitAggregatePreference
-			android:key="pref_derivation_adj"
-			android:title="@string/pref_title_derivation_adj"
-			app:aggregateKey="pref_relation_filter"
-			app:icon="@drawable/ic_adjderived"
-			app:index="20"
-			app:persist="true" />
-		<org.sqlunet.settings.BitAggregatePreference
 			android:key="pref_verbgroup"
 			android:title="@string/pref_title_verbgroup"
 			app:aggregateKey="pref_relation_filter"
 			app:icon="@drawable/ic_verb_group"
-			app:index="21"
+			app:index="20"
 			app:persist="true" />
 		<org.sqlunet.settings.BitAggregatePreference
 			android:key="pref_participle"
 			android:title="@string/pref_title_participle"
 			app:aggregateKey="pref_relation_filter"
 			app:icon="@drawable/ic_participle"
-			app:index="22"
+			app:index="21"
 			app:persist="true" />
 
 		<org.sqlunet.settings.BitAggregatePreference
@@ -179,21 +172,21 @@
 			android:title="@string/pref_title_usage"
 			app:aggregateKey="pref_relation_filter"
 			app:icon="@drawable/ic_exemplified"
-			app:index="23"
+			app:index="22"
 			app:persist="true" />
 		<org.sqlunet.settings.BitAggregatePreference
 			android:key="pref_topic"
 			android:title="@string/pref_title_topic"
 			app:aggregateKey="pref_relation_filter"
 			app:icon="@drawable/ic_domain_topic"
-			app:index="24"
+			app:index="23"
 			app:persist="true" />
 		<org.sqlunet.settings.BitAggregatePreference
 			android:key="pref_region"
 			android:title="@string/pref_title_region"
 			app:aggregateKey="pref_relation_filter"
 			app:icon="@drawable/ic_domain_region"
-			app:index="25"
+			app:index="24"
 			app:persist="true" />
 
 		<org.sqlunet.settings.BitAggregatePreference
@@ -201,35 +194,35 @@
 			android:title="@string/pref_title_has_usage"
 			app:aggregateKey="pref_relation_filter"
 			app:icon="@drawable/ic_exemplifies"
-			app:index="26"
+			app:index="25"
 			app:persist="true" />
 		<org.sqlunet.settings.BitAggregatePreference
 			android:key="pref_hasdomain_topic"
 			android:title="@string/pref_title_has_topic"
 			app:aggregateKey="pref_relation_filter"
 			app:icon="@drawable/ic_domain_member_topic"
-			app:index="27"
+			app:index="26"
 			app:persist="true" />
 		<org.sqlunet.settings.BitAggregatePreference
 			android:key="pref_hasdomain_region"
 			android:title="@string/pref_title_has_region"
 			app:aggregateKey="pref_relation_filter"
 			app:icon="@drawable/ic_domain_member_region"
-			app:index="28"
+			app:index="27"
 			app:persist="true" />
 		<org.sqlunet.settings.BitAggregatePreference
 			android:key="pref_collocation"
 			android:title="@string/pref_title_collocation"
 			app:aggregateKey="pref_relation_filter"
 			app:icon="@drawable/ic_collocation"
-			app:index="29"
+			app:index="28"
 			app:persist="true" />
 		<org.sqlunet.settings.BitAggregatePreference
 			android:key="pref_roles"
 			android:title="@string/pref_title_roles"
 			app:aggregateKey="pref_relation_filter"
 			app:icon="@drawable/ic_roles"
-			app:index="30"
+			app:index="29"
 			app:persist="true" />
 	</PreferenceCategory>
 
