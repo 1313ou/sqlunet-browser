@@ -84,9 +84,10 @@ class RelationFragment : TreeFragment() {
      */
     private fun makeModule(): Module {
         val module = RelationModule(this)
-        module.setMaxRecursionLevel(maxRecursion)
+        module.maxRecursion = maxRecursion
         if (parameters != null) {
-            module.setDisplayRelationNames(parameters!!.getBoolean(ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, true), parameters!!.getBoolean(ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, true))
+            module.displaySemRelationName = parameters!!.getBoolean(ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, true)
+            module.displayLexRelationName = parameters!!.getBoolean(ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, true)
         }
         return module
     }
