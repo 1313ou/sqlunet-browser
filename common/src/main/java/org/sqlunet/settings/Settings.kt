@@ -49,7 +49,7 @@ open class Settings {
                 var mode: SelectorViewMode
                 try {
                     mode = valueOf(modeString!!)
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     mode = VIEW
                     sharedPref.edit().putString(PREF_SELECTOR_MODE, mode.name).apply()
                 }
@@ -80,7 +80,7 @@ open class Settings {
                 var mode: DetailViewMode
                 try {
                     mode = valueOf(modeString!!)
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     mode = VIEW
                     sharedPref.edit().putString(PREF_DETAIL_MODE, mode.name).apply()
                 }
@@ -122,7 +122,7 @@ open class Settings {
                 var mode: Selector
                 try {
                     mode = valueOf(name!!)
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     mode = SELECTOR
                     sharedPref.edit().putString(PREF_SELECTOR, mode.name).apply()
                 }
@@ -439,7 +439,7 @@ open class Settings {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
             val version: Long = try {
                 prefs.getLong(PREF_VERSION, -1)
-            } catch (e: ClassCastException) {
+            } catch (_: ClassCastException) {
                 prefs.getInt(PREF_VERSION, -1).toLong()
             }
 
@@ -453,7 +453,7 @@ open class Settings {
                     @Suppress("DEPRECATION")
                     packageInfo.versionCode.toLong()
                 }
-            } catch (ignored: PackageManager.NameNotFoundException) {
+            } catch (_: PackageManager.NameNotFoundException) {
 
             }
 
