@@ -72,11 +72,13 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
     // resources
 
     protected val membersLabel: String
+
     private val groupLabel: String
 
     protected val rolesLabel: String
 
     protected val framesLabel: String
+
     private val examplesLabel: String
 
     /**
