@@ -14,6 +14,7 @@ import org.sqlunet.provider.ProviderArgs.ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KE
 import org.sqlunet.provider.ProviderArgs.ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY
 import org.sqlunet.wordnet.R
 import org.sqlunet.wordnet.loaders.SynsetModule
+import java.io.Serializable
 
 /**
  * A fragment representing a synset.
@@ -123,15 +124,15 @@ open class SynsetFragment : TreeFragment() {
          * @param parcel
          * @return
          */
-        fun unmarshalRelationFilter(parcel: Bundle): (String) -> Boolean {
-            val b: Bundle? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                parcel.getParcelable(ARG_RELATION_FILTER_KEY, Bundle::class.java)
+        fun unmarshalRelationFilter(parcel: Bundle): (Int) -> Boolean {
+            val filterOut: Serializable? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                parcel.getSerializable(ARG_RELATION_FILTER_KEY, Serializable::class.java)
             } else {
-                @Suppress("DEPRECATION", "UNCHECKED_CAST")
-                parcel.getParcelable(ARG_RELATION_FILTER_KEY) as Bundle?
+                @Suppress("DEPRECATION")
+                parcel.getSerializable(ARG_RELATION_FILTER_KEY)
             }
-            return if (b != null)
-                { k -> b.getBoolean(k, true) }
+            return if (filterOut != null && filterOut is Set<*>)
+                { k -> !filterOut.contains(k) }
             else
                 { k -> true }
         }

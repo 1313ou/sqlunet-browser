@@ -135,7 +135,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     /**
      * Relation filter
      */
-    var relationFilter: (String) -> Boolean = { true }
+    var relationFilter: (Int) -> Boolean = { true }
 
     // view models
 
@@ -954,7 +954,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val sb = SpannableStringBuilder()
                 val relationId = cursor.getInt(idRelationId)
                 val relation = cursor.getString(idRelation)
-                if (relationFilter.invoke(relation)) {
+                if (relationFilter.invoke(relationId)) {
                     val targetSynsetId = cursor.getLong(idTargetSynsetId)
                     val targetDefinition = cursor.getString(idTargetDefinition)
                     var targetMembers = cursor.getString(idTargetMembers)

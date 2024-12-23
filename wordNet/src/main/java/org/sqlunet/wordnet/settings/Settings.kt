@@ -7,6 +7,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.preference.PreferenceManager
 import org.sqlunet.provider.ProviderArgs
+import java.io.Serializable
 
 object Settings {
 
@@ -29,7 +30,7 @@ object Settings {
         val value = sharedPref.getString(PREF_RELATION_RECURSE, null) ?: return -1
         return try {
             value.toInt()
-        } catch (e: NumberFormatException) {
+        } catch (_: NumberFormatException) {
             -1
         }
     }
@@ -78,11 +79,24 @@ object Settings {
      * @return bundle
      */
     fun marshalRelationFilterParametersPref(context: Context, bundle: Bundle?): Bundle? {
-        val relationFilter = Bundle()
-        relationFilter.putBoolean("hyponym", false)
-        relationFilter.putBoolean("derivation", false)
+        val relationFilter = getRelationFilter(context)
         val bundle2 = bundle ?: Bundle()
-        bundle2.putBundle(ProviderArgs.ARG_RELATION_FILTER_KEY, relationFilter)
+        bundle2.putSerializable(ProviderArgs.ARG_RELATION_FILTER_KEY, relationFilter as Serializable)
         return bundle2
+    }
+
+    /**
+     * Retrieve map
+     */
+    private fun getRelationFilter(context: Context): Set<Int>? {
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+        val filter = sharedPref.getLong(PREF_RELATION_FILTER, -1)
+        if (filter == -1L) {
+            return null
+        }
+        return RelationReference.entries
+            .filter { !it.test(filter) }
+            .map { it.id }
+            .toSet()
     }
 }
