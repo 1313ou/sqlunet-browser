@@ -295,7 +295,7 @@ class WebFragment : Fragment() {
 
                         // parameters
                         val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext())
-                        val parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext())
+                        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, type)
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse)

@@ -153,7 +153,7 @@ class BrowseFragment : BaseSearchFragment() {
             val id = trimmedQuery.substring(3).toLong()
 
             // parameters
-            val parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext())
+            val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
 
             // wordnet
             targetIntent = if (trimmedQuery.startsWith("#ws")) {
