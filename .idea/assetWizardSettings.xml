@@ -314,24 +314,11 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
-                        <option name="children">
-                          <map>
-                            <entry key="clipartAsset">
-                              <value>
-                                <PersistentState>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="url" value="file:$PROJECT_DIR$/../../../androidstudio/sdk/icons/material/materialicons/arrow_drop_down/baseline_arrow_drop_down_24.xml" />
-                                    </map>
-                                  </option>
-                                </PersistentState>
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="arrow_down" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="bodypart0" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/wordNet/artwork-relations/composite/bodypart.svg" />
                           </map>
                         </option>
                       </PersistentState>
