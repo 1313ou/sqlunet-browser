@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0"><defs><mask id="a" maskUnits="userSpaceOnUse"><path d="M24.1 26.619h82.32v82.292H24.1Z" style="fill:#fff;fill-opacity:1"/><text xml:space="preserve" x="64.455" y="88.405" style="font-style:normal;font-weight:400;line-height:0%;font-family:sans-serif;letter-spacing:0;word-spacing:0;fill:#000;fill-opacity:1;stroke:none"><tspan x="64.455" y="88.405" style="font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000">s</tspan></text></mask></defs><g mask="url(#a)" transform="translate(-1.26 -3.765)"><g style="stroke:#000"><path d="M31.2 33.719h68.092v68.092H31.2Z" style="fill:none;stroke:#000;stroke-width:12.2;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"/></g><path d="M58.777 63.857h38.922v37.13H58.777Z" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:#000001;stroke-width:15.4691;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" transform="skewY(-.906)scale(.99987 1)"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0">
+    <defs>
+        <mask id="a" maskUnits="userSpaceOnUse">
+            <path d="M24.1 26.619h82.32v82.292H24.1Z" style="fill:#ffff;fill-opacity:1"/>
+            <path d="M82.067 66.029v3.398q-1.524-.781-3.164-1.172-1.64-.39-3.399-.39-2.675 0-4.023.82-1.328.82-1.328 2.46 0 1.25.957 1.973.957.704 3.847 1.348l1.23.273q3.83.82 5.43 2.325 1.622 1.484 1.622 4.16 0 3.047-2.422 4.824-2.403 1.777-6.621 1.777-1.758 0-3.672-.351-1.895-.332-4.004-1.016v-3.71q1.992 1.034 3.926 1.562 1.933.508 3.828.508 2.539 0 3.906-.86 1.367-.879 1.367-2.46 0-1.466-.996-2.247-.976-.781-4.316-1.504l-1.25-.293q-3.34-.703-4.824-2.148-1.485-1.465-1.485-4.004 0-3.086 2.188-4.766 2.187-1.68 6.21-1.68 1.993 0 3.75.294 1.758.293 3.243.879z" aria-label="s" style="font-size:40px;line-height:1.25" transform="translate(-.815 -.11)"/>
+        </mask>
+    </defs>
+    <g mask="url(#a)" transform="translate(-1.26 -3.765)">
+        <g style="stroke:#000">
+            <path d="M31.2 33.719h68.092v68.092H31.2Z" style="fill:none;stroke:#000;stroke-width:12.2;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"/>
+        </g>
+        <path d="M58.777 63.857h38.922v37.13H58.777Z" style="fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:#000001;stroke-width:15.4691;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" transform="skewY(-.906)scale(.99987 1)"/>
+    </g>
+</svg>

@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0"><text xml:space="preserve" x="43.1" y="85.042" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:29.2443px;line-height:0%;font-family:sans-serif;-inkscape-font-specification:Sans;text-align:start;letter-spacing:0;word-spacing:0;writing-mode:lr-tb;text-anchor:start;fill:#000;fill-opacity:1;stroke:none;stroke-width:2.43703" transform="scale(1.02443 .97615)"><tspan x="43.1" y="85.042" style="font-size:71.3617px;line-height:1.25;font-family:sans-serif;stroke-width:2.43703">c</tspan></text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0">
+    <g style="font-size:29.2443px;line-height:0%;-inkscape-font-specification:Sans;letter-spacing:0;word-spacing:0;stroke-width:2.43703">
+        <path d="M77.91 47.514v5.994q-2.718-1.499-5.47-2.23-2.719-.767-5.506-.767-6.237 0-9.687 3.972-3.45 3.938-3.45 11.08 0 7.144 3.45 11.116 3.45 3.938 9.687 3.938 2.787 0 5.505-.732 2.753-.767 5.47-2.265v5.924q-2.682 1.254-5.574 1.881-2.858.627-6.098.627-8.816 0-14.008-5.54-5.192-5.54-5.192-14.948 0-9.548 5.227-15.018 5.262-5.47 14.39-5.47 2.963 0 5.785.626 2.823.593 5.47 1.812z" aria-label="c" style="font-size:71.3617px;line-height:1.25" transform="scale(1.02443 .97615)"/>
+    </g>
+</svg>

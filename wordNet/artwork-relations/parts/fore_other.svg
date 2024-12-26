@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0"><text xml:space="preserve" x="16.464" y="97.342" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;line-height:0%;font-family:&quot;Arial Black&quot;;-inkscape-font-specification:&quot;Arial Black,&quot;;text-align:start;letter-spacing:0;word-spacing:0;writing-mode:lr-tb;text-anchor:start;fill:#000;fill-opacity:1;stroke:none" transform="scale(1.04164 .96003)"><tspan x="16.464" y="97.342" style="font-size:90px;line-height:1.25">...</tspan></text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0">
+    <g style="line-height:0%;font-family:&quot;Arial Black&quot;;-inkscape-font-specification:&quot;Arial Black,&quot;;letter-spacing:0;word-spacing:0">
+        <path d="M21.913 79.412H41.03v17.93H21.913Zm29.971 0H71v17.93H51.884Zm29.971 0h19.116v17.93H81.855Z" aria-label="..." style="font-size:90px;line-height:1.25" transform="scale(1.04164 .96003)"/>
+    </g>
+</svg>

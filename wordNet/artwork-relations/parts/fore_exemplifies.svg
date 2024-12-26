@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0"><text xml:space="preserve" x="41.595" y="83.01" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:29.2246px;line-height:0%;font-family:sans-serif;-inkscape-font-specification:Sans;text-align:start;letter-spacing:0;word-spacing:0;writing-mode:lr-tb;text-anchor:start;fill:#000;fill-opacity:1;stroke:none;stroke-width:2.43538" transform="scale(1.00024 .99976)"><tspan x="41.595" y="83.01" style="font-size:71.3137px;line-height:1.25;font-family:sans-serif;stroke-width:2.43538">u</tspan></text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0">
+    <g style="font-size:29.2246px;line-height:0%;-inkscape-font-specification:Sans;letter-spacing:0;word-spacing:0;stroke-width:2.43538">
+        <path d="M47.654 67.62V44.01h6.407v23.365q0 5.537 2.159 8.323 2.159 2.75 6.477 2.75 5.188 0 8.183-3.308 3.029-3.308 3.029-9.018V44.01h6.407v39H73.91v-5.99q-2.333 3.553-5.432 5.294-3.064 1.706-7.138 1.706-6.72 0-10.203-4.179-3.482-4.178-3.482-12.222Zm16.122-24.55Z" aria-label="u" style="font-size:71.3137px;line-height:1.25" transform="scale(1.00024 .99976)"/>
+    </g>
+</svg>

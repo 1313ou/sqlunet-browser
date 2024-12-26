@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0"><text xml:space="preserve" x="43.057" y="101.938" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:13.7344px;line-height:0%;font-family:&quot;Arial Black&quot;;-inkscape-font-specification:&quot;Arial Black, Bold&quot;;text-align:start;letter-spacing:0;word-spacing:0;writing-mode:lr-tb;text-anchor:start;fill:#000;fill-opacity:1;stroke:none;stroke-width:1.14454" transform="scale(.7737 1.29249)"><tspan x="43.057" y="101.938" style="font-size:138.68px;line-height:1.25;stroke-width:1.14454">≃</tspan></text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0">
+    <g style="font-weight:700;font-size:13.7344px;line-height:0%;font-family:&quot;Arial Black&quot;;-inkscape-font-specification:&quot;Arial Black, Bold&quot;;letter-spacing:0;word-spacing:0;stroke-width:1.14454">
+        <path d="M50.13 49.378V38.561q6.934-7.35 16.503-7.35 8.598 0 17.473 4.16 8.876 4.022 15.255 4.022 3.606 0 7.766-2.08 4.3-2.219 8.182-6.102V41.89q-6.795 7.488-16.641 7.488-8.46 0-17.474-4.16-8.876-4.022-15.393-4.022-3.329 0-7.49 2.08-4.16 2.08-8.181 6.102zm0 18.445v-9.847h65.18v9.847z" aria-label="≃" style="font-size:138.68px;line-height:1.25" transform="scale(.7737 1.29249)"/>
+    </g>
+</svg>

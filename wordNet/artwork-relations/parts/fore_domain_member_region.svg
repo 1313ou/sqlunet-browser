@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0"><text xml:space="preserve" x="45.676" y="84.214" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:normal;font-size:29.4117px;line-height:0%;font-family:sans-serif;-inkscape-font-specification:Sans;text-align:start;letter-spacing:0;word-spacing:0;writing-mode:lr-tb;text-anchor:start;fill:#000;fill-opacity:1;stroke:none;stroke-width:2.45097" transform="scale(1.00489 .99514)"><tspan x="45.676" y="84.214" style="font-size:71.7701px;line-height:1.25;font-family:sans-serif;stroke-width:2.45097">r</tspan></text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0">
+    <g style="font-size:29.4117px;line-height:0%;-inkscape-font-specification:Sans;letter-spacing:0;word-spacing:0;stroke-width:2.45097">
+        <path d="M75.183 50.992q-1.086-.63-2.383-.91-1.262-.316-2.803-.316-5.467 0-8.411 3.574-2.909 3.54-2.909 10.198v20.676h-6.483v-39.25h6.483v6.098q2.033-3.574 5.292-5.291 3.26-1.752 7.92-1.752.666 0 1.472.105.806.07 1.787.245z" aria-label="r" style="font-size:71.7701px;line-height:1.25" transform="scale(1.00489 .99514)"/>
+    </g>
+</svg>
