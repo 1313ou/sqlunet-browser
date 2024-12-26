@@ -6,7 +6,7 @@ package org.sqlunet.wordnet.settings
 
 private const val PREFIX = "pref_"
 
-val roleDummyId = -100
+const val roleDummyId = -100
 
 /**
  * Relation reference
