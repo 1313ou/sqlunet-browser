@@ -1,7 +1,7 @@
 #!/bin/bash
 
-thisdir="`dirname $(readlink -m $0)`"
-thisdir="$(readlink -m ${thisdir})"
+set -e 
+
 dircomposite=composite
 
 dirres=../src/main/res
@@ -39,4 +39,4 @@ for b in ${!backtofore[@]}; do
 done
 
 #optimize
-svgo "${d}"
+svgo --pretty "${d}"

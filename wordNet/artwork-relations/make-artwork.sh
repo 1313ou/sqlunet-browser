@@ -1,7 +1,7 @@
 #!/bin/bash
 
-thisdir="`dirname $(readlink -m $0)`"
-thisdir="$(readlink -m ${thisdir})"
+set -e
+
 dirres=../src/main/res
 dirassets=../src/main/assets
 dirsrc=composite
