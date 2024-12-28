@@ -196,7 +196,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         iliDrawable = getDrawable(context, R.drawable.ili)
         wikidataDrawable = getDrawable(context, R.drawable.wikidata)
         posDrawable = getDrawable(context, R.drawable.pos)
-        domainDrawable = getDrawable(context, R.drawable.domain)
+        domainDrawable = getDrawable(context, R.drawable.lexdomain)
         verbframeDrawable = getDrawable(context, R.drawable.verbframe)
         morphDrawable = getDrawable(context, R.drawable.morph)
     }

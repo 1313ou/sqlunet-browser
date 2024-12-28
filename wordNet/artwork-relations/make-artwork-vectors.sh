@@ -22,6 +22,7 @@ set -e
 #  -addHeader                Add AOSP header to the top of the generated XML file
 
 source define_colors.sh
+source define_relations.sh
 
 vdtool=$(readlink -m vdutils/vd-tool/bin/vd-tool)
 dirsrc=composite
@@ -31,9 +32,9 @@ mkdir -p ${dirdest}
 res=128
 
 echo -e "${Y}Vector Drawables${Z} ${B}${res}${Z} ${K}to dirdest${Z}"
-for svg in ${dirsrc}/*.svg; do
+for svg in ${rels} ${morphs}; do
         echo -e "${M}${svg}${Z}"
-        if ${vdtool} -c -in "${svg}" -out "${dirdest}" | grep 'ERROR' ; then
+        if ${vdtool} -c -in "${dirsrc}/${svg}.svg" -out "${dirdest}" | grep 'ERROR' ; then
                 echo -e "${R}${svg}${Z}"
         else
                 echo -e "${G}${svg}${Z}"

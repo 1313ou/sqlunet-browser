@@ -54,8 +54,7 @@ function make_png(){
 		svg="${thisdir}/${e}"
 		if [ -e "${svg}" ]; then
 			local png="${e%.svg}${suffix}.png"
-			echo -e -n "${M}${svg}${Z} -> ${d}/${png} @ ${B}${aspect}${r}${Z}"
-			echo
+			echo -e -n "${M}$(basename ${svg})${Z} -> ${B}$(basename ${png})${Z} @ ${C}${aspect}${r}${Z}"
 			$INKSCAPE --export-type="png" --export-filename=${d}/${png} -${aspect} ${r} ${svg} #> /dev/null # 2> /dev/null
 			if [ -e "${d}/${png}" ]; then
 				echo -e " ${G}OK${Z}"
