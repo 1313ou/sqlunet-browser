@@ -1,5 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0">
-    <g style="line-height:0%;font-family:&quot;Arial Black&quot;;-inkscape-font-specification:&quot;Arial Black,&quot;;letter-spacing:0;word-spacing:0">
-        <path d="M21.913 79.412H41.03v17.93H21.913Zm29.971 0H71v17.93H51.884Zm29.971 0h19.116v17.93H81.855Z" aria-label="..." style="font-size:90px;line-height:1.25" transform="scale(1.04164 .96003)"/>
-    </g>
+    <path d="M22.825 76.238h19.913V93.45H22.825Zm31.22 0h19.911V93.45H54.044Zm31.218 0h19.912V93.45H85.263Z"/>
 </svg>

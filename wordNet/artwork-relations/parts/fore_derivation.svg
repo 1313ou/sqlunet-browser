@@ -1,5 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128">
-    <g style="font-size:15.881px;line-height:0%;letter-spacing:0;word-spacing:0;stroke-width:1.32341">
-        <path d="m996.884 478.148 30.432 30.432-30.432 30.433v-16.355H934.82v-28.156h62.063z" aria-label="➡" style="font-size:122.688px;line-height:1.25" transform="matrix(.53184 .53263 -.9001 .97883 0 -956.362)"/>
-    </g>
+    <path d="M99.802 42.634 88.595 88.63l-43.578 13.58L59.738 86.2 26.73 53.146l25.343-27.56L85.081 58.64z"/>
 </svg>

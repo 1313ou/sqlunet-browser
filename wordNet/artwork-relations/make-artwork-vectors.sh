@@ -25,12 +25,12 @@ source define_colors.sh
 
 vdtool=$(readlink -m vdutils/vd-tool/bin/vd-tool)
 dirsrc=composite
-dirdest=drawable
+dirdest=../src/main/res/drawable
 mkdir -p ${dirdest}
 
 res=128
 
-echo -e "${Y}Vector Drawables${Z} ${B}${res}${Z}"
+echo -e "${Y}Vector Drawables${Z} ${B}${res}${Z} ${K}to dirdest${Z}"
 for svg in ${dirsrc}/*.svg; do
         echo -e "${M}${svg}${Z}"
         if ${vdtool} -c -in "${svg}" -out "${dirdest}" | grep 'ERROR' ; then
@@ -40,4 +40,4 @@ for svg in ${dirsrc}/*.svg; do
         fi       
 done
 
-${vdtool} -c -d -in "${dirsrc}"
+${vdtool} -d -in "${dirdest}"

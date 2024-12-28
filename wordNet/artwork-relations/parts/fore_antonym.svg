@@ -1,5 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0">
-    <g style="font-weight:700;line-height:0%;font-family:&quot;Arial Black&quot;;-inkscape-font-specification:&quot;Arial Black, Bold&quot;;letter-spacing:0;word-spacing:0">
-        <path d="M20.899 54.717h33.148l11.254-28.692h15.377L69.48 54.717H84.8v18.05H62.571l-3.732 9.36H84.8v18.05H51.763l-11.31 28.804H24.91l11.31-28.803H20.899V82.127H43.35l3.62-9.36H20.9Z" aria-label="≠" style="font-size:114.098px;line-height:1.25" transform="scale(1.21099 .82577)"/>
-    </g>
+    <path d="M25.308 45.184H65.45L79.08 21.49H97.7L84.14 45.184h18.552v14.905h-26.92l-4.519 7.729h31.439v14.905H62.684L48.988 106.51H30.166l13.696-23.785H25.308V67.818h27.188l4.384-7.73H25.31Z"/>
 </svg>
