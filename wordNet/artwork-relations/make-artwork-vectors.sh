@@ -31,13 +31,13 @@ mkdir -p ${dirdest}
 
 res=128
 
-echo -e "${Y}Vector Drawables${Z} ${B}${res}${Z} ${K}to dirdest${Z}"
-for svg in ${rels} ${morphs}; do
-        echo -e "${M}${svg}${Z}"
+echo -e "${Y}Vector Drawables${Z} ${B}${res}${Z} ${K}to ${dirdest}${Z}"
+for svg in ${rels} ${roles}; do
+        echo -en "${M}${svg}${Z}"
         if ${vdtool} -c -in "${dirsrc}/${svg}.svg" -out "${dirdest}" | grep 'ERROR' ; then
                 echo -e "${R}${svg}${Z}"
         else
-                echo -e "${G}${svg}${Z}"
+                echo # -e "${G}${svg}${Z}"
         fi       
 done
 

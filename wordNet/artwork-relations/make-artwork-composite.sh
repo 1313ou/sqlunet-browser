@@ -18,7 +18,7 @@ backtofore=(
 [base_lex]="${relations['lex']}"
 [base_both]="${relations['both']}"
 [base_dom]="${relations['dom']}"
-[base_morph]="${relations['morph']}"
+[base_role]="${relations['role']}"
 [base_pos]="${relations['pos']}"
 [base_collocation]="${relations['collocation']}"
 )

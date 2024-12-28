@@ -54,7 +54,7 @@ domain_member_term
 exemplifies
 exemplified"
 
-[morph]="
+[role]="
 state
 result
 event
@@ -69,7 +69,7 @@ bymeansof
 material
 vehicle
 bodypart
-roles"
+all_roles"
 
 [pos]="
 pos_n
@@ -81,7 +81,7 @@ pos"
 )
 
 export poses="${relations['pos']}"
-export morphs="${relations['morph']}"
+export roles="${relations['role']}"
 export rels="
 ${relations['gen']}
 ${relations['sem']}

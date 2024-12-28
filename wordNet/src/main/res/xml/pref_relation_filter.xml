@@ -221,7 +221,7 @@
 			android:key="pref_roles"
 			android:title="@string/pref_title_roles"
 			app:aggregateKey="pref_relation_filter"
-			app:icon="@drawable/roles"
+			app:icon="@drawable/all_roles"
 			app:index="29"
 			app:persist="true" />
 	</PreferenceCategory>
