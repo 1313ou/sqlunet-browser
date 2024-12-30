@@ -275,13 +275,13 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				r.table = String.format("( %s ) AS %s " + // 1
 										"INNER JOIN %s USING (%s) " + // 2
 										"INNER JOIN %s AS %s ON %s.%s = %s.%s " + // 3
-										"LEFT JOIN %s ON %s.%s = %s.%s " + // 4
+										"LEFT JOIN %s AS %s ON %s.%s = %s.%s " + // 4
 										"LEFT JOIN %s AS %s USING (%s) " + // 5
 										"LEFT JOIN %s AS %s ON %s.%s = %s.%s", // 6
 								SUBQUERY, "${as_relations}", // 1
 								"${relations.table}", "${relations.relationid}", // 2
 								"${synsets.table}", "${as_synsets2}", "${as_relations}", "${anyrelations.synset2id}", "${as_synsets2}", "${synsets.synsetid}", // 3
-								"${senses.table}", "${as_synsets2}", "${synsets.synsetid}", "${senses.table}", "${senses.synsetid}", // 4
+								"${senses.table}", "${as_senses2}", "${as_synsets2}", "${synsets.synsetid}", "${as_senses2}", "${senses.synsetid}", // 4
 								"${words.table}", "${as_words}", "${words.wordid}", //
 								"${words.table}", "${as_words2}", "${as_relations}", "${anyrelations.word2id}", "${as_words2}", "${words.wordid}") //
 						.replace(SUBQUERY, q3.table);
@@ -308,14 +308,14 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				r.table = String.format("%s AS %s " + // 1
 								"INNER JOIN %s USING (%s) " + // 2
 								"INNER JOIN %s AS %s ON %s.%s = %s.%s " + // 3
-								"LEFT JOIN %s ON %s.%s = %s.%s " + // 4
+								"LEFT JOIN %s AS %s ON %s.%s = %s.%s " + // 4
 								"LEFT JOIN %s AS %s USING (%s)", // 5
 						"${semrelations.table}", "${as_relations}", // 1
 						"${relations.table}", "${relations.relationid}", // 2
 						"${synsets.table}", "${as_synsets2}", "${as_relations}", "${semrelations.synset2id}", "${as_synsets2}", "${synsets.synsetid}", // 3
-						"${senses.table}", "${as_synsets2}", "${synsets.synsetid}", "${senses.table}", "${senses.synsetid}", // 4
-						"${words.table}", "${as_words2}", "${words.wordid}"); //5
-				r.projection = new String[]{String.format("GROUP_CONCAT(DISTINCT %s.%s) AS %s", "${as_words2}", "${words.word}", MEMBERS2)};
+						"${senses.table}", "${as_senses2}", "${as_synsets2}", "${synsets.synsetid}", "${as_senses2}", "${senses.synsetid}", // 4
+						"${words.table}", "${as_words2}", "${words.wordid}"); // 5
+				r.projection = new String[]{String.format("GROUP_CONCAT(DISTINCT %s.%s ||'|'||CASE WHEN %s.%s IS NULL THEN '' ELSE %s.%s END) AS %s", "${as_words2}", "${words.word}", "${as_senses2}", "${senses.tagcount}", "${as_senses2}", "${senses.tagcount}", MEMBERS2)};
 				r.groupBy = String.format("%s.%s", "${as_synsets2}", "${synsets.synsetid}");
 				break;
 
@@ -350,9 +350,9 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${relations.table}", "${relations.relationid}", // 2
 						"${synsets.table}", "${as_synsets2}", "${as_relations}", "${lexrelations.synset2id}", "${as_synsets2}", "${synsets.synsetid}", // 3
 						"${words.table}", "${as_words}", "${as_relations}", "${lexrelations.word2id}", "${as_words}", "${words.wordid}", // 4
-						"${senses.table}", "${as_senses}", "${as_synsets2}", "${senses.synsetid}", "${as_senses}", "${senses.synsetid}", // 5
+						"${senses.table}", "${as_senses2}", "${as_synsets2}", "${senses.synsetid}", "${as_senses2}", "${senses.synsetid}", // 5
 						"${words.table}", "${as_words2}", "${words.wordid}"); //6
-				r.projection = new String[]{String.format("GROUP_CONCAT(DISTINCT %s.%s) AS %s", "${as_words2}", "${words.word}", MEMBERS2)};
+				r.projection = new String[]{String.format("GROUP_CONCAT(DISTINCT %s.%s ||'|'||CASE WHEN %s.%s IS NULL THEN '' ELSE %s.%s END) AS %s", "${as_words2}", "${words.word}", "${as_senses2}", "${senses.tagcount}", "${as_senses2}", "${senses.tagcount}", MEMBERS2)};
 				r.groupBy = String.format("%s.%s", "${as_synsets2}", "${synsets.synsetid}");
 				break;
 

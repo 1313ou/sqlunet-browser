@@ -311,11 +311,12 @@ object Queries {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.AnyRelations_Senses_Words_X.URI_BY_SYNSET
         providerSql.projection = arrayOf(
-            WordNetContract.RELATIONTYPE, WordNetContract.Relations.RELATIONID,
+            WordNetContract.RELATIONTYPE,
+            WordNetContract.Relations.RELATIONID,
             WordNetContract.Relations.RELATION,
             WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.SYNSETID + " AS " + V.SYNSET2ID,
             WordNetContract.AS_SYNSETS2 + '.' + WordNetContract.Synsets.DEFINITION + " AS " + V.DEFINITION2,
-            "GROUP_CONCAT(" + WordNetContract.AS_WORDS + '.' + WordNetContract.Words.WORD + ") AS " + WordNetContract.AnyRelations_Senses_Words_X.MEMBERS2,
+            "GROUP_CONCAT(" + WordNetContract.AS_WORDS + '.' + WordNetContract.Words.WORD + "||'|'||CASE WHEN " + WordNetContract.AS_SENSES2 + '.' + WordNetContract.Senses.TAGCOUNT + " IS NULL THEN '' ELSE " + WordNetContract.AS_SENSES2 + '.' + WordNetContract.Senses.TAGCOUNT + " END) AS " + WordNetContract.AnyRelations_Senses_Words_X.MEMBERS2,
             WordNetContract.AnyRelations_Senses_Words_X.RECURSES,
             WordNetContract.AS_WORDS2 + '.' + WordNetContract.Words.WORDID + " AS " + V.WORD2ID,
             WordNetContract.AS_WORDS2 + '.' + WordNetContract.Words.WORD + " AS " + V.WORD2

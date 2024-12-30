@@ -993,22 +993,23 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun appendMembers(sb: SpannableStringBuilder, members: String, targetWord: String?) {
+        val membersSeq = extractMembers(members)
         if (targetWord != null) {
             append(sb, targetWord, 0, WordNetFactories.targetMemberFactory)
-            val otherMembers = members
-                .splitToSequence(",")
+            val otherMembers = membersSeq
                 .filterNot { it == targetWord }
                 .joinToString(separator = ",")
             if (!otherMembers.isEmpty())
                 sb.append(',')
             append(sb, otherMembers, 0, WordNetFactories.otherMembersFactory)
         } else {
-            append(sb, members, 0, WordNetFactories.membersFactory)
+            append(sb, membersSeq.joinToString(separator = ","), 0, WordNetFactories.membersFactory)
         }
     }
 
     private fun appendMembers(sb: SpannableStringBuilder, members: String) {
-        append(sb, members, 0, WordNetFactories.membersFactory)
+        val membersSeq = extractMembers(members)
+        append(sb, membersSeq.joinToString(separator = ","), 0, WordNetFactories.membersFactory)
     }
 
     // S E M R E L A T I O N S
@@ -1860,5 +1861,22 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     companion object {
 
         private const val TAG = "BaseModule"
+
+        val comparator2 = compareBy<Pair<String, Int>> { it.second }
+        val invComparator2 = comparator2.reversed()
+        val comparator = invComparator2.thenBy { it.first }
+
+        fun extractMembers(members: String): Sequence<String> {
+            return members
+                .splitToSequence(",")
+                .map {
+                    if (it.contains("|")) {
+                        val a = it.split("|")
+                        a[0] to (a[1].toIntOrNull() ?: 0)
+                    } else it to 0
+                }
+                .sortedWith(comparator)
+                .map { it.first }
+        }
     }
 }
