@@ -49,11 +49,15 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			// J O I N S
 
 			case COLLOCATIONS_X:
-				table = "${syntagms.table} " + //
-						"JOIN ${wnwords.table} AS ${as_words1} ON ${syntagms.word1id} = ${as_words1}.${wnwords.wordid} " + //
-						"JOIN ${wnwords.table} AS ${as_words2} ON (${syntagms.word2id} = ${as_words2}.${wnwords.wordid}) " + //
-						"JOIN ${wnsynsets.table} AS ${as_synsets1} ON (${syntagms.synset1id} = ${as_synsets1}.${wnsynsets.synsetid}) " + //
-						"JOIN ${wnsynsets.table} AS ${as_synsets2} ON (${syntagms.synset2id} = ${as_synsets2}.${wnsynsets.synsetid})"; //
+				table = String.format("%s " + //
+								"JOIN %s AS %s ON (%s = %s.%s) " + //
+								"JOIN %s AS %s ON (%s = %s.%s) " + //
+								"JOIN %s AS %s ON (%s = %s.%s) " + //
+								"JOIN %s AS %s ON (%s = %s.%s)", "${syntagms.table}", //
+						"${wnwords.table}", "${as_words1}", "${syntagms.word1id}", "${as_words1}", "${wnwords.wordid}", //
+						"${wnwords.table}", "${as_words2}", "${syntagms.word2id}", "${as_words2}", "${wnwords.wordid}", //
+						"${wnsynsets.table}", "${as_synsets1}", "${syntagms.synset1id}", "${as_synsets1}", "${wnsynsets.synsetid}", //
+						"${wnsynsets.table}", "${as_synsets2}", "${syntagms.synset2id}", "${as_synsets2}", "${wnsynsets.synsetid}");
 				break;
 
 			default:
