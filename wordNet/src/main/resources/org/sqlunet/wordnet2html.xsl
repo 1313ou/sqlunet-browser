@@ -101,7 +101,7 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png" />
 			</SPAN>
-			<IMG class="dataimg" src="images/wordnet/domain.png" />
+			<IMG class="dataimg" src="images/wordnet/lexdomain.png" />
 			<SPAN class="wndomain">
 				<xsl:value-of select="./@name" />
 			</SPAN>
@@ -143,7 +143,7 @@
 				</SPAN>
 			</xsl:if>
 			<xsl:if test='./@domain'>
-				<IMG class="dataimg" src="images/wordnet/domain.png" />
+				<IMG class="dataimg" src="images/wordnet/lexdomain.png" />
 				<SPAN class="wndomain">
 					<xsl:value-of select="./@domain" />
 				</SPAN>
