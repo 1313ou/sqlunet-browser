@@ -388,7 +388,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${words.word} AS #{suggest_query}" //
 				};
 				selection = "${words.word} LIKE ? || '%'";
-				selectionArgs = new String[]{String.format("%s", last)};
+				selectionArgs = new String[]{last};
 				break;
 			}
 
@@ -401,7 +401,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${words.word} AS #{suggest_query}" //
 				};
 				selection = "${words.word} MATCH ?";
-				selectionArgs = new String[]{String.format("%s*", last)};
+				selectionArgs = new String[]{last + '*'};
 				break;
 			}
 
@@ -442,6 +442,6 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 	private static String quote(String str)
 	{
-		return str == null ? null : String.format("\"%s\"", str);
+		return str == null ? null : '"' + str + '"';
 	}
 }

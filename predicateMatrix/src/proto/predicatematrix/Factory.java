@@ -84,6 +84,6 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 	private static String quote(String str)
 	{
-		return str == null ? null : String.format("\"%s\"", str);
+		return str == null ? null : '"' + str + '"';
 	}
 }

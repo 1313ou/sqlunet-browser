@@ -238,13 +238,12 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 			case ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				Result q3 = apply(Key.ANYRELATIONS_QUERY);
-				r.table = String.format("( %s ) AS ${as_relations} " + // 1
-										"INNER JOIN ${relations.table} USING (${relations.relationid}) " + // 2
-										"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${anyrelations.synset2id} = ${as_synsets2}.${synsets.synsetid} " + // 3
-										"LEFT JOIN ${senses.table} AS ${as_senses2} ON ${as_synsets2}.${synsets.synsetid} = ${as_senses2}.${senses.synsetid} " + // 4
-										"LEFT JOIN ${words.table} AS ${as_words} USING (${words.wordid}) " + // 5
-										"LEFT JOIN ${words.table} AS ${as_words2} ON ${as_relations}.${anyrelations.word2id} = ${as_words2}.${words.wordid}", // 6
-								SUBQUERY) //
+				r.table = "( " + SUBQUERY + " ) AS ${as_relations} " + // 1
+						"INNER JOIN ${relations.table} USING (${relations.relationid}) " + // 2
+						"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${anyrelations.synset2id} = ${as_synsets2}.${synsets.synsetid} " + // 3
+						"LEFT JOIN ${senses.table} AS ${as_senses2} ON ${as_synsets2}.${synsets.synsetid} = ${as_senses2}.${senses.synsetid} " + // 4
+						"LEFT JOIN ${words.table} AS ${as_words} USING (${words.wordid}) " + // 5
+						"LEFT JOIN ${words.table} AS ${as_words2} ON ${as_relations}.${anyrelations.word2id} = ${as_words2}.${words.wordid}" // 6
 						.replace(SUBQUERY, q3.table);
 				r.groupBy = "${synset2id},${relationtype},${relations.relation},${relations.relationid},${word2id},${word2}";
 				break;
@@ -392,7 +391,8 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 			default:
 				return null;
-		} return r;
+		}
+		return r;
 	}
 
 	@Override
@@ -433,7 +433,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 		private static String quote(String str)
 		{
-			return str == null ? null : String.format("\"%s\"", str);
+			return str == null ? null : '"' + str + '"';
 		}
 
 		String[] toStrings()
