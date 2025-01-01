@@ -69,7 +69,7 @@ icon_list="wordnet.svg synset.svg synsetmember.svg lexdomain.svg morph.svg adjpo
 link_list="ic_link_relation.svg"
 settings_list="ic_settings_wordnet.svg"
 asset_list="closed.svg open.svg pointer.svg"
-asset_list_wordnet="wordnet.svg synset.svg domain.svg"
+asset_list_wordnet="wordnet.svg synset.svg lexdomain.svg"
 for r in ${relation_list} ${extra_relation_list}; do
   asset_list_wordnet="${asset_list_wordnet} ${r}.svg"
 done
