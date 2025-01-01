@@ -243,8 +243,8 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${anyrelations.synset2id} = ${as_synsets2}.${synsets.synsetid} " + // 3
 						"LEFT JOIN ${senses.table} AS ${as_senses2} ON ${as_synsets2}.${synsets.synsetid} = ${as_senses2}.${senses.synsetid} " + // 4
 						"LEFT JOIN ${words.table} AS ${as_words} USING (${words.wordid}) " + // 5
-						"LEFT JOIN ${words.table} AS ${as_words2} ON ${as_relations}.${anyrelations.word2id} = ${as_words2}.${words.wordid}" // 6
-						.replace(SUBQUERY, q3.table);
+						"LEFT JOIN ${words.table} AS ${as_words2} ON ${as_relations}.${anyrelations.word2id} = ${as_words2}.${words.wordid}"; // 6
+				r.table = r.table.replace(SUBQUERY, q3.table);
 				r.groupBy = "${synset2id},${relationtype},${relations.relation},${relations.relationid},${word2id},${word2}";
 				break;
 
