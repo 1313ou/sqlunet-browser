@@ -65,68 +65,48 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				//noinspection fallthrough
 
 			case PBROLESETS_X:
-				table = String.format("%s " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s)", //
-						"${rolesets.table}", //
-						"${members.table}", "${as_members}", "${rolesets.rolesetid}", //
-						"${words.table}", "${as_pbwords}", "${words.pbwordid}", //
-						"${wnwords.table}", "${as_words}", "${wnwords.wordid}");
+				table = "${rolesets.table} " + //
+						"LEFT JOIN ${members.table} AS ${as_members} USING (${rolesets.rolesetid}) " + //
+						"LEFT JOIN ${words.table} AS ${as_pbwords} USING (${words.pbwordid}) " + //
+						"LEFT JOIN ${wnwords.table} AS ${as_words} USING (${wnwords.wordid})"; //
 				break;
 
 			case WORDS_PBROLESETS:
-				table = String.format("%s " + //
-								"INNER JOIN %s USING (%s) " + //
-								"INNER JOIN %s USING (%s)", //
-						"${wnwords.table}", //
-						"${words.table}", "${words.wordid}", //
-						"${rolesets.table}", "${words.pbwordid}");
+				table = "${wnwords.table} " + //
+						"INNER JOIN ${words.table} USING (${words.wordid}) " + //
+						"INNER JOIN ${rolesets.table} USING (${words.pbwordid})"; //
 				break;
 
 			case PBROLESETS_PBROLES:
-				table = String.format("%s " + //
-								"INNER JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${rolesets.table}", //
-						"${roles.table}", "${rolesets.rolesetid}", //
-						"${argtypes.table}", "${argtypes.argtypeid}", //
-						"${funcs.table}", "${funcs.funcid}", //
-						"${vnroles.table}", "${vnroles.vnroleid}");
+				table = "${rolesets.table} " + //
+						"INNER JOIN ${roles.table} USING (${rolesets.rolesetid}) " + //
+						"LEFT JOIN ${argtypes.table} USING (${argtypes.argtypeid}) " + //
+						"LEFT JOIN ${funcs.table} USING (${funcs.funcid}) " + //
+						"LEFT JOIN ${vnroles.table} USING (${vnroles.vnroleid})"; //
 				sortOrder = "${roles.argtypeid}";
 				break;
 
 			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
-				groupBy = String.format("%s.%s", "${as_examples}", "${examples.exampleid}");
+				groupBy = "${as_examples}.${examples.exampleid}";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 
 			case PBROLESETS_PBEXAMPLES:
-				table = String.format("%s " + // 1
-								"INNER JOIN %s AS %s USING (%s) " + // 2
-								"LEFT JOIN %s AS %s USING (%s) " + // 3
-								"LEFT JOIN %s AS %s USING (%s) " + // 4
-								"LEFT JOIN %s USING (%s) " + // 5
-								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s) " + // 6
-								"LEFT JOIN %s USING (%s,%s) " + // 12
-								"LEFT JOIN %s USING (%s)", // 13
-						"${rolesets.table}", // 1
-						"${examples.table}", "${as_examples}", "${rolesets.rolesetid}", // 2
-						"${rels.table}", "${as_relations}", "${examples.exampleid}", // 3
-						"${args.table}", "${as_args}", "${examples.exampleid}", // 4
-						"${argtypes.table}", "${argtypes.argtypeid}", // 5
-						"${funcs.table}", "${as_funcs}", "${as_args}", "${funcs.funcid}", "${as_funcs}", "${funcs.funcid}", // 6
-						"${roles.table}", "${rolesets.rolesetid}", "${args.argtypeid}", // 12
-						"${vnroles.table}", "${vnroles.vnroleid}"); // 13
-				sortOrder = String.format("%s.%s,%s", "${as_examples}", "${examples.exampleid}", "${args.arg}");
+				table = "${rolesets.table} " + // 1
+						"INNER JOIN ${examples.table} AS ${as_examples} USING (${rolesets.rolesetid}) " + // 2
+						"LEFT JOIN ${rels.table} AS ${as_relations} USING (${examples.exampleid}) " + // 3
+						"LEFT JOIN ${args.table} AS ${as_args} USING (${examples.exampleid}) " + // 4
+						"LEFT JOIN ${argtypes.table} USING (${argtypes.argtypeid}) " + // 5
+						"LEFT JOIN ${funcs.table} AS ${as_funcs} ON (${as_args}.${funcs.funcid} = ${as_funcs}.${funcs.funcid}) " + // 6
+						"LEFT JOIN ${roles.table} USING (${rolesets.rolesetid},${args.argtypeid}) " + // 12
+						"LEFT JOIN ${vnroles.table} USING (${vnroles.vnroleid})"; // 13
+				sortOrder = "${as_examples}.${examples.exampleid},${args.arg}";
 				break;
 
 			// L O O K U P
 
 			case LOOKUP_FTS_EXAMPLES:
-				table = String.format("%s_%s_fts4", "${examples.table}", "${examples.text}");
+				table = "${examples.table}_${examples.text}_fts4";
 				break;
 
 			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
@@ -135,35 +115,35 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				//noinspection fallthrough
 
 			case LOOKUP_FTS_EXAMPLES_X:
-				table = String.format("%s_%s_fts4 " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${examples.table}", "${examples.text}", //
-						"${rolesets.table}", "${rolesets.rolesetid}");
+				table = "${examples.table}_${examples.text}_fts4 " + //
+						"LEFT JOIN ${rolesets.table} USING (${rolesets.rolesetid})"; //
 				break;
 
 			// S U G G E S T
 
 			case SUGGEST_WORDS:
 			{
-				table = String.format("%s " + //
-								"INNER JOIN %s USING (%s)", //
-						"${words.table}", //
-						"${wnwords.table}", "${wnwords.wordid}");
-				projection = new String[]{String.format("%s AS _id", "${words.pbwordid}"), //
-						String.format("%s AS #{suggest_text_1}", "${words.word}"), //
-						String.format("%s AS #{suggest_query}", "${words.word}")}; //
-				selection = String.format("%s LIKE ? || '%%'", "${words.word}");
+				table = "${words.table} " + //
+						"INNER JOIN ${wnwords.table} USING (${wnwords.wordid})"; //
+				projection = new String[]{ //
+						"${words.pbwordid} AS _id", //
+						"${words.word} AS #{suggest_text_1}", //
+						"${words.word} AS #{suggest_query}" //
+				};
+				selection = "${words.word} LIKE ? || '%'";
 				selectionArgs = new String[]{last};
 				break;
 			}
 
 			case SUGGEST_FTS_WORDS:
 			{
-				table = String.format("%s_%s_fts4", "${words.table}", "${words.word}");
-				projection = new String[]{String.format("%s AS _id", "${words.pbwordid}"), //
-						String.format("%s AS #{suggest_text_1}", "${words.word}"), //
-						String.format("%s AS #{suggest_query}", "${words.word}")}; //
-				selection = String.format("%s MATCH ?", "${words.word}"); //
+				table = "${words.table}_${words.word}_fts4";
+				projection = new String[]{ //
+						"${words.pbwordid} AS _id", //
+						"${words.word} AS #{suggest_text_1}", //
+						"${words.word} AS #{suggest_query}" //
+				};
+				selection = "${words.word} MATCH ?";
 				selectionArgs = new String[]{last + '*'};
 				break;
 			}

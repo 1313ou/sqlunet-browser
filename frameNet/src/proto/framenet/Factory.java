@@ -89,283 +89,165 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			// J O I N S
 
 			case LEXUNITS_OR_FRAMES_FN:
-				table = String.format("(" + // 1
-								"SELECT %s + %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, 0 AS %s " + // 2
-								"FROM %s " + // 3
-								"INNER JOIN %s USING (%s) " + // 4
-								"INNER JOIN %s AS %s USING (%s) " + // 5
-								"INNER JOIN %s AS %s USING (%s) " + // 6
-								"UNION " + // 7
-								"SELECT %s AS %s, %s AS %s, 0 AS %s, 0 AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, 1 AS %s " + // 8
-								"FROM %s " + // 9
-								")", //
-						"${words.fnwordid}", "10000", "${_id}", "${lexunits.luid}", "${fnid}", "${words.fnwordid}", "${words.fnwordid}", "${words.wordid}", "${words.wordid}", "${words.word}", "${words.word}", "${lexunits.lexunit}", "${name}", "${frames.frame}", "${frames.frame}", "${frames.frameid}", "${frames.frameid}", "${isframe}", // 2
-						"${words.table}", // 3
-						"${lexemes.table}", "${words.fnwordid}", // 4
-						"${lexunits.table}", "${as_lexunits}", "${lexunits.luid}", // 5
-						"${frames.table}", "${as_frames}", "${frames.frameid}", // 6
-						// 7
-						"${frames.frameid}", "${_id}", "${frames.frameid}", "${fnid}", "${words.fnwordid}", "${words.wordid}", "${frames.frame}", "${words.word}", "${frames.frame}", "${name}", "${frames.frame}", "${frames.frame}", "${frames.frameid}", "${frames.frameid}", "${isframe}", // 8
-						"${frames.table}"); // 9
+				table = "(" + // 1
+						"SELECT ${words.fnwordid} + 10000 AS ${_id}, ${lexunits.luid} AS ${fnid}, ${words.fnwordid} AS ${words.fnwordid}, ${words.wordid} AS ${words.wordid}, ${words.word} AS ${words.word}, ${lexunits.lexunit} AS ${name}, ${frames.frame} AS ${frames.frame}, ${frames.frameid} AS ${frames.frameid}, 0 AS ${isframe} " + // 2
+						"FROM ${words.table} " + // 3
+						"INNER JOIN ${lexemes.table} USING (${words.fnwordid}) " + // 4
+						"INNER JOIN ${lexunits.table} AS ${as_lexunits} USING (${lexunits.luid}) " + // 5
+						"INNER JOIN ${frames.table} AS ${as_frames} USING (${frames.frameid}) " + // 6
+						"UNION " + // 7
+						"SELECT ${frames.frameid} AS ${_id}, ${frames.frameid} AS ${fnid}, 0 AS ${words.fnwordid}, 0 AS ${words.wordid}, ${frames.frame} AS ${words.word}, ${frames.frame} AS ${name}, ${frames.frame} AS ${frames.frame}, ${frames.frameid} AS ${frames.frameid}, 1 AS ${isframe} " + // 8
+						"FROM ${frames.table} " + // 9
+						")"; //
 				break;
 
 			case LEXUNITS_OR_FRAMES:
-				table = String.format("(" + // 1
-								"SELECT %s + %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, 0 AS %s " + // 2
-								"FROM %s " + // 3
-								"INNER JOIN %s USING (%s) " + // 3b
-								"INNER JOIN %s USING (%s) " + // 4
-								"INNER JOIN %s AS %s USING (%s) " + // 5
-								"INNER JOIN %s AS %s USING (%s) " + // 6
-								"UNION " + // 7
-								"SELECT %s AS %s, %s AS %s, 0 AS %s, 0 AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, 1 AS %s " + // 8
-								"FROM %s " + // 9
-								")", //
-						"${words.fnwordid}", "10000", "${_id}", "${lexunits.luid}", "${fnid}", "${words.fnwordid}", "${words.fnwordid}", "${words.wordid}", "${words.wordid}", "${words.word}", "${words.word}", "${lexunits.lexunit}", "${name}", "${frames.frame}", "${frames.frame}", "${frames.frameid}", "${frames.frameid}", "${isframe}", // 2
-						"${words.table}", // 3
-						"${wnwords.table}", "${wnwords.wordid}", // 3b
-						"${lexemes.table}", "${words.fnwordid}", // 4
-						"${lexunits.table}", "${as_lexunits}", "${lexunits.luid}", // 5
-						"${frames.table}", "${as_frames}", "${frames.frameid}", // 6
-						// 7
-						"${frames.frameid}", "${_id}", "${frames.frameid}", "${fnid}", "${words.fnwordid}", "${words.wordid}", "${frames.frame}", "${words.word}", "${frames.frame}", "${name}", "${frames.frame}", "${frames.frame}", "${frames.frameid}", "${frames.frameid}", "${isframe}", // 8
-						"${frames.table}"); // 9
+				table = "(" + // 1
+						"SELECT ${words.fnwordid} + 10000 AS ${_id}, ${lexunits.luid} AS ${fnid}, ${words.fnwordid} AS ${words.fnwordid}, ${words.wordid} AS ${words.wordid}, ${words.word} AS ${words.word}, ${lexunits.lexunit} AS ${name}, ${frames.frame} AS ${frames.frame}, ${frames.frameid} AS ${frames.frameid}, 0 AS ${isframe} " + // 2
+						"FROM ${words.table} " + // 3
+						"INNER JOIN ${wnwords.table} USING (${wnwords.wordid}) " + // 3b
+						"INNER JOIN ${lexemes.table} USING (${words.fnwordid}) " + // 4
+						"INNER JOIN ${lexunits.table} AS ${as_lexunits} USING (${lexunits.luid}) " + // 5
+						"INNER JOIN ${frames.table} AS ${as_frames} USING (${frames.frameid}) " + // 6
+						"UNION " + // 7
+						"SELECT ${frames.frameid} AS ${_id}, ${frames.frameid} AS ${fnid}, 0 AS ${words.fnwordid}, 0 AS ${words.wordid}, ${frames.frame} AS ${words.word}, ${frames.frame} AS ${name}, ${frames.frame} AS ${frames.frame}, ${frames.frameid} AS ${frames.frameid}, 1 AS ${isframe} " + // 8
+						"FROM ${frames.table} " + // 9
+						")"; //
 				break;
 
 			case FRAMES_X_BY_FRAME:
-				table = String.format("%s " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${frames.table}", //
-						"${frames_semtypes.table}", "${frames.frameid}", //
-						"${semtypes.table}", "${semtypes.semtypeid}");
+				table = "${frames.table} " + //
+						"LEFT JOIN ${frames_semtypes.table} USING (${frames.frameid}) " + //
+						"LEFT JOIN ${semtypes.table} USING (${semtypes.semtypeid})"; //
 				groupBy = "${frames.frameid}";
 				break;
 
 			case FRAMES_RELATED:
-				table = String.format("%s AS %s " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s ON (%s = %s.%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${frames_related.table}", "${as_related_frames}", //
-						"${frames.table}", "${src_frame}", "${frames.frameid}", //
-						"${frames.table}", "${dest_frame}", "${frames_related.frame2id}", "${dest_frame}", "${frames.frameid}", //
-						"${framerelations.table}", "${frames_related.relationid}");
+				table = "${frames_related.table} AS ${as_related_frames} " + //
+						"LEFT JOIN ${frames.table} AS ${src_frame} USING (${frames.frameid}) " + //
+						"LEFT JOIN ${frames.table} AS ${dest_frame} ON ${frames_related.frame2id} = ${dest_frame}.${frames.frameid} " + //
+						"LEFT JOIN ${framerelations.table} USING (${frames_related.relationid})"; //
 				break;
 
 			case LEXUNITS_X_BY_LEXUNIT:
-				table = String.format("%s AS %s " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s) " + //
-								"LEFT JOIN %s AS %s ON (%s = %s.%s) " + //
-								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s AND %s = %s.%s)", //
-						"${lexunits.table}", "${as_lexunits}", //
-						"${frames.table}", "${as_frames}", "${frames.frameid}", //
-						"${poses.table}", "${as_poses}", "${as_lexunits}", "${poses.posid}", "${as_poses}", "${poses.posid}", //
-						"${fetypes.table}", "${as_fetypes}", "${lexunits.incorporatedfetypeid}", "${as_fetypes}", "${fetypes.fetypeid}", //
-						"${fes.table}", "${as_fes}", "${as_frames}", "${frames.frameid}", "${as_fes}", "${frames.frameid}", "${lexunits.incorporatedfetypeid}", "${as_fes}", "${fes.fetypeid}");
+				table = "${lexunits.table} AS ${as_lexunits} " + //
+						"LEFT JOIN ${frames.table} AS ${as_frames} USING (${frames.frameid}) " + //
+						"LEFT JOIN ${poses.table} AS ${as_poses} ON ${as_lexunits}.${poses.posid} = ${as_poses}.${poses.posid} " + //
+						"LEFT JOIN ${fetypes.table} AS ${as_fetypes} ON (${lexunits.incorporatedfetypeid} = ${as_fetypes}.${fetypes.fetypeid}) " + //
+						"LEFT JOIN ${fes.table} AS ${as_fes} ON (${as_frames}.${frames.frameid} = ${as_fes}.${frames.frameid} AND ${lexunits.incorporatedfetypeid} = ${as_fes}.${fes.fetypeid})"; //
 				groupBy = "${lexunits.luid}";
 				break;
 
 			case SENTENCES_LAYERS_X:
-				table = String.format("(SELECT %s,%s,%s,%s,%s," + // 1
-								"GROUP_CONCAT(%s||':'||" + // 2
-								"%s||':'||" + // 3
-								"%s||':'||" + // 4
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 5
-								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 6
-								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END + // 7
-								// ", '|'" + // GROUP_CONCAT DELIMITER
-								") AS %s " + // 2bis
-								"FROM %s " + // 8
-								"LEFT JOIN %s USING (%s) " + // 9
-								"LEFT JOIN %s USING (%s) " + // 10
-								"LEFT JOIN %s USING (%s) " + // 11
-								"LEFT JOIN %s USING (%s) " + // 12
-								"LEFT JOIN %s USING (%s) " + // 13
-								"LEFT JOIN %s USING (%s) " + // 14
-								"WHERE %s = ? AND %s IS NOT NULL " + // 15
-								"GROUP BY %s " + // 16
-								"ORDER BY %s,%s)", // 17 "ORDER BY %s,%s,%s,%s)"
-						"${annosets.annosetid}", "${sentences.sentenceid}", "${layers.layerid}", "${layertypes.layertype}", "${layers.rank}", // 1
-						"${labels.start}", // 2
-						"${labels.end}", // 3
-						"${labeltypes.labeltype}", // 4
-						"${labelitypes.labelitype}", "${labelitypes.labelitype}", // 5
-						// "${labels.bgcolor}", "${labels.bgcolor}", // 6
-						// "${labels.fgcolor}", "${labels.fgcolor}", // 7
-						"${annotations}", // 2bis
-						"${sentences.table}", // 8
-						"${annosets.table}", "${sentences.sentenceid}", // 9
-						"${layers.table}", "${annosets.annosetid}", // 10
-						"${layertypes.table}", "${layertypes.layertypeid}", // 11
-						"${labels.table}", "${layers.layerid}", // 12
-						"${labeltypes.table}", "${labeltypes.labeltypeid}", // 13
-						"${labelitypes.table}", "${labelitypes.labelitypeid}", // 14
-						"${sentences.sentenceid}", "${labeltypes.labeltypeid}", // 15
-						"${layers.layerid}", // 16
-						"${layers.rank}", "${layertypes.layertypeid}"); // 17 "${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}");
+				table = "(SELECT ${annosets.annosetid},${sentences.sentenceid},${layers.layerid},${layertypes.layertype},${layers.rank}," + // 1
+						"GROUP_CONCAT(${labels.start}||':'||" + // 2
+						"${labels.end}||':'||" + // 3
+						"${labeltypes.labeltype}||':'||" + // 4
+						"CASE WHEN ${labelitypes.labelitype} IS NULL THEN '' ELSE ${labelitypes.labelitype} END" + // 5
+						// "||':'||CASE WHEN ${labels.bgcolor} IS NULL THEN '' ELSE ${labels.bgcolor} END" + // 6
+						// "||':'||CASE WHEN ${labels.fgcolor} IS NULL THEN '' ELSE ${labels.fgcolor} END + // 7
+						// ", '|'" + // GROUP_CONCAT DELIMITER
+						") AS ${annotations} " + // 2bis
+						"FROM ${sentences.table} " + // 8
+						"LEFT JOIN ${annosets.table} USING (${sentences.sentenceid}) " + // 9
+						"LEFT JOIN ${layers.table} USING (${annosets.annosetid}) " + // 10
+						"LEFT JOIN ${layertypes.table} USING (${layertypes.layertypeid}) " + // 11
+						"LEFT JOIN ${labels.table} USING (${layers.layerid}) " + // 12
+						"LEFT JOIN ${labeltypes.table} USING (${labeltypes.labeltypeid}) " + // 13
+						"LEFT JOIN ${labelitypes.table} USING (${labelitypes.labelitypeid}) " + // 14
+						"WHERE ${sentences.sentenceid} = ? AND ${labeltypes.labeltypeid} IS NOT NULL " + // 15
+						"GROUP BY ${layers.layerid} " + // 16
+						"ORDER BY ${layers.rank},${layertypes.layertypeid})"; // 17 "ORDER BY ${layers.rank},${layers.layerid},${labels.start},${labels.end})"
 				break;
 
 			case ANNOSETS_LAYERS_X:
-				table = String.format("(SELECT %s,%s,%s,%s,%s," + // 1
-								"GROUP_CONCAT(%s||':'||" + // 2
-								"%s||':'||" + // 3
-								"%s||':'||" + // 4
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 5
-								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 6
-								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END
-								// ", '|'" + // GROUP_CONCAT DELIMITER
-								") AS %s " + // 2bis
-								"FROM %s " + // 8
-								"LEFT JOIN %s USING (%s) " + // 9
-								"LEFT JOIN %s USING (%s) " + // 10
-								"LEFT JOIN %s USING (%s) " + // 11
-								"LEFT JOIN %s USING (%s) " + // 12
-								"LEFT JOIN %s USING (%s) " + // 13
-								"LEFT JOIN %s USING (%s) " + // 14
-								"WHERE %s = ? AND %s IS NOT NULL " + // 15
-								"GROUP BY %s " + // 16
-								"ORDER BY %s,%s,%s,%s)", // 17
-						"${sentences.sentenceid}", "${sentences.text}", "${layers.layerid}", "${layertypes.layertype}", "${layers.rank}", // 1
-						"${labels.start}", // 2
-						"${labels.end}", // 3
-						"${labeltypes.labeltype}", // 4
-						"${labelitypes.labelitype}", "${labelitypes.labelitype}", // 5
-						// "${labels.bgcolor}", "${labels.bgcolor}", // 6
-						// "${labels.fgcolor}", "${labels.fgcolor}", // 7
-						"${annotations}", // 2bis
-						"${annosets.table}", // 8
-						"${sentences.table}", "${sentences.sentenceid}", // 9
-						"${layers.table}", "${annosets.annosetid}", // 10
-						"${layertypes.table}", "${layertypes.layertypeid}", // 11
-						"${labels.table}", "${layers.layerid}", // 12
-						"${labeltypes.table}", "${labeltypes.labeltypeid}", // 13
-						"${labelitypes.table}", "${labelitypes.labelitypeid}", // 14
-						"${annosets.annosetid}", "${labeltypes.labeltypeid}", // 15
-						"${layers.layerid}", // 16
-						"${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}"); // 17
+				table = "(SELECT ${sentences.sentenceid},${sentences.text},${layers.layerid},${layertypes.layertype},${layers.rank}," + // 1
+						"GROUP_CONCAT(${labels.start}||':'||" + // 2
+						"${labels.end}||':'||" + // 3
+						"${labeltypes.labeltype}||':'||" + // 4
+						"CASE WHEN ${labelitypes.labelitype} IS NULL THEN '' ELSE ${labelitypes.labelitype} END" + // 5
+						// "||':'||CASE WHEN ${labels.bgcolor} IS NULL THEN '' ELSE ${labels.bgcolor} END" + // 6
+						// "||':'||CASE WHEN ${labels.fgcolor} IS NULL THEN '' ELSE ${labels.fgcolor} END
+						// ", '|'" + // GROUP_CONCAT DELIMITER
+						") AS ${annotations} " + // 2bis
+						"FROM ${annosets.table} " + // 8
+						"LEFT JOIN ${sentences.table} USING (${sentences.sentenceid}) " + // 9
+						"LEFT JOIN ${layers.table} USING (${annosets.annosetid}) " + // 10
+						"LEFT JOIN ${layertypes.table} USING (${layertypes.layertypeid}) " + // 11
+						"LEFT JOIN ${labels.table} USING (${layers.layerid}) " + // 12
+						"LEFT JOIN ${labeltypes.table} USING (${labeltypes.labeltypeid}) " + // 13
+						"LEFT JOIN ${labelitypes.table} USING (${labelitypes.labelitypeid}) " + // 14
+						"WHERE ${annosets.annosetid} = ? AND ${labeltypes.labeltypeid} IS NOT NULL " + // 15
+						"GROUP BY ${layers.layerid} " + // 16
+						"ORDER BY ${layers.rank},${layers.layerid},${labels.start},${labels.end})"; // 17
 				break;
 
 			case PATTERNS_LAYERS_X:
-				table = String.format("(SELECT %s,%s,%s,%s,%s,%s," + // 1
-								"GROUP_CONCAT(%s||':'||" + // 2
-								"%s||':'||" + // 3
-								"%s||':'||" + // 4
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 5
-								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 6
-								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 7
-								// ", '|'" + // GROUP_CONCAT DELIMITER
-								") AS %s " + // 2bis
-								"FROM %s " + // 8
-								"LEFT JOIN %s USING (%s) " + // 9
-								"LEFT JOIN %s USING (%s) " + // 10
-								"LEFT JOIN %s USING (%s) " + // 11
-								"LEFT JOIN %s USING (%s) " + // 12
-								"LEFT JOIN %s USING (%s) " + // 13
-								"LEFT JOIN %s USING (%s) " + // 14
-								"LEFT JOIN %s USING (%s) " + // 15
-								"WHERE %s = ? AND %s IS NOT NULL " + // 16
-								"GROUP BY %s " + // 17
-								"ORDER BY %s,%s,%s,%s)", // 18
-						"${annosets.annosetid}", "${sentences.sentenceid}", "${sentences.text}", "${layers.layerid}", "${layertypes.layertype}", "${layers.rank}", // 1
-						"${labels.start}", // 2
-						"${labels.end}", // 3
-						"${labeltypes.labeltype}", // 4
-						"${labelitypes.labelitype}", "${labelitypes.labelitype}", // 5
-						// "${labels.bgcolor}", "${labels.bgcolor}", // 6
-						// "${labels.fgcolor}", "${labels.fgcolor}", // 7
-						"${annotations}", // 2bis
-						"${grouppatterns_annosets.table}", // 8
-						"${annosets.table}", "${annosets.annosetid}", // 9
-						"${sentences.table}", "${sentences.sentenceid}", // 10
-						"${layers.table}", "${annosets.annosetid}", // 11
-						"${layertypes.table}", "${layertypes.layertypeid}", // 12
-						"${labels.table}", "${layers.layerid}", // 13
-						"${labeltypes.table}", "${labeltypes.labeltypeid}", // 14
-						"${labelitypes.table}", "${labelitypes.labelitypeid}", // 15
-						"${grouppatterns.patternid}", "${labeltypes.labeltypeid}", // 16
-						"${layers.layerid}", // 17
-						"${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}"); // 18
+				table = "(SELECT ${annosets.annosetid},${sentences.sentenceid},${sentences.text},${layers.layerid},${layertypes.layertype},${layers.rank}," + // 1
+						"GROUP_CONCAT(${labels.start}||':'||" + // 2
+						"${labels.end}||':'||" + // 3
+						"${labeltypes.labeltype}||':'||" + // 4
+						"CASE WHEN ${labelitypes.labelitype} IS NULL THEN '' ELSE ${labelitypes.labelitype} END" + // 5
+						// "||':'||CASE WHEN ${labels.bgcolor} IS NULL THEN '' ELSE ${labels.bgcolor} END" + // 6
+						// "||':'||CASE WHEN ${labels.fgcolor} IS NULL THEN '' ELSE ${labels.fgcolor} END" + // 7
+						// ", '|'" + // GROUP_CONCAT DELIMITER
+						") AS ${annotations} " + // 2bis
+						"FROM ${grouppatterns_annosets.table} " + // 8
+						"LEFT JOIN ${annosets.table} USING (${annosets.annosetid}) " + // 9
+						"LEFT JOIN ${sentences.table} USING (${sentences.sentenceid}) " + // 10
+						"LEFT JOIN ${layers.table} USING (${annosets.annosetid}) " + // 11
+						"LEFT JOIN ${layertypes.table} USING (${layertypes.layertypeid}) " + // 12
+						"LEFT JOIN ${labels.table} USING (${layers.layerid}) " + // 13
+						"LEFT JOIN ${labeltypes.table} USING (${labeltypes.labeltypeid}) " + // 14
+						"LEFT JOIN ${labelitypes.table} USING (${labelitypes.labelitypeid}) " + // 15
+						"WHERE ${grouppatterns.patternid} = ? AND ${labeltypes.labeltypeid} IS NOT NULL " + // 16
+						"GROUP BY ${layers.layerid} " + // 17
+						"ORDER BY ${layers.rank},${layers.layerid},${labels.start},${labels.end})"; // 18
 				break;
 
 			case VALENCEUNITS_LAYERS_X:
-				table = String.format("(SELECT %s,%s,%s,%s,%s,%s," + // 1
-								"GROUP_CONCAT(%s||':'||" + // 2
-								"%s||':'||" + // 3
-								"%s||':'||" + // 4
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 5
-								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 6
-								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 7
-								// ", '|'" + // GROUP_CONCAT DELIMITER
-								") AS %s " + // 2bis
-								"FROM %s " + // 8
-								"LEFT JOIN %s USING (%s) " + // 9
-								"LEFT JOIN %s USING (%s) " + // 10
-								"LEFT JOIN %s USING (%s) " + // 11
-								"LEFT JOIN %s USING (%s) " + // 12
-								"LEFT JOIN %s USING (%s) " + // 13
-								"LEFT JOIN %s USING (%s) " + // 14
-								"LEFT JOIN %s USING (%s) " + // 15
-								"WHERE %s = ? AND %s IS NOT NULL " + // 16
-								"GROUP BY %s " + // 17
-								"ORDER BY %s,%s,%s,%s)", // 18
-						"${annosets.annosetid}", "${sentences.sentenceid}", "${sentences.text}", "${layers.layerid}", "${layertypes.layertype}", "${layers.rank}", // 1
-						"${labels.start}", // 2
-						"${labels.end}", // 3
-						"${labeltypes.labeltype}", // 4
-						"${labelitypes.labelitype}", "${labelitypes.labelitype}", // 5
-						// "${labels.bgcolor}", "${labels.bgcolor}", // 6
-						// "${labels.fgcolor}", "${labels.fgcolor}", // 7
-						"${annotations}", // 2bis
-						"${valenceunits_annosets.table}", // 8
-						"${annosets.table}", "${annosets.annosetid}", // 9
-						"${sentences.table}", "${sentences.sentenceid}", // 10
-						"${layers.table}", "${annosets.annosetid}", // 11
-						"${layertypes.table}", "${layertypes.layertypeid}", // 12
-						"${labels.table}", "${layers.layerid}", // 13
-						"${labeltypes.table}", "${labeltypes.labeltypeid}", // 14
-						"${labelitypes.table}", "${labelitypes.labelitypeid}", // 15
-						"${valenceunits.vuid}", "${labeltypes.labeltypeid}", // 16
-						"${layers.layerid}", // 17
-						"${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}"); // 18
+				table = "(SELECT ${annosets.annosetid},${sentences.sentenceid},${sentences.text},${layers.layerid},${layertypes.layertype},${layers.rank}," + // 1
+						"GROUP_CONCAT(${labels.start}||':'||" + // 2
+						"${labels.end}||':'||" + // 3
+						"${labeltypes.labeltype}||':'||" + // 4
+						"CASE WHEN ${labelitypes.labelitype} IS NULL THEN '' ELSE ${labelitypes.labelitype} END" + // 5
+						// "||':'||CASE WHEN ${labels.bgcolor} IS NULL THEN '' ELSE ${labels.bgcolor} END" + // 6
+						// "||':'||CASE WHEN ${labels.fgcolor} IS NULL THEN '' ELSE ${labels.fgcolor} END" + // 7
+						// ", '|'" + // GROUP_CONCAT DELIMITER
+						") AS ${annotations} " + // 2bis
+						"FROM ${valenceunits_annosets.table} " + // 8
+						"LEFT JOIN ${annosets.table} USING (${annosets.annosetid}) " + // 9
+						"LEFT JOIN ${sentences.table} USING (${sentences.sentenceid}) " + // 10
+						"LEFT JOIN ${layers.table} USING (${annosets.annosetid}) " + // 11
+						"LEFT JOIN ${layertypes.table} USING (${layertypes.layertypeid}) " + // 12
+						"LEFT JOIN ${labels.table} USING (${layers.layerid}) " + // 13
+						"LEFT JOIN ${labeltypes.table} USING (${labeltypes.labeltypeid}) " + // 14
+						"LEFT JOIN ${labelitypes.table} USING (${labelitypes.labelitypeid}) " + // 15
+						"WHERE ${valenceunits.vuid} = ? AND ${labeltypes.labeltypeid} IS NOT NULL " + // 16
+						"GROUP BY ${layers.layerid} " + // 17
+						"ORDER BY ${layers.rank},${layers.layerid},${labels.start},${labels.end})"; // 18
 				break;
 
 			case WORDS_LEXUNITS_FRAMES_FN:
-				table = String.format("%s " + // 1
-								"INNER JOIN %s USING (%s) " + // 3
-								"INNER JOIN %s AS %s USING (%s) " + // 4
-								"LEFT JOIN %s AS %s USING (%s) " + // 5
-								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s) " + // 6
-								"LEFT JOIN %s AS %s ON (%s = %s.%s) " + // 7
-								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s AND %s = %s.%s)", // 8
-						"${words.table}", // 1
-						"${lexemes.table}", "${words.fnwordid}", // 3
-						"${lexunits.table}", "${as_lexunits}", "${lexunits.luid}", // 4
-						"${frames.table}", "${as_frames}", "${frames.frameid}", // 5
-						"${poses.table}", "${as_poses}", "${as_lexunits}", "${poses.posid}", "${as_poses}", "${poses.posid}", // 6
-						"${fetypes.table}", "${as_fetypes}", "${lexunits.incorporatedfetypeid}", "${as_fetypes}", "${fetypes.fetypeid}", // 7
-						"${fes.table}", "${as_fes}", "${as_frames}", "${frames.frameid}", "${as_fes}", "${frames.frameid}", "${lexunits.incorporatedfetypeid}", "${as_fes}", "${fes.fetypeid}"); // 8
+				table = "${words.table} " + // 1
+						"INNER JOIN ${lexemes.table} USING (${words.fnwordid}) " + // 3
+						"INNER JOIN ${lexunits.table} AS ${as_lexunits} USING (${lexunits.luid}) " + // 4
+						"LEFT JOIN ${frames.table} AS ${as_frames} USING (${frames.frameid}) " + // 5
+						"LEFT JOIN ${poses.table} AS ${as_poses} ON (${as_lexunits}.${poses.posid} = ${as_poses}.${poses.posid}) " + // 6
+						"LEFT JOIN ${fetypes.table} AS ${as_fetypes} ON (${lexunits.incorporatedfetypeid} = ${as_fetypes}.${fetypes.fetypeid}) " + // 7
+						"LEFT JOIN ${fes.table} AS ${as_fes} ON (${as_frames}.${frames.frameid} = ${as_fes}.${frames.frameid} AND ${lexunits.incorporatedfetypeid} = ${as_fes}.${fes.fetypeid})"; // 8
 				groupBy = "${lexunits.luid}";
 				break;
 
 			case WORDS_LEXUNITS_FRAMES:
-				table = String.format("%s " + // 1
-								"INNER JOIN %s USING (%s) " + // 2
-								"INNER JOIN %s USING (%s) " + // 3
-								"INNER JOIN %s AS %s USING (%s) " + // 4
-								"LEFT JOIN %s AS %s USING (%s) " + // 5
-								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s) " + // 6
-								"LEFT JOIN %s AS %s ON (%s = %s.%s) " + // 7
-								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s AND %s = %s.%s)", // 8
-						"${words.table}", // 1
-						"${wnwords.table}", "${wnwords.wordid}", // 2
-						"${lexemes.table}", "${words.fnwordid}", // 3
-						"${lexunits.table}", "${as_lexunits}", "${lexunits.luid}", // 4
-						"${frames.table}", "${as_frames}", "${frames.frameid}", // 5
-						"${poses.table}", "${as_poses}", "${as_lexunits}", "${poses.posid}", "${as_poses}", "${poses.posid}", // 6
-						"${fetypes.table}", "${as_fetypes}", "${lexunits.incorporatedfetypeid}", "${as_fetypes}", "${fetypes.fetypeid}", // 7
-						"${fes.table}", "${as_fes}", "${as_frames}", "${frames.frameid}", "${as_fes}", "${frames.frameid}", "${lexunits.incorporatedfetypeid}", "${as_fes}", "${fes.fetypeid}"); // 8
+				table = "${words.table} " + // 1
+						"INNER JOIN ${wnwords.table} USING (${wnwords.wordid}) " + // 2
+						"INNER JOIN ${lexemes.table} USING (${words.fnwordid}) " + // 3
+						"INNER JOIN ${lexunits.table} AS ${as_lexunits} USING (${lexunits.luid}) " + // 4
+						"LEFT JOIN ${frames.table} AS ${as_frames} USING (${frames.frameid}) " + // 5
+						"LEFT JOIN ${poses.table} AS ${as_poses} ON (${as_lexunits}.${poses.posid} = ${as_poses}.${poses.posid}) " + // 6
+						"LEFT JOIN ${fetypes.table} AS ${as_fetypes} ON (${lexunits.incorporatedfetypeid} = ${as_fetypes}.${fetypes.fetypeid}) " + // 7
+						"LEFT JOIN ${fes.table} AS ${as_fes} ON (${as_frames}.${frames.frameid} = ${as_fes}.${frames.frameid} AND ${lexunits.incorporatedfetypeid} = ${as_fes}.${fes.fetypeid})"; // 8
 				groupBy = "${lexunits.luid}";
 				break;
 
@@ -374,94 +256,61 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case FRAMES_FES:
-				table = String.format("%s " + //
-								"INNER JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${frames.table}", //
-						"${fes.table}", "${frames.frameid}", //
-						"${fetypes.table}", "${fetypes.fetypeid}", //
-						"${coretypes.table}", "${coretypes.coretypeid}", //
-						"${fes_semtypes.table}", "${fes.feid}", //
-						"${semtypes.table}", "${semtypes.semtypeid}");
+				table = "${frames.table} " + //
+						"INNER JOIN ${fes.table} USING (${frames.frameid}) " + //
+						"LEFT JOIN ${fetypes.table} USING (${fetypes.fetypeid}) " + //
+						"LEFT JOIN ${coretypes.table} USING (${coretypes.coretypeid}) " + //
+						"LEFT JOIN ${fes_semtypes.table} USING (${fes.feid}) " + //
+						"LEFT JOIN ${semtypes.table} USING (${semtypes.semtypeid})"; //
 				break;
 
 			case LEXUNITS_SENTENCES_BY_SENTENCE:
-				groupBy = "${as_sentences}" + ".sentenceid";
+				groupBy = "${as_sentences}.${sentences.sentenceid}";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_SENTENCES:
-				table = String.format("%s AS %s " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"INNER JOIN %s AS %s USING (%s)", //
-						"${lexunits.table}", "${as_lexunits}", //
-						"${subcorpuses.table}", "${lexunits.luid}", //
-						"${subcorpuses_sentences.table}", "${subcorpuses.subcorpusid}", //
-						"${sentences.table}", "${as_sentences}", "${sentences.sentenceid}");
+				table = "${lexunits.table} AS ${as_lexunits} " + //
+						"LEFT JOIN ${subcorpuses.table} USING (${lexunits.luid}) " + //
+						"LEFT JOIN ${subcorpuses_sentences.table} USING (${subcorpuses.subcorpusid}) " + //
+						"INNER JOIN ${sentences.table} AS ${as_sentences} USING (${sentences.sentenceid})"; //
 				break;
 
 			case LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE:
-				groupBy = "${as_sentences}" + ".sentenceid";
+				groupBy = "${as_sentences}.${sentences.sentenceid}";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS:
-				table = String.format("%s AS %s " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"INNER JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${lexunits.table}", "${as_lexunits}", //
-						"${subcorpuses.table}", "${lexunits.luid}", //
-						"${subcorpuses_sentences.table}", "${subcorpuses.subcorpusid}", //
-						"${sentences.table}", "${as_sentences}", "${sentences.sentenceid}", //
-						"${annosets.table}", "${sentences.sentenceid}", //
-						"${layers.table}", "${annosets.annosetid}", //
-						"${layertypes.table}", "${layertypes.layertypeid}", //
-						"${labels.table}", "${layers.layerid}", //
-						"${labeltypes.table}", "${labeltypes.labeltypeid}", //
-						"${labelitypes.table}", "${labelitypes.labelitypeid}");
+				table = "${lexunits.table} AS ${as_lexunits} " + //
+						"LEFT JOIN ${subcorpuses.table} USING (${lexunits.luid}) " + //
+						"LEFT JOIN ${subcorpuses_sentences.table} USING (${subcorpuses.subcorpusid}) " + //
+						"INNER JOIN ${sentences.table} AS ${as_sentences} USING (${sentences.sentenceid}) " + //
+						"LEFT JOIN ${annosets.table} USING (${sentences.sentenceid}) " + //
+						"LEFT JOIN ${layers.table} USING (${annosets.annosetid}) " + //
+						"LEFT JOIN ${layertypes.table} USING (${layertypes.layertypeid}) " + //
+						"LEFT JOIN ${labels.table} USING (${layers.layerid}) " + //
+						"LEFT JOIN ${labeltypes.table} USING (${labeltypes.labeltypeid}) " + //
+						"LEFT JOIN ${labelitypes.table} USING (${labelitypes.labelitypeid})"; //
 				break;
 
 			case LEXUNITS_GOVERNORS_FN:
-				table = String.format("%s " + //
-								"INNER JOIN %s USING (%s) " + //
-								"INNER JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${lexunits.table}", //
-						"${lexunits_governors.table}", "${lexunits.luid}", //
-						"${governors.table}", "${governors.governorid}", //
-						"${words.table}", "${words.fnwordid}");
+				table = "${lexunits.table} " + //
+						"INNER JOIN ${lexunits_governors.table} USING (${lexunits.luid}) " + //
+						"INNER JOIN ${governors.table} USING (${governors.governorid}) " + //
+						"LEFT JOIN ${words.table} USING (${words.fnwordid})"; //
 				break;
 
 			case LEXUNITS_GOVERNORS:
-				table = String.format("%s " + //
-								"INNER JOIN %s USING (%s) " + //
-								"INNER JOIN %s USING (%s) " + //
-								"INNER JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${lexunits.table}", //
-						"${lexunits_governors.table}", "${lexunits.luid}", //
-						"${governors.table}", "${governors.governorid}", //
-						"${words.table}", "${words.fnwordid}", //
-						"${wnwords.table}", "${wnwords.wordid}" //
-				);
+				table = "${lexunits.table} " + //
+						"INNER JOIN ${lexunits_governors.table} USING (${lexunits.luid}) " + //
+						"INNER JOIN ${governors.table} USING (${governors.governorid}) " + //
+						"INNER JOIN ${words.table} USING (${words.fnwordid}) " + //
+						"LEFT JOIN ${wnwords.table} USING (${wnwords.wordid})"; //
 				break;
 
 			case GOVERNORS_ANNOSETS:
-				table = String.format("%s " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${governors_annosets.table}", //
-						"${annosets.table}", "${annosets.annosetid}", //
-						"${sentences.table}", "${sentences.sentenceid}");
+				table = "${governors_annosets.table} " + //
+						"LEFT JOIN ${annosets.table} USING (${annosets.annosetid}) " + //
+						"LEFT JOIN ${sentences.table} USING (${sentences.sentenceid})"; //
 				break;
 
 			case LEXUNITS_REALIZATIONS_BY_REALIZATION:
@@ -469,20 +318,13 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_REALIZATIONS:
-				table = String.format("%s " + // 1
-								"INNER JOIN %s USING (%s) " + // 2
-								"LEFT JOIN %s USING (%s) " + // 3
-								"LEFT JOIN %s USING (%s) " + // 4
-								"LEFT JOIN %s USING (%s) " + // 5
-								"LEFT JOIN %s USING (%s) " + // 6
-								"LEFT JOIN %s USING (%s)", // 7
-						"${lexunits.table}", // 1
-						"${ferealizations.table}", "${lexunits.luid}", // 2
-						"${ferealizations_valenceunits.table}", "${ferealizations.ferid}", // 3
-						"${valenceunits.table}", "${valenceunits.vuid}", // 4
-						"${fetypes.table}", "${fetypes.fetypeid}", // 5
-						"${gftypes.table}", "${gftypes.gfid}", // 6
-						"${pttypes.table}", "${pttypes.ptid}"); // 7
+				table = "${lexunits.table} " + // 1
+						"INNER JOIN ${ferealizations.table} USING (${lexunits.luid}) " + // 2
+						"LEFT JOIN ${ferealizations_valenceunits.table} USING (${ferealizations.ferid}) " + // 3
+						"LEFT JOIN ${valenceunits.table} USING (${valenceunits.vuid}) " + // 4
+						"LEFT JOIN ${fetypes.table} USING (${fetypes.fetypeid}) " + // 5
+						"LEFT JOIN ${gftypes.table} USING (${gftypes.gfid}) " + // 6
+						"LEFT JOIN ${pttypes.table} USING (${pttypes.ptid})"; // 7
 				break;
 
 			case LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
@@ -490,52 +332,37 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_GROUPREALIZATIONS:
-				table = String.format("%s " + // 1
-								"INNER JOIN %s USING (%s) " + // 2
-								"LEFT JOIN %s USING (%s) " + // 3
-								"LEFT JOIN %s USING (%s) " + // 4
-								//"LEFT JOIN %s USING (%s,%s) " + // 5
-								"LEFT JOIN %s USING (%s) " + // 6
-								"LEFT JOIN %s USING (%s) " + // 7
-								"LEFT JOIN %s USING (%s) " + // 8
-								"LEFT JOIN %s USING (%s)", // 9
-						"${lexunits.table}", // 1
-						"${fegrouprealizations.table}", "${lexunits.luid}", // 2
-						"${grouppatterns.table}", "${fegrouprealizations.fegrid}", // 3
-						"${grouppatterns_patterns.table}", "${grouppatterns.patternid}", // 4
-						//"${ferealizations_valenceunits.table}","${ferealizations.ferid}","${valenceunits.vuid}", // 5
-						"${valenceunits.table}", "${valenceunits.vuid}", // 6
-						"${fetypes.table}", "${fetypes.fetypeid}", // 7
-						"${gftypes.table}", "${gftypes.gfid}", // 8
-						"${pttypes.table}", "${pttypes.ptid}"); // 9
+				table = "${lexunits.table} " + // 1
+						"INNER JOIN ${fegrouprealizations.table} USING (${lexunits.luid}) " + // 2
+						"LEFT JOIN ${grouppatterns.table} USING (${fegrouprealizations.fegrid}) " + // 3
+						"LEFT JOIN ${grouppatterns_patterns.table} USING (${grouppatterns.patternid}) " + // 4
+						//"LEFT JOIN ${ferealizations_valenceunits.table} USING (${ferealizations.ferid},${valenceunits.vuid}) " + // 5
+						"LEFT JOIN ${valenceunits.table} USING (${valenceunits.vuid}) " + // 6
+						"LEFT JOIN ${fetypes.table} USING (${fetypes.fetypeid}) " + // 7
+						"LEFT JOIN ${gftypes.table} USING (${gftypes.gfid}) " + // 8
+						"LEFT JOIN ${pttypes.table} USING (${pttypes.ptid})"; // 9
 				break;
 
 			case PATTERNS_SENTENCES:
-				table = String.format("%s " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s)", //
-						"${grouppatterns_annosets.table}", //
-						"${annosets.table}", "${as_annosets}", "${annosets.annosetid}", //
-						"${sentences.table}", "${as_sentences}", "${sentences.sentenceid}");
+				table = "${grouppatterns_annosets.table} " + //
+						"LEFT JOIN ${annosets.table} AS ${as_annosets} USING (${annosets.annosetid}) " + //
+						"LEFT JOIN ${sentences.table} AS ${as_sentences} USING (${sentences.sentenceid})"; //
 				break;
 
 			case VALENCEUNITS_SENTENCES:
-				table = String.format("%s " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s)", //
-						"${valenceunits_annosets.table}", //
-						"${annosets.table}", "${as_annosets}", "${annosets.annosetid}", //
-						"${sentences.table}", "${as_sentences}", "${sentences.sentenceid}");
+				table = "${valenceunits_annosets.table} " + //
+						"LEFT JOIN ${annosets.table} AS ${as_annosets} USING (${annosets.annosetid}) " + //
+						"LEFT JOIN ${sentences.table} AS ${as_sentences} USING (${sentences.sentenceid})"; //
 				break;
 
 			// L O O K U P
 
 			case LOOKUP_FTS_WORDS:
-				table = String.format("%s_%s_fts4", "${words.table}", "${words.word}");
+				table = "${words.table}_${words.word}_fts4";
 				break;
 
 			case LOOKUP_FTS_SENTENCES:
-				table = String.format("%s_%s_fts4", "${sentences.table}", "${sentences.text}");
+				table = "${sentences.table}_${sentences.text}_fts4";
 				break;
 
 			case LOOKUP_FTS_SENTENCES_X_BY_SENTENCE:
@@ -545,12 +372,9 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				//noinspection fallthrough
 
 			case LOOKUP_FTS_SENTENCES_X:
-				table = String.format("%s_%s_fts4 " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s,%s)", //
-						"${sentences.table}", "${sentences.text}", //
-						"${frames.table}", "${frames.frameid}", //
-						"${lexunits.table}", "${frames.frameid}", "${lexunits.luid}");
+				table = "${sentences.table}_${sentences.text}_fts4 " + //
+						"LEFT JOIN ${frames.table} USING (${frames.frameid}) " + //
+						"LEFT JOIN ${lexunits.table} USING (${frames.frameid},${lexunits.luid})"; //
 				break;
 
 			// S U G G E S T
@@ -558,21 +382,25 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			case SUGGEST_WORDS:
 			{
 				table = "${words.table}";
-				projection = new String[]{String.format("%s AS _id", "${words.fnwordid}"), //
-						String.format("%s AS %s", "${words.word}", "#{suggest_text_1}"), //
-						String.format("%s AS %s", "${words.word}", "#{suggest_query}")};
-				selection = String.format("%s LIKE ? || '%%'", "${words.word}");
+				projection = new String[]{ //
+						"${words.fnwordid} AS _id", //
+						"${words.word} AS #{suggest_text_1}", //
+						"${words.word} AS #{suggest_query}" //
+				};
+				selection = "${words.word} LIKE ? || '%'";
 				selectionArgs = new String[]{String.format("%s", last)};
 				break;
 			}
 
 			case SUGGEST_FTS_WORDS:
 			{
-				table = String.format("%s_%s_fts4", "${words.table}", "${words.word}");
-				projection = new String[]{String.format("%s AS _id", "${words.fnwordid}"), //
-						String.format("%s AS %s", "${words.word}", "#{suggest_text_1}"), //
-						String.format("%s AS %s", "${words.word}", "#{suggest_query}")};
-				selection = String.format("%s MATCH ?", "${words.word}");
+				table = "${words.table}_${words.word}_fts4";
+				projection = new String[]{ //
+						"${words.fnwordid} AS _id", //
+						"${words.word} AS #{suggest_text_1}", //
+						"${words.word} AS #{suggest_query}" //
+				};
+				selection = "${words.word} MATCH ?";
 				selectionArgs = new String[]{String.format("%s*", last)};
 				break;
 			}

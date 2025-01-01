@@ -153,98 +153,64 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			// J O I N S
 
 			case WORDS_SENSES_SYNSETS:
-				r.table = String.format("%s AS %s " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s)", //
-						"${words.table}", "${as_words}", //
-						"${senses.table}", "${as_senses}", "${senses.wordid}", //
-						"${synsets.table}", "${as_synsets}", "${synsets.synsetid}");
+				r.table = "${words.table} AS ${as_words} " + //
+						"LEFT JOIN ${senses.table} AS ${as_senses} USING (${senses.wordid}) " + //
+						"LEFT JOIN ${synsets.table} AS ${as_synsets} USING (${synsets.synsetid})";
 				break;
 
 			case WORDS_SENSES_CASEDWORDS_SYNSETS:
-				r.table = String.format("%s AS %s " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s,%s) " + //
-								"LEFT JOIN %s AS %s USING (%s)", //
-						"${words.table}", "${as_words}", //
-						"${senses.table}", "${as_senses}", "${senses.wordid}", //
-						"${casedwords.table}", "${as_caseds}", "${casedwords.wordid}", "${casedwords.casedwordid}", //
-						"${synsets.table}", "${as_synsets}", "${synsets.synsetid}");
+				r.table = "${words.table} AS ${as_words} " + //
+						"LEFT JOIN ${senses.table} AS ${as_senses} USING (${senses.wordid}) " + //
+						"LEFT JOIN ${casedwords.table} AS ${as_caseds} USING (${casedwords.wordid},${casedwords.casedwordid}) " + //
+						"LEFT JOIN ${synsets.table} AS ${as_synsets} USING (${synsets.synsetid})";
 				break;
 
 			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
-				r.table = String.format("%s AS %s " + // 1
-								"INNER JOIN %s AS %s USING (%s) " + // 2
-								"LEFT JOIN %s AS %s USING (%s,%s) " + // 3
-								"LEFT JOIN %s AS %s USING (%s,%s) " + // 4
-								"LEFT JOIN %s AS %s USING (%s) " + // 5
-								"LEFT JOIN %s AS %s USING (%s) " + // 6
-								"LEFT JOIN %s AS %s USING (%s)", // 7
-						"${lexes.table}", "${as_lexes}", // 1
-						"${words.table}", "${as_words}", "${words.wordid}", // 2
-						"${casedwords.table}", "${as_caseds}", "${casedwords.wordid}", "${casedwords.casedwordid}", // 3
-						"${senses.table}", "${as_senses}", "${lexes.luid}", "${words.wordid}", // 4
-						"${synsets.table}", "${as_synsets}", "${synsets.synsetid}", // 5
-						"${poses.table}", "${as_poses}", "${poses.posid}", // 6
-						"${domains.table}", "${as_domains}", "${domains.domainid}"); // 7
+				r.table = "${lexes.table} AS ${as_lexes} " + // 1
+						"INNER JOIN ${words.table} AS ${as_words} USING (${words.wordid}) " + // 2
+						"LEFT JOIN ${casedwords.table} AS ${as_caseds} USING (${casedwords.wordid},${casedwords.casedwordid}) " + // 3
+						"LEFT JOIN ${senses.table} AS ${as_senses} USING (${lexes.luid},${words.wordid}) " + // 4
+						"LEFT JOIN ${synsets.table} AS ${as_synsets} USING (${synsets.synsetid}) " + // 5
+						"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + // 6
+						"LEFT JOIN ${domains.table} AS ${as_domains} USING (${domains.domainid})"; // 7
 				break;
 
 			case WORDS_SENSES_CASEDWORDS_PRONUNCIATIONS_SYNSETS_POSES_DOMAINS:
-				r.table = String.format("%s AS %s " + // 1
-								"INNER JOIN %s AS %s USING (%s) " + // 2
-								"LEFT JOIN %s AS %s USING (%s,%s) " + // 3
-								"LEFT JOIN %s USING (%s,%s,%s) " + // 4
-								"LEFT JOIN %s AS %s USING (%s) " + // 5
-								"LEFT JOIN %s AS %s USING (%s,%s) " + // 6
-								"LEFT JOIN %s AS %s USING (%s) " + // 7
-								"LEFT JOIN %s AS %s USING (%s) " + // 8
-								"LEFT JOIN %s AS %s USING (%s)", // 9
-						"${lexes.table}", "${as_lexes}", // 1
-						"${words.table}", "${as_words}", "${words.wordid}", // 2
-						"${casedwords.table}", "${as_caseds}", "${casedwords.wordid}", "${casedwords.casedwordid}", // 3
-						"${lexes_pronunciations.table}", "${lexes.luid}", "${words.wordid}", "${poses.posid}", // 4
-						"${pronunciations.table}", "${as_pronunciations}", "${pronunciations.pronunciationid}", // 5
-						"${senses.table}", "${as_senses}", "${lexes.luid}", "${words.wordid}", // 6
-						"${synsets.table}", "${as_synsets}", "${synsets.synsetid}", // 7
-						"${poses.table}", "${as_poses}", "${poses.posid}", // 8
-						"${domains.table}", "${as_domains}", "${domains.domainid}"); // 9
+				r.table = "${lexes.table} AS ${as_lexes} " + // 1
+						"INNER JOIN ${words.table} AS ${as_words} USING (${words.wordid}) " + // 2
+						"LEFT JOIN ${casedwords.table} AS ${as_caseds} USING (${casedwords.wordid},${casedwords.casedwordid}) " + // 3
+						"LEFT JOIN ${lexes_pronunciations.table} USING (${lexes.luid},${words.wordid},${poses.posid}) " + // 4
+						"LEFT JOIN ${pronunciations.table} AS ${as_pronunciations} USING (${pronunciations.pronunciationid}) " + // 5
+						"LEFT JOIN ${senses.table} AS ${as_senses} USING (${lexes.luid},${words.wordid}) " + // 6
+						"LEFT JOIN ${synsets.table} AS ${as_synsets} USING (${synsets.synsetid}) " + // 7
+						"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + // 8
+						"LEFT JOIN ${domains.table} AS ${as_domains} USING (${domains.domainid})"; // 9
 				r.groupBy = "${senses.senseid}";
 				break;
 
 			case SENSES_WORDS:
-				r.table = String.format("%s AS %s " + //
-								"LEFT JOIN %s AS %s USING (%s)", //
-						"${senses.table}", "${as_senses}", //
-						"${words.table}", "${as_words}", "${senses.wordid}");
+				r.table = "${senses.table} AS ${as_senses} " + //
+						"LEFT JOIN ${words.table} AS ${as_words} USING (${senses.wordid})"; //
 				break;
 
 			case SENSES_WORDS_BY_SYNSET:
-				r.table = String.format("%s AS %s " + //
-								"LEFT JOIN %s AS %s USING (%s)", //
-						"${senses.table}", "${as_senses}", //
-						"${words.table}", "${as_words}", "${words.wordid}");
-				r.projection = new String[]{String.format("GROUP_CONCAT(DISTINCT %s.%s) AS %s", "${as_words}", "${words.word}", MEMBERS)};
+				r.table = "${senses.table} AS ${as_senses} " + //
+						"LEFT JOIN ${words.table} AS ${as_words} USING (${words.wordid})"; //
+				r.projection = new String[]{"GROUP_CONCAT(DISTINCT ${as_words}.${words.word}) AS ${members}"};
 				r.groupBy = "${synsets.synsetid}";
 				break;
 
 			case SENSES_SYNSETS_POSES_DOMAINS:
-				r.table = String.format("%s AS %s " + //
-								"INNER JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s)", //
-						"${senses.table}", "${as_senses}", //
-						"${synsets.table}", "${as_synsets}", "${synsets.synsetid}", //
-						"${poses.table}", "${as_poses}", "${poses.posid}", //
-						"${domains.table}", "${as_domains}", "${domains.domainid}");
+				r.table = "${senses.table} AS ${as_senses} " + //
+						"INNER JOIN ${synsets.table} AS ${as_synsets} USING (${synsets.synsetid}) " + //
+						"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
+						"LEFT JOIN ${domains.table} AS ${as_domains} USING (${domains.domainid})"; //
 				break;
 
 			case SYNSETS_POSES_DOMAINS:
-				r.table = String.format("%s AS %s " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s)", //
-						"${synsets.table}", "${as_synsets}", //
-						"${poses.table}", "${as_poses}", "${poses.posid}",//
-						"${domains.table}", "${as_domains}", "${domains.domainid}");
+				r.table = "${synsets.table} AS ${as_synsets} " + //
+						"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
+						"LEFT JOIN ${domains.table} AS ${as_domains} USING (${domains.domainid})"; //
 				break;
 
 			// RELATIONS
@@ -272,118 +238,82 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 			case ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				Result q3 = apply(Key.ANYRELATIONS_QUERY);
-				r.table = String.format("( %s ) AS %s " + // 1
-										"INNER JOIN %s USING (%s) " + // 2
-										"INNER JOIN %s AS %s ON %s.%s = %s.%s " + // 3
-										"LEFT JOIN %s AS %s ON %s.%s = %s.%s " + // 4
-										"LEFT JOIN %s AS %s USING (%s) " + // 5
-										"LEFT JOIN %s AS %s ON %s.%s = %s.%s", // 6
-								SUBQUERY, "${as_relations}", // 1
-								"${relations.table}", "${relations.relationid}", // 2
-								"${synsets.table}", "${as_synsets2}", "${as_relations}", "${anyrelations.synset2id}", "${as_synsets2}", "${synsets.synsetid}", // 3
-								"${senses.table}", "${as_senses2}", "${as_synsets2}", "${synsets.synsetid}", "${as_senses2}", "${senses.synsetid}", // 4
-								"${words.table}", "${as_words}", "${words.wordid}", //
-								"${words.table}", "${as_words2}", "${as_relations}", "${anyrelations.word2id}", "${as_words2}", "${words.wordid}") //
+				r.table = String.format("( %s ) AS ${as_relations} " + // 1
+										"INNER JOIN ${relations.table} USING (${relations.relationid}) " + // 2
+										"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${anyrelations.synset2id} = ${as_synsets2}.${synsets.synsetid} " + // 3
+										"LEFT JOIN ${senses.table} AS ${as_senses2} ON ${as_synsets2}.${synsets.synsetid} = ${as_senses2}.${senses.synsetid} " + // 4
+										"LEFT JOIN ${words.table} AS ${as_words} USING (${words.wordid}) " + // 5
+										"LEFT JOIN ${words.table} AS ${as_words2} ON ${as_relations}.${anyrelations.word2id} = ${as_words2}.${words.wordid}", // 6
+								SUBQUERY) //
 						.replace(SUBQUERY, q3.table);
-				r.groupBy = String.format("%s,%s,%s,%s,%s,%s", "${synset2id}", "${relationtype}", "${relations.relation}", "${relations.relationid}", "${word2id}", "${word2}");
+				r.groupBy = "${synset2id},${relationtype},${relations.relation},${relations.relationid},${word2id},${word2}";
 				break;
 
 			case SEMRELATIONS_SYNSETS:
-				r.table = String.format("%s AS %s " + //
-								"INNER JOIN %s AS %s ON %s.%s = %s.%s", //
-						"${semrelations.table}", "${as_relations}", //
-						"${synsets.table}", "${as_synsets2}", "${as_relations}", "${semrelations.synset2id}", "${as_synsets2}", "${synsets.synsetid}");
+				r.table = "${semrelations.table} AS ${as_relations} " + //
+						"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${semrelations.synset2id} = ${as_synsets2}.${synsets.synsetid}"; //
 				break;
 
 			case SEMRELATIONS_SYNSETS_X:
-				r.table = String.format("%s AS %s " + //
-								"INNER JOIN %s USING (%s) " + //
-								"INNER JOIN %s AS %s ON %s.%s = %s.%s ", //
-						"${semrelations.table}", "${as_relations}", //
-						"${relations.table}", "${relations.relationid}", //
-						"${synsets.table}", "${as_synsets2}", "${as_relations}", "${semrelations.synset2id}", "${as_synsets2}", "${synsets.synsetid}");
+				r.table = "${semrelations.table} AS ${as_relations} " + //
+						"INNER JOIN ${relations.table} USING (${relations.relationid}) " + //
+						"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${semrelations.synset2id} = ${as_synsets2}.${synsets.synsetid}"; //
 				break;
 
 			case SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
-				r.table = String.format("%s AS %s " + // 1
-								"INNER JOIN %s USING (%s) " + // 2
-								"INNER JOIN %s AS %s ON %s.%s = %s.%s " + // 3
-								"LEFT JOIN %s AS %s ON %s.%s = %s.%s " + // 4
-								"LEFT JOIN %s AS %s USING (%s)", // 5
-						"${semrelations.table}", "${as_relations}", // 1
-						"${relations.table}", "${relations.relationid}", // 2
-						"${synsets.table}", "${as_synsets2}", "${as_relations}", "${semrelations.synset2id}", "${as_synsets2}", "${synsets.synsetid}", // 3
-						"${senses.table}", "${as_senses2}", "${as_synsets2}", "${synsets.synsetid}", "${as_senses2}", "${senses.synsetid}", // 4
-						"${words.table}", "${as_words2}", "${words.wordid}"); // 5
-				r.projection = new String[]{String.format("GROUP_CONCAT(DISTINCT %s.%s ||'|'||CASE WHEN %s.%s IS NULL THEN '' ELSE %s.%s END) AS %s", "${as_words2}", "${words.word}", "${as_senses2}", "${senses.tagcount}", "${as_senses2}", "${senses.tagcount}", MEMBERS2)};
-				r.groupBy = String.format("%s.%s", "${as_synsets2}", "${synsets.synsetid}");
+				r.table = "${semrelations.table} AS ${as_relations} " + // 1
+						"INNER JOIN ${relations.table} USING (${relations.relationid}) " + // 2
+						"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${semrelations.synset2id} = ${as_synsets2}.${synsets.synsetid} " + // 3
+						"LEFT JOIN ${senses.table} AS ${as_senses2} ON ${as_synsets2}.${synsets.synsetid} = ${as_senses2}.${senses.synsetid} " + // 4
+						"LEFT JOIN ${words.table} AS ${as_words2} USING (${words.wordid})"; // 5
+				r.projection = new String[]{"GROUP_CONCAT(DISTINCT ${as_words2}.${words.word} || '|' || CASE WHEN ${as_senses2}.${senses.tagcount} IS NULL THEN '' ELSE ${as_senses2}.${senses.tagcount} END) AS ${members2}"};
+				r.groupBy = "${as_synsets2}.${synsets.synsetid}";
 				break;
 
 			case LEXRELATIONS_SENSES:
-				r.table = String.format("%s AS %s " + //
-								"INNER JOIN %s AS %s ON %s.%s = %s.%s " + //
-								"INNER JOIN %s AS %s ON %s.%s = %s.%s", //
-						"${lexrelations.table}", "${as_relations}", //
-						"${synsets.table}", "${as_synsets2}", "${as_relations}", "${lexrelations.synset2id}", "${as_synsets2}", "${synsets.synsetid}", //
-						"${words.table}", "${as_words}", "${as_relations}", "${lexrelations.word2id}", "${as_words}", "${words.wordid}");
+				r.table = "${lexrelations.table} AS ${as_relations} " + //
+						"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${lexrelations.synset2id} = ${as_synsets2}.${synsets.synsetid} " + //
+						"INNER JOIN ${words.table} AS ${as_words} ON ${as_relations}.${lexrelations.word2id} = ${as_words}.${words.wordid}"; //
 				break;
 
 			case LEXRELATIONS_SENSES_X:
-				r.table = String.format("%s AS %s " + //
-								"INNER JOIN %s USING (%s) " + //
-								"INNER JOIN %s AS %s ON %s.%s = %s.%s " + //
-								"INNER JOIN %s AS %s ON %s.%s = %s.%s ", //
-						"${lexrelations.table}", "${as_relations}", //
-						"${relations.table}", "${relations.relationid}", //
-						"${synsets.table}", "${as_synsets2}", "${as_relations}", "${lexrelations.synset2id}", "${as_synsets2}", "${synsets.synsetid}", //
-						"${words.table}", "${as_words}", "${as_relations}", "${lexrelations.word2id}", "${as_words}", "${words.wordid}");
+				r.table = "${lexrelations.table} AS ${as_relations} " + //
+						"INNER JOIN ${relations.table} USING (${relations.relationid}) " + //
+						"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${lexrelations.synset2id} = ${as_synsets2}.${synsets.synsetid} " + //
+						"INNER JOIN ${words.table} AS ${as_words} ON ${as_relations}.${lexrelations.word2id} = ${as_words}.${words.wordid}"; //
 				break;
 
 			case LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
-				r.table = String.format("%s AS %s " + // 1
-								"INNER JOIN %s USING (%s) " + // 2
-								"INNER JOIN %s AS %s ON %s.%s = %s.%s " + // 3
-								"INNER JOIN %s AS %s ON %s.%s = %s.%s " + // 4
-								"LEFT JOIN %s AS %s ON %s.%s = %s.%s " + // 5
-								"LEFT JOIN %s AS %s USING (%s)", // 6
-						"${lexrelations.table}", "${as_relations}", // 1
-						"${relations.table}", "${relations.relationid}", // 2
-						"${synsets.table}", "${as_synsets2}", "${as_relations}", "${lexrelations.synset2id}", "${as_synsets2}", "${synsets.synsetid}", // 3
-						"${words.table}", "${as_words}", "${as_relations}", "${lexrelations.word2id}", "${as_words}", "${words.wordid}", // 4
-						"${senses.table}", "${as_senses2}", "${as_synsets2}", "${senses.synsetid}", "${as_senses2}", "${senses.synsetid}", // 5
-						"${words.table}", "${as_words2}", "${words.wordid}"); //6
-				r.projection = new String[]{String.format("GROUP_CONCAT(DISTINCT %s.%s ||'|'||CASE WHEN %s.%s IS NULL THEN '' ELSE %s.%s END) AS %s", "${as_words2}", "${words.word}", "${as_senses2}", "${senses.tagcount}", "${as_senses2}", "${senses.tagcount}", MEMBERS2)};
-				r.groupBy = String.format("%s.%s", "${as_synsets2}", "${synsets.synsetid}");
+				r.table = "${lexrelations.table} AS ${as_relations} " + // 1
+						"INNER JOIN ${relations.table} USING (${relations.relationid}) " + // 2
+						"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${lexrelations.synset2id} = ${as_synsets2}.${synsets.synsetid} " + // 3
+						"INNER JOIN ${words.table} AS ${as_words} ON ${as_relations}.${lexrelations.word2id} = ${as_words}.${words.wordid} " + // 4
+						"LEFT JOIN ${senses.table} AS ${as_senses2} ON ${as_synsets2}.${senses.synsetid} = ${as_senses2}.${senses.synsetid} " + // 5
+						"LEFT JOIN ${words.table} AS ${as_words2} USING (${words.wordid})"; // 6
+				r.projection = new String[]{"GROUP_CONCAT(DISTINCT ${as_words2}.${words.word} || '|' || CASE WHEN ${as_senses2}.${senses.tagcount} IS NULL THEN '' ELSE ${as_senses2}.${senses.tagcount} END) AS ${members2}"};
+				r.groupBy = "${as_synsets2}.${synsets.synsetid}";
 				break;
 
 			// JOINS
 
 			case SENSES_VFRAMES:
-				r.table = String.format("%s " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${senses_vframes.table}", //
-						"${vframes.table}", "${vframes.frameid}");
+				r.table = "${senses_vframes.table} " + //
+						"LEFT JOIN ${vframes.table} USING (${vframes.frameid})"; //
 				break;
 
 			case SENSES_VTEMPLATES:
-				r.table = String.format("%s " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${senses_vtemplates.table}", //
-						"${vtemplates.table}", "${vtemplates.templateid}");
+				r.table = "${senses_vtemplates.table} " + //
+						"LEFT JOIN ${vtemplates.table} USING (${vtemplates.templateid})"; //
 				break;
 
 			case SENSES_ADJPOSITIONS:
-				r.table = String.format("%s " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${senses_adjpositions.table}", //
-						"${adjpositions.table}", "${adjpositions.positionid}");
+				r.table = "${senses_adjpositions.table} " + //
+						"LEFT JOIN ${adjpositions.table} USING (${adjpositions.positionid})"; //
 				break;
 
 			case LEXES_MORPHS:
-				r.table = String.format("%s " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${lexes_morphs.table}", //
-						"${morphs.table}", "${morphs.morphid}");
+				r.table = "${lexes_morphs.table} " + //
+						"LEFT JOIN ${morphs.table} USING (${morphs.morphid})"; //
 				break;
 
 			case WORDS_LEXES_MORPHS_BY_WORD:
@@ -391,26 +321,23 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case WORDS_LEXES_MORPHS:
-				r.table = String.format("%s " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${words.table}", //
-						"${lexes_morphs.table}", "${words.wordid}", //
-						"${morphs.table}", "${morphs.morphid}");
+				r.table = "${words.table} " + //
+						"LEFT JOIN ${lexes_morphs.table} USING (${words.wordid}) " + //
+						"LEFT JOIN ${morphs.table} USING (${morphs.morphid})"; //
 				break;
 
 			// T E X T S E A R C H
 
 			case LOOKUP_FTS_WORDS:
-				r.table = String.format("%s_%s_fts4", "${words.table}", "${words.word}");
+				r.table = "${words.table}_${words.word}_fts4";
 				break;
 
 			case LOOKUP_FTS_DEFINITIONS:
-				r.table = String.format("%s_%s_fts4", "${synsets.table}", "${synsets.definition}");
+				r.table = "${synsets.table}_${synsets.definition}_fts4";
 				break;
 
 			case LOOKUP_FTS_SAMPLES:
-				r.table = String.format("%s_%s_fts4", "${samples.table}", "${samples.sample}");
+				r.table = "${samples.table}_${samples.sample}_fts4";
 				break;
 
 			// S U G G E S T
@@ -419,54 +346,53 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			{
 				r.table = "${words.table}";
 				r.projection = new String[]{ //
-						String.format("%s AS _id", "${words.wordid}"), //
-						String.format("%s AS %s", "${words.word}", "#{suggest_text_1}"), //
-						String.format("%s AS %s", "${words.word}", "#{suggest_query}")};
-				r.selection = String.format("%s LIKE ? || '%%'", "${words.word}");
+						"${words.wordid} AS _id", //
+						"${words.word} AS #{suggest_text_1}", //
+						"${words.word} AS #{suggest_query}"};
+				r.selection = "${words.word} LIKE ? || '%'";
 				r.selectionArgs = new String[]{URI_LAST};
 				break;
 			}
 
 			case SUGGEST_FTS_WORDS:
 			{
-				r.table = String.format("%s_%s_fts4", "@{words.table}", "@{words.word}");
+				r.table = "@{words.table}_@{words.word}_fts4";
 				r.projection = new String[]{ //
-						String.format("%s AS _id", "${words.wordid}"), //
-						String.format("%s AS %s", "${words.word}", "#{suggest_text_1}"), //
-						String.format("%s AS %s", "${words.word}", "#{suggest_query}")}; //
-				r.selection = String.format("%s MATCH ?", "${words.word}");
+						"${words.wordid} AS _id", //
+						"${words.word} AS #{suggest_text_1}", //
+						"${words.word} AS #{suggest_query}"}; //
+				r.selection = "${words.word} MATCH ?";
 				r.selectionArgs = new String[]{URI_LAST + '*'};
 				break;
 			}
 
 			case SUGGEST_FTS_DEFINITIONS:
 			{
-				r.table = String.format("%s_%s_fts4", "@{synsets.table}", "@{synsets.definition}");
+				r.table = "@{synsets.table}_@{synsets.definition}_fts4";
 				r.projection = new String[]{ //
-						String.format("%s AS _id", "${synsets.synsetid}"), //
-						String.format("%s AS %s", "${synsets.definition}", "#{suggest_text_1}"), //
-						String.format("%s AS %s", "${synsets.definition}", "#{suggest_query}")};
-				r.selection = String.format("%s MATCH ?", "${synsets.definition}");
+						"${synsets.synsetid} AS _id", //
+						"${synsets.definition} AS #{suggest_text_1}", //
+						"${synsets.definition} AS #{suggest_query}"};
+				r.selection = "${synsets.definition} MATCH ?";
 				r.selectionArgs = new String[]{URI_LAST + '*'};
 				break;
 			}
 
 			case SUGGEST_FTS_SAMPLES:
 			{
-				r.table = String.format("%s_%s_fts4", "@{samples.table}", "@{samples.sample}");
+				r.table = "@{samples.table}_@{samples.sample}_fts4";
 				r.projection = new String[]{ //
-						String.format("%s AS _id", "${synsets.synsetid}"), //
-						String.format("%s AS %s", "${samples.sample}", "#{suggest_text_1}"), //
-						String.format("%s AS %s", "${samples.sample}", "#{suggest_query}")};
-				r.selection = String.format("%s MATCH ?", "${samples.sample}");
+						"${synsets.synsetid} AS _id", //
+						"${samples.sample} AS #{suggest_text_1}", //
+						"${samples.sample} AS #{suggest_query}"};
+				r.selection = "${samples.sample} MATCH ?";
 				r.selectionArgs = new String[]{URI_LAST + '*'};
 				break;
 			}
 
 			default:
 				return null;
-		}
-		return r;
+		} return r;
 	}
 
 	@Override
