@@ -71,8 +71,8 @@ object Diagnostics {
         sb.append(sqliteVersion)
         sb.append('\n')
 
-        val supportsOrderBy = supportsOrderByWithinGroupConcat(StorageSettings.getDatabasePath(context))
-        sb.append("supports OrderBy within Group_Concat(): ")
+        val supportsOrderBy = supportsOrderByWithinGroupConcat()
+        sb.append("supports Order By within Group_Concat(): ")
         sb.append(supportsOrderBy.toString())
         sb.append('\n')
 
@@ -474,10 +474,11 @@ object Diagnostics {
         }
     }
 
-    private fun supportsOrderByWithinGroupConcat(path: String): Boolean {
-        SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY).use {
+    private fun supportsOrderByWithinGroupConcat(): Boolean {
+        SQLiteDatabase.create(null).use {
             try {
-                DatabaseUtils.stringForQuery(it, "SELECT GROUP_CONCAT(word ORDER BY word) FROM senses LEFT JOIN words USING (wordid) LEFT JOIN synsets USING (synsetid) GROUP BY synsetid;", arrayOf())
+                it.execSQL("CREATE TABLE dummy (id INTEGER PRIMARY KEY, name TEXT NOT NULL);")
+                it.execSQL("SELECT GROUP_CONCAT(name ORDER BY id) FROM dummy;");
                 return true
             } catch (_: SQLiteException) {
                 return false
