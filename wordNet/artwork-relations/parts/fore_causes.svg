@@ -1,1 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0"><text xml:space="preserve" x="26.553" y="85.942" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;line-height:0%;font-family:&quot;Arial Black&quot;;-inkscape-font-specification:&quot;Arial Black, Bold&quot;;text-align:start;letter-spacing:0;word-spacing:0;writing-mode:lr-tb;text-anchor:start;fill:#000;fill-opacity:1;stroke:none" transform="scale(.8303 1.20437)"><tspan x="26.553" y="85.942" style="font-size:112.907px;line-height:1.25">➡ </tspan></text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0">
+    <path d="M72.994 24.493 98.08 60.878 72.994 97.265V77.81H27.402V43.947h45.592z"/>
+</svg>

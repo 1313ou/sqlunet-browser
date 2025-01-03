@@ -53,6 +53,7 @@ dependencies {
 
     implementation(project(":xNet"))
     implementation(project(":treeView"))
+    implementation(project(":common"))
 
     implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.appcompat:appcompat:$appcompatVersion")

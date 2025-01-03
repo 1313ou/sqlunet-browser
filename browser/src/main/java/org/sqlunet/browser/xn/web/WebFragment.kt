@@ -372,7 +372,7 @@ class WebFragment : Fragment() {
 
                         // parameters
                         val recurse = Settings.getRecursePref(requireContext())
-                        val parameters = Settings.getRenderParametersPref(requireContext())
+                        val parameters = Settings.makeParametersPref(requireContext())
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, type)
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse)

@@ -56,6 +56,9 @@ object ProviderArgs {
     const val ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY = "display_sem_relation_name_key"
     const val ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY = "display_lex_relation_name_key"
 
+    // filter
+    const val ARG_RELATION_FILTER_KEY = "relation_filter_key"
+
     // hints
     const val ARG_HINTWORDID = "HINTWORDID"
     const val ARG_HINTWORD = "HINTWORD"

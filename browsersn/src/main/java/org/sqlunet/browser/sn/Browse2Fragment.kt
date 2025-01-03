@@ -42,7 +42,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
 
         // args
         val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(context)
-        val parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext())
+        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
         val args = Bundle()
         args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
         args.putString(ProviderArgs.ARG_HINTPOS, pos)

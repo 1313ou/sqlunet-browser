@@ -28,6 +28,13 @@
 			android:summary="@string/pref_description_relation_recursion"
 			android:title="@string/pref_title_relation_recursion" />
 
+		<Preference
+			app:fragment="org.sqlunet.wordnet.settings.RelationFilterPreferenceFragment"
+			app:icon="@drawable/ic_settings_filter"
+			app:key="@string/pref_header_relation_filter"
+			app:summary="@string/pref_summary_header_relation_filter"
+			app:title="@string/pref_header_relation_filter" />
+
 	</PreferenceCategory>
 
 </PreferenceScreen>

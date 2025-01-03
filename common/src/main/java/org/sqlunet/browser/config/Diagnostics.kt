@@ -66,6 +66,16 @@ object Diagnostics {
         sb.append(Build.VERSION.CODENAME)
         sb.append('\n')
 
+        val sqliteVersion = sqliteVersion()
+        sb.append("sqlite version: ")
+        sb.append(sqliteVersion)
+        sb.append('\n')
+
+        val supportsOrderBy = supportsOrderByWithinGroupConcat()
+        sb.append("supports Order By within Group_Concat(): ")
+        sb.append(supportsOrderBy.toString())
+        sb.append('\n')
+
         // DATABASE
         val database = StorageSettings.getDatabasePath(context)
         sb.append('\n')
@@ -456,6 +466,24 @@ object Diagnostics {
     @Throws(SQLiteException::class)
     private fun rowCount(path: String, table: String): Long {
         SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY).use { return DatabaseUtils.queryNumEntries(it, table) }
+    }
+
+    private fun sqliteVersion(): String {
+        SQLiteDatabase.create(null).use {
+            return DatabaseUtils.stringForQuery(it, "SELECT sqlite_version();", null)
+        }
+    }
+
+    private fun supportsOrderByWithinGroupConcat(): Boolean {
+        SQLiteDatabase.create(null).use {
+            try {
+                it.execSQL("CREATE TABLE dummy (id INTEGER PRIMARY KEY, name TEXT NOT NULL);")
+                it.execSQL("SELECT GROUP_CONCAT(name ORDER BY id) FROM dummy;");
+                return true
+            } catch (_: SQLiteException) {
+                return false
+            }
+        }
     }
 
     /**

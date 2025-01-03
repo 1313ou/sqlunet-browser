@@ -6,13 +6,7 @@
 
 set -e
 
-R='\u001b[31m'
-G='\u001b[32m'
-B='\u001b[34m'
-Y='\u001b[33m'
-M='\u001b[35m'
-C='\u001b[36m'
-Z='\u001b[0m'
+source ./define_colors.sh
 
 echo -e "${Y}OEWN${Z}"
 ./make-html.sh
@@ -21,4 +15,3 @@ echo -e "${Y}OEWN${Z}"
 echo -e "${Y}WN31${Z}"
 ./make-html.sh -31
 ./make-artwork.sh -31
-

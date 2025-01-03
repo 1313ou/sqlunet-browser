@@ -50,14 +50,10 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			// J O I N S
 
 			case WORDS_BNCS:
-				table = String.format("%s " + //
-								"LEFT JOIN %s USING (%s, %s) " + //
-								"LEFT JOIN %s USING (%s, %s) " + //
-								"LEFT JOIN %s USING (%s, %s) ", //
-						"${bncs.table}", //
-						"${spwrs.table}", "${wnwords.wordid}", "${wnposes.posid}", //
-						"${convtasks.table}", "${wnwords.wordid}", "${wnposes.posid}",  //
-						"${imaginfs.table}", "${wnwords.wordid}", "${wnposes.posid}");
+				table = "${bncs.table} " + //
+						"LEFT JOIN ${spwrs.table} USING (${wnwords.wordid}, ${wnposes.posid}) " + //
+						"LEFT JOIN ${convtasks.table} USING (${wnwords.wordid}, ${wnposes.posid}) " + //
+						"LEFT JOIN ${imaginfs.table} USING (${wnwords.wordid}, ${wnposes.posid})"; //
 				break;
 
 			default:
@@ -85,6 +81,6 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 	private static String quote(String str)
 	{
-		return str == null ? null : String.format("\"%s\"", str);
+		return str == null ? null : '"' + str + '"';
 	}
 }

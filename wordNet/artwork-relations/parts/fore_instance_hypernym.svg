@@ -1,1 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0"><path d="M64.818 27.04 15.642 78.657l18.441 19.356 30.735-32.26 30.736 32.26 18.44-19.356L64.819 27.04z"/><circle cx="64.088" cy="100.205" r="15.714" style="opacity:.98999999;fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0">
+    <path d="M64.818 27.04 15.642 78.657l18.441 19.356 30.735-32.26 30.736 32.26 18.44-19.356L64.819 27.04z"/>
+    <circle cx="64.088" cy="100.205" r="15.714" style="opacity:.98999999;fill:#000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"/>
+</svg>

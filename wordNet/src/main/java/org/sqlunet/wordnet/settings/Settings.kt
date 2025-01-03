@@ -7,11 +7,17 @@ import android.content.Context
 import android.os.Bundle
 import androidx.preference.PreferenceManager
 import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.wordnet.settings.RelationReference.Companion.roleRelationIds
+import java.io.Serializable
 
 object Settings {
 
     const val PREF_RELATION_RECURSE = "pref_relation_recurse"
+
+    const val PREF_RELATION_FILTER = "pref_relation_filter"
+
     private const val PREF_DISPLAY_SEM_RELATION_NAME = "pref_display_sem_relation_name"
+
     private const val PREF_DISPLAY_LEX_RELATION_NAME = "pref_display_lex_relation_name"
 
     /**
@@ -25,31 +31,81 @@ object Settings {
         val value = sharedPref.getString(PREF_RELATION_RECURSE, null) ?: return -1
         return try {
             value.toInt()
-        } catch (e: NumberFormatException) {
+        } catch (_: NumberFormatException) {
             -1
         }
     }
 
     /**
-     * Get render  parameters
+     * Make render  parameters
      *
      * @param context context
      * @return bundle
      */
-    fun getRenderParametersPref(context: Context): Bundle? {
+    fun makeParametersPref(context: Context): Bundle? {
+        var b = marshalRenderParametersPref(context, null)
+        b = marshalRelationFilterParametersPref(context, b)
+        return b
+    }
+
+    /**
+     * Marshal render parameters
+     *
+     * @param context context
+     * @param bundle current bundle
+     * @return bundle
+     */
+    fun marshalRenderParametersPref(context: Context, bundle: Bundle?): Bundle? {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         val displaySemRelationName = sharedPref.getBoolean(PREF_DISPLAY_SEM_RELATION_NAME, true)
         val displayLexRelationName = sharedPref.getBoolean(PREF_DISPLAY_LEX_RELATION_NAME, true)
         if (displaySemRelationName && displayLexRelationName) {
-            return null
+            return bundle
         }
-        val bundle = Bundle()
+        val bundle2 = bundle ?: Bundle()
         if (!displaySemRelationName) {
-            bundle.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, false)
+            bundle2.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, false)
         }
         if (!displayLexRelationName) {
-            bundle.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, false)
+            bundle2.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, false)
         }
-        return bundle
+        return bundle2
+    }
+
+    /**
+     * Marshal relation filter parameters
+     *
+     * @param context context
+     * @param bundle current bundle
+     * @return bundle
+     */
+    fun marshalRelationFilterParametersPref(context: Context, bundle: Bundle?): Bundle? {
+        val relationFilter = getRelationFilter(context)
+        if (relationFilter == null) {
+            return bundle
+        }
+        val bundle2 = bundle ?: Bundle()
+        bundle2.putSerializable(ProviderArgs.ARG_RELATION_FILTER_KEY, relationFilter as Serializable)
+        return bundle2
+    }
+
+    /**
+     * Retrieve filter
+     */
+    private fun getRelationFilter(context: Context): Set<Int>? {
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+        val filter = sharedPref.getLong(PREF_RELATION_FILTER, -1)
+        if (filter == -1L) {
+            return null
+        }
+        val s = RelationReference.entries
+            .filter { !it.test(filter) }
+            .map { it.id }
+            .toMutableSet()
+        if (s.contains(roleDummyId)) {
+            s.remove(roleDummyId)
+            s.addAll(roleRelationIds)
+        }
+        return s
     }
 }

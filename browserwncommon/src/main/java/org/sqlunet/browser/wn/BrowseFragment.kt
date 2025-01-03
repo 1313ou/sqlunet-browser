@@ -159,7 +159,7 @@ class BrowseFragment : BaseSearchFragment() {
             targetIntent = if (trimmedQuery.startsWith("#ws")) {
                 // parameters
                 val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext())
-                val parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext())
+                val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
                 val synsetPointer: Parcelable = SynsetPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, synsetPointer)
@@ -180,7 +180,7 @@ class BrowseFragment : BaseSearchFragment() {
             if (trimmedQuery.startsWith("#wk")) {
                 // parameters
                 val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext())
-                val parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext())
+                val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
                 val senseKeyPointer: Parcelable = SenseKeyPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SENSE)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, senseKeyPointer)
@@ -191,7 +191,7 @@ class BrowseFragment : BaseSearchFragment() {
         } else {
             // parameters
             val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext())
-            val parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext())
+            val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
 
             // search for string
             args.putString(ProviderArgs.ARG_QUERYSTRING, trimmedQuery)

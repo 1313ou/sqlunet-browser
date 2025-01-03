@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<resources>
+
+	<!-- Relation filter settings -->
+	<string name="pref_header_relation_filter">Relation filter</string>
+	<string name="pref_summary_header_relation_filter">Set relation filter</string>
+	<string name="pref_subheader_relation_filter_general">Relations</string>
+	<string name="pref_subheader_relation_filter_all">All</string>
+	<string name="pref_title_hypernym">Hypernym</string>
+	<string name="pref_title_hypernym_instance">Hypernym (instance)</string>
+	<string name="pref_title_hyponym">Hyponym</string>
+	<string name="pref_title_hyponym_instance">Hyponym (instance)</string>
+	<string name="pref_title_holonym_member">Holonym (member)</string>
+	<string name="pref_title_holonym_substance">Holonym (substance)</string>
+	<string name="pref_title_holonym_part">Holonym (part)</string>
+	<string name="pref_title_meronym_member">Meronym (member)</string>
+	<string name="pref_title_meronym_substance">Meronym (substance)</string>
+	<string name="pref_title_meronym_part">Meronym (part)</string>
+	<string name="pref_title_antonym">Antonym</string>
+	<string name="pref_title_entails">Entails</string>
+	<string name="pref_title_entailed">Is entailed by</string>
+	<string name="pref_title_causes">Causes</string>
+	<string name="pref_title_caused">Is caused by</string>
+	<string name="pref_title_similar">Similar to</string>
+	<string name="pref_title_also">Also see</string>
+	<string name="pref_title_attribute">Attribute</string>
+	<string name="pref_title_pertainym">Pertainym</string>
+	<string name="pref_title_derivation">Derivation</string>
+	<string name="pref_title_derivation_adj">Derived from adjective</string>
+	<string name="pref_title_verbgroup">Verb group</string>
+	<string name="pref_title_participle">Participle</string>
+	<string name="pref_title_domain">Domain</string>
+	<string name="pref_title_topic">Topic</string>
+	<string name="pref_title_usage">Is exemplified by</string>
+	<string name="pref_title_region">Region</string>
+	<string name="pref_title_has_domain">Has domain</string>
+	<string name="pref_title_has_topic">Has topic</string>
+	<string name="pref_title_has_usage">Exemplifies / Has usage</string>
+	<string name="pref_title_has_region">Has region</string>
+	<string name="pref_title_collocation">Collocation</string>
+	<string name="pref_title_roles">Roles</string>
+
+	<!-- Ops -->
+	<string name="title_set_all">Set</string>
+	<string name="description_set_all">Set all values</string>
+	<string name="title_unset_all">Unset</string>
+	<string name="description_unset_all">Unset values</string>
+
+</resources>

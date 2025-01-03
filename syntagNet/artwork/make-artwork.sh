@@ -2,9 +2,9 @@
 
 source "./lib-artwork.sh"
 
-icon_list="syntagnet.svg collocation.svg collocation1.svg collocation2.svg definition1.svg definition2.svg"
+icon_list="syntagnet.svg sncollocation.svg sncollocation1.svg sncollocation2.svg sndefinition1.svg sndefinition2.svg"
 asset_list="closed.svg open.svg pointer.svg"
-asset_list_syntagnet="syntagnet.svg collocation.svg"
+asset_list_syntagnet="syntagnet.svg sncollocation.svg"
 asset_list_xnet="member.svg roleclass.svg role.svg rolex.svg sentence.svg definition.svg sample.svg"
 
 make_res "${icon_list}" 16

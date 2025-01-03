@@ -183,7 +183,7 @@ class BrowseFragment : BaseSearchFragment() {
 
         // parameters
         val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext())
-        val parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext())
+        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
 
         // menuDispatch as per query prefix
         var fragment: Fragment? = null

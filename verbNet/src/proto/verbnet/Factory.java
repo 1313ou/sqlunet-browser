@@ -56,12 +56,9 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				break;
 
 			case VNCLASSES_X_BY_VNCLASS:
-				table = String.format("%s " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${classes.table}", //
-						"${members_groupings.table}", "${classes.classid}", //
-						"${groupings.table}", "${groupings.groupingid}"); //
+				table = "${classes.table} " + //
+						"LEFT JOIN ${members_groupings.table} USING (${classes.classid}) " + //
+						"LEFT JOIN ${groupings.table} USING (${groupings.groupingid})"; //
 				groupBy = "${classes.classid}";
 				break;
 
@@ -78,68 +75,46 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			// J O I N S
 
 			case WORDS_VNCLASSES:
-				table = String.format("%s " +// 1
-								"INNER JOIN %s USING (%s) " + // 2
-								"INNER JOIN %s USING (%s, %s) " + // 3
-								"LEFT JOIN %s USING (%s)", // 4
-						"${wnwords.table}", // 1
-						"${words.table}", "${wnwords.wordid}", // 2
-						"${members_senses.table}", "${words.vnwordid}", "${wnwords.wordid}", // 3
-						"${classes.table}", "${classes.classid}"); // 4
+				table = "${wnwords.table} " + // 1
+						"INNER JOIN ${words.table} USING (${wnwords.wordid}) " + // 2
+						"INNER JOIN ${members_senses.table} USING (${words.vnwordid}, ${wnwords.wordid}) " + // 3
+						"LEFT JOIN ${classes.table} USING (${classes.classid})"; // 4
 				break;
 
 			case VNCLASSES_VNMEMBERS_X_BY_WORD:
-				table = String.format("%s " + // 1
-								"INNER JOIN %s USING (%s) " + // 2
-								"INNER JOIN %s USING (%s, %s) " + // 3
-								"LEFT JOIN %s USING (%s, %s) " + // 4
-								"LEFT JOIN %s USING (%s) " + // 5
-								"LEFT JOIN %s USING (%s)", // 6
-						"${wnwords.table}", // 1
-						"${words.table}", "${wnwords.wordid}", // 2
-						"${members_senses.table}", "${words.vnwordid}", "${wnwords.wordid}", // 3
-						"${members_groupings.table}", "${members.classid}", "${words.vnwordid}", // 4
-						"${groupings.table}", "${groupings.groupingid}", // 5
-						"${wnsynsets.table}", "${wnsynsets.synsetid}"); // 6
+				table = "${wnwords.table} " + // 1
+						"INNER JOIN ${words.table} USING (${wnwords.wordid}) " + // 2
+						"INNER JOIN ${members_senses.table} USING (${words.vnwordid}, ${wnwords.wordid}) " + // 3
+						"LEFT JOIN ${members_groupings.table} USING (${members.classid}, ${words.vnwordid}) " + // 4
+						"LEFT JOIN ${groupings.table} USING (${groupings.groupingid}) " + // 5
+						"LEFT JOIN ${wnsynsets.table} USING (${wnsynsets.synsetid})"; // 6
 				groupBy = "${words.vnwordid}";
 				break;
 
 			case VNCLASSES_VNROLES_X_BY_VNROLE:
-				table = String.format("%s " + //
-								"INNER JOIN %s USING (%s) " + //
-								"INNER JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${classes.table}", //
-						"${roles.table}", "${classes.classid}", //
-						"${roletypes.table}", "${roletypes.roletypeid}", //
-						"${restrs.table}", "${restrs.restrsid}");
+				table = "${classes.table} " + //
+						"INNER JOIN ${roles.table} USING (${classes.classid}) " + //
+						"INNER JOIN ${roletypes.table} USING (${roletypes.roletypeid}) " + //
+						"LEFT JOIN ${restrs.table} USING (${restrs.restrsid})"; //
 				groupBy = "${roles.roleid}";
 				break;
 
 			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
-				table = String.format("%s " + //
-								"INNER JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${classes_frames.table}", //
-						"${frames.table}", "${frames.frameid}", //
-						"${framenames.table}", "${framenames.framenameid}", //
-						"${framesubnames.table}", "${framesubnames.framesubnameid}", //
-						"${syntaxes.table}", "${syntaxes.syntaxid}", //
-						"${semantics.table}", "${semantics.semanticsid}", //
-						"${frames_examples.table}", "${frames.frameid}", //
-						"${examples.table}", "${examples.exampleid}");
+				table = "${classes_frames.table} " + //
+						"INNER JOIN ${frames.table} USING (${frames.frameid}) " + //
+						"LEFT JOIN ${framenames.table} USING (${framenames.framenameid}) " + //
+						"LEFT JOIN ${framesubnames.table} USING (${framesubnames.framesubnameid}) " + //
+						"LEFT JOIN ${syntaxes.table} USING (${syntaxes.syntaxid}) " + //
+						"LEFT JOIN ${semantics.table} USING (${semantics.semanticsid}) " + //
+						"LEFT JOIN ${frames_examples.table} USING (${frames.frameid}) " + //
+						"LEFT JOIN ${examples.table} USING (${examples.exampleid})"; //
 				groupBy = "${frames.frameid}";
 				break;
 
 			// L O O K U P
 
 			case LOOKUP_FTS_EXAMPLES:
-				table = String.format("%s_%s_fts4", "${examples.table}", "${examples.example}");
+				table = "${examples.table}_${examples.example}_fts4";
 				break;
 
 			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
@@ -147,35 +122,33 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LOOKUP_FTS_EXAMPLES_X:
-				table = String.format("%s_%s_fts4 " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${examples.table}", "${examples.example}", //
-						"${classes.table}", "${classes.classid}");
+				table = "${examples.table}_${examples.example}_fts4 " + //
+						"LEFT JOIN ${classes.table} USING (${classes.classid})"; //
 				break;
 
 			// S U G G E S T
 
 			case SUGGEST_WORDS:
 			{
-				table = String.format("%s " + //
-								"INNER JOIN %s USING (%s)", //
-						"${words.table}", //
-						"${wnwords.table}", "${wnwords.wordid}");
-				projection = new String[]{String.format("%s AS _id", "${words.vnwordid}"), //
-						String.format("%s AS #{suggest_text_1}", "${words.word}"), //
-						String.format("%s AS #{suggest_query}", "${words.word}")}; //
-				selection = String.format("%s LIKE ? || '%%'", "${words.word}");
+				table = "${words.table} " + //
+						"INNER JOIN ${wnwords.table} USING (${wnwords.wordid})"; //
+				projection = new String[]{"${words.vnwordid} AS _id", //
+						"${words.word} AS #{suggest_text_1}", //
+						"${words.word} AS #{suggest_query}" //
+				};
+				selection = "${words.word} LIKE ? || '%'";
 				selectionArgs = new String[]{last};
 				break;
 			}
 
 			case SUGGEST_FTS_WORDS:
 			{
-				table = String.format("%s_%s_fts4", "${words.table}", "${words.word}");
-				projection = new String[]{String.format("%s AS _id", "${words.vnwordid}"),//
-						String.format("%s AS #{suggest_text_1}", "${words.word}"), //
-						String.format("%s AS #{suggest_query}", "${words.word}")}; //
-				selection = String.format("%s MATCH ?", "${words.word}");
+				table = "${words.table}_${words.word}_fts4";
+				projection = new String[]{"${words.vnwordid} AS _id",//
+						"${words.word} AS #{suggest_text_1}", //
+						"${words.word} AS #{suggest_query}" //
+				};
+				selection = "${words.word} MATCH ?";
 				selectionArgs = new String[]{last + '*'};
 				break;
 			}
@@ -211,6 +184,6 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 	private static String quote(String str)
 	{
-		return str == null ? null : String.format("\"%s\"", str);
+		return str == null ? null : '"' + str + '"';
 	}
 }

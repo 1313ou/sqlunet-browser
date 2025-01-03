@@ -1,3 +1,7 @@
 /temp/
+/test/
+/drawable/
+/png/
 /svgutils/__pycache__
-
+/vdutils/
+/vdutils/*

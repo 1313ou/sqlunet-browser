@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<resources>
+
+	<declare-styleable name="BitAggregatePreference">
+		<attr name="index" format="integer|reference" />
+		<attr name="aggregateKey" format="string|reference" />
+		<attr name="persist" format="boolean|reference" />
+	</declare-styleable>
+
+</resources>

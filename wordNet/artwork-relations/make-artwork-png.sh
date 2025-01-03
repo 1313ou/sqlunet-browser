@@ -1,7 +1,7 @@
 #!/bin/bash
 
-thisdir="`dirname $(readlink -m $0)`"
-thisdir="$(readlink -m ${thisdir})"
+set -e
+
 dirtest=test
 dirsrc=composite
 
@@ -11,7 +11,7 @@ source lib-artwork.sh
 
 testres=128
 echo -e "${Y}Temp${Z} ${B}$r ${testres}${Z}"
-dirdest="${dirtest}/images"
+dirdest="${dirtest}"
 mkdir -p ${dirdest}
 lists_svg2png ${testres} "${dirsrc}" "${dirdest}" ""
 

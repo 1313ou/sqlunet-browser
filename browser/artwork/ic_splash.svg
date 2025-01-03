@@ -1,1 +1,861 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="350"><defs><filter id="a" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" result="result0" stdDeviation="6"/><feDiffuseLighting result="result5" surfaceScale="10"><feDistantLight azimuth="235" elevation="25"/></feDiffuseLighting><feComposite in="result5" in2="SourceGraphic" k1="1" k3=".6" operator="arithmetic" result="result4"/></filter><filter id="b" style="color-interpolation-filters:sRGB"><feGaussianBlur in="SourceGraphic" result="result0" stdDeviation="5"/><feDiffuseLighting lighting-color="#FEFEFE" result="result5" surfaceScale="10"><feDistantLight azimuth="235" elevation="13"/></feDiffuseLighting><feComposite in="result5" in2="SourceGraphic" k1="1" k3=".6" operator="arithmetic" result="result4"/></filter></defs><text xml:space="preserve" x="556.779" y="163.51" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:condensed;line-height:0%;font-family:Impact;-inkscape-font-specification:&quot;Impact Condensed&quot;;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0000a0;fill-opacity:1;stroke:#00132c;stroke-width:.69631934;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#a)" transform="matrix(.7015 0 0 1.60198 -208.164 71.736)"><tspan x="556.779" y="163.51" style="font-size:127.66687775px;line-height:1.25;fill:#0000a0;stroke:#00132c;stroke-width:.69631934;stroke-opacity:1">Net</tspan></text><text xml:space="preserve" x="483.357" y="153.328" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:condensed;line-height:0%;font-family:Impact;-inkscape-font-specification:&quot;Impact Condensed&quot;;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#729fcf;fill-opacity:1;stroke:#4074b8;stroke-width:.73815811;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="matrix(.66173 0 0 1.51118 -185.346 101.949)"><tspan x="483.357" y="153.328" style="font-size:135.33781433px;line-height:1.25;stroke-width:.73815811">U</tspan></text><text xml:space="preserve" x="305.037" y="153.328" style="font-style:normal;font-variant:normal;font-weight:400;font-stretch:condensed;line-height:0%;font-family:Impact;-inkscape-font-specification:&quot;Impact Condensed&quot;;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#0048d8;fill-opacity:1;stroke:#4074b8;stroke-width:.73815811;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" transform="matrix(.66173 0 0 1.51118 -185.346 101.949)"><tspan x="305.037" y="153.328" style="font-size:135.33781433px;line-height:1.25;stroke-width:.73815811">Sql</tspan></text><g style="stroke:#607d8b;filter:url(#b)" transform="translate(135.299 -201.369)scale(.53596)"><ellipse cx="46.088" cy="538.184" rx="143.525" ry="143.608" style="fill:none;stroke:#607d8b;stroke-width:16.16086197;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/><path d="m-52.15 538.877 194.393.855m-97.56 101.571.731-205.043m-59.895 22.752c31.827 45.91 31.59 112.337-.564 157.967m119.626.526c-31.826-45.91-31.59-112.337.564-157.967m-156.997 79.006c47.256-61.201 147.653-60.441 194.481 1.184m-.314.222c-47.256 61.201-147.339 60.443-194.168-1.183" style="fill:none;stroke:#607d8b;stroke-width:12.72536182;stroke-opacity:1"/><ellipse cx="-466.943" cy="438.428" rx="17.87" ry="17.92" style="fill:#607d8b;fill-opacity:1;stroke:#607d8b;stroke-width:.07928234" transform="matrix(-.72081 -.69313 -.66515 .74671 0 0)"/><ellipse cx="-478.924" cy="278.434" rx="17.87" ry="17.92" style="fill:#607d8b;fill-opacity:1;stroke:#607d8b;stroke-width:.07928234" transform="matrix(-.72081 -.69313 -.66515 .74671 0 0)"/><ellipse cx="-306.635" cy="436.624" rx="17.87" ry="17.92" style="fill:#607d8b;fill-opacity:1;stroke:#607d8b;stroke-width:.07928234" transform="matrix(-.72081 -.69313 -.66515 .74671 0 0)"/><ellipse cx="-399.743" cy="466.781" rx="17.87" ry="17.92" style="fill:#607d8b;fill-opacity:1;stroke:#607d8b;stroke-width:.07928234" transform="matrix(-.72081 -.69313 -.66515 .74671 0 0)"/><ellipse cx="-281.893" cy="340.652" rx="17.87" ry="17.92" style="fill:#607d8b;fill-opacity:1;stroke:#607d8b;stroke-width:.07928234" transform="matrix(-.72081 -.69313 -.66515 .74671 0 0)"/><ellipse cx="-385.005" cy="247.763" rx="17.87" ry="17.92" style="fill:#607d8b;fill-opacity:1;stroke:#607d8b;stroke-width:.07928234" transform="matrix(-.72081 -.69313 -.66515 .74671 0 0)"/><ellipse cx="-500.973" cy="375.022" rx="17.87" ry="17.92" style="fill:#4c0000;fill-opacity:1;stroke:#607d8b;stroke-width:.07928234" transform="matrix(-.72081 -.69313 -.66515 .74671 0 0)"/><ellipse cx="-500.973" cy="375.022" rx="17.87" ry="17.92" style="fill:#607d8b;fill-opacity:1;stroke:#607d8b;stroke-width:.07928234" transform="matrix(-.72081 -.69313 -.66515 .74671 0 0)"/><ellipse cx="-317.022" cy="275.431" rx="17.87" ry="17.92" style="fill:#607d8b;fill-opacity:1;stroke:#607d8b;stroke-width:.07928234" transform="matrix(-.72081 -.69313 -.66515 .74671 0 0)"/></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="320"
+   height="350"
+   version="1.1"
+   id="svg58"
+   sodipodi:docname="ic_splash.svg"
+   xml:space="preserve"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview60"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.67428571"
+     inkscape:cx="-23.728814"
+     inkscape:cy="294.38559"
+     inkscape:window-width="1920"
+     inkscape:window-height="1139"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg58" /><defs
+     id="defs20"><filter
+       style="color-interpolation-filters:sRGB"
+       inkscape:label="Diffuse light"
+       inkscape:menu="ABCs"
+       inkscape:menu-tooltip="Basic diffuse bevel to use for building textures"
+       id="filter4016-8"
+       x="-0.06995437"
+       y="-0.069914032"
+       width="1.1399087"
+       height="1.1398281"><feGaussianBlur
+         stdDeviation="5"
+         in="SourceGraphic"
+         result="result0"
+         id="feGaussianBlur4018-6" /><feDiffuseLighting
+         diffuseConstant="1"
+         surfaceScale="10"
+         result="result5"
+         id="feDiffuseLighting4020-0"
+         lighting-color="rgb(254,254,254)"><feDistantLight
+           elevation="13"
+           azimuth="235"
+           id="feDistantLight4022-4" /></feDiffuseLighting><feComposite
+         k1="1"
+         in="result5"
+         result="result4"
+         operator="arithmetic"
+         k2="0"
+         k3="0.6"
+         id="feComposite4024-88"
+         k4="0"
+         in2="SourceGraphic" /></filter></defs><style
+     type="text/css"
+     id="style8">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-4"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-2"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-0">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-6"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-5"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-3">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-0-1"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-6-7">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-8"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-0-6">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-6-0"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-60">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-5-4"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-8-1">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-7"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-5-0">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-8-10"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-1">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-56"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-06">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-0-9"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-6-12">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-4-7">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-3-0"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-0-7">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-6-1"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-8-9">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-0-6-3"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-6-0-6">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-9">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-5-06"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-8-0">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-49">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-4-4"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-2-2"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-0-5">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-6-9"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-5-3"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-3-5">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-0-1-6"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-6-7-1">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-8-7"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-0-6-0">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-6-0-8"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-60-8">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-5-4-7"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-8-1-9">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-7-2"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-5-0-0">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-8-10-2"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-29"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-66"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-89"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-57"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-55"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-664"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-562"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-4-1">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-2-27">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-0-0"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-6-93">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-5-6">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-3-06"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-0-1-2">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-6-7-6"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-8-18">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-0-6-7"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-6-0-9">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-60-2"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-5-4-0">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-8-1-2"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-7-3">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-5-0-7"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-8-10-5">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-1-92"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-56-2">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-06-8"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-0-9-9">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-6-12-7"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-4-7-3"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-3-0-6">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-0-7-1"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-6-1-2">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-8-9-9"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-0-6-3-3">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-6-0-6-1"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-9-9"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-5-06-4">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-8-0-7"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-49-8"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-4-4-4">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-2-2-5">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-0-5-0"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-6-9-3">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-5-3-6">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-3-5-1"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-0-1-6-0">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-6-7-1-6"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-8-7-3">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-0-6-0-2"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-6-0-8-0">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-60-8-6"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-5-4-7-1">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-8-1-9-5"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-7-2-5">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-5-0-0-4"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-8-10-2-7">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-29-6">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-66-5">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-89-6">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-57-9">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-55-3">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-664-7">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-08"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-5-1">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-8-02"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     id="style8-4-2"
+     type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-1-9">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-0-75">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-8-8">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-9-6">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><style
+     type="text/css"
+     id="style8-3-4">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style><g
+     transform="matrix(0.85973953,0,0,0.90129495,-160.12676,66.754108)"
+     id="layer1-7"
+     inkscape:label="Layer"><g
+       id="g10537-0"
+       transform="translate(326.2655,-443.91214)"
+       style="stroke:#cdcdb0;filter:url(#filter4016-8)"><ellipse
+         ry="143.60815"
+         rx="143.52534"
+         cy="538.18365"
+         cx="46.087704"
+         style="fill:none;stroke:#cdcdb0;stroke-width:16.1609;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="ellipse10515-4" /><path
+         sodipodi:nodetypes="cccccccccccc"
+         inkscape:connector-curvature="0"
+         id="path10517-8"
+         d="m -52.149993,538.87733 c 64.797616,0.28502 129.595231,0.57003 194.392863,0.85505 M 44.682378,641.30326 c 0.243947,-68.34766 0.487894,-136.6953 0.731851,-205.04295 m -59.895339,22.75193 c 31.826687,45.91009 31.589525,112.33723 -0.563825,157.96677 m 119.626385,0.52617 C 72.754756,571.5951 72.991917,505.16796 105.14527,459.53842 M -51.851943,538.54353 C -4.5962499,477.34274 95.800594,478.10256 142.6293,539.72808 m -0.31441,0.22216 C 95.059176,601.15102 -5.0240479,600.39257 -51.852743,538.76706"
+         style="fill:none;stroke:#cdcdb0;stroke-width:12.7254;stroke-opacity:1" /><ellipse
+         ry="17.920031"
+         rx="17.870319"
+         cy="438.42767"
+         cx="-466.94287"
+         style="fill:#cdcdb0;fill-opacity:1;stroke:#cdcdb0;stroke-width:0.0792823"
+         id="ellipse10519-0"
+         transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)" /><ellipse
+         transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)"
+         id="ellipse10521-4"
+         style="fill:#cdcdb0;fill-opacity:1;stroke:#cdcdb0;stroke-width:0.0792823"
+         cx="-478.92422"
+         cy="278.43362"
+         rx="17.870319"
+         ry="17.920031" /><ellipse
+         transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)"
+         id="ellipse10523-29"
+         style="fill:#cdcdb0;fill-opacity:1;stroke:#cdcdb0;stroke-width:0.0792823"
+         cx="-306.6351"
+         cy="436.62354"
+         rx="17.870319"
+         ry="17.920031" /><ellipse
+         transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)"
+         id="ellipse10525-6"
+         style="fill:#cdcdb0;fill-opacity:1;stroke:#cdcdb0;stroke-width:0.0792823"
+         cx="-399.74319"
+         cy="466.78085"
+         rx="17.870319"
+         ry="17.920031" /><ellipse
+         ry="17.920031"
+         rx="17.870319"
+         cy="340.65161"
+         cx="-281.89261"
+         style="fill:#cdcdb0;fill-opacity:1;stroke:#cdcdb0;stroke-width:0.0792823"
+         id="ellipse10527-1"
+         transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)" /><ellipse
+         transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)"
+         id="ellipse10529-0"
+         style="fill:#cdcdb0;fill-opacity:1;stroke:#cdcdb0;stroke-width:0.0792823"
+         cx="-385.00516"
+         cy="247.76277"
+         rx="17.870319"
+         ry="17.920031" /><ellipse
+         ry="17.920031"
+         rx="17.870319"
+         cy="375.022"
+         cx="-500.97342"
+         style="fill:#4c0000;fill-opacity:1;stroke:#cdcdb0;stroke-width:0.0792823"
+         id="ellipse10531-4"
+         transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)" /><ellipse
+         transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)"
+         id="ellipse10533-22"
+         style="fill:#cdcdb0;fill-opacity:1;stroke:#cdcdb0;stroke-width:0.0792823"
+         cx="-500.97342"
+         cy="375.022"
+         rx="17.870319"
+         ry="17.920031" /><ellipse
+         transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)"
+         id="ellipse10535-20"
+         style="fill:#cdcdb0;fill-opacity:1;stroke:#cdcdb0;stroke-width:0.0792823"
+         cx="-317.02222"
+         cy="275.43076"
+         rx="17.870319"
+         ry="17.920031" /></g></g><g
+     id="g733"
+     transform="matrix(0.2840819,0,0,0.51942708,124.47318,118.86927)"><g
+       id="g947"
+       transform="matrix(1.0906452,0,0,1.0906452,-418.40355,176.72545)"><text
+         transform="scale(0.93197261,1.0729929)"
+         id="text10438-4"
+         y="180.80266"
+         x="613.79266"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:215.627px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#a40000;fill-opacity:1;stroke:none;stroke-width:13.2639;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="180.80266"
+           x="613.79266"
+           id="tspan973"
+           sodipodi:role="line">t</tspan></text><text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:215.627px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#43015b;fill-opacity:1;stroke:none;stroke-width:13.2639;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="7.8281221"
+         y="177.22293"
+         id="text10442-5"
+         transform="scale(0.93197261,1.0729929)"><tspan
+           y="177.22293"
+           x="7.8281221"
+           id="tspan949"
+           sodipodi:role="line">S</tspan></text><text
+         transform="scale(0.93197261,1.0729929)"
+         id="text10446-2"
+         y="180.80266"
+         x="227.05095"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:215.627px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#d18b45;fill-opacity:0.992157;stroke:none;stroke-width:13.2639;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="180.80266"
+           x="227.05095"
+           id="tspan961"
+           sodipodi:role="line">m</tspan></text><text
+         transform="scale(0.93197261,1.0729929)"
+         id="text10450-5"
+         y="180.80266"
+         x="738.46826"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:215.627px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#ffa500;fill-opacity:1;stroke:none;stroke-width:13.2639;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="180.80266"
+           x="738.46826"
+           id="tspan987"
+           sodipodi:role="line">k</tspan></text><text
+         transform="scale(0.93197261,1.0729929)"
+         id="text947"
+         y="178.27579"
+         x="119.33469"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:215.627px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#6aa9a2;fill-opacity:1;stroke:none;stroke-width:13.2639;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="178.27579"
+           x="119.33469"
+           id="tspan951"
+           sodipodi:role="line">e</tspan></text><text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:215.627px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#fed602;fill-opacity:1;stroke:none;stroke-width:13.2639;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="391.93774"
+         y="178.27579"
+         id="text955"
+         transform="scale(0.93197261,1.0729929)"><tspan
+           y="178.27579"
+           x="391.93774"
+           id="tspan963"
+           sodipodi:role="line">a</tspan></text><text
+         transform="scale(0.93197261,1.0729929)"
+         id="text959"
+         y="180.80266"
+         x="497.33768"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:215.627px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#9700a6;fill-opacity:0.996078;stroke:none;stroke-width:13.2639;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="180.80266"
+           x="497.33768"
+           id="tspan965"
+           sodipodi:role="line">n</tspan></text><text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:215.627px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#685f51;fill-opacity:1;stroke:none;stroke-width:13.2639;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="683.28992"
+         y="180.80266"
+         id="text969"
+         transform="scale(0.93197261,1.0729929)"><tspan
+           y="180.80266"
+           x="683.28992"
+           id="tspan971"
+           sodipodi:role="line">i</tspan></text><text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:215.627px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#988a76;fill-opacity:1;stroke:none;stroke-width:13.2639;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="847.86908"
+         y="178.27579"
+         id="text977"
+         transform="scale(0.93197261,1.0729929)"><tspan
+           y="178.27579"
+           x="847.86908"
+           id="tspan985"
+           sodipodi:role="line">o</tspan></text><text
+         transform="scale(0.93197261,1.0729929)"
+         id="text981"
+         y="178.27579"
+         x="958.63861"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:215.627px;line-height:0%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#abba95;fill-opacity:1;stroke:none;stroke-width:13.2639;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="178.27579"
+           x="958.63861"
+           id="tspan983"
+           sodipodi:role="line">s</tspan></text></g></g></svg>

@@ -1,12 +1,16 @@
 #!/bin/bash
 
-thisdir="`dirname $(readlink -m $0)`"
-thisdir="$(readlink -m ${thisdir})"
+set -e
+
 dirres=../src/main/res
 dirassets=../src/main/assets
 dirsrc=composite
 
 source lib-artwork.sh
+
+# C O M P O S I T E S
+
+./make-artwork-composite-svg.sh
 
 # A S S E T S
 

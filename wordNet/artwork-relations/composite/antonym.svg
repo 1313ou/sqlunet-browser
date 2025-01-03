@@ -1,3 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128"><path d="M126.616 1020.44a62.616 62.608 0 0 1-125.232 0 62.616 62.608 0 1 1 125.232 0z" style="fill:#b478cc;fill-opacity:1;fill-rule:nonzero;stroke:#a458c0;stroke-width:2.70129;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" transform="translate(0 -956.362)"/><text xml:space="preserve" x="15.439" y="118.284" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;line-height:0%;font-family:&quot;Arial Black&quot;;-inkscape-font-specification:&quot;Arial Black, Bold&quot;;text-align:start;letter-spacing:0;word-spacing:0;writing-mode:lr-tb;text-anchor:start;fill:#000;fill-opacity:1;stroke:none" transform="scale(1.21099 .82577)">
-        <tspan x="15.439" y="118.284" style="font-size:114.098px;line-height:1.25">≠</tspan>
-      </text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128">
+    <path d="M126.616 1020.44a62.616 62.608 0 0 1-125.232 0 62.616 62.608 0 1 1 125.232 0z" style="fill:#b478cc;fill-opacity:1;fill-rule:nonzero;stroke:#a458c0;stroke-width:2.70129;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" transform="translate(0 -956.362)"/>
+    <path d="M25.308 45.184H65.45L79.08 21.49H97.7L84.14 45.184h18.552v14.905h-26.92l-4.519 7.729h31.439v14.905H62.684L48.988 106.51H30.166l13.696-23.785H25.308V67.818h27.188l4.384-7.73H25.31Z"/>
+</svg>

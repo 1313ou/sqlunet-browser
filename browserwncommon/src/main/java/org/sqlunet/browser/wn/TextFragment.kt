@@ -112,7 +112,7 @@ class TextFragment : BaseListFragment() {
 
                     // parameters
                     val recurse = Settings.getRecursePref(requireContext())
-                    val parameters = Settings.getRenderParametersPref(requireContext())
+                    val parameters = Settings.makeParametersPref(requireContext())
 
                     // target
                     val colIdx = cursor.getColumnIndex("synsetid")

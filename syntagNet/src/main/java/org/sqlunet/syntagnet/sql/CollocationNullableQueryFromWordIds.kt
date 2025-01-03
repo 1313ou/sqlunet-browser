@@ -12,9 +12,7 @@ import org.sqlunet.syntagnet.sql.SqLiteDialect.SyntagNetBaseCollocationQuery
  *
  * @param connection connection
  * @param wordid     target word id
- * @param synsetid   target synset id
  * @param word2id     target word 2 id
- * @param synset2id   target synset 2 id
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */

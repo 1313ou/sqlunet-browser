@@ -1,1 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0"><text xml:space="preserve" x="42.324" y="84.032" style="font-style:normal;font-weight:400;font-size:26.5615px;line-height:0%;font-family:sans-serif;letter-spacing:0;word-spacing:0;fill:#000;fill-opacity:1;stroke:none;stroke-width:2.21346" transform="scale(1.00038 .99962)"><tspan x="42.324" y="84.032" style="font-size:73.1708px;line-height:1.25;font-family:sans-serif;fill:#013397;stroke-width:2.21346">v</tspan></text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" version="1.0">
+    <path fill="#013397" d="M44.52 44h6.97L64 77.57 76.51 44h6.969L68.466 84h-8.933z"/>
+</svg>

@@ -2,9 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	tools:keep="@xml/pref_headers">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<Preference
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$GeneralPreferenceFragment"
@@ -41,5 +39,10 @@
 		app:icon="@drawable/ic_settings_speak"
 		app:key="pref_header_voice"
 		app:title="@string/pref_header_speak" />
+	<Preference
+		app:fragment="org.sqlunet.wordnet.browser.WordNetSettingsFragment"
+		app:icon="@drawable/ic_settings_wordnet"
+		app:key="pref_header_wordnet"
+		app:title="@string/pref_header_wordnet" />
 
 </PreferenceScreen>

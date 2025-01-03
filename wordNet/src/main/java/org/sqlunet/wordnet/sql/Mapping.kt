@@ -138,9 +138,9 @@ internal object Mapping {
         return try {
             val domain = domains[domainId]
             getPosName(domain.posId)
-        } catch (e: IndexOutOfBoundsException) {
+        } catch (_: IndexOutOfBoundsException) {
             "domainid.$domainId"
-        } catch (e: IllegalArgumentException) {
+        } catch (_: IllegalArgumentException) {
             "domainid.$domainId"
         }
     }
@@ -155,7 +155,7 @@ internal object Mapping {
         return try {
             val domain = domains[domainId]
             domain.domainName
-        } catch (e: IndexOutOfBoundsException) {
+        } catch (_: IndexOutOfBoundsException) {
             "domainid.$domainId"
         }
     }
@@ -175,7 +175,7 @@ internal object Mapping {
         return try {
             val domain = domainsByName[fullName]!!
             domain.id
-        } catch (e: NullPointerException) {
+        } catch (_: NullPointerException) {
             ANY_TYPE
         }
     }
@@ -226,7 +226,7 @@ internal object Mapping {
         return try {
             val relation = relationsById[relationId]
             relation.name
-        } catch (e: NullPointerException) {
+        } catch (_: NullPointerException) {
             "relation.$relationId"
         }
     }
@@ -243,7 +243,7 @@ internal object Mapping {
         } else try {
             val relation = relationsByName[relationName]!!
             relation.id
-        } catch (e: NullPointerException) {
+        } catch (_: NullPointerException) {
             ANY_TYPE
         }
     }
@@ -258,9 +258,9 @@ internal object Mapping {
         return try {
             val relation = relationsById[relationId]
             relation.recurses
-        } catch (e: IndexOutOfBoundsException) {
+        } catch (_: IndexOutOfBoundsException) {
             false
-        } catch (e: NullPointerException) {
+        } catch (_: NullPointerException) {
             false
         }
     }

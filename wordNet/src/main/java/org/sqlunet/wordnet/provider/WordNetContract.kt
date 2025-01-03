@@ -22,6 +22,7 @@ object WordNetContract {
     const val AS_SYNSETS = V.AS_SYNSETS
     const val AS_RELATIONS = V.AS_RELATIONS
     const val AS_WORDS2 = V.AS_WORDS2
+    const val AS_SENSES2 = V.AS_SENSES2
     const val AS_SYNSETS2 = V.AS_SYNSETS2
     const val AS_POSES = V.AS_POSES
     const val AS_CASEDS = V.AS_CASEDS
