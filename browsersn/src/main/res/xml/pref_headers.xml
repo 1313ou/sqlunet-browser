@@ -35,11 +35,6 @@
 		app:key="pref_header_database"
 		app:title="@string/pref_header_database" />
 	<Preference
-		app:fragment="org.sqlunet.speak.SpeakSettingsFragment"
-		app:icon="@drawable/ic_settings_speak"
-		app:key="pref_header_voice"
-		app:title="@string/pref_header_speak" />
-	<Preference
 		app:fragment="org.sqlunet.wordnet.browser.WordNetSettingsFragment"
 		app:icon="@drawable/ic_settings_wordnet"
 		app:key="pref_header_wordnet"
