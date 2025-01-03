@@ -51,7 +51,7 @@
 				<IMG class="treepix" src="images/open.png" />
 			</SPAN>
 			<!-- data image -->
-			<IMG class="dataimg" src="images/syntagnet/collocation.png" />
+			<IMG class="dataimg" src="images/syntagnet/sncollocation.png" />
 			<!-- label -->
 			<SPAN class="sncollocationlabel">
 				<SPAN class="sncollocationname">

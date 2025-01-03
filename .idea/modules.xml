@@ -138,7 +138,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.iml" filepath="$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.unitTest.iml" />
     </modules>
   </component>

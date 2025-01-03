@@ -25,7 +25,7 @@
 		android:layout_gravity="center_vertical"
 		android:layout_marginEnd="5dp"
 		android:contentDescription="@string/description_row"
-		android:src="@drawable/ic_collocation" />
+		android:src="@drawable/sncollocation" />
 
 	<TextView
 		android:id="@+id/word1"
