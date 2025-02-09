@@ -63,6 +63,7 @@ dependencies {
     implementation(project(":download"))
     implementation(project(":download_common"))
     implementation(project(":deploy"))
+    implementation(project(":capture"))
     implementation(project(":others"))
     implementation(project(":donate"))
     implementation(project(":rate"))

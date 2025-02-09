@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/browservn" />
             <option value="$PROJECT_DIR$/browserwn" />
             <option value="$PROJECT_DIR$/browserwncommon" />
+            <option value="$PROJECT_DIR$/capture" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/concurrency" />
             <option value="$PROJECT_DIR$/coroutines" />

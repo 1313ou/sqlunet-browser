@@ -8,10 +8,14 @@ import android.content.res.Resources
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
+import com.bbou.capture.Capture.captureAndSave
+import com.bbou.capture.Capture.captureAndShare
 import com.bbou.concurrency.observe.TaskDialogObserver
 import com.bbou.concurrency.observe.TaskObserver
 import com.bbou.donate.DonateActivity
@@ -120,6 +124,22 @@ object MenuHandler {
                 intent = Intent(activity, HistoryActivity::class.java)
             }
 
+            R.id.action_capture -> {
+                val view = capturedView(activity)
+                if (view != null) {
+                    captureAndSave(view, activity)
+                }
+                return true
+            }
+
+            R.id.action_share_capture -> {
+                val view = capturedView(activity)
+                if (view != null) {
+                    captureAndShare(view, activity)
+                }
+                return true
+            }
+
             R.id.action_help -> {
                 intent = Intent(activity, HelpActivity::class.java)
             }
@@ -148,6 +168,19 @@ object MenuHandler {
         // start activity
         activity.startActivity(intent)
         return true
+    }
+
+    private fun capturedView(activity: AppCompatActivity): View? {
+        var view = activity.findViewById<View>(R.id.container_browse2)
+        if (view != null && view.width > 0 && view.height > 0) {
+            return view
+        }
+        view = activity.findViewById<View>(R.id.container_browse2m)
+        if (view != null && view.width > 0 && view.height > 0) {
+            return view
+        }
+        Toast.makeText(activity, R.string.status_capture_no_view, Toast.LENGTH_SHORT).show()
+        return null
     }
 
     /**

@@ -19,4 +19,12 @@
 		app:showAsAction="never"
 		tools:ignore="AppCompatResource" />
 	<!-- </group> -->
+	<item
+		android:id="@+id/action_capture"
+		android:title="@string/action_capture"
+		app:showAsAction="never" />
+	<item
+		android:id="@+id/action_share_capture"
+		android:title="@string/action_share_capture"
+		app:showAsAction="never" />
 </menu>

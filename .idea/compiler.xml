@@ -41,6 +41,7 @@
       <module name="semantikos.browservn" target="17" />
       <module name="semantikos.browserwn" target="17" />
       <module name="semantikos.browserwncommon" target="17" />
+      <module name="semantikos.capture" target="21" />
       <module name="semantikos.common" target="17" />
       <module name="semantikos.concurrency" target="17" />
       <module name="semantikos.coroutines" target="21" />
