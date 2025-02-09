@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:8.7.3")
+        classpath("com.android.tools.build:gradle:8.8.0")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.8.5")
     }
@@ -29,8 +29,8 @@ allprojects {
     }
 
     ext {
-        set("versionCode", 178)
-        set("versionName", "4.178")
+        set("versionCode", 179)
+        set("versionName", "4.179")
         set("minSdk", 21)
         set("targetSdk", 34)
         set("compileSdk", 35)
