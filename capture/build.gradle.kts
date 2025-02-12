@@ -9,7 +9,7 @@ private val coreVersion by lazy { rootProject.extra["coreVersion"] as String }
 private val desugarVersion by lazy { rootProject.extra["desugarVersion"] as String }
 
 android {
-    namespace = "org.sqlunet.browser.capture"
+    namespace = "com.bbou.capture"
 
     defaultConfig {
         minSdk = vMinSdk
