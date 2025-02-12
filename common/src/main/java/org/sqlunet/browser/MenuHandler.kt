@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 import com.bbou.capture.Capture.captureAndSave
 import com.bbou.capture.Capture.captureAndShare
+import com.bbou.capture.Capture.getBackgroundFromTheme
 import com.bbou.concurrency.observe.TaskDialogObserver
 import com.bbou.concurrency.observe.TaskObserver
 import com.bbou.donate.DonateActivity
@@ -127,7 +128,8 @@ object MenuHandler {
             R.id.action_capture -> {
                 val view = capturedView(activity)
                 if (view != null) {
-                    captureAndSave(view, activity)
+                    val bg: Int = getBackgroundFromTheme(activity)
+                    captureAndSave(view, activity, backGround = bg)
                 }
                 return true
             }
@@ -135,7 +137,8 @@ object MenuHandler {
             R.id.action_share_capture -> {
                 val view = capturedView(activity)
                 if (view != null) {
-                    captureAndShare(view, activity)
+                    val bg: Int = getBackgroundFromTheme(activity)
+                    captureAndShare(view, activity, backGround = bg)
                 }
                 return true
             }

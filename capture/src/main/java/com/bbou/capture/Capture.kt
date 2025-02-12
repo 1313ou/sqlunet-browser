@@ -14,7 +14,9 @@ import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.preference.PreferenceManager
 import java.io.File
@@ -30,29 +32,58 @@ object Capture {
 
     const val PREF_CAPTURE_IN_MEDIASTORE = "pref_capture_in_media_store"
 
-    fun captureScreen(activity: Activity): Bitmap {
-        val view = activity.window.decorView.rootView
-        return captureView(view)
+    // capture bitmap
+
+    @JvmStatic
+    fun getBackgroundFromTheme(context: Context): Int {
+        val theme = context.theme
+
+        // Check if the attribute is defined in the theme
+        val typedValue = TypedValue()
+        if (theme.resolveAttribute(android.R.attr.windowBackground, typedValue, true)) {
+            if (typedValue.type >= TypedValue.TYPE_FIRST_COLOR_INT && typedValue.type <= TypedValue.TYPE_LAST_COLOR_INT) {
+                // It's a color
+                return typedValue.data
+            } else if (typedValue.type == TypedValue.TYPE_REFERENCE) {
+                // It's a reference to a color (e.g., in colors.xml)
+                return ContextCompat.getColor(context, typedValue.resourceId) // Use ContextCompat for compatibility
+            }
+        }
+        // Fallback color (in case the attribute is not defined)
+        return ContextCompat.getColor(context, android.R.color.background_light)
     }
 
-    fun captureScreen(activity: Activity, onCaptureComplete: (Bitmap) -> Unit) {
+    @JvmOverloads
+    fun captureScreen(activity: Activity, backGround: Int? = null): Bitmap {
         val view = activity.window.decorView.rootView
-        return captureView(view, onCaptureComplete)
+        return captureView(view, backGround = backGround)
     }
 
-    fun captureView(view: View): Bitmap {
+    @JvmOverloads
+    fun captureScreen(activity: Activity, backGround: Int? = null, onCaptureComplete: (Bitmap) -> Unit) {
+        val view = activity.window.decorView.rootView
+        return captureView(view, backGround = backGround, onCaptureComplete)
+    }
+
+    @JvmOverloads
+    fun captureView(view: View, backGround: Int? = null): Bitmap {
         val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+        if (backGround != null)
+            bitmap.eraseColor(backGround)
         val canvas = Canvas(bitmap)
         view.draw(canvas)
         return bitmap
     }
 
-    fun captureView(view: View, onCaptureComplete: (Bitmap) -> Unit) {
+    @JvmOverloads
+    fun captureView(view: View, backGround: Int? = null, onCaptureComplete: (Bitmap) -> Unit) {
         view.post {
-            val bitmap = captureView(view)
+            val bitmap = captureView(view, backGround = backGround)
             onCaptureComplete(bitmap)
         }
     }
+
+    // save
 
     private fun getFilename(): String {
         return if (false) "Screenshot_${SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())}.png"
@@ -110,6 +141,8 @@ object Capture {
         }
     }
 
+    // share
+
     fun sharePng(activity: Activity, uri: Uri) {
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "image/png"
@@ -119,13 +152,17 @@ object Capture {
         activity.startActivity(Intent.createChooser(intent, "Share Capture"))
     }
 
-    fun captureAndSave(view: View, context: Context) {
-        val bm = captureView(view)
+    // combine
+
+    @JvmOverloads
+    fun captureAndSave(view: View, context: Context, backGround: Int? = null) {
+        val bm = captureView(view, backGround = backGround)
         saveBitmapToFile(bm, context)
     }
 
-    fun captureAndShare(view: View, activity: Activity) {
-        val bm = captureView(view)
+    @JvmOverloads
+    fun captureAndShare(view: View, activity: Activity, backGround: Int? = null) {
+        val bm = captureView(view, backGround = backGround)
         val uri = saveBitmapToFile(bm, activity)
         if (uri != null)
             sharePng(activity, uri)
