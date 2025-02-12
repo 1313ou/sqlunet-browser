@@ -28,9 +28,13 @@ import java.util.Locale
 
 object Capture {
 
-    const val CAPTURE_NAME = "capture.png"
+    const val CAPTURE_NAME = "capture"
+
+    const val CAPTURE_EXT = ".png"
 
     const val PREF_CAPTURE_IN_MEDIASTORE = "pref_capture_in_mediastore"
+
+    const val PREF_CAPTURE_TIME_STAMPED = "pref_capture_time_stamped"
 
     // capture bitmap
 
@@ -85,18 +89,19 @@ object Capture {
 
     // save
 
-    private fun getFilename(): String {
-        return if (false) "Screenshot_${SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())}.png"
-        else CAPTURE_NAME
+    private fun getFilename(context: Context): String {
+        val timeStamped = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(PREF_CAPTURE_TIME_STAMPED, false)
+        return if (timeStamped) "${CAPTURE_NAME}_${SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())}$CAPTURE_EXT"
+        else "$CAPTURE_NAME$CAPTURE_EXT"
     }
 
     fun saveBitmapToExternalCacheFile(bitmap: Bitmap, context: Context): Uri? {
-        val file = File(context.externalCacheDir, getFilename())
+        val file = File(context.externalCacheDir, getFilename(context))
         return saveBitmapToFile(bitmap, file, context)
     }
 
     fun saveBitmapToCacheFile(bitmap: Bitmap, context: Context): Uri? {
-        val file = File(context.cacheDir, getFilename())
+        val file = File(context.cacheDir, getFilename(context))
         return saveBitmapToFile(bitmap, file, context)
     }
 
@@ -110,7 +115,7 @@ object Capture {
 
     fun saveBitmapToMediaStoreFile(bitmap: Bitmap, context: Context): Uri? {
         val values = ContentValues().apply {
-            put(MediaStore.Images.Media.DISPLAY_NAME, getFilename())
+            put(MediaStore.Images.Media.DISPLAY_NAME, getFilename(context))
             put(MediaStore.Images.Media.MIME_TYPE, "image/png")
             put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
         }

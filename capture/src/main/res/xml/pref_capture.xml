@@ -16,6 +16,12 @@
 			android:summary="@string/pref_description_capture_in_mediastore"
 			android:title="@string/pref_title_capture_in_mediastore"
 			app:singleLineTitle="false" />
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="pref_capture_time_stamped"
+			android:summary="@string/pref_description_capture_time_stamped"
+			android:title="@string/pref_title_capture_time_stamped"
+			app:singleLineTitle="false" />
 
 	</PreferenceCategory>
 
