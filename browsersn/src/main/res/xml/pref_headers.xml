@@ -39,5 +39,10 @@
 		app:icon="@drawable/ic_settings_wordnet"
 		app:key="pref_header_wordnet"
 		app:title="@string/pref_header_wordnet" />
+	<Preference
+		app:fragment="com.bbou.capture.CapturePreferenceFragment"
+		app:icon="@drawable/ic_settings_capture"
+		app:summary="@string/pref_header_summary_capture"
+		app:title="@string/pref_header_capture" />
 
 </PreferenceScreen>

@@ -30,7 +30,7 @@ object Capture {
 
     const val CAPTURE_NAME = "capture.png"
 
-    const val PREF_CAPTURE_IN_MEDIASTORE = "pref_capture_in_media_store"
+    const val PREF_CAPTURE_IN_MEDIASTORE = "pref_capture_in_mediastore"
 
     // capture bitmap
 
