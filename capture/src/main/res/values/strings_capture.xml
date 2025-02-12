@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2025. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+	<string name="pref_header_capture">Capture</string>
+	<string name="pref_header_summary_capture">View capture</string>
+	<string name="pref_category_capture">Capture</string>
+	<string name="pref_title_capture_in_mediastore">MediaStore</string>
+	<string name="pref_description_capture_in_mediastore">Capture file in MediaStore</string>
+</resources>
