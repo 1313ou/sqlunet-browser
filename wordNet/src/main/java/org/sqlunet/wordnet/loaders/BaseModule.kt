@@ -12,6 +12,7 @@ import android.os.Parcelable
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.browser.Module
@@ -269,7 +270,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     fun word(wordId: Long, parent: TreeNode, addNewNode: Boolean) {
         // load the contents
         val sql = Queries.prepareWord(wordId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         wordModel.loadData(uri, sql) { cursor: Cursor -> wordCursorToTreeModel(cursor, parent, addNewNode) }
     }
 
@@ -321,7 +322,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     protected fun senses(word: String, parent: TreeNode) {
         // load the contents
         val sql = Queries.prepareSenses(word)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         sensesFromWordModel.loadData(uri, sql) { cursor: Cursor -> sensesCursorToTreeModel(cursor, parent) }
     }
 
@@ -334,7 +335,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     fun senses(wordId: Long, parent: TreeNode) {
         // load the contents
         val sql = Queries.prepareSenses(wordId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         sensesFromWordIdModel.loadData(uri, sql) { cursor: Cursor -> sensesCursorToTreeModel(cursor, parent) }
     }
 
@@ -382,7 +383,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     fun sense(senseId: Long, parent: TreeNode) {
         // load the contents
         val sql = Queries.prepareSense(senseId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         senseFromSenseIdModel.loadData(uri, sql) { cursor: Cursor -> senseFromSenseIdCursorToTreeModel(cursor, parent) }
     }
 
@@ -414,7 +415,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     fun sense(senseKey: String, parent: TreeNode) {
         // load the contents
         val sql = Queries.prepareSense(senseKey)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         senseFromSenseKeyModel.loadData(uri, sql) { cursor: Cursor -> senseFromSenseKeyCursorToTreeModel(cursor, parent) }
     }
 
@@ -454,7 +455,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     private fun sense(synsetId: Long, wordId: Long, parent: TreeNode) {
         // load the contents
         val sql = Queries.prepareSense(synsetId, wordId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         senseFromSynsetIdWordIdModel.loadData(uri, sql) { cursor: Cursor -> senseFromSynsetIdWordIdCursorToTreeModel(cursor, synsetId, wordId, parent) }
     }
 
@@ -530,7 +531,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun synset(synsetId: Long, parent: TreeNode, addNewNode: Boolean) {
         val sql = Queries.prepareSynset(synsetId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         synsetFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> synsetCursorToTreeModel(cursor, synsetId, parent, addNewNode) }
     }
 
@@ -630,7 +631,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun members(synsetId: Long, parent: TreeNode) {
         val sql = Queries.prepareMembers(synsetId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         membersFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> membersCursorToTreeModel(cursor, parent) }
     }
 
@@ -671,7 +672,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun memberSet(synsetId: Long, parent: TreeNode, concatQuery: Boolean, addNewNode: Boolean) {
         val sql = Queries.prepareMembers2(synsetId, concatQuery)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         members2FromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> memberSetCursorToTreeModel(cursor, parent, concatQuery, addNewNode) }
     }
 
@@ -729,7 +730,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun samples(synsetId: Long, parent: TreeNode, @Suppress("SameParameterValue") addNewNode: Boolean) {
         val sql = Queries.prepareSamples(synsetId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         samplesFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> samplesCursorToTreeModel(cursor, parent, addNewNode) }
     }
 
@@ -780,7 +781,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun usages(synsetId: Long, parent: TreeNode, @Suppress("SameParameterValue") addNewNode: Boolean) {
         val sql = Queries.prepareUsages(synsetId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         usagesFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> usagesCursorToTreeModel(cursor, parent, addNewNode) }
     }
 
@@ -831,8 +832,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun ili(synsetId: Long, parent: TreeNode, @Suppress("SameParameterValue") addNewNode: Boolean) {
         val sql = Queries.prepareIli(synsetId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
-        iliFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> iliCursorToTreeModel(cursor, parent, addNewNode) }
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
+        iliFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> iliCursorToTreeModel(cursor, parent) }
     }
 
     private fun iliCursorToTreeModel(cursor: Cursor, parent: TreeNode, addNewNode: Boolean): Array<TreeOp> {
@@ -846,7 +847,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val url = String.format(context.resources.getString(R.string.ili_url), ili)
                 Toast.makeText(context, "ILI $ili clicked!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(url)
+                intent.data = url.toUri()
                 context.startActivity(intent)
             }
             val sb = SpannableStringBuilder()
@@ -881,8 +882,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun wikidata(synsetId: Long, parent: TreeNode, @Suppress("SameParameterValue") addNewNode: Boolean) {
         val sql = Queries.prepareWikidata(synsetId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
-        wikidataFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> wikidataCursorToTreeModel(cursor, parent, addNewNode) }
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
+        wikidataFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> wikidataCursorToTreeModel(cursor, parent) }
     }
 
     private fun wikidataCursorToTreeModel(cursor: Cursor, parent: TreeNode, addNewNode: Boolean): Array<TreeOp> {
@@ -934,7 +935,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun relations(synsetId: Long, wordId: Long, parent: TreeNode, @Suppress("SameParameterValue") deadendParentIfNoResult: Boolean) {
         val sql = Queries.prepareRelations(synsetId, wordId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         relationsFromSynsetIdWordIdModel.loadData(uri, sql) { cursor: Cursor -> relationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult) }
     }
 
@@ -1023,7 +1024,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun semRelations(synsetId: Long, parent: TreeNode, @Suppress("SameParameterValue") deadendParentIfNoResult: Boolean) {
         val sql = Queries.prepareSemRelations(synsetId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         semRelationsFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> semRelationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult) }
     }
 
@@ -1090,7 +1091,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     private fun semRelations(synsetId: Long, relationId: Int, recurseLevel: Int, @Suppress("SameParameterValue") hot: Boolean, parent: TreeNode, @Suppress("SameParameterValue") deadendParentIfNoResult: Boolean) {
         if (relationFilter.invoke(relationId)) {
             val sql = Queries.prepareSemRelations(synsetId, relationId)
-            val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+            val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
             semRelationsFromSynsetIdRelationIdModel.loadData(uri, sql) { cursor: Cursor -> semRelationsFromSynsetIdRelationIdCursorToTreeModel(cursor, relationId, recurseLevel, hot, parent, deadendParentIfNoResult) }
         }
     }
@@ -1163,7 +1164,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun lexRelations(synsetId: Long, wordId: Long, parent: TreeNode, deadendParentIfNoResult: Boolean) {
         val sql = Queries.prepareLexRelations(synsetId, wordId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         lexRelationsFromSynsetIdWordIdModel.loadData(uri, sql) { cursor: Cursor -> lexRelationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult) }
     }
 
@@ -1222,7 +1223,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun lexRelations(synsetId: Long, parent: TreeNode, deadendParentIfNoResult: Boolean) {
         val sql = Queries.prepareLexRelations(synsetId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         lexRelationsFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> lexRelationsFromSynsetIdCursorToTreeModel(cursor, parent, deadendParentIfNoResult) }
     }
 
@@ -1280,7 +1281,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun vFrames(synsetId: Long, parent: TreeNode) {
         val sql = Queries.prepareVFrames(synsetId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         vFramesFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> vframesCursorToTreeModel(cursor, parent) }
     }
 
@@ -1293,7 +1294,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun vFrames(synsetId: Long, wordId: Long, parent: TreeNode) {
         val sql = Queries.prepareVFrames(synsetId, wordId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         vFramesFromSynsetIdWordIdModel.loadData(uri, sql) { cursor: Cursor -> vframesCursorToTreeModel(cursor, parent) }
     }
 
@@ -1334,7 +1335,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun vTemplates(synsetId: Long, parent: TreeNode) {
         val sql = Queries.prepareVTemplates(synsetId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         vTemplatesFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> vTemplatesCursorToTreeModel(cursor, parent) }
     }
 
@@ -1374,7 +1375,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun vTemplates(synsetId: Long, wordId: Long, parent: TreeNode) {
         val sql = Queries.prepareVTemplates(synsetId, wordId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         vTemplatesFromSynsetIdWordIdModel.loadData(uri, sql) { cursor: Cursor -> vTemplatesFromSynsetIdWordIdCursorToTreeModel(cursor, parent) }
     }
 
@@ -1416,7 +1417,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun adjPosition(synsetId: Long, parent: TreeNode) {
         val sql = Queries.prepareAdjPosition(synsetId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         adjPositionFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> adjPositionCursorToTreeModel(cursor, parent) }
     }
 
@@ -1429,7 +1430,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun adjPosition(synsetId: Long, wordId: Long, parent: TreeNode) {
         val sql = Queries.prepareAdjPosition(synsetId, wordId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         adjPositionFromSynsetIdWordIdModel.loadData(uri, sql) { cursor: Cursor -> adjPositionCursorToTreeModel(cursor, parent) }
     }
 
@@ -1470,7 +1471,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun morphs(wordId: Long, parent: TreeNode) {
         val sql = Queries.prepareMorphs(wordId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         morphsFromWordIdModel.loadData(uri, sql) { cursor: Cursor -> morphsCursorToTreeModel(cursor, parent) }
     }
 
