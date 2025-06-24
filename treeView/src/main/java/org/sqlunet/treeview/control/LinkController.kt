@@ -24,8 +24,8 @@ class LinkController(breakExpand: Boolean) : BaseController(breakExpand) {
     override fun createNodeView(context: Context, node: TreeNode, minHeight: Int): View {
         val view = super.createNodeView(context, node, minHeight)
         // link listener
-        val hotLink = view.findViewById<View>(R.id.node_link)
-        hotLink.setOnClickListener { followLink() }
+        val link = view.findViewById<View>(R.id.node_link)
+        link.setOnClickListener { followLink() }
         return view
     }
 

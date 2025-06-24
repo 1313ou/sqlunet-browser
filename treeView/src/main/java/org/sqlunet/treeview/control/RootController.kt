@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.treeview.view.SubtreeView
+import androidx.core.view.isNotEmpty
 
 class RootController : Controller(false) {
 
@@ -22,7 +23,7 @@ class RootController : Controller(false) {
         }
 
     override var subtreeView: SubtreeView?
-        get() = if (childrenView != null && childrenView!!.childCount > 0) {
+        get() = if (childrenView != null && childrenView!!.isNotEmpty()) {
             childrenView!!.getChildAt(0) as SubtreeView
         } else null
         set(subtreeView) {
