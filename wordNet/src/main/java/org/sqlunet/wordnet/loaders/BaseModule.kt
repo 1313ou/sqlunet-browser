@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.text.SpannableStringBuilder
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
@@ -18,6 +19,7 @@ import org.sqlunet.browser.Module
 import org.sqlunet.browser.SqlunetViewTreeModel
 import org.sqlunet.browser.TreeFragment
 import org.sqlunet.model.TreeFactory.makeHotQueryTreeNode
+import org.sqlunet.model.TreeFactory.makeIntentNode
 import org.sqlunet.model.TreeFactory.makeLeafNode
 import org.sqlunet.model.TreeFactory.makeLinkHotQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeLinkLeafNode
@@ -855,18 +857,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             append(sb, ili, 0, iliFactory)
 
             // result
-            changed = if (addNewNode) {
-                val node = makeTextNode(sb, false).addTo(parent)
-                node.payload!![1] = callback
-                seq(TreeOpCode.NEWUNIQUE, node)
-            } else {
-                parent.payload!![1] = callback
-                setTextNode(parent, sb, R.drawable.ili)
-                seq(TreeOpCode.UPDATE, parent)
-            }
+            parent.payload!![1] = callback
+            setTextNode(parent, sb, R.drawable.ili)
+            changed = seq(TreeOpCode.UPDATE, parent)
         } else {
             setNoResult(parent)
-            changed = seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -877,43 +873,42 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      *
      * @param synsetId   synset id
      * @param parent     parent node
-     * @param addNewNode whether to addItem to (or set) node
      */
-    private fun wikidata(synsetId: Long, parent: TreeNode, @Suppress("SameParameterValue") addNewNode: Boolean) {
+    private fun wikidata(synsetId: Long, parent: TreeNode) {
         val sql = Queries.prepareWikidata(synsetId)
         val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         wikidataFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> wikidataCursorToTreeModel(cursor, parent) }
     }
 
-    private fun wikidataCursorToTreeModel(cursor: Cursor, parent: TreeNode, addNewNode: Boolean): Array<TreeOp> {
-        val changed: Array<TreeOp>
+    private fun wikidataCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        var changed: Array<TreeOp>
+        val addNewNode = cursor.count > 1
         if (cursor.moveToFirst()) {
             val idWikidata = cursor.getColumnIndex(Wikidatas.WIKIDATA)
-            val wikidata = cursor.getString(idWikidata)
-            val callback = {
-                Log.d(TAG, "Wikidata $wikidata clicked!")
-                val context = fragment.requireContext()
-                val url = String.format(context.resources.getString(R.string.wikidata_url), wikidata)
-                Toast.makeText(context, "Wikidata $wikidata clicked!", Toast.LENGTH_SHORT).show()
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(url)
-                context.startActivity(intent)
-            }
-            val sb = SpannableStringBuilder()
-            append(sb, "Wikidata", 0, boldFactory)
-            sb.append(' ')
-            append(sb, wikidata, 0, wikidataFactory)
+            do {
+                val wikidata = cursor.getString(idWikidata)
+                val intent: Intent = Intent(Intent.ACTION_VIEW).apply {
+                    val context = fragment.requireContext()
+                    val url = String.format(context.resources.getString(R.string.wikidata_url), wikidata)
+                    this.data = url.toUri()
+                    this.putExtra("data", wikidata)
+                }
+                val sb = SpannableStringBuilder()
+                append(sb, "Wikidata", 0, boldFactory)
+                sb.append(' ')
+                append(sb, wikidata, 0, wikidataFactory)
 
-            // result
-            changed = if (addNewNode) {
-                val node = makeTextNode(sb, false).addTo(parent)
-                node.payload!![1] = callback
-                seq(TreeOpCode.NEWUNIQUE, node)
-            } else {
-                parent.payload!![1] = callback
-                setTextNode(parent, sb, R.drawable.wikidata)
-                seq(TreeOpCode.UPDATE, parent)
-            }
+                // result
+                changed = if (addNewNode) {
+                    parent.controller.nodeView?.findViewById<View>(R.id.node_link)?.visibility = View.GONE
+                    val node = makeIntentNode(sb, R.drawable.wikidata, false, intent).addTo(parent)
+                    seq(TreeOpCode.NEWUNIQUE, node)
+                } else {
+                    parent.payload!![1] = { fragment.requireContext().startActivity(intent) }
+                    setTextNode(parent, sb, R.drawable.wikidata)
+                    seq(TreeOpCode.UPDATE, parent)
+                }
+            } while (cursor.moveToNext())
         } else {
             setNoResult(parent)
             changed = seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
@@ -1707,7 +1702,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     internal inner class WikidataQuery(synsetId: Long) : Query(synsetId) {
 
         override fun process(node: TreeNode) {
-            wikidata(id, node, false)
+            wikidata(id, node)
         }
 
         override fun toString(): String {
@@ -1863,7 +1858,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         private const val TAG = "BaseModule"
 
         val comparator2 = compareBy<Pair<String, Int>> { it.second }
-        val invComparator2 = comparator2.reversed()
+        val invComparator2: Comparator<Pair<String, Int>> = comparator2.reversed()
         val comparator = invComparator2.thenBy { it.first }
 
         fun extractMembers(members: String): Sequence<String> {
