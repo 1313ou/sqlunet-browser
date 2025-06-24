@@ -3,6 +3,7 @@
  */
 package org.sqlunet.model
 
+import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import androidx.annotation.DrawableRes
@@ -11,6 +12,7 @@ import org.sqlunet.treeview.control.HotQueryController
 import org.sqlunet.treeview.control.HotQueryLinkController
 import org.sqlunet.treeview.control.HotQueryTreeController
 import org.sqlunet.treeview.control.IconTextController
+import org.sqlunet.treeview.control.IntentController
 import org.sqlunet.treeview.control.LeafController
 import org.sqlunet.treeview.control.Link
 import org.sqlunet.treeview.control.LinkController
@@ -77,6 +79,19 @@ object TreeFactory {
      */
     fun makeMoreNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean): TreeNode {
         return TreeNode(text, icon, null, MoreController(breakExpand), false)
+    }
+
+    /**
+     * Make intent node
+     *
+     * @param value       character sequence
+    * @param icon         icon (extra icon after tree icon)
+     * @param breakExpand break expand flag
+     * @param intent      intent
+     * @return created node
+     */
+    fun makeIntentNode(value: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, intent: Intent): TreeNode {
+        return TreeNode(value, null, arrayOf(intent), IntentController(breakExpand), false)
     }
 
     /**
