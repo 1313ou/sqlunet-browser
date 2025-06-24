@@ -831,13 +831,13 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @param parent     parent node
      * @param addNewNode whether to addItem to (or set) node
      */
-    private fun ili(synsetId: Long, parent: TreeNode, @Suppress("SameParameterValue") addNewNode: Boolean) {
+    private fun ili(synsetId: Long, parent: TreeNode) {
         val sql = Queries.prepareIli(synsetId)
         val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         iliFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> iliCursorToTreeModel(cursor, parent) }
     }
 
-    private fun iliCursorToTreeModel(cursor: Cursor, parent: TreeNode, addNewNode: Boolean): Array<TreeOp> {
+    private fun iliCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
         val changed: Array<TreeOp>
         if (cursor.moveToFirst()) {
             val idIli = cursor.getColumnIndex(Ilis.ILI)
@@ -1686,7 +1686,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     internal inner class IliQuery(synsetId: Long) : Query(synsetId) {
 
         override fun process(node: TreeNode) {
-            ili(id, node, false)
+            ili(id, node)
         }
 
         override fun toString(): String {
