@@ -12,7 +12,7 @@
 	<string name="default_entry_index" translatable="false" tools:keep="@string/default_entry_index">sqlunet-vn-index.sql</string>
 
 	<!-- sites -->
-	<string name="github_site_url" translatable="false" tools:keep="@string/github_site_url">https://github.com/x-englishwordnet/semantikos/releases/download/Semantikos-2024-2</string>
+	<string name="github_site_url" translatable="false" tools:keep="@string/github_site_url">https://github.com/x-englishwordnet/semantikos/releases/download/Semantikos-2025-1</string>
 	<string name="sourceforge_site_url" translatable="false" tools:keep="@string/sourceforge_site_url">https://sourceforge.net/projects/sqlunet/files/semantikos2/4</string>
 
 	<string name="default_download_site_url" translatable="false" tools:keep="@string/default_download_site_url">@string/github_site_url</string>
