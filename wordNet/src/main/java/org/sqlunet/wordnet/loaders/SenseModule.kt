@@ -78,7 +78,7 @@ class SenseModule(fragment: TreeFragment) : SynsetModule(fragment) {
 
             // externals
             makeHotQueryLinkNode(iliLabel, R.drawable.ili, false, IliQuery(synsetId!!)).addTo(node)
-            makeHotQueryLinkNode(wikidataLabel, R.drawable.wikidata, false, WikidataQuery(synsetId!!)).addTo(node)
+            makeHotQueryNode(wikidataLabel, R.drawable.wikidata, false, WikidataQuery(synsetId!!)).addTo(node)
 
             // special
             if (pos != null) {
