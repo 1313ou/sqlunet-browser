@@ -6,7 +6,9 @@ package org.sqlunet.model
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import androidx.annotation.DrawableRes
+import org.sqlunet.treeview.R
 import org.sqlunet.treeview.control.ColdQueryTreeController
 import org.sqlunet.treeview.control.HotQueryController
 import org.sqlunet.treeview.control.HotQueryLinkController
@@ -258,12 +260,35 @@ object TreeFactory {
         node.isEnabled = false
     }
 
+    /**
+     * Set  node's text
+     *
+     * @param node node
+     * @param text text
+     */
     fun setTextNode(node: TreeNode, text: CharSequence?) {
         node.text = text
     }
 
+    /**
+     * Set node's text and icon
+     *
+     * @param node node
+     * @param text text
+     * @param icon icon
+     */
     fun setTextNode(node: TreeNode, text: CharSequence, @DrawableRes icon: Int) {
         node.text = text
         node.icon = icon
+    }
+
+    /**
+     * Set link visible
+     *
+     * @param node node
+     * @param visible visible
+     */
+    fun setLinkVisible(node: TreeNode, visible: Boolean = true) {
+        node.controller.nodeView?.findViewById<View>(R.id.node_link)?.visibility = (if (visible) View.VISIBLE else View.GONE)
     }
 }

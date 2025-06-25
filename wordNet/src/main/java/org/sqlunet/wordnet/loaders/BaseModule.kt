@@ -821,7 +821,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      *
      * @param synsetId   synset id
      * @param parent     parent node
-     * @param addNewNode whether to addItem to (or set) node
      */
     private fun ili(synsetId: Long, parent: TreeNode) {
         val sql = Queries.prepareIli(synsetId)
@@ -872,7 +871,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun wikidataCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
-        val addNewNode = cursor.count > 1
+        // val addNewNode = cursor.count > 1
         var changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
             val idWikidata = cursor.getColumnIndex(Wikidatas.WIKIDATA)
@@ -891,10 +890,11 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                 // result
                 // if (addNewNode) {
-                    parent.controller.nodeView?.findViewById<View>(R.id.node_link)?.visibility = View.GONE
-                    val node = makeIntentNode(sb, R.drawable.wikidata, false, intent).addTo(parent)
-                    changedList += seq(TreeOpCode.NEWUNIQUE, node)
+                parent.controller.nodeView?.findViewById<View>(R.id.node_link)?.visibility = View.GONE
+                val node = makeIntentNode(sb, R.drawable.wikidata, false, intent).addTo(parent)
+                changedList += seq(TreeOpCode.NEWUNIQUE, node)
                 //} else {
+                //    setLinkVisible(parent, false)
                 //    parent.payload!![1] = { fragment.requireContext().startActivity(intent) }
                 //    setTextNode(parent, sb, R.drawable.wikidata)
                 //    changedList += seq(TreeOpCode.UPDATE, parent)
@@ -903,7 +903,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             changedList.toArray()
         } else {
             setNoResult(parent)
-            seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
+            seq(/* if (addNewNode) TreeOpCode.DEADEND else */ TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
