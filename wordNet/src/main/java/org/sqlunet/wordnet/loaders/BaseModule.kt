@@ -279,8 +279,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         if (cursor.count > 1) {
             throw RuntimeException("Unexpected number of rows")
         }
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val sb = SpannableStringBuilder()
 
             // var idWordId = cursor.getColumnIndex(Words.WORDID)
@@ -297,7 +296,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             }
 
             // result
-            changed = if (addNewNode) {
+            if (addNewNode) {
                 val node = makeTextNode(sb, false).addTo(parent)
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
@@ -306,7 +305,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             }
         } else {
             setNoResult(parent)
-            changed = seq(TreeOpCode.REMOVE, parent)
+            seq(TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -341,8 +340,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun sensesCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
             val idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID)
             val idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID)
@@ -364,12 +362,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                 // result
                 val synsetNode = makeLinkNode(sb, R.drawable.synset, false, SenseLink(synsetId, wordId, maxRecursion, fragment)).addTo(parent)
-                changedList.add(TreeOpCode.NEWCHILD, synsetNode)
+                changedList += seq(TreeOpCode.NEWCHILD, synsetNode)
             } while (cursor.moveToNext())
-            changed = changedList.toArray()
+            changedList.toArray()
         } else {
             setNoResult(parent)
-            changed = seq(TreeOpCode.REMOVE, parent)
+            seq(TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -424,8 +422,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         if (cursor.count > 1) {
             throw RuntimeException("Unexpected number of rows")
         }
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val idWordId = cursor.getColumnIndex(Senses.WORDID)
             val idSynsetId = cursor.getColumnIndex(Senses.SYNSETID)
             val wordId = cursor.getLong(idWordId)
@@ -437,10 +434,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             // word
             word(wordId, wordNode, false)
             sense(synsetId, wordId, wordNode)
-            changed = seq(TreeOpCode.NOOP, parent, TreeOpCode.NEWUNIQUE, wordNode)
+            seq(TreeOpCode.NOOP, parent, TreeOpCode.NEWUNIQUE, wordNode)
         } else {
             setNoResult(parent)
-            changed = seq(TreeOpCode.REMOVE, parent)
+            seq(TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -464,8 +461,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         if (cursor.count > 1) {
             throw RuntimeException("Unexpected number of rows")
         }
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val sb = SpannableStringBuilder()
             val idPosName = cursor.getColumnIndex(Poses.POS)
             val idDomain = cursor.getColumnIndex(Domains.DOMAIN)
@@ -483,10 +479,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             // subnodes
             val relationsNode = makeHotQueryTreeNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId, wordId)).addTo(parent)
             val samplesNode = makeHotQueryTreeNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId)).addTo(parent)
-            changed = seq(TreeOpCode.NEWMAIN, node, TreeOpCode.NEWEXTRA, relationsNode, TreeOpCode.NEWEXTRA, samplesNode, TreeOpCode.NEWTREE, parent)
+            seq(TreeOpCode.NEWMAIN, node, TreeOpCode.NEWEXTRA, relationsNode, TreeOpCode.NEWEXTRA, samplesNode, TreeOpCode.NEWTREE, parent)
         } else {
             setNoResult(parent)
-            changed = seq(TreeOpCode.REMOVE, parent)
+            seq(TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -540,8 +536,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         if (cursor.count > 1) {
             throw RuntimeException("Unexpected number of rows")
         }
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val sb = SpannableStringBuilder()
             val idPosName = cursor.getColumnIndex(Poses.POS)
             val idDomain = cursor.getColumnIndex(Domains.DOMAIN)
@@ -554,7 +549,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             synset(sb, synsetId, posName, domain, definition)
 
             // result
-            changed = if (addNewNode) {
+            if (addNewNode) {
                 val node = makeTextNode(sb, false).addTo(parent)
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
@@ -563,7 +558,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             }
         } else {
             setNoResult(parent)
-            changed = seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
+            seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -637,27 +632,27 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun membersCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
-            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
-            val idWordId = cursor.getColumnIndex(Senses_Words.WORDID)
-            val idMember = cursor.getColumnIndex(Senses_Words.WORD)
-            // int i = 1
-            do {
-                val wordId = cursor.getLong(idWordId)
-                val member = cursor.getString(idMember)
-                val sb = SpannableStringBuilder()
-                append(sb, member, 0, WordNetFactories.membersFactory)
+        val changed: Array<TreeOp> =
+            if (cursor.moveToFirst()) {
+                val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
+                val idWordId = cursor.getColumnIndex(Senses_Words.WORDID)
+                val idMember = cursor.getColumnIndex(Senses_Words.WORD)
+                // int i = 1
+                do {
+                    val wordId = cursor.getLong(idWordId)
+                    val member = cursor.getString(idMember)
+                    val sb = SpannableStringBuilder()
+                    append(sb, member, 0, WordNetFactories.membersFactory)
 
-                // result
-                val memberNode = makeLinkNode(sb, R.drawable.member, false, WordLink(fragment, wordId)).addTo(parent)
-                changedList.add(TreeOpCode.NEWCHILD, memberNode)
-            } while (cursor.moveToNext())
-            changed = changedList.toArray()
-        } else {
-            setNoResult(parent)
-            changed = seq(TreeOpCode.REMOVE, parent)
-        }
+                    // result
+                    val memberNode = makeLinkNode(sb, R.drawable.member, false, WordLink(fragment, wordId)).addTo(parent)
+                    changedList += seq(TreeOpCode.NEWCHILD, memberNode)
+                } while (cursor.moveToNext())
+                changedList.toArray()
+            } else {
+                setNoResult(parent)
+                seq(TreeOpCode.REMOVE, parent)
+            }
         cursor.close()
         return changed
     }
@@ -683,8 +678,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 throw RuntimeException("Unexpected number of rows")
             }
         }
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val sb = SpannableStringBuilder()
             if (concatQuery) {
                 val idMembers = cursor.getColumnIndex(Senses_Words.MEMBERS)
@@ -705,7 +699,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             }
 
             // result
-            changed = if (addNewNode) {
+            if (addNewNode) {
                 val node = makeTextNode(sb, false).addTo(parent)
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
@@ -714,7 +708,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             }
         } else {
             setNoResult(parent)
-            changed = seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
+            seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -736,8 +730,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun samplesCursorToTreeModel(cursor: Cursor, parent: TreeNode, addNewNode: Boolean): Array<TreeOp> {
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val idSample = cursor.getColumnIndex(Samples.SAMPLE)
             val sb = SpannableStringBuilder()
             do {
@@ -756,7 +749,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             } while (cursor.moveToNext())
 
             // result
-            changed = if (addNewNode) {
+            if (addNewNode) {
                 val node = makeTextNode(sb, false).addTo(parent)
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
@@ -765,7 +758,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             }
         } else {
             setNoResult(parent)
-            changed = seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
+            seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -787,8 +780,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun usagesCursorToTreeModel(cursor: Cursor, parent: TreeNode, addNewNode: Boolean): Array<TreeOp> {
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val idUsage = cursor.getColumnIndex(Usages.USAGENOTE)
             val sb = SpannableStringBuilder()
             do {
@@ -807,7 +799,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             } while (cursor.moveToNext())
 
             // result
-            changed = if (addNewNode) {
+            if (addNewNode) {
                 val node = makeTextNode(sb, false).addTo(parent)
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
@@ -816,7 +808,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             }
         } else {
             setNoResult(parent)
-            changed = seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
+            seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -838,8 +830,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun iliCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val idIli = cursor.getColumnIndex(Ilis.ILI)
             val ili = cursor.getString(idIli).substring(1)
             val callback = {
@@ -859,10 +850,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             // result
             parent.payload!![1] = callback
             setTextNode(parent, sb, R.drawable.ili)
-            changed = seq(TreeOpCode.UPDATE, parent)
+            seq(TreeOpCode.UPDATE, parent)
         } else {
             setNoResult(parent)
-            changed = seq(TreeOpCode.REMOVE, parent)
+            seq(TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -881,9 +872,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun wikidataCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
-        var changed: Array<TreeOp>
         val addNewNode = cursor.count > 1
-        if (cursor.moveToFirst()) {
+        var changed: Array<TreeOp> = if (cursor.moveToFirst()) {
+            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
             val idWikidata = cursor.getColumnIndex(Wikidatas.WIKIDATA)
             do {
                 val wikidata = cursor.getString(idWikidata)
@@ -899,19 +890,20 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 append(sb, wikidata, 0, wikidataFactory)
 
                 // result
-                changed = if (addNewNode) {
+                // if (addNewNode) {
                     parent.controller.nodeView?.findViewById<View>(R.id.node_link)?.visibility = View.GONE
                     val node = makeIntentNode(sb, R.drawable.wikidata, false, intent).addTo(parent)
-                    seq(TreeOpCode.NEWUNIQUE, node)
-                } else {
-                    parent.payload!![1] = { fragment.requireContext().startActivity(intent) }
-                    setTextNode(parent, sb, R.drawable.wikidata)
-                    seq(TreeOpCode.UPDATE, parent)
-                }
+                    changedList += seq(TreeOpCode.NEWUNIQUE, node)
+                //} else {
+                //    parent.payload!![1] = { fragment.requireContext().startActivity(intent) }
+                //    setTextNode(parent, sb, R.drawable.wikidata)
+                //    changedList += seq(TreeOpCode.UPDATE, parent)
+                //}
             } while (cursor.moveToNext())
+            changedList.toArray()
         } else {
             setNoResult(parent)
-            changed = seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
+            seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -934,55 +926,55 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun relationsCursorToTreeModel(cursor: Cursor, parent: TreeNode, deadendParentIfNoResult: Boolean): Array<TreeOp> {
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
-            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
-            val idRelationId = cursor.getColumnIndex(Relations.RELATIONID)
-            val idRelation = cursor.getColumnIndex(Relations.RELATION)
-            val idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID)
-            val idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2)
-            val idTargetMembers = cursor.getColumnIndex(AnyRelations_Senses_Words_X.MEMBERS2)
-            val idRecurses = cursor.getColumnIndex(AnyRelations_Senses_Words_X.RECURSES)
-            val idTargetWordId = cursor.getColumnIndex(V.WORD2ID)
-            val idTargetWord = cursor.getColumnIndex(V.WORD2)
-            do {
-                val sb = SpannableStringBuilder()
-                val relationId = cursor.getInt(idRelationId)
-                if (relationFilter.invoke(relationId)) {
-                    val relation = cursor.getString(idRelation)
-                    val targetSynsetId = cursor.getLong(idTargetSynsetId)
-                    val targetDefinition = cursor.getString(idTargetDefinition)
-                    var targetMembers = cursor.getString(idTargetMembers)
-                    val relationCanRecurse = !cursor.isNull(idRecurses) && cursor.getInt(idRecurses) != 0
-                    val targetWord = if (cursor.isNull(idTargetWord)) null else cursor.getString(idTargetWord)
-                    val targetWordId = if (cursor.isNull(idTargetWordId)) null else cursor.getLong(idTargetWordId)
-                    if (targetWordId == null && displaySemRelationName || targetWordId != null && displayLexRelationName) {
-                        append(sb, relation, 0, WordNetFactories.relationFactory)
+        val changed: Array<TreeOp> =
+            if (cursor.moveToFirst()) {
+                val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
+                val idRelationId = cursor.getColumnIndex(Relations.RELATIONID)
+                val idRelation = cursor.getColumnIndex(Relations.RELATION)
+                val idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID)
+                val idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2)
+                val idTargetMembers = cursor.getColumnIndex(AnyRelations_Senses_Words_X.MEMBERS2)
+                val idRecurses = cursor.getColumnIndex(AnyRelations_Senses_Words_X.RECURSES)
+                val idTargetWordId = cursor.getColumnIndex(V.WORD2ID)
+                val idTargetWord = cursor.getColumnIndex(V.WORD2)
+                do {
+                    val sb = SpannableStringBuilder()
+                    val relationId = cursor.getInt(idRelationId)
+                    if (relationFilter.invoke(relationId)) {
+                        val relation = cursor.getString(idRelation)
+                        val targetSynsetId = cursor.getLong(idTargetSynsetId)
+                        val targetDefinition = cursor.getString(idTargetDefinition)
+                        var targetMembers = cursor.getString(idTargetMembers)
+                        val relationCanRecurse = !cursor.isNull(idRecurses) && cursor.getInt(idRecurses) != 0
+                        val targetWord = if (cursor.isNull(idTargetWord)) null else cursor.getString(idTargetWord)
+                        val targetWordId = if (cursor.isNull(idTargetWordId)) null else cursor.getLong(idTargetWordId)
+                        if (targetWordId == null && displaySemRelationName || targetWordId != null && displayLexRelationName) {
+                            append(sb, relation, 0, WordNetFactories.relationFactory)
+                            sb.append(' ')
+                        }
+                        appendMembers(sb, targetMembers, targetWord)
                         sb.append(' ')
-                    }
-                    appendMembers(sb, targetMembers, targetWord)
-                    sb.append(' ')
-                    append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
+                        append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
 
-                    // recursion
-                    if (relationCanRecurse) {
-                        val relationsNode = makeLinkQueryTreeNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, maxRecursion), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
-                        changedList.add(TreeOpCode.NEWCHILD, relationsNode)
-                    } else {
-                        val node = makeLinkLeafNode(sb, getRelationRes(relationId), false, if (targetWordId == null) SynsetLink(targetSynsetId, maxRecursion, fragment) else SenseLink(targetSynsetId, targetWordId, maxRecursion, fragment)).addTo(parent)
-                        changedList.add(TreeOpCode.NEWCHILD, node)
+                        // recursion
+                        if (relationCanRecurse) {
+                            val relationsNode = makeLinkQueryTreeNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, maxRecursion), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
+                            changedList += seq(TreeOpCode.NEWCHILD, relationsNode)
+                        } else {
+                            val node = makeLinkLeafNode(sb, getRelationRes(relationId), false, if (targetWordId == null) SynsetLink(targetSynsetId, maxRecursion, fragment) else SenseLink(targetSynsetId, targetWordId, maxRecursion, fragment)).addTo(parent)
+                            changedList += seq(TreeOpCode.NEWCHILD, node)
+                        }
                     }
-                }
-            } while (cursor.moveToNext())
-            changed = changedList.toArray()
-        } else {
-            changed = if (deadendParentIfNoResult) {
-                setNoResult(parent)
-                seq(TreeOpCode.DEADEND, parent)
+                } while (cursor.moveToNext())
+                changedList.toArray()
             } else {
-                seq(TreeOpCode.NOOP, parent)
+                if (deadendParentIfNoResult) {
+                    setNoResult(parent)
+                    seq(TreeOpCode.DEADEND, parent)
+                } else {
+                    seq(TreeOpCode.NOOP, parent)
+                }
             }
-        }
         cursor.close()
         return changed
     }
@@ -1052,10 +1044,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     // recursion
                     if (relationCanRecurse) {
                         val relationsNode = makeLinkQueryTreeNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, maxRecursion), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
-                        changedList.add(TreeOpCode.NEWCHILD, relationsNode)
+                        changedList += seq(TreeOpCode.NEWCHILD, relationsNode)
                     } else {
                         val node = makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent)
-                        changedList.add(TreeOpCode.NEWCHILD, node)
+                        changedList += seq(TreeOpCode.NEWCHILD, node)
                     }
                 }
             } while (cursor.moveToNext())
@@ -1123,14 +1115,14 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                             SynsetLink(targetSynsetId, maxRecursion, fragment),
                             0
                         ).addTo(parent) else makeLinkQueryTreeNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
-                        changedList.add(TreeOpCode.NEWCHILD, relationsNode)
+                        changedList += seq(TreeOpCode.NEWCHILD, relationsNode)
                     } else {
                         val moreNode = makeMoreNode(sb, getRelationRes(relationId), false).addTo(parent)
-                        changedList.add(TreeOpCode.NEWCHILD, moreNode)
+                        changedList += seq(TreeOpCode.NEWCHILD, moreNode)
                     }
                 } else {
                     val node = makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent)
-                    changedList.add(TreeOpCode.NEWCHILD, node)
+                    changedList += seq(TreeOpCode.NEWCHILD, node)
                 }
             } while (cursor.moveToNext())
             changed = changedList.toArray()
@@ -1192,7 +1184,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                     // attach result
                     val relationNode = makeLinkLeafNode(sb, getRelationRes(relationId), false, SenseLink(targetSynsetId, idTargetWordId.toLong(), maxRecursion, fragment)).addTo(parent)
-                    changedList.add(TreeOpCode.NEWCHILD, relationNode)
+                    changedList += seq(TreeOpCode.NEWCHILD, relationNode)
                 }
             } while (cursor.moveToNext())
             changed = changedList.toArray()
@@ -1245,13 +1237,13 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                     // attach result
                     val relationNode = makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent)
-                    changedList.add(TreeOpCode.NEWCHILD, relationNode)
+                    changedList += seq(TreeOpCode.NEWCHILD, relationNode)
                 }
             } while (cursor.moveToNext())
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
-            changedList.add(TreeOpCode.NEWCHILD, node)
+            changedList += seq(TreeOpCode.NEWCHILD, node)
             changed = changedList.toArray()
         } else {
             changed = if (deadendParentIfNoResult) {
@@ -1293,8 +1285,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun vframesCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val vframeId = cursor.getColumnIndex(Senses_VerbFrames.FRAME)
             val sb = SpannableStringBuilder()
             do {
@@ -1310,10 +1301,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
-            changed = seq(TreeOpCode.NEWUNIQUE, node)
+            seq(TreeOpCode.NEWUNIQUE, node)
         } else {
             setNoResult(parent)
-            changed = seq(TreeOpCode.REMOVE, parent)
+            seq(TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -1334,8 +1325,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun vTemplatesCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val vTemplateId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE)
             val sb = SpannableStringBuilder()
             do {
@@ -1351,10 +1341,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
-            changed = seq(TreeOpCode.NEWUNIQUE, node)
+            seq(TreeOpCode.NEWUNIQUE, node)
         } else {
             setNoResult(parent)
-            changed = seq(TreeOpCode.REMOVE, parent)
+            seq(TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -1374,8 +1364,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun vTemplatesFromSynsetIdWordIdCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val word = "---"
             val vTemplateId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE)
             val sb = SpannableStringBuilder()
@@ -1392,10 +1381,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
-            changed = seq(TreeOpCode.NEWUNIQUE, node)
+            seq(TreeOpCode.NEWUNIQUE, node)
         } else {
             setNoResult(parent)
-            changed = seq(TreeOpCode.REMOVE, parent)
+            seq(TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -1429,8 +1418,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun adjPositionCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val positionId = cursor.getColumnIndex(Senses_AdjPositions.POSITION)
             val sb = SpannableStringBuilder()
             do {
@@ -1446,10 +1434,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
-            changed = seq(TreeOpCode.NEWUNIQUE, node)
+            seq(TreeOpCode.NEWUNIQUE, node)
         } else {
             setNoResult(parent)
-            changed = seq(TreeOpCode.REMOVE, parent)
+            seq(TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
@@ -1470,8 +1458,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     }
 
     private fun morphsCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
-        val changed: Array<TreeOp>
-        if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val morphId = cursor.getColumnIndex(Lexes_Morphs.MORPH)
             val posId = cursor.getColumnIndex(Lexes_Morphs.POSID)
             val sb = SpannableStringBuilder()
@@ -1489,10 +1476,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
-            changed = seq(TreeOpCode.NEWUNIQUE, node)
+            seq(TreeOpCode.NEWUNIQUE, node)
         } else {
             setNoResult(parent)
-            changed = seq(TreeOpCode.REMOVE, parent)
+            seq(TreeOpCode.REMOVE, parent)
         }
         cursor.close()
         return changed
