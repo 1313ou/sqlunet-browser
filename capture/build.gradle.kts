@@ -1,12 +1,10 @@
 plugins {
-    id("com.android.library")
-    kotlin("android") version "2.1.0"
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
 }
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
-private val coreVersion by lazy { rootProject.extra["coreVersion"] as String }
-private val desugarVersion by lazy { rootProject.extra["desugarVersion"] as String }
 
 android {
     namespace = "com.bbou.capture"
@@ -38,8 +36,8 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:${coreVersion}")
-    implementation("androidx.preference:preference-ktx:1.2.1")
+    implementation(libs.core.ktx)
+    implementation(libs.preference.ktx)
 
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:${desugarVersion}")
+    coreLibraryDesugaring(libs.desugar)
 }

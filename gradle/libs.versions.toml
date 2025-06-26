@@ -1,0 +1,95 @@
+[versions]
+agp = "8.10.1"
+
+desugar = "2.1.5"
+kotlin = "2.1.20"
+kotlin-bom = "1.8.22"
+kotlin-reflect = "2.1.0"
+kotlin-json = "1.6.2"
+
+core-ktx = "1.16.0"
+coroutines = "1.9.0"
+work = "2.10.1"
+
+nav = "2.9.0"
+navplugin = "2.9.0"
+
+annotation = "1.9.1"
+appcompat = "1.7.1"
+activity = "1.10.1"
+fragment = "1.8.6"
+lifecycle = "2.8.7"
+recyclerview = "1.4.0"
+webkit = "1.13.0"
+material = "1.12.0"
+swiperefreshlayout = "1.1.0"
+viewpager2 = "1.1.0"
+constraintlayout = "2.2.1"
+preference = "1.2.1"
+asset-delivery-ktx = "2.3.0"
+billing = "7.1.1"
+
+slf4j-api = "2.0.17"
+
+junit = "4.13.2"
+test = "1.2.1"
+rules = "1.6.1"
+runner = "1.6.2"
+espresso = "3.6.1"
+uiautomator = "2.3.0"
+
+querybuilder = "1.1.0"
+
+[libraries]
+desugar = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }
+
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+kotlin-stdlib-jdk8 = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-json" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin-reflect" }
+kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlin-bom" }
+coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+work = { group = "androidx.work", name = "work-runtime", version.ref = "work" }
+
+annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" } # strictly runtimeOnly but needed for resources validation
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+appcompat-resources = { group = "androidx.appcompat", name = "appcompat-resources", version.ref = "appcompat" }
+activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
+fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment" }
+lifecycle-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "nav" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "nav" }
+
+preference-ktx = { group = "androidx.preference", name = "preference-ktx", version.ref = "preference" }
+recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
+swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+webkit = { group = "androidx.webkit", name = "webkit", version.ref = "webkit" }
+asset-delivery-ktx = { group = "com.google.android.play", name = "asset-delivery-ktx", version.ref = "asset-delivery-ktx" }
+
+#unbundled
+billing = { group = "com.android.billingclient", name = "billing", version.ref = "billing" }
+
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+test = { group = "androidx.test.ext", name = "junit", version.ref = "test" }
+test-core = { group = "androidx.test", name = "core", version.ref = "test" }
+rules = { group = "androidx.test", name = "rules", version.ref = "rules" }
+runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+espresso-web = { group = "androidx.test.espresso", name = "espresso-web", version.ref = "espresso" }
+espresso-contrib = { group = "androidx.test.espresso", name = "espresso-contrib", version.ref = "espresso" }
+uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+
+querybuilder = { group = "org.querybuilder", name = "querybuilder", version.ref = "querybuilder" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+navigationSafeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navplugin" }

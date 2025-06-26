@@ -1,13 +1,11 @@
 
 plugins {
-    id("com.android.library")
-    kotlin("android") version "2.1.0"
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
 }
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
-private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
-private val desugarVersion by lazy { rootProject.extra["desugarVersion"] as String }
 
 android {
 
@@ -45,9 +43,10 @@ android {
 
 dependencies {
 
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
+    coreLibraryDesugaring(libs.desugar)
 
     implementation(project(":download_common"))
     implementation(project(":concurrency"))
-    implementation("androidx.appcompat:appcompat:${appcompatVersion}")
+
+    implementation(libs.appcompat)
 }

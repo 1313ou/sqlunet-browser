@@ -1,17 +1,11 @@
 
 plugins {
-    id("com.android.library")
-    kotlin("android") version "2.1.0"
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
 }
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
-private val coreVersion by lazy { rootProject.extra["coreVersion"] as String }
-private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
-private val activityVersion by lazy { rootProject.extra["activityVersion"] as String }
-private val materialVersion by lazy { rootProject.extra["materialVersion"] as String }
-private val annotationVersion by lazy { rootProject.extra["annotationVersion"] as String }
-private val desugarVersion by lazy { rootProject.extra["desugarVersion"] as String }
 
 android {
 
@@ -47,18 +41,15 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
+    coreLibraryDesugaring(libs.desugar)
 
-    implementation("androidx.core:core-ktx:${coreVersion}")
-    implementation("androidx.appcompat:appcompat:${appcompatVersion}")
-    implementation("androidx.activity:activity-ktx:${activityVersion}")
-    implementation("androidx.annotation:annotation:${annotationVersion}")
-    implementation("com.google.android.material:material:${materialVersion}")
-    implementation("com.android.billingclient:billing:7.1.1")
+    implementation(libs.core.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.activity.ktx)
+    implementation(libs.annotation)
+    implementation(libs.material)
+    implementation(libs.billing)
 
-    testImplementation("junit:junit:4.13.2")
-
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1") {
-        exclude(group = "com.android.support", module = "support-annotations")
-    }
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.espresso.core)
 }

@@ -1,12 +1,10 @@
 plugins {
-    id("com.android.library")
-    kotlin("android") version "2.1.0"
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
 }
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
-private val coreVersion by lazy { rootProject.extra["coreVersion"] as String }
-private val annotationVersion by lazy { rootProject.extra["annotationVersion"] as String }
 
 android {
 
@@ -47,9 +45,9 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:$coreVersion")
-    implementation("androidx.annotation:annotation:$annotationVersion")
-    implementation("androidx.test:core:1.6.1")
-    implementation("androidx.test.espresso:espresso-core:3.6.1")
-    implementation("androidx.test.espresso:espresso-contrib:3.6.1")
+    implementation(libs.core.ktx)
+    implementation(libs.annotation)
+    implementation(libs.test.core)
+    implementation(libs.espresso.core)
+    implementation(libs.espresso.contrib)
 }

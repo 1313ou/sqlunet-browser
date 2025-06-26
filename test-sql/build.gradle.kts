@@ -10,5 +10,5 @@ java {
 dependencies {
 
     implementation(group = "org.xerial", name = "sqlite-jdbc", version = "3.44.0.0")
-    implementation("androidx.annotation:annotation:1.9.1")
+    implementation(libs.annotation)
 }

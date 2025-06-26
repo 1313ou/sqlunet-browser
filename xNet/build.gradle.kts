@@ -2,19 +2,12 @@ import java.util.Date
 
 plugins {
     id("org.sqlunet.plugin.querybuilder") version "1.0.0"
-    id("com.android.library")
-    kotlin("android") version "2.1.0"
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
 }
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
-private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
-private val lifecycleVersion by lazy { rootProject.extra["lifecycleVersion"] as String }
-private val preferenceVersion by lazy { rootProject.extra["preferenceVersion"] as String }
-private val materialVersion by lazy { rootProject.extra["materialVersion"] as String }
-private val annotationVersion by lazy { rootProject.extra["annotationVersion"] as String }
-private val coreVersion by lazy { rootProject.extra["coreVersion"] as String }
-private val desugarVersion by lazy { rootProject.extra["desugarVersion"] as String }
 
 android {
 
@@ -50,7 +43,7 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
+    coreLibraryDesugaring(libs.desugar)
 
     implementation(project(":treeView"))
     implementation(project(":coroutines"))
@@ -58,18 +51,18 @@ dependencies {
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation("androidx.core:core-ktx:$coreVersion")
-    implementation("androidx.appcompat:appcompat:$appcompatVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation("androidx.preference:preference-ktx:$preferenceVersion")
-    implementation("androidx.annotation:annotation:$annotationVersion")
-    implementation("com.google.android.material:material:$materialVersion")
+    implementation(libs.core.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.lifecycle.ktx)
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.preference.ktx)
+    implementation(libs.annotation)
+    implementation(libs.material)
 
     testImplementation(project(":test-sql"))
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("org.querybuilder:querybuilder:1.1.0")
+    testImplementation(libs.junit)
+    testImplementation(libs.querybuilder)
 }
 
 // C O D E   G E N E R A T I O N

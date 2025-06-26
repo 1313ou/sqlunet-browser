@@ -1,23 +1,15 @@
 import java.util.Properties
 
 plugins {
-    id("com.android.library")
-    kotlin("android") version "2.1.0"
-    id("androidx.navigation.safeargs.kotlin")
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.navigationSafeargs)
  }
 
 private val vCode by lazy { rootProject.extra["versionCode"] as Int }
 private val vName by lazy { rootProject.extra["versionName"] as String }
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
-private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
-private val lifecycleVersion by lazy { rootProject.extra["lifecycleVersion"] as String }
-private val navVersion by lazy { rootProject.extra["navVersion"] as String }
-private val preferenceVersion by lazy { rootProject.extra["preferenceVersion"] as String }
-private val materialVersion by lazy { rootProject.extra["materialVersion"] as String }
-private val annotationVersion by lazy { rootProject.extra["annotationVersion"] as String }
-private val coreVersion by lazy { rootProject.extra["coreVersion"] as String }
-private val desugarVersion by lazy { rootProject.extra["desugarVersion"] as String }
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
@@ -70,9 +62,9 @@ android {
 }
 
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22")) // Use the Kotlin BOM
-    implementation("androidx.core:core-ktx:$coreVersion")
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
+    implementation(platform(libs.kotlin.bom)) // Use the Kotlin BOM
+    implementation(libs.core.ktx)
+    coreLibraryDesugaring(libs.desugar)
 
     implementation(project(":common"))
     implementation(project(":expandableListFragment"))
@@ -88,15 +80,15 @@ dependencies {
     implementation(project(":wordNet"))
     implementation(project(":bNC"))
 
-    implementation("androidx.core:core-ktx:$coreVersion")
-    implementation("androidx.appcompat:appcompat:$appcompatVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
-    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
-    implementation("androidx.preference:preference-ktx:$preferenceVersion")
-    implementation("androidx.annotation:annotation:$annotationVersion")
-    implementation("com.google.android.material:material:$materialVersion")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation(libs.core.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.lifecycle.ktx)
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
+    implementation(libs.preference.ktx)
+    implementation(libs.annotation)
+    implementation(libs.material)
+    implementation(libs.swiperefreshlayout)
 }

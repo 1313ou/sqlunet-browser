@@ -119,7 +119,7 @@ object DownloadIntentFactory {
 
             Mode.DOWNLOAD_ZIP -> makeIntentZipDownload(context, downloadSourceUrl)
             Mode.DOWNLOAD -> throw RuntimeException(mode.toString())
-            else -> throw RuntimeException(mode.toString())
+            // else -> throw RuntimeException(mode.toString())
         }
     }
 }

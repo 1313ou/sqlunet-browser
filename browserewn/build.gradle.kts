@@ -1,9 +1,9 @@
 import java.util.Properties
 
 plugins {
-    id("com.android.application")
-    kotlin("android") version "2.1.0"
-    id("androidx.navigation.safeargs.kotlin")
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.navigationSafeargs)
 }
 
 private val vCode by lazy { rootProject.extra["versionCode"] as Int }
@@ -11,11 +11,6 @@ private val vName by lazy { rootProject.extra["versionName"] as String }
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
 private val vTargetSdk by lazy { rootProject.extra["targetSdk"] as Int }
-private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
-private val materialVersion by lazy { rootProject.extra["materialVersion"] as String }
-private val annotationVersion by lazy { rootProject.extra["annotationVersion"] as String }
-private val coreVersion by lazy { rootProject.extra["coreVersion"] as String }
-private val desugarVersion by lazy { rootProject.extra["desugarVersion"] as String }
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
@@ -89,9 +84,9 @@ android {
 }
 
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22")) // Use the Kotlin BOM
-    implementation("androidx.core:core-ktx:$coreVersion")
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
+    implementation(platform(libs.kotlin.bom)) // Use the Kotlin BOM
+    implementation(libs.core.ktx)
+    coreLibraryDesugaring(libs.desugar)
 
     implementation(project(":browserwncommon"))
     implementation(project(":common"))
@@ -104,20 +99,20 @@ dependencies {
     implementation(project(":donate"))
     implementation(project(":others"))
 
-    implementation("androidx.appcompat:appcompat:$appcompatVersion") // for resources validation
-    implementation("com.google.android.material:material:$materialVersion") // for resource include
+    implementation(libs.appcompat) // for resources validation
+    implementation(libs.material) // for resource include
 
     androidTestImplementation(project(":browserwncommon"))
     androidTestImplementation(project(":common"))
     androidTestImplementation(project(":xNet"))
     androidTestImplementation(project(":nightmode"))
     androidTestImplementation(project(":test"))
-    androidTestImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.annotation:annotation:$annotationVersion")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test:rules:1.6.1")
-    androidTestImplementation("androidx.test:runner:1.6.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation("androidx.test.espresso:espresso-web:3.6.1")
-    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0")
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.annotation)
+    androidTestImplementation(libs.test)
+    androidTestImplementation(libs.rules)
+    androidTestImplementation(libs.runner)
+    androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.espresso.web)
+    androidTestImplementation(libs.uiautomator)
 }

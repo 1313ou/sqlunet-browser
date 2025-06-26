@@ -16,8 +16,11 @@ buildscript {
 }
 
 plugins {
+    alias(libs.plugins.androidApplication) apply false
+    alias(libs.plugins.androidLibrary) apply false
+    alias(libs.plugins.kotlinAndroid) apply false
+    alias(libs.plugins.navigationSafeargs) apply false
     id("idea")
-    kotlin("android") version "2.1.0" apply false
 }
 
 allprojects {
@@ -34,21 +37,6 @@ allprojects {
         set("minSdk", 21)
         set("targetSdk", 34)
         set("compileSdk", 35)
-        set("desugarVersion", "2.1.3")
-
-        set("kotlinVersion", "2.1.0")
-        set("coroutinesVersion", "1.9.0")
-        set("workVersion", "2.10.0")
-        set("coreVersion", "1.15.0")
-        set("appcompatVersion", "1.7.0")
-        set("activityVersion", "1.9.3")
-        set("fragmentVersion", "1.8.5")
-        set("lifecycleVersion", "2.8.7")
-        set("navVersion", "2.8.5")
-        set("preferenceVersion", "1.2.1")
-        set("materialVersion", "1.12.0")
-        set("constraintlayoutVersion", "2.2.0")
-        set("annotationVersion", "1.9.1")
     }
 
     gradle.projectsEvaluated {
@@ -96,5 +84,3 @@ idea {
         //}
     }
 }
-
-//apply from: file('projectDependencyGraph.gradle')

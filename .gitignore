@@ -1,7 +1,8 @@
 /HERE
 /build
 /.gradle
-/gradle
+/gradle/wrapper
+/gradle/dependency-graph
 /gradlew*
 /dist/releases/*.apk
 /dist/keystore

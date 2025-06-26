@@ -132,12 +132,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/xNet/android-sqlunet-as.semantikos.xNet.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/xNet/android-sqlunet-as.semantikos.xNet.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/xNet/android-sqlunet-as.semantikos.xNet.main.iml" filepath="$PROJECT_DIR$/.idea/modules/xNet/android-sqlunet-as.semantikos.xNet.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/xNet/android-sqlunet-as.semantikos.xNet.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/xNet/android-sqlunet-as.semantikos.xNet.unitTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.iml" filepath="$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.main.iml" filepath="$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.unitTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.iml" filepath="$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.main.iml" filepath="$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.iml" filepath="$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.iml" />
