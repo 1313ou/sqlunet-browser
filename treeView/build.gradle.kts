@@ -1,6 +1,6 @@
 
 plugins {
-    id("org.sqlunet.plugin.querybuilder") version "1.0.0"
+    id("org.sqlunet.plugin.querybuilder") version "1.1.0"
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
 }

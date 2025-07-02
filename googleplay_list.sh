@@ -5,6 +5,8 @@
 # Copyright (c) 2023. Bernard Bou
 #
 
+source define_colors.sh
+
 packages="
 org.sqlunet.browser
 org.sqlunet.browser.fn
@@ -14,9 +16,9 @@ org.sqlunet.browser.ewn
 org.sqlunet.browser.sn
 "
 
+echo -en "${M}"
 ./find-version.sh
-
-source define_colors.sh
+echo -en "${Z}"
 
 for p in ${packages}; do
 	echo -e "${YELLOW}${p}${RESET}"

@@ -1,15 +1,15 @@
 [versions]
-agp = "8.10.1"
+agp = "8.11.0"
 
 desugar = "2.1.5"
 kotlin = "2.1.20"
-kotlin-bom = "1.8.22"
+kotlin-bom = "2.2.0"
 kotlin-reflect = "2.1.0"
 kotlin-json = "1.6.2"
 
 core-ktx = "1.16.0"
-coroutines = "1.9.0"
-work = "2.10.1"
+coroutines = "1.10.2"
+work = "2.10.2"
 
 nav = "2.9.0"
 navplugin = "2.9.0"
@@ -17,8 +17,8 @@ navplugin = "2.9.0"
 annotation = "1.9.1"
 appcompat = "1.7.1"
 activity = "1.10.1"
-fragment = "1.8.6"
-lifecycle = "2.8.7"
+fragment = "1.8.8"
+lifecycle = "2.9.1"
 recyclerview = "1.4.0"
 webkit = "1.13.0"
 material = "1.12.0"
@@ -26,17 +26,16 @@ swiperefreshlayout = "1.1.0"
 viewpager2 = "1.1.0"
 constraintlayout = "2.2.1"
 preference = "1.2.1"
-asset-delivery-ktx = "2.3.0"
-billing = "7.1.1"
+asset-delivery-ktx = "2.2.2"
+billing = "8.0.0"
 
 slf4j-api = "2.0.17"
 
-junit = "4.13.2"
-test = "1.2.1"
-rules = "1.6.1"
-runner = "1.6.2"
+test = "1.6.2"
+test-junit = "1.2.1"
 espresso = "3.6.1"
 uiautomator = "2.3.0"
+junit = "4.13.2"
 
 querybuilder = "1.1.0"
 
@@ -76,15 +75,15 @@ asset-delivery-ktx = { group = "com.google.android.play", name = "asset-delivery
 #unbundled
 billing = { group = "com.android.billingclient", name = "billing", version.ref = "billing" }
 
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-test = { group = "androidx.test.ext", name = "junit", version.ref = "test" }
 test-core = { group = "androidx.test", name = "core", version.ref = "test" }
-rules = { group = "androidx.test", name = "rules", version.ref = "rules" }
-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
+test-rules = { group = "androidx.test", name = "rules", version.ref = "test" }
+test-runner = { group = "androidx.test", name = "runner", version.ref = "test" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 espresso-web = { group = "androidx.test.espresso", name = "espresso-web", version.ref = "espresso" }
 espresso-contrib = { group = "androidx.test.espresso", name = "espresso-contrib", version.ref = "espresso" }
 uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+test-junit-ktx = { group = "androidx.test.ext", name = "junit", version.ref = "test-junit" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 querybuilder = { group = "org.querybuilder", name = "querybuilder", version.ref = "querybuilder" }
 

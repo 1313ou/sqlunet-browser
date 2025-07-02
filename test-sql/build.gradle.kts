@@ -9,6 +9,6 @@ java {
 
 dependencies {
 
-    implementation(group = "org.xerial", name = "sqlite-jdbc", version = "3.44.0.0")
+    implementation(group = "org.xerial", name = "sqlite-jdbc", version = "3.50.2.0")
     implementation(libs.annotation)
 }

@@ -50,6 +50,6 @@ dependencies {
     implementation(libs.annotation)
 
     testImplementation(libs.junit)
-    androidTestImplementation(libs.test)
+    androidTestImplementation(libs.test.junit.ktx)
     androidTestImplementation(libs.espresso.core)
 }

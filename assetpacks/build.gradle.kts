@@ -48,6 +48,6 @@ dependencies {
     implementation(libs.asset.delivery.ktx)
 
     testImplementation(libs.junit)
-    androidTestImplementation(libs.test)
+    androidTestImplementation(libs.test.junit.ktx)
     androidTestImplementation(libs.espresso.core)
 }

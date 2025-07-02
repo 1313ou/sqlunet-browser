@@ -32,6 +32,7 @@ import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.ProductDetailsResponseListener
 import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.QueryProductDetailsParams
+import com.android.billingclient.api.QueryProductDetailsResult
 import com.android.billingclient.api.QueryPurchasesParams
 import com.bbou.donate.R
 import java.io.IOException
@@ -276,19 +277,19 @@ class BillingManager(activity: Activity, listener: BillingListener) {
                 .build()
 
             // query details
-            client!!.queryProductDetailsAsync(params) { billingResult: BillingResult, productDetailsList: List<ProductDetails> ->
+            client!!.queryProductDetailsAsync(params) { billingResult: BillingResult, productDetailsList: QueryProductDetailsResult ->
                 val response = billingResult.responseCode
                 if (BillingResponseCode.OK != response) {
                     Log.e(TAG, "Getting product details failed. $response")
                     return@queryProductDetailsAsync
                 }
-                if (productDetailsList.isEmpty()) {
+                if (productDetailsList.productDetailsList.isEmpty()) {
                     Log.e(TAG, "Getting product details yielded no details for product $productId")
                     return@queryProductDetailsAsync
                 }
 
                 // purchase
-                val productDetails = productDetailsList[0]
+                val productDetails = productDetailsList.productDetailsList[0]
                 initiatePurchaseFlow(productDetails)
             }
         }

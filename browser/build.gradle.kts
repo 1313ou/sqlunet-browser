@@ -122,8 +122,8 @@ dependencies {
     androidTestImplementation(project(":test"))
     androidTestImplementation(libs.annotation)
     androidTestImplementation(libs.junit)
-    androidTestImplementation(libs.test)
-    androidTestImplementation(libs.rules)
-    androidTestImplementation(libs.runner)
+    androidTestImplementation(libs.test.junit.ktx)
+    androidTestImplementation(libs.test.rules)
+    androidTestImplementation(libs.test.runner)
     androidTestImplementation(libs.espresso.core)
 }
