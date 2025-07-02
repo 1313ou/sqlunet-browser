@@ -8,8 +8,8 @@
 
 function rungradle()
 {
-export JAVA_HOME=/opt/java/java17
-./gradlew $@
+        export JAVA_HOME=/opt/java/java17
+        ./gradlew $@
 }
 
 # start
@@ -27,9 +27,14 @@ case "$1" in
 esac
 
 # determine which project
-which=$1
-echo "project=${which}"
-if rungradle ${which}bundleRelease; then
+which=
+if [[ "$1" == "--*" ]]; then
+        which=$1
+        shift
+fi
+
+echo "project=${which} args=$*"
+if rungradle ${which}bundleRelease $*; then
 	echo "success"
 else
 	echo "failed"
