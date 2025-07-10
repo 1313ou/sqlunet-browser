@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android-sqlunet-as.semantikos.iml" filepath="$PROJECT_DIR$/.idea/modules/android-sqlunet-as.semantikos.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/assetpacks/android-sqlunet-as.semantikos.assetpacks.iml" filepath="$PROJECT_DIR$/.idea/modules/assetpacks/android-sqlunet-as.semantikos.assetpacks.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/assetpacks/android-sqlunet-as.semantikos.assetpacks.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/assetpacks/android-sqlunet-as.semantikos.assetpacks.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/assetpacks/android-sqlunet-as.semantikos.assetpacks.main.iml" filepath="$PROJECT_DIR$/.idea/modules/assetpacks/android-sqlunet-as.semantikos.assetpacks.main.iml" />
@@ -111,8 +110,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/syntagNet/android-sqlunet-as.semantikos.syntagNet.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/syntagNet/android-sqlunet-as.semantikos.syntagNet.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/test/android-sqlunet-as.semantikos.test.iml" filepath="$PROJECT_DIR$/.idea/modules/test/android-sqlunet-as.semantikos.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/test-sql/android-sqlunet-as.semantikos.test-sql.iml" filepath="$PROJECT_DIR$/.idea/modules/test-sql/android-sqlunet-as.semantikos.test-sql.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/test-sql/android-sqlunet-as.semantikos.test-sql.main.iml" filepath="$PROJECT_DIR$/.idea/modules/test-sql/android-sqlunet-as.semantikos.test-sql.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/test-sql/android-sqlunet-as.semantikos.test-sql.test.iml" filepath="$PROJECT_DIR$/.idea/modules/test-sql/android-sqlunet-as.semantikos.test-sql.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/test/android-sqlunet-as.semantikos.test.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/test/android-sqlunet-as.semantikos.test.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/test/android-sqlunet-as.semantikos.test.main.iml" filepath="$PROJECT_DIR$/.idea/modules/test/android-sqlunet-as.semantikos.test.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/test/android-sqlunet-as.semantikos.test.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/test/android-sqlunet-as.semantikos.test.unitTest.iml" />
@@ -132,18 +129,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/xNet/android-sqlunet-as.semantikos.xNet.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/xNet/android-sqlunet-as.semantikos.xNet.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/xNet/android-sqlunet-as.semantikos.xNet.main.iml" filepath="$PROJECT_DIR$/.idea/modules/xNet/android-sqlunet-as.semantikos.xNet.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/xNet/android-sqlunet-as.semantikos.xNet.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/xNet/android-sqlunet-as.semantikos.xNet.unitTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.iml" filepath="$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.main.iml" filepath="$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/capture/semantikos.capture.unitTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.iml" filepath="$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.main.iml" filepath="$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/coroutines/semantikos.coroutines.unitTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.iml" filepath="$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/download_common/semantikos.download_common.unitTest.iml" />
     </modules>
   </component>
 </project>
