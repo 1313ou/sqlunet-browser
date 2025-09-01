@@ -478,7 +478,7 @@ object Diagnostics {
         SQLiteDatabase.create(null).use {
             try {
                 it.execSQL("CREATE TABLE dummy (id INTEGER PRIMARY KEY, name TEXT NOT NULL);")
-                it.execSQL("SELECT GROUP_CONCAT(name ORDER BY id) FROM dummy;");
+                it.execSQL("SELECT GROUP_CONCAT(name ORDER BY id) FROM dummy;")
                 return true
             } catch (_: SQLiteException) {
                 return false

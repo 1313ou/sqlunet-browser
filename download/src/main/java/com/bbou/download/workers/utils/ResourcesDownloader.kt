@@ -12,7 +12,6 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import com.bbou.concurrency.Task
 import com.bbou.download.common.R
-import com.bbou.download.workers.utils.ResourcesDownloader.Listener
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection

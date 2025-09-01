@@ -11,7 +11,6 @@ import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.os.Build
-import com.bbou.rate.StoreType.IntentBuilder
 
 enum class StoreType {
     GOOGLE,

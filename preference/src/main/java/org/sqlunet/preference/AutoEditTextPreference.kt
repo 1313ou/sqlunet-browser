@@ -15,7 +15,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.preference.DialogPreference
 import androidx.preference.Preference
-import androidx.preference.Preference.SummaryProvider
 import androidx.preference.PreferenceDialogFragmentCompat
 import androidx.preference.PreferenceFragmentCompat
 

@@ -204,7 +204,7 @@ class BrowseFragment : BaseSearchFragment() {
         // context
         val context = requireContext()
         // intent
-        var intent: Intent? = null
+        var intent: Intent?
         // type
         val selectorType = Settings.getSelectorPref(context)
         // mode
