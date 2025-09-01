@@ -25,7 +25,7 @@ class SpeakSettingsFragment : PreferenceFragmentCompat() {
             voicePref.entries = arrayOf(noneString)
             voicePref.entryValues = arrayOf("")
             voicePref.setSummaryProvider(SummaryProvider { pref2: Preference -> prepareSummary(pref2 as MultiSelectListPreference) })
-            voicePref.setClickListener(View.OnClickListener { voicePref.setValues(HashSet()) })
+            voicePref.setClickListener { voicePref.setValues(HashSet()) }
             Discover().discoverVoices(requireContext()) { voices ->
                 val voicesValues = prepareVoiceValues(voices)
                 voicePref.entryValues = voicesValues.toTypedArray<String>()

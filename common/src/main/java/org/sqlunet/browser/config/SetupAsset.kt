@@ -65,11 +65,11 @@ object SetupAsset {
                 if (packLocation != null) {
                     val path = packLocation.assetsPath()
                     val zipFilePath = File(File(path, assetDir), assetZip).absolutePath
-                    launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), Consumer { _: Boolean ->
+                    launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity)) { _: Boolean ->
                         Settings.recordDbAsset(activity, assetPack)
                         com.bbou.download.preference.Settings.recordDatapackSource(activity, DownloadData(zipFilePath, null, null, null, null, null, null), "asset")
                         whenComplete?.run()
-                    })
+                    }
                 }
             }
 
@@ -92,11 +92,11 @@ object SetupAsset {
             val zipFile = File(File(path0, assetDir), assetZip)
             val zipFilePath = zipFile.absolutePath
             if (zipFile.exists()) {
-                launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), Consumer {
+                launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity)) {
                     Settings.recordDbAsset(activity, assetPack)
                     com.bbou.download.preference.Settings.recordDatapackSource(activity, DownloadData(zipFilePath, null, null, null, null, null, null), "asset")
                     whenComplete?.run()
-                })
+                }
             }
         }
         return path0

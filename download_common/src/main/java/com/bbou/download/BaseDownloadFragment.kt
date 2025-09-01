@@ -601,7 +601,7 @@ abstract class BaseDownloadFragment : Fragment() {
     private fun warn(message: CharSequence) {
         val activity: Activity? = activity
         if (activity != null && !isDetached && !activity.isFinishing && !activity.isDestroyed) {
-            activity.runOnUiThread(Runnable { Toast.makeText(activity, message, Toast.LENGTH_LONG).show() })
+            activity.runOnUiThread { Toast.makeText(activity, message, Toast.LENGTH_LONG).show() }
         }
     }
 

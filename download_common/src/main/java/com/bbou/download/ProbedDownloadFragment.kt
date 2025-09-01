@@ -99,7 +99,7 @@ abstract class ProbedDownloadFragment : BaseDownloadFragment() {
                 // observer update UI
                 val activity: Activity? = activity
                 if (activity != null && !isDetached && !activity.isFinishing && !activity.isDestroyed) {
-                    activity.runOnUiThread(Runnable { updateUI() })
+                    activity.runOnUiThread { updateUI() }
                 }
 
                 // sleep

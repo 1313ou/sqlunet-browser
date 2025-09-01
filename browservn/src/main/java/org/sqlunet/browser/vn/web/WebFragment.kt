@@ -262,7 +262,7 @@ class WebFragment : Fragment() {
                         // warn with id
                         val activity: Activity? = activity
                         if (activity != null && !isDetached && !activity.isFinishing && !activity.isDestroyed) {
-                            activity.runOnUiThread(Runnable { Toast.makeText(activity, "id=$id", Toast.LENGTH_SHORT).show() })
+                            activity.runOnUiThread { Toast.makeText(activity, "id=$id", Toast.LENGTH_SHORT).show() }
                         }
 
                         // prepare data
