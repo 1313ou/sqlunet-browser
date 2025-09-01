@@ -5,7 +5,6 @@ package org.sqlunet.browser.wn
 
 import android.content.Intent
 import android.database.Cursor
-import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import android.text.SpannableStringBuilder
@@ -24,6 +23,7 @@ import org.sqlunet.wordnet.WordPointer
 import org.sqlunet.wordnet.browser.SynsetActivity
 import org.sqlunet.wordnet.browser.WordActivity
 import org.sqlunet.wordnet.settings.Settings
+import androidx.core.net.toUri
 
 /**
  * Text result fragment
@@ -78,8 +78,8 @@ class TextFragment : BaseListFragment() {
                     try {
                         view.setImageResource(value.toInt())
                         return@ViewBinder true
-                    } catch (nfe: NumberFormatException) {
-                        view.setImageURI(Uri.parse(value))
+                    } catch (_: NumberFormatException) {
+                        view.setImageURI(value.toUri())
                         return@ViewBinder true
                     }
                 }

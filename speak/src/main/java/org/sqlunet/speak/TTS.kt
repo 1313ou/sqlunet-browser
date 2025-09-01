@@ -102,13 +102,13 @@ class TTS(context: Context?, written: String, ipa: String, locale: Locale?, voic
                 "GB" -> Locale.UK
                 "US" -> Locale.US
                 "CA" -> Locale.CANADA
-                "AU" -> Locale("en", "AU")
-                "IE" -> Locale("en", "IE")
-                "NZ" -> Locale("en", "NZ")
-                "ZA" -> Locale("en", "ZA")
-                "SG" -> Locale("en", "SG")
-                "NG" -> Locale("en", "NG")
-                "IN" -> Locale("en", "IN")
+                "AU" -> Locale.Builder().setLanguage("en").setRegion("AU").build()
+                "IE" -> Locale.Builder().setLanguage("en").setRegion("IE").build()
+                "NZ" -> Locale.Builder().setLanguage("en").setRegion("NZ").build()
+                "ZA" -> Locale.Builder().setLanguage("en").setRegion("ZA").build()
+                "SG" -> Locale.Builder().setLanguage("en").setRegion("SG").build()
+                "NG" -> Locale.Builder().setLanguage("en").setRegion("NG").build()
+                "IN" -> Locale.Builder().setLanguage("en").setRegion("IN").build()
                 else -> DEFAULT_LOCALE
             }
         }

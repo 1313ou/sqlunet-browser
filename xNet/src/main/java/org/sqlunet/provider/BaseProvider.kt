@@ -18,6 +18,7 @@ import org.sqlunet.sql.Utils.replaceArgs
 import org.sqlunet.sql.Utils.toArgs
 import java.util.LinkedList
 import java.util.Properties
+import androidx.core.net.toUri
 
 /**
  * SqlUNet provider
@@ -205,7 +206,7 @@ abstract class BaseProvider : ContentProvider() {
                 val authorities = arrayOfNulls<Uri>(authorityKeys.size)
                 var i = 0
                 for (authorityKey in authorityKeys) {
-                    authorities[i++] = Uri.parse(SCHEME + properties.getProperty(authorityKey))
+                    authorities[i++] = (SCHEME + properties.getProperty(authorityKey)).toUri()
                 }
                 authorities
             } catch (e: Exception) {

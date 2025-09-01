@@ -25,6 +25,7 @@ import org.sqlunet.provider.XNetContract.Words_VnWords_VnClasses_U
 import org.sqlunet.provider.XNetControl.queryMain
 import org.sqlunet.settings.LogUtils
 import org.sqlunet.sql.SqlFormatter.format
+import androidx.core.net.toUri
 
 /**
  * Extended cross WordNet-FrameNet-PropBank-VerbNet provider
@@ -150,7 +151,7 @@ class XSqlUNetProvider : BaseProvider() {
          * @param context context
          */
         fun close(context: Context) {
-            val uri = Uri.parse(SCHEME + AUTHORITY)
+            val uri = (SCHEME + AUTHORITY).toUri()
             closeProvider(context, uri)
         }
     }

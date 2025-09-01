@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.browser.common.R
 import org.sqlunet.provider.XNetContract
 import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
+import androidx.core.net.toUri
 
 /**
  * A list fragment representing sources.
@@ -49,7 +50,7 @@ class SourceFragment : ListFragment() {
         makeModels() // sets cursor
 
         // load the contents
-        val uri = Uri.parse(makeUri(XNetContract.Sources.URI))
+        val uri = makeUri(XNetContract.Sources.URI).toUri()
         val projection = arrayOf(XNetContract.Sources.ID + " AS _id", XNetContract.Sources.NAME, XNetContract.Sources.VERSION, XNetContract.Sources.URL, XNetContract.Sources.PROVIDER, XNetContract.Sources.REFERENCE)
         val sortOrder = XNetContract.Sources.ID
         model!!.loadData(uri, projection, null, null, sortOrder, null)

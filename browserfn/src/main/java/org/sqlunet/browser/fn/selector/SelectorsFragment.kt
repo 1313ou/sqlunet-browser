@@ -22,6 +22,7 @@ import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_or_Frames
 import org.sqlunet.framenet.provider.FrameNetProvider.Companion.makeUri
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.style.Colors
+import androidx.core.net.toUri
 
 /**
  * Selector Fragment
@@ -125,7 +126,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
     override fun load() {
         // load the contents
         val sql = prepareSelect(word)
-        val uri = Uri.parse(makeUri(sql.providerUri))
+        val uri = makeUri(sql.providerUri).toUri()
         dataModel!!.loadData(uri, sql, null)
     }
 

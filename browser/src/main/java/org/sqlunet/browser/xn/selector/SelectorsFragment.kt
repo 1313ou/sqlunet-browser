@@ -4,7 +4,6 @@
 package org.sqlunet.browser.xn.selector
 
 import android.database.Cursor
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.CursorAdapter
@@ -18,6 +17,7 @@ import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.provider.XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords
 import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
 import org.sqlunet.speak.Pronunciation.Companion.sortedPronunciations
+import androidx.core.net.toUri
 
 /**
  * Selector Fragment
@@ -143,8 +143,8 @@ class SelectorsFragment : BaseSelectorsListFragment() {
                     try {
                         view.setImageResource(text.toInt())
                         return@setViewBinder true
-                    } catch (nfe: NumberFormatException) {
-                        view.setImageURI(Uri.parse(text))
+                    } catch (_: NumberFormatException) {
+                        view.setImageURI(text.toUri())
                         return@setViewBinder true
                     }
                 }
@@ -162,7 +162,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
     override fun load() {
         // load the contents
         val sql = prepareWordPronunciationSelect(word)
-        val uri = Uri.parse(makeUri(sql.providerUri))
+        val uri = makeUri(sql.providerUri).toUri()
         dataModel!!.loadData(uri, sql) { cursor: Cursor -> wordIdFromWordPostProcess(cursor) }
     }
 

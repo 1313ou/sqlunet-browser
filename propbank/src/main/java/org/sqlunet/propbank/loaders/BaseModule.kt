@@ -38,6 +38,7 @@ import org.sqlunet.view.TreeOp.TreeOpCode
 import org.sqlunet.view.TreeOp.TreeOps
 import org.sqlunet.view.TreeOpExecute
 import java.util.Arrays
+import androidx.core.net.toUri
 
 /**
  * Module for PropBank role sets
@@ -154,7 +155,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     fun roleSet(roleSetId: Long, parent: TreeNode) {
         val sql = prepareRoleSet(roleSetId)
-        val uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri))
+        val uri = PropBankProvider.makeUri(sql.providerUri).toUri()
         pbRoleSetFromRoleSetIdModel.loadData(uri, sql) { cursor: Cursor -> roleSetCursorToTreeModel(cursor, roleSetId, parent) }
     }
 
@@ -216,7 +217,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     fun roleSets(wordId: Long, parent: TreeNode) {
         val sql = prepareRoleSets(wordId)
-        val uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri))
+        val uri = PropBankProvider.makeUri(sql.providerUri).toUri()
         roleSetsFromWordIdModel.loadData(uri, sql) { cursor: Cursor -> roleSetsCursorToTreeModel(cursor, parent) }
     }
 
@@ -280,7 +281,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     private fun roles(roleSetId: Int, parent: TreeNode) {
         val sql = prepareRoles(roleSetId)
-        val uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri))
+        val uri = PropBankProvider.makeUri(sql.providerUri).toUri()
         rolesFromRoleSetIdModel.loadData(uri, sql) { cursor: Cursor -> rolesCursorToTreeModel(cursor, parent) }
     }
 
@@ -356,7 +357,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     private fun examples(roleSetId: Int, parent: TreeNode) {
         val sql = prepareExamples(roleSetId)
-        val uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri))
+        val uri = PropBankProvider.makeUri(sql.providerUri).toUri()
         examplesFromRoleSetIdModel.loadData(uri, sql) { cursor: Cursor -> examplesCursorToTreeModel(cursor, parent) }
     }
 

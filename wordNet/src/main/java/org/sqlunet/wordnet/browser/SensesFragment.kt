@@ -28,6 +28,7 @@ import org.sqlunet.wordnet.SensePointer
 import org.sqlunet.wordnet.loaders.Queries.prepareSenses
 import org.sqlunet.wordnet.provider.WordNetContract
 import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
+import androidx.core.net.toUri
 
 /**
  * Senses selector fragment
@@ -187,7 +188,7 @@ class SensesFragment : ListFragment() {
                         view.setImageResource(text.toInt())
                         return@setViewBinder true
                     } catch (nfe: NumberFormatException) {
-                        view.setImageURI(Uri.parse(text))
+                        view.setImageURI(text.toUri())
                         return@setViewBinder true
                     }
                 }
@@ -231,7 +232,7 @@ class SensesFragment : ListFragment() {
     private fun senses() {
         // load the contents
         val sql = prepareSenses(word!!)
-        val uri = Uri.parse(makeUri(sql.providerUri))
+        val uri = makeUri(sql.providerUri).toUri()
         dataModel!!.loadData(uri, sql) { cursor: Cursor -> wordIdFromWordPostProcess(cursor) }
     }
 

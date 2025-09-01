@@ -14,6 +14,7 @@ import com.bbou.others.OthersActivity.Companion.install
 import com.google.android.material.behavior.SwipeDismissBehavior
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+import androidx.core.content.edit
 
 object Oewn {
 
@@ -32,7 +33,7 @@ object Oewn {
                 suggestOewn(activity)
             }
         }
-        prefs.edit().putInt(PREF_KEY_LAUNCH_TIMES, launchTimes + 1).apply()
+        prefs.edit { putInt(PREF_KEY_LAUNCH_TIMES, launchTimes + 1) }
     }
 
     private fun suggestOewn(activity: Activity) {

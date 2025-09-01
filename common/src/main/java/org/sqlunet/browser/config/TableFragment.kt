@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.SimpleCursorAdapter
 import android.widget.TextView
 import org.sqlunet.browser.BaseListFragment
+import androidx.core.net.toUri
 
 /**
  * A list fragment representing a table.
@@ -40,7 +41,7 @@ class TableFragment : BaseListFragment() {
                         view.setImageResource(value.toInt())
                         return@ViewBinder true
                     } catch (nfe: NumberFormatException) {
-                        view.setImageURI(Uri.parse(value))
+                        view.setImageURI(value.toUri())
                         return@ViewBinder true
                     }
                 }

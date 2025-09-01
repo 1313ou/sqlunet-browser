@@ -26,6 +26,7 @@ import org.sqlunet.wordnet.WordPointer
 import org.sqlunet.wordnet.browser.SynsetActivity
 import org.sqlunet.wordnet.browser.WordActivity
 import org.sqlunet.wordnet.settings.Settings
+import androidx.core.net.toUri
 
 /**
  * Text result fragment
@@ -81,7 +82,7 @@ class TextFragment : BaseListFragment() {
                         view.setImageResource(value.toInt())
                         return@ViewBinder true
                     } catch (nfe: NumberFormatException) {
-                        view.setImageURI(Uri.parse(value))
+                        view.setImageURI(value.toUri())
                         return@ViewBinder true
                     }
                 }

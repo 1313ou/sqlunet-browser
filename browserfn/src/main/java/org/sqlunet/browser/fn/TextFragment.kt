@@ -40,6 +40,7 @@ import org.sqlunet.style.Factories
 import org.sqlunet.style.Factories.spans
 import org.sqlunet.style.RegExprSpanner
 import java.util.regex.Pattern
+import androidx.core.net.toUri
 
 /**
  * Text result fragment
@@ -95,7 +96,7 @@ class TextFragment : BaseListFragment() {
                         view.setImageResource(value.toInt())
                         return@ViewBinder true
                     } catch (nfe: NumberFormatException) {
-                        view.setImageURI(Uri.parse(value))
+                        view.setImageURI(value.toUri())
                         return@ViewBinder true
                     }
                 }

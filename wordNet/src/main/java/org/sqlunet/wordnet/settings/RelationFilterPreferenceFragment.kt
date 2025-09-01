@@ -11,6 +11,7 @@ import org.sqlunet.settings.BitAggregatePreference.Companion.apply
 
 import org.sqlunet.wordnet.R
 import org.sqlunet.wordnet.settings.Settings.PREF_RELATION_FILTER
+import androidx.core.content.edit
 
 /**
  * RelationFilterPreferenceFragment activity
@@ -53,7 +54,7 @@ class RelationFilterPreferenceFragment : PreferenceFragmentCompat() {
         var filter = sharedPrefs.getLong(PREF_RELATION_FILTER, -1)
         if (filter == -1L) {
             filter = RelationReference.FILTER_DEFAULT
-            sharedPrefs.edit().putLong(PREF_RELATION_FILTER, filter).apply()
+            sharedPrefs.edit { putLong(PREF_RELATION_FILTER, filter) }
         }
         return filter
     }

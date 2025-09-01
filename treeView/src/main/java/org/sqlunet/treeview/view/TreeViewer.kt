@@ -24,6 +24,8 @@ import org.sqlunet.treeview.control.RootController
 import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.treeview.model.TreeNode.TreeNodeClickListener
 import org.sqlunet.treeview.settings.Settings
+import androidx.core.view.isNotEmpty
+import androidx.core.content.withStyledAttributes
 
 /* @formatter:off */ /*
 NestedScrollView, wrapper bottom
@@ -387,7 +389,7 @@ class TreeViewer(
             addSubtreeView(childrenView, node, index)
 
             // display
-            if (childrenView.childCount != 0) {
+            if (childrenView.isNotEmpty()) {
                 if (useAnimation) {
                     animatedContainerExpand(childrenView)
                 } else {
@@ -516,7 +518,7 @@ class TreeViewer(
             }
 
             // display
-            if (childrenView.childCount != 0) {
+            if (childrenView.isNotEmpty()) {
                 if (useAnimation) {
                     animatedContainerExpand(childrenView)
                 } else {
@@ -597,14 +599,13 @@ class TreeViewer(
     @SuppressLint("ResourceType")
     fun computeIndent(context: Context, factor: Float): Int {
         if (factor != -1f) {
-            var defaultValue: Int
+            var defaultValue = 0
             @StyleableRes val attrs = intArrayOf(android.R.attr.paddingStart, android.R.attr.paddingLeft)
-            context.obtainStyledAttributes(containerStyle, attrs).let {
-                defaultValue = it.getDimensionPixelSize(0, 0)
+            context.withStyledAttributes(containerStyle, attrs) {
+                defaultValue = getDimensionPixelSize(0, 0)
                 if (defaultValue == 0) {
-                    defaultValue = it.getDimensionPixelSize(1, 0)
+                    defaultValue = getDimensionPixelSize(1, 0)
                 }
-                it.recycle()
             }
             val value = (defaultValue * factor).toInt()
             Log.d(TAG, "Indent default=$defaultValue new=$value factor=$factor")

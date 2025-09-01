@@ -12,6 +12,7 @@ import android.os.Process
 import android.os.StatFs
 import android.os.UserManager
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.bbou.download.common.R
 import com.bbou.download.preference.Settings
 import java.io.File
@@ -41,7 +42,7 @@ object StorageUtils {
      * @return list of storage directories
      */
     @SuppressLint("ObsoleteSdkInt")
-    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     private fun getDirectories(context: Context): MutableList<Directory> {
         val result: MutableList<Directory> = ArrayList()
         var dir: File?

@@ -18,6 +18,7 @@ import org.sqlunet.browser.common.R
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.sql.Utils.join
 import java.util.Collections
+import androidx.core.net.toUri
 
 /**
  * A list fragment representing a table.
@@ -67,7 +68,7 @@ abstract class BaseListFragment : ListFragment() {
 
         // query params
         val uriString = args.getString(ProviderArgs.ARG_QUERYURI)
-        val uri = Uri.parse(uriString)
+        val uri = uriString?.toUri()
         val id = args.getString(ProviderArgs.ARG_QUERYID)
         val items = args.getStringArray(ProviderArgs.ARG_QUERYITEMS)
         val hiddenItems = args.getStringArray(ProviderArgs.ARG_QUERYHIDDENITEMS)
@@ -142,7 +143,7 @@ abstract class BaseListFragment : ListFragment() {
         }
         val projection = cols.toTypedArray<String>()
         val selectionArgs = if (queryArg == null) null else arrayOf(queryArg)
-        model!!.loadData(uri, projection, selection, selectionArgs, sortOrder, null)
+        model!!.loadData(uri!!, projection, selection, selectionArgs, sortOrder, null)
     }
 
     override fun onStop() {

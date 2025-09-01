@@ -17,6 +17,7 @@ import androidx.preference.DialogPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceDialogFragmentCompat
 import androidx.preference.PreferenceFragmentCompat
+import androidx.core.content.withStyledAttributes
 
 /**
  * AutoEditTextPreference
@@ -78,9 +79,8 @@ class AutoEditTextPreference : DialogPreference {
      */
     private fun init(context: Context, attrs: AttributeSet) {
         // obtain values through styled attributes
-        context.obtainStyledAttributes(attrs, R.styleable.AutoEditTextPreference).let {
-            values = it.getTextArray(R.styleable.AutoEditTextPreference_values)
-            it.recycle()
+        context.withStyledAttributes(attrs, R.styleable.AutoEditTextPreference) {
+            values = getTextArray(R.styleable.AutoEditTextPreference_values)
         }
     }
 

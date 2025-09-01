@@ -25,6 +25,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import androidx.core.graphics.createBitmap
 
 object Capture {
 
@@ -71,7 +72,7 @@ object Capture {
 
     @JvmOverloads
     fun captureView(view: View, backGround: Int? = null): Bitmap {
-        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+        val bitmap = createBitmap(view.width, view.height)
         if (backGround != null)
             bitmap.eraseColor(backGround)
         val canvas = Canvas(bitmap)

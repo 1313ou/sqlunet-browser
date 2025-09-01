@@ -29,6 +29,7 @@ import org.sqlunet.view.TreeOp.TreeOps
 import org.sqlunet.view.TreeOpExecute
 import org.sqlunet.wordnet.loaders.BaseModule.BaseSynsetLink
 import org.sqlunet.wordnet.loaders.BaseModule.BaseWordLink
+import androidx.core.net.toUri
 
 /**
  * Module for SyntagNet collocations
@@ -76,7 +77,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     fun collocation(collocationId: Long, parent: TreeNode) {
         val sql = Queries.prepareCollocation(collocationId)
-        val uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri))
+        val uri = SyntagNetProvider.makeUri(sql.providerUri).toUri()
         collocationFromCollocationIdModel.loadData(uri, sql) { cursor: Cursor -> collocationCursorToTreeModel(cursor, parent) }
     }
 
@@ -91,7 +92,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     fun collocations(word1Id: Long?, word2Id: Long?, synset1Id: Long?, synset2Id: Long?, parent: TreeNode) {
         val sql = Queries.prepareCollocations(word1Id, word2Id, synset1Id, synset2Id)
-        val uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri))
+        val uri = SyntagNetProvider.makeUri(sql.providerUri).toUri()
         collocationFromCollocationIdModel.loadData(uri, sql) { cursor: Cursor -> collocationsCursorToTreeModel(cursor, parent) }
     }
 
@@ -103,7 +104,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     fun collocations(wordId: Long, parent: TreeNode) {
         val sql = Queries.prepareCollocations(wordId)
-        val uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri))
+        val uri = SyntagNetProvider.makeUri(sql.providerUri).toUri()
         collocationsFromWordIdModel.loadData(uri, sql) { cursor: Cursor -> collocationsCursorToTreeModel(cursor, parent) }
     }
 
@@ -114,7 +115,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     fun collocations(word: String, parent: TreeNode) {
         val sql = Queries.prepareCollocations(word)
-        val uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri))
+        val uri = SyntagNetProvider.makeUri(sql.providerUri).toUri()
         collocationsFromWordModel.loadData(uri, sql) { cursor: Cursor -> collocationsCursorToTreeModel(cursor, parent) }
     }
 

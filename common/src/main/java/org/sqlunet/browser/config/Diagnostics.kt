@@ -32,6 +32,7 @@ import org.sqlunet.settings.StorageUtils.storageStats
 import java.io.File
 import java.util.Date
 import java.util.function.Consumer
+import androidx.core.net.toUri
 
 object Diagnostics {
 
@@ -426,7 +427,7 @@ object Diagnostics {
     }
 
     private fun queryMeta(context: Context): Array<String?>? {
-        val uri = Uri.parse(makeUri(XNetContract.Meta.URI))
+        val uri = makeUri(XNetContract.Meta.URI).toUri()
         val projection = arrayOf(XNetContract.Meta.CREATED, XNetContract.Meta.DBSIZE, XNetContract.Meta.BUILD)
         try {
             context.contentResolver.query(uri, projection, null, null, null).use {

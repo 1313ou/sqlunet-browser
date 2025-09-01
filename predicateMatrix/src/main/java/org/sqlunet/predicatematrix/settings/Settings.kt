@@ -5,6 +5,7 @@ package org.sqlunet.predicatematrix.settings
 
 import android.content.Context
 import androidx.preference.PreferenceManager
+import androidx.core.content.edit
 
 /**
  * Settings
@@ -37,7 +38,7 @@ object Settings {
             if (name == prev) {
                 return false
             }
-            sharedPref.edit().putString(PREF_PM_MODE, name).apply()
+            sharedPref.edit { putString(PREF_PM_MODE, name) }
             return true
         }
 
@@ -57,7 +58,7 @@ object Settings {
                     mode = valueOf(modeString!!)
                 } catch (e: Exception) {
                     mode = ROLES
-                    sharedPref.edit().putString(PREF_PM_MODE, mode.name).apply()
+                    sharedPref.edit { putString(PREF_PM_MODE, mode.name)}
                 }
                 return mode
             }

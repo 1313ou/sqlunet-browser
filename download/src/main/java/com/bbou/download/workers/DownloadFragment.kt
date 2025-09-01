@@ -31,6 +31,7 @@ import com.bbou.download.storage.ReportUtils
 import com.bbou.download.workers.core.DownloadWork
 import com.bbou.download.workers.utils.MD5Downloader
 import java.io.File
+import androidx.core.net.toUri
 
 /**
  * Download fragment using DownloadWork.
@@ -251,8 +252,8 @@ class DownloadFragment : DownloadBaseFragment() {
      */
     override fun md5() {
         val from = downloadUrl + Deploy.MD5_EXTENSION
-        val uri = Uri.parse(downloadUrl)
-        val sourceFile = uri.lastPathSegment
+        val uri = downloadUrl?.toUri()
+        val sourceFile = uri?.lastPathSegment
         val targetFile = if (toFile == null) "?" else toFile!!.name
         MD5Downloader(MD5Downloader.Listener { downloadedResult: String? ->
             val activity = activity
@@ -350,7 +351,7 @@ class DownloadFragment : DownloadBaseFragment() {
      * @param args           arguments
      */
     override fun fireNotification(context: Context, notificationId: Int, type: Notifier.NotificationType, vararg args: Any) {
-        val from = Uri.parse(downloadUrl).host
+        val from = downloadUrl?.toUri()?.host
         val to = if (toFile == null) context.getString(R.string.result_deleted) else toFile!!.name
         val contentText = "$from→$to"
         Notifier.fireNotification(context, notificationId, type, contentText, *args)

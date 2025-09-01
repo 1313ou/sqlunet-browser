@@ -42,6 +42,7 @@ import org.sqlunet.view.TreeOp.Companion.seq
 import org.sqlunet.view.TreeOp.TreeOpCode
 import org.sqlunet.view.TreeOp.TreeOps
 import org.sqlunet.view.TreeOpExecute
+import androidx.core.net.toUri
 
 /**
  * VerbNet base module
@@ -193,7 +194,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     fun vnClass(classId: Long, parent: TreeNode) {
         val sql = prepareVnClass(classId)
-        val uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri))
+        val uri = VerbNetProvider.makeUri(sql.providerUri).toUri()
         vnClassFromClassIdModel.loadData(uri, sql) { cursor: Cursor -> vnClassCursorToTreeModel(cursor, classId, parent) }
     }
 
@@ -251,7 +252,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     private fun vnMembers(classId: Int, parent: TreeNode) {
         val sql = prepareVnMembers(classId)
-        val uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri))
+        val uri = VerbNetProvider.makeUri(sql.providerUri).toUri()
         vnMembersFromClassIdModel.loadData(uri, sql) { cursor: Cursor -> vnMembersCursorToTreeModel(cursor, parent) }
     }
 
@@ -341,7 +342,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     private fun vnRoles(classId: Int, parent: TreeNode) {
         val sql = prepareVnRoles(classId)
-        val uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri))
+        val uri = VerbNetProvider.makeUri(sql.providerUri).toUri()
         vnRolesFromClassIdModel.loadData(uri, sql) { cursor: Cursor -> vnRolesCursorToTreeModel(cursor, parent) }
     }
 
@@ -394,7 +395,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
     private fun vnFrames(classId: Int, parent: TreeNode) {
         val sql = prepareVnFrames(classId)
-        val uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri))
+        val uri = VerbNetProvider.makeUri(sql.providerUri).toUri()
         vnFramesFromClassIdModel.loadData(uri, sql) { cursor: Cursor -> vnFramesToView(cursor, parent) }
     }
 

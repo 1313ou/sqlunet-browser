@@ -13,6 +13,7 @@ import android.net.Uri
 import android.util.Log
 import org.sqlunet.provider.ManagerContract.TablesAndIndices
 import org.sqlunet.settings.LogUtils
+import androidx.core.net.toUri
 
 /**
  * (House-keeping) Manager provider
@@ -104,7 +105,7 @@ class ManagerProvider : BaseProvider() {
          * @param context context
          */
         fun close(context: Context) {
-            val uri = Uri.parse(SCHEME + AUTHORITY)
+            val uri = (SCHEME + AUTHORITY).toUri()
             closeProvider(context, uri)
         }
 
@@ -116,7 +117,7 @@ class ManagerProvider : BaseProvider() {
          */
         fun getTables(context: Context): Collection<String> {
             val tables: MutableCollection<String> = ArrayList()
-            val uri = Uri.parse(makeUri(TablesAndIndices.URI))
+            val uri = makeUri(TablesAndIndices.URI).toUri()
             val projection = arrayOf(TablesAndIndices.TYPE, TablesAndIndices.NAME)
             val selection = TablesAndIndices.TYPE + " = 'table' AND name NOT IN ('sqlite_sequence', 'android_metadata' )"
             val selectionArgs = arrayOf<String>()

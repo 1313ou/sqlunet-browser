@@ -32,6 +32,7 @@ import org.sqlunet.provider.XNetContract.Words_PbWords_VnWords
 import org.sqlunet.provider.XNetContract.Words_XNet
 import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
 import kotlin.math.floor
+import androidx.core.net.toUri
 
 /**
  * X selector fragment
@@ -313,7 +314,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
     private fun load() {
         // load the contents
         val sql = prepareWordXSelectVn(word!!)
-        val uri = Uri.parse(makeUri(sql.providerUri))
+        val uri = makeUri(sql.providerUri).toUri()
         wordIdFromWordModel!!.loadData(uri, sql) { cursor: Cursor -> wordIdFromWordPostProcess(cursor) }
     }
 
@@ -373,7 +374,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
      */
     private fun loadVn(wordId: Long) {
         val sql = prepareVnXSelectVn(wordId)
-        val uri = Uri.parse(makeUri(sql.providerUri))
+        val uri = makeUri(sql.providerUri).toUri()
         vnFromWordIdModel!!.loadData(uri, sql, null)
     }
 
@@ -384,7 +385,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
      */
     private fun loadPb(wordId: Long) {
         val sql = preparePbSelectVn(wordId)
-        val uri = Uri.parse(makeUri(sql.providerUri))
+        val uri = makeUri(sql.providerUri).toUri()
         pbFromWordIdModel!!.loadData(uri, sql, null)
     }
 

@@ -27,6 +27,7 @@ import org.sqlunet.propbank.provider.PropBankControl.querySuggest
 import org.sqlunet.provider.BaseProvider
 import org.sqlunet.settings.LogUtils
 import org.sqlunet.sql.SqlFormatter.format
+import androidx.core.net.toUri
 
 /**
  * PropBank provider
@@ -155,7 +156,7 @@ class PropBankProvider : BaseProvider() {
          * @param context context
          */
         fun close(context: Context) {
-            val uri = Uri.parse(SCHEME + AUTHORITY)
+            val uri = (SCHEME + AUTHORITY).toUri()
             closeProvider(context, uri)
         }
     }

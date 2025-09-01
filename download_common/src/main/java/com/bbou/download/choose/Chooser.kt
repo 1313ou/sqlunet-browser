@@ -8,6 +8,7 @@ import android.content.Context
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import java.io.File
+import androidx.core.view.isEmpty
 
 /**
  * Chooser
@@ -65,6 +66,6 @@ object Chooser {
             }
             i++
         }
-        return if (group.childCount == 0) null else group
+        return if (group.isEmpty()) null else group
     }
 }

@@ -13,6 +13,7 @@ import org.sqlunet.provider.ManagerContract.TablesAndIndices
 import org.sqlunet.provider.ManagerProvider
 import org.sqlunet.settings.StorageSettings
 import java.io.File
+import androidx.core.net.toUri
 
 /**
  * Database _status
@@ -98,7 +99,7 @@ abstract class Status {
                     + "ELSE " + TablesAndIndices.TYPE + " END ASC,"
                     + TablesAndIndices.NAME + " ASC")
             context.contentResolver.query(
-                Uri.parse(ManagerProvider.makeUri(TablesAndIndices.URI)), arrayOf(TablesAndIndices.TYPE, TablesAndIndices.NAME),  // projection
+                ManagerProvider.makeUri(TablesAndIndices.URI).toUri(), arrayOf(TablesAndIndices.TYPE, TablesAndIndices.NAME),  // projection
                 "name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'",  // selection criteria 
                 null,
                 order

@@ -11,6 +11,7 @@ import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.os.Build
+import androidx.core.net.toUri
 
 enum class StoreType {
     GOOGLE,
@@ -38,7 +39,7 @@ enum class StoreType {
                 return@IntentBuilder intent
             }
             val packageName = context.packageName
-            intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$packageName"))
+            intent = Intent(Intent.ACTION_VIEW, "https://play.google.com/store/apps/details?id=$packageName".toUri())
             intent
         }
 
@@ -48,12 +49,12 @@ enum class StoreType {
         }
 
         private fun getUri(@Suppress("SameParameterValue") uriPrefix: String, packageName: String?): Uri? {
-            return if (packageName == null) null else Uri.parse(uriPrefix + packageName)
+            return if (packageName == null) null else (uriPrefix + packageName).toUri()
         }
 
         private fun getGooglePlayIntent(context: Context): Intent? {
             val packageName = context.packageName
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName"))
+            val intent = Intent(Intent.ACTION_VIEW, "market://details?id=$packageName".toUri())
 
             // find all applications able to handle our rateIntent
             val handlingApps: List<ResolveInfo> =

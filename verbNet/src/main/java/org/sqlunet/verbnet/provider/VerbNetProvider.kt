@@ -27,6 +27,7 @@ import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses
 import org.sqlunet.verbnet.provider.VerbNetControl.queryMain
 import org.sqlunet.verbnet.provider.VerbNetControl.querySearch
 import org.sqlunet.verbnet.provider.VerbNetControl.querySuggest
+import androidx.core.net.toUri
 
 /**
  * VerbNet provider
@@ -150,7 +151,7 @@ class VerbNetProvider : BaseProvider() {
          * @param context context
          */
         fun close(context: Context) {
-            val uri = Uri.parse(SCHEME + AUTHORITY)
+            val uri = (SCHEME + AUTHORITY).toUri()
             closeProvider(context, uri)
         }
     }

@@ -6,6 +6,7 @@ package org.sqlunet.browser.vn
 import android.content.Context
 import androidx.preference.PreferenceManager
 import org.sqlunet.settings.Settings
+import androidx.core.content.edit
 
 /**
  * Settings
@@ -141,7 +142,7 @@ object VnSettings : Settings() {
          */
         fun setPref(context: Context) {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-            sharedPref.edit().putString(PREF_SELECTOR, name).apply()
+            sharedPref.edit { putString(PREF_SELECTOR, name) }
         }
 
         companion object {
@@ -160,7 +161,7 @@ object VnSettings : Settings() {
                     mode = valueOf(name!!)
                 } catch (e: Exception) {
                     mode = XSELECTOR
-                    sharedPref.edit().putString(PREF_SELECTOR, mode.name).apply()
+                    sharedPref.edit { putString(PREF_SELECTOR, mode.name) }
                 }
                 return mode
             }

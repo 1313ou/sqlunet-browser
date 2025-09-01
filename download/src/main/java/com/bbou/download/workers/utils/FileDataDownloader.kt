@@ -18,6 +18,7 @@ import com.bbou.download.utils.FileData
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.Date
+import androidx.core.net.toUri
 
 /**
  * File data downloader
@@ -149,7 +150,7 @@ class FileDataDownloader(private val listener: Listener) : Task<String, Void, Fi
         fun start(activity: Activity, downloadIntent: Intent) {
             // unmarshal arguments
             val downloadSourceUrl = downloadIntent.getStringExtra(DOWNLOAD_FROM_ARG)
-            val name = Uri.parse(downloadSourceUrl).lastPathSegment
+            val name = downloadSourceUrl?.toUri()?.lastPathSegment
 
             // download source data
             if (downloadSourceUrl.isNullOrEmpty() || name == null) {

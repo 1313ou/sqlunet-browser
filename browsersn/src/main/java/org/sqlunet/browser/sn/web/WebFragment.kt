@@ -21,6 +21,7 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.Pointer
@@ -53,6 +54,7 @@ import org.sqlunet.wordnet.sql.WordNetImplementation
 import org.sqlunet.wordnet.sql.WordNetImplementation.Companion.init
 import org.w3c.dom.Document
 import java.net.URLDecoder
+import androidx.core.net.toUri
 
 /**
  * A fragment representing a SqlUNet web view.
@@ -238,11 +240,11 @@ class WebFragment : Fragment() {
 
             @Deprecated("Deprecated in Java")
             override fun shouldOverrideUrlLoading(view: WebView, urlString: String): Boolean {
-                val uri = Uri.parse(urlString)
+                val uri = urlString.toUri()
                 return handleUrl(uri)
             }
 
-            @TargetApi(Build.VERSION_CODES.N)
+            @RequiresApi(Build.VERSION_CODES.N)
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 val uri = request.url
                 return handleUrl(uri)

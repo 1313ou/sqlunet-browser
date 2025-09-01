@@ -9,6 +9,7 @@ import android.os.Build
 import android.util.Log
 import androidx.preference.PreferenceManager
 import java.io.File
+import androidx.core.content.edit
 
 /**
  * Storage
@@ -78,7 +79,7 @@ object Storage {
         val discoveredStorage = discover(context)
 
         // record as discovered
-        sharedPref.edit().putString(PREF_SQLUNET_STORAGE, discoveredStorage.absolutePath).commit()
+        sharedPref.edit(commit = true) { putString(PREF_SQLUNET_STORAGE, discoveredStorage.absolutePath)}
         Log.d(TAG, "Saving " + discoveredStorage.absolutePath)
         return discoveredStorage
     }
@@ -145,7 +146,7 @@ object Storage {
             prefValue = cache!!.absolutePath
 
             // record as discovered
-            sharedPref.edit().putString(PREF_SQLUNET_CACHE, prefValue).commit()
+            sharedPref.edit(commit = true) { putString(PREF_SQLUNET_CACHE, prefValue) }
         }
         return prefValue!!
     }

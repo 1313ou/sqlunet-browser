@@ -18,6 +18,7 @@ import com.bbou.download.Notifier
 import com.bbou.download.common.R
 import com.bbou.download.workers.core.DownloadZipWork
 import java.io.File
+import androidx.core.net.toUri
 
 /**
  * Download fragment using DownloadZipWork
@@ -200,7 +201,7 @@ class DownloadZipFragment : DownloadBaseFragment() {
      * @param args           arguments
      */
     override fun fireNotification(context: Context, notificationId: Int, type: Notifier.NotificationType, vararg args: Any) {
-        val from = Uri.parse(downloadUrl).host
+        val from = downloadUrl?.toUri()?.host
         val to = toDir!!.name
         val contentText = "$from→$to"
         Notifier.fireNotification(context, notificationId, type, contentText, *args)

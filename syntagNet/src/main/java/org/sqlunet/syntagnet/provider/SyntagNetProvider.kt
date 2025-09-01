@@ -17,6 +17,7 @@ import org.sqlunet.sql.SqlFormatter.format
 import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations
 import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X
 import org.sqlunet.syntagnet.provider.SyntagNetControl.queryMain
+import androidx.core.net.toUri
 
 /**
  * SyntagNet provider
@@ -109,7 +110,7 @@ class SyntagNetProvider : BaseProvider() {
          * @param context context
          */
         fun close(context: Context) {
-            val uri = Uri.parse(SCHEME + AUTHORITY)
+            val uri = (SCHEME + AUTHORITY).toUri()
             closeProvider(context, uri)
         }
     }

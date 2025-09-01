@@ -14,6 +14,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.net.toUri
 
 /**
  * Other applications
@@ -104,8 +105,8 @@ class OthersActivity : AppCompatActivity() {
 
     companion object {
 
-        fun install(uri: String?, activity: Activity) {
-            val goToMarket = Intent(Intent.ACTION_VIEW).setData(Uri.parse(uri))
+        fun install(uri: String, activity: Activity) {
+            val goToMarket = Intent(Intent.ACTION_VIEW).setData(uri.toUri())
             try {
                 activity.startActivity(goToMarket)
             } catch (e: ActivityNotFoundException) {

@@ -19,6 +19,7 @@ import com.bbou.download.Keys.THEN_UNZIP_TO_ARG
 import com.bbou.download.preference.Settings
 import com.bbou.download.preference.Settings.Mode
 import org.sqlunet.settings.StorageSettings
+import androidx.core.net.toUri
 
 object DownloadIntentFactory {
 
@@ -111,7 +112,7 @@ object DownloadIntentFactory {
         }
         return when (mode) {
             Mode.DOWNLOAD_ZIP_THEN_UNZIP -> {
-                val name = Uri.parse(downloadSourceUrl).lastPathSegment
+                val name = downloadSourceUrl.toUri().lastPathSegment
                 val cache = StorageSettings.getCacheDir(context)
                 val cachePath = "$cache/$name"
                 makeIntentDownloadThenDeploy(context, downloadSourceUrl, cachePath)

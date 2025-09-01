@@ -29,6 +29,7 @@ import org.sqlunet.view.TreeOp.Companion.seq
 import org.sqlunet.view.TreeOp.TreeOpCode
 import org.sqlunet.view.TreeOp.TreeOps
 import org.sqlunet.view.TreeOpExecute
+import androidx.core.net.toUri
 
 /**
  * VerbNet class from word/sense module
@@ -97,7 +98,7 @@ class ClassFromWordModule(fragment: TreeFragment) : BaseModule(fragment) {
      */
     private fun vnClasses(wordId: Long, synsetId: Long?, parent: TreeNode) {
         val sql = prepareVnClasses(wordId, synsetId)
-        val uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri))
+        val uri = VerbNetProvider.makeUri(sql.providerUri).toUri()
         vnClassesFromWordIdSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> vnClassesCursorToTreeModel(cursor, parent) }
     }
 

@@ -37,6 +37,7 @@ import org.sqlunet.provider.XSqlUNetProvider
 import org.sqlunet.wordnet.loaders.Queries.prepareWnPronunciationXSelect
 import org.sqlunet.wordnet.provider.WordNetProvider
 import kotlin.math.floor
+import androidx.core.net.toUri
 
 /**
  * X selector fragment
@@ -412,7 +413,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
     private fun load() {
         // load the contents
         val sql = prepareWordPronunciationXSelect(word!!)
-        val uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri))
+        val uri = XSqlUNetProvider.makeUri(sql.providerUri).toUri()
         wordIdFromWordModel!!.loadData(uri, sql) { cursor: Cursor -> wordIdFromWordPostProcess(cursor) }
     }
 
@@ -496,7 +497,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
     private fun loadWn(wordId: Long) {
         Log.d(TAG, "loadWn $wordId")
         val sql = prepareWnPronunciationXSelect(wordId)
-        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        val uri = WordNetProvider.makeUri(sql.providerUri).toUri()
         wnFromWordIdModel!!.loadData(uri, sql, null)
     }
 
@@ -508,7 +509,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
     private fun loadVn(wordId: Long) {
         Log.d(TAG, "loadVn $wordId")
         val sql = prepareVnXSelect(wordId)
-        val uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri))
+        val uri = XSqlUNetProvider.makeUri(sql.providerUri).toUri()
         vnFromWordIdModel!!.loadData(uri, sql, null)
     }
 
@@ -520,7 +521,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
     private fun loadPb(wordId: Long) {
         Log.d(TAG, "loadPb $wordId")
         val sql = preparePbXSelect(wordId)
-        val uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri))
+        val uri = XSqlUNetProvider.makeUri(sql.providerUri).toUri()
         pbFromWordIdModel!!.loadData(uri, sql, null)
     }
 
@@ -532,7 +533,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
     private fun loadFn(wordId: Long) {
         Log.d(TAG, "loadFn $wordId")
         val sql = prepareFnXSelect(wordId)
-        val uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri))
+        val uri = XSqlUNetProvider.makeUri(sql.providerUri).toUri()
         fnFromWordIdModel!!.loadData(uri, sql, null)
     }
 

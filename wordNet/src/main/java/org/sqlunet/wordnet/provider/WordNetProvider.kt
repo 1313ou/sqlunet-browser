@@ -57,6 +57,7 @@ import org.sqlunet.wordnet.provider.WordNetControl.queryAnyRelations
 import org.sqlunet.wordnet.provider.WordNetControl.queryMain
 import org.sqlunet.wordnet.provider.WordNetControl.querySearch
 import org.sqlunet.wordnet.provider.WordNetControl.querySuggest
+import androidx.core.net.toUri
 
 /**
  * WordNet provider
@@ -406,7 +407,7 @@ class WordNetProvider : BaseProvider() {
      * @param context context
      */
     fun close(context: Context) {
-        val uri = Uri.parse(SCHEME + AUTHORITY)
+        val uri = (SCHEME + AUTHORITY).toUri()
         closeProvider(context, uri)
     }
 }

@@ -19,6 +19,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceDialogFragmentCompat
 import androidx.preference.PreferenceFragmentCompat
 import java.util.Arrays
+import androidx.core.content.withStyledAttributes
 
 /**
  * OpenEditTextPreference
@@ -102,10 +103,9 @@ class OpenEditTextPreference : DialogPreference {
      */
     private fun init(context: Context, attrs: AttributeSet) {
         // obtain values through styled attributes
-        context.obtainStyledAttributes(attrs, R.styleable.OpenEditTextPreference).let {
-            values = it.getTextArray(R.styleable.OpenEditTextPreference_values)
-            labels = it.getTextArray(R.styleable.OpenEditTextPreference_labels)
-            it.recycle()
+        context.withStyledAttributes(attrs, R.styleable.OpenEditTextPreference) {
+            values = getTextArray(R.styleable.OpenEditTextPreference_values)
+            labels = getTextArray(R.styleable.OpenEditTextPreference_labels)
         }
 
         // enable all

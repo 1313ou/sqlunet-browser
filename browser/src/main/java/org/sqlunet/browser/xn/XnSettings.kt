@@ -7,6 +7,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import androidx.preference.PreferenceManager
 import org.sqlunet.settings.Settings
+import androidx.core.content.edit
 
 /**
  * Settings
@@ -129,12 +130,12 @@ object XnSettings : Settings() {
     @SuppressLint("CommitPrefEdits", "ApplySharedPref")
     fun initializeSelectorPrefs(context: Context) {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        val editor = sharedPref.edit()
-        val selectorString = sharedPref.getString(PREF_SELECTOR, null)
-        if (selectorString == null) {
-            editor.putString(PREF_SELECTOR, Selector.XSELECTOR.name)
+        sharedPref.edit(commit = true) {
+            val selectorString = sharedPref.getString(PREF_SELECTOR, null)
+            if (selectorString == null) {
+                putString(PREF_SELECTOR, Selector.XSELECTOR.name)
+            }
         }
-        editor.commit()
     }
 
     // D A T A
@@ -195,7 +196,7 @@ object XnSettings : Settings() {
          */
         fun setPref(context: Context) {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-            sharedPref.edit().putString(PREF_SELECTOR, name).apply()
+            sharedPref.edit {putString(PREF_SELECTOR, name)}
         }
 
         companion object {
@@ -214,7 +215,7 @@ object XnSettings : Settings() {
                     mode = valueOf(name!!)
                 } catch (e: Exception) {
                     mode = XSELECTOR
-                    sharedPref.edit().putString(PREF_SELECTOR, mode.name).apply()
+                    sharedPref.edit { putString(PREF_SELECTOR, mode.name)}
                 }
                 return mode
             }

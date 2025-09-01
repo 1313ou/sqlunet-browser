@@ -25,6 +25,7 @@ import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.view.TreeOp
 import org.sqlunet.view.TreeOp.TreeOpCode
 import org.sqlunet.view.TreeOpExecute
+import androidx.core.net.toUri
 
 class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
@@ -116,7 +117,7 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     private fun bnc(wordId: Long, pos: Char?, parent: TreeNode) {
         val sql = prepareBnc(wordId, pos)
-        val uri = Uri.parse(makeUri(sql.providerUri))
+        val uri = makeUri(sql.providerUri).toUri()
         bncFromWordIdModel!!.loadData(uri, sql) { cursor: Cursor -> bncCursorToTreeModel(cursor, parent) }
     }
 

@@ -12,6 +12,7 @@ import android.util.Log
 import androidx.loader.content.CursorLoader
 import androidx.preference.PreferenceManager
 import org.sqlunet.browser.common.R
+import androidx.core.net.toUri
 
 /**
  * Search recent suggestion. Access to suggestions provider, after standard SearchRecentSuggestions which has private members and can hardly be extended.
@@ -79,7 +80,7 @@ class SearchRecentSuggestions(context: Context, mode: Int) {
         val mAuthority = authority
 
         // derived values
-        mSuggestionsUri = Uri.parse("content://$mAuthority/suggestions")
+        mSuggestionsUri = "content://$mAuthority/suggestions".toUri()
     }
 
     private val sortOrder: String

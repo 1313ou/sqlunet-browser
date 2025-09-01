@@ -39,6 +39,8 @@ import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.ColorUtils.tint
 import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
+import androidx.core.view.size
+import androidx.core.graphics.drawable.toDrawable
 
 /**
  * Base search fragment
@@ -116,7 +118,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 menuInflater.inflate(R.menu.main_safedata, menu)
                 menuInflater.inflate(menuId, menu)
                 // MenuCompat.setGroupDividerEnabled(menu, true)
-                Log.d(TAG, "MenuProvider: onCreateMenu() size=" + menu.size())
+                Log.d(TAG, "MenuProvider: onCreateMenu() size=" + menu.size)
 
                 // set up search view
                 searchView = getSearchView(menu)
@@ -181,7 +183,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
         // background
         val color = fetchColor(activity, colorAttrId)
-        toolbar.background = ColorDrawable(color)
+        toolbar.background = color.toDrawable()
     }
 
     /**

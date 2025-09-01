@@ -8,6 +8,7 @@ import androidx.preference.PreferenceManager
 import com.bbou.download.DownloadData
 import com.bbou.download.utils.FileData.Companion.makeFileDataFrom
 import java.io.File
+import androidx.core.content.edit
 
 /**
  * Settings and preferences
@@ -134,13 +135,13 @@ object Settings {
      * @param flag initialized flag
      */
     fun setInitializedPref(context: Context, flag: Boolean?) {
-        val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
-        if (flag == null) {
-            editor.remove(PREF_INITIALIZED)
-        } else {
-            editor.putBoolean(PREF_INITIALIZED, flag)
+        PreferenceManager.getDefaultSharedPreferences(context).edit {
+            if (flag == null) {
+                remove(PREF_INITIALIZED)
+            } else {
+                putBoolean(PREF_INITIALIZED, flag)
+            }
         }
-        editor.apply()
     }
 
     // F R O M
@@ -203,13 +204,13 @@ object Settings {
      * @param repo repo
      */
     fun setRepoPref(context: Context, repo: String?) {
-        val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
-        if (repo == null) {
-            editor.remove(PREF_REPO)
-        } else {
-            editor.putString(PREF_REPO, repo)
+        PreferenceManager.getDefaultSharedPreferences(context).edit {
+            if (repo == null) {
+                remove(PREF_REPO)
+            } else {
+                putString(PREF_REPO, repo)
+            }
         }
-        editor.apply()
     }
 
     // D E V I C E
@@ -233,7 +234,7 @@ object Settings {
      */
     fun setDatapackDir(context: Context, dest: String?) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DEVICE, Context.MODE_PRIVATE)
-        sharedPref.edit().putString(PREF_DATAPACK_DIR, dest).apply()
+        sharedPref.edit { putString(PREF_DATAPACK_DIR, dest) }
     }
 
     /**
@@ -255,7 +256,7 @@ object Settings {
      */
     fun setCachePref(context: Context, cache: String?) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DEVICE, Context.MODE_PRIVATE)
-        sharedPref.edit().putString(PREF_CACHE, cache).apply()
+        sharedPref.edit {putString(PREF_CACHE, cache) }
     }
 
     // M O D E L
@@ -279,11 +280,11 @@ object Settings {
      */
     fun setDatapackName(context: Context, name: String?) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
-        sharedPref.edit().putString(PREF_DATAPACK_NAME, name).apply()
+        sharedPref.edit {putString(PREF_DATAPACK_NAME, name) }
     }
 
     /**
-     * Get datapack date
+    * Get datapack date
      *
      * @param context context
      * @return timestamp
@@ -301,7 +302,7 @@ object Settings {
      */
     fun setDatapackDate(context: Context, timestamp: Long) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
-        sharedPref.edit().putLong(PREF_DATAPACK_DATE, timestamp).apply()
+        sharedPref.edit {putLong(PREF_DATAPACK_DATE, timestamp) }
     }
 
     /**
@@ -323,7 +324,7 @@ object Settings {
      */
     fun setDatapackSize(context: Context, size: Long) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
-        sharedPref.edit().putLong(PREF_DATAPACK_SIZE, size).apply()
+        sharedPref.edit {putLong(PREF_DATAPACK_SIZE, size) }
     }
 
     /**
@@ -457,15 +458,15 @@ object Settings {
      */
     fun recordDatapackUri(context: Context, datapackUri: String?) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
-        val edit = sharedPref.edit()
-        if (datapackUri != null) {
-            edit.putString(PREF_DATAPACK_NAME, datapackUri)
-        } else {
-            edit.remove(PREF_DATAPACK_NAME)
+        sharedPref.edit {
+            if (datapackUri != null) {
+                putString(PREF_DATAPACK_NAME, datapackUri)
+            } else {
+                remove(PREF_DATAPACK_NAME)
+            }
+            remove(PREF_DATAPACK_DATE)
+            remove(PREF_DATAPACK_SIZE)
         }
-        edit.remove(PREF_DATAPACK_DATE)
-        edit.remove(PREF_DATAPACK_SIZE)
-        edit.apply()
     }
 
     /**
@@ -475,11 +476,11 @@ object Settings {
      */
     fun unrecordDatapack(context: Context) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
-        val edit = sharedPref.edit()
-        edit.remove(PREF_DATAPACK_NAME)
-            .remove(PREF_DATAPACK_DATE)
-            .remove(PREF_DATAPACK_SIZE)
-            .apply()
+        sharedPref.edit {
+            remove(PREF_DATAPACK_NAME)
+                .remove(PREF_DATAPACK_DATE)
+                .remove(PREF_DATAPACK_SIZE)
+        }
     }
 
     /**
@@ -492,43 +493,43 @@ object Settings {
     fun recordDatapackSource(context: Context, dl: DownloadData, sourceType: String?) {
 
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
-        val edit = sharedPref.edit()
-        if (dl.fromUrl != null) {
-            edit.putString(PREF_DATAPACK_SOURCE, dl.fromUrl)
-        } else {
-            edit.remove(PREF_DATAPACK_SOURCE)
+        sharedPref.edit {
+            if (dl.fromUrl != null) {
+                putString(PREF_DATAPACK_SOURCE, dl.fromUrl)
+            } else {
+                remove(PREF_DATAPACK_SOURCE)
+            }
+            if (dl.size != null && dl.size != -1L) {
+                putLong(PREF_DATAPACK_SOURCE_SIZE, dl.size)
+            } else {
+                remove(PREF_DATAPACK_SOURCE_SIZE)
+            }
+            if (dl.date != null && dl.date != -1L) {
+                putLong(PREF_DATAPACK_SOURCE_DATE, dl.date)
+            } else {
+                remove(PREF_DATAPACK_SOURCE_DATE)
+            }
+            if (dl.etag != null) {
+                putString(PREF_DATAPACK_SOURCE_ETAG, dl.etag)
+            } else {
+                remove(PREF_DATAPACK_SOURCE_ETAG)
+            }
+            if (dl.version != null) {
+                putString(PREF_DATAPACK_SOURCE_VERSION, dl.version)
+            } else {
+                remove(PREF_DATAPACK_SOURCE_VERSION)
+            }
+            if (dl.staticVersion != null) {
+                putString(PREF_DATAPACK_SOURCE_STATIC_VERSION, dl.staticVersion)
+            } else {
+                remove(PREF_DATAPACK_SOURCE_STATIC_VERSION)
+            }
+            if (sourceType != null) {
+                putString(PREF_DATAPACK_SOURCE_TYPE, sourceType)
+            } else {
+                remove(PREF_DATAPACK_SOURCE_TYPE)
+            }
         }
-        if (dl.size != null && dl.size != -1L) {
-            edit.putLong(PREF_DATAPACK_SOURCE_SIZE, dl.size)
-        } else {
-            edit.remove(PREF_DATAPACK_SOURCE_SIZE)
-        }
-        if (dl.date != null && dl.date != -1L) {
-            edit.putLong(PREF_DATAPACK_SOURCE_DATE, dl.date)
-        } else {
-            edit.remove(PREF_DATAPACK_SOURCE_DATE)
-        }
-        if (dl.etag != null) {
-            edit.putString(PREF_DATAPACK_SOURCE_ETAG, dl.etag)
-        } else {
-            edit.remove(PREF_DATAPACK_SOURCE_ETAG)
-        }
-        if (dl.version != null) {
-            edit.putString(PREF_DATAPACK_SOURCE_VERSION, dl.version)
-        } else {
-            edit.remove(PREF_DATAPACK_SOURCE_VERSION)
-        }
-        if (dl.staticVersion != null) {
-            edit.putString(PREF_DATAPACK_SOURCE_STATIC_VERSION, dl.staticVersion)
-        } else {
-            edit.remove(PREF_DATAPACK_SOURCE_STATIC_VERSION)
-        }
-        if (sourceType != null) {
-            edit.putString(PREF_DATAPACK_SOURCE_TYPE, sourceType)
-        } else {
-            edit.remove(PREF_DATAPACK_SOURCE_TYPE)
-        }
-        edit.apply()
     }
 
     /**
@@ -538,15 +539,15 @@ object Settings {
      */
     fun unrecordDatapackSource(context: Context) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
-        sharedPref.edit()
-            .remove(PREF_DATAPACK_SOURCE)
-            .remove(PREF_DATAPACK_SOURCE_DATE)
-            .remove(PREF_DATAPACK_SOURCE_SIZE)
-            .remove(PREF_DATAPACK_SOURCE_ETAG)
-            .remove(PREF_DATAPACK_SOURCE_VERSION)
-            .remove(PREF_DATAPACK_SOURCE_STATIC_VERSION)
-            .remove(PREF_DATAPACK_SOURCE_TYPE)
-            .apply()
+        sharedPref.edit {
+            remove(PREF_DATAPACK_SOURCE)
+                .remove(PREF_DATAPACK_SOURCE_DATE)
+                .remove(PREF_DATAPACK_SOURCE_SIZE)
+                .remove(PREF_DATAPACK_SOURCE_ETAG)
+                .remove(PREF_DATAPACK_SOURCE_VERSION)
+                .remove(PREF_DATAPACK_SOURCE_STATIC_VERSION)
+                .remove(PREF_DATAPACK_SOURCE_TYPE)
+        }
     }
 
     /**
@@ -623,7 +624,7 @@ object Settings {
              */
             fun setModePref(context: Context, value: Mode) {
                 val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-                sharedPref.edit().putString(PREF_DOWNLOAD_MODE, value.toString()).apply()
+                sharedPref.edit {putString(PREF_DOWNLOAD_MODE, value.toString()) }
             }
         }
     }

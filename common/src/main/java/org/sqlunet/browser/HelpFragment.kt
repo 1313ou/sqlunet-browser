@@ -20,9 +20,11 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import org.sqlunet.browser.common.R
+import androidx.core.net.toUri
 
 /**
  * Help fragment
@@ -60,7 +62,7 @@ class HelpFragment : Fragment() {
                     Log.e(TAG, "$failingUrl:$description,$errorCode")
                 }
 
-                @TargetApi(Build.VERSION_CODES.N)
+                @androidx.annotation.RequiresApi(Build.VERSION_CODES.N)
                 override fun onReceivedError(webView: WebView, request: WebResourceRequest, error: WebResourceError) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                         super.onReceivedError(webView, request, error)
@@ -71,7 +73,7 @@ class HelpFragment : Fragment() {
                 @Deprecated("Deprecated in Java")
                 override fun shouldOverrideUrlLoading(webView: WebView, url: String): Boolean {
                     if (url.endsWith("pdf") || url.endsWith("PDF")) {
-                        val uri = Uri.parse(url)
+                        val uri = url.toUri()
                         if (handleUri(uri, "application/pdf")) {
                             return true
                         }
@@ -80,7 +82,7 @@ class HelpFragment : Fragment() {
                     return false
                 }
 
-                @TargetApi(Build.VERSION_CODES.N)
+                @RequiresApi(Build.VERSION_CODES.N)
                 override fun shouldOverrideUrlLoading(webView: WebView, request: WebResourceRequest): Boolean {
                     val uri = request.url
                     val fileName = uri.lastPathSegment

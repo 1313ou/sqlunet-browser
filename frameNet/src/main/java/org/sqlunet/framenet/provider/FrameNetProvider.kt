@@ -43,6 +43,7 @@ import org.sqlunet.framenet.provider.FrameNetControl.querySuggest
 import org.sqlunet.provider.BaseProvider
 import org.sqlunet.settings.LogUtils
 import org.sqlunet.sql.SqlFormatter.format
+import androidx.core.net.toUri
 
 /**
  * FrameNet provider
@@ -222,7 +223,7 @@ class FrameNetProvider : BaseProvider() {
          * @param context context
          */
         fun close(context: Context) {
-            val uri = Uri.parse(SCHEME + AUTHORITY)
+            val uri = (SCHEME + AUTHORITY).toUri()
             closeProvider(context, uri)
         }
     }

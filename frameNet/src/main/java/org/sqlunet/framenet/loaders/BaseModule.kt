@@ -86,6 +86,7 @@ import org.sqlunet.view.TreeOp.TreeOpCode
 import org.sqlunet.view.TreeOp.TreeOps
 import org.sqlunet.view.TreeOpExecute
 import java.util.TreeMap
+import androidx.core.net.toUri
 
 /**
  * Base framenet module
@@ -244,7 +245,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun frame(frameId: Long, parent: TreeNode) {
         val sql = prepareFrame(frameId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         frameFromFrameIdModel.loadData(uri, sql) { cursor: Cursor -> frameCursorToTreeModel(cursor, frameId, parent) }
     }
 
@@ -344,7 +345,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun relatedFrames(frameId: Long, parent: TreeNode) {
         val sql = prepareRelatedFrames(frameId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         relatedFramesFromFrameIdModel.loadData(uri, sql) { cursor: Cursor -> relatedFramesCursorToTreeModel(cursor, frameId, parent) }
     }
 
@@ -447,7 +448,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun fesForFrame(frameId: Int, parent: TreeNode) {
         val sql = prepareFesForFrame(frameId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         fesFromFrameIdModel.loadData(uri, sql) { cursor: Cursor -> fesCursorToTreeModel(cursor, parent) }
     }
 
@@ -553,7 +554,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun lexUnit(luId: Long, parent: TreeNode, withFrame: Boolean, withFes: Boolean) {
         val sql = prepareLexUnit(luId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         lexUnitFromLuIdModel.loadData(uri, sql) { cursor: Cursor -> lexUnitCursorToTreeModel(cursor, luId, parent, withFrame, withFes) }
     }
 
@@ -671,7 +672,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun lexUnitsForFrame(frameId: Long, parent: TreeNode, @Suppress("SameParameterValue") withFrame: Boolean) {
         val sql = prepareLexUnitsForFrame(frameId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         lexUnitsFromFrameIdModel.loadData(uri, sql) { cursor: Cursor -> lexUnitsCursorToTreeModel(cursor, frameId, parent, withFrame) }
     }
 
@@ -789,7 +790,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun lexUnitsForWordAndPos(wordId: Long, pos: Char?, parent: TreeNode) {
         val sql = prepareLexUnitsForWordAndPos(wordId, pos)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         lexUnitsFromWordIdPosModel.loadData(uri, sql) { cursor: Cursor -> lexUnitsFromWordIdPosCursorToTreeModel(cursor, parent) }
     }
 
@@ -897,7 +898,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun governorsForLexUnit(luId: Long, parent: TreeNode) {
         val sql = prepareGovernorsForLexUnit(luId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         governorsFromLuIdModel.loadData(uri, sql) { cursor: Cursor -> governorsCursorToTreeModel(cursor, parent) }
     }
 
@@ -956,7 +957,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun realizationsForLexicalUnit(luId: Long, parent: TreeNode) {
         val sql = prepareRealizationsForLexicalUnit(luId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         realizationsFromLuIdModel.loadData(uri, sql) { cursor: Cursor -> realizationsCursorToTreeModel(cursor, parent) }
     }
 
@@ -1039,7 +1040,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun groupRealizationsForLexUnit(luId: Long, parent: TreeNode) {
         val sql = prepareGroupRealizationsForLexUnit(luId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         groupRealizationsFromLuIdModel.loadData(uri, sql) { cursor: Cursor -> groupRealizationsCursorToTreeModel(cursor, parent) }
     }
 
@@ -1148,7 +1149,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun sentencesForLexUnit(luId: Long, parent: TreeNode) {
         val sql = prepareSentencesForLexUnit(luId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         sentencesFromLuIdModel.loadData(uri, sql) { cursor: Cursor -> sentencesCursor1ToTreeModel(cursor, parent) }
     }
 
@@ -1244,7 +1245,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun sentencesForPattern(patternId: Long, parent: TreeNode) {
         val sql = prepareSentencesForPattern(patternId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         sentencesFromPatternIdModel.loadData(uri, sql) { cursor: Cursor -> sentencesCursor2ToTreeModel(cursor, parent) }
     }
 
@@ -1295,7 +1296,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun sentencesForValenceUnit(vuId: Long, parent: TreeNode) {
         val sql = prepareSentencesForValenceUnit(vuId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         sentencesFromVuIdModel.loadData(uri, sql) { cursor: Cursor -> sentencesCursor3ToTreeModel(cursor, parent) }
     }
 
@@ -1349,7 +1350,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun annoSet(annoSetId: Long, parent: TreeNode, withSentence: Boolean) {
         val sql = prepareAnnoSet(annoSetId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         annoSetFromAnnoSetIdModel.loadData(uri, sql) { cursor: Cursor -> annoSetCursorToTreeModel(cursor, parent, withSentence) }
     }
 
@@ -1461,7 +1462,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     private fun annoSetsForGovernor(governorId: Long, parent: TreeNode) {
         val sql = prepareAnnoSetsForGovernor(governorId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         annoSetsFromGovernorIdModel.loadData(uri, sql) { cursor: Cursor -> annoSetsCursor1ToTreeModel(cursor, parent) }
     }
 
@@ -1516,7 +1517,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun annoSetsForPattern(patternId: Long, parent: TreeNode) {
         val sql = prepareAnnoSetsForPattern(patternId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         annoSetsFromPatternIdModel.loadData(uri, sql) { cursor: Cursor -> annoSetsCursor2ToTreeModel(cursor, parent) }
     }
 
@@ -1540,7 +1541,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun annoSetsForValenceUnit(vuId: Long, parent: TreeNode) {
         val sql = prepareAnnoSetsForValenceUnit(vuId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         annoSetsFromVuIdModel.loadData(uri, sql) { cursor: Cursor -> annoSetsCursor3ToTreeModel(cursor, parent) }
     }
 
@@ -1732,7 +1733,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      */
     fun layersForSentence(sentenceId: Long, text: String, parent: TreeNode) {
         val sql = prepareLayersForSentence(sentenceId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         layersFromSentenceIdModel.loadData(uri, sql) { cursor: Cursor -> layersCursorToTreeModel(cursor, text, parent) }
     }
 

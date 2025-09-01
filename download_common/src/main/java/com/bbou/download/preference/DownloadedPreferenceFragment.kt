@@ -12,6 +12,7 @@ import com.bbou.download.common.R
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import androidx.core.content.edit
 
 /**
  * This fragment shows download preferences
@@ -55,17 +56,17 @@ class DownloadedPreferenceFragment : PreferenceFragmentCompat() {
         // unset button
         val unsetButton = findPreference<Preference>(Settings.PREF_DATAPACK_CLEAR_BUTTON)!!
         unsetButton.onPreferenceClickListener = Preference.OnPreferenceClickListener { preference: Preference ->
-            preference.context.getSharedPreferences(Settings.PREFERENCES_DATAPACK, Context.MODE_PRIVATE).edit()
+            preference.context.getSharedPreferences(Settings.PREFERENCES_DATAPACK, Context.MODE_PRIVATE).edit {
                 //.remove(Settings.PREF_DATAPACK_NAME)
-                .remove(Settings.PREF_DATAPACK_DATE)
-                .remove(Settings.PREF_DATAPACK_SIZE)
-                .remove(Settings.PREF_DATAPACK_SOURCE)
-                .remove(Settings.PREF_DATAPACK_SOURCE_DATE)
-                .remove(Settings.PREF_DATAPACK_SOURCE_SIZE)
-                .remove(Settings.PREF_DATAPACK_SOURCE_ETAG)
-                .remove(Settings.PREF_DATAPACK_SOURCE_VERSION)
-                .remove(Settings.PREF_DATAPACK_SOURCE_STATIC_VERSION)
-                .apply()
+                remove(Settings.PREF_DATAPACK_DATE)
+                    .remove(Settings.PREF_DATAPACK_SIZE)
+                    .remove(Settings.PREF_DATAPACK_SOURCE)
+                    .remove(Settings.PREF_DATAPACK_SOURCE_DATE)
+                    .remove(Settings.PREF_DATAPACK_SOURCE_SIZE)
+                    .remove(Settings.PREF_DATAPACK_SOURCE_ETAG)
+                    .remove(Settings.PREF_DATAPACK_SOURCE_VERSION)
+                    .remove(Settings.PREF_DATAPACK_SOURCE_STATIC_VERSION)
+            }
             namePreference.summary = DATAPACK_STRING_SUMMARY_PROVIDER.provideSummary(namePreference)
             datePreference.summary = DATAPACK_DATE_SUMMARY_PROVIDER.provideSummary(datePreference)
             sizePreference.summary = DATAPACK_LONG_SUMMARY_PROVIDER.provideSummary(sizePreference)

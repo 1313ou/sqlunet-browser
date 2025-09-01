@@ -23,6 +23,7 @@ import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X
 import org.sqlunet.syntagnet.provider.SyntagNetProvider
 import org.sqlunet.wordnet.provider.WordNetContract
 import org.sqlunet.wordnet.provider.WordNetProvider
+import androidx.core.net.toUri
 
 /**
  * Selector Fragment
@@ -126,7 +127,7 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
                         view.setImageResource(text.toInt())
                         return@setViewBinder true
                     } catch (nfe: NumberFormatException) {
-                        view.setImageURI(Uri.parse(text))
+                        view.setImageURI(text.toUri())
                         return@setViewBinder true
                     }
                 }
@@ -146,7 +147,7 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
             return
         }
         val sql = prepareSnSelect(wordId)
-        val uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri))
+        val uri = SyntagNetProvider.makeUri(sql.providerUri).toUri()
         dataModel!!.loadData(uri, sql, null)
     }
 
@@ -159,7 +160,7 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
      * @return word id
      */
     private fun queryId(query: String?): Long {
-        val uri = Uri.parse(WordNetProvider.makeUri(WordNetContract.Words.URI))
+        val uri = WordNetProvider.makeUri(WordNetContract.Words.URI).toUri()
         val projection = arrayOf(WordNetContract.Words.WORDID)
         val selection = WordNetContract.Words.WORD + " = ?"
         val selectionArgs = arrayOf(query)

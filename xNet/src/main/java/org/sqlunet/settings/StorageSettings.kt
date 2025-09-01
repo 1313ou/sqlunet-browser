@@ -8,6 +8,7 @@ import androidx.preference.PreferenceManager
 import org.sqlunet.settings.Storage.getSqlUNetStorage
 import org.sqlunet.xnet.R
 import java.io.File
+import androidx.core.content.edit
 
 /**
  * Storage settings
@@ -104,7 +105,7 @@ object StorageSettings {
         value = context.resources.getString(R.string.default_download_site_url)
 
         // store value in preferences
-        sharedPref.edit().putString(PREF_DOWNLOAD_SITE, value).apply()
+        sharedPref.edit { putString(PREF_DOWNLOAD_SITE, value)}
         return value
     }
 
@@ -126,7 +127,7 @@ object StorageSettings {
         value = context.resources.getString(R.string.default_download_datapack_file)
 
         // store value in preferences
-        sharedPref.edit().putString(PREF_DOWNLOAD_DBFILE, value).apply()
+        sharedPref.edit { putString(PREF_DOWNLOAD_DBFILE, value) }
         return value
     }
 

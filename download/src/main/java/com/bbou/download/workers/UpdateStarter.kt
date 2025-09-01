@@ -15,6 +15,7 @@ import com.bbou.download.preference.Settings
 import com.bbou.download.utils.FileData
 import com.bbou.download.workers.utils.FileDataDownloader
 import java.util.Date
+import androidx.core.net.toUri
 
 /**
  * Update launcher
@@ -31,7 +32,7 @@ object UpdateStarter {
 
         // unmarshal arguments
         val downloadSourceUrl = downloadIntent.getStringExtra(Keys.DOWNLOAD_FROM_ARG)
-        val name = Uri.parse(downloadSourceUrl).lastPathSegment
+        val name = downloadSourceUrl?.toUri()?.lastPathSegment
 
         // download source data
         if (downloadSourceUrl.isNullOrEmpty() || name == null) {

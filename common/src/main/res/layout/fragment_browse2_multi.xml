@@ -6,7 +6,8 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/container_browse2m"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	tools:ignore="InconsistentLayout">
 
 	<LinearLayout
 		android:layout_width="match_parent"

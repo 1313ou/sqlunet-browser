@@ -42,6 +42,7 @@ import org.sqlunet.view.TreeOp.TreeOpCode
 import org.sqlunet.view.TreeOp.TreeOps
 import org.sqlunet.view.TreeOpExecute
 import java.util.TreeSet
+import androidx.core.net.toUri
 
 /**
  * Base module for PredicateMatrix
@@ -436,7 +437,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
         protected val changedList: TreeOps = TreeOps(TreeOpCode.NEWTREE, parent)
 
         fun run(sql: ContentProviderSql) {
-            val uri = Uri.parse(PredicateMatrixProvider.makeUri(sql.providerUri))
+            val uri = PredicateMatrixProvider.makeUri(sql.providerUri).toUri()
             model.loadData(uri, sql) { cursor: Cursor -> pmCursorToTreeModel(cursor, parent) }
         }
 

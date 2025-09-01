@@ -17,6 +17,8 @@ import org.sqlunet.browser.config.SetupAsset
 import org.sqlunet.provider.BaseProvider
 import org.sqlunet.provider.BaseProvider.Companion.resizeSql
 import org.sqlunet.sql.PreparedStatement
+import androidx.core.content.edit
+import androidx.core.net.toUri
 
 /**
  * Settings
@@ -51,7 +53,7 @@ open class Settings {
                     mode = valueOf(modeString!!)
                 } catch (_: Exception) {
                     mode = VIEW
-                    sharedPref.edit().putString(PREF_SELECTOR_MODE, mode.name).apply()
+                    sharedPref.edit { putString(PREF_SELECTOR_MODE, mode.name) }
                 }
                 return mode
             }
@@ -82,7 +84,7 @@ open class Settings {
                     mode = valueOf(modeString!!)
                 } catch (_: Exception) {
                     mode = VIEW
-                    sharedPref.edit().putString(PREF_DETAIL_MODE, mode.name).apply()
+                    sharedPref.edit { putString(PREF_DETAIL_MODE, mode.name)}
                 }
                 return mode
             }
@@ -105,7 +107,7 @@ open class Settings {
          */
         fun setPref(context: Context) {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-            sharedPref.edit().putString(PREF_SELECTOR, name).apply()
+            sharedPref.edit { putString(PREF_SELECTOR, name)}
         }
 
         companion object {
@@ -124,7 +126,7 @@ open class Settings {
                     mode = valueOf(name!!)
                 } catch (_: Exception) {
                     mode = SELECTOR
-                    sharedPref.edit().putString(PREF_SELECTOR, mode.name).apply()
+                    sharedPref.edit { putString(PREF_SELECTOR, mode.name)}
                 }
                 return mode
             }
@@ -245,7 +247,7 @@ open class Settings {
          */
         fun setSearchModePref(context: Context, value: Int) {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-            sharedPref.edit().putInt(PREF_TEXTSEARCH_MODE, value).apply()
+            sharedPref.edit { putInt(PREF_TEXTSEARCH_MODE, value)}
         }
 
         /**
@@ -356,7 +358,7 @@ open class Settings {
          */
         fun setDbDate(context: Context, timestamp: Long) {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-            sharedPref.edit().putLong(PREF_DB_DATE, timestamp).apply()
+            sharedPref.edit { putLong(PREF_DB_DATE, timestamp) }
         }
 
         /**
@@ -378,7 +380,7 @@ open class Settings {
          */
         fun setDbSize(context: Context, size: Long) {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-            sharedPref.edit().putLong(PREF_DB_SIZE, size).apply()
+            sharedPref.edit { putLong(PREF_DB_SIZE, size) }
         }
 
         /**
@@ -389,16 +391,16 @@ open class Settings {
         @SuppressLint("CommitPrefEdits", "ApplySharedPref")
         fun initializeDisplayPrefs(context: Context) {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-            val editor = sharedPref.edit()
-            val viewwebModeString = sharedPref.getString(PREF_SELECTOR_MODE, null)
-            if (viewwebModeString == null) {
-                editor.putString(PREF_SELECTOR_MODE, SelectorViewMode.VIEW.name)
+            sharedPref.edit(commit = true) {
+                val viewwebModeString = sharedPref.getString(PREF_SELECTOR_MODE, null)
+                if (viewwebModeString == null) {
+                    putString(PREF_SELECTOR_MODE, SelectorViewMode.VIEW.name)
+                }
+                val detailModeString = sharedPref.getString(PREF_DETAIL_MODE, null)
+                if (detailModeString == null) {
+                    putString(PREF_DETAIL_MODE, DetailViewMode.VIEW.name)
+                }
             }
-            val detailModeString = sharedPref.getString(PREF_DETAIL_MODE, null)
-            if (detailModeString == null) {
-                editor.putString(PREF_DETAIL_MODE, DetailViewMode.VIEW.name)
-            }
-            editor.commit()
         }
 
         /**
@@ -419,7 +421,7 @@ open class Settings {
                     if (capacity in 1..64) {
                         resizeSql(capacity)
                     } else {
-                        sharedPref.edit().remove(BaseProvider.CircularBuffer.PREF_SQL_BUFFER_CAPACITY).apply()
+                        sharedPref.edit { remove(BaseProvider.CircularBuffer.PREF_SQL_BUFFER_CAPACITY) }
                     }
                 } catch (_: Exception) {
                 }
@@ -470,17 +472,17 @@ open class Settings {
         fun onUpgrade(context: Context, build: Long) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
             prefs
-                .edit()
-                // clear all settings
-                // .clear()
-                // clear some settings
-                .remove(PREF_DOWNLOAD_MODE)
-                .remove(PREF_DOWNLOAD_SITE)
-                .remove(PREF_DOWNLOAD_DBFILE)
-                .remove(PREF_LAUNCH)
-                // flag as 'has run'
-                .putLong(PREF_VERSION, build)
-                .apply()
+                .edit {
+                    // clear all settings
+                    // .clear()
+                    // clear some settings
+                    remove(PREF_DOWNLOAD_MODE)
+                        .remove(PREF_DOWNLOAD_SITE)
+                        .remove(PREF_DOWNLOAD_DBFILE)
+                        .remove(PREF_LAUNCH)
+                        // flag as 'has run'
+                        .putLong(PREF_VERSION, build)
+                }
         }
 
         /**
@@ -493,7 +495,7 @@ open class Settings {
             val intent = Intent()
 
             intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-            intent.data = Uri.parse("package:$pkgName")
+            intent.data = "package:$pkgName".toUri()
 
             // start activity
             context.startActivity(intent)

@@ -8,7 +8,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -44,6 +43,7 @@ import com.bbou.download.storage.FormatUtils.formatAsInformationString
 import java.io.File
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.properties.Delegates
+import androidx.core.net.toUri
 
 /**
  * Base download fragment that handles
@@ -564,21 +564,21 @@ abstract class BaseDownloadFragment : Fragment() {
         val srcView3 = view.findViewById<TextView>(R.id.src3)
         if (srcView2 != null && srcView3 != null) {
             try {
-                val uri = Uri.parse(downloadUrl)
-                var host = uri.host
-                val port = uri.port
+                val uri = downloadUrl?.toUri()
+                var host = uri?.host
+                val port = uri?.port
                 if (port != -1) {
                     host += ":$port"
                 }
-                val file = uri.lastPathSegment
-                var path = uri.path
+                val file = uri?.lastPathSegment
+                var path = uri?.path
                 if (path != null && file != null) {
                     path = path.substring(0, path.lastIndexOf(file))
                 }
                 srcView3.text = host
                 srcView2.text = path
                 srcView.text = file
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 srcView3.setText(R.string.status_error_invalid)
                 srcView2.setText(R.string.status_error_invalid)
                 srcView.setText(R.string.status_error_invalid)

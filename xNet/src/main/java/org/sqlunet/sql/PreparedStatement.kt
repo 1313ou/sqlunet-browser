@@ -9,6 +9,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.util.SparseArray
 import org.sqlunet.sql.SqlFormatter.format
+import androidx.core.util.size
 
 /**
  * Prepared statement
@@ -106,7 +107,7 @@ class PreparedStatement(
      * @return selection arguments as string array
      */
     private fun toSelectionArgs(): Array<String?> {
-        val n = selectionArgs.size()
+        val n = selectionArgs.size
         val args = arrayOfNulls<String>(n)
         for (i in 0 until n) {
             args[i] = selectionArgs[i]

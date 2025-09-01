@@ -23,6 +23,7 @@ import org.sqlunet.view.TreeOp
 import org.sqlunet.view.TreeOp.Companion.seq
 import org.sqlunet.view.TreeOp.TreeOpCode
 import org.sqlunet.view.TreeOpExecute
+import androidx.core.net.toUri
 
 /**
  * Sentence module
@@ -82,7 +83,7 @@ class SentenceModule(fragment: TreeFragment) : BaseModule(fragment) {
      */
     private fun sentence(sentenceId: Long, parent: TreeNode) {
         val sql = prepareSentence(sentenceId)
-        val uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri))
+        val uri = FrameNetProvider.makeUri(sql.providerUri).toUri()
         sentenceFromSentenceIdModel.loadData(uri, sql) { cursor: Cursor -> sentenceCursorToTreeModel(cursor, parent) }
     }
 
