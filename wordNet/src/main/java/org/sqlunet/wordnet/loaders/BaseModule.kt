@@ -872,7 +872,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
     private fun wikidataCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
         // val addNewNode = cursor.count > 1
-        var changed: Array<TreeOp> = if (cursor.moveToFirst()) {
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
             val idWikidata = cursor.getColumnIndex(Wikidatas.WIKIDATA)
             do {
@@ -944,7 +944,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         val relation = cursor.getString(idRelation)
                         val targetSynsetId = cursor.getLong(idTargetSynsetId)
                         val targetDefinition = cursor.getString(idTargetDefinition)
-                        var targetMembers = cursor.getString(idTargetMembers)
+                        val targetMembers = cursor.getString(idTargetMembers)
                         val relationCanRecurse = !cursor.isNull(idRecurses) && cursor.getInt(idRecurses) != 0
                         val targetWord = if (cursor.isNull(idTargetWord)) null else cursor.getString(idTargetWord)
                         val targetWordId = if (cursor.isNull(idTargetWordId)) null else cursor.getLong(idTargetWordId)
@@ -1173,7 +1173,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     val targetSynsetId = cursor.getLong(idTargetSynsetId)
                     val targetDefinition = cursor.getString(idTargetDefinition)
                     val targetWord = cursor.getString(idTargetWord)
-                    var targetMembers = cursor.getString(idTargetMembers)
+                    val targetMembers = cursor.getString(idTargetMembers)
                     if (displayLexRelationName) {
                         append(sb, relation, 0, WordNetFactories.relationFactory)
                         sb.append(' ')
@@ -1227,7 +1227,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (relationFilter.invoke(relationId)) {
                     val targetDefinition = cursor.getString(idTargetDefinition)
                     val targetWord = cursor.getString(idTargetWord)
-                    var targetMembers = cursor.getString(idTargetMembers)
+                    val targetMembers = cursor.getString(idTargetMembers)
                     if (sb.isNotEmpty()) {
                         sb.append('\n')
                     }
