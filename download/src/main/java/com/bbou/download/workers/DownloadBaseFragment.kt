@@ -78,7 +78,7 @@ abstract class DownloadBaseFragment : ProbedDownloadFragment() {
     /**
      * Observer
      */
-    protected val observer = Observer<WorkInfo?> @UiThread { wi: WorkInfo? ->
+    protected val observer = Observer @UiThread { wi: WorkInfo? ->
 
         if (wi == null)
             return@Observer

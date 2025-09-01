@@ -178,7 +178,7 @@ object MenuHandler {
         if (view != null && view.width > 0 && view.height > 0) {
             return view
         }
-        view = activity.findViewById<View>(R.id.container_browse2m)
+        view = activity.findViewById(R.id.container_browse2m)
         if (view != null && view.width > 0 && view.height > 0) {
             return view
         }
