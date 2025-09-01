@@ -591,7 +591,7 @@ object Deploy {
                             }
                             val path = File(dir, name).absolutePath
                             if (digest != null) {
-                                map[path] = digest.toString()
+                                map[path] = digest
                             }
                         }
                     }

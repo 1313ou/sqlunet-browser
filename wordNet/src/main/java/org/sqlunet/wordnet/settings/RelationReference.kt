@@ -108,7 +108,7 @@ enum class RelationReference(
          * Default filter
          */
         @JvmField
-        val FILTER_DEFAULT: Long = (1L shl RelationReference.entries.size.toInt()) - 1
+        val FILTER_DEFAULT: Long = (1L shl RelationReference.entries.size) - 1
         /*
                 HYPERNYM.mask() or HYPONYM.mask() or
                 HOLONYM_MEMBER.mask() or HOLONYM_SUBSTANCE.mask() or HOLONYM_PART.mask() or
