@@ -44,5 +44,29 @@ object SyntagNetControl {
         override fun toString(): String {
             return "table='$table'\nprojection=${projection.contentToString()}\nselection='$selection'\nselectionArgs=${selectionArgs.contentToString()}\ngroupBy=$groupBy"
         }
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) return true
+            if (javaClass != other?.javaClass) return false
+
+            other as Result
+
+            if (table != other.table) return false
+            if (!projection.contentEquals(other.projection)) return false
+            if (selection != other.selection) return false
+            if (!selectionArgs.contentEquals(other.selectionArgs)) return false
+            if (groupBy != other.groupBy) return false
+
+            return true
+        }
+
+        override fun hashCode(): Int {
+            var result = table.hashCode()
+            result = 31 * result + (projection?.contentHashCode() ?: 0)
+            result = 31 * result + (selection?.hashCode() ?: 0)
+            result = 31 * result + (selectionArgs?.contentHashCode() ?: 0)
+            result = 31 * result + (groupBy?.hashCode() ?: 0)
+            return result
+        }
     }
 }
