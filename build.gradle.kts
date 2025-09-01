@@ -29,8 +29,8 @@ allprojects {
         set("versionCode", 185)
         set("versionName", "4.185")
         set("minSdk", 21)
-        set("targetSdk", 35)
-        set("compileSdk", 35)
+        set("targetSdk", 36)
+        set("compileSdk", 36)
     }
 
     gradle.projectsEvaluated {
