@@ -43,7 +43,7 @@ internal class CollocationNullableQueryFromWordIdsAndSynsetIds(connection: SQLit
 
         private fun getQuery(wordid: Long?, synsetid: Long?, word2id: Long?, synset2id: Long?): String {
             val ids = listOf(wordid, synsetid, word2id, synset2id)
-            return SyntagNetBaseCollocationQuery + " WHERE "  + ids
+            return "$SyntagNetBaseCollocationQuery WHERE " + ids
                 .asSequence()
                 .withIndex()
                 .filter { (i, _) -> ids[i] != null && ids[i]!! > 0L }

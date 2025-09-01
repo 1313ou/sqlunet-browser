@@ -102,7 +102,7 @@ class TaskProgressDialogObserver<Progress : Pair<Number, Number>>(activity: Acti
         progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(R.string.action_abort)) { dialog: DialogInterface, which: Int ->
             if (which == DialogInterface.BUTTON_NEGATIVE) {
                 val result = task != null && task!!.cancel(true)
-                Log.d(TAG, "Cancel task @" + Integer.toHexString(if (task == null) 0 else task.hashCode()) + ' ' + result)
+                Log.d(TAG, "Cancel task @" + Integer.toHexString(task?.hashCode() ?: 0) + ' ' + result)
                 dialog.dismiss()
             }
         }

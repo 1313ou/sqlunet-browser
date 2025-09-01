@@ -39,7 +39,7 @@ internal class CollocationNullableQueryFromWordIds(connection: SQLiteDatabase, w
 
         private fun getQuery(wordid: Long?, word2id: Long?): String {
             val ids = listOf(wordid, word2id)
-            return SyntagNetBaseCollocationQuery + " WHERE "  + ids
+            return "$SyntagNetBaseCollocationQuery WHERE " + ids
                 .asSequence()
                 .withIndex()
                 .filter { (i, _) -> ids[i] != null && ids[i]!! > 0L }
