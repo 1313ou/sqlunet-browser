@@ -440,7 +440,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             model.loadData(uri, sql) { cursor: Cursor -> pmCursorToTreeModel(cursor, parent) }
         }
 
-        private fun pmCursorToTreeModel(cursor: Cursor, @Suppress("UNUSED_PARAMETER") parent: TreeNode): Array<TreeOp> {
+        private fun pmCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
             if (cursor.moveToFirst()) {
                 // column indices
                 val idPmId = cursor.getColumnIndex(PredicateMatrixContract.PredicateMatrix.PMID)

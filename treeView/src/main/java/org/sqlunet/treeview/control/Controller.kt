@@ -161,7 +161,7 @@ abstract class Controller protected constructor(
      * @param selected selected flag
      */
     @Suppress("EmptyMethod")
-    fun onSelectedEvent(@Suppress("UNUSED_PARAMETER") selected: Boolean) {
+    fun onSelectedEvent(selected: Boolean) {
         // empty
     }
 }
