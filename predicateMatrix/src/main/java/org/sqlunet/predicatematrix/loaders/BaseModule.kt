@@ -6,7 +6,6 @@ package org.sqlunet.predicatematrix.loaders
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Parcelable
 import android.text.SpannableStringBuilder
 import android.util.SparseArray

@@ -5,7 +5,6 @@ package org.sqlunet.propbank.loaders
 
 import android.database.Cursor
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.text.SpannableStringBuilder
 import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.browser.Module

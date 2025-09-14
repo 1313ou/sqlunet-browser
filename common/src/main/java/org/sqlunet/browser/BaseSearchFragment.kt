@@ -8,7 +8,6 @@ import android.app.Activity
 import android.app.SearchManager
 import android.app.SearchableInfo
 import android.content.Context
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper

@@ -4,7 +4,6 @@
 package org.sqlunet.browser
 
 import android.annotation.SuppressLint
-import android.annotation.TargetApi
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -62,7 +61,7 @@ class HelpFragment : Fragment() {
                     Log.e(TAG, "$failingUrl:$description,$errorCode")
                 }
 
-                @androidx.annotation.RequiresApi(Build.VERSION_CODES.N)
+                @RequiresApi(Build.VERSION_CODES.N)
                 override fun onReceivedError(webView: WebView, request: WebResourceRequest, error: WebResourceError) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                         super.onReceivedError(webView, request, error)

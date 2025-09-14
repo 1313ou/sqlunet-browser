@@ -4,7 +4,6 @@
 package com.bbou.download.workers
 
 import android.content.Context
-import android.net.Uri
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.View

@@ -4,7 +4,6 @@
 package org.sqlunet.browser.fn.web
 
 import android.annotation.SuppressLint
-import android.annotation.TargetApi
 import android.app.Activity
 import android.content.Context
 import android.content.Intent

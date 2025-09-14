@@ -29,7 +29,6 @@ import org.sqlunet.settings.StorageUtils
 import org.sqlunet.settings.StorageUtils.isAuto
 import org.sqlunet.sql.PreparedStatement
 import java.io.File
-import java.util.function.BiConsumer
 
 /**
  * A PreferenceActivity that presents a set of application settings. On handset devices, settings are presented as a single list. On tablets, settings

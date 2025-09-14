@@ -6,7 +6,6 @@ package org.sqlunet.speak
 import android.os.Build
 import android.os.Bundle
 import android.speech.tts.Voice
-import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.preference.Preference
 import androidx.preference.Preference.SummaryProvider

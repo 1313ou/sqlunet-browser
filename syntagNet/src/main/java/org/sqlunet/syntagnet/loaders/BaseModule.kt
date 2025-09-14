@@ -5,7 +5,6 @@ package org.sqlunet.syntagnet.loaders
 
 import android.annotation.SuppressLint
 import android.database.Cursor
-import android.net.Uri
 import android.text.SpannableStringBuilder
 import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.browser.Module

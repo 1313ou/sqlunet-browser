@@ -4,7 +4,6 @@
 package org.sqlunet.browser.sn.selector
 
 import android.database.Cursor
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.CursorAdapter

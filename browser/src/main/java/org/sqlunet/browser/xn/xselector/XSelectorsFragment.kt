@@ -6,7 +6,6 @@ package org.sqlunet.browser.xn.xselector
 import android.content.Context
 import android.database.Cursor
 import android.database.MatrixCursor
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater

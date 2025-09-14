@@ -4,7 +4,6 @@
 package org.sqlunet.browser.config
 
 import android.content.Context
-import android.net.Uri
 import android.text.Editable
 import android.text.SpannableStringBuilder
 import android.util.Log

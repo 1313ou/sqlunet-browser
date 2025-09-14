@@ -5,7 +5,6 @@ package org.sqlunet.browser.config
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import com.bbou.deploy.workers.Deploy
 import com.bbou.download.Keys.DOWNLOAD_ENTRY_ARG
 import com.bbou.download.Keys.DOWNLOAD_FROM_ARG

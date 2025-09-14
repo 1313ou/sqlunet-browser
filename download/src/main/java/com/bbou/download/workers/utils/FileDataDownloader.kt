@@ -5,7 +5,6 @@ package com.bbou.download.workers.utils
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import com.bbou.concurrency.Task
