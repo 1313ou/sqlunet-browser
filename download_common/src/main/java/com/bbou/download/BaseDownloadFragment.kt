@@ -573,7 +573,7 @@ abstract class BaseDownloadFragment : Fragment() {
                 val file = uri?.lastPathSegment
                 var path = uri?.path
                 if (path != null && file != null) {
-                    path = path.substring(0, path.lastIndexOf(file))
+                    path = path.take(path.lastIndexOf(file))
                 }
                 srcView3.text = host
                 srcView2.text = path

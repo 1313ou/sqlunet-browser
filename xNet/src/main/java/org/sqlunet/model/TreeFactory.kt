@@ -87,12 +87,12 @@ object TreeFactory {
      * Make intent node
      *
      * @param value       character sequence
-    * @param icon         icon (extra icon after tree icon)
+     * @param icon        icon (extra icon after tree icon)
      * @param breakExpand break expand flag
      * @param intent      intent
      * @return created node
      */
-    fun makeIntentNode(value: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, intent: Intent): TreeNode {
+    fun makeIntentNode(value: CharSequence, @Suppress("unused") @DrawableRes icon: Int, breakExpand: Boolean, intent: Intent): TreeNode {
         return TreeNode(value, null, arrayOf(intent), IntentController(breakExpand), false)
     }
 

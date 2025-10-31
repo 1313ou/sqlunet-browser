@@ -18,7 +18,7 @@ import org.sqlunet.treeview.model.TreeNode
  * @param breakExpand    whether this controller breaks expansion
  * @param buttonImageRes image drawable id for button, 0 for default
  */
-class LinkHotQueryTreeController(breakExpand: Boolean, @DrawableRes private val buttonImageRes: Int) : HotQueryTreeController(breakExpand) {
+class LinkHotQueryTreeController(breakExpand: Boolean, @param:DrawableRes private val buttonImageRes: Int) : HotQueryTreeController(breakExpand) {
 
     @LayoutRes
     override val layoutResId = R.layout.layout_query_link

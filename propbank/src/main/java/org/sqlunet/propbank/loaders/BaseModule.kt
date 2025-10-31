@@ -485,6 +485,6 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * @return string with capitalized first character
      */
     private fun capitalize1(s: String): CharSequence {
-        return s.substring(0, 1).uppercase() + s.substring(1)
+        return s.take(1).uppercase() + s.substring(1)
     }
 }

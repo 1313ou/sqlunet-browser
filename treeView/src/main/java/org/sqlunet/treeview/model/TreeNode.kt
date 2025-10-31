@@ -13,7 +13,7 @@ import org.sqlunet.treeview.control.Controller
  */
 class TreeNode(
     var text: CharSequence?,
-    @DrawableRes var icon: Int? = null,
+    @param:DrawableRes var icon: Int? = null,
     val payload: Array<Any?>? = null,
     var controller: Controller,
     var isCollapsible: Boolean,

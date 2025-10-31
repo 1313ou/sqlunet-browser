@@ -73,8 +73,7 @@ class SQLiteQueryBuilder {
         if (column != null) {
             return maybeWithOperator(operator, column)
         }
-        @Suppress("KotlinConstantConditions")
-        if (STRICT_FLAGS == 0 && (userColumn.contains(" AS ") || userColumn.contains(" as "))) {
+        if (userColumn.contains(" AS ") || userColumn.contains(" as ")) {
             /* A column alias already exist */
             return maybeWithOperator(operator, userColumn)
         }

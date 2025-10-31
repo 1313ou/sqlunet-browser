@@ -62,7 +62,7 @@ class TTS(context: Context?, written: String, ipa: String, locale: Locale?, voic
                     tts.shutdown()
                 }
 
-                @Deprecated("Deprecated in Java", ReplaceWith("onError(utteranceId: String, errorCode: Int)"))
+                @Deprecated("Deprecated in Java")
                 override fun onError(utteranceId: String) {
                     Log.e(TAG, "error $utteranceId")
                 }

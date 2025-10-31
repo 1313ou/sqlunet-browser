@@ -191,6 +191,78 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
                     observer.taskUpdate(statusStr)
                     observer.taskFinish(false)
                 }
+
+                AssetPackStatus.CANCELED -> {
+                    TODO()
+                }
+
+                AssetPackStatus.COMPLETED -> {
+                    TODO()
+                }
+
+                AssetPackStatus.DOWNLOADING -> {
+                    TODO()
+                }
+
+                AssetPackStatus.FAILED -> {
+                    TODO()
+                }
+
+                AssetPackStatus.NOT_INSTALLED -> {
+                    TODO()
+                }
+
+                AssetPackStatus.PENDING -> {
+                    TODO()
+                }
+
+                AssetPackStatus.TRANSFERRING -> {
+                    TODO()
+                }
+
+                AssetPackStatus.UNKNOWN -> {
+                    TODO()
+                }
+
+                AssetPackStatus.WAITING_FOR_WIFI -> {
+                    TODO()
+                }
+
+                AssetPackStatus.CANCELED -> {
+                    TODO()
+                }
+
+                AssetPackStatus.COMPLETED -> {
+                    TODO()
+                }
+
+                AssetPackStatus.DOWNLOADING -> {
+                    TODO()
+                }
+
+                AssetPackStatus.FAILED -> {
+                    TODO()
+                }
+
+                AssetPackStatus.NOT_INSTALLED -> {
+                    TODO()
+                }
+
+                AssetPackStatus.PENDING -> {
+                    TODO()
+                }
+
+                AssetPackStatus.TRANSFERRING -> {
+                    TODO()
+                }
+
+                AssetPackStatus.UNKNOWN -> {
+                    TODO()
+                }
+
+                AssetPackStatus.WAITING_FOR_WIFI -> {
+                    TODO()
+                }
             }
         }
     }
