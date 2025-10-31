@@ -2,7 +2,7 @@
 agp = "8.13.0"
 
 desugar = "2.1.5"
-kotlin = "2.1.20"
+kotlin = "2.2.21"
 kotlin-bom = "2.2.0"
 kotlin-reflect = "2.1.0"
 kotlin-json = "1.6.2"
