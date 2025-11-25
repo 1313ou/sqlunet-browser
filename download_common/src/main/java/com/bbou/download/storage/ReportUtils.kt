@@ -110,16 +110,22 @@ object ReportUtils {
      * @param span span to apply
      */
     private fun applySpan(sb: SpannableStringBuilder, from: Int, to: Int, span: Any) {
-        if (span is Array<*> && span.isArrayOf<Any>()) {
-            for (span2 in span) {
-                sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        when (span) {
+            is Array<*> if span.isArrayOf<Any>() -> {
+                for (span2 in span) {
+                    sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                }
             }
-        } else if (span is Collection<*>) {
-            for (span2 in span) {
-                sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            is Collection<*> -> {
+                for (span2 in span) {
+                    sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                }
             }
-        } else {
-            sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            else -> {
+                sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
         }
     }
 

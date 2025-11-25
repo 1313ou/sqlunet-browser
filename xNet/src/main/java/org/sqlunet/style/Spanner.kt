@@ -98,18 +98,24 @@ open class Spanner {
          */
         fun setSpan(sb: SpannableStringBuilder, from: Int, to: Int, spans: Span?) {
             if (spans != null && to - from > 0) {
-                if (spans is Array<*> && spans.isArrayOf<Span>()) {
-                    for (span in spans) {
-                        if (span != null) {
-                            sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                when (spans) {
+                    is Array<*> if spans.isArrayOf<Span>() -> {
+                        for (span in spans) {
+                            if (span != null) {
+                                sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                            }
                         }
                     }
-                } else if (spans is Collection<*>) {
-                    for (span2 in spans) {
-                        sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+                    is Collection<*> -> {
+                        for (span2 in spans) {
+                            sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        }
                     }
-                } else {
-                    sb.setSpan(spans, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+                    else -> {
+                        sb.setSpan(spans, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    }
                 }
             }
         }
