@@ -147,11 +147,6 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
                     observer.taskProgress(Pair<Number, Number>(percent2, -1))
                 }
 
-                AssetPackStatus.REQUIRES_USER_CONFIRMATION -> {
-                    Log.i(TAG, "Requires user confirmation")
-                    observer.taskUpdate(statusStr)
-                }
-
                 AssetPackStatus.WAITING_FOR_WIFI -> {
                     observer.taskUpdate(statusStr)
                     if (!waitForWifiConfirmationShown) {
@@ -192,76 +187,9 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
                     observer.taskFinish(false)
                 }
 
-                AssetPackStatus.CANCELED -> {
-                    TODO()
-                }
-
-                AssetPackStatus.COMPLETED -> {
-                    TODO()
-                }
-
-                AssetPackStatus.DOWNLOADING -> {
-                    TODO()
-                }
-
-                AssetPackStatus.FAILED -> {
-                    TODO()
-                }
-
-                AssetPackStatus.NOT_INSTALLED -> {
-                    TODO()
-                }
-
-                AssetPackStatus.PENDING -> {
-                    TODO()
-                }
-
-                AssetPackStatus.TRANSFERRING -> {
-                    TODO()
-                }
-
-                AssetPackStatus.UNKNOWN -> {
-                    TODO()
-                }
-
-                AssetPackStatus.WAITING_FOR_WIFI -> {
-                    TODO()
-                }
-
-                AssetPackStatus.CANCELED -> {
-                    TODO()
-                }
-
-                AssetPackStatus.COMPLETED -> {
-                    TODO()
-                }
-
-                AssetPackStatus.DOWNLOADING -> {
-                    TODO()
-                }
-
-                AssetPackStatus.FAILED -> {
-                    TODO()
-                }
-
-                AssetPackStatus.NOT_INSTALLED -> {
-                    TODO()
-                }
-
-                AssetPackStatus.PENDING -> {
-                    TODO()
-                }
-
-                AssetPackStatus.TRANSFERRING -> {
-                    TODO()
-                }
-
-                AssetPackStatus.UNKNOWN -> {
-                    TODO()
-                }
-
-                AssetPackStatus.WAITING_FOR_WIFI -> {
-                    TODO()
+                AssetPackStatus.REQUIRES_USER_CONFIRMATION -> {
+                    Log.i(TAG, "Requires user confirmation")
+                    observer.taskUpdate(statusStr)
                 }
             }
         }
