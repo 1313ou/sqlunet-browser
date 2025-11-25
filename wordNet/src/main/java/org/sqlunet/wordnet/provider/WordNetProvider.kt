@@ -340,8 +340,8 @@ class WordNetProvider : BaseProvider() {
          * @return union sql
          */
         private fun makeQuery(
-            table1: String,
-            table2: String,
+            @Suppress("SameParameterValue") table1: String,
+            @Suppress("SameParameterValue") table2: String,
             projection1: Array<String>,
             projection2: Array<String>,
             unionProjection: Array<String>,
