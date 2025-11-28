@@ -9,7 +9,8 @@
 
 	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:fitsSystemWindows="true">
 
 		<include layout="@layout/toolbar" />
 
@@ -137,8 +138,8 @@
 				app:elevation="6dp" />
 
 			<Button
-				style="@style/Widget.AppCompat.Button.Borderless.Colored"
 				android:id="@+id/consume"
+				style="@style/Widget.AppCompat.Button.Borderless.Colored"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"

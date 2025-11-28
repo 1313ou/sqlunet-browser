@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.Date
 
 plugins {
@@ -24,10 +25,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
         isCoreLibraryDesugaringEnabled = true
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -64,6 +61,12 @@ dependencies {
     testImplementation(libs.querybuilder)
 }
 
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.fromTarget("17")
+    }
+}
+
 // C O D E   G E N E R A T I O N
 
 private var protoSrcDir = File(project.projectDir, "/src/proto")
@@ -79,9 +82,6 @@ android {
         getByName("test") {
             java.srcDirs(generatedSrcDir)
         }
-    }
-    kotlinOptions {
-        jvmTarget = "17"
     }
 }
 
