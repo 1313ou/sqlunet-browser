@@ -35,7 +35,7 @@ object DownloadIntentFactory {
             Mode.DOWNLOAD -> makeIntentPlainDownload(context)
             Mode.DOWNLOAD_ZIP -> makeIntentZipDownload(context)
             Mode.DOWNLOAD_ZIP_THEN_UNZIP -> makeIntentDownloadThenDeploy(context)
-            else -> throw RuntimeException(type.toString())
+            // else -> throw RuntimeException(type.toString())
         }
     }
 
