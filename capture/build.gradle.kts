@@ -34,7 +34,7 @@ android {
 
 kotlin {
     compilerOptions {
-        jvmTarget = JvmTarget.fromTarget("17")
+        jvmToolchain(17)
     }
 }
 
