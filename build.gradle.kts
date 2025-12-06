@@ -26,8 +26,8 @@ allprojects {
     }
 
     ext {
-        set("versionCode", 187)
-        set("versionName", "4.187")
+        set("versionCode", 188)
+        set("versionName", "4.188")
         set("minSdk", 21)
         set("targetSdk", 36)
         set("compileSdk", 36)
