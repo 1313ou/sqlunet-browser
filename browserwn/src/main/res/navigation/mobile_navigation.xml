@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/mobile_navigation"
+	app:startDestination="@+id/nav_home"
+	tools:keep="@navigation/mobile_navigation">
+
+	<fragment
+		android:id="@+id/nav_home"
+		android:name="org.sqlunet.browser.HomeFragment"
+		android:tag="fragment_home"
+		android:label="@string/nav_home"
+		tools:layout="@layout/fragment_home" />
+
+	<fragment
+		android:id="@+id/nav_search_browse"
+		android:name="org.sqlunet.browser.wn.BrowseFragment"
+		android:label="@string/nav_search_browse"
+		tools:layout="@layout/fragment_browse" />
+
+	<fragment
+		android:id="@+id/nav_search_text"
+		android:name="org.sqlunet.browser.wn.SearchTextFragment"
+		android:label="@string/nav_search_text"
+		tools:layout="@layout/fragment_searchtext" />
+
+	<fragment
+		android:id="@+id/nav_status"
+		android:name="org.sqlunet.browser.wn.SetupWnStatusFragment"
+		android:label="@string/nav_status"
+		tools:layout="@layout/fragment_status" />
+
+	<activity
+		android:id="@+id/nav_setup"
+		android:name="org.sqlunet.browser.config.SetupActivity"
+		android:label="@string/nav_setup" />
+
+	<fragment
+		android:id="@+id/nav_storage"
+		android:name="org.sqlunet.browser.config.StorageFragment"
+		android:label="@string/nav_storage"
+		tools:layout="@layout/fragment_storage" />
+
+	<activity
+		android:id="@+id/nav_settings"
+		android:name="org.sqlunet.browser.config.SettingsActivity"
+		android:label="@string/nav_settings" />
+
+	<fragment
+		android:id="@+id/nav_sql"
+		android:name="org.sqlunet.browser.SqlFragment"
+		android:label="@string/nav_sql"
+		tools:layout="@layout/fragment_sql" />
+
+	<fragment
+		android:id="@+id/nav_history"
+		android:name="org.sqlunet.browser.history.HistoryFragment"
+		android:label="@string/nav_history"
+		tools:layout="@layout/fragment_history" />
+
+	<fragment
+		android:id="@+id/nav_help"
+		android:name="org.sqlunet.browser.HelpFragment"
+		android:label="@string/nav_help"
+		tools:layout="@layout/fragment_help" />
+
+	<fragment
+		android:id="@+id/nav_about"
+		android:name="org.sqlunet.browser.AboutFragment"
+		android:label="@string/nav_about"
+		tools:layout="@layout/fragment_about" />
+
+</navigation>
