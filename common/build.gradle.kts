@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.navigationSafeargs)
+    alias(libs.plugins.navigationSafeargs) apply false
  }
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }

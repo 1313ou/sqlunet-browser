@@ -4,7 +4,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.navigationSafeargs)
+    alias(libs.plugins.navigationSafeargs) apply false
  }
 
 private val vCode by lazy { rootProject.extra["versionCode"] as Int }
