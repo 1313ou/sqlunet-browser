@@ -104,6 +104,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     protected val verbTemplatesLabel: String
     protected val adjPositionsLabel: String
     protected val morphsLabel: String
+    protected val iliUrl: String
+    protected val wikidataUrl: String
     private val synsetDrawable: Drawable
     private val memberDrawable: Drawable
     private val definitionDrawable: Drawable
@@ -190,6 +192,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         verbTemplatesLabel = context.getString(R.string.wordnet_verbtemplates_)
         adjPositionsLabel = context.getString(R.string.wordnet_adjpositions_)
         morphsLabel = context.getString(R.string.wordnet_morphs_)
+        iliUrl = context.getString(R.string.ili_url)
+        wikidataUrl = context.getString(R.string.wikidata_url)
+
         synsetDrawable = getDrawable(context, R.drawable.synset)
         memberDrawable = getDrawable(context, R.drawable.synsetmember)
         definitionDrawable = getDrawable(context, R.drawable.definition)
@@ -834,12 +839,13 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val ili = cursor.getString(idIli).substring(1)
             val callback = {
                 Log.d(TAG, "ILI $ili clicked!")
-                val context = this@BaseModule.fragment.requireContext()
-                val url = String.format(context.resources.getString(R.string.ili_url), ili)
-                Toast.makeText(context, "ILI $ili clicked!", Toast.LENGTH_SHORT).show()
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = url.toUri()
-                context.startActivity(intent)
+                val url = iliUrl.instantiate(ili)
+                fragment.context?.let { context ->
+                    Toast.makeText(context, "ILI $ili clicked!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.data = url.toUri()
+                    context.startActivity(intent)
+                }
             }
             val sb = SpannableStringBuilder()
             append(sb, "ILI", 0, boldFactory)
@@ -878,8 +884,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             do {
                 val wikidata = cursor.getString(idWikidata)
                 val intent: Intent = Intent(Intent.ACTION_VIEW).apply {
-                    val context = fragment.requireContext()
-                    val url = String.format(context.resources.getString(R.string.wikidata_url), wikidata)
+                    val url = wikidataUrl.instantiate(wikidata)
                     this.data = url.toUri()
                     this.putExtra("data", wikidata)
                 }
@@ -895,7 +900,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 changedList += seq(TreeOpCode.NEWUNIQUE, node)
                 //} else {
                 //    setLinkVisible(parent, false)
-                //    parent.payload!![1] = { fragment.requireContext().startActivity(intent) }
+                //    parent.payload!![1] = { fragment.context?.let { context -> context.startActivity(intent) }}
                 //    setTextNode(parent, sb, R.drawable.wikidata)
                 //    changedList += seq(TreeOpCode.UPDATE, parent)
                 //}
