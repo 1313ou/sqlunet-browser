@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
     id("org.sqlunet.plugin.querybuilder") version "1.1.0"
     alias(libs.plugins.androidLibrary)
