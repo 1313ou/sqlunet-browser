@@ -5,12 +5,14 @@ package org.sqlunet.browser.vn
 
 import android.content.Context
 import org.sqlunet.browser.AbstractApplication
+import org.sqlunet.browser.AppContext
 import org.sqlunet.style.Colors
 
 class Application : AbstractApplication() {
 
     override fun onCreate() {
         super.onCreate()
+        AppContext.init(this)
         setAllColorsFromResources(this)
     }
 

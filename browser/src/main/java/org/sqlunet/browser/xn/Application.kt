@@ -5,6 +5,7 @@ package org.sqlunet.browser.xn
 
 import android.content.Context
 import org.sqlunet.browser.AbstractApplication
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BuildConfig
 import org.sqlunet.framenet.FnFlags
 import org.sqlunet.style.Colors
@@ -13,6 +14,7 @@ class Application : AbstractApplication() {
 
     override fun onCreate() {
         super.onCreate()
+        AppContext.init(this)
         XnSettings.initializeSelectorPrefs(this)
         setAllColorsFromResources(this)
     }
