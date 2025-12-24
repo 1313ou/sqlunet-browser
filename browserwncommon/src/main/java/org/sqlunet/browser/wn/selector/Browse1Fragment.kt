@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseBrowse1Fragment
 import org.sqlunet.browser.BaseBrowse2Fragment
 import org.sqlunet.browser.BaseSelectorsFragment
@@ -95,8 +96,8 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
             fragment.search(pointer, word, cased, pronunciation, pos)
         } else {
             // in single-pane mode, simply start the detail activity for the selected item ID.
-            val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext())
-            val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
+            val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(AppContext.context)
+            val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(AppContext.context)
             val args = Bundle()
             args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
             args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse)
@@ -106,7 +107,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
             args.putString(ProviderArgs.ARG_HINTPRONUNCIATION, pronunciation)
             args.putString(ProviderArgs.ARG_HINTPOS, pos)
             args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
-            val intent = Intent(requireContext(), Browse2Activity::class.java)
+            val intent = Intent(AppContext.context, Browse2Activity::class.java)
             intent.putExtras(args)
             startActivity(intent)
         }

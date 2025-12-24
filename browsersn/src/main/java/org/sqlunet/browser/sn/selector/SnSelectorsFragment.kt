@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.SimpleCursorAdapter
 import android.widget.TextView
 import androidx.core.net.toUri
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseSelectorsListFragment
 import org.sqlunet.browser.Selectors
 import org.sqlunet.browser.sn.R
@@ -163,7 +164,7 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
         val projection = arrayOf(WordNetContract.Words.WORDID)
         val selection = WordNetContract.Words.WORD + " = ?"
         val selectionArgs = arrayOf(query)
-        requireContext().contentResolver.query(uri, projection, selection, selectionArgs, null).use {
+        AppContext.context.contentResolver.query(uri, projection, selection, selectionArgs, null).use {
             if (it != null) {
                 if (it.moveToFirst()) {
                     val idWordId = it.getColumnIndex(WordNetContract.Words.WORDID)

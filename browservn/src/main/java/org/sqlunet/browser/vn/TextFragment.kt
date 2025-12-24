@@ -39,6 +39,7 @@ import org.sqlunet.verbnet.browser.VnClassActivity
 import org.sqlunet.verbnet.provider.VerbNetContract
 import java.util.regex.Pattern
 import androidx.core.net.toUri
+import org.sqlunet.browser.AppContext
 
 /**
  * Text result fragment
@@ -173,7 +174,7 @@ class TextFragment : BaseListFragment() {
         // intent, type, pointer
         if (typedPointer.type == 0) {
             pointer = VnClassPointer(targetId)
-            targetIntent = Intent(requireContext(), VnClassActivity::class.java)
+            targetIntent = Intent(AppContext.context, VnClassActivity::class.java)
             targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS)
         }
         targetIntent!!.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
@@ -196,7 +197,7 @@ class TextFragment : BaseListFragment() {
         // intent, type, pointer
         if (typedPointer.type == 0) {
             pointer = PbRoleSetPointer(targetId)
-            targetIntent = Intent(requireContext(), PbRoleSetActivity::class.java)
+            targetIntent = Intent(AppContext.context, PbRoleSetActivity::class.java)
             targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET)
         }
         targetIntent!!.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)

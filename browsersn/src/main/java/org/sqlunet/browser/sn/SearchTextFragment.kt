@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseSearchFragment
 import org.sqlunet.browser.SearchTextSplashFragment
 import org.sqlunet.browser.SplashFragment
@@ -68,7 +69,7 @@ class SearchTextFragment : BaseSearchFragment() {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
                 searchModePosition = position
-                Settings.setSearchModePref(requireContext(), position)
+                Settings.setSearchModePref(AppContext.context, position)
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -76,7 +77,7 @@ class SearchTextFragment : BaseSearchFragment() {
         }
 
         // spinner position
-        val position: Int = Settings.getSearchModePref(requireContext())
+        val position: Int = Settings.getSearchModePref(AppContext.context)
         spinner.setSelection(position)
     }
 

@@ -130,11 +130,11 @@ class Browse2Fragment : BaseBrowse2Fragment() {
             for (p in pronunciations!!) {
                 val label = p.toString()
                 val ipa = p.ipa
-                val country = if (p.variety == null) SpeakSettings.findCountry(requireContext()) else p.variety
+                val country = if (p.variety == null) SpeakSettings.findCountry(AppContext.context) else p.variety
                 sb.append('\n')
                 appendClickableImage(sb, org.sqlunet.speak.R.drawable.ic_speak_button, label, {
                     Log.d("Speak", "")
-                    pronounce(requireContext(), word!!, ipa, country, SpeakSettings.findVoiceFor(country, requireContext()))
+                    pronounce(AppContext.context, word!!, ipa, country, SpeakSettings.findVoiceFor(country, AppContext.context))
                 }, requireContext())
             }
         }

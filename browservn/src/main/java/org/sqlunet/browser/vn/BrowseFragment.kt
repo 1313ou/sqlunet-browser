@@ -144,7 +144,7 @@ class BrowseFragment : BaseSearchFragment() {
         Log.d(TAG, "Browse '$trimmedQuery'")
 
         // history
-        recordQuery(requireContext(), trimmedQuery)
+        recordQuery(AppContext.context, trimmedQuery)
 
         // menuDispatch as per query prefix
         var fragment: Fragment?

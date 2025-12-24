@@ -40,6 +40,7 @@ import org.sqlunet.style.Factories.spans
 import org.sqlunet.style.RegExprSpanner
 import java.util.regex.Pattern
 import androidx.core.net.toUri
+import org.sqlunet.browser.AppContext
 
 /**
  * Text result fragment
@@ -162,19 +163,19 @@ class TextFragment : BaseListFragment() {
         when (typedPointer.type) {
             0 -> {
                 pointer = FnFramePointer(targetId)
-                targetIntent = Intent(requireContext(), FnFrameActivity::class.java)
+                targetIntent = Intent(AppContext.context, FnFrameActivity::class.java)
                 targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME)
             }
 
             1 -> {
                 pointer = FnLexUnitPointer(targetId)
-                targetIntent = Intent(requireContext(), FnLexUnitActivity::class.java)
+                targetIntent = Intent(AppContext.context, FnLexUnitActivity::class.java)
                 targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT)
             }
 
             2 -> {
                 pointer = FnSentencePointer(targetId)
-                targetIntent = Intent(requireContext(), FnSentenceActivity::class.java)
+                targetIntent = Intent(AppContext.context, FnSentenceActivity::class.java)
                 targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE)
             }
         }
