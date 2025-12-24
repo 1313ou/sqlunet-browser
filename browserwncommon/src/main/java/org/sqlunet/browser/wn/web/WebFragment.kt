@@ -291,7 +291,7 @@ class WebFragment : Fragment() {
         Log.d(TAG, "data=$data")
 
         // load the contents
-        model!!.loadData(WebDocumentStringLoader(requireContext(), type, data, pointer, pos, sources, xml))
+        model!!.loadData(WebDocumentStringLoader(AppContext.context, type, data, pointer, pos, sources, xml))
     }
 
     /**

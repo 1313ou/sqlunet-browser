@@ -302,7 +302,7 @@ class WebFragment : Fragment() {
         Log.d(TAG, "ArgPosition: data=$data")
 
         // load the contents
-        model!!.loadData(WebDocumentStringLoader(requireContext(), pointer, pos, type, data, sources, xml))
+        model!!.loadData(WebDocumentStringLoader(AppContext.context, pointer, pos, type, data, sources, xml))
     }
 
     /**

@@ -69,11 +69,11 @@ import org.sqlunet.browser.AppContext
  */
 class WebFragment : Fragment() {
 
-    private inner class WebDocumentStringLoader(val context: Context, val pointer: Parcelable?, val pos: Char?, val type: Int, val data: String?, val sources: Int, val xml: Boolean) : DocumentStringLoader {
+    private inner class WebDocumentStringLoader(val appContext: Context, val pointer: Parcelable?, val pos: Char?, val type: Int, val data: String?, val sources: Int, val xml: Boolean) : DocumentStringLoader {
 
         override fun getDoc(): String? {
             try {
-                DataSource(StorageSettings.getDatabasePath(context)).use {
+                DataSource(StorageSettings.getDatabasePath(appContext)).use {
 
                     // data source
                     val db = it.connection
@@ -432,7 +432,7 @@ class WebFragment : Fragment() {
         Log.d(TAG, "ArgPosition: data=$data")
 
         // load the contents
-        model!!.loadData(WebDocumentStringLoader(requireContext(), pointer, pos, type, data, sources, xml))
+        model!!.loadData(WebDocumentStringLoader(AppContext.context, pointer, pos, type, data, sources, xml))
     }
 
     /**
