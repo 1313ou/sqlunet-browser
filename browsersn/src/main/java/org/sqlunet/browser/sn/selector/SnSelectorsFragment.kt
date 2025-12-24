@@ -12,6 +12,7 @@ import android.widget.CursorAdapter
 import android.widget.ImageView
 import android.widget.SimpleCursorAdapter
 import android.widget.TextView
+import androidx.core.net.toUri
 import org.sqlunet.browser.BaseSelectorsListFragment
 import org.sqlunet.browser.Selectors
 import org.sqlunet.browser.sn.R
@@ -22,7 +23,6 @@ import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X
 import org.sqlunet.syntagnet.provider.SyntagNetProvider
 import org.sqlunet.wordnet.provider.WordNetContract
 import org.sqlunet.wordnet.provider.WordNetProvider
-import androidx.core.net.toUri
 
 /**
  * Selector Fragment

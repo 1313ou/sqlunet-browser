@@ -5,6 +5,7 @@ package org.sqlunet.browser.vn
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseBrowse2Fragment
 import org.sqlunet.browser.vn.web.WebFragment
 import org.sqlunet.browser.vn.xselector.XSelectorPointer
@@ -27,7 +28,6 @@ class Browse2Fragment : BaseBrowse2Fragment() {
      */
     override fun search() {
 
-        val context = requireContext()
         if (!isAdded) {
             return
         }
@@ -38,10 +38,10 @@ class Browse2Fragment : BaseBrowse2Fragment() {
         args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
 
         // detail fragment
-        val mode: Settings.DetailViewMode = Settings.getDetailViewModePref(context)
+        val mode: Settings.DetailViewMode = Settings.getDetailViewModePref(AppContext.context)
         when (mode) {
             Settings.DetailViewMode.VIEW -> {
-                var enable = VnSettings.getAllPref(context)
+                var enable = VnSettings.getAllPref(AppContext.context)
                 if (pointer is XSelectorPointer) {
                     // sections to disable
                     var mask = 0

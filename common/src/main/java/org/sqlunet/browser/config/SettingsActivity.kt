@@ -15,6 +15,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.bbou.download.workers.utils.ResourcesDownloader.Companion.populateLists
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.EntryActivity.Companion.rerun
 import org.sqlunet.browser.common.R
 import org.sqlunet.preference.OpenEditTextPreference
@@ -129,12 +130,12 @@ class SettingsActivity : BaseSettingsActivity() {
 
             // db file
             val dbFilePreference = findPreference<Preference>(Settings.PREF_DB_FILE)!!
-            val storage = StorageSettings.getDatabasePath(requireContext())
+            val storage = StorageSettings.getDatabasePath(AppContext.context)
             dbFilePreference.setSummary(storage)
             dbFilePreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
                 var storage2 = newValue as String?
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isAuto(storage2!!)) {
-                    storage2 = requireContext().filesDir.absolutePath
+                    storage2 = AppContext.context.filesDir.absolutePath
                 }
                 storage2 += File.separatorChar.toString() + Storage.DBFILE
                 dbFilePreference.setSummary(storage2)
@@ -144,7 +145,7 @@ class SettingsActivity : BaseSettingsActivity() {
             // storage
             val storagePreference = findPreference<Preference>(Settings.PREF_STORAGE)!!
             // required if no 'entries' and 'entryValues' in XML
-            populateStoragePreference(requireContext(), storagePreference)
+            populateStoragePreference(AppContext.context, storagePreference)
             storagePreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance())
             val listener1 = storagePreference.onPreferenceChangeListener
             storagePreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference: Preference?, newValue: Any? ->
@@ -166,12 +167,12 @@ class SettingsActivity : BaseSettingsActivity() {
 
             // db file
             val dbFilePreference = findPreference<Preference>(Settings.PREF_DB_FILE)!!
-            val storage = StorageSettings.getDatabasePath(requireContext())
+            val storage = StorageSettings.getDatabasePath(AppContext.context)
             dbFilePreference.setSummary(storage)
             dbFilePreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
                 var storage2 = newValue as String?
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isAuto(storage2!!)) {
-                    storage2 = requireContext().filesDir.absolutePath
+                    storage2 = AppContext.context.filesDir.absolutePath
                 }
                 storage2 += File.separatorChar.toString() + Storage.DBFILE
                 dbFilePreference.setSummary(storage2)
@@ -181,7 +182,7 @@ class SettingsActivity : BaseSettingsActivity() {
             // storage
             val storagePreference = findPreference<Preference>(Settings.PREF_STORAGE)!!
             // required if no 'entries' and 'entryValues' in XML
-            populateStoragePreference(requireContext(), storagePreference)
+            populateStoragePreference(AppContext.context, storagePreference)
             storagePreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance())
             val listener1 = storagePreference.onPreferenceChangeListener
             storagePreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { preference: Preference?, newValue: Any? ->
@@ -222,7 +223,7 @@ class SettingsActivity : BaseSettingsActivity() {
             val downloadModePreference = findPreference<Preference>(Settings.PREF_DOWNLOAD_MODE)!!
             downloadModePreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance())
             val sitePreference = findPreference<OpenEditTextPreference>(Settings.PREF_DOWNLOAD_SITE)!!
-            populateLists(requireContext()) { xValues: List<String>, xLabels: List<String> -> sitePreference.addOptions(xValues, xLabels) }
+            populateLists(AppContext.context) { xValues: List<String>, xLabels: List<String> -> sitePreference.addOptions(xValues, xLabels) }
             sitePreference.setSummaryProvider(OpenEditTextPreference.SUMMARY_PROVIDER)
             val dbFilePreference = findPreference<Preference>(Settings.PREF_DOWNLOAD_DBFILE)!!
             dbFilePreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance())

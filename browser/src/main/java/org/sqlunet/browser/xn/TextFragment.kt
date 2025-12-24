@@ -52,6 +52,7 @@ import org.sqlunet.wordnet.browser.WordActivity
 import org.sqlunet.wordnet.settings.Settings
 import java.util.regex.Pattern
 import androidx.core.net.toUri
+import org.sqlunet.browser.AppContext
 
 /**
  * Text result fragment
@@ -141,8 +142,8 @@ class TextFragment : BaseListFragment() {
                     if ("synset" == subtarget) {
 
                         // parameters
-                        val recurse = Settings.getRecursePref(requireContext())
-                        val parameters = Settings.makeParametersPref(requireContext())
+                        val recurse = Settings.getRecursePref(AppContext.context)
+                        val parameters = Settings.makeParametersPref(AppContext.context)
 
                         // target
                         val colIdx = cursor.getColumnIndex("synsetid")
@@ -153,7 +154,7 @@ class TextFragment : BaseListFragment() {
                         val synsetPointer: Parcelable = SynsetPointer(targetId)
 
                         // intent
-                        val targetIntent = Intent(requireContext(), SynsetActivity::class.java)
+                        val targetIntent = Intent(AppContext.context, SynsetActivity::class.java)
                         targetIntent.action = ProviderArgs.ACTION_QUERY
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET)
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer)
@@ -173,7 +174,7 @@ class TextFragment : BaseListFragment() {
                         val wordPointer: Parcelable = WordPointer(targetId)
 
                         // intent
-                        val targetIntent = Intent(requireContext(), WordActivity::class.java)
+                        val targetIntent = Intent(AppContext.context, WordActivity::class.java)
                         targetIntent.action = ProviderArgs.ACTION_QUERY
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD)
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, wordPointer)
@@ -262,7 +263,7 @@ class TextFragment : BaseListFragment() {
         // intent, type, pointer
         if (typedPointer.type == 0) {
             pointer = VnClassPointer(targetId)
-            targetIntent = Intent(requireContext(), VnClassActivity::class.java)
+            targetIntent = Intent(AppContext.context, VnClassActivity::class.java)
             targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS)
         }
         targetIntent!!.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
@@ -285,7 +286,7 @@ class TextFragment : BaseListFragment() {
         // intent, type, pointer
         if (typedPointer.type == 0) {
             pointer = PbRoleSetPointer(targetId)
-            targetIntent = Intent(requireContext(), PbRoleSetActivity::class.java)
+            targetIntent = Intent(AppContext.context, PbRoleSetActivity::class.java)
             targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET)
         }
         targetIntent!!.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
@@ -307,19 +308,19 @@ class TextFragment : BaseListFragment() {
         when (typedPointer.type) {
             0 -> {
                 pointer = FnFramePointer(targetId)
-                targetIntent = Intent(requireContext(), FnFrameActivity::class.java)
+                targetIntent = Intent(AppContext.context, FnFrameActivity::class.java)
                 targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME)
             }
 
             1 -> {
                 pointer = FnLexUnitPointer(targetId)
-                targetIntent = Intent(requireContext(), FnLexUnitActivity::class.java)
+                targetIntent = Intent(AppContext.context, FnLexUnitActivity::class.java)
                 targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT)
             }
 
             2 -> {
                 pointer = FnSentencePointer(targetId)
-                targetIntent = Intent(requireContext(), FnSentenceActivity::class.java)
+                targetIntent = Intent(AppContext.context, FnSentenceActivity::class.java)
                 targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE)
             }
         }

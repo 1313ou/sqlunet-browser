@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import org.sqlunet.Pointer
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseBrowse1Fragment
 import org.sqlunet.browser.BaseBrowse2Fragment
 import org.sqlunet.browser.BaseSelectorsFragment
@@ -94,7 +95,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
             args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
             args.putString(ProviderArgs.ARG_HINTWORD, word)
             args.putLong(ProviderArgs.ARG_HINTWORDID, wordId)
-            val intent = Intent(requireContext(), Browse2Activity::class.java)
+            val intent = Intent(AppContext.context, Browse2Activity::class.java)
             intent.putExtras(args)
             startActivity(intent)
         }

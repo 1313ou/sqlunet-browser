@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import org.sqlunet.bnc.browser.BNCFragment
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseBrowse2Fragment
 import org.sqlunet.browser.sn.selector.CollocationSelectorPointer
 import org.sqlunet.browser.sn.web.WebFragment
@@ -34,15 +35,15 @@ class Browse2Fragment : BaseBrowse2Fragment() {
      * Search
      */
     override fun search() {
-        val context = requireContext()
+
         if (!isAdded) {
             return
         }
         val manager = getChildFragmentManager()
 
         // args
-        val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(context)
-        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
+        val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(AppContext.context)
+        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(AppContext.context)
         val args = Bundle()
         args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
         args.putString(ProviderArgs.ARG_HINTPOS, pos)
@@ -56,10 +57,10 @@ class Browse2Fragment : BaseBrowse2Fragment() {
         }
 
         // detail fragment
-        val mode: Settings.DetailViewMode = Settings.getDetailViewModePref(context)
+        val mode: Settings.DetailViewMode = Settings.getDetailViewModePref(AppContext.context)
         when (mode) {
             Settings.DetailViewMode.VIEW -> {
-                val enable = SnSettings.getAllPref(context)
+                val enable = SnSettings.getAllPref(AppContext.context)
 
                 // transaction
                 val transaction = manager.beginTransaction().setReorderingAllowed(true)

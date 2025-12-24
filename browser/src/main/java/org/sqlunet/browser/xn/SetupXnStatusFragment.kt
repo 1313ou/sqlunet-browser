@@ -13,6 +13,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.core.widget.ImageViewCompat
 import com.bbou.download.preference.Settings.Mode
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.Info.info
 import org.sqlunet.browser.R
@@ -68,31 +69,31 @@ class SetupXnStatusFragment : SetupStatusFragment() {
         infoDatabaseButton!!.setOnClickListener { info() }
         buttonPm!!.setOnClickListener {
             val index = resources.getInteger(R.integer.sql_statement_do_predicatematrix_position)
-            val intent = Intent(requireContext(), SetupDatabaseActivity::class.java)
+            val intent = Intent(AppContext.context, SetupDatabaseActivity::class.java)
             intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
             startActivity(intent)
         }
         buttonTextSearchWn!!.setOnClickListener {
             val index = resources.getInteger(R.integer.sql_statement_do_ts_wn_position)
-            val intent = Intent(requireContext(), SetupDatabaseActivity::class.java)
+            val intent = Intent(AppContext.context, SetupDatabaseActivity::class.java)
             intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
             startActivity(intent)
         }
         buttonTextSearchVn!!.setOnClickListener {
             val index = resources.getInteger(R.integer.sql_statement_do_ts_vn_position)
-            val intent = Intent(requireContext(), SetupDatabaseActivity::class.java)
+            val intent = Intent(AppContext.context, SetupDatabaseActivity::class.java)
             intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
             startActivity(intent)
         }
         buttonTextSearchPb!!.setOnClickListener {
             val index = resources.getInteger(R.integer.sql_statement_do_ts_pb_position)
-            val intent = Intent(requireContext(), SetupDatabaseActivity::class.java)
+            val intent = Intent(AppContext.context, SetupDatabaseActivity::class.java)
             intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
             startActivity(intent)
         }
         buttonTextSearchFn!!.setOnClickListener {
             val index = resources.getInteger(R.integer.sql_statement_do_ts_fn_position)
-            val intent = Intent(requireContext(), SetupDatabaseActivity::class.java)
+            val intent = Intent(AppContext.context, SetupDatabaseActivity::class.java)
             intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
             startActivity(intent)
         }
@@ -114,7 +115,7 @@ class SetupXnStatusFragment : SetupStatusFragment() {
                     getString(R.string.title_status), getString(R.string.status_database_exists),
                     getString(R.string.title_status), getString(if (existsTables) R.string.status_data_exists else R.string.status_data_not_exists),
                     getString(R.string.title_free), free,
-                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()), String.format(
+                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context), String.format(
                         "%s %s %s/%s/%s/%s",
                         getString(R.string.size_expected),
                         getString(R.string.text_search),
@@ -124,12 +125,12 @@ class SetupXnStatusFragment : SetupStatusFragment() {
                         getString(R.string.framenet)
                     ), String.format(
                         "%s",
-                        hrSize(R.integer.size_searchtext, requireContext())
+                        hrSize(R.integer.size_searchtext, AppContext.context)
                     ), String.format(
                         "%s %s %s",
                         getString(R.string.size_expected),
                         getString(R.string.total),
-                        hrSize(R.integer.size_db_working_total, requireContext())
+                        hrSize(R.integer.size_db_working_total, AppContext.context)
                     ),
                     getString(R.string.size_current), hrSize
                 )
@@ -149,13 +150,13 @@ class SetupXnStatusFragment : SetupStatusFragment() {
                         getString(R.string.framenet)
                     ), String.format(
                         "%s",
-                        hrSize(R.integer.size_searchtext, requireContext())
+                        hrSize(R.integer.size_searchtext, AppContext.context)
                     ), String.format(
                         "%s %s",
                         getString(R.string.size_expected),
                         getString(R.string.total)
                     ),
-                    hrSize(R.integer.size_db_working_total, requireContext()),
+                    hrSize(R.integer.size_db_working_total, AppContext.context),
                     getString(R.string.title_status),
                     getString(R.string.status_database_not_exists)
                 )

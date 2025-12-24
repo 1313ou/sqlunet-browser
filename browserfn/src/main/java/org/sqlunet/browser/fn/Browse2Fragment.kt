@@ -5,6 +5,7 @@ package org.sqlunet.browser.fn
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseBrowse2Fragment
 import org.sqlunet.browser.fn.web.WebFragment
 import org.sqlunet.framenet.FnFramePointer
@@ -26,7 +27,6 @@ class Browse2Fragment : BaseBrowse2Fragment() {
      */
     override fun search() {
 
-        val context = requireContext()
         if (!isAdded) {
             return
         }
@@ -37,7 +37,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
         args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
 
         // detail fragment
-        val mode: Settings.DetailViewMode = Settings.getDetailViewModePref(context)
+        val mode: Settings.DetailViewMode = Settings.getDetailViewModePref(AppContext.context)
         when (mode) {
             Settings.DetailViewMode.VIEW -> {
 
@@ -45,7 +45,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 val transaction = manager.beginTransaction().setReorderingAllowed(true)
 
                 // framenet
-                val enable = FnSettings.getFrameNetPref(context)
+                val enable = FnSettings.getFrameNetPref(AppContext.context)
                 if (enable) {
                     // var labelView = findViewById(R.id.label_framenet)
                     // labelView.setVisibility(View.VISIBLE)

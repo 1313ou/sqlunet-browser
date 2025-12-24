@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseBrowse1Fragment
 import org.sqlunet.browser.BaseSearchFragment
 import org.sqlunet.browser.BrowseSplashFragment
@@ -105,7 +106,7 @@ class BrowseFragment : BaseSearchFragment() {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
                 val selectorMode: Settings.Selector = Settings.Selector.entries.toTypedArray()[position]
-                selectorMode.setPref(requireContext())
+                selectorMode.setPref(AppContext.context)
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
@@ -113,7 +114,7 @@ class BrowseFragment : BaseSearchFragment() {
         }
 
         // saved selector mode
-        val selectorMode = Settings.Selector.getPref(requireContext())
+        val selectorMode = Settings.Selector.getPref(AppContext.context)
         spinner.setSelection(selectorMode.ordinal)
     }
 
@@ -122,16 +123,13 @@ class BrowseFragment : BaseSearchFragment() {
     @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        // activity
-        val context = requireContext()
-
         // intent
         val intent: Intent
 
         // handle item selection
         when (item.itemId) {
             R.id.action_table_domains -> {
-                intent = Intent(context, TableActivity::class.java)
+                intent = Intent(AppContext.context, TableActivity::class.java)
                 intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(Domains.URI))
                 intent.putExtra(ProviderArgs.ARG_QUERYID, Domains.DOMAINID)
                 intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Domains.DOMAINID, Domains.DOMAIN, Domains.POSID))
@@ -139,7 +137,7 @@ class BrowseFragment : BaseSearchFragment() {
             }
 
             R.id.action_table_poses -> {
-                intent = Intent(context, TableActivity::class.java)
+                intent = Intent(AppContext.context, TableActivity::class.java)
                 intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(Poses.URI))
                 intent.putExtra(ProviderArgs.ARG_QUERYID, Poses.POSID)
                 intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Poses.POSID, Poses.POS))
@@ -147,7 +145,7 @@ class BrowseFragment : BaseSearchFragment() {
             }
 
             R.id.action_table_adjpositions -> {
-                intent = Intent(context, TableActivity::class.java)
+                intent = Intent(AppContext.context, TableActivity::class.java)
                 intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(AdjPositions.URI))
                 intent.putExtra(ProviderArgs.ARG_QUERYID, AdjPositions.POSITIONID)
                 intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(AdjPositions.POSITIONID, AdjPositions.POSITION))
@@ -155,7 +153,7 @@ class BrowseFragment : BaseSearchFragment() {
             }
 
             R.id.action_table_relations -> {
-                intent = Intent(context, TableActivity::class.java)
+                intent = Intent(AppContext.context, TableActivity::class.java)
                 intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(Relations.URI))
                 intent.putExtra(ProviderArgs.ARG_QUERYID, Relations.RELATIONID)
                 intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Relations.RELATIONID, Relations.RELATION, Relations.RECURSES_SELECT))
@@ -192,11 +190,11 @@ class BrowseFragment : BaseSearchFragment() {
         Log.d(TAG, "Browse '$trimmedQuery'")
 
         // history
-        recordQuery(requireContext(), trimmedQuery)
+        recordQuery(AppContext.context, trimmedQuery)
 
         // parameters
-        val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext())
-        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
+        val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(AppContext.context)
+        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(AppContext.context)
 
         // menuDispatch as per query prefix
         var fragment: Fragment? = null
@@ -332,14 +330,11 @@ class BrowseFragment : BaseSearchFragment() {
      */
     private fun makeBrowse1Fragment(): Fragment {
 
-        // context
-        val context = requireContext()
-
         // type
-        val selectorType = XnSettings.getXSelectorPref(context)
+        val selectorType = XnSettings.getXSelectorPref(AppContext.context)
 
         // mode
-        val selectorMode = Settings.getSelectorViewModePref(context)
+        val selectorMode = Settings.getSelectorViewModePref(AppContext.context)
         return when (selectorMode) {
             Settings.SelectorViewMode.VIEW ->
                 when (selectorType) {
@@ -357,24 +352,22 @@ class BrowseFragment : BaseSearchFragment() {
      * @return intent
      */
     private fun makeSelectorIntent(): Intent {
-        // context
-        val context = requireContext()
 
         // type
-        val selectorType = XnSettings.getXSelectorPref(context)
+        val selectorType = XnSettings.getXSelectorPref(AppContext.context)
 
         // mode
-        val selectorMode: Settings.SelectorViewMode = Settings.getSelectorViewModePref(context)
+        val selectorMode: Settings.SelectorViewMode = Settings.getSelectorViewModePref(AppContext.context)
         val intent: Intent = when (selectorMode) {
             Settings.SelectorViewMode.VIEW -> {
                 val intentClass: Class<*> = when (selectorType) {
                     XnSettings.Selector.SELECTOR -> Browse1Activity::class.java
                     XnSettings.Selector.XSELECTOR -> XBrowse1Activity::class.java
                 }
-                Intent(requireContext(), intentClass)
+                Intent(AppContext.context, intentClass)
             }
 
-            Settings.SelectorViewMode.WEB -> Intent(requireContext(), WebActivity::class.java)
+            Settings.SelectorViewMode.WEB -> Intent(AppContext.context, WebActivity::class.java)
         }
         intent.action = ProviderArgs.ACTION_QUERY
         return intent
@@ -387,14 +380,12 @@ class BrowseFragment : BaseSearchFragment() {
      * @return intent
      */
     private fun makeDetailIntent(intentClass: Class<*>): Intent {
-        // context
-        val context = requireContext()
-
+ 
         // mode
-        val detailMode: Settings.DetailViewMode = Settings.getDetailViewModePref(context)
+        val detailMode: Settings.DetailViewMode = Settings.getDetailViewModePref(AppContext.context)
         val intent: Intent = when (detailMode) {
-            Settings.DetailViewMode.VIEW -> Intent(context, intentClass)
-            Settings.DetailViewMode.WEB -> Intent(context, WebActivity::class.java)
+            Settings.DetailViewMode.VIEW -> Intent(AppContext.context, intentClass)
+            Settings.DetailViewMode.WEB -> Intent(AppContext.context, WebActivity::class.java)
         }
         intent.action = ProviderArgs.ACTION_QUERY
         return intent

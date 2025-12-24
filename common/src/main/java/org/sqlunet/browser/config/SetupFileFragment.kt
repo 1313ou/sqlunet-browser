@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
 import com.bbou.download.preference.Settings.Mode
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.EntryActivity.Companion.rerun
 import org.sqlunet.browser.Info.build
 import org.sqlunet.browser.common.R
@@ -137,7 +138,7 @@ class SetupFileFragment : BaseTaskFragment() {
                         val intent2 = Intent(activity, OperationActivity::class.java)
                         intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_UNZIP_ENTRY)
                         intent2.putExtra(OperationActivity.ARG_TYPES, arrayOf("application/zip"))
-                        intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, Settings.getZipEntry(requireContext(), StorageSettings.getDbDownloadName(requireContext())))
+                        intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, Settings.getZipEntry(AppContext.context, StorageSettings.getDbDownloadName(AppContext.context)))
                         activity.startActivity(intent2)
                     }
 
@@ -194,34 +195,34 @@ class SetupFileFragment : BaseTaskFragment() {
                 Operation.DROP -> message = statusDrop()
                 Operation.COPY_URI -> {
                     message = statusCopy()
-                    message.append(requireContext().getString(R.string.from_uri))
+                    message.append(AppContext.context.getString(R.string.from_uri))
                 }
 
                 Operation.COPY_FILE -> {
                     message = statusCopy()
-                    message.append(requireContext().getString(R.string.from_file))
+                    message.append(AppContext.context.getString(R.string.from_file))
                 }
 
                 Operation.UNZIP_URI, Operation.UNZIP_ENTRY_URI -> {
                     message = statusUnzip()
-                    message.append(requireContext().getString(R.string.from_uri))
+                    message.append(AppContext.context.getString(R.string.from_uri))
                 }
 
                 Operation.UNZIP_FILE -> {
                     message = statusUnzip()
-                    message.append(requireContext().getString(R.string.from_file))
+                    message.append(AppContext.context.getString(R.string.from_file))
                 }
 
                 Operation.MD5_URI -> {
                     message = statusMd5()
                     message.append(' ')
-                    message.append(requireContext().getString(R.string.from_uri))
+                    message.append(AppContext.context.getString(R.string.from_uri))
                 }
 
                 Operation.MD5_FILE -> {
                     message = statusMd5()
                     message.append(' ')
-                    message.append(requireContext().getString(R.string.from_file))
+                    message.append(AppContext.context.getString(R.string.from_file))
                 }
 
                 Operation.DOWNLOAD -> message = statusDownload()
@@ -238,9 +239,8 @@ class SetupFileFragment : BaseTaskFragment() {
      * @return status string
      */
     private fun statusCreate(): SpannableStringBuilder {
-        val context = requireContext()
-        val database = StorageSettings.getDatabasePath(context)
-        val free = getFree(context, database)
+        val database = StorageSettings.getDatabasePath(AppContext.context)
+        val free = getFree(AppContext.context, database)
         val databaseExists = File(database).exists()
         val sb = SpannableStringBuilder()
         sb.append(getString(R.string.info_op_create_database))
@@ -260,9 +260,8 @@ class SetupFileFragment : BaseTaskFragment() {
      * @return status string
      */
     private fun statusDrop(): SpannableStringBuilder {
-        val context = requireContext()
-        val database = StorageSettings.getDatabasePath(context)
-        val free = getFree(context, database)
+        val database = StorageSettings.getDatabasePath(AppContext.context)
+        val free = getFree(AppContext.context, database)
         val databaseExists = File(database).exists()
         val sb = SpannableStringBuilder()
         sb.append(getString(R.string.info_op_drop_database))
@@ -282,9 +281,8 @@ class SetupFileFragment : BaseTaskFragment() {
      * @return status string
      */
     private fun statusCopy(): SpannableStringBuilder {
-        val context = requireContext()
-        val database = StorageSettings.getDatabasePath(context)
-        val free = getFree(context, database)
+        val database = StorageSettings.getDatabasePath(AppContext.context)
+        val free = getFree(AppContext.context, database)
         val databaseExists = File(database).exists()
         /*
 		String fromPath = Settings.getCachePref(context)
@@ -302,8 +300,8 @@ class SetupFileFragment : BaseTaskFragment() {
             sb,
             getString(R.string.title_database), database,
             getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),
-            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),
-            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),
+            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context),
+            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, AppContext.context),
             getString(R.string.title_free), free,
             "\n", "",
             getString(R.string.title_from),
@@ -320,9 +318,8 @@ class SetupFileFragment : BaseTaskFragment() {
      * @return status string
      */
     private fun statusUnzip(): SpannableStringBuilder {
-        val context = requireContext()
-        val database = StorageSettings.getDatabasePath(context)
-        val free = getFree(context, database)
+        val database = StorageSettings.getDatabasePath(AppContext.context)
+        val free = getFree(AppContext.context, database)
         val databaseExists = File(database).exists()
         /*
 		String fromPath = Settings.getCachePref(context)
@@ -340,8 +337,8 @@ class SetupFileFragment : BaseTaskFragment() {
             sb,
             getString(R.string.title_database), database,
             getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),
-            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),
-            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),
+            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context),
+            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, AppContext.context),
             getString(R.string.title_free), free,
             "\n", "",
             getString(R.string.title_from),  //fromPath, 
@@ -381,11 +378,10 @@ class SetupFileFragment : BaseTaskFragment() {
      * @return status string
      */
     private fun statusDownload(): SpannableStringBuilder {
-        val context = requireContext()
-        val mode = Mode.getModePref(context)
-        val from = StorageSettings.getDbDownloadSourcePath(context, mode == Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Mode.DOWNLOAD_ZIP)
-        val to = StorageSettings.getDatabasePath(context)
-        val free = getFree(context, to)
+        val mode = Mode.getModePref(AppContext.context)
+        val from = StorageSettings.getDbDownloadSourcePath(AppContext.context, mode == Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Mode.DOWNLOAD_ZIP)
+        val to = StorageSettings.getDatabasePath(AppContext.context)
+        val free = getFree(AppContext.context, to)
         val targetExists = File(to).exists()
         val sb = SpannableStringBuilder()
         sb.append(getString(R.string.info_op_download_database))
@@ -395,8 +391,8 @@ class SetupFileFragment : BaseTaskFragment() {
             getString(R.string.title_from), from,
             "\n", "",
             getString(R.string.title_to), to,
-            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),
-            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),
+            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context),
+            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, AppContext.context),
             getString(R.string.title_free), free,
             getString(R.string.title_status), getString(if (targetExists) R.string.status_local_exists else R.string.status_local_not_exists)
         )
@@ -409,10 +405,9 @@ class SetupFileFragment : BaseTaskFragment() {
      * @return status string
      */
     private fun statusDownloadZipped(): SpannableStringBuilder {
-        val context = requireContext()
-        val from = StorageSettings.getDbDownloadZippedSourcePath(context)
-        val to = StorageSettings.getCachedZippedPath(context)
-        val free = getFree(context, to)
+        val from = StorageSettings.getDbDownloadZippedSourcePath(AppContext.context)
+        val to = StorageSettings.getCachedZippedPath(AppContext.context)
+        val free = getFree(AppContext.context, to)
         val targetExists = File(to).exists()
         val sb = SpannableStringBuilder()
         sb.append(getString(R.string.info_op_download_zipped_database))
@@ -422,7 +417,7 @@ class SetupFileFragment : BaseTaskFragment() {
             getString(R.string.title_from), from,
             "\n", "",
             getString(R.string.title_to), to,
-            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db_zip, requireContext()),
+            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db_zip, AppContext.context),
             getString(R.string.title_free), free,
             getString(R.string.title_status), getString(if (targetExists) R.string.status_local_exists else R.string.status_local_not_exists)
         )

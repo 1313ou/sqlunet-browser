@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseBrowse1Fragment
 import org.sqlunet.browser.BaseSearchFragment
 import org.sqlunet.browser.BrowseSplashFragment
@@ -93,7 +94,7 @@ class BrowseFragment : BaseSearchFragment() {
         // log
         Log.d(TAG, "Browse '$trimmedQuery'")
         // history
-        recordQuery(requireContext(), trimmedQuery)
+        recordQuery(AppContext.context, trimmedQuery)
         // menuDispatch as per query prefix
         var fragment: Fragment?
         var targetIntent: Intent? = null
@@ -179,12 +180,11 @@ class BrowseFragment : BaseSearchFragment() {
      * @return fragment
      */
     private fun makeOverviewFragment(): Fragment? {
-        // context
-        val context = requireContext()
+
         // type
-        val selectorType = Settings.getSelectorPref(context)
+        val selectorType = Settings.getSelectorPref(AppContext.context)
         // mode
-        val selectorMode = Settings.getSelectorViewModePref(context)
+        val selectorMode = Settings.getSelectorViewModePref(AppContext.context)
         when (selectorMode) {
             SelectorViewMode.VIEW -> if (selectorType == Settings.Selector.SELECTOR) {
                 return Browse1Fragment()
@@ -201,24 +201,23 @@ class BrowseFragment : BaseSearchFragment() {
      * @return intent
      */
     private fun makeSelectorIntent(): Intent {
-        // context
-        val context = requireContext()
+
         // intent
         var intent: Intent?
         // type
-        val selectorType = Settings.getSelectorPref(context)
+        val selectorType = Settings.getSelectorPref(AppContext.context)
         // mode
-        val selectorMode = Settings.getSelectorViewModePref(context)
+        val selectorMode = Settings.getSelectorViewModePref(AppContext.context)
         when (selectorMode) {
             SelectorViewMode.VIEW -> {
                 var intentClass: Class<*>? = null
                 if (selectorType == Settings.Selector.SELECTOR) {
                     intentClass = Browse1Activity::class.java
                 }
-                intent = Intent(requireContext(), intentClass)
+                intent = Intent(AppContext.context, intentClass)
             }
 
-            SelectorViewMode.WEB -> intent = Intent(requireContext(), WebActivity::class.java)
+            SelectorViewMode.WEB -> intent = Intent(AppContext.context, WebActivity::class.java)
         }
         intent.action = ProviderArgs.ACTION_QUERY
         return intent
@@ -231,14 +230,13 @@ class BrowseFragment : BaseSearchFragment() {
      * @return intent
      */
     private fun makeDetailIntent(intentClass: Class<*>): Intent {
-        // context
-        val context = requireContext()
+
         // mode
-        val detailMode = Settings.getDetailViewModePref(context)
+        val detailMode = Settings.getDetailViewModePref(AppContext.context)
         // intent
         val intent: Intent = when (detailMode) {
-            DetailViewMode.VIEW -> Intent(context, intentClass)
-            DetailViewMode.WEB -> Intent(context, WebActivity::class.java)
+            DetailViewMode.VIEW -> Intent(AppContext.context, intentClass)
+            DetailViewMode.WEB -> Intent(AppContext.context, WebActivity::class.java)
         }
         intent.action = ProviderArgs.ACTION_QUERY
         return intent

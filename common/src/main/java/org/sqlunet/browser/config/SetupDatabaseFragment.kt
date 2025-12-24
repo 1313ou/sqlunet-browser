@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
 import com.bbou.concurrency.observe.TaskObserver
 import com.bbou.concurrency.observe.TaskToastObserver
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.common.R
 import org.sqlunet.settings.Settings
 import org.sqlunet.settings.StorageSettings
@@ -62,7 +63,7 @@ class SetupDatabaseFragment : BaseTaskFragment() {
             } else if ("EXEC_ZIPPED_URI" == sql.toString()) {
                 val intent2 = Intent(activity, OperationActivity::class.java)
                 intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_EXEC_ZIPPED_SQL)
-                intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, Settings.getZipEntry(requireContext(), "sql"))
+                intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, Settings.getZipEntry(AppContext.context, "sql"))
                 intent2.putExtra(OperationActivity.ARG_TYPES, arrayOf("application/zip"))
                 activity.startActivity(intent2)
             } else {
@@ -87,7 +88,7 @@ class SetupDatabaseFragment : BaseTaskFragment() {
 
     override fun makeAdapter(): SpinnerAdapter {
         // create an ArrayAdapter using the string array and a default spinner layout
-        val adapter = ArrayAdapter.createFromResource(requireContext(), R.array.sql_statement_titles, R.layout.spinner_item_task)
+        val adapter = ArrayAdapter.createFromResource(AppContext.context, R.array.sql_statement_titles, R.layout.spinner_item_task)
 
         // specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(R.layout.spinner_item_task_dropdown)

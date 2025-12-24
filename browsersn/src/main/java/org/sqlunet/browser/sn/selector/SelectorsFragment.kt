@@ -10,6 +10,7 @@ import android.widget.CursorAdapter
 import android.widget.ImageView
 import android.widget.SimpleCursorAdapter
 import android.widget.TextView
+import androidx.core.net.toUri
 import org.sqlunet.browser.BaseSelectorsListFragment
 import org.sqlunet.browser.Selectors
 import org.sqlunet.browser.sn.R
@@ -17,7 +18,6 @@ import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.wordnet.loaders.Queries.prepareSelectSn
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains
 import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
-import androidx.core.net.toUri
 
 /**
  * Selector Fragment

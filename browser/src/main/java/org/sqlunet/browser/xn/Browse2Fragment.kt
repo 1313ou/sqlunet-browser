@@ -10,6 +10,7 @@ import android.text.method.LinkMovementMethod
 import android.util.Log
 import androidx.fragment.app.Fragment
 import org.sqlunet.bnc.browser.BNCFragment
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseBrowse2Fragment
 import org.sqlunet.browser.R
 import org.sqlunet.browser.xn.web.WebFragment
@@ -50,14 +51,13 @@ class Browse2Fragment : BaseBrowse2Fragment() {
         if (!isAdded) {
             return
         }
-        val context = requireContext()
         val manager = getChildFragmentManager()
         targetView!!.movementMethod = LinkMovementMethod()
         targetView!!.text = toTarget()
 
         // args
-        val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(context)
-        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(context)
+        val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(AppContext.context)
+        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(AppContext.context)
         val args = Bundle()
         args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
         args.putString(ProviderArgs.ARG_HINTPOS, pos)
@@ -65,10 +65,10 @@ class Browse2Fragment : BaseBrowse2Fragment() {
         args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
 
         // detail fragment
-        val mode: DetailViewMode = Settings.getDetailViewModePref(context)
+        val mode: DetailViewMode = Settings.getDetailViewModePref(AppContext.context)
         when (mode) {
             DetailViewMode.VIEW -> {
-                var enable = XnSettings.getAllPref(context)
+                var enable = XnSettings.getAllPref(AppContext.context)
                 if (pointer is XSelectorPointer) {
                     // sections to disable
                     var mask = 0

@@ -13,6 +13,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.core.widget.ImageViewCompat
 import com.bbou.download.preference.Settings.Mode
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.Info.info
 import org.sqlunet.browser.config.SetupDatabaseActivity
@@ -50,14 +51,14 @@ class SetupFnStatusFragment : SetupStatusFragment() {
         infoDatabaseButton!!.setOnClickListener { info() }
         buttonTextSearchFn!!.setOnClickListener {
             val index = resources.getInteger(R.integer.sql_statement_do_ts_fn_position)
-            val intent = Intent(requireContext(), SetupDatabaseActivity::class.java)
+            val intent = Intent(AppContext.context, SetupDatabaseActivity::class.java)
             intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
             startActivity(intent)
         }
         infoDatabaseButton!!.setOnClickListener {
             val activity: Activity = requireActivity()
             val database = StorageSettings.getDatabasePath(activity)
-            val free = getFree(requireContext(), database)
+            val free = getFree(AppContext.context, database)
             val mode = Mode.getModePref(activity)
             val source = StorageSettings.getDbDownloadSourcePath(activity, mode == Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Mode.DOWNLOAD_ZIP)
             val status = FnStatus.status(activity)
@@ -71,9 +72,9 @@ class SetupFnStatusFragment : SetupStatusFragment() {
                     getString(R.string.title_database), database,
                     getString(R.string.title_status), getString(R.string.status_database_exists) + '-' + getString(if (existsTables) R.string.status_data_exists else R.string.status_data_not_exists),
                     getString(R.string.title_free), free,
-                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),
-                    getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, requireContext()),
-                    getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),
+                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context),
+                    getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, AppContext.context),
+                    getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, AppContext.context),
                     getString(R.string.size_current), hrSize
                 )
             } else {
@@ -83,9 +84,9 @@ class SetupFnStatusFragment : SetupStatusFragment() {
                     getString(R.string.title_from), source,
                     getString(R.string.title_database), database,
                     getString(R.string.title_free), free,
-                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),
-                    getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, requireContext()),
-                    getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),
+                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context),
+                    getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, AppContext.context),
+                    getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, AppContext.context),
                     getString(R.string.title_status), getString(R.string.status_database_not_exists)
                 )
             }

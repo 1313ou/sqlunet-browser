@@ -35,6 +35,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.history.History.makeSearchIntent
 import org.sqlunet.browser.history.History.recordQuery
@@ -120,7 +121,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
                     }
 
                     R.id.action_history_clear -> {
-                        val suggestions = android.provider.SearchRecentSuggestions(requireContext(), getAuthority(requireContext()), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                        val suggestions = android.provider.SearchRecentSuggestions(AppContext.context, getAuthority(requireContext()), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
                         suggestions.clearHistory()
                         return true
                     }
@@ -144,7 +145,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
     }
 
     override fun onCreateLoader(loaderID: Int, args: Bundle?): Loader<Cursor> {
-        val suggestions = SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+        val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
         return suggestions.cursorLoader()
     }
 
@@ -167,7 +168,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
             val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
             val query = cursor.getString(dataIdx)
             if (null != query) {
-                val intent = makeSearchIntent(requireContext(), query)
+                val intent = makeSearchIntent(AppContext.context, query)
                 startActivity(intent)
             }
         }
@@ -194,7 +195,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
                                 val itemId = cursor.getString(itemIdIdx)
                                 val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
                                 val data = cursor.getString(dataIdx)
-                                val suggestions = SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                                val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
                                 suggestions.delete(itemId)
                                 val cursor2 = suggestions.cursor()
                                 adapter!!.changeCursor(cursor2)
@@ -273,11 +274,11 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
     private fun doExportHistory(uri: Uri) {
         Log.d(TAG, "Exporting to $uri")
         try {
-            requireContext().contentResolver.openFileDescriptor(uri, "w").use { pfd ->
+            AppContext.context.contentResolver.openFileDescriptor(uri, "w").use { pfd ->
                 FileOutputStream(pfd!!.fileDescriptor).use { fileOutputStream ->
                     OutputStreamWriter(fileOutputStream).use { writer ->
                         BufferedWriter(writer).use { bw ->
-                            val suggestions = SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                            val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
                             suggestions.cursor().use { cursor ->
                                 if (cursor!!.moveToFirst()) {
                                     do {
@@ -305,12 +306,12 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
     private fun doImportHistory(uri: Uri) {
         Log.d(TAG, "Importing from $uri")
         try {
-            requireContext().contentResolver.openInputStream(uri).use { `is` ->
+            AppContext.context.contentResolver.openInputStream(uri).use { `is` ->
                 InputStreamReader(`is`).use { reader ->
                     BufferedReader(reader).use { br ->
                         var line: String
                         while (br.readLine().also { line = it } != null) {
-                            recordQuery(requireContext(), line.trim { it <= ' ' })
+                            recordQuery(AppContext.context, line.trim { it <= ' ' })
                         }
                         Log.i(TAG, "Imported from $uri")
                         Toast.makeText(requireContext(), resources.getText(R.string.title_history_import).toString() + " " + uri, Toast.LENGTH_SHORT).show()

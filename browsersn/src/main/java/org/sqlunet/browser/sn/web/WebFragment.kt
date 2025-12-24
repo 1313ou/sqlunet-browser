@@ -54,6 +54,7 @@ import org.sqlunet.wordnet.sql.WordNetImplementation.Companion.init
 import org.w3c.dom.Document
 import java.net.URLDecoder
 import androidx.core.net.toUri
+import org.sqlunet.browser.AppContext
 
 /**
  * A fragment representing a SqlUNet web view.
@@ -208,7 +209,7 @@ class WebFragment : Fragment() {
      * Make view models
      */
     private fun makeModels() {
-        val xml: Boolean = Settings.getXmlPref(requireContext())
+        val xml: Boolean = Settings.getXmlPref(AppContext.context)
         model = ViewModelProvider(this)["web(doc)", WebModel::class.java]
         model!!.getData().observe(getViewLifecycleOwner()) { doc: String? ->
             Log.d(TAG, "onLoadFinished")
@@ -257,7 +258,7 @@ class WebFragment : Fragment() {
                     val name = target[0]
                     val value = target[1]
                     Log.d(TAG, "Query: $query name=$name value=$value")
-                    val targetIntent = Intent(requireContext(), WebActivity::class.java)
+                    val targetIntent = Intent(AppContext.context, WebActivity::class.java)
                     if ("word" == name) {
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYSTRING, value)
                     } else {
@@ -295,8 +296,8 @@ class WebFragment : Fragment() {
                         }
 
                         // parameters
-                        val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext())
-                        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
+                        val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(AppContext.context)
+                        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(AppContext.context)
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, type)
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse)
@@ -315,19 +316,19 @@ class WebFragment : Fragment() {
 
         // settings sources
         var mask = 0
-        if (org.sqlunet.browser.sn.SnSettings.getWordNetPref(requireContext())) {
+        if (org.sqlunet.browser.sn.SnSettings.getWordNetPref(AppContext.context)) {
             mask = org.sqlunet.browser.sn.SnSettings.Source.WORDNET.set(mask)
         }
-        if (org.sqlunet.browser.sn.SnSettings.getSyntagNetPref(requireContext())) {
+        if (org.sqlunet.browser.sn.SnSettings.getSyntagNetPref(AppContext.context)) {
             mask = mask or org.sqlunet.browser.sn.SnSettings.Source.SYNTAGNET.set(mask)
         }
-        if (org.sqlunet.browser.sn.SnSettings.getBncPref(requireContext())) {
+        if (org.sqlunet.browser.sn.SnSettings.getBncPref(AppContext.context)) {
             mask = mask or org.sqlunet.browser.sn.SnSettings.Source.BNC.set(mask)
         }
         val sources = mask
 
         // settings output
-        val xml: Boolean = Settings.getXmlPref(requireContext())
+        val xml: Boolean = Settings.getXmlPref(AppContext.context)
 
         // unmarshal arguments
         val args = requireArguments()
@@ -389,7 +390,7 @@ class WebFragment : Fragment() {
             }
             data = docToXml(rootDomDoc)
             if (BuildConfig.DEBUG) {
-                writeLog(data, false, requireContext(), LogUtils.DOC_LOG)
+                writeLog(data, false, AppContext.context, LogUtils.DOC_LOG)
                 val xsd = DocumentTransformer::class.java.getResource("/org/sqlunet/SqlUNet.xsd")!!
                 validateStrings(xsd, data)
                 // Log.d(TAG, "output=\n$data")

@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseBrowse1Fragment
 import org.sqlunet.browser.BaseSearchFragment
 import org.sqlunet.browser.BrowseSplashFragment
@@ -81,7 +82,7 @@ class BrowseFragment : BaseSearchFragment() {
         // handle item selection
         when (item.itemId) {
             R.id.action_table_domains -> {
-                intent = Intent(requireContext(), TableActivity::class.java)
+                intent = Intent(AppContext.context, TableActivity::class.java)
                 intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(Domains.URI))
                 intent.putExtra(ProviderArgs.ARG_QUERYID, Domains.DOMAINID)
                 intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Domains.DOMAINID, Domains.DOMAIN, Domains.POSID))
@@ -89,7 +90,7 @@ class BrowseFragment : BaseSearchFragment() {
             }
 
             R.id.action_table_poses -> {
-                intent = Intent(requireContext(), TableActivity::class.java)
+                intent = Intent(AppContext.context, TableActivity::class.java)
                 intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(Poses.URI))
                 intent.putExtra(ProviderArgs.ARG_QUERYID, Poses.POSID)
                 intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Poses.POSID, Poses.POS))
@@ -97,7 +98,7 @@ class BrowseFragment : BaseSearchFragment() {
             }
 
             R.id.action_table_adjpositions -> {
-                intent = Intent(requireContext(), TableActivity::class.java)
+                intent = Intent(AppContext.context, TableActivity::class.java)
                 intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(AdjPositions.URI))
                 intent.putExtra(ProviderArgs.ARG_QUERYID, AdjPositions.POSITIONID)
                 intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(AdjPositions.POSITIONID, AdjPositions.POSITION))
@@ -105,7 +106,7 @@ class BrowseFragment : BaseSearchFragment() {
             }
 
             R.id.action_table_relations -> {
-                intent = Intent(requireContext(), TableActivity::class.java)
+                intent = Intent(AppContext.context, TableActivity::class.java)
                 intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(Relations.URI))
                 intent.putExtra(ProviderArgs.ARG_QUERYID, Relations.RELATIONID)
                 intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Relations.RELATIONID, Relations.RELATION, Relations.RECURSES_SELECT))
@@ -153,7 +154,7 @@ class BrowseFragment : BaseSearchFragment() {
             val id = trimmedQuery.substring(3).toLong()
 
             // parameters
-            val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
+            val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(AppContext.context)
 
             // wordnet
             targetIntent = if (trimmedQuery.startsWith("#ws")) {
@@ -234,14 +235,12 @@ class BrowseFragment : BaseSearchFragment() {
      * @return fragment
      */
     private fun makeOverviewFragment(): Fragment? {
-        // context
-        val context = requireContext()
 
         // type
-        val selectorType = VnSettings.getXSelectorPref(context)
+        val selectorType = VnSettings.getXSelectorPref(AppContext.context)
 
         // mode
-        val selectorMode: Settings.SelectorViewMode = Settings.getSelectorViewModePref(context)
+        val selectorMode: Settings.SelectorViewMode = Settings.getSelectorViewModePref(AppContext.context)
         when (selectorMode) {
             Settings.SelectorViewMode.VIEW -> if (selectorType == VnSettings.Selector.XSELECTOR) {
                 return XBrowse1Fragment()
@@ -258,27 +257,25 @@ class BrowseFragment : BaseSearchFragment() {
      * @return intent
      */
     private fun makeSelectorIntent(): Intent {
-        // context
-        val context = requireContext()
 
         // intent
         var intent: Intent?
 
         // type
-        val selectorType = VnSettings.getXSelectorPref(context)
+        val selectorType = VnSettings.getXSelectorPref(AppContext.context)
 
         // mode
-        val selectorMode: Settings.SelectorViewMode = Settings.getSelectorViewModePref(context)
+        val selectorMode: Settings.SelectorViewMode = Settings.getSelectorViewModePref(AppContext.context)
         when (selectorMode) {
             Settings.SelectorViewMode.VIEW -> {
                 var intentClass: Class<*>? = null
                 if (selectorType == VnSettings.Selector.XSELECTOR) {
                     intentClass = XBrowse1Activity::class.java
                 }
-                intent = Intent(requireContext(), intentClass)
+                intent = Intent(AppContext.context, intentClass)
             }
 
-            Settings.SelectorViewMode.WEB -> intent = Intent(requireContext(), WebActivity::class.java)
+            Settings.SelectorViewMode.WEB -> intent = Intent(AppContext.context, WebActivity::class.java)
         }
         intent.action = ProviderArgs.ACTION_QUERY
         return intent
@@ -291,16 +288,14 @@ class BrowseFragment : BaseSearchFragment() {
      * @return intent
      */
     private fun makeDetailIntent(intentClass: Class<*>): Intent {
-        // context
-        val context = requireContext()
 
         // mode
-        val detailMode: Settings.DetailViewMode = Settings.getDetailViewModePref(context)
+        val detailMode: Settings.DetailViewMode = Settings.getDetailViewModePref(AppContext.context)
 
         // intent
         val intent: Intent = when (detailMode) {
-            Settings.DetailViewMode.VIEW -> Intent(context, intentClass)
-            Settings.DetailViewMode.WEB -> Intent(context, WebActivity::class.java)
+            Settings.DetailViewMode.VIEW -> Intent(AppContext.context, intentClass)
+            Settings.DetailViewMode.WEB -> Intent(AppContext.context, WebActivity::class.java)
         }
         intent.action = ProviderArgs.ACTION_QUERY
         return intent

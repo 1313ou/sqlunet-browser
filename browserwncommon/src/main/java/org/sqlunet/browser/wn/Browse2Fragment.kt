@@ -9,6 +9,7 @@ import android.text.method.LinkMovementMethod
 import android.util.Log
 import androidx.fragment.app.Fragment
 import org.sqlunet.bnc.browser.BNCFragment
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseBrowse2Fragment
 import org.sqlunet.browser.wn.lib.R
 import org.sqlunet.browser.wn.web.WebFragment
@@ -33,7 +34,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
      * Search
      */
     override fun search() {
-        val context = requireContext()
+
         if (!isAdded) {
             return
         }
@@ -42,8 +43,8 @@ class Browse2Fragment : BaseBrowse2Fragment() {
         targetView!!.text = toTarget()
 
         // parameters
-        val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(context)
-        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
+        val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(AppContext.context)
+        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(AppContext.context)
         val args = Bundle()
         args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
         args.putString(ProviderArgs.ARG_HINTWORD, word)
@@ -54,13 +55,13 @@ class Browse2Fragment : BaseBrowse2Fragment() {
         args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
 
         // detail fragment
-        val mode: Settings.DetailViewMode = Settings.getDetailViewModePref(context)
+        val mode: Settings.DetailViewMode = Settings.getDetailViewModePref(AppContext.context)
         when (mode) {
             Settings.DetailViewMode.VIEW -> {
 
                 // transaction
                 val transaction = manager.beginTransaction().setReorderingAllowed(true)
-                val enable = WnSettings.getAllPref(context)
+                val enable = WnSettings.getAllPref(AppContext.context)
 
                 // wordnet
                 if (enable and WnSettings.ENABLE_WORDNET != 0) {

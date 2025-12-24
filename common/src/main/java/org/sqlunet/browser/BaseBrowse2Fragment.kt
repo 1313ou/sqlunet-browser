@@ -45,7 +45,7 @@ abstract class BaseBrowse2Fragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val mode = Settings.getDetailViewModePref(requireContext())
+        val mode = Settings.getDetailViewModePref(AppContext.context)
         return when (mode) {
             DetailViewMode.VIEW -> inflater.inflate(layoutId, container, false)
             DetailViewMode.WEB -> inflater.inflate(R.layout.fragment_browse2, container, false)

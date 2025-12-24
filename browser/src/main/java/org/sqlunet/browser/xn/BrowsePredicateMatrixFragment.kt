@@ -12,6 +12,7 @@ import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import org.sqlunet.Word
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseSearchFragment
 import org.sqlunet.browser.R
 import org.sqlunet.browser.SplashFragment
@@ -100,7 +101,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         spinner.adapter = spinnerAdapter
 
         // saved mode
-        val mode = PMMode.getPref(requireContext())
+        val mode = PMMode.getPref(AppContext.context)
 
         // no listener yet
         spinner.onItemSelectedListener = null
@@ -111,7 +112,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
 
             override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
                 val mode2: PMMode = PMMode.entries.toTypedArray()[position]
-                val hasChanged = mode2.setPref(requireContext())
+                val hasChanged = mode2.setPref(AppContext.context)
                 Log.d(TAG, "mode=" + mode2.name + " has changed=" + hasChanged)
 
                 // restart

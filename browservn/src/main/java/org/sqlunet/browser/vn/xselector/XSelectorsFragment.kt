@@ -32,6 +32,7 @@ import org.sqlunet.provider.XNetContract.Words_XNet
 import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
 import kotlin.math.floor
 import androidx.core.net.toUri
+import org.sqlunet.browser.AppContext
 
 /**
  * X selector fragment
@@ -179,7 +180,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         // group cursor populated
         Log.d(TAG, "make group cursor")
         val groupCursor = MatrixCursor(arrayOf(GROUPID_COLUMN, GROUPNAME_COLUMN, GROUPICON_COLUMN))
-        groupPositions = populateGroupCursor(requireContext(), groupCursor)
+        groupPositions = populateGroupCursor(AppContext.context, groupCursor)
         groupCursor.moveToFirst()
 
         // adapter

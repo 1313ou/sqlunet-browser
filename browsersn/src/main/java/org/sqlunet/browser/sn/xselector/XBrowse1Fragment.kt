@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseBrowse1Fragment
 import org.sqlunet.browser.BaseBrowse2Fragment
 import org.sqlunet.browser.BaseSelectorsFragment
@@ -98,8 +99,8 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener, SnSe
             fragment.search(pointer, word, cased, pronunciation, pos)
         } else {
             // in single-pane mode, simply start the detail activity for the selected item ID.
-            val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext())
-            val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
+            val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(AppContext.context)
+            val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(AppContext.context)
             val args = Bundle()
             args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
             args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse)
@@ -108,7 +109,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener, SnSe
             args.putString(ProviderArgs.ARG_HINTCASED, cased)
             args.putString(ProviderArgs.ARG_HINTPRONUNCIATION, pronunciation)
             args.putString(ProviderArgs.ARG_HINTPOS, pos)
-            val intent = Intent(requireContext(), Browse2Activity::class.java)
+            val intent = Intent(AppContext.context, Browse2Activity::class.java)
             intent.putExtras(args)
             startActivity(intent)
         }
@@ -128,7 +129,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener, SnSe
             val args = Bundle()
             args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
             args.putBoolean(Browse2Fragment.ARG_ALT, true)
-            val intent = Intent(requireContext(), Browse2Activity::class.java)
+            val intent = Intent(AppContext.context, Browse2Activity::class.java)
             intent.putExtras(args)
             startActivity(intent)
         }
