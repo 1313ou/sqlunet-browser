@@ -47,17 +47,17 @@ class Browse2Fragment : BaseBrowse2Fragment() {
      * Search
      */
     override fun search() {
-        val context = requireContext()
         if (!isAdded) {
             return
         }
+        val context = requireContext()
         val manager = getChildFragmentManager()
         targetView!!.movementMethod = LinkMovementMethod()
         targetView!!.text = toTarget()
 
         // args
         val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(context)
-        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(requireContext())
+        val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(context)
         val args = Bundle()
         args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
         args.putString(ProviderArgs.ARG_HINTPOS, pos)
