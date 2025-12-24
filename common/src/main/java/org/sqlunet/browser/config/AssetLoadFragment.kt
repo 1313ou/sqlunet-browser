@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import com.bbou.concurrency.Cancelable
 import com.bbou.concurrency.observe.TaskObserver
 import com.bbou.download.storage.FormatUtils.formatAsInformationString
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.EntryActivity.Companion.rerun
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.config.SetupAsset.deliverAsset
@@ -56,15 +57,14 @@ class AssetLoadFragment : Fragment(), TaskObserver<Pair<Number, Number>> {
         }
 
         // load assets
-        val context = requireContext()
-        val asset = Settings.getAssetPack(context)
-        val assetDir = Settings.getAssetPackDir(context)
-        val assetZip = Settings.getAssetPackZip(context)
-        val assetZipEntry = context.getString(R.string.asset_zip_entry)
+        val asset = Settings.getAssetPack(AppContext.context)
+        val assetDir = Settings.getAssetPackDir(AppContext.context)
+        val assetZip = Settings.getAssetPackZip(AppContext.context)
+        val assetZipEntry = AppContext.context.getString(R.string.asset_zip_entry)
         val whenComplete = Runnable {
 
             // avoid IllegalStateException on completion
-            val context2 = getContext()
+            val context2 = context
             if (context2 != null) {
                 rerun(context2)
             }

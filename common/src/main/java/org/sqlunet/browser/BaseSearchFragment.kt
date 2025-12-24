@@ -293,7 +293,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     protected val spinnerAdapter: BaseAdapter
         get() {
-            val context = requireContext()
 
             // adapter values and icons
             val modeLabels = resources.getTextArray(spinnerLabels)
@@ -308,7 +307,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             }
 
             // adapter
-            val adapter = object : ArrayAdapter<CharSequence?>(context, R.layout.spinner_item_actionbar, android.R.id.text1, modeLabels) {
+            val adapter = object : ArrayAdapter<CharSequence?>(requireContext(), R.layout.spinner_item_actionbar, android.R.id.text1, modeLabels) {
 
                 override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                     val view = super.getView(position, convertView, parent)

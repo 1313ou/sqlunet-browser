@@ -121,7 +121,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
                     }
 
                     R.id.action_history_clear -> {
-                        val suggestions = android.provider.SearchRecentSuggestions(AppContext.context, getAuthority(requireContext()), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                        val suggestions = android.provider.SearchRecentSuggestions(AppContext.context, getAuthority(AppContext.context), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
                         suggestions.clearHistory()
                         return true
                     }

@@ -22,6 +22,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
 import org.sqlunet.settings.Storage.getSqlUNetStorage
@@ -184,7 +185,7 @@ class StorageFragment : Fragment() {
 
         // db
         val db = view.findViewById<TextView>(R.id.database)
-        db.text = getSqlUNetStorage(context).absolutePath
+        db.text = getSqlUNetStorage(AppContext.context).absolutePath
 
         // storage
         val storage = view.findViewById<TextView>(R.id.storage)
