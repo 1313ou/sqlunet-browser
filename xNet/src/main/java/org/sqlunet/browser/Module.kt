@@ -69,4 +69,14 @@ abstract class Module protected constructor(protected val fragment: TreeFragment
      * @param node tree node to attach results to
      */
     abstract fun process(node: TreeNode)
+
+    /**
+     * Instantiate template string
+     *
+     * @param args args
+     * @return instantiated string
+     */
+    fun String.instantiate(vararg args: Any?): String {
+        return String.format(this, *args)
+    }
 }
