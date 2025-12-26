@@ -99,7 +99,7 @@ class SqlFragment : Fragment() {
                 return when (menuItem.itemId) {
                     R.id.action_copy -> {
                         val sqls = stylizedSqls()
-                        val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                        val clipboard = AppContext.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                         val clip = ClipData.newPlainText("SQL", sqls)
                         clipboard.setPrimaryClip(clip)
                         true
@@ -151,7 +151,7 @@ class SqlFragment : Fragment() {
         return registerForActivityResult(createContract) { uri: Uri? ->
             // The result data contains a URI for the document or directory that the user selected.
             if (uri != null) {
-                doExportSql(requireContext(), uri)
+                doExportSql(this, uri)
             }
         }
     }
@@ -180,9 +180,9 @@ class SqlFragment : Fragment() {
 
         // S E N D
 
-        fun send(context: Context) {
+        fun send(activityContext: Context) {
             val sqls = stylizedSqls()
-            send(context, "Semantikos SQL", sqls)
+            send(activityContext, "Semantikos SQL", sqls)
         }
 
         // I M P O R T / E X P O R T
@@ -200,17 +200,17 @@ class SqlFragment : Fragment() {
         /**
          * Export Sql
          */
-        private fun doExportSql(context: Context, uri: Uri) {
+        private fun doExportSql(fragment: Fragment, uri: Uri) {
             Log.d(TAG, "Exporting to $uri")
             try {
-                context.contentResolver.openFileDescriptor(uri, "w").use { pfd ->
+                AppContext.context.contentResolver.openFileDescriptor(uri, "w").use { pfd ->
                     FileOutputStream(pfd!!.fileDescriptor).use { fileOutputStream ->
                         OutputStreamWriter(fileOutputStream).use { writer ->
                             BufferedWriter(writer).use { bw ->
                                 val sqls = textSqls()
                                 bw.write(sqls)
                                 Log.i(TAG, "Exported to $uri")
-                                Toast.makeText(context, context.resources.getText(R.string.title_history_export).toString() + " " + uri, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(fragment.requireContext(), AppContext.context.resources.getText(R.string.title_history_export).toString() + " " + uri, Toast.LENGTH_SHORT).show()
                             }
                         }
                     }

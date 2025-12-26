@@ -29,7 +29,7 @@ class SqlStatementsFragment : ListFragment() {
         val listView = getListView()
         listView.setOnItemLongClickListener { av: AdapterView<*>, _: View?, pos: Int, _: Long ->
             val statement = av.adapter.getItem(pos) as CharSequence
-            val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipboard =AppContext.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clipData = ClipData.newPlainText("text", statement)
             clipboard.setPrimaryClip(clipData)
             Toast.makeText(requireContext(), R.string.status_clipboard_copied, Toast.LENGTH_SHORT).show()

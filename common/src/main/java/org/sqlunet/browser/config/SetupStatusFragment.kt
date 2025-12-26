@@ -67,9 +67,9 @@ open class SetupStatusFragment : Fragment(), Updatable {
             Log.d(TAG, "Download " + if (success) "succeeded" else "failed")
             update()
             if (success) {
-                val context2 = requireContext()
-                Toast.makeText(context2, R.string.title_download_complete, Toast.LENGTH_SHORT).show()
-                rerun(context2)
+                val activityContext = requireContext()
+                Toast.makeText(activityContext, R.string.title_download_complete, Toast.LENGTH_SHORT).show()
+                rerun(activityContext)
             }
         }
     }

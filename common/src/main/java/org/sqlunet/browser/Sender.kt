@@ -9,7 +9,7 @@ import org.sqlunet.browser.common.R
 
 object Sender {
 
-    fun send(context: Context, title: String, content: CharSequence, vararg to: String) {
+    fun send(activityContext: Context, title: String, content: CharSequence, vararg to: String) {
         val sendIntent = Intent(Intent.ACTION_SEND)
         sendIntent.putExtra(Intent.EXTRA_SUBJECT, title)
         sendIntent.putExtra(Intent.EXTRA_TEXT, content)
@@ -17,6 +17,6 @@ object Sender {
             sendIntent.putExtra(Intent.EXTRA_EMAIL, to)
         }
         sendIntent.type = "message/rfc822" // prompts email client only
-        context.startActivity(Intent.createChooser(sendIntent, context.getString(R.string.title_dialog_select_email)))
+        activityContext.startActivity(Intent.createChooser(sendIntent, activityContext.getString(R.string.title_dialog_select_email)))
     }
 }

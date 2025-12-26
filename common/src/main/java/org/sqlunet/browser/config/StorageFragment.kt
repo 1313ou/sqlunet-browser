@@ -143,7 +143,7 @@ class StorageFragment : Fragment() {
                             .append('\n')
                             .append(reportExternalStorage(context))
 
-                        val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                        val clipboard = AppContext.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                         val clip = ClipData.newPlainText("Storage", sb)
                         clipboard.setPrimaryClip(clip)
                         return true
@@ -180,12 +180,12 @@ class StorageFragment : Fragment() {
         // view
         val view = requireView()
 
-        // context
-        val context = requireContext()
-
         // db
         val db = view.findViewById<TextView>(R.id.database)
         db.text = getSqlUNetStorage(AppContext.context).absolutePath
+
+        // context
+        val context = requireContext()
 
         // storage
         val storage = view.findViewById<TextView>(R.id.storage)
