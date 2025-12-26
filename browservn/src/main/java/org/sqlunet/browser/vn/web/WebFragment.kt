@@ -442,11 +442,8 @@ class WebFragment : Fragment() {
             if (BuildConfig.DEBUG) {
                 val xsd = DocumentTransformer::class.java.getResource("/org/sqlunet/SqlUNet.xsd")!!
                 validateDocs(xsd, wnDomDoc, vnDomDoc, pbDomDoc)
-                val context = getContext()
-                if (context != null) {
-                    writeLog(false, context, null, wnDomDoc, vnDomDoc, pbDomDoc)
-                    writeLog(data, false, context, LogUtils.DOC_LOG)
-                }
+                writeLog(false, AppContext.context, null, wnDomDoc, vnDomDoc, pbDomDoc)
+                writeLog(data, false, AppContext.context, LogUtils.DOC_LOG)
                 // Log.d(TAG, "output=\n$data")
             }
         }
