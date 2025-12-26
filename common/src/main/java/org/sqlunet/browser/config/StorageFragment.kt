@@ -76,13 +76,13 @@ class StorageFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                val context = requireContext()
+                val activityContext = requireContext()
 
                 // handle item selection
                 when (menuItem.itemId) {
                     R.id.action_dirs -> {
-                        val message = reportStyledDirs(context)
-                        AlertDialog.Builder(context)
+                        val message = reportStyledDirs(activityContext)
+                        AlertDialog.Builder(activityContext)
                             .setTitle(R.string.action_dirs)
                             .setMessage(message)
                             .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
@@ -91,9 +91,9 @@ class StorageFragment : Fragment() {
                     }
 
                     R.id.action_storage_dirs -> {
-                        val dirs = getStyledStorageDirectoriesNamesValues(context)
+                        val dirs = getStyledStorageDirectoriesNamesValues(activityContext)
                         val message = namesValuesToReportStyled(dirs)
-                        AlertDialog.Builder(context)
+                        AlertDialog.Builder(activityContext)
                             .setTitle(R.string.action_storage_dirs)
                             .setMessage(message)
                             .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
@@ -102,9 +102,9 @@ class StorageFragment : Fragment() {
                     }
 
                     R.id.action_cache_dirs -> {
-                        val dirs = getStyledCachesNamesValues(context)
+                        val dirs = getStyledCachesNamesValues(activityContext)
                         val message = namesValuesToReportStyled(dirs)
-                        AlertDialog.Builder(context)
+                        AlertDialog.Builder(activityContext)
                             .setTitle(R.string.action_cache_dirs)
                             .setMessage(message)
                             .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
@@ -113,9 +113,9 @@ class StorageFragment : Fragment() {
                     }
 
                     R.id.action_download_dirs -> {
-                        val dirs = getStyledDownloadNamesValues(context)
+                        val dirs = getStyledDownloadNamesValues(activityContext)
                         val message = namesValuesToReportStyled(dirs)
-                        AlertDialog.Builder(context)
+                        AlertDialog.Builder(activityContext)
                             .setTitle(R.string.action_download_dirs)
                             .setMessage(message)
                             .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
@@ -129,19 +129,19 @@ class StorageFragment : Fragment() {
                         // db
                         sb.append(getString(R.string.title_database))
                             .append('\n')
-                            .append(getSqlUNetStorage(context).absolutePath)
+                            .append(getSqlUNetStorage(activityContext).absolutePath)
                             .append('\n')
                             .append('\n')
 
                             // storage
                             .append(getString(R.string.title_storage))
                             .append('\n')
-                            .append(reportStorageDirectories(context))
+                            .append(reportStorageDirectories(activityContext))
 
                             // storage devices
                             .append(getString(R.string.title_external_storage_devices))
                             .append('\n')
-                            .append(reportExternalStorage(context))
+                            .append(reportExternalStorage(activityContext))
 
                         val clipboard = AppContext.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                         val clip = ClipData.newPlainText("Storage", sb)

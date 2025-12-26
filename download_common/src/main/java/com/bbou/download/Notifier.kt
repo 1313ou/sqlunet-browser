@@ -55,9 +55,9 @@ class Notifier {
      *
      * @param notificationId notificationId
      */
-    fun cancelNotification(context: Context, notificationId: Int) {
+    fun cancelNotification(appContext: Context, notificationId: Int) {
         if (notificationId != 0) {
-            val manager = (context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
+            val manager = (appContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
             manager.cancel(notificationId)
         }
     }
@@ -83,33 +83,33 @@ class Notifier {
          * @param type           notification
          * @param args           arguments
          */
-        fun fireNotification(context: Context, notificationId: Int, type: NotificationType, contentText0: String?, vararg args: Any) {
+        fun fireNotification(appContext: Context, notificationId: Int, type: NotificationType, contentText0: String?, vararg args: Any) {
             // get an instance of the NotificationManager service
             var contentText = contentText0
-            val manager = (context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
+            val manager = (appContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
 
             // content
-            val contentTitle = context.getString(R.string.title_download)
+            val contentTitle = appContext.getString(R.string.title_download)
 
             // notification
             val notification: Notification?
             when (type) {
                 NotificationType.START -> {
-                    contentText += ' '.toString() + context.getString(R.string.status_download_running)
-                    notification = makeNotificationStartOrUpdate(context, contentTitle, contentText, notificationId)
+                    contentText += ' '.toString() + appContext.getString(R.string.status_download_running)
+                    notification = makeNotificationStartOrUpdate(appContext, contentTitle, contentText, notificationId)
                 }
 
                 NotificationType.UPDATE -> {
                     //val downloaded = args[0] as Float
                     //val percent = (downloaded * 100).toInt()
                     contentText += ' '.toString() // + context.getString(R.string.status_download_running) + ' ' + percent + '%'
-                    notification = makeNotificationStartOrUpdate(context, contentTitle, contentText, notificationId)
+                    notification = makeNotificationStartOrUpdate(appContext, contentTitle, contentText, notificationId)
                 }
 
                 NotificationType.FINISH -> {
                     val success = args[0] as Boolean
-                    contentText += ' '.toString() + context.getString(if (success) R.string.status_download_successful else R.string.status_download_fail)
-                    notification = makeNotificationFinish(context, contentTitle, contentText)
+                    contentText += ' '.toString() + appContext.getString(if (success) R.string.status_download_successful else R.string.status_download_fail)
+                    notification = makeNotificationFinish(appContext, contentTitle, contentText)
 
                     // cancel previous
                     manager.cancel(notificationId)
@@ -128,23 +128,23 @@ class Notifier {
             }
         }
 
-        private fun makeNotificationStartOrUpdate(context: Context, contentTitle: String?, contentText: String?, id: Int): Notification? {
+        private fun makeNotificationStartOrUpdate(appContext: Context, contentTitle: String?, contentText: String?, id: Int): Notification? {
             try {
                 // builder
-                val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+                val builder = NotificationCompat.Builder(appContext, CHANNEL_ID)
                 builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS)
                     .setSmallIcon(android.R.drawable.stat_sys_download)
                     .setContentTitle(contentTitle)
                     .setContentText(contentText)
                 //.setColor(some color)
                 // intent
-                val intent: Intent = makeCancelIntent(context, id)
+                val intent: Intent = makeCancelIntent(appContext, id)
 
                 // pending intent
-                val pendingIntent: PendingIntent = makePendingIntent(context, intent)
+                val pendingIntent: PendingIntent = makePendingIntent(appContext, intent)
 
                 // action
-                val action = NotificationCompat.Action.Builder(R.drawable.ic_notif_cancel, context.getString(R.string.action_cancel).uppercase(Locale.getDefault()), pendingIntent).build()
+                val action = NotificationCompat.Action.Builder(R.drawable.ic_notif_cancel, appContext.getString(R.string.action_cancel).uppercase(Locale.getDefault()), pendingIntent).build()
                 builder.addAction(action)
                 return builder.build()
             } catch (ignored: SecurityException) {
@@ -152,10 +152,10 @@ class Notifier {
             return null
         }
 
-        private fun makeNotificationFinish(context: Context, contentTitle: String?, contentText: String?): Notification? {
+        private fun makeNotificationFinish(appContext: Context, contentTitle: String?, contentText: String?): Notification? {
             try {
                 // builder
-                val builder = NotificationCompat.Builder(context, CHANNEL_ID)
+                val builder = NotificationCompat.Builder(appContext, CHANNEL_ID)
                 builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS)
                     .setSmallIcon(android.R.drawable.stat_sys_download_done)
                     .setContentTitle(contentTitle)
@@ -171,16 +171,16 @@ class Notifier {
         /**
          * Init notification channel
          *
-         * @param context context
+         * @param appContext context
          */
-        fun initChannels(context: Context) {
+        fun initChannels(appContext: Context) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                 return
             }
             val channel = NotificationChannel(CHANNEL_ID, "Download", NotificationManager.IMPORTANCE_LOW)
             channel.description = "Download Channel"
             channel.setSound(null, null)
-            val notificationManager = (context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
+            val notificationManager = (appContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
             notificationManager.createNotificationChannel(channel)
         }
 
