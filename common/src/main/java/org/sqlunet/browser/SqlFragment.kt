@@ -217,7 +217,7 @@ class SqlFragment : Fragment() {
                 }
             } catch (e: IOException) {
                 Log.e(TAG, "While writing", e)
-                Toast.makeText(context, context.resources.getText(R.string.error_export).toString() + " " + uri, Toast.LENGTH_SHORT).show()
+                Toast.makeText(fragment.requireContext(), AppContext.context.resources.getText(R.string.error_export).toString() + " " + uri, Toast.LENGTH_SHORT).show()
             }
         }
 
