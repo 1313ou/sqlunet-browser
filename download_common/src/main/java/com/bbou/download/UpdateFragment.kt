@@ -109,11 +109,11 @@ class UpdateFragment : Fragment() {
             val button = view.findViewById<ImageButton>(R.id.update)
             button.visibility = View.VISIBLE
             button.setOnClickListener {
-                val context = requireContext()
-                confirm(context, R.string.title_activity_update, R.string.askUpdate) {
+                val activityContext = requireContext()
+                confirm(activityContext, R.string.title_activity_update, R.string.askUpdate) {
                     val downloadIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) intent.getParcelableExtra(DOWNLOAD_INTENT_ARG, Intent::class.java) else @Suppress("DEPRECATION") intent.getParcelableExtra(DOWNLOAD_INTENT_ARG)
                     downloadIntent?.let {
-                        context.startActivity(downloadIntent)
+                        activityContext.startActivity(downloadIntent)
                         val activity2: Activity? = getActivity()
                         activity2?.finish()
                     }

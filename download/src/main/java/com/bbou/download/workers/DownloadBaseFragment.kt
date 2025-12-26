@@ -99,7 +99,7 @@ abstract class DownloadBaseFragment : ProbedDownloadFragment() {
 
             // notification
             val progressPercent = progressDownloaded.toFloat() / progressTotal
-            fireNotification(requireContext(), notificationId, Notifier.NotificationType.UPDATE, progressPercent)
+            fireNotification(appContext, notificationId, Notifier.NotificationType.UPDATE, progressPercent)
 
             Log.d(TAG, "Observed progress $progressDownloaded/$progressTotal")
         }
@@ -110,7 +110,7 @@ abstract class DownloadBaseFragment : ProbedDownloadFragment() {
             WorkInfo.State.RUNNING -> {
                 Log.d(TAG, "Observed running")
                 working = true // confirm
-                fireNotification(requireContext(), notificationId, Notifier.NotificationType.START)
+                fireNotification(appContext, notificationId, Notifier.NotificationType.START)
             }
 
             WorkInfo.State.SUCCEEDED -> {
@@ -126,7 +126,7 @@ abstract class DownloadBaseFragment : ProbedDownloadFragment() {
                 status = pullStatus()
 
                 // fire notification
-                fireNotification(requireContext(), notificationId, Notifier.NotificationType.FINISH, true)
+                fireNotification(appContext, notificationId, Notifier.NotificationType.FINISH, true)
 
                 // fire onDone
                 val downloadData = wi.outputData.toDownloadData()
@@ -147,7 +147,7 @@ abstract class DownloadBaseFragment : ProbedDownloadFragment() {
                 status = pullStatus()
 
                 // fire notification
-                fireNotification(requireContext(), notificationId, Notifier.NotificationType.FINISH, false)
+                fireNotification(appContext, notificationId, Notifier.NotificationType.FINISH, false)
 
                 // fire onDone
                 onDownloadDone(Status.STATUS_FAILED, null)
@@ -168,7 +168,7 @@ abstract class DownloadBaseFragment : ProbedDownloadFragment() {
                 status = pullStatus()
 
                 // fire notification
-                fireNotification(requireContext(), notificationId, Notifier.NotificationType.CANCEL, false)
+                fireNotification(appContext, notificationId, Notifier.NotificationType.CANCEL, false)
 
                 // fire onDone
                 onDownloadDone(Status.STATUS_CANCELLED, null)
@@ -245,7 +245,7 @@ abstract class DownloadBaseFragment : ProbedDownloadFragment() {
         super.onDownloadDone(status, downloadData)
 
         if (status == Status.STATUS_SUCCEEDED && downloadData != null) {
-            Settings.recordDatapackSource(requireContext(), downloadData, mode?.toString())
+            Settings.recordDatapackSource(appContext, downloadData, mode?.toString())
         }
     }
 }

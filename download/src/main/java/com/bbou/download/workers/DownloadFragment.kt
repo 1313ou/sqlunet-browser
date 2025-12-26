@@ -173,7 +173,7 @@ class DownloadFragment : DownloadBaseFragment() {
 
         // guard against no unzip dir
         if (unzipDir == null) {
-            val datapackDir = Settings.getDatapackDir(requireContext())
+            val datapackDir = Settings.getDatapackDir(appContext)
             unzipDir = if (datapackDir == null) null else File(datapackDir)
         }
         if (unzipDir == null) {
