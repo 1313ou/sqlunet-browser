@@ -37,14 +37,14 @@ object StorageReports {
     /**
      * Styled string
      *
-     * @param context context
-     * @param dir     storage directory
+     * @param activityContext context
+     * @param dir storage directory
      * @return styled string
      */
-    private fun toStyledString(context: Context, dir: StorageUtils.StorageDirectory): CharSequence {
+    private fun toStyledString(activityContext: Context, dir: StorageUtils.StorageDirectory): CharSequence {
         val sb = SpannableStringBuilder()
         // icon
-        appendImage(context, sb, toIconId(dir.dir.type))
+        appendImage(activityContext, sb, toIconId(dir.dir.type))
         sb.append(' ')
         // type
         appendWithSpans(sb, ' '.toString() + dir.dir.type.toDisplay() + ' ', BackgroundColorSpan(Colors.dirTypeBackColor), ForegroundColorSpan(Colors.dirTypeForeColor), RelativeSizeSpan(ENLARGE))
@@ -53,7 +53,7 @@ object StorageReports {
         appendWithSpans(sb, dir.dir.taggedValue, spans(Colors.dirValueBackColor, Colors.dirValueForeColor, StyleSpan(Typeface.ITALIC)))
         sb.append('\n')
         // status
-        val suitable = dir.status == 0 && dir.fitsIn(context)
+        val suitable = dir.status == 0 && dir.fitsIn(activityContext)
         appendWithSpans(
             sb, mbToString(dir.free), spans(
                 if (suitable) Colors.dirOkBackColor else Colors.dirFailBackColor,

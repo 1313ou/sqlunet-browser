@@ -207,11 +207,11 @@ open class DownloadWork {
         /**
          * Cancel work
          *
-         * @param context context
-         * @param uuid    work uuid
+         * @param appContext application context
+         * @param uuid work uuid
          */
-        fun stopWork(context: Context, uuid: UUID) {
-            WorkManager.getInstance(context).cancelWorkById(uuid)
+        fun stopWork(appContext: Context, uuid: UUID) {
+            WorkManager.getInstance(appContext).cancelWorkById(uuid)
         }
     }
 }

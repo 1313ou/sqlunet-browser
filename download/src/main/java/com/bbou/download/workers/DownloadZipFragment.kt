@@ -138,9 +138,9 @@ class DownloadZipFragment : DownloadBaseFragment() {
      */
     private fun start(fromUrl: String, entry: String?, toDir: String, renameFrom: String?, renameTo: String?) {
         uuid = if (useCoroutines)
-            com.bbou.download.workers.core.coroutines.DownloadZipWork.Utils.startWork(requireContext(), fromUrl, entry, toDir, renameFrom, renameTo, this, observer)
+            com.bbou.download.workers.core.coroutines.DownloadZipWork.Utils.startWork(appContext, fromUrl, entry, toDir, renameFrom, renameTo, this, observer)
         else
-            DownloadZipWork.Utils.startWork(requireContext(), fromUrl, entry, toDir, renameFrom, renameTo, this, observer)
+            DownloadZipWork.Utils.startWork(appContext, fromUrl, entry, toDir, renameFrom, renameTo, this, observer)
     }
 
     // A B S T R A C T

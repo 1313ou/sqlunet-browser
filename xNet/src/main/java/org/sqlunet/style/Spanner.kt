@@ -402,12 +402,12 @@ open class Spanner {
         /**
          * Get drawable from resource id
          *
-         * @param context context
-         * @param resId   resource id
+         * @param activityContext context
+         * @param resId resource id
          * @return drawable
          */
-        fun getDrawable(context: Context, @DrawableRes resId: Int): Drawable {
-            val drawable = AppCompatResources.getDrawable(context, resId)!!
+        fun getDrawable(activityContext: Context, @DrawableRes resId: Int): Drawable {
+            val drawable = AppCompatResources.getDrawable(activityContext, resId)!!
             drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
             return drawable
         }

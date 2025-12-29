@@ -189,7 +189,7 @@ abstract class DownloadBaseFragment : ProbedDownloadFragment() {
     override fun cancel() {
         cancel = true
         if (uuid != null) {
-            DownloadWork.Utils.stopWork(requireContext(), uuid!!)
+            DownloadWork.Utils.stopWork(appContext, uuid!!)
         }
     }
 

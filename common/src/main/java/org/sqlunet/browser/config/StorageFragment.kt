@@ -185,14 +185,14 @@ class StorageFragment : Fragment() {
         db.text = getSqlUNetStorage(AppContext.context).absolutePath
 
         // context
-        val context = requireContext()
+        val activityContext = requireContext()
 
         // storage
         val storage = view.findViewById<TextView>(R.id.storage)
-        storage.text = reportStyledStorageDirectories(context)
+        storage.text = reportStyledStorageDirectories(activityContext)
 
         // storage devices
         val storageDevices = view.findViewById<TextView>(R.id.storage_devices)
-        storageDevices.text = reportStyledExternalStorage(context)
+        storageDevices.text = reportStyledExternalStorage(activityContext)
     }
 }

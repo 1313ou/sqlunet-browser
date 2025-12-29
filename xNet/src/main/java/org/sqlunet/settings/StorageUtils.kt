@@ -671,12 +671,12 @@ object StorageUtils {
 
         /**
          * Capacity test
-         *
+         * @param appContext application context
          * @return true if database fits in storage
          */
-        fun fitsIn(context: Context): Boolean {
+        fun fitsIn(appContext: Context): Boolean {
             if (java.lang.Float.isNaN(DATABASE_SIZE_MB)) {
-                val size = context.resources.getInteger(R.integer.size_db_working_total).toFloat()
+                val size = appContext.resources.getInteger(R.integer.size_db_working_total).toFloat()
                 DATABASE_SIZE_MB = (size + size / 10f) / (1024f * 1024f)
             }
             return !java.lang.Float.isNaN(free) && free >= DATABASE_SIZE_MB

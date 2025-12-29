@@ -149,9 +149,9 @@ class DownloadFragment : DownloadBaseFragment() {
      */
     private fun start(fromUrl: String, toFile: String) {
         uuid = if (useCoroutines)
-            com.bbou.download.workers.core.coroutines.DownloadWork.Utils.startWork(requireContext(), fromUrl, toFile, this, observer)
+            com.bbou.download.workers.core.coroutines.DownloadWork.Utils.startWork(appContext, fromUrl, toFile, this, observer)
         else
-            DownloadWork.Utils.startWork(requireContext(), fromUrl, toFile, this, observer)
+            DownloadWork.Utils.startWork(appContext, fromUrl, toFile, this, observer)
     }
 
     // A B S T R A C T
@@ -239,7 +239,7 @@ class DownloadFragment : DownloadBaseFragment() {
             val fileName = toFile!!.name
             val filePath = toFile!!.absolutePath
             val fatObserver = TaskDialogObserver<Pair<Number, Number>>(parentFragmentManager)
-                .setTitle(requireContext().getString(R.string.action_unzip_datapack_from_archive))
+                .setTitle(appContext.getString(R.string.action_unzip_datapack_from_archive))
                 .setMessage(fileName)
             val task: Task<String, Pair<Number, Number>, Boolean> = ObservedDelegatingTask(baseTask, fatObserver)
             task.execute(filePath)
