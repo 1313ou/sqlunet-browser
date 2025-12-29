@@ -126,10 +126,7 @@ class TreeViewer(
         val anchor = wrapper.second
 
         // context
-        var containerContext = context
-        if (containerStyle != 0 && containerStyleAppliesToRoot) {
-            containerContext = ContextThemeWrapper(context, containerStyle)
-        }
+        val containerContext = if (containerStyle != 0 && containerStyleAppliesToRoot) ContextThemeWrapper(context, containerStyle) else context
 
         // content
         val contentView = LinearLayout(containerContext, null, containerStyle)
