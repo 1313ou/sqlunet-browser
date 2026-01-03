@@ -88,7 +88,7 @@ class SetupDatabaseFragment : BaseTaskFragment() {
 
     override fun makeAdapter(): SpinnerAdapter {
         // create an ArrayAdapter using the string array and a default spinner layout
-        val adapter = ArrayAdapter.createFromResource(AppContext.context, R.array.sql_statement_titles, R.layout.spinner_item_task)
+        val adapter = ArrayAdapter.createFromResource(requireContext(), R.array.sql_statement_titles, R.layout.spinner_item_task)
 
         // specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(R.layout.spinner_item_task_dropdown)
