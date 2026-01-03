@@ -241,7 +241,7 @@ abstract class BaseDownloadFragment : Fragment() {
 
         super.onCreate(savedInstanceState)
 
-        // unmarshal arguments
+        // store app context
         appContext = requireContext().applicationContext
 
         // unmarshal arguments
