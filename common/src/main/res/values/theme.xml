@@ -9,7 +9,7 @@
 
 	<style name="MyXBaseTheme" parent="MyBaseTheme" />
 
-	<style name="MyTheme" parent="MyXBaseTheme">
+	<style name="MyThemeDayNight" parent="MyXBaseTheme">
 
 		<!-- C O L O R S -->
 
@@ -61,6 +61,10 @@
 
 		<!-- background of activated indicator -->
 		<item name="android:activatedBackgroundIndicator">@drawable/bg_listitem</item>
+
+		<!-- transparent statusbar and navigation bar -->
+		<item name="android:statusBarColor">@android:color/transparent</item>
+		<item name="android:navigationBarColor">@android:color/transparent</item>
 
 	</style>
 
