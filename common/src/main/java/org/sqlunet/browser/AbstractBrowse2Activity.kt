@@ -6,7 +6,7 @@ package org.sqlunet.browser
 import androidx.appcompat.app.AppCompatActivity
 import org.sqlunet.nightmode.NightMode.createOverrideConfigurationForDayNight
 
-abstract class AbstractBrowse2Activity : AppCompatActivity() {
+abstract class AbstractBrowse2Activity : AppCompatCommonActivity() {
 
     override fun onNightModeChanged(mode: Int) {
         super.onNightModeChanged(mode)

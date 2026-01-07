@@ -11,6 +11,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.sqlunet.browser.AppCompatCommonActivity
 import org.sqlunet.browser.Sender
 import org.sqlunet.browser.common.R
 import org.sqlunet.settings.LogUtils
@@ -19,7 +20,7 @@ import java.io.File
 import java.io.FileReader
 import java.io.IOException
 
-class LogsActivity : AppCompatActivity() {
+class LogsActivity : AppCompatCommonActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

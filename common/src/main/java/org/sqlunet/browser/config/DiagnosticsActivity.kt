@@ -11,11 +11,12 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.sqlunet.browser.AppCompatCommonActivity
 import org.sqlunet.browser.Sender
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.config.Diagnostics.AsyncDiagnostics
 
-class DiagnosticsActivity : AppCompatActivity() {
+class DiagnosticsActivity : AppCompatCommonActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

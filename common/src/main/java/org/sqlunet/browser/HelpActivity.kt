@@ -18,7 +18,7 @@ import org.sqlunet.browser.common.R
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class HelpActivity : AppCompatActivity() {
+class HelpActivity : AppCompatCommonActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

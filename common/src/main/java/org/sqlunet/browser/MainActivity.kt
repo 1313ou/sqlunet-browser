@@ -30,7 +30,7 @@ import org.sqlunet.settings.StorageSettings
 /**
  * Main activity
  */
-open class MainActivity : AppCompatActivity() {
+open class MainActivity : AppCompatCommonActivity() {
 
     private var appBarConfiguration: AppBarConfiguration? = null
 

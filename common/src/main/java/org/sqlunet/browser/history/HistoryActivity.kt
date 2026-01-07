@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import org.sqlunet.browser.AppCompatCommonActivity
 import org.sqlunet.browser.common.R
 
 /**
@@ -15,7 +16,7 @@ import org.sqlunet.browser.common.R
  * @author Bernard Bou
  * @noinspection WeakerAccess
  */
-class HistoryActivity : AppCompatActivity() {
+class HistoryActivity : AppCompatCommonActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

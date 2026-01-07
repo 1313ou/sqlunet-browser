@@ -9,6 +9,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import org.sqlunet.browser.AppCompatCommonActivity
 import org.sqlunet.browser.MenuHandler
 import org.sqlunet.browser.common.R
 
@@ -17,7 +18,7 @@ import org.sqlunet.browser.common.R
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class StorageActivity : AppCompatActivity() {
+class StorageActivity : AppCompatCommonActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

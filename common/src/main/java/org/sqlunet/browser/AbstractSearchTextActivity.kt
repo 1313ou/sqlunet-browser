@@ -19,7 +19,7 @@ import org.sqlunet.nightmode.NightMode.createOverrideConfigurationForDayNight
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract class AbstractSearchTextActivity<F : BaseSearchFragment?> : AppCompatActivity() {
+abstract class AbstractSearchTextActivity<F : BaseSearchFragment?> : AppCompatCommonActivity() {
 
     /**
      * Fragment

@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.Consumer
 import org.sqlunet.browser.common.R
 
-class OperationActivity : AppCompatActivity() {
+class OperationActivity : AppCompatCommonActivity() {
 
     private val consumer = Consumer { uri: Uri? ->
         val resolver = contentResolver
