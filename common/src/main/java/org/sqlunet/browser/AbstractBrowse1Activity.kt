@@ -3,7 +3,6 @@
  */
 package org.sqlunet.browser
 
-import androidx.appcompat.app.AppCompatActivity
 import org.sqlunet.nightmode.NightMode.createOverrideConfigurationForDayNight
 
 abstract class AbstractBrowse1Activity : AppCompatCommonActivity() {

@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import org.sqlunet.browser.AppCompatCommonActivity
 import org.sqlunet.browser.EntryActivity.Companion.rerun

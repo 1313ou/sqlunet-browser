@@ -6,7 +6,6 @@ package org.sqlunet.browser.config
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.util.Consumer
 import org.sqlunet.browser.AppCompatCommonActivity
 import org.sqlunet.browser.common.R

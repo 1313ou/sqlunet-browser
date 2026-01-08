@@ -11,7 +11,6 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import org.sqlunet.browser.common.R
 import org.sqlunet.nightmode.NightMode.createOverrideConfigurationForDayNight
