@@ -5,10 +5,6 @@
 <resources>
 
 	<style name="MyTheme" parent="MyThemeDayNight">
-
-		<!-- the status bar background is light, so it should use dark icons -->
-		<item name="android:windowLightStatusBar">true</item>
-
 	</style>
 
 </resources>
