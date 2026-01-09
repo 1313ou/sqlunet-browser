@@ -68,4 +68,7 @@
 
 	</style>
 
+	<style name="MyTheme" parent="MyThemeDayNight">
+	</style>
+
 </resources>
