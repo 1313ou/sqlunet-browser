@@ -2,7 +2,6 @@ import java.util.Properties
 
 plugins {
     alias(libs.plugins.androidApplication)
-    alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.navigationSafeargs)
 }
 
@@ -46,7 +45,7 @@ android {
 
     sourceSets {
         getByName("androidTest") {
-            assets.srcDirs("src/main/assets", "src/debug/assets/")
+            assets.directories.addAll(listOf("src/main/assets", "src/debug/assets/"))
         }
     }
 
