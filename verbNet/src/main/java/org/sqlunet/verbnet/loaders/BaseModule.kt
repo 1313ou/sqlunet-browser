@@ -42,6 +42,7 @@ import org.sqlunet.view.TreeOp.TreeOpCode
 import org.sqlunet.view.TreeOp.TreeOps
 import org.sqlunet.view.TreeOpExecute
 import androidx.core.net.toUri
+import org.sqlunet.xnet.R as XNetR
 
 /**
  * VerbNet base module
@@ -150,15 +151,15 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
         rolesLabel = context.getString(R.string.verbnet_roles_)
         framesLabel = context.getString(R.string.verbnet_frames_)
         examplesLabel = context.getString(R.string.verbnet_examples_)
-        drawableClass = getDrawable(context, R.drawable.roleclass)
-        drawableMember = getDrawable(context, R.drawable.member)
-        drawableRoles = getDrawable(context, R.drawable.roles)
-        drawableRole = getDrawable(context, R.drawable.role)
+        drawableClass = getDrawable(context, XNetR.drawable.roleclass)
+        drawableMember = getDrawable(context, XNetR.drawable.member)
+        drawableRoles = getDrawable(context, XNetR.drawable.roles)
+        drawableRole = getDrawable(context, XNetR.drawable.role)
         drawableFrame = getDrawable(context, R.drawable.vnframe)
         drawableSyntax = getDrawable(context, R.drawable.syntax)
         drawableSemantics = getDrawable(context, R.drawable.semantics)
-        drawableExample = getDrawable(context, R.drawable.sample)
-        drawableDefinition = getDrawable(context, R.drawable.definition)
+        drawableExample = getDrawable(context, XNetR.drawable.sample)
+        drawableDefinition = getDrawable(context, XNetR.drawable.definition)
         drawableGrouping = getDrawable(context, R.drawable.grouping)
 
         // create processors and spanners
@@ -227,8 +228,8 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val node = makeTextNode(sb, false).addTo(parent)
 
             // sub nodes
-            val membersNode = makeHotQueryTreeNode(membersLabel, R.drawable.members, false, MembersQuery(classId)).addTo(parent)
-            val rolesNode = makeHotQueryTreeNode(rolesLabel, R.drawable.roles, false, RolesQuery(classId)).addTo(parent)
+            val membersNode = makeHotQueryTreeNode(membersLabel, XNetR.drawable.members, false, MembersQuery(classId)).addTo(parent)
+            val rolesNode = makeHotQueryTreeNode(rolesLabel, XNetR.drawable.roles, false, RolesQuery(classId)).addTo(parent)
             val framesNode = makeQueryTreeNode(framesLabel, R.drawable.vnframe, false, FramesQuery(classId)).addTo(parent)
 
             // changed
@@ -276,7 +277,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 val definitionsConcat = cursor.getString(idDefinitions)
                 val groupings: String? = cursor.getString(idGroupings)
                 if (definitionsConcat != null || groupings != null) {
-                    val memberNode = makeTreeNode(sb, R.drawable.member, false).addTo(parent)
+                    val memberNode = makeTreeNode(sb, XNetR.drawable.member, false).addTo(parent)
                     changedList.add(TreeOpCode.NEWCHILD, memberNode)
                     val sb2 = SpannableStringBuilder()
 
@@ -318,7 +319,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     val node = makeTextNode(sb2, false).addTo(memberNode)
                     changedList.add(TreeOpCode.NEWCHILD, node)
                 } else {
-                    val node = makeLeafNode(sb, R.drawable.member, false).addTo(parent)
+                    val node = makeLeafNode(sb, XNetR.drawable.member, false).addTo(parent)
                     changedList.add(TreeOpCode.NEWCHILD, node)
                 }
             } while (cursor.moveToNext())
@@ -482,9 +483,9 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             if (items.size == 1) {
                 appendImage(sb, drawableMember)
                 append(sb, items[0], 0, VerbNetFactories.memberFactory)
-                return makeIconTextNode(sb, R.drawable.member, false).addTo(parent)
+                return makeIconTextNode(sb, XNetR.drawable.member, false).addTo(parent)
             } else if (items.size > 1) {
-                val groupingsNode = makeIconTextNode(groupLabel, R.drawable.member, false).addTo(parent)
+                val groupingsNode = makeIconTextNode(groupLabel, XNetR.drawable.member, false).addTo(parent)
                 var first = true
                 for (item in items) {
                     if (first) {

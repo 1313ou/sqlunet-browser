@@ -42,6 +42,7 @@ import org.sqlunet.view.TreeOp.TreeOps
 import org.sqlunet.view.TreeOpExecute
 import java.util.TreeSet
 import androidx.core.net.toUri
+import org.sqlunet.xnet.R as XNetR
 
 /**
  * Base module for PredicateMatrix
@@ -73,8 +74,8 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
         // spanner
         val context = this@BaseModule.fragment.requireContext()
-        classDrawable = getDrawable(context, R.drawable.roles)
-        roleDrawable = getDrawable(context, R.drawable.role)
+        classDrawable = getDrawable(context, XNetR.drawable.roles)
+        roleDrawable = getDrawable(context, XNetR.drawable.role)
     }
 
     /**
@@ -794,7 +795,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 val roleData = pmRole.toRoleData()
                 append(pmsb, roleData, 0, PredicateMatrixFactories.dataFactory)
             }
-            val result = makeTreeNode(pmsb, R.drawable.role, false).addTo(parent)
+            val result = makeTreeNode(pmsb, XNetR.drawable.role, false).addTo(parent)
             changedList.add(TreeOpCode.NEWCHILD, result)
             return result
         }

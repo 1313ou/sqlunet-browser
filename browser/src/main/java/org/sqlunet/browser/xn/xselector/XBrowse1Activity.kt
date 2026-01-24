@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import org.sqlunet.browser.AbstractBrowse1Activity
 import org.sqlunet.browser.BaseBrowse1Fragment
 import org.sqlunet.browser.R
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * X selector activity
@@ -24,7 +25,7 @@ class XBrowse1Activity : AbstractBrowse1Activity() {
         setContentView(R.layout.activity_browse1)
 
         // toolbar
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = findViewById<Toolbar>(CommonR.id.toolbar)
         setSupportActionBar(toolbar)
 
         // fragment

@@ -40,6 +40,7 @@ import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
 import androidx.core.view.size
 import androidx.core.graphics.drawable.toDrawable
+import com.google.android.material.R as MaterialR
 
 /**
  * Base search fragment
@@ -314,7 +315,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     val textView = view.findViewById<TextView>(android.R.id.text1)
                     textView.text = ""
                     val resId = modeIcons[position]
-                    val color = fetchColor(context, R.attr.colorOnPrimary)
+                    val color = fetchColor(context, MaterialR.attr.colorOnPrimary)
                     val drawable = getDrawable(context, resId)
                     tint(color, drawable!!)
                     textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
@@ -327,7 +328,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     val textView = view.findViewById<TextView>(android.R.id.text1)
                     textView.text = rowItem
                     val resId = modeIcons[position]
-                    val color = fetchColor(context, R.attr.colorOnPrimary)
+                    val color = fetchColor(context, MaterialR.attr.colorOnPrimary)
                     val drawable = getDrawable(context, resId)
                     tint(color, drawable!!)
                     textView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)

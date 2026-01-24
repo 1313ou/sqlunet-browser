@@ -176,6 +176,10 @@
 	<string name="from_uri">from Uri</string>
 	<string name="from_file">from file</string>
 
+	<!-- result -->
+	<string name="result_fail">Failed</string>
+	<string name="result_success">Success</string>
+
 	<!-- provider items -->
 	<string name="providers">content providers</string>
 	<string name="provider_authority">authority</string>

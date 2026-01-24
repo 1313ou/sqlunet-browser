@@ -27,6 +27,7 @@ import org.sqlunet.wordnet.browser.WordActivity
 import org.sqlunet.wordnet.settings.Settings
 import androidx.core.net.toUri
 import org.sqlunet.browser.AppContext
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * Text result fragment
@@ -81,7 +82,7 @@ class TextFragment : BaseListFragment() {
                     try {
                         view.setImageResource(value.toInt())
                         return@ViewBinder true
-                    } catch (nfe: NumberFormatException) {
+                    } catch (_: NumberFormatException) {
                         view.setImageURI(value.toUri())
                         return@ViewBinder true
                     }
@@ -166,7 +167,7 @@ class TextFragment : BaseListFragment() {
      */
     private fun makeDialog(listener: DialogInterface.OnClickListener, vararg choices: CharSequence): AlertDialog {
         return AlertDialog.Builder(requireContext())
-            .setTitle(R.string.title_activity_searchtext)
+            .setTitle(CommonR.string.title_activity_searchtext)
             .setItems(choices, listener)
             .create()
     }

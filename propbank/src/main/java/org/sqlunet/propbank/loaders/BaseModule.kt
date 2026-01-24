@@ -38,6 +38,7 @@ import org.sqlunet.view.TreeOp.TreeOps
 import org.sqlunet.view.TreeOpExecute
 import java.util.Arrays
 import androidx.core.net.toUri
+import org.sqlunet.xnet.R as XNetR
 
 /**
  * Module for PropBank role sets
@@ -117,14 +118,14 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
         val context = this@BaseModule.fragment.requireContext()
         rolesLabel = context.getString(R.string.propbank_roles_)
         examplesLabel = context.getString(R.string.propbank_examples_)
-        roleSetDrawable = getDrawable(context, R.drawable.roleclass)
-        rolesDrawable = getDrawable(context, R.drawable.roles)
-        relationDrawable = getDrawable(context, R.drawable.relation)
-        roleDrawable = getDrawable(context, R.drawable.role)
+        roleSetDrawable = getDrawable(context, XNetR.drawable.roleclass)
+        rolesDrawable = getDrawable(context, XNetR.drawable.roles)
+        relationDrawable = getDrawable(context, XNetR.drawable.relation)
+        roleDrawable = getDrawable(context, XNetR.drawable.role)
         vnRoleDrawable = getDrawable(context, R.drawable.vnrole)
         aliasDrawable = getDrawable(context, R.drawable.alias)
-        definitionDrawable = getDrawable(context, R.drawable.definition)
-        sampleDrawable = getDrawable(context, R.drawable.sample)
+        definitionDrawable = getDrawable(context, XNetR.drawable.definition)
+        sampleDrawable = getDrawable(context, XNetR.drawable.sample)
 
         // spanner
         spanner = PropBankSpanner(context)
@@ -197,8 +198,8 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val node = makeTextNode(sb, false).addTo(parent)
 
             // sub nodes
-            val rolesNode = makeHotQueryTreeNode(rolesLabel, R.drawable.roles, false, RolesQuery(roleSetId)).addTo(parent)
-            val examplesNode = makeQueryTreeNode(examplesLabel, R.drawable.sample, false, ExamplesQuery(roleSetId)).addTo(parent)
+            val rolesNode = makeHotQueryTreeNode(rolesLabel, XNetR.drawable.roles, false, RolesQuery(roleSetId)).addTo(parent)
+            val examplesNode = makeQueryTreeNode(examplesLabel, XNetR.drawable.sample, false, ExamplesQuery(roleSetId)).addTo(parent)
             changed = seq(TreeOpCode.NEWMAIN, node, TreeOpCode.NEWEXTRA, rolesNode, TreeOpCode.NEWEXTRA, examplesNode, TreeOpCode.NEWTREE, parent)
         } else {
             setNoResult(parent)
@@ -256,9 +257,9 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 changedList.add(TreeOpCode.NEWCHILD, node)
 
                 // sub nodes
-                val rolesNode = makeHotQueryTreeNode(rolesLabel, R.drawable.roles, false, RolesQuery(roleSetId.toLong())).addTo(parent)
+                val rolesNode = makeHotQueryTreeNode(rolesLabel, XNetR.drawable.roles, false, RolesQuery(roleSetId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, rolesNode)
-                val examplesNode = makeQueryTreeNode(examplesLabel, R.drawable.sample, false, ExamplesQuery(roleSetId.toLong())).addTo(parent)
+                val examplesNode = makeQueryTreeNode(examplesLabel, XNetR.drawable.sample, false, ExamplesQuery(roleSetId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, examplesNode)
             } while (cursor.moveToNext())
             changed = changedList.toArray()

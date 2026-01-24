@@ -18,6 +18,7 @@ import org.sqlunet.model.TreeFactory.setNoResult
 import org.sqlunet.treeview.control.Link
 import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.wordnet.R
+import org.sqlunet.xnet.R as XNetR
 
 /**
  * Module for WordNet sense
@@ -46,7 +47,7 @@ class SenseModule(fragment: TreeFragment) : SynsetModule(fragment) {
         if (wordId != null && wordId != 0L && synsetId != null && synsetId != 0L) {
             // anchor nodes
             val synsetNode = makeTextNode(senseLabel, false).addTo(node)
-            val membersNode = makeIconTextNode(membersLabel, R.drawable.members, false).addTo(node)
+            val membersNode = makeIconTextNode(membersLabel, XNetR.drawable.members, false).addTo(node)
 
             // synset
             synset(synsetId!!, synsetNode, false)
@@ -68,9 +69,9 @@ class SenseModule(fragment: TreeFragment) : SynsetModule(fragment) {
 
             // samples
             if (expand) {
-                makeHotQueryTreeNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
+                makeHotQueryTreeNode(samplesLabel, XNetR.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
             } else {
-                makeQueryTreeNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
+                makeQueryTreeNode(samplesLabel, XNetR.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
             }
 
             // usages

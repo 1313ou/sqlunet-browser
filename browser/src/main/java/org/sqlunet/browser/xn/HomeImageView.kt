@@ -13,10 +13,14 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.google.android.material.snackbar.Snackbar
-import org.sqlunet.browser.R
 import kotlin.math.atan2
 import kotlin.math.min
 import kotlin.math.sqrt
+import org.sqlunet.framenet.R as FramenetR
+import org.sqlunet.predicatematrix.R as PredicatematrixR
+import org.sqlunet.propbank.R as PropbankR
+import org.sqlunet.verbnet.R as VerbnetR
+import org.sqlunet.wordnet.R as WordnetR
 
 internal class HomeImageView : AppCompatImageView {
     constructor(context: Context) : super(context)
@@ -76,14 +80,14 @@ internal class HomeImageView : AppCompatImageView {
             Log.d(TAG, "pie=$pie")
             var messageId = 0
             when (ring) {
-                0 -> messageId = R.string.wordnet_blurb
+                0 -> messageId = WordnetR.string.wordnet_blurb
                 1 -> when (pie) {
-                    0 -> messageId = R.string.propbank_blurb
-                    1 -> messageId = R.string.framenet_blurb
-                    2 -> messageId = R.string.verbnet_blurb
+                    0 -> messageId = PropbankR.string.propbank_blurb
+                    1 -> messageId = FramenetR.string.framenet_blurb
+                    2 -> messageId = VerbnetR.string.verbnet_blurb
                 }
 
-                2 -> messageId = R.string.predicatematrix_blurb
+                2 -> messageId = PredicatematrixR.string.predicatematrix_blurb
             }
             if (messageId != 0) {
                 val context = context

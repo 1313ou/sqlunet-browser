@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import org.sqlunet.browser.AppCompatCommonActivity
 import org.sqlunet.browser.vn.R
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * An activity representing a web view.
@@ -24,7 +25,7 @@ class WebActivity : AppCompatCommonActivity() {
         setContentView(R.layout.activity_web)
 
         // toolbar
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = findViewById<Toolbar>(CommonR.id.toolbar)
         setSupportActionBar(toolbar)
 
         // set up the action bar

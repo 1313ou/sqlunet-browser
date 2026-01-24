@@ -18,6 +18,7 @@ import org.sqlunet.style.MarkupSpanner.SpanPosition.Companion.valueFrom
 import org.sqlunet.style.Span
 import org.sqlunet.style.Spanner.Companion.getDrawable
 import org.sqlunet.style.Spanner.HiddenSpan
+import org.sqlunet.xnet.R as XNetR
 
 /**
  * FrameNet markup factory
@@ -36,17 +37,17 @@ class FrameNetMarkupFactory internal constructor(context: Context) : MarkupSpann
     /**
      * Role drawable
      */
-    private val roleDrawable: Drawable = getDrawable(context, R.drawable.role)
+    private val roleDrawable: Drawable = getDrawable(context, XNetR.drawable.role)
 
     /**
      * Relation drawable
      */
-    private val relationDrawable: Drawable = getDrawable(context, R.drawable.relation)
+    private val relationDrawable: Drawable = getDrawable(context, XNetR.drawable.relation)
 
     /**
      * Sample drawable
      */
-    private val sampleDrawable: Drawable = getDrawable(context, R.drawable.sample)
+    private val sampleDrawable: Drawable = getDrawable(context, XNetR.drawable.sample)
 
     /**
      * Make spans

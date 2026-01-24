@@ -29,6 +29,7 @@ import org.sqlunet.view.TreeOp.TreeOpCode
 import org.sqlunet.view.TreeOp.TreeOps
 import org.sqlunet.view.TreeOpExecute
 import androidx.core.net.toUri
+import org.sqlunet.xnet.R as XNetR
 
 /**
  * VerbNet class from word/sense module
@@ -133,9 +134,9 @@ class ClassFromWordModule(fragment: TreeFragment) : BaseModule(fragment) {
                 changedList.add(TreeOpCode.NEWCHILD, node)
 
                 // sub nodes
-                val membersNode = makeHotQueryTreeNode(membersLabel, R.drawable.members, false, MembersQuery(classId.toLong())).addTo(parent)
+                val membersNode = makeHotQueryTreeNode(membersLabel, XNetR.drawable.members, false, MembersQuery(classId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, membersNode)
-                val rolesNode = makeHotQueryTreeNode(rolesLabel, R.drawable.roles, false, RolesQuery(classId.toLong())).addTo(parent)
+                val rolesNode = makeHotQueryTreeNode(rolesLabel, XNetR.drawable.roles, false, RolesQuery(classId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, rolesNode)
                 val framesNode = makeQueryTreeNode(framesLabel, R.drawable.vnframe, false, FramesQuery(classId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, framesNode)

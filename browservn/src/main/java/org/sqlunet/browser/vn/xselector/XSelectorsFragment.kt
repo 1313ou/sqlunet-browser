@@ -33,6 +33,8 @@ import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
 import kotlin.math.floor
 import androidx.core.net.toUri
 import org.sqlunet.browser.AppContext
+import org.sqlunet.verbnet.R as VerbnetR
+import org.sqlunet.propbank.R as PropbankR
 
 /**
  * X selector fragment
@@ -590,11 +592,11 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
             val groupPositions = intArrayOf(AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION)
             if (VnSettings.Source.VERBNET.test(enable)) {
                 groupPositions[GROUPINDEX_VERBNET] = position++
-                cursor.addRow(arrayOf<Any>(GROUPID_VERBNET, "verbnet", R.drawable.verbnet.toString()))
+                cursor.addRow(arrayOf<Any>(GROUPID_VERBNET, "verbnet", VerbnetR.drawable.verbnet.toString()))
             }
             if (VnSettings.Source.PROPBANK.test(enable)) {
                 groupPositions[GROUPINDEX_PROPBANK] = position
-                cursor.addRow(arrayOf<Any>(GROUPID_PROPBANK, "propbank", R.drawable.propbank.toString()))
+                cursor.addRow(arrayOf<Any>(GROUPID_PROPBANK, "propbank", PropbankR.drawable.propbank.toString()))
             }
             // position++ if more
             return groupPositions

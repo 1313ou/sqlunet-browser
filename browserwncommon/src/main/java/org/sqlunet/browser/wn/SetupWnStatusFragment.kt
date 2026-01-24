@@ -26,6 +26,7 @@ import org.sqlunet.settings.StorageSettings
 import org.sqlunet.settings.StorageUtils.countToStorageString
 import org.sqlunet.settings.StorageUtils.getFree
 import java.io.File
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * Setup Status fragment
@@ -69,26 +70,26 @@ class SetupWnStatusFragment : SetupStatusFragment() {
                 val size = File(database).length()
                 val hrSize = countToStorageString(size) + " (" + size + ')'
                 info(
-                    activity, R.string.title_status,
-                    getString(R.string.title_database), database,
-                    getString(R.string.title_status), getString(R.string.status_database_exists) + '-' + getString(if (existsTables) R.string.status_data_exists else R.string.status_data_not_exists),
-                    getString(R.string.title_free), free,
-                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context),
-                    getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, AppContext.context),
-                    getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, AppContext.context),
-                    getString(R.string.size_current), hrSize
+                    activity, CommonR.string.title_status,
+                    getString(CommonR.string.title_database), database,
+                    getString(CommonR.string.title_status), getString(CommonR.string.status_database_exists) + '-' + getString(if (existsTables) CommonR.string.status_data_exists else CommonR.string.status_data_not_exists),
+                    getString(CommonR.string.title_free), free,
+                    getString(CommonR.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context),
+                    getString(CommonR.string.size_expected) + ' ' + getString(CommonR.string.text_search), hrSize(R.integer.size_searchtext, AppContext.context),
+                    getString(CommonR.string.size_expected) + ' ' + getString(CommonR.string.total), hrSize(R.integer.size_db_working_total, AppContext.context),
+                    getString(CommonR.string.size_current), hrSize
                 )
             } else {
                 info(
-                    activity, R.string.title_dialog_info_download,
-                    getString(R.string.title_operation), getString(R.string.info_op_download_database),
-                    getString(R.string.title_from), source,
-                    getString(R.string.title_database), database,
-                    getString(R.string.title_free), free,
-                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context),
-                    getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, AppContext.context),
-                    getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, AppContext.context),
-                    getString(R.string.title_status), getString(R.string.status_database_not_exists)
+                    activity, CommonR.string.title_dialog_info_download,
+                    getString(CommonR.string.title_operation), getString(CommonR.string.info_op_download_database),
+                    getString(CommonR.string.title_from), source,
+                    getString(CommonR.string.title_database), database,
+                    getString(CommonR.string.title_free), free,
+                    getString(CommonR.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context),
+                    getString(CommonR.string.size_expected) + ' ' + getString(CommonR.string.text_search), hrSize(R.integer.size_searchtext, AppContext.context),
+                    getString(CommonR.string.size_expected) + ' ' + getString(CommonR.string.total), hrSize(R.integer.size_db_working_total, AppContext.context),
+                    getString(CommonR.string.title_status), getString(CommonR.string.status_database_not_exists)
                 )
             }
         }
@@ -109,14 +110,14 @@ class SetupWnStatusFragment : SetupStatusFragment() {
             val existsTables = status and Status.EXISTS_TABLES != 0
             if (existsDb && existsTables) {
                 // images
-                val okDrawable = getDrawable(context, R.drawable.ic_ok)
-                val failDrawable = getDrawable(context, R.drawable.ic_fail)
+                val okDrawable = getDrawable(context, CommonR.drawable.ic_ok)
+                val failDrawable = getDrawable(context, CommonR.drawable.ic_fail)
                 val existsTsWn = status and WnStatus.EXISTS_TS_WN != 0
                 imageTextSearchWn!!.setImageDrawable(if (existsTsWn) okDrawable else failDrawable)
                 ImageViewCompat.setImageTintMode(imageTextSearchWn!!, if (existsTsWn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
                 buttonTextSearchWn!!.visibility = if (existsTsWn) View.GONE else View.VISIBLE
             } else {
-                imageTextSearchWn!!.setImageResource(R.drawable.ic_unknown)
+                imageTextSearchWn!!.setImageResource(CommonR.drawable.ic_unknown)
                 buttonTextSearchWn!!.visibility = View.GONE
             }
         }

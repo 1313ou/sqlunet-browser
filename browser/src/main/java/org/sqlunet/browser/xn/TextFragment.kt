@@ -26,7 +26,6 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import org.sqlunet.browser.BaseListFragment
-import org.sqlunet.browser.R
 import org.sqlunet.framenet.FnFramePointer
 import org.sqlunet.framenet.FnLexUnitPointer
 import org.sqlunet.framenet.FnSentencePointer
@@ -53,6 +52,8 @@ import org.sqlunet.wordnet.settings.Settings
 import java.util.regex.Pattern
 import androidx.core.net.toUri
 import org.sqlunet.browser.AppContext
+import org.sqlunet.browser.common.R as CommonR
+import org.sqlunet.xnet.R as XNetR
 
 /**
  * Text result fragment
@@ -107,7 +108,7 @@ class TextFragment : BaseListFragment() {
                     try {
                         view.setImageResource(value.toInt())
                         return@ViewBinder true
-                    } catch (nfe: NumberFormatException) {
+                    } catch (_: NumberFormatException) {
                         view.setImageURI(value.toUri())
                         return@ViewBinder true
                     }
@@ -354,9 +355,9 @@ class TextFragment : BaseListFragment() {
                 val label = fields[0]
                 var resId = -1
                 when (type) {
-                    0 -> resId = R.drawable.roles
-                    1 -> resId = R.drawable.role
-                    2 -> resId = R.drawable.sentence
+                    0 -> resId = XNetR.drawable.roles
+                    1 -> resId = XNetR.drawable.role
+                    2 -> resId = XNetR.drawable.sentence
                 }
                 val sb = SpannableStringBuilder()
                 appendImage(requireContext(), sb, resId)
@@ -384,7 +385,7 @@ class TextFragment : BaseListFragment() {
      */
     private fun makeDialog(listener: DialogInterface.OnClickListener, vararg choices: CharSequence): AlertDialog {
         return AlertDialog.Builder(requireContext())
-            .setTitle(R.string.title_activity_searchtext)
+            .setTitle(CommonR.string.title_activity_searchtext)
             .setItems(choices, listener)
             .create()
     }

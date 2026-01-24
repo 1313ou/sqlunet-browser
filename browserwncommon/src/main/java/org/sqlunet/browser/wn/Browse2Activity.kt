@@ -13,6 +13,7 @@ import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.getParcelable
 import org.sqlunet.browser.wn.lib.R
 import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * Detail activity
@@ -28,7 +29,7 @@ class Browse2Activity : AbstractBrowse2Activity() {
         setContentView(R.layout.activity_browse2)
 
         // toolbar
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = findViewById<Toolbar>(CommonR.id.toolbar)
         setSupportActionBar(toolbar)
 
         // set up the action bar
@@ -52,7 +53,7 @@ class Browse2Activity : AbstractBrowse2Activity() {
     // M E N U
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(CommonR.menu.main, menu)
         // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }

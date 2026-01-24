@@ -25,6 +25,11 @@ import org.sqlunet.settings.StorageSettings
 import org.sqlunet.settings.StorageUtils.countToStorageString
 import org.sqlunet.settings.StorageUtils.getFree
 import java.io.File
+import org.sqlunet.browser.common.R as CommonR
+import org.sqlunet.wordnet.R as WordnetR
+import org.sqlunet.verbnet.R as VerbnetR
+import org.sqlunet.propbank.R as PropbankR
+import org.sqlunet.framenet.R as FramenetR
 
 /**
  * Setup Status fragment
@@ -110,55 +115,55 @@ class SetupXnStatusFragment : SetupStatusFragment() {
                 val size = File(database).length()
                 val hrSize = countToStorageString(size) + " (" + size + ')'
                 info(
-                    activity, R.string.title_status,
-                    getString(R.string.title_database), database,
-                    getString(R.string.title_status), getString(R.string.status_database_exists),
-                    getString(R.string.title_status), getString(if (existsTables) R.string.status_data_exists else R.string.status_data_not_exists),
-                    getString(R.string.title_free), free,
-                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context), String.format(
+                    activity, CommonR.string.title_status,
+                    getString(CommonR.string.title_database), database,
+                    getString(CommonR.string.title_status), getString(CommonR.string.status_database_exists),
+                    getString(CommonR.string.title_status), getString(if (existsTables) CommonR.string.status_data_exists else CommonR.string.status_data_not_exists),
+                    getString(CommonR.string.title_free), free,
+                    getString(CommonR.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context), String.format(
                         "%s %s %s/%s/%s/%s",
-                        getString(R.string.size_expected),
-                        getString(R.string.text_search),
-                        getString(R.string.wordnet),
-                        getString(R.string.verbnet),
-                        getString(R.string.propbank),
-                        getString(R.string.framenet)
+                        getString(CommonR.string.size_expected),
+                        getString(CommonR.string.text_search),
+                        getString(WordnetR.string.wordnet),
+                        getString(VerbnetR.string.verbnet),
+                        getString(PropbankR.string.propbank),
+                        getString(FramenetR.string.framenet)
                     ), String.format(
                         "%s",
                         hrSize(R.integer.size_searchtext, AppContext.context)
                     ), String.format(
                         "%s %s %s",
-                        getString(R.string.size_expected),
-                        getString(R.string.total),
+                        getString(CommonR.string.size_expected),
+                        getString(CommonR.string.total),
                         hrSize(R.integer.size_db_working_total, AppContext.context)
                     ),
-                    getString(R.string.size_current), hrSize
+                    getString(CommonR.string.size_current), hrSize
                 )
             } else {
                 info(
-                    activity, R.string.title_dialog_info_download,
-                    getString(R.string.title_operation), getString(R.string.info_op_download_database),
-                    getString(R.string.title_from), source,
-                    getString(R.string.title_database), database,
-                    getString(R.string.title_free), free, String.format(
+                    activity, CommonR.string.title_dialog_info_download,
+                    getString(CommonR.string.title_operation), getString(CommonR.string.info_op_download_database),
+                    getString(CommonR.string.title_from), source,
+                    getString(CommonR.string.title_database), database,
+                    getString(CommonR.string.title_free), free, String.format(
                         "%s %s %s/%s/%s/%s",
-                        getString(R.string.size_expected),
-                        getString(R.string.text_search),
-                        getString(R.string.wordnet),
-                        getString(R.string.verbnet),
-                        getString(R.string.propbank),
-                        getString(R.string.framenet)
+                        getString(CommonR.string.size_expected),
+                        getString(CommonR.string.text_search),
+                        getString(WordnetR.string.wordnet),
+                        getString(VerbnetR.string.verbnet),
+                        getString(PropbankR.string.propbank),
+                        getString(FramenetR.string.framenet)
                     ), String.format(
                         "%s",
                         hrSize(R.integer.size_searchtext, AppContext.context)
                     ), String.format(
                         "%s %s",
-                        getString(R.string.size_expected),
-                        getString(R.string.total)
+                        getString(CommonR.string.size_expected),
+                        getString(CommonR.string.total)
                     ),
                     hrSize(R.integer.size_db_working_total, AppContext.context),
-                    getString(R.string.title_status),
-                    getString(R.string.status_database_not_exists)
+                    getString(CommonR.string.title_status),
+                    getString(CommonR.string.status_database_not_exists)
                 )
             }
         }
@@ -186,8 +191,8 @@ class SetupXnStatusFragment : SetupStatusFragment() {
                 val existsTsFn = status and XnStatus.EXISTS_TS_FN != 0
 
                 // images
-                val okDrawable = getDrawable(context, R.drawable.ic_ok)
-                val failDrawable = getDrawable(context, R.drawable.ic_fail)
+                val okDrawable = getDrawable(context, CommonR.drawable.ic_ok)
+                val failDrawable = getDrawable(context, CommonR.drawable.ic_fail)
                 imagePm!!.setImageDrawable(if (existsPm) okDrawable else failDrawable)
                 ImageViewCompat.setImageTintMode(imagePm!!, if (existsPm) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
                 imageTextSearchFn!!.setImageDrawable(if (existsTsFn) okDrawable else failDrawable)
@@ -211,12 +216,12 @@ class SetupXnStatusFragment : SetupStatusFragment() {
                 buttonTextSearchVn!!.visibility = View.GONE
                 buttonTextSearchPb!!.visibility = View.GONE
                 buttonTextSearchFn!!.visibility = View.GONE
-                imagePm!!.setImageResource(R.drawable.ic_unknown)
-                imageTextSearchFn!!.setImageResource(R.drawable.ic_unknown)
-                imageTextSearchWn!!.setImageResource(R.drawable.ic_unknown)
-                imageTextSearchVn!!.setImageResource(R.drawable.ic_unknown)
-                imageTextSearchPb!!.setImageResource(R.drawable.ic_unknown)
-                imageTextSearchFn!!.setImageResource(R.drawable.ic_unknown)
+                imagePm!!.setImageResource(CommonR.drawable.ic_unknown)
+                imageTextSearchFn!!.setImageResource(CommonR.drawable.ic_unknown)
+                imageTextSearchWn!!.setImageResource(CommonR.drawable.ic_unknown)
+                imageTextSearchVn!!.setImageResource(CommonR.drawable.ic_unknown)
+                imageTextSearchPb!!.setImageResource(CommonR.drawable.ic_unknown)
+                imageTextSearchFn!!.setImageResource(CommonR.drawable.ic_unknown)
             }
         }
     }

@@ -16,6 +16,7 @@ import org.sqlunet.model.TreeFactory.setNoResult
 import org.sqlunet.treeview.control.Link
 import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.wordnet.R
+import org.sqlunet.xnet.R as XNetR
 
 /**
  * Module for WordNet synset
@@ -61,7 +62,7 @@ open class SynsetModule(fragment: TreeFragment) : BaseModule(fragment) {
         if (synsetId != null && synsetId != 0L) {
             // anchor nodes
             val synsetNode = makeTextNode(synsetLabel, false).addTo(node)
-            val membersNode = makeIconTextNode(membersLabel, R.drawable.members, false).addTo(node)
+            val membersNode = makeIconTextNode(membersLabel, XNetR.drawable.members, false).addTo(node)
 
             // synset
             synset(synsetId!!, synsetNode, false)
@@ -90,9 +91,9 @@ open class SynsetModule(fragment: TreeFragment) : BaseModule(fragment) {
                 makeQueryTreeNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId!!, 0)).addTo(node)
             }
             if (expand) {
-                makeHotQueryTreeNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
+                makeHotQueryTreeNode(samplesLabel, XNetR.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
             } else {
-                makeQueryTreeNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
+                makeQueryTreeNode(samplesLabel, XNetR.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
             }
         } else {
             setNoResult(node)

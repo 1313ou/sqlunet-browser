@@ -19,7 +19,9 @@ import android.widget.ExpandableListView
 import android.widget.ImageView
 import android.widget.SimpleCursorTreeAdapter
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseSelectorsExpandableListFragment
 import org.sqlunet.browser.R
 import org.sqlunet.browser.SqlunetViewModel
@@ -36,8 +38,11 @@ import org.sqlunet.provider.XSqlUNetProvider
 import org.sqlunet.wordnet.loaders.Queries.prepareWnPronunciationXSelect
 import org.sqlunet.wordnet.provider.WordNetProvider
 import kotlin.math.floor
-import androidx.core.net.toUri
-import org.sqlunet.browser.AppContext
+import org.sqlunet.framenet.R as FramenetR
+import org.sqlunet.predicatematrix.R as PredicatematrixR
+import org.sqlunet.propbank.R as PropbankR
+import org.sqlunet.verbnet.R as VerbnetR
+import org.sqlunet.wordnet.R as WordnetR
 
 /**
  * X selector fragment
@@ -259,22 +264,22 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
                     for (field in fields) {
                         when (field) {
                             "wn" -> {
-                                v.setImageResource(R.drawable.wordnet)
+                                v.setImageResource(WordnetR.drawable.wordnet)
                                 return
                             }
 
                             "vn" -> {
-                                v.setImageResource(R.drawable.verbnet)
+                                v.setImageResource(VerbnetR.drawable.verbnet)
                                 return
                             }
 
                             "pb" -> {
-                                v.setImageResource(R.drawable.propbank)
+                                v.setImageResource(PropbankR.drawable.propbank)
                                 return
                             }
 
                             "fn" -> {
-                                v.setImageResource(R.drawable.framenet)
+                                v.setImageResource(FramenetR.drawable.framenet)
                                 return
                             }
                         }
@@ -285,7 +290,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
                     val fields2 = value.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                     for (field2 in fields2) {
                         if (field2.startsWith("pm")) {
-                            v.setImageResource(R.drawable.predicatematrix)
+                            v.setImageResource(PredicatematrixR.drawable.predicatematrix)
                             v.visibility = View.VISIBLE
                             return
                         }
@@ -779,19 +784,19 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
             val groupPositions = intArrayOf(AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION)
             if (XnSettings.Source.WORDNET.test(enable)) {
                 groupPositions[GROUPINDEX_WORDNET] = position++
-                cursor.addRow(arrayOf<Any>(GROUPID_WORDNET, "wordnet", R.drawable.wordnet.toString()))
+                cursor.addRow(arrayOf<Any>(GROUPID_WORDNET, "wordnet", WordnetR.drawable.wordnet.toString()))
             }
             if (XnSettings.Source.VERBNET.test(enable)) {
                 groupPositions[GROUPINDEX_VERBNET] = position++
-                cursor.addRow(arrayOf<Any>(GROUPID_VERBNET, "verbnet", R.drawable.verbnet.toString()))
+                cursor.addRow(arrayOf<Any>(GROUPID_VERBNET, "verbnet", VerbnetR.drawable.verbnet.toString()))
             }
             if (XnSettings.Source.PROPBANK.test(enable)) {
                 groupPositions[GROUPINDEX_PROPBANK] = position++
-                cursor.addRow(arrayOf<Any>(GROUPID_PROPBANK, "propbank", R.drawable.propbank.toString()))
+                cursor.addRow(arrayOf<Any>(GROUPID_PROPBANK, "propbank", PropbankR.drawable.propbank.toString()))
             }
             if (XnSettings.Source.FRAMENET.test(enable)) {
                 groupPositions[GROUPINDEX_FRAMENET] = position
-                cursor.addRow(arrayOf<Any>(GROUPID_FRAMENET, "framenet", R.drawable.framenet.toString()))
+                cursor.addRow(arrayOf<Any>(GROUPID_FRAMENET, "framenet", FramenetR.drawable.framenet.toString()))
             }
             // increment position if anything added
             return groupPositions

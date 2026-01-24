@@ -54,6 +54,8 @@ import org.sqlunet.wordnet.provider.WordNetContract.Domains
 import org.sqlunet.wordnet.provider.WordNetContract.Poses
 import org.sqlunet.wordnet.provider.WordNetContract.Relations
 import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
+import org.sqlunet.browser.common.R as CommonR
+import com.google.android.material.R as MaterialR
 
 /**
  * Browse fragment
@@ -65,7 +67,7 @@ class BrowseFragment : BaseSearchFragment() {
     init {
         layoutId = R.layout.fragment_browse
         menuId = R.menu.browse
-        colorAttrId = R.attr.colorPrimary
+        colorAttrId = MaterialR.attr.colorPrimary
         spinnerLabels = R.array.selectors_names
         spinnerIcons = R.array.selectors_icons
     }
@@ -133,7 +135,7 @@ class BrowseFragment : BaseSearchFragment() {
                 intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(Domains.URI))
                 intent.putExtra(ProviderArgs.ARG_QUERYID, Domains.DOMAINID)
                 intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Domains.DOMAINID, Domains.DOMAIN, Domains.POSID))
-                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3)
+                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, CommonR.layout.item_table3)
             }
 
             R.id.action_table_poses -> {
@@ -141,7 +143,7 @@ class BrowseFragment : BaseSearchFragment() {
                 intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(Poses.URI))
                 intent.putExtra(ProviderArgs.ARG_QUERYID, Poses.POSID)
                 intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Poses.POSID, Poses.POS))
-                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2)
+                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, CommonR.layout.item_table2)
             }
 
             R.id.action_table_adjpositions -> {
@@ -149,7 +151,7 @@ class BrowseFragment : BaseSearchFragment() {
                 intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(AdjPositions.URI))
                 intent.putExtra(ProviderArgs.ARG_QUERYID, AdjPositions.POSITIONID)
                 intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(AdjPositions.POSITIONID, AdjPositions.POSITION))
-                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2)
+                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, CommonR.layout.item_table2)
             }
 
             R.id.action_table_relations -> {
@@ -158,7 +160,7 @@ class BrowseFragment : BaseSearchFragment() {
                 intent.putExtra(ProviderArgs.ARG_QUERYID, Relations.RELATIONID)
                 intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Relations.RELATIONID, Relations.RELATION, Relations.RECURSES_SELECT))
                 intent.putExtra(ProviderArgs.ARG_QUERYSORT, Relations.RELATIONID + " ASC")
-                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3)
+                intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, CommonR.layout.item_table3)
             }
 
             else ->

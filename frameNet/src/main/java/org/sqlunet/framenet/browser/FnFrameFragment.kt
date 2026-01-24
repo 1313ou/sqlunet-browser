@@ -9,6 +9,7 @@ import org.sqlunet.browser.TreeFragment
 import org.sqlunet.framenet.R
 import org.sqlunet.framenet.loaders.FrameModule
 import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.xnet.R as XNetR
 
 /**
  * A fragment representing a frame
@@ -21,7 +22,7 @@ class FnFrameFragment : TreeFragment() {
         layoutId = R.layout.fragment_fnframe
         treeContainerId = R.id.data_contents
         headerId = R.string.framenet_frames
-        iconId = R.drawable.roleclass
+        iconId = XNetR.drawable.roleclass
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

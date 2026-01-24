@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<resources>
+	<item name="target" type="id" />
+</resources>

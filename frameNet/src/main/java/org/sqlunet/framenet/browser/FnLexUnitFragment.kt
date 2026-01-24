@@ -9,6 +9,7 @@ import org.sqlunet.browser.TreeFragment
 import org.sqlunet.framenet.R
 import org.sqlunet.framenet.loaders.LexUnitModule
 import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.xnet.R as XNetR
 
 /**
  * A fragment representing a lex unit
@@ -21,7 +22,7 @@ class FnLexUnitFragment : TreeFragment() {
         layoutId = R.layout.fragment_fnlexunit
         treeContainerId = R.id.data_contents
         headerId = R.string.framenet_lexunits
-        iconId = R.drawable.member
+        iconId = XNetR.drawable.member
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

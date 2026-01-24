@@ -76,6 +76,8 @@ import org.sqlunet.wordnet.style.WordNetFactories.dataFactory
 import org.sqlunet.wordnet.style.WordNetFactories.iliFactory
 import org.sqlunet.wordnet.style.WordNetFactories.wikidataFactory
 import java.util.Locale
+import org.sqlunet.xnet.R as XNetR
+import org.sqlunet.treeview.R as TreeviewR
 
 /**
  * Base module for WordNet
@@ -197,12 +199,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
         synsetDrawable = getDrawable(context, R.drawable.synset)
         memberDrawable = getDrawable(context, R.drawable.synsetmember)
-        definitionDrawable = getDrawable(context, R.drawable.definition)
-        sampleDrawable = getDrawable(context, R.drawable.sample)
+        definitionDrawable = getDrawable(context, XNetR.drawable.definition)
+        sampleDrawable = getDrawable(context, XNetR.drawable.sample)
         usageDrawable = getDrawable(context, R.drawable.usage)
         iliDrawable = getDrawable(context, R.drawable.ili)
         wikidataDrawable = getDrawable(context, R.drawable.wikidata)
-        posDrawable = getDrawable(context, R.drawable.pos)
+        posDrawable = getDrawable(context, XNetR.drawable.pos)
         domainDrawable = getDrawable(context, R.drawable.lexdomain)
         verbframeDrawable = getDrawable(context, R.drawable.verbframe)
         morphDrawable = getDrawable(context, R.drawable.morph)
@@ -305,7 +307,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val node = makeTextNode(sb, false).addTo(parent)
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
-                setTextNode(parent, sb, R.drawable.member)
+                setTextNode(parent, sb, XNetR.drawable.member)
                 seq(TreeOpCode.UPDATE, parent)
             }
         } else {
@@ -483,7 +485,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // subnodes
             val relationsNode = makeHotQueryTreeNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId, wordId)).addTo(parent)
-            val samplesNode = makeHotQueryTreeNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId)).addTo(parent)
+            val samplesNode = makeHotQueryTreeNode(samplesLabel, XNetR.drawable.sample, false, SamplesQuery(synsetId)).addTo(parent)
             seq(TreeOpCode.NEWMAIN, node, TreeOpCode.NEWEXTRA, relationsNode, TreeOpCode.NEWEXTRA, samplesNode, TreeOpCode.NEWTREE, parent)
         } else {
             setNoResult(parent)
@@ -650,7 +652,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     append(sb, member, 0, WordNetFactories.membersFactory)
 
                     // result
-                    val memberNode = makeLinkNode(sb, R.drawable.member, false, WordLink(fragment, wordId)).addTo(parent)
+                    val memberNode = makeLinkNode(sb, XNetR.drawable.member, false, WordLink(fragment, wordId)).addTo(parent)
                     changedList += seq(TreeOpCode.NEWCHILD, memberNode)
                 } while (cursor.moveToNext())
                 changedList.toArray()
@@ -708,7 +710,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val node = makeTextNode(sb, false).addTo(parent)
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
-                setTextNode(parent, sb, R.drawable.members)
+                setTextNode(parent, sb, XNetR.drawable.members)
                 seq(TreeOpCode.UPDATE, parent)
             }
         } else {
@@ -758,7 +760,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val node = makeTextNode(sb, false).addTo(parent)
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
-                setTextNode(parent, sb, R.drawable.sample)
+                setTextNode(parent, sb, XNetR.drawable.sample)
                 seq(TreeOpCode.UPDATE, parent)
             }
         } else {
@@ -895,7 +897,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                 // result
                 // if (addNewNode) {
-                parent.controller.nodeView?.findViewById<View>(R.id.node_link)?.visibility = View.GONE
+                parent.controller.nodeView?.findViewById<View>(TreeviewR.id.node_link)?.visibility = View.GONE
                 val node = makeIntentNode(sb, R.drawable.wikidata, false, intent).addTo(parent)
                 changedList += seq(TreeOpCode.NEWUNIQUE, node)
                 //} else {

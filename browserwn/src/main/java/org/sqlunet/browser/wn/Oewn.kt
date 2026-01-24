@@ -15,6 +15,8 @@ import com.google.android.material.behavior.SwipeDismissBehavior
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import androidx.core.content.edit
+import org.sqlunet.browser.common.R as CommonR
+import com.bbou.others.R as OthersR
 
 object Oewn {
 
@@ -39,18 +41,18 @@ object Oewn {
     private fun suggestOewn(activity: Activity) {
         val behavior = BaseTransientBottomBar.Behavior()
         behavior.setSwipeDirection(SwipeDismissBehavior.SWIPE_DIRECTION_ANY)
-        val parentLayout = activity.findViewById<View>(R.id.activity_main_sub) // view to find a parent from
+        val parentLayout = activity.findViewById<View>(CommonR.id.activity_main_sub) // view to find a parent from
         if (parentLayout != null) {
             val message1 = activity.getString(R.string.obsolete_app)
             val message2 = activity.getString(R.string.new_app)
             val sb = SpannableStringBuilder()
             sb.append(message1).append('\n')
-            sb.append('@').setSpan(ImageSpan(activity, R.drawable.logo_semantikos_ewn), sb.length - 1, sb.length, 0)
+            sb.append('@').setSpan(ImageSpan(activity, OthersR.drawable.logo_semantikos_ewn), sb.length - 1, sb.length, 0)
             sb.append('\n').append(message2)
             val snackbar = Snackbar.make(parentLayout, sb, Snackbar.LENGTH_INDEFINITE)
             snackbar.setTextMaxLines(10)
                 .setBackgroundTint(ContextCompat.getColor(activity, R.color.snackbar_oewn))
-                .setAction(R.string.obsolete_get_oewn) { install(activity.getString(R.string.semantikos_ewn_uri), activity) }
+                .setAction(R.string.obsolete_get_oewn) { install(activity.getString(OthersR.string.semantikos_ewn_uri), activity) }
                 .setActionTextColor(ContextCompat.getColor(activity, android.R.color.white))
                 .setBehavior(behavior).show()
         }

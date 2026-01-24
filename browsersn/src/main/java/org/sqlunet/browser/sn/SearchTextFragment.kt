@@ -17,6 +17,8 @@ import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
 import org.sqlunet.wordnet.provider.WordNetContract
 import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
+import org.sqlunet.browser.common.R as CommonR
+import com.google.android.material.R as MaterialR
 
 /**
  * Search text fragment
@@ -27,8 +29,8 @@ class SearchTextFragment : BaseSearchFragment() {
 
     init {
         layoutId = R.layout.fragment_searchtext
-        menuId = R.menu.searchtext
-        colorAttrId = R.attr.colorPrimaryVariant
+        menuId = CommonR.menu.searchtext
+        colorAttrId = MaterialR.attr.colorPrimaryVariant
         spinnerLabels = R.array.searchtext_modes
         spinnerIcons = R.array.searchtext_icons
     }
@@ -157,7 +159,7 @@ class SearchTextFragment : BaseSearchFragment() {
         args.putStringArray(ProviderArgs.ARG_QUERYHIDDENITEMS, hiddenColumns)
         args.putString(ProviderArgs.ARG_QUERYFILTER, "$target MATCH ?")
         args.putString(ProviderArgs.ARG_QUERYARG, trimmedQuery)
-        args.putInt(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_searchtext)
+        args.putInt(ProviderArgs.ARG_QUERYLAYOUT, CommonR.layout.item_searchtext)
         args.putString(ProviderArgs.ARG_QUERYDATABASE, database)
 
         // fragment

@@ -34,6 +34,8 @@ import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
 import org.sqlunet.settings.Settings.DetailViewMode
 import org.sqlunet.settings.Settings.SelectorViewMode
+import org.sqlunet.browser.common.R as CommonR
+import com.google.android.material.R as MaterialR
 
 /**
  * Browse fragment
@@ -44,8 +46,8 @@ class BrowseFragment : BaseSearchFragment() {
 
     init {
         layoutId = R.layout.fragment_browse
-        menuId = R.menu.browse
-        colorAttrId = R.attr.colorPrimary
+        menuId = CommonR.menu.browse
+        colorAttrId = MaterialR.attr.colorPrimary
         spinnerLabels = R.array.selectors_names
         spinnerIcons = R.array.selectors_icons
     }
@@ -150,9 +152,9 @@ class BrowseFragment : BaseSearchFragment() {
             return
         }
         if (fragment != null) {
-            fragment!!.setArguments(args)
+            fragment.setArguments(args)
             // fragment
-            fragment!!.setArguments(args)
+            fragment.setArguments(args)
             // transaction
             if (!isAdded) {
                 return
@@ -160,7 +162,7 @@ class BrowseFragment : BaseSearchFragment() {
             getChildFragmentManager()
                 .beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.container_browse, fragment!!, BaseBrowse1Fragment.FRAGMENT_TAG)
+                .replace(R.id.container_browse, fragment, BaseBrowse1Fragment.FRAGMENT_TAG)
                 .addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG).commit()
         }
     }

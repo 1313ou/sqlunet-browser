@@ -29,6 +29,8 @@ import org.sqlunet.settings.Settings
 import org.sqlunet.settings.StorageSettings
 import org.sqlunet.settings.StorageUtils.getFree
 import java.io.File
+import com.bbou.download.common.R as CommonR
+import org.sqlunet.xnet.R as XNetR
 
 /**
  * Set up fragment
@@ -171,7 +173,7 @@ class SetupFileFragment : BaseTaskFragment() {
                         activity.startActivity(intent3)
                     }
 
-                    Operation.UPDATE -> confirm(activity, R.string.title_setup_update, R.string.askUpdate) { update(activity) }
+                    Operation.UPDATE -> confirm(activity, R.string.title_setup_update, CommonR.string.askUpdate) { update(activity) }
                 }
             }
         }
@@ -300,8 +302,8 @@ class SetupFileFragment : BaseTaskFragment() {
             sb,
             getString(R.string.title_database), database,
             getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),
-            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context),
-            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, AppContext.context),
+            getString(R.string.size_expected), hrSize(XNetR.integer.size_sqlunet_db, AppContext.context),
+            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(XNetR.integer.size_db_working_total, AppContext.context),
             getString(R.string.title_free), free,
             "\n", "",
             getString(R.string.title_from),
@@ -337,8 +339,8 @@ class SetupFileFragment : BaseTaskFragment() {
             sb,
             getString(R.string.title_database), database,
             getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),
-            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context),
-            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, AppContext.context),
+            getString(R.string.size_expected), hrSize(XNetR.integer.size_sqlunet_db, AppContext.context),
+            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(XNetR.integer.size_db_working_total, AppContext.context),
             getString(R.string.title_free), free,
             "\n", "",
             getString(R.string.title_from),  //fromPath, 
@@ -391,8 +393,8 @@ class SetupFileFragment : BaseTaskFragment() {
             getString(R.string.title_from), from,
             "\n", "",
             getString(R.string.title_to), to,
-            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, AppContext.context),
-            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, AppContext.context),
+            getString(R.string.size_expected), hrSize(XNetR.integer.size_sqlunet_db, AppContext.context),
+            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(XNetR.integer.size_db_working_total, AppContext.context),
             getString(R.string.title_free), free,
             getString(R.string.title_status), getString(if (targetExists) R.string.status_local_exists else R.string.status_local_not_exists)
         )
@@ -417,7 +419,7 @@ class SetupFileFragment : BaseTaskFragment() {
             getString(R.string.title_from), from,
             "\n", "",
             getString(R.string.title_to), to,
-            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db_zip, AppContext.context),
+            getString(R.string.size_expected), hrSize(XNetR.integer.size_sqlunet_db_zip, AppContext.context),
             getString(R.string.title_free), free,
             getString(R.string.title_status), getString(if (targetExists) R.string.status_local_exists else R.string.status_local_not_exists)
         )

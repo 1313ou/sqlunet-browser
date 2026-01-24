@@ -25,6 +25,7 @@ import org.sqlunet.view.TreeOp
 import org.sqlunet.view.TreeOp.TreeOpCode
 import org.sqlunet.view.TreeOpExecute
 import androidx.core.net.toUri
+import org.sqlunet.xnet.R as XNetR
 
 class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
@@ -72,7 +73,7 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
         convtaskDrawable = Spanner.getDrawable(context, R.drawable.convtask)
         imaginfDrawable = Spanner.getDrawable(context, R.drawable.imaginf)
         spwrDrawable = Spanner.getDrawable(context, R.drawable.spwr)
-        posDrawable = Spanner.getDrawable(context, R.drawable.pos)
+        posDrawable = Spanner.getDrawable(context, XNetR.drawable.pos)
     }
 
     /**

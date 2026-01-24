@@ -22,6 +22,7 @@ import org.sqlunet.framenet.provider.FrameNetProvider.Companion.makeUri
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.style.Colors
 import androidx.core.net.toUri
+import org.sqlunet.xnet.R as XNetR
 
 /**
  * Selector Fragment
@@ -108,7 +109,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
 
                 is ImageView -> {
                     val isFrame = cursor.getInt(columnIndex) != 0
-                    view.setImageResource(if (isFrame) R.drawable.roles else R.drawable.member)
+                    view.setImageResource(if (isFrame) XNetR.drawable.roles else XNetR.drawable.member)
                     return@setViewBinder true
                 }
 
