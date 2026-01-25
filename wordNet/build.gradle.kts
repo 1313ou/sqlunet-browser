@@ -165,6 +165,15 @@ tasks.register("generateAll") {
     }
 }
 
-tasks.preBuild {
+val generateAll = tasks.named("generateAll") {
+    // Tell Gradle where it writes files
+    outputs.dir(generatedSrcDir)
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    dependsOn("generateAll")
+}
+
+tasks.withType<JavaCompile>().configureEach {
     dependsOn("generateAll")
 }
