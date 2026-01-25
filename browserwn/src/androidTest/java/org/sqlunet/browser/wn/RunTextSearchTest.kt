@@ -17,7 +17,8 @@ import org.sqlunet.browser.Seq
 import org.sqlunet.browser.wn.Do.ensureDownloaded
 import org.sqlunet.browser.wn.Do.ensureTextSearchSetup
 import org.sqlunet.browser.wn.Do.textSearchRun
-import org.sqlunet.browser.wn.test.R
+import org.sqlunet.browser.common.R as CommonR
+import org.sqlunet.browser.wn.lib.R as BrowserR
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
@@ -29,9 +30,9 @@ class RunTextSearchTest : TestCase() {
     @Before
     fun before() {
         if (ensureDownloaded()) ActivityScenario.launch(MainActivity::class.java)
-        Seq.doNavigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_status)
-        ensureTextSearchSetup(R.id.searchtextWnButton)
-        Seq.doNavigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_text)
+        Seq.doNavigate(CommonR.id.drawer_layout, CommonR.id.nav_view, CommonR.id.nav_status)
+        ensureTextSearchSetup(BrowserR.id.searchtextWnButton)
+        Seq.doNavigate(CommonR.id.drawer_layout, CommonR.id.nav_view, CommonR.id.nav_search_text)
     }
 
     @Test

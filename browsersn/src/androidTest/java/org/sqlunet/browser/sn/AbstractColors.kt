@@ -18,6 +18,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.sqlunet.browser.MainActivity
 import org.sqlunet.nightmode.NightMode.checkDarkMode
+import org.sqlunet.browser.common.R as CommonR
+import org.sqlunet.xnet.R as XNetR
+import org.sqlunet.wordnet.R as WordNetR
+import org.sqlunet.bnc.R as BNCR
+import org.sqlunet.syntagnet.R as SyntagNetR
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
@@ -46,22 +51,22 @@ abstract class AbstractColors : TestCase() {
     @Throws(ColorsLib.IllegalColorPair::class)
     fun colorContrast() {
         assertTrue(checkDarkMode(mode))
-        ColorsLib.testColorsFromResources(context!!, R.array.palette_ui, false)
-        ColorsLib.testColorsFromResources(context!!, R.array.palette, false)
-        ColorsLib.testColorsFromResources(context!!, R.array.palette_wn, false)
-        ColorsLib.testColorsFromResources(context!!, R.array.palette_bnc, false)
-        ColorsLib.testColorsFromResources(context!!, R.array.palette_sn, false)
+        ColorsLib.testColorsFromResources(context!!, CommonR.array.palette_ui, false)
+        ColorsLib.testColorsFromResources(context!!, XNetR.array.palette, false)
+        ColorsLib.testColorsFromResources(context!!, WordNetR.array.palette_wn, false)
+        ColorsLib.testColorsFromResources(context!!, BNCR.array.palette_bnc, false)
+        ColorsLib.testColorsFromResources(context!!, SyntagNetR.array.palette_sn, false)
     }
 
     @Test
     fun colorContrastXNet() {
         assertTrue(checkDarkMode(mode))
         try {
-            ColorsLib.testColorsFromResources(context!!, R.array.palette_ui, true)
-            ColorsLib.testColorsFromResources(context!!, R.array.palette, true)
-            ColorsLib.testColorsFromResources(context!!, R.array.palette_wn, true)
-            ColorsLib.testColorsFromResources(context!!, R.array.palette_bnc, true)
-            ColorsLib.testColorsFromResources(context!!, R.array.palette_sn, true)
+            ColorsLib.testColorsFromResources(context!!, CommonR.array.palette_ui, true)
+            ColorsLib.testColorsFromResources(context!!, XNetR.array.palette, true)
+            ColorsLib.testColorsFromResources(context!!, WordNetR.array.palette_wn, true)
+            ColorsLib.testColorsFromResources(context!!, BNCR.array.palette_bnc, true)
+            ColorsLib.testColorsFromResources(context!!, SyntagNetR.array.palette_sn, true)
         } catch (ce: ColorsLib.IllegalColorPair) {
             Log.e(name, ce.message)
             fail(ce.message)

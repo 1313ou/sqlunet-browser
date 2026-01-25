@@ -11,11 +11,12 @@ import androidx.annotation.StyleableRes
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.graphics.ColorUtils
 import androidx.test.platform.app.InstrumentationRegistry
-import org.sqlunet.browser.fn.test.R
 import org.sqlunet.nightmode.NightMode.toConfigurationUiMode
 import org.sqlunet.style.Colors.colorToString
 import org.sqlunet.style.Colors.dumpColorAttrs
 import org.sqlunet.style.Colors.getColorAttrs
+import com.google.android.material.R as MaterialR
+import org.sqlunet.browser.common.R as CommonR
 
 object ColorsLib {
 
@@ -81,12 +82,12 @@ object ColorsLib {
 
     fun getContext(mode: Int): Context {
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
-        val themedContext: Context = ContextThemeWrapper(targetContext, R.style.MyTheme)
+        val themedContext: Context = ContextThemeWrapper(targetContext, CommonR.style.MyTheme)
         val newConfig = themedContext.resources.configuration
         newConfig.uiMode = newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK.inv() // clear
         newConfig.uiMode = newConfig.uiMode or (toConfigurationUiMode(mode) and Configuration.UI_MODE_NIGHT_MASK) // set
         val newContext = themedContext.createConfigurationContext(newConfig)
-        return ContextThemeWrapper(newContext, R.style.MyTheme)
+        return ContextThemeWrapper(newContext, CommonR.style.MyTheme)
     }
 
     fun getDefaultColorAttrs(context: Context): IntArray {
@@ -94,7 +95,7 @@ object ColorsLib {
             android.R.attr.colorBackground,
             android.R.attr.colorForeground
         )
-        return getColorAttrs(context, R.style.MyTheme, *resIds)
+        return getColorAttrs(context, CommonR.style.MyTheme, *resIds)
     }
 
     fun dumpDefaultColors(context: Context) {
@@ -105,13 +106,13 @@ object ColorsLib {
             android.R.attr.foreground,
             android.R.attr.textColor,
             android.R.attr.color,
-            R.attr.color,
-            R.attr.colorOnBackground,
-            R.attr.colorSurface,
-            R.attr.colorOnSurface,
-            R.attr.backgroundColor
+            MaterialR.attr.color,
+            MaterialR.attr.colorOnBackground,
+            MaterialR.attr.colorSurface,
+            MaterialR.attr.colorOnSurface,
+            MaterialR.attr.backgroundColor
         )
-        dumpColorAttrs(context, R.style.MyTheme, *resIds)
+        dumpColorAttrs(context, CommonR.style.MyTheme, *resIds)
     }
 
     private const val TAG = "Colors"

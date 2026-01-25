@@ -13,6 +13,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.sqlunet.browser.Do.xselectorsRunTree
 import org.sqlunet.browser.xn.BrowseActivity
+import org.sqlunet.browser.common.R as CommonR
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
@@ -24,7 +25,7 @@ class RunXSelectTreeTest : TestCase() {
     @Before
     fun before() {
         //Actions.do_choose(R.id.spinner, "grouped by source")
-        Seq.doChoose(R.id.spinner, 1)
+        Seq.doChoose(CommonR.id.spinner, 1)
     }
 
     @Test

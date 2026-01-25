@@ -18,6 +18,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.sqlunet.browser.MainActivity
 import org.sqlunet.nightmode.NightMode.checkDarkMode
+import org.sqlunet.browser.common.R as CommonR
+import org.sqlunet.framenet.R as FrameNetR
+import org.sqlunet.xnet.R as XNetR
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
@@ -46,18 +49,18 @@ abstract class AbstractColors : TestCase() {
     @Throws(ColorsLib.IllegalColorPair::class)
     fun colorContrast() {
         assertTrue(checkDarkMode(mode))
-        ColorsLib.testColorsFromResources(context!!, R.array.palette_ui, false)
-        ColorsLib.testColorsFromResources(context!!, R.array.palette, false)
-        ColorsLib.testColorsFromResources(context!!, R.array.palette_fn, false)
+        ColorsLib.testColorsFromResources(context!!, CommonR.array.palette_ui, false)
+        ColorsLib.testColorsFromResources(context!!, XNetR.array.palette, false)
+        ColorsLib.testColorsFromResources(context!!, FrameNetR.array.palette_fn, false)
     }
 
     @Test
     fun colorContrastXNet() {
         assertTrue(checkDarkMode(mode))
         try {
-            ColorsLib.testColorsFromResources(context!!, R.array.palette_ui, true)
-            ColorsLib.testColorsFromResources(context!!, R.array.palette, true)
-            ColorsLib.testColorsFromResources(context!!, R.array.palette_fn, true)
+            ColorsLib.testColorsFromResources(context!!, CommonR.array.palette_ui, true)
+            ColorsLib.testColorsFromResources(context!!, XNetR.array.palette, true)
+            ColorsLib.testColorsFromResources(context!!, FrameNetR.array.palette_fn, true)
         } catch (ce: ColorsLib.IllegalColorPair) {
             Log.e(name, ce.message)
             fail(ce.message)

@@ -17,6 +17,7 @@ import org.sqlunet.browser.Seq
 import org.sqlunet.browser.fn.Do.ensureDownloaded
 import org.sqlunet.browser.fn.Do.searchRunFlat
 import org.sqlunet.browser.fn.test.R
+import org.sqlunet.browser.common.R as CommonR
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
@@ -29,7 +30,7 @@ class RunMainTest : TestCase() {
     fun before() {
         if (ensureDownloaded()) ActivityScenario.launch(MainActivity::class.java)
         //Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, "Browse")
-        Seq.doNavigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_browse)
+        Seq.doNavigate(CommonR.id.drawer_layout, CommonR.id.nav_view, CommonR.id.nav_search_browse)
     }
 
     @Test

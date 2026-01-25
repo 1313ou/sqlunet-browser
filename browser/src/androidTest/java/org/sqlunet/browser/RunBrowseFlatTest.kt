@@ -13,6 +13,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.sqlunet.browser.Do.searchRunFlat
 import org.sqlunet.browser.xn.BrowseActivity
+import org.sqlunet.browser.common.R as CommonR
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
@@ -24,7 +25,7 @@ class RunBrowseFlatTest : TestCase() {
     @Before
     fun before() {
         //Actions.do_choose(R.id.spinner, "senses")
-        Seq.doChoose(R.id.spinner, 0)
+        Seq.doChoose(CommonR.id.spinner, 0)
     }
 
     @Test

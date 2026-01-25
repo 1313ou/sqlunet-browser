@@ -13,11 +13,14 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import org.hamcrest.CoreMatchers
+import com.bbou.download.common.R as DownloadR
+import org.sqlunet.browser.common.R as CommonR
 
 internal object Do {
 
     fun ensureDownloaded(): Boolean {
-        val notMain = ToBoolean.testAssertion(ViewMatchers.withId(R.id.drawer_layout), ViewAssertions.doesNotExist()) || !ToBoolean.test(ViewMatchers.withId(R.id.drawer_layout), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE))
+        val notMain =
+            ToBoolean.testAssertion(ViewMatchers.withId(CommonR.id.drawer_layout), ViewAssertions.doesNotExist()) || !ToBoolean.test(ViewMatchers.withId(CommonR.id.drawer_layout), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE))
         if (notMain) {
             download()
             return true
@@ -28,9 +31,9 @@ internal object Do {
     private fun download() {
         Seq.doClick(R.id.databaseButton)
         // download activity
-        Seq.doClick(R.id.downloadButton)
+        Seq.doClick(DownloadR.id.downloadButton)
         //Wait.until_not_text(R.id.status, Seq.getResourceString(R.string.status_task_running), 10)
-        WaitUntilText.changesFrom(R.id.status, Seq.getResourceString(R.string.status_task_running))
+        WaitUntilText.changesFrom(CommonR.id.status, Seq.getResourceString(CommonR.string.status_task_running))
     }
 
     fun ensureTextSearchSetup(@IdRes buttonId: Int) {
@@ -45,7 +48,7 @@ internal object Do {
         Seq.doClick(buttonId)
         Seq.doClick(R.id.task_run)
         //Wait.until_not_text(R.id.task_status, Seq.getResourceString(R.string.status_task_running), 10)
-        WaitUntilText.changesFrom(R.id.task_status, Seq.getResourceString(R.string.status_task_running))
+        WaitUntilText.changesFrom(R.id.task_status, Seq.getResourceString(CommonR.string.status_task_running))
     }
 
     fun searchRunFlat() {
@@ -139,7 +142,7 @@ internal object Do {
     }
 
     fun textSearchRun(position: Int) {
-        Seq.doChoose(R.id.spinner, position)
+        Seq.doChoose(CommonR.id.spinner, position)
         for (word in DataUtils.wordList!!) {
             Seq.doTypeSearch(R.id.search, word)
         }
