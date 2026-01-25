@@ -117,9 +117,9 @@ fun allExist(outFiles: Sequence<File>): Boolean {
 
 fun newest(outFiles: Sequence<File>): Long? {
     return outFiles
-        //.onEach { print("### $it ")}
+        //.onEach { print("### $it ") }
         .map { it.lastModified() }
-        //.onEach { println(it)}
+        //.onEach { println(it) }
         .maxOrNull()
 }
 
@@ -149,15 +149,12 @@ fun needed(): Boolean {
 }
 
 tasks.register("generateAll") {
-    val isNeeded = needed()
-    if (isNeeded) {
-        dependsOn("generateQV")
-        dependsOn("generateQ")
-        dependsOn("generateV")
-        dependsOn("instantiate")
-    }
+    dependsOn("generateQV")
+    dependsOn("generateQ")
+    dependsOn("generateV")
+    dependsOn("instantiate")
     onlyIf {
-        isNeeded
+        needed()
     }
     doLast {
         println("Generation of source code from prototypes")
