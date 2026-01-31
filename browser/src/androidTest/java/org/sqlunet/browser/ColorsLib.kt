@@ -106,7 +106,7 @@ object ColorsLib {
             android.R.attr.foreground,
             android.R.attr.textColor,
             android.R.attr.color,
-            MaterialR.attr.color,
+            android.R.attr.color,
             MaterialR.attr.colorOnBackground,
             MaterialR.attr.colorSurface,
             MaterialR.attr.colorOnSurface,
