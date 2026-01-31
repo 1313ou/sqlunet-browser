@@ -37,7 +37,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.Domains
 import org.sqlunet.wordnet.provider.WordNetContract.Poses
 import org.sqlunet.wordnet.provider.WordNetContract.Relations
 import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
-import com.google.android.material.R as MaterialR
+import android.R as AndroidR
 import org.sqlunet.browser.common.R as CommonR
 
 /**
@@ -52,7 +52,7 @@ class BrowseFragment : BaseSearchFragment() {
     init {
         layoutId = R.layout.fragment_browse
         menuId = R.menu.browse
-        colorAttrId = MaterialR.attr.colorPrimary
+        colorAttrId = AndroidR.attr.colorPrimary
         spinnerLabels = R.array.selectors_names
         spinnerIcons = R.array.selectors_icons
     }

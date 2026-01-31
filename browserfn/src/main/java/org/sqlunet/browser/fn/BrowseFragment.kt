@@ -35,7 +35,7 @@ import org.sqlunet.settings.Settings
 import org.sqlunet.settings.Settings.DetailViewMode
 import org.sqlunet.settings.Settings.SelectorViewMode
 import org.sqlunet.browser.common.R as CommonR
-import com.google.android.material.R as MaterialR
+import android.R as AndroidR
 
 /**
  * Browse fragment
@@ -47,7 +47,7 @@ class BrowseFragment : BaseSearchFragment() {
     init {
         layoutId = R.layout.fragment_browse
         menuId = CommonR.menu.browse
-        colorAttrId = MaterialR.attr.colorPrimary
+        colorAttrId = AndroidR.attr.colorPrimary
         spinnerLabels = R.array.selectors_names
         spinnerIcons = R.array.selectors_icons
     }
