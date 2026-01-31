@@ -43,12 +43,6 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
 
-    sourceSets {
-        getByName("androidTest") {
-            assets.directories.addAll(listOf("src/main/assets", "src/debug/assets/"))
-        }
-    }
-
     // assetPacks.addAll(listOf(":dbsn_wn31_asset", ":dbsn_ewn_asset"))
     assetPacks.add(":dbsn_ewn_asset")
 

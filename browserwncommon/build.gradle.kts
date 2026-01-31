@@ -37,12 +37,6 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
 
-    sourceSets {
-        getByName("androidTest") {
-            assets.directories.addAll(listOf("src/main/assets", "src/debug/assets/"))
-        }
-    }
-
     buildFeatures {
         buildConfig = true
         compose = false

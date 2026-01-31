@@ -77,9 +77,6 @@ android {
         getByName("main") {
             java.directories.add(generatedSrcDir.toString())
         }
-        getByName("test") {
-            java.directories.add(generatedSrcDir.toString())
-        }
     }
 }
 
