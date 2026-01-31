@@ -44,9 +44,9 @@ kotlin {
 
 dependencies {
     implementation(platform(libs.kotlin.bom)) // Use the Kotlin BOM
+    implementation(libs.kotlin.stdlib)
     coreLibraryDesugaring(libs.desugar)
 
-    implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.preference.ktx)
     implementation(libs.constraintlayout)

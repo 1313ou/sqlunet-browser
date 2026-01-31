@@ -87,6 +87,7 @@ kotlin {
 
 dependencies {
     implementation(platform(libs.kotlin.bom)) // Use the Kotlin BOM
+    implementation(libs.kotlin.stdlib)
     coreLibraryDesugaring(libs.desugar)
 
     implementation(project(":common"))
@@ -104,7 +105,6 @@ dependencies {
     implementation(project(":verbNet"))
     implementation(project(":propbank"))
 
-    implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.lifecycle.ktx)
     implementation(libs.lifecycle.livedata.ktx)

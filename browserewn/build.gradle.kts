@@ -86,7 +86,7 @@ kotlin {
 
 dependencies {
     implementation(platform(libs.kotlin.bom)) // Use the Kotlin BOM
-    implementation(libs.core.ktx)
+    implementation(libs.kotlin.stdlib)
     coreLibraryDesugaring(libs.desugar)
 
     implementation(project(":browserwncommon"))
