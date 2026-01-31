@@ -28,7 +28,7 @@ viewpager2 = "1.1.0"
 constraintlayout = "2.2.1"
 preference = "1.2.1"
 asset-delivery-ktx = "2.3.0"
-billing = "8.0.0"
+billing = "8.3.0"
 
 slf4j-api = "2.0.17"
 
