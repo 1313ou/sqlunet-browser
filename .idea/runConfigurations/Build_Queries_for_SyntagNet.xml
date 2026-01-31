@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Build Queries for SyntagNet" type="JUnit" factoryName="JUnit">
-    <module name="android-sqlunet-as.semantikos.syntagNet.unitTest" />
+    <module name="semantikos.syntagNet.unitTest" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="ALTERNATIVE_JRE_PATH" value="17" />
     <option name="PACKAGE_NAME" value="org.sqlunet.syntagnet.provider" />
