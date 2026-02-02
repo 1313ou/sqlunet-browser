@@ -58,6 +58,8 @@
 	<!-- Custom background theme -->
 	<style name="MyCustomBackgroundAppTheme" parent="MyXBaseTheme">
 
+		<item name="colorSecondary">@color/secondaryColor</item>
+
 		<item name="android:windowBackground">@null</item>
 		<!-- does not work: -->
 		<!-- <item name="android:background">?attr/colorPrimary</item> -->
