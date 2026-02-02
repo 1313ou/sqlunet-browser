@@ -4,10 +4,9 @@
 
 <resources>
 
-	<string name="grammarscope_uri" translatable="false">market://details?id=org.grammarscope</string>
-	<string name="grammarscope_premium_uri" translatable="false">market://details?id=org.grammarscope.premium</string>
+    <string name="grammarscope_syntaxnet_uri" translatable="false">market://details?id=org.grammarscope</string>
 	<string name="grammarscope_udpipe_uri" translatable="false">market://details?id=org.grammarscope.udpipe</string>
-	<string name="grammarscope_udpipe_premium_uri" translatable="false">market://details?id=org.grammarscope.udpipe.premium</string>
+    <string name="grammarscope_corenlp_uri" translatable="false">market://details?id=org.grammarscope.corenlp</string>
 	<string name="treebolic_wordnet_uri" translatable="false">market://details?id=org.treebolic.wordnet.browser</string>
 	<string name="semantikos_uri" translatable="false">market://details?id=org.sqlunet.browser</string>
 	<string name="semantikos_wn_uri" translatable="false">market://details?id=org.sqlunet.browser.wn</string>
@@ -15,5 +14,9 @@
 	<string name="semantikos_vn_uri" translatable="false">market://details?id=org.sqlunet.browser.vn</string>
 	<string name="semantikos_fn_uri" translatable="false">market://details?id=org.sqlunet.browser.fn</string>
 	<string name="semantikos_sn_uri" translatable="false">market://details?id=org.sqlunet.browser.sn</string>
+
+    <string name="grammarscope_syntaxnet_premium_uri" translatable="false">market://details?id=org.grammarscope.premium</string>
+    <string name="grammarscope_udpipe_premium_uri" translatable="false">market://details?id=org.grammarscope.udpipe.premium</string>
+    <string name="grammarscope_corenlp_premium_uri" translatable="false">market://details?id=org.grammarscope.corenlp.premium</string>
 
 </resources>

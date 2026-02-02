@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2023. Bernard Bou
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:keep="@layout/activity_other">
-
-	<com.google.android.material.appbar.AppBarLayout
-		android:id="@+id/appbar_layout"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:fitsSystemWindows="true">
-
-		<include layout="@layout/toolbar" />
-
-	</com.google.android.material.appbar.AppBarLayout>
+	android:layout_height="match_parent">
 
 	<ScrollView
 		android:layout_width="match_parent"
@@ -29,376 +17,46 @@
 			android:layout_height="wrap_content"
 			android:orientation="vertical">
 
-			<!-- grammarscope syntaxnet -->
-
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
-				android:contentDescription="@string/description_logo_grammarscope_syntaxnet"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:src="@drawable/logo_grammarscope"
-				android:visibility="visible" />
-
-			<TextView
-				style="@style/HeaderText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/title_grammarscope_syntaxnet"
-				android:textStyle="bold"
-				android:visibility="visible" />
-
-			<TextView
-				style="@style/DescriptionText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/text_grammarscope_syntaxnet"
-				android:visibility="visible" />
-
-			<ImageButton
-				android:id="@+id/on_market_grammarscope"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="10dp"
-				android:background="@null"
-				android:contentDescription="@string/description_googleplay_grammarscope_syntaxnet"
-				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="OnClick" />
-
-			<!-- grammarscope udpipe -->
-
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
-				android:contentDescription="@string/description_logo_grammarscope_udpipe"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:src="@drawable/logo_grammarscope_udpipe"
-				android:visibility="visible" />
-
-			<TextView
-				style="@style/HeaderText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/title_grammarscope_udpipe"
-				android:textStyle="bold"
-				android:visibility="visible" />
-
-			<TextView
-				style="@style/DescriptionText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/text_grammarscope_udpipe"
-				android:visibility="visible" />
-
-			<ImageButton
-				android:id="@+id/on_market_grammarscope_udpipe"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="10dp"
-				android:background="@null"
-				android:contentDescription="@string/description_googleplay_grammarscope_udpipe"
-				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="OnClick" />
-
 			<!-- treebolic wordnet -->
+			<include layout="@layout/inc_treebolic_wordnet" />
 
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
-				android:contentDescription="@string/description_logo_treebolicwordnet"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:src="@drawable/logo_treebolicwordnet"
-				android:visibility="visible" />
+			<!-- grammarscope -->
+			<include layout="@layout/inc_grammarscope_syntaxnet" />
 
-			<TextView
-				style="@style/HeaderText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/title_treebolicwordnet"
-				android:textStyle="bold"
-				android:visibility="visible" />
+			<include layout="@layout/inc_grammarscope_syntaxnet_premium" />
 
-			<TextView
-				style="@style/DescriptionText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/text_treebolicwordnet"
-				android:visibility="visible" />
+			<include layout="@layout/inc_grammarscope_udpipe" />
 
-			<ImageButton
-				android:id="@+id/on_market_treebolic_wordnet"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="20dp"
-				android:background="@null"
-				android:contentDescription="@string/description_googleplay_treebolicwordnet"
-				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="OnClick" />
+			<include layout="@layout/inc_grammarscope_udpipe_premium" />
+
+			<include layout="@layout/inc_grammarscope_corenlp" />
+
+			<include layout="@layout/inc_grammarscope_corenlp_premium" />
 
 			<!-- semantikos -->
+			<include layout="@layout/inc_semantikos" />
 
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
-				android:contentDescription="@string/description_logo_semantikos"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:src="@drawable/logo_semantikos"
-				android:visibility="visible" />
+			<include layout="@layout/inc_semantikos_ewn" />
 
-			<TextView
-				style="@style/HeaderText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/title_semantikos"
-				android:textStyle="bold"
-				android:visibility="visible" />
+			<include layout="@layout/inc_semantikos_wn" />
 
-			<TextView
-				style="@style/DescriptionText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/text_semantikos"
-				android:visibility="visible" />
+			<!-- <include layout="@layout/inc_semantikos_vn" />-->
 
-			<ImageButton
-				android:id="@+id/on_market_semantikos"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="20dp"
-				android:background="@null"
-				android:contentDescription="@string/description_googleplay_semantikos"
-				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="OnClick" />
+			<include layout="@layout/inc_semantikos_sn" />
 
-			<!-- semantikos wn -->
-
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
-				android:contentDescription="@string/description_logo_semantikos_wn"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:src="@drawable/logo_semantikos_wn"
-				android:visibility="visible" />
-
-			<TextView
-				style="@style/HeaderText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/title_semantikos_wn"
-				android:textStyle="bold"
-				android:visibility="visible" />
-
-			<TextView
-				style="@style/DescriptionText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/text_semantikos_wn"
-				android:visibility="visible" />
-
-			<ImageButton
-				android:id="@+id/on_market_semantikos_wn"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="20dp"
-				android:background="@null"
-				android:contentDescription="@string/description_googleplay_semantikos_wn"
-				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="OnClick" />
-
-			<!-- semantikos ewn -->
-
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
-				android:contentDescription="@string/description_logo_semantikos_ewn"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:src="@drawable/logo_semantikos_ewn"
-				android:visibility="visible" />
-
-			<TextView
-				style="@style/HeaderText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/title_semantikos_ewn"
-				android:textStyle="bold"
-				android:visibility="visible" />
-
-			<TextView
-				style="@style/DescriptionText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/text_semantikos_ewn"
-				android:visibility="visible" />
-
-			<ImageButton
-				android:id="@+id/on_market_semantikos_ewn"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="20dp"
-				android:background="@null"
-				android:contentDescription="@string/description_googleplay_semantikos_ewn"
-				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="OnClick" />
-
-			<!-- semantikos fn -->
-
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
-				android:contentDescription="@string/description_logo_semantikos_fn"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:src="@drawable/logo_semantikos_fn"
-				android:visibility="visible" />
-
-			<TextView
-				style="@style/HeaderText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/title_semantikos_fn"
-				android:textStyle="bold"
-				android:visibility="visible" />
-
-			<TextView
-				style="@style/DescriptionText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/text_semantikos_fn"
-				android:visibility="visible" />
-
-			<ImageButton
-				android:id="@+id/on_market_semantikos_fn"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="20dp"
-				android:background="@null"
-				android:contentDescription="@string/description_googleplay_semantikos_fn"
-				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="OnClick" />
-
-			<!-- semantikos sn -->
-
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
-				android:contentDescription="@string/description_logo_semantikos_sn"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:src="@drawable/logo_semantikos_sn"
-				android:visibility="visible" />
-
-			<TextView
-				style="@style/HeaderText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/title_semantikos_sn"
-				android:textStyle="bold"
-				android:visibility="visible" />
-
-			<TextView
-				style="@style/DescriptionText"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:gravity="center_horizontal"
-				android:padding="5dp"
-				android:text="@string/text_semantikos_sn"
-				android:visibility="visible" />
-
-			<ImageButton
-				android:id="@+id/on_market_semantikos_sn"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="20dp"
-				android:background="@null"
-				android:contentDescription="@string/description_googleplay_semantikos_sn"
-				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="OnClick" />
+			<include layout="@layout/inc_semantikos_fn" />
 
 		</LinearLayout>
 
 	</ScrollView>
+
+	<com.google.android.material.appbar.AppBarLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fitsSystemWindows="true">
+
+		<include layout="@layout/toolbar" />
+
+	</com.google.android.material.appbar.AppBarLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
