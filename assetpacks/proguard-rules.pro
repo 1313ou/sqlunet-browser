@@ -20,4 +20,6 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class com.google.android.play.core.ktx.** { <init>(...); }
+# Keep the entire Play Core library
+-keep class com.google.android.play.core.** { *; }
+# -dontwarn com.google.android.play.core.**
