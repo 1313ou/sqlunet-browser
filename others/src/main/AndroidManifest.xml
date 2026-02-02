@@ -7,7 +7,7 @@
 	<application>
 
 		<activity
-			android:name=".OthersActivity"
+			android:name="com.bbou.others.OthersActivity"
 			android:label="@string/title_activity_others" />
 
 	</application>
