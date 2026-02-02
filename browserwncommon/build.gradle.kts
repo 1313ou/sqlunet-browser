@@ -57,9 +57,10 @@ kotlin {
 }
 
 dependencies {
-    implementation(platform(libs.kotlin.bom)) // Use the Kotlin BOM
-    implementation(libs.kotlin.stdlib)
     coreLibraryDesugaring(libs.desugar)
+    implementation(platform(libs.kotlin.bom))
+    implementation(kotlin("stdlib"))
+    implementation(libs.core.ktx)
 
     implementation(project(":common"))
     implementation(project(":expandableListFragment"))
@@ -82,7 +83,7 @@ dependencies {
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
     implementation(libs.preference.ktx)
-    implementation(libs.annotation)
     implementation(libs.material)
     implementation(libs.swiperefreshlayout)
+    implementation(libs.annotation)
 }

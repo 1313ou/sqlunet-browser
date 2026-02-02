@@ -80,8 +80,10 @@ kotlin {
 }
 
 dependencies {
-    implementation(platform(libs.kotlin.bom)) // Use the Kotlin BOM
     coreLibraryDesugaring(libs.desugar)
+    implementation(platform(libs.kotlin.bom))
+    implementation(kotlin("stdlib"))
+    implementation(libs.core.ktx)
 
     implementation(project(":common"))
     implementation(project(":expandableListFragment"))
@@ -98,7 +100,6 @@ dependencies {
     implementation(project(":syntagNet"))
     implementation(project(":bNC"))
 
-    implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.lifecycle.ktx)
     implementation(libs.lifecycle.livedata.ktx)
@@ -107,8 +108,8 @@ dependencies {
     implementation(libs.navigation.ui.ktx)
     implementation(libs.swiperefreshlayout)
     implementation(libs.preference.ktx)
-    implementation(libs.annotation)
     implementation(libs.material)
+    implementation(libs.annotation)
 
     androidTestImplementation(project(":common"))
     androidTestImplementation(project(":nightmode"))

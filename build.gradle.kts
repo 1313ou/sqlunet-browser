@@ -24,6 +24,14 @@ allprojects {
         google()
     }
 
+    configurations.all {
+        resolutionStrategy.eachDependency {
+            if (requested.group == "com.google.android.play" && requested.name == "core") {
+                useVersion(libs.versions.play.core.get())
+            }
+        }
+    }
+
     ext {
         set("versionCode", 196)
         set("versionName", "4.196")

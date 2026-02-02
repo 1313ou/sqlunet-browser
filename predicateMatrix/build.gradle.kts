@@ -39,6 +39,9 @@ android {
 
 dependencies {
     coreLibraryDesugaring(libs.desugar)
+    implementation(platform(libs.kotlin.bom))
+    implementation(kotlin("stdlib"))
+    implementation(libs.core.ktx)
 
     implementation(project(":xNet"))
     implementation(project(":treeView"))
@@ -46,7 +49,6 @@ dependencies {
     implementation(project(":propbank"))
     implementation(project(":verbNet"))
 
-    implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.lifecycle.ktx)
     implementation(libs.lifecycle.livedata.ktx)

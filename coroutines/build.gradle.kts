@@ -55,11 +55,13 @@ kotlin {
 
 dependencies {
     coreLibraryDesugaring(libs.desugar)
-
+    implementation(platform(libs.kotlin.bom))
+    implementation(kotlin("stdlib"))
     implementation(libs.core.ktx)
+
     implementation(libs.appcompat)
-    implementation(libs.annotation)
     implementation(libs.coroutines.core)
+    implementation(libs.annotation)
 
     testImplementation(libs.junit)
 }

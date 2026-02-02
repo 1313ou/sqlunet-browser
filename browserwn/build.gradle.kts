@@ -79,10 +79,10 @@ kotlin {
 }
 
 dependencies {
-    implementation(platform(libs.kotlin.bom)) // Use the Kotlin BOM
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.preference.ktx)
     coreLibraryDesugaring(libs.desugar)
+    implementation(platform(libs.kotlin.bom))
+    implementation(kotlin("stdlib"))
+    implementation(libs.core.ktx)
 
     implementation(project(":browserwncommon"))
     implementation(project(":common"))
@@ -96,6 +96,7 @@ dependencies {
     implementation(project(":others"))
 
     implementation(libs.appcompat) // for resources validation
+    implementation(libs.preference.ktx)
     implementation(libs.material) // for resource include
 
     androidTestImplementation(project(":browserwncommon"))

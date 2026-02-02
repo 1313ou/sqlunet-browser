@@ -45,6 +45,9 @@ kotlin {
 dependencies {
 
     coreLibraryDesugaring(libs.desugar)
+    implementation(platform(libs.kotlin.bom))
+    implementation(kotlin("stdlib"))
+    implementation(libs.core.ktx)
 
     implementation(project(":expandableListFragment"))
     implementation(project(":concurrency"))
@@ -60,7 +63,6 @@ dependencies {
     implementation(project(":xNet"))
     implementation(project(":assetpacks"))
 
-    implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.lifecycle.ktx)
     implementation(libs.lifecycle.livedata.ktx)
@@ -72,7 +74,7 @@ dependencies {
     implementation(libs.preference.ktx)
     implementation(libs.viewpager2)
     implementation(libs.swiperefreshlayout)
-    implementation(libs.annotation)
     implementation(libs.material)
     implementation(libs.asset.delivery.ktx)
+    implementation(libs.annotation)
 }

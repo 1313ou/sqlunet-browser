@@ -3,7 +3,6 @@ agp = "9.0.0"
 
 desugar = "2.1.5"
 
-kotlin-bom = "2.3.0"
 kotlin = "2.3.0"
 kotlin-reflect = "2.1.0"
 kotlin-json = "1.10.0"
@@ -43,7 +42,7 @@ querybuilder = "1.1.0"
 [libraries]
 desugar = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }
 
-kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlin-bom" }
+kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlin" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib" }
 kotlin-stdlib-jdk8 = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8" }
 kotlin-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlin-json" }

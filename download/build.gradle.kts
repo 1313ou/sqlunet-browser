@@ -49,13 +49,15 @@ kotlin {
 
 dependencies {
     coreLibraryDesugaring(libs.desugar)
+    implementation(platform(libs.kotlin.bom))
+    implementation(kotlin("stdlib"))
+    implementation(libs.core.ktx)
 
     implementation(project(":download_common"))
     implementation(project(":deploy"))
     implementation(project(":concurrency"))
 
     implementation(libs.appcompat)
-    implementation(libs.core.ktx)
     implementation(libs.fragment.ktx)
     implementation(libs.preference.ktx)
     implementation(libs.work)

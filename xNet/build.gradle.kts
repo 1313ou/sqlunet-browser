@@ -45,6 +45,9 @@ kotlin {
 
 dependencies {
     coreLibraryDesugaring(libs.desugar)
+    implementation(platform(libs.kotlin.bom))
+    implementation(kotlin("stdlib"))
+    implementation(libs.core.ktx)
 
     implementation(project(":treeView"))
     implementation(project(":coroutines"))
@@ -52,14 +55,13 @@ dependencies {
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.lifecycle.ktx)
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.preference.ktx)
-    implementation(libs.annotation)
     implementation(libs.material)
+    implementation(libs.annotation)
 
     testImplementation(project(":test-sql"))
     testImplementation(libs.junit)
