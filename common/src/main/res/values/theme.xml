@@ -29,6 +29,9 @@
 		<item name="colorSecondaryVariant">@color/secondaryLightColor</item>
 		<item name="colorOnSecondary">@color/onSecondaryColor</item>
 
+		<!-- background of activated indicator -->
+		<item name="colorControlActivated">@color/onSecondaryColor</item>
+
 		<!-- extras color attrs -->
 		<item name="colorHighlightOnPrimary">@color/highlightOnPrimaryColor</item>
 		<item name="colorHighlightOnBackground">@color/colorHighlightOnBackground</item>
@@ -57,9 +60,6 @@
 		<item name="android:autoCompleteTextViewStyle">@style/MyAutoCompleteTextViewStyle</item>
 
 		<!-- O V E R R I D E S -->
-
-		<!-- background of activated indicator -->
-		<item name="android:activatedBackgroundIndicator">?attr/colorControlActivated</item>
 
 		<!-- transparent statusbar and navigation bar -->
 		<item name="android:statusBarColor">@android:color/transparent</item>
