@@ -9,8 +9,8 @@
 		<!-- C O L O R S -->
 
 		<!-- framework colors -->
-		<item name="android:colorBackground">@color/backgroundColor</item>
-		<item name="android:colorForeground">@color/foregroundColor</item>
+<!--		<item name="android:colorBackground">@color/backgroundColor</item>-->
+<!--		<item name="android:colorForeground">@color/foregroundColor</item>-->
 		<item name="colorSurface">@color/backgroundColor</item>
 		<item name="colorOnSurface">@color/foregroundColor</item>
 
