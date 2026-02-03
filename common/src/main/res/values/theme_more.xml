@@ -28,12 +28,12 @@
 	<!-- S T Y L E S -->
 
 	<!-- Toolbar -->
-	<style name="MyToolbarStyle" parent="Widget.AppCompat.Toolbar">
+	<style name="MyToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
 		<item name="android:background">?attr/colorPrimary</item>
 	</style>
 
 	<!-- Action bar -->
-	<style name="MyActionBarStyle" parent="Widget.AppCompat.ActionBar">
+	<style name="MyActionBarStyle" parent="Widget.MaterialComponents.Toolbar">
 		<item name="android:background">?attr/colorPrimary</item> <!-- whole actionbar background -->
 	</style>
 
