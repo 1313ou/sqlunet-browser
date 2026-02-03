@@ -4,13 +4,7 @@
 
 <resources>
 
-	<!-- <style name="MyBaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar" />-->
-	<!-- <style name="MyBaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge" />-->
-	<style name="MyBaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
-
-	<style name="MyXBaseTheme" parent="MyBaseTheme" />
-
-	<style name="MyThemeDayNight" parent="MyXBaseTheme">
+	<style name="MyTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
 		<!-- C O L O R S -->
 
@@ -39,35 +33,12 @@
 		<item name="colorHighlight2OnBackground">@color/colorHighlight2OnBackground</item>
 		<item name="colorDimmedOnBackground">@color/colorDimmedOnBackground</item>
 
-		<!-- O V E R L A Y S -->
-
-		<!-- action bar theme UI -->
-		<item name="actionBarTheme">@style/MyActionBarTheme</item>
-
-		<!-- action bar popup theme UI -->
-		<item name="actionBarPopupTheme">@style/MyActionbarPopupTheme</item>
-
-		<!-- S T Y L E S -->
-
-		<!-- action bar -->
-		<item name="android:actionBarStyle">@style/MyActionBarStyle</item>
-
-		<!-- dropdowns -->
-		<item name="android:dropDownListViewStyle">@style/MyDropDownListViewStyle</item>
-		<item name="android:dropDownItemStyle">@style/MyDropDownItemStyle</item>
-
-		<!-- autocomplete -->
-		<item name="android:autoCompleteTextViewStyle">@style/MyAutoCompleteTextViewStyle</item>
-
 		<!-- O V E R R I D E S -->
 
 		<!-- transparent statusbar and navigation bar -->
 		<item name="android:statusBarColor">@android:color/transparent</item>
 		<item name="android:navigationBarColor">@android:color/transparent</item>
 
-	</style>
-
-	<style name="MyTheme" parent="MyThemeDayNight">
 	</style>
 
 </resources>

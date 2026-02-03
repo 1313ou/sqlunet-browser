@@ -7,7 +7,7 @@
 	android:id="@+id/container_home"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:theme="@style/MyCustomBackgroundOverlay">
+	android:theme="@style/MyHomeOverlay">
 
 	<ImageView
 		android:id="@+id/splash"
