@@ -39,6 +39,11 @@
 		<item name="android:statusBarColor">@android:color/transparent</item>
 		<item name="android:navigationBarColor">@android:color/transparent</item>
 
+		<!-- S T Y L E S -->
+
+		<!-- Menu dropdown -->
+		<item name="popupMenuBackground">@color/primaryColor</item>
+
 	</style>
 
 </resources>

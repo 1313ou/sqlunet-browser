@@ -4,6 +4,8 @@
 
 <resources>
 
+	<!-- O V E R L A Y S -->
+
 	<!-- Custom home overlay -->
 	<style name="MyHomeOverlay" parent="ThemeOverlay.MaterialComponents">
 		<item name="android:background">?attr/colorPrimary</item> <!-- submenu background -->
