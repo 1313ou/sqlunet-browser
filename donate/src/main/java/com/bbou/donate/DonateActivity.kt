@@ -28,6 +28,7 @@ import com.bbou.donate.billing.Products.inappProducts
 import com.bbou.donate.billing.Products.init
 import org.sqlunet.browser.BaseActivity
 import java.util.Date
+import org.sqlunet.activities.R as ActivitiesR
 
 /**
  * Donate
@@ -129,7 +130,7 @@ class DonateActivity : BaseActivity(), BillingListener {
         }
 
         // toolbar
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = findViewById<Toolbar>(ActivitiesR.id.toolbar)
         setSupportActionBar(toolbar)
 
         // set up the action bar

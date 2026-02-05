@@ -18,6 +18,7 @@ import com.bbou.download.Keys.DOWNLOAD_MODE_ARG
 import com.bbou.download.common.R
 import com.bbou.download.preference.Settings
 import org.sqlunet.browser.BaseActivity
+import org.sqlunet.activities.R as ActivitiesR
 
 /**
  * Download activity
@@ -44,7 +45,7 @@ open class DownloadActivity : BaseActivity(), CompletionListener {
         setContentView(R.layout.activity_download)
 
         // toolbar
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = findViewById<Toolbar>(ActivitiesR.id.toolbar)
         setSupportActionBar(toolbar)
 
         // set up the action bar

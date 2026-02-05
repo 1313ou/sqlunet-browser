@@ -14,6 +14,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import androidx.core.net.toUri
 import org.sqlunet.browser.BaseActivity
+import org.sqlunet.activities.R as ActivitiesR
 
 /**
  * Other applications
@@ -29,7 +30,7 @@ class OthersActivity : BaseActivity() {
         setContentView(R.layout.activity_other)
 
         // toolbar
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = findViewById<Toolbar>(ActivitiesR.id.toolbar)
         setSupportActionBar(toolbar)
 
         // set up the action bar
