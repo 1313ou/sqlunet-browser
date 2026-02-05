@@ -14,7 +14,6 @@
 		android:layout_height="match_parent"
 		android:orientation="vertical"
 		tools:ignore="UselessLeaf">
-		<!-- DUMMY that is expanded in overridden resources -->
 	</LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
