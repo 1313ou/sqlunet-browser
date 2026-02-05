@@ -4,7 +4,6 @@
 package org.sqlunet.browser
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -24,8 +23,6 @@ abstract class AbstractActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        enableEdgeToEdge()
 
         // content
         setContentView(layoutId)

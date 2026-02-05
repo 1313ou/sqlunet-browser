@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.widget.Toolbar
 import com.bbou.download.CompletionListener
 import com.bbou.download.Keys.BROADCAST_ACTION
@@ -35,7 +34,6 @@ open class DownloadActivity : BaseActivity(), CompletionListener {
     @SuppressLint("CommitTransaction")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
 
         // download mode to downloader
         val overriddenMode = intent.getStringExtra(DOWNLOAD_MODE_ARG)

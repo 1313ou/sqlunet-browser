@@ -4,7 +4,6 @@
 package org.sqlunet.wordnet.browser
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import org.sqlunet.browser.BaseActivity
@@ -20,7 +19,6 @@ class WordActivity : BaseActivity() {
     private var fromSavedInstance = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
 
         // content
         setContentView(R.layout.activity_word)

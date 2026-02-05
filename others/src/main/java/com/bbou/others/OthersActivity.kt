@@ -9,7 +9,6 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
@@ -25,9 +24,6 @@ class OthersActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // edge to edge
-        enableEdgeToEdge()
 
         // content view
         setContentView(R.layout.activity_other)

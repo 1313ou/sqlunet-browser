@@ -15,7 +15,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
-import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
@@ -56,7 +55,6 @@ class DonateActivity : BaseActivity(), BillingListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
 
         // content view
         setContentView(R.layout.activity_donate)

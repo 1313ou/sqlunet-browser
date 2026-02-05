@@ -4,7 +4,6 @@
 package com.bbou.download
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import com.bbou.download.common.R
@@ -22,7 +21,6 @@ class UpdateActivity : BaseActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
 
         // content view
         setContentView(R.layout.activity_update)
