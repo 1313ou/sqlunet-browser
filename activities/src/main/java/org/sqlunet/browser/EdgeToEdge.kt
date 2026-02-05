@@ -4,7 +4,7 @@
 
 package org.sqlunet.browser
 
-import android.app.Activity
+
 import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,27 +15,57 @@ object EdgeToEdge {
     /**
      * Handle insets
      *
-     * @param activity activity
+     * @param view view
      */
-    fun handleInsets(activity: Activity, viewId : Int) {
-        val rootView = activity.findViewById<View>(viewId)
-        handleInsets(rootView)
+    fun handleInsets(view: View?) {
+        view?.let {
+            ViewCompat.setOnApplyWindowInsetsListener(view) { view, insets ->
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+                // Apply the insets as padding to the view
+                view.updatePadding(top = systemBars.top, bottom = systemBars.bottom)
+
+                // Return the insets so children don't get them doubled
+                insets
+            }
+        }
+    }
+
+   /**
+     * Handle top inset
+     *
+     * @param view view
+     */
+    fun handleInsetsTop(view: View?) {
+        view?.let {
+            ViewCompat.setOnApplyWindowInsetsListener(view) { view, insets ->
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+                // Apply the insets as padding to the view
+                view.updatePadding(top = systemBars.top)
+
+                // Return the insets so children don't get them doubled
+                insets
+            }
+        }
     }
 
     /**
-     * Handle insets
+     * Handle bottom inset
      *
-     * @param mainView main view
+     * @param view view
      */
-    fun handleInsets(mainView: View) {
-        ViewCompat.setOnApplyWindowInsetsListener(mainView) { view, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+   fun handleInsetsBottom(view: View?) {
+        view?.let {
+            ViewCompat.setOnApplyWindowInsetsListener(view) { view, insets ->
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
 
-            // Apply the insets as padding to the view
-            view.updatePadding(top = systemBars.top, bottom = systemBars.bottom)
+                // Apply the insets as padding to the view
+                view.updatePadding(bottom = systemBars.bottom)
 
-            // Return the insets so children don't get them doubled
-            insets
+                // Return the insets so children don't get them doubled
+                insets
+            }
         }
     }
 }
