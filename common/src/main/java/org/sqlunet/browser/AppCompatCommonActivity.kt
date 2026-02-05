@@ -5,14 +5,16 @@
 package org.sqlunet.browser
 
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import org.sqlunet.browser.EdgeToEdge.handleInsets
 
 open class AppCompatCommonActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
     }
 }
