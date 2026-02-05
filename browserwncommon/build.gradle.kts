@@ -62,6 +62,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(libs.core.ktx)
 
+    implementation(project(":activities"))
     implementation(project(":common"))
     implementation(project(":expandableListFragment"))
     implementation(project(":nightmode"))

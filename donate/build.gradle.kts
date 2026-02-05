@@ -46,6 +46,8 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(libs.core.ktx)
 
+    implementation(project(":activities"))
+
     implementation(libs.appcompat)
     implementation(libs.activity.ktx)
     implementation(libs.material)

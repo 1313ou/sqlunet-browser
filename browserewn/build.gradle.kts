@@ -85,6 +85,7 @@ dependencies {
     implementation(libs.core.ktx)
 
     implementation(project(":browserwncommon"))
+    implementation(project(":activities"))
     implementation(project(":common"))
     // for manifest
     implementation(project(":wordNet"))

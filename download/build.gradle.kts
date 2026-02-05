@@ -53,6 +53,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(libs.core.ktx)
 
+    implementation(project(":activities"))
     implementation(project(":download_common"))
     implementation(project(":deploy"))
     implementation(project(":concurrency"))

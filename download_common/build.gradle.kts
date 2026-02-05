@@ -23,7 +23,6 @@ android {
         isCoreLibraryDesugaringEnabled = true
     }
 
-    @Suppress("UnstableApiUsage")
     testOptions {
         targetSdk = vTargetSdk
     }
@@ -51,6 +50,8 @@ dependencies {
     implementation(platform(libs.kotlin.bom))
     implementation(kotlin("stdlib"))
     implementation(libs.core.ktx)
+
+    implementation(project(":activities"))
 
     implementation(libs.appcompat)
     implementation(libs.preference.ktx)
