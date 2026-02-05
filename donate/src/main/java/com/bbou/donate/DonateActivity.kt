@@ -28,6 +28,7 @@ import com.bbou.donate.billing.BillingManager.BillingListener
 import com.bbou.donate.billing.Products
 import com.bbou.donate.billing.Products.inappProducts
 import com.bbou.donate.billing.Products.init
+import org.sqlunet.browser.AppCompatCommonActivity
 import java.util.Date
 
 /**
@@ -35,7 +36,7 @@ import java.util.Date
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class DonateActivity : AppCompatActivity(), BillingListener {
+class DonateActivity : AppCompatCommonActivity(), BillingListener {
 
     /**
      * Adapter to in-app billing

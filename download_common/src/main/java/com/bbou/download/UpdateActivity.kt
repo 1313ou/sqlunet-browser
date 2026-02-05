@@ -9,11 +9,12 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.bbou.download.common.R
+import org.sqlunet.browser.AppCompatCommonActivity
 
 /**
  * Update activity
  */
-class UpdateActivity : AppCompatActivity() {
+class UpdateActivity : AppCompatCommonActivity() {
 
     /**
      * onCreate

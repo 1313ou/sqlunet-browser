@@ -15,13 +15,14 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.net.toUri
+import org.sqlunet.browser.AppCompatCommonActivity
 
 /**
  * Other applications
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class OthersActivity : AppCompatActivity() {
+class OthersActivity : AppCompatCommonActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
