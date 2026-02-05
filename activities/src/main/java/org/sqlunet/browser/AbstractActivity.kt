@@ -6,18 +6,17 @@ package org.sqlunet.browser
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import org.sqlunet.activities.R
 import org.sqlunet.nightmode.NightMode.createOverrideConfigurationForDayNight
-import org.sqlunet.xnet.R
 
 /**
  * Abstract activity
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract class AbstractActivity : AppCompatActivity() {
+abstract class AbstractActivity : AppCompatCommonActivity() {
 
     protected abstract val layoutId: Int
     protected abstract val containerId: Int
@@ -25,6 +24,7 @@ abstract class AbstractActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
 
         // content
