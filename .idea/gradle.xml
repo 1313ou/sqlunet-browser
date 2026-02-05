@@ -10,6 +10,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/activities" />
             <option value="$PROJECT_DIR$/assetpacks" />
             <option value="$PROJECT_DIR$/bNC" />
             <option value="$PROJECT_DIR$/browser" />
@@ -55,7 +56,6 @@
             <option value="$PROJECT_DIR$/xNet" />
           </set>
         </option>
-        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
