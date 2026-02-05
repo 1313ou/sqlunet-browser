@@ -3,7 +3,7 @@
  */
 package org.sqlunet.browser
 
-import org.sqlunet.nightmode.NightMode.createOverrideConfigurationForDayNight
+import org.sqlunet.browser.NightMode.createOverrideConfigurationForDayNight
 
 abstract class AbstractBrowse2Activity : BaseActivity() {
 

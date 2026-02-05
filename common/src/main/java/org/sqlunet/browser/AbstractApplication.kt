@@ -14,8 +14,8 @@ import android.os.StrictMode.VmPolicy
 import android.util.Log
 import androidx.annotation.RequiresApi
 import org.sqlunet.browser.common.BuildConfig
-import org.sqlunet.nightmode.NightMode.nightModeToString
-import org.sqlunet.nightmode.NightMode.wrapContext
+import org.sqlunet.browser.NightMode.nightModeToString
+import org.sqlunet.browser.NightMode.wrapContext
 import org.sqlunet.settings.Settings
 import org.sqlunet.activities.R as ActivitiesR
 

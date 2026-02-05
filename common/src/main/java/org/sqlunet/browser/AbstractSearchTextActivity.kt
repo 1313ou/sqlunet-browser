@@ -11,7 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import org.sqlunet.browser.common.R
-import org.sqlunet.nightmode.NightMode.createOverrideConfigurationForDayNight
+import org.sqlunet.browser.NightMode.createOverrideConfigurationForDayNight
 
 /**
  * Abstract search text activity

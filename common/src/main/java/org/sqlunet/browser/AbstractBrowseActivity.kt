@@ -13,7 +13,7 @@ import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
 import org.sqlunet.browser.common.R
-import org.sqlunet.nightmode.NightMode.createOverrideConfigurationForDayNight
+import org.sqlunet.browser.NightMode.createOverrideConfigurationForDayNight
 
 /**
  * Browse activity
