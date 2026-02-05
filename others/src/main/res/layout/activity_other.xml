@@ -7,7 +7,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/appbar_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:fitsSystemWindows="true">
+
+		<include layout="@layout/toolbar" />
+
+	</com.google.android.material.appbar.AppBarLayout>
+
+	<ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
@@ -49,14 +59,5 @@
         </LinearLayout>
 
     </ScrollView>
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="false">
-
-        <include layout="@layout/toolbar" />
-
-    </com.google.android.material.appbar.AppBarLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
