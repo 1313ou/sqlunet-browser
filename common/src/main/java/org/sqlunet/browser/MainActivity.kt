@@ -23,7 +23,7 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.bbou.rate.AppRate.Companion.invoke
 import com.google.android.material.navigation.NavigationView
 import org.sqlunet.browser.common.R
-import org.sqlunet.nightmode.NightMode.createOverrideConfigurationForDayNight
+import org.sqlunet.browser.NightMode.createOverrideConfigurationForDayNight
 import org.sqlunet.settings.StorageSettings
 
 /**

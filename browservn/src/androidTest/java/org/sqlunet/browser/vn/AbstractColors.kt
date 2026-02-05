@@ -17,7 +17,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.sqlunet.browser.MainActivity
-import org.sqlunet.nightmode.NightMode.checkDarkMode
+import org.sqlunet.browser.NightMode.checkDarkMode
 import org.sqlunet.browser.common.R as CommonR
 import org.sqlunet.propbank.R as PropbankR
 import org.sqlunet.verbnet.R as VerbNetR

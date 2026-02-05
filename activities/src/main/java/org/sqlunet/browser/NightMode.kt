@@ -1,7 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
  */
-package org.sqlunet.nightmode
+
+package org.sqlunet.browser
 
 import android.content.Context
 import android.content.res.Configuration
@@ -54,15 +55,15 @@ object NightMode {
      * Test whether in night mode.
      *
      * @param context context
-     * @return -1 if in night mode, 1 in day mode
+     * @return true if in night mode
      */
-    fun isNightMode(context: Context): Int {
+    fun isNightMode(context: Context): Boolean {
         val nightModeFlags = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return when (nightModeFlags) {
-            Configuration.UI_MODE_NIGHT_YES -> +1
-            Configuration.UI_MODE_NIGHT_NO -> 1
-            Configuration.UI_MODE_NIGHT_UNDEFINED -> 0
-            else -> 0
+            Configuration.UI_MODE_NIGHT_YES -> true
+            Configuration.UI_MODE_NIGHT_NO -> false
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> false
+            else -> false
         }
     }
 

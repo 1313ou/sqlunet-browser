@@ -11,7 +11,7 @@ import androidx.annotation.StyleableRes
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.graphics.ColorUtils
 import androidx.test.platform.app.InstrumentationRegistry
-import org.sqlunet.nightmode.NightMode.toConfigurationUiMode
+import org.sqlunet.browser.NightMode.toConfigurationUiMode
 import org.sqlunet.style.Colors.colorToString
 import org.sqlunet.style.Colors.dumpColorAttrs
 import org.sqlunet.style.Colors.getColorAttrs
