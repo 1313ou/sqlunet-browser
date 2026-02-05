@@ -4,23 +4,11 @@
 
 package org.sqlunet.browser
 
-import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import org.sqlunet.browser.EdgeToEdge.handleInsets
-import org.sqlunet.browser.common.R
+import android.view.View
+import android.view.ViewGroup
+import org.sqlunet.browser.common.R as CommonR
 
-open class AppCompatCommonWithDrawerActivity : AppCompatActivity() {
+open class AppCompatCommonWithDrawerActivity : AppCompatCommonActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        enableEdgeToEdge()
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-
-        handleInsets(this, R.id.activity_main_sub)
-    }
+    override val rootView: View by lazy { findViewById<ViewGroup>(CommonR.id.activity_main_sub) }
 }
