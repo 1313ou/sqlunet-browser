@@ -38,6 +38,7 @@
 		<!-- transparent statusbar and navigation bar -->
 		<item name="android:statusBarColor">@android:color/transparent</item>
 		<item name="android:navigationBarColor">@android:color/transparent</item>
+		<item name="android:windowTranslucentNavigation">true</item>
 
 		<!-- S T Y L E S -->
 

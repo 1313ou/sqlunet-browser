@@ -16,7 +16,7 @@ import org.sqlunet.style.Colors.colorToString
 import org.sqlunet.style.Colors.dumpColorAttrs
 import org.sqlunet.style.Colors.getColorAttrs
 import com.google.android.material.R as MaterialR
-import org.sqlunet.browser.common.R as CommonR
+import org.sqlunet.activities.R as ActivitiesR
 
 object ColorsLib {
 
@@ -82,12 +82,12 @@ object ColorsLib {
 
     fun getContext(mode: Int): Context {
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
-        val themedContext: Context = ContextThemeWrapper(targetContext, CommonR.style.MyTheme)
+        val themedContext: Context = ContextThemeWrapper(targetContext, ActivitiesR.style.MyTheme)
         val newConfig = themedContext.resources.configuration
         newConfig.uiMode = newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK.inv() // clear
         newConfig.uiMode = newConfig.uiMode or (toConfigurationUiMode(mode) and Configuration.UI_MODE_NIGHT_MASK) // set
         val newContext = themedContext.createConfigurationContext(newConfig)
-        return ContextThemeWrapper(newContext, CommonR.style.MyTheme)
+        return ContextThemeWrapper(newContext, ActivitiesR.style.MyTheme)
     }
 
     fun getDefaultColorAttrs(context: Context): IntArray {
@@ -95,7 +95,7 @@ object ColorsLib {
             android.R.attr.colorBackground,
             android.R.attr.colorForeground
         )
-        return getColorAttrs(context, CommonR.style.MyTheme, *resIds)
+        return getColorAttrs(context, ActivitiesR.style.MyTheme, *resIds)
     }
 
     fun dumpDefaultColors(context: Context) {
@@ -112,7 +112,7 @@ object ColorsLib {
             MaterialR.attr.colorOnSurface,
             MaterialR.attr.backgroundColor
         )
-        dumpColorAttrs(context, CommonR.style.MyTheme, *resIds)
+        dumpColorAttrs(context, ActivitiesR.style.MyTheme, *resIds)
     }
 
     private const val TAG = "Colors"
