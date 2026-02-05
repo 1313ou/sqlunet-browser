@@ -75,7 +75,6 @@ abstract class AbstractApplication : Application() {
 
     // T A S K S
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     fun dumpTasks() {
         dumpTasks(this.baseContext)
     }
@@ -85,7 +84,6 @@ abstract class AbstractApplication : Application() {
         private const val LOG = "AbstractApp"
         private const val PENALTY_DEATH = false
 
-        @RequiresApi(api = Build.VERSION_CODES.M)
         fun dumpTasks(context: Context) {
             val manager = context.getSystemService(ACTIVITY_SERVICE) as ActivityManager
             val tasks = manager.appTasks
