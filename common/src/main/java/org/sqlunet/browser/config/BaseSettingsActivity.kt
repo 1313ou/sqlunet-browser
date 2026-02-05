@@ -14,13 +14,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
-import org.sqlunet.browser.AppCompatCommonActivity
+import org.sqlunet.browser.BaseActivity
 import org.sqlunet.browser.common.R
 import org.sqlunet.provider.ManagerContract
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.LogUtils
 
-abstract class BaseSettingsActivity : AppCompatCommonActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
+abstract class BaseSettingsActivity : BaseActivity(), PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // super

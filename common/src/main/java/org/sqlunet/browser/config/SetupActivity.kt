@@ -18,7 +18,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
-import org.sqlunet.browser.AppCompatCommonActivity
+import org.sqlunet.browser.BaseActivity
 import org.sqlunet.browser.MenuHandler
 import org.sqlunet.browser.common.R
 import org.sqlunet.provider.ManagerContract
@@ -30,7 +30,7 @@ import org.sqlunet.settings.StorageReports.namesValuesToReportStyled
 import org.sqlunet.settings.StorageReports.reportStyledDirs
 import java.lang.reflect.InvocationTargetException
 
-class SetupActivity : AppCompatCommonActivity(), TabLayout.OnTabSelectedListener {
+class SetupActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
 
     /**
      * Pager that will host the section contents.

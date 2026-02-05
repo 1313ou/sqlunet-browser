@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import org.sqlunet.browser.AppCompatCommonActivity
+import org.sqlunet.browser.BaseActivity
 import org.sqlunet.browser.fn.R
 import org.sqlunet.browser.common.R as CommonR
 
@@ -16,7 +16,7 @@ import org.sqlunet.browser.common.R as CommonR
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class WebActivity : AppCompatCommonActivity() {
+class WebActivity : BaseActivity() {
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

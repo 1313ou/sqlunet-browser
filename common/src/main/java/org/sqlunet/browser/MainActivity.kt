@@ -29,7 +29,7 @@ import org.sqlunet.settings.StorageSettings
 /**
  * Main activity
  */
-open class MainActivity : AppCompatCommonWithDrawerActivity() {
+open class MainActivity : BaseActivityWithDrawer() {
 
     private var appBarConfiguration: AppBarConfiguration? = null
 

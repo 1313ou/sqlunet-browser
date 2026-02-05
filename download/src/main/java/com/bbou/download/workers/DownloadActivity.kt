@@ -9,7 +9,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.bbou.download.CompletionListener
 import com.bbou.download.Keys.BROADCAST_ACTION
@@ -19,14 +18,14 @@ import com.bbou.download.Keys.BROADCAST_REQUEST_KEY
 import com.bbou.download.Keys.DOWNLOAD_MODE_ARG
 import com.bbou.download.common.R
 import com.bbou.download.preference.Settings
-import org.sqlunet.browser.AppCompatCommonActivity
+import org.sqlunet.browser.BaseActivity
 
 /**
  * Download activity
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-open class DownloadActivity : AppCompatCommonActivity(), CompletionListener {
+open class DownloadActivity : BaseActivity(), CompletionListener {
 
     /**
      * onCreate

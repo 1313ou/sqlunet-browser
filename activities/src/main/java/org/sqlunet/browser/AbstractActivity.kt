@@ -16,7 +16,7 @@ import org.sqlunet.nightmode.NightMode.createOverrideConfigurationForDayNight
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract class AbstractActivity : AppCompatCommonActivity() {
+abstract class AbstractActivity : BaseActivity() {
 
     protected abstract val layoutId: Int
     protected abstract val containerId: Int

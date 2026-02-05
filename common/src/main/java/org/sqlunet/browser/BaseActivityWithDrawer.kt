@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import org.sqlunet.browser.common.R as CommonR
 
-open class AppCompatCommonWithDrawerActivity : AppCompatCommonActivity() {
+open class BaseActivityWithDrawer : BaseActivity() {
 
     override val rootView: View by lazy { findViewById<ViewGroup>(CommonR.id.activity_main_sub) }
 }

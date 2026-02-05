@@ -6,15 +6,14 @@ package com.bbou.download
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.bbou.download.common.R
-import org.sqlunet.browser.AppCompatCommonActivity
+import org.sqlunet.browser.BaseActivity
 
 /**
  * Update activity
  */
-class UpdateActivity : AppCompatCommonActivity() {
+class UpdateActivity : BaseActivity() {
 
     /**
      * onCreate

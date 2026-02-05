@@ -17,7 +17,7 @@ import android.R as AndroidR
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-open class AppCompatCommonActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

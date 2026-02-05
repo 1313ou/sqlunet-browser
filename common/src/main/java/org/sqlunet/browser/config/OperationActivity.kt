@@ -7,10 +7,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.core.util.Consumer
-import org.sqlunet.browser.AppCompatCommonActivity
+import org.sqlunet.browser.BaseActivity
 import org.sqlunet.browser.common.R
 
-class OperationActivity : AppCompatCommonActivity() {
+class OperationActivity : BaseActivity() {
 
     private val consumer = Consumer { uri: Uri? ->
         val resolver = contentResolver

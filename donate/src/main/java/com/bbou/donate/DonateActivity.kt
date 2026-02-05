@@ -19,7 +19,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import com.android.billingclient.api.Purchase
@@ -28,7 +27,7 @@ import com.bbou.donate.billing.BillingManager.BillingListener
 import com.bbou.donate.billing.Products
 import com.bbou.donate.billing.Products.inappProducts
 import com.bbou.donate.billing.Products.init
-import org.sqlunet.browser.AppCompatCommonActivity
+import org.sqlunet.browser.BaseActivity
 import java.util.Date
 
 /**
@@ -36,7 +35,7 @@ import java.util.Date
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class DonateActivity : AppCompatCommonActivity(), BillingListener {
+class DonateActivity : BaseActivity(), BillingListener {
 
     /**
      * Adapter to in-app billing

@@ -6,9 +6,8 @@ package org.sqlunet.wordnet.browser
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import org.sqlunet.browser.AppCompatCommonActivity
+import org.sqlunet.browser.BaseActivity
 import org.sqlunet.wordnet.R
 
 /**
@@ -16,7 +15,7 @@ import org.sqlunet.wordnet.R
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class WordActivity : AppCompatCommonActivity() {
+class WordActivity : BaseActivity() {
 
     private var fromSavedInstance = false
     override fun onCreate(savedInstanceState: Bundle?) {
