@@ -4,18 +4,16 @@
 
 package org.sqlunet.browser
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import org.sqlunet.browser.EdgeToEdge.handleInsets
+import org.sqlunet.activities.R
 import org.sqlunet.browser.EdgeToEdge.handleInsetsBottom
-import org.sqlunet.browser.EdgeToEdge.handleInsetsTop
+import org.sqlunet.browser.NightMode.isNightMode
 import android.R as AndroidR
-import org.sqlunet.activities.R as ActivitiesR
 
 /**
  * Common activity
@@ -27,47 +25,9 @@ open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        enableEdgeToEdge()
 
-        // Set transparent bars
-        window.statusBarColor = Color.TRANSPARENT
-        window.navigationBarColor = Color.TRANSPARENT
-
-        /*
-        enableEdgeToEdge(
-            /*
-            statusBarStyle = SystemBarStyle.auto(
-                Color.TRANSPARENT,
-                Color.TRANSPARENT
-            ),
-            navigationBarStyle = SystemBarStyle.auto(
-                Color.TRANSPARENT,
-                Color.TRANSPARENT
-            )
-             */
-            statusBarStyle = SystemBarStyle.auto(
-                Color.GREEN,
-                Color.GREEN,
-            ),
-            navigationBarStyle = SystemBarStyle.auto(
-                Color.RED,
-                Color.RED
-            )
-       )
-         */
-
-        // from res
-        // window.setBackgroundDrawableResource(android.R.color.holo_red_light)
-        // window.setBackgroundDrawableResource(ActivitiesR.color.primaryColor)
-
-        // from attr
-        /*
-        val attr = AndroidR.attr.colorPrimary // AndroidR.attr.windowBackground,AndroidR.attr.colorBackground,
-        val typedValue = TypedValue()
-        theme.resolveAttribute(attr, typedValue, true)
-        window.setBackgroundDrawable(typedValue.data.toDrawable())
-         */
-        val lightBackground = true
+        val lightBackground = !isNightMode(this)
         WindowInsetsControllerCompat(window, window.decorView).apply {
             isAppearanceLightStatusBars = lightBackground  // Dark icons on light background
             isAppearanceLightNavigationBars = lightBackground  // Dark nav buttons on light background
@@ -75,13 +35,15 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     open val rootView: View by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
-    open val toolbar: View by lazy { findViewById(ActivitiesR.id.toolbar) }
+    open val toolbar: View by lazy { findViewById(R.id.toolbar) }
+    open val fab: View by lazy { findViewById(R.id.fab) }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
 
         // handleInsets(rootView)
-        handleInsetsTop(toolbar)
+        // handleInsetsTop(toolbar)
         // handleInsetsBottom(rootView)
+        handleInsetsBottom(fab)
     }
 }
