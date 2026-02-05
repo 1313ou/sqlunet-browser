@@ -20,7 +20,7 @@ import org.sqlunet.predicatematrix.PmRolePointer
 import org.sqlunet.predicatematrix.browser.PredicateMatrixFragment
 import org.sqlunet.predicatematrix.settings.Settings.PMMode
 import org.sqlunet.provider.ProviderArgs
-import com.google.android.material.R as MaterialR
+import android.R as AndroidR
 
 /**
  * PredicateMatrix fragment
@@ -42,7 +42,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
     init {
         layoutId = R.layout.fragment_browse_predicatematrix
         menuId = R.menu.predicate_matrix
-        colorAttrId = MaterialR.attr.colorPrimaryVariant
+        colorAttrId = AndroidR.attr.colorPrimary // MaterialR.attr.colorPrimaryVariant
         spinnerLabels = R.array.predicatematrix_modes
         spinnerIcons = R.array.predicatematrix_icons
     }

@@ -13,8 +13,8 @@ import org.sqlunet.browser.SplashFragment
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FTS_FnSentences_X
 import org.sqlunet.framenet.provider.FrameNetProvider.Companion.makeUri
 import org.sqlunet.provider.ProviderArgs
+import android.R as AndroidR
 import org.sqlunet.browser.common.R as CommonR
-import com.google.android.material.R as MaterialR
 
 /**
  * Search text fragment
@@ -26,7 +26,7 @@ class SearchTextFragment : BaseSearchFragment() {
     init {
         layoutId = R.layout.fragment_searchtext
         menuId = CommonR.menu.searchtext
-        colorAttrId = MaterialR.attr.colorPrimaryVariant
+        colorAttrId = AndroidR.attr.colorPrimary // MaterialR.attr.colorPrimaryVariant
         spinnerLabels = R.array.searchtext_modes
         spinnerIcons = R.array.searchtext_icons
     }

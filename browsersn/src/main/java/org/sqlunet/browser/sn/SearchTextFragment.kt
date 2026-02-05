@@ -17,8 +17,8 @@ import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
 import org.sqlunet.wordnet.provider.WordNetContract
 import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
+import android.R as AndroidR
 import org.sqlunet.browser.common.R as CommonR
-import com.google.android.material.R as MaterialR
 
 /**
  * Search text fragment
@@ -30,7 +30,7 @@ class SearchTextFragment : BaseSearchFragment() {
     init {
         layoutId = R.layout.fragment_searchtext
         menuId = CommonR.menu.searchtext
-        colorAttrId = MaterialR.attr.colorPrimaryVariant
+        colorAttrId = AndroidR.attr.colorPrimary // MaterialR.attr.colorPrimaryVariant
         spinnerLabels = R.array.searchtext_modes
         spinnerIcons = R.array.searchtext_icons
     }
