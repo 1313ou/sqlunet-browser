@@ -52,7 +52,6 @@ dependencies {
     implementation(project(":activities"))
     implementation(project(":treeView"))
     implementation(project(":coroutines"))
-    implementation(project(":nightmode"))
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 

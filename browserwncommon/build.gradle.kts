@@ -65,7 +65,6 @@ dependencies {
     implementation(project(":activities"))
     implementation(project(":common"))
     implementation(project(":expandableListFragment"))
-    implementation(project(":nightmode"))
     implementation(project(":assetpacks"))
     implementation(project(":download"))
     implementation(project(":download_common"))

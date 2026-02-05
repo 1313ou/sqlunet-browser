@@ -42,8 +42,6 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(libs.core.ktx)
 
-    implementation(project(":nightmode"))
-
     implementation(libs.appcompat)
     implementation(libs.material)
 }

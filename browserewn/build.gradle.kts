@@ -102,7 +102,6 @@ dependencies {
     androidTestImplementation(project(":browserwncommon"))
     androidTestImplementation(project(":common"))
     androidTestImplementation(project(":xNet"))
-    androidTestImplementation(project(":nightmode"))
     androidTestImplementation(project(":test"))
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.annotation)

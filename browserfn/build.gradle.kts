@@ -88,7 +88,6 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":expandableListFragment"))
     implementation(project(":assetpacks"))
-    implementation(project(":nightmode"))
     implementation(project(":download"))
     implementation(project(":download_common"))
     implementation(project(":deploy"))
@@ -110,7 +109,7 @@ dependencies {
     implementation(libs.annotation)
 
     androidTestImplementation(project(":common"))
-    androidTestImplementation(project(":nightmode"))
+    androidTestImplementation(project(":activities"))
     androidTestImplementation(project(":test"))
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.annotation)

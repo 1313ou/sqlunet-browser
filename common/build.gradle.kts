@@ -53,7 +53,6 @@ dependencies {
     implementation(project(":expandableListFragment"))
     implementation(project(":concurrency"))
     implementation(project(":preference"))
-    implementation(project(":nightmode"))
     implementation(project(":download"))
     implementation(project(":download_common"))
     implementation(project(":deploy"))
