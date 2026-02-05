@@ -14,10 +14,10 @@ import android.os.StrictMode.VmPolicy
 import android.util.Log
 import androidx.annotation.RequiresApi
 import org.sqlunet.browser.common.BuildConfig
-import org.sqlunet.browser.common.R
 import org.sqlunet.nightmode.NightMode.nightModeToString
 import org.sqlunet.nightmode.NightMode.wrapContext
 import org.sqlunet.settings.Settings
+import org.sqlunet.activities.R as ActivitiesR
 
 abstract class AbstractApplication : Application() {
 
@@ -30,7 +30,7 @@ abstract class AbstractApplication : Application() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        val newContext = wrapContext(this, newConfig, R.style.MyTheme)
+        val newContext = wrapContext(this, newConfig, ActivitiesR.style.MyTheme)
         Log.d(LOG, "onConfigurationChanged: " + nightModeToString(this) + " -> " + nightModeToString(newContext))
         setAllColorsFromResources(newContext)
     }
