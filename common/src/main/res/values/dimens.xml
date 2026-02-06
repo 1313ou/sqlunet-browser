@@ -16,6 +16,7 @@
 
 	<!-- fabs -->
 	<dimen name="fab_margin">16dp</dimen>
+	<dimen name="fab_margin_bottom">48dp</dimen>
 
 	<!-- buttons -->
 	<dimen name="action_button_diameter">50dp</dimen>
