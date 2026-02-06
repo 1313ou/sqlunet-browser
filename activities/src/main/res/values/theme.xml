@@ -24,7 +24,8 @@
 		<item name="colorOnSecondary">@color/onSecondaryColor</item>
 
 		<!-- background of activated indicator -->
-		<item name="colorControlActivated">@color/onSecondaryColor</item>
+		<!-- caret -->
+		<item name="colorControlActivated">@color/secondaryColor</item>
 
 		<!-- extras color attrs -->
 		<item name="colorHighlightOnPrimary">@color/highlightOnPrimaryColor</item>
