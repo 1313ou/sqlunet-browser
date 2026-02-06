@@ -31,15 +31,4 @@
 	<!-- background -->
 	<color name="activatedBackgroundColor">@android:color/darker_gray</color>
 
-	<!-- D E R I V E D -->
-
-	<!-- button -->
-	<color name="info_button_color">#4251bd</color>
-	<color name="info_button_activated_color">#4251dd</color>
-	<color name="ok_button_color">#008000</color>
-	<color name="err_button_color">@color/dark_red_color</color>
-
-	<!-- shadow -->
-	<color name="shadow">#80202020</color>
-
 </resources>
