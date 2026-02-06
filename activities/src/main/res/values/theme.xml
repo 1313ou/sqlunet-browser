@@ -35,13 +35,6 @@
 		<item name="colorHighlight2OnBackground">@color/colorHighlight2OnBackground</item>
 		<item name="colorDimmedOnBackground">@color/colorDimmedOnBackground</item>
 
-		<!-- O V E R R I D E S -->
-
-		<!-- transparent statusbar and navigation bar -->
-		<item name="android:statusBarColor">@android:color/transparent</item>
-		<item name="android:navigationBarColor">@android:color/transparent</item>
-		<item name="android:windowTranslucentNavigation">false</item>
-
 		<!-- S T Y L E S -->
 
 		<!-- Menu dropdown -->
