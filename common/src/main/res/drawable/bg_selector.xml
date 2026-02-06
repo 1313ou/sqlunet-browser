@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:state_activated="true" android:drawable="@color/primaryColor" />
+	<item android:drawable="@android:color/transparent" />
+</selector>

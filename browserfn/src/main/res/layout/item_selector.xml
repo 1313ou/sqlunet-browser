@@ -7,6 +7,7 @@
 	style="@style/ListItemStyle"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
+	android:background="@drawable/bg_selector"
 	android:orientation="vertical"
 	tools:context="org.sqlunet.browser.fn.selector.Browse1Activity"
 	tools:ignore="Overdraw">
