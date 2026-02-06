@@ -4,7 +4,7 @@
 
 <resources>
 
-	<style name="MyTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+	<style name="MyTheme" parent="Theme.Material3.DayNight.NoActionBar">
 
 
 
