@@ -34,9 +34,9 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    open val rootView: View by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
-    open val toolbar: View by lazy { findViewById(R.id.toolbar) }
-    open val fab: View by lazy { findViewById(R.id.fab) }
+    open val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
+    open val toolbar: View? by lazy { findViewById(R.id.toolbar) }
+    open val fab: View? by lazy { findViewById(R.id.fab) }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
