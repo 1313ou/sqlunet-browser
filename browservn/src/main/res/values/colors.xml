@@ -14,7 +14,8 @@
 	<color name="secondaryLightColor">#FFD66E</color>
 	<color name="onSecondaryColor">#444444</color>
 
-	<color name="colorName">#1B5E20</color>
+	<color name="colorId">#1B5E20</color>
+    <color name="colorName">#1B5E20</color>
 	<color name="colorDefinition">#1B5E20</color>
 	<color name="colorCased">#BF360C</color>
 	<color name="colorPronunciation">#4A148C</color>

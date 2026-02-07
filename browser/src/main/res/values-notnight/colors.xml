@@ -14,7 +14,8 @@
 	<color name="secondaryLightColor">#C54CC5</color>
 	<color name="onSecondaryColor">#F0F0F0</color>
 
-	<color name="colorName">#d500f9</color>
+	<color name="colorId">#d500f9</color>
+    <color name="colorName">#d500f9</color>
 	<color name="colorDefinition">#d500f9</color>
 	<color name="colorCased">#EF6C00</color>
 	<color name="colorPronunciation">#283593</color>

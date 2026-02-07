@@ -14,7 +14,8 @@
 	<color name="secondaryLightColor">#C05B36</color>
 	<color name="onSecondaryColor">#F0F0F0</color>
 
-	<color name="colorName">#e46d42</color>
+	<color name="colorId">#e46d42</color>
+    <color name="colorName">#e46d42</color>
 	<color name="colorDefinition">#e46d42</color>
 	<color name="colorCased">#EA976A</color>
 	<color name="colorPronunciation">#7C6B90</color>

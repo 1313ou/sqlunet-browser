@@ -26,7 +26,8 @@
 	<!-- S T Y L E  A T T R  -->
 
 	<!-- text - must display on colorBackground (variants of colorOnBackground) -->
-	<color name="colorName">#ef2063</color> <!--  -->
+	<color name="colorId">#ef2063</color>
+    <color name="colorName">#ef2063</color> <!--  -->
 	<color name="colorDefinition">#ef2063</color> <!--  -->
 	<color name="colorCased">#880E4F</color> <!--  -->
 	<color name="colorPronunciation">#006064</color> <!--  -->

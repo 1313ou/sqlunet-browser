@@ -28,6 +28,7 @@
 	<!-- S T Y L E  A T T R  -->
 
 	<!-- text - must display on colorBackground (variants of colorOnBackground) -->
+	<color name="colorId">#e46d42</color> <!-- Data.SenseKey-->
 	<color name="colorName">#e46d42</color> <!-- Data.FnFrameName-->
 	<color name="colorDefinition">#e46d42</color> <!-- Data.Definition Data.XDefinition-->
 	<color name="colorCased">#880E4F</color> <!-- Data.Cased -->
