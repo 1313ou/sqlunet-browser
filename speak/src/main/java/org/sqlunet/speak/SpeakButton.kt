@@ -4,6 +4,8 @@
 package org.sqlunet.speak
 
 import android.content.Context
+import android.content.res.Resources
+import android.content.res.Resources.Theme
 import android.os.Build
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -15,6 +17,7 @@ import android.util.TypedValue
 import android.view.View
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 
 object SpeakButton {
@@ -73,11 +76,16 @@ object SpeakButton {
                 listener.run()
             }
         }
-        appendImageSpans(sb, caption, span, span2, ForegroundColorSpan(fetchColor(context, R.attr.colorHighlight2OnBackground)))
+        appendImageSpans(sb, caption, span, span2, ForegroundColorSpan(getColor(context, R.color.colorHighlight2OnBackground)))
     }
 
     @ColorInt
-    private fun fetchColor(context: Context, @AttrRes attr: Int): Int {
+    fun getColor(context: Context, @ColorRes colorRes: Int): Int {
+        return context.resources.getColor(colorRes, context.theme)
+    }
+
+    @ColorInt
+    private fun fetchColorFromAttr(context: Context, @AttrRes attr: Int): Int {
         val typedValue = TypedValue()
         val theme = context.theme
         theme.resolveAttribute(attr, typedValue, true)
