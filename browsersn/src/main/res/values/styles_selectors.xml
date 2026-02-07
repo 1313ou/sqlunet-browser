@@ -64,7 +64,7 @@
 	</style>
 
 	<style name="Data.SenseKey">
-		<item name="android:textColor">@color/colorDimmed</item>
+		<item name="android:textColor">@color/colorId</item>
 		<item name="android:textSize">10sp</item>
 	</style>
 
