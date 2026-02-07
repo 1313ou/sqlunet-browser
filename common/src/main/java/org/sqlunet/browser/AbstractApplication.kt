@@ -7,12 +7,10 @@ import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
-import android.os.Build
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
 import android.os.StrictMode.VmPolicy
 import android.util.Log
-import androidx.annotation.RequiresApi
 import org.sqlunet.browser.common.BuildConfig
 import org.sqlunet.browser.NightMode.nightModeToString
 import org.sqlunet.browser.NightMode.wrapContext

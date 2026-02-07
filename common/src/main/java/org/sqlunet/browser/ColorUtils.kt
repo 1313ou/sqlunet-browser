@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.res.Resources
 import android.content.res.Resources.Theme
 import android.graphics.drawable.Drawable
-import android.os.Build
 import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt

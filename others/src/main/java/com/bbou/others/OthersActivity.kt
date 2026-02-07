@@ -75,7 +75,6 @@ class OthersActivity : BaseActivity() {
             }
         }
 
-        @Suppress("unused")
         private fun isAppInstalled(uri: String, context: Context): Boolean {
             val packageManager = context.packageManager
             val isInstalled: Boolean = try {

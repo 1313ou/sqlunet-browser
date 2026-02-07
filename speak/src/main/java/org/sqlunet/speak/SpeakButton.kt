@@ -4,8 +4,6 @@
 package org.sqlunet.speak
 
 import android.content.Context
-import android.content.res.Resources
-import android.content.res.Resources.Theme
 import android.os.Build
 import android.text.SpannableStringBuilder
 import android.text.Spanned
