@@ -7,7 +7,7 @@
 	<!-- O V E R L A Y S -->
 
 	<!-- Custom home overlay -->
-	<style name="MyHomeOverlay" parent="ThemeOverlay.MaterialComponents">
+	<style name="MyHomeOverlay" parent="ThemeOverlay.Material3">
 		<item name="android:background">?attr/colorPrimary</item> <!-- submenu background -->
 		<item name="android:textColorPrimary">?attr/colorOnPrimary</item> <!-- item foreground -->
 		<item name="android:textColorSecondary">?attr/colorHighlightOnPrimary</item> <!-- submenu item foreground -->
