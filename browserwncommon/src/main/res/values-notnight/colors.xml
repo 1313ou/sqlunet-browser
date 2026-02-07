@@ -14,9 +14,10 @@
 	<color name="secondaryLightColor">#CC6C12</color>
 	<color name="onSecondaryColor">#F0F0F0</color>
 
-	<color name="colorHighlightOnBackground">#ef6c00</color>
-	<color name="colorHighlight1OnBackground">#880E4F</color> <!--  -->
-	<color name="colorHighlight2OnBackground">#006064</color> <!--  -->
-	<color name="colorDimmedOnBackground">#808080</color>
+	<color name="colorName">#ef6c00</color>
+	<color name="colorDefinition">#ef6c00</color>
+	<color name="colorCased">#880E4F</color> <!--  -->
+	<color name="colorPronunciation">#006064</color> <!--  -->
+	<color name="colorDimmed">#808080</color>
 
 </resources>

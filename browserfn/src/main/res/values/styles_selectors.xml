@@ -9,7 +9,7 @@
 	</style>
 
 	<style name="Data.FnFrameName">
-		<item name="android:textColor">@color/colorHighlightOnBackground</item>
+		<item name="android:textColor">@color/colorDefinition</item>
 		<item name="android:textSize">24sp</item>
 	</style>
 
@@ -18,17 +18,17 @@
 	</style>
 
 	<style name="Data.FnId">
-		<item name="android:textColor">@color/colorDimmedOnBackground</item>
+		<item name="android:textColor">@color/colorDimmed</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
 	<style name="Data.FnWordId">
-		<item name="android:textColor">@color/colorDimmedOnBackground</item>
+		<item name="android:textColor">@color/colorDimmed</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
 	<style name="Data.FnFrameId">
-		<item name="android:textColor">@color/colorDimmedOnBackground</item>
+		<item name="android:textColor">@color/colorDimmed</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 

@@ -20,14 +20,17 @@
 	<color name="secondaryLightColor">#ff60c0</color>
 	<color name="onSecondaryColor">#F0F0F0</color>
 
-	<!-- text - variants of colorOnBackground, must display on colorBackground -->
-	<color name="colorHighlightOnBackground">#ef2063</color> <!--  -->
-	<color name="colorHighlight1OnBackground">#9D557B</color> <!--  -->
-	<color name="colorHighlight2OnBackground">#3C9497</color> <!--  -->
-	<color name="colorDimmedOnBackground">#808080</color> <!--  -->
-
 	<!-- background -->
 	<color name="activatedBackgroundColor">#10FFFFFF</color>
+
+	<!-- S T Y L E  A T T R  -->
+
+	<!-- text - must display on colorBackground (variants of colorOnBackground) -->
+	<color name="colorName">#ef2063</color> <!--  -->
+	<color name="colorDefinition">#ef2063</color> <!--  -->
+	<color name="colorCased">#9D557B</color> <!--  -->
+	<color name="colorPronunciation">#3C9497</color> <!--  -->
+	<color name="colorDimmed">#808080</color> <!--  -->
 
 	<!-- B A S E -->
 

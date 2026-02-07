@@ -44,19 +44,19 @@
 
 		<!-- [9] -->
 		<item>@android:color/transparent</item>
-		<item>@color/colorHighlightOnBackground</item>
+		<item>@color/colorDefinition</item>
 
 		<!-- [10] -->
 		<item>@android:color/transparent</item>
-		<item>@color/colorHighlight1OnBackground</item>
+		<item>@color/colorCased</item>
 
 		<!-- [11] -->
 		<item>@android:color/transparent</item>
-		<item>@color/colorHighlight2OnBackground</item>
+		<item>@color/colorPronunciation</item>
 
 		<!-- [12] -->
 		<item>@android:color/transparent</item>
-		<item>@color/colorDimmedOnBackground</item>
+		<item>@color/colorDimmed</item>
 
 		<!-- [13] -->
 		<item>@android:color/transparent</item>

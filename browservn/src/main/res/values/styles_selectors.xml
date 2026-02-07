@@ -38,32 +38,32 @@
 	</style>
 
 	<style name="Data.XInfo">
-		<item name="android:textColor">@color/colorDimmedOnBackground</item>
+		<item name="android:textColor">@color/colorDimmed</item>
 		<item name="android:textSize">15sp</item>
 	</style>
 
 	<style name="Data.XDefinition">
-		<item name="android:textColor">@color/colorHighlightOnBackground</item>
+		<item name="android:textColor">@color/colorDefinition</item>
 		<item name="android:textSize">15sp</item>
 	</style>
 
 	<style name="Data.XWordId">
-		<item name="android:textColor">@color/colorDimmedOnBackground</item>
+		<item name="android:textColor">@color/colorDimmed</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
 	<style name="Data.XSynsetId">
-		<item name="android:textColor">@color/colorDimmedOnBackground</item>
+		<item name="android:textColor">@color/colorDimmed</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
 	<style name="Data.XId">
-		<item name="android:textColor">@color/colorDimmedOnBackground</item>
+		<item name="android:textColor">@color/colorDimmed</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
 	<style name="Data.XMemberId">
-		<item name="android:textColor">@color/colorDimmedOnBackground</item>
+		<item name="android:textColor">@color/colorDimmed</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
