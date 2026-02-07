@@ -42,7 +42,7 @@
 	-->
 
 	<style name="Data.Definition">
-		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
+		<item name="android:textColor">@color/colorHighlightOnBackground</item>
 	</style>
 
 	<style name="Data.Collocation1">

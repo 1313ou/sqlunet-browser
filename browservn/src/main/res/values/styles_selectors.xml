@@ -43,7 +43,7 @@
 	</style>
 
 	<style name="Data.XDefinition">
-		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
+		<item name="android:textColor">@color/colorHighlightOnBackground</item>
 		<item name="android:textSize">15sp</item>
 	</style>
 
