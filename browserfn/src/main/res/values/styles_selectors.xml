@@ -9,7 +9,7 @@
 	</style>
 
 	<style name="Data.FnFrameName">
-		<item name="android:textColor">@color/colorDefinition</item>
+		<item name="android:textColor">@color/colorName</item>
 		<item name="android:textSize">24sp</item>
 	</style>
 
