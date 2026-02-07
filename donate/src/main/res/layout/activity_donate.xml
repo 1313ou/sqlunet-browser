@@ -60,95 +60,101 @@
 
 			<!-- 1 -->
 
-			<androidx.appcompat.widget.AppCompatImageButton
+			<com.google.android.material.button.MaterialButton
 				android:id="@+id/buyButton1"
+				style="@style/Widget.Material3.Button.IconButton.Filled"
 				android:layout_width="56dp"
 				android:layout_height="56dp"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="5dp"
-				android:background="@drawable/bg_button_donate"
 				android:contentDescription="@string/title_donate_1"
 				android:src="@drawable/ic_donate1"
 				android:tag="0"
-				android:visibility="visible"
 				app:backgroundTint="@color/donate1Color"
-				app:elevation="6dp" />
+				app:elevation="6dp"
+				app:icon="@drawable/ic_donate1"
+				app:iconSize="28dp"
+				app:iconTint="@null" />
 
 			<!-- 2 -->
 
-			<androidx.appcompat.widget.AppCompatImageButton
+			<com.google.android.material.button.MaterialButton
 				android:id="@+id/buyButton2"
+
+				style="@style/Widget.Material3.Button.IconButton.Filled"
 				android:layout_width="56dp"
 				android:layout_height="56dp"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="5dp"
-				android:background="@drawable/bg_button_donate"
 				android:contentDescription="@string/title_donate_2"
-				android:src="@drawable/ic_donate2"
 				android:tag="1"
-				android:visibility="visible"
 				app:backgroundTint="@color/donate2Color"
-				app:elevation="6dp" />
+				app:elevation="6dp"
+				app:icon="@drawable/ic_donate2"
+				app:iconSize="28dp"
+				app:iconTint="@null" />
 
 			<!-- 3 -->
 
-			<androidx.appcompat.widget.AppCompatImageButton
+			<com.google.android.material.button.MaterialButton
 				android:id="@+id/buyButton3"
+				style="@style/Widget.Material3.Button.IconButton.Filled"
 				android:layout_width="56dp"
 				android:layout_height="56dp"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="5dp"
-				android:background="@drawable/bg_button_donate"
 				android:contentDescription="@string/title_donate_3"
-				android:src="@drawable/ic_donate3"
 				android:tag="2"
-				android:visibility="visible"
 				app:backgroundTint="@color/donate3Color"
-				app:elevation="6dp" />
+				app:elevation="6dp"
+				app:icon="@drawable/ic_donate3"
+				app:iconSize="28dp"
+				app:iconTint="@null" />
 
 			<!-- 4 -->
 
-			<androidx.appcompat.widget.AppCompatImageButton
+			<com.google.android.material.button.MaterialButton
 				android:id="@+id/buyButton4"
+				style="@style/Widget.Material3.Button.IconButton.Filled"
 				android:layout_width="56dp"
 				android:layout_height="56dp"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="5dp"
-				android:background="@drawable/bg_button_donate"
 				android:contentDescription="@string/title_donate_4"
-				android:src="@drawable/ic_donate4"
 				android:tag="3"
-				android:visibility="visible"
 				app:backgroundTint="@color/donate4Color"
-				app:elevation="6dp" />
+				app:elevation="6dp"
+				app:icon="@drawable/ic_donate4"
+				app:iconSize="28dp"
+				app:iconTint="@null" />
 
 			<!-- 5 -->
 
-			<androidx.appcompat.widget.AppCompatImageButton
+			<com.google.android.material.button.MaterialButton
 				android:id="@+id/buyButton5"
+				style="@style/Widget.Material3.Button.IconButton.Filled"
 				android:layout_width="56dp"
 				android:layout_height="56dp"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="5dp"
-				android:background="@drawable/bg_button_donate"
 				android:contentDescription="@string/title_donate_5"
-				android:src="@drawable/ic_donate5"
 				android:tag="4"
-				android:visibility="visible"
 				app:backgroundTint="@color/donate5Color"
-				app:elevation="6dp" />
+				app:elevation="6dp"
+				app:icon="@drawable/ic_donate5"
+				app:iconSize="28dp"
+				app:iconTint="@null" />
 
-			<Button
+			<com.google.android.material.button.MaterialButton
 				android:id="@+id/consume"
-				style="@style/Widget.AppCompat.Button.Borderless.Colored"
+				style="@style/Widget.Material3.Button.TextButton"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:contentDescription="@string/title_consume"
 				android:padding="10dp"
-				android:text="@string/title_consume"
-				android:visibility="visible" />
+				android:text="@string/title_consume" />
 
 		</LinearLayout>
 
