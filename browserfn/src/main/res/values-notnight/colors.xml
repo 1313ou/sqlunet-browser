@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<color name="primaryColor">#716D60</color>
 	<color name="primaryDarkColor">#5D5A4C</color>

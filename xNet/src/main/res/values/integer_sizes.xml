@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<integer name="size_sqlunet_db">0</integer>
 	<integer name="size_sqlunet_db_zip">0</integer>

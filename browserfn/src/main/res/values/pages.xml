@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<string name="fragment_class_setup_status_page" translatable="false">org.sqlunet.browser.fn.SetupFnStatusFragment</string> <!-- 0 -->
 

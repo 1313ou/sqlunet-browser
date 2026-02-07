@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<!--
 	Layout alias to replace the single-pane version of the layout with a two-pane version on Large screens.

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources xmlns:tools="http://schemas.android.com/tools">
 	<integer name='size_db_working_total' tools:keep='@string/size_db_working_total'>126730240</integer>
 	<integer name='size_searchtext' tools:keep='@string/size_searchtext'>42717184</integer>

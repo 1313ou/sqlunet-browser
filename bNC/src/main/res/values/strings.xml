@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<string name="bnc">BNC</string>
 	<string name="bnc_frequencies">Frequencies (BNC)</string>

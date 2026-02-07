@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<string name="framenet">FrameNet</string>
 	<string name="framenet_frames">Frames (FrameNet)</string>
