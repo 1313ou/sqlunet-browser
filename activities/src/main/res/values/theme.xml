@@ -29,7 +29,6 @@
 		<item name="colorControlActivated">@color/secondaryColor</item>
 
 		<!-- extras color attrs -->
-		<item name="colorHighlightOnPrimary">@color/highlightOnPrimaryColor</item>
 		<item name="colorHighlightOnBackground">@color/colorHighlightOnBackground</item>
 		<item name="colorHighlight1OnBackground">@color/colorHighlight1OnBackground</item>
 		<item name="colorHighlight2OnBackground">@color/colorHighlight2OnBackground</item>

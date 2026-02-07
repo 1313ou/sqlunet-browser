@@ -3,7 +3,6 @@
   -->
 <resources>
 
-	<attr name="colorHighlightOnPrimary" format="color|reference" />
 	<attr name="colorHighlightOnBackground" format="color|reference" />
 	<attr name="colorHighlight1OnBackground" format="color|reference" />
 	<attr name="colorHighlight2OnBackground" format="color|reference" />
