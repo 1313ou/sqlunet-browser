@@ -1,9 +1,0 @@
-<!--
-  ~ Copyright (c) 2023. Bernard Bou
-  -->
-
-<resources>
-
-	<attr name="colorOnSecondary" format="color|reference" />
-
-</resources>
