@@ -30,7 +30,6 @@
 
 		<!-- extras color attrs -->
 		<item name="colorHighlightOnBackground">@color/colorHighlightOnBackground</item>
-		<item name="colorHighlight1OnBackground">@color/colorHighlight1OnBackground</item>
 		<item name="colorHighlight2OnBackground">@color/colorHighlight2OnBackground</item>
 		<item name="colorDimmedOnBackground">@color/colorDimmedOnBackground</item>
 

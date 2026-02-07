@@ -22,7 +22,7 @@
 	</style>
 
 	<style name="Data.Cased">
-		<item name="android:textColor">?attr/colorHighlight1OnBackground</item>
+		<item name="android:textColor">@color/colorHighlight1OnBackground</item>
 		<item name="android:textSize">14sp</item>
 		<item name="android:textStyle">italic|bold</item>
 	</style>
