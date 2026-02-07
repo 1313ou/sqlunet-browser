@@ -50,12 +50,7 @@ object ColorUtils {
 
     @ColorInt
     fun getColor(res: Resources, theme: Theme?, @ColorRes colorRes: Int): Int {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            res.getColor(colorRes, theme)
-        } else {
-            @Suppress("DEPRECATION")
-            res.getColor(colorRes)
-        }
+        return res.getColor(colorRes, theme)
     }
 
     fun getDrawable(context: Context, @DrawableRes resId: Int): Drawable? {
