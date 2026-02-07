@@ -4,10 +4,10 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="asset_zip_entry" translatable="false" tools:keep="@string/asset_zip_entry">sqlunet-ewn.db</string>
+	<string name="asset_zip_entry" translatable="false">sqlunet-ewn.db</string>
 
-	<string name="asset_primary" translatable="false" tools:keep="@string/asset_primary">dbewn_ewn_asset</string>
-	<string name="asset_dir_primary" translatable="false" tools:keep="@string/asset_dir_primary">XX</string>
-	<string name="asset_zip_primary" translatable="false" tools:keep="@string/asset_zip_primary">sqlunet-ewn.db.zip</string>
+	<string name="asset_primary" translatable="false">dbewn_ewn_asset</string>
+	<string name="asset_dir_primary" translatable="false">XX</string>
+	<string name="asset_zip_primary" translatable="false">sqlunet-ewn.db.zip</string>
 
 </resources>

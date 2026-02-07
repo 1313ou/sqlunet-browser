@@ -5,18 +5,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- site files -->
-	<string name="default_download_datapack_file" translatable="false" tools:keep="@string/default_download_datapack_file">sqlunet-vn.db</string>
+	<string name="default_download_datapack_file" translatable="false">sqlunet-vn.db</string>
 	<string name="default_download_datapack_zipentry" translatable="false">sqlunet-vn.db</string>
-	<string name="default_download_sqlfile" translatable="false" tools:keep="@string/default_download_sqlfile">sqlunet-vn.sql.zip</string>
-	<string name="default_entry_import" translatable="false" tools:keep="@string/default_entry_import">sqlunet-vn.sql</string>
-	<string name="default_entry_index" translatable="false" tools:keep="@string/default_entry_index">sqlunet-vn-index.sql</string>
+	<string name="default_download_sqlfile" translatable="false">sqlunet-vn.sql.zip</string>
+	<string name="default_entry_import" translatable="false">sqlunet-vn.sql</string>
+	<string name="default_entry_index" translatable="false">sqlunet-vn-index.sql</string>
 
 	<!-- sites -->
-	<string name="github_site_url" translatable="false" tools:keep="@string/github_site_url">https://github.com/x-englishwordnet/semantikos/releases/download/Semantikos-2025-1</string>
-	<string name="sourceforge_site_url" translatable="false" tools:keep="@string/sourceforge_site_url">https://sourceforge.net/projects/sqlunet/files/semantikos2/4</string>
+	<string name="github_site_url" translatable="false">https://github.com/x-englishwordnet/semantikos/releases/download/Semantikos-2025-1</string>
+	<string name="sourceforge_site_url" translatable="false">https://sourceforge.net/projects/sqlunet/files/semantikos2/4</string>
 
-	<string name="default_download_site_url" translatable="false" tools:keep="@string/default_download_site_url">@string/github_site_url</string>
-	<string-array name="download_site_urls" translatable="false" tools:ignore="InconsistentArrays" tools:keep="@array/download_site_urls">
+	<string name="default_download_site_url" translatable="false">@string/github_site_url</string>
+	<string-array name="download_site_urls" translatable="false" tools:ignore="InconsistentArrays">
 		<item>@string/github_site_url</item>
 		<item>@string/sourceforge_site_url</item>
 	</string-array>

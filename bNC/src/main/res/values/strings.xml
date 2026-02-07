@@ -4,7 +4,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="bnc" tools:keep="@string/bnc">BNC</string>
-	<string name="bnc_frequencies" tools:keep="@string/bnc_frequencies">Frequencies (BNC)</string>
+	<string name="bnc">BNC</string>
+	<string name="bnc_frequencies">Frequencies (BNC)</string>
 
 </resources>

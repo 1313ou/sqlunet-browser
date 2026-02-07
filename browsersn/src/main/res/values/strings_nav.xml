@@ -4,9 +4,9 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="nav_header_title" tools:keep="@string/nav_header_title">Semantikos</string>
-	<string name="nav_header_subtitle" tools:keep="@string/nav_header_subtitle">SyntagNet</string>
+	<string name="nav_header_title">Semantikos</string>
+	<string name="nav_header_subtitle">SyntagNet</string>
 
-	<string name="nav_home" tools:keep="@string/nav_home">Semantikos</string>
+	<string name="nav_home">Semantikos</string>
 
 </resources>

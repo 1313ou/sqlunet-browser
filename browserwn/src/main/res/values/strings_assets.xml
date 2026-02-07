@@ -4,6 +4,6 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="asset_primary_name" tools:keep="@string/asset_primary_name">WordNet 3.1</string>
+	<string name="asset_primary_name">WordNet 3.1</string>
 
 </resources>

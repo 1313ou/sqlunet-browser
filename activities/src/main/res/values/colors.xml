@@ -22,13 +22,15 @@
 	<color name="secondaryLightColor">#ff60C0</color> <!-- framework + action button, activated list item, fabs fg, swipe2 down, status bg -->
 	<color name="onSecondaryColor">#F0F0F0</color> <!-- framework +  spinner arrow, group fg -->
 
+	<!-- activated background -->
+	<color name="activatedBackgroundColor">@color/material_dynamic_primary50</color>
+
+	<!-- S T Y L E  A T T R  -->
+
 	<!-- text - variants of colorOnBackground, must display on colorBackground -->
 	<color name="colorHighlightOnBackground">#e46d42</color> <!--  -->
 	<color name="colorHighlight1OnBackground">#880E4F</color> <!--  -->
 	<color name="colorHighlight2OnBackground">#006064</color> <!--  -->
 	<color name="colorDimmedOnBackground">#808080</color> <!--  -->
-
-	<!-- background -->
-	<color name="activatedBackgroundColor">@android:color/darker_gray</color>
 
 </resources>

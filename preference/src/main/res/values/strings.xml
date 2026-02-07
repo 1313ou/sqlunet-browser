@@ -12,6 +12,6 @@
 	<string name="pref_value_default">Default</string>
 
 	<!-- title -->
-	<string name="title_activity_settings" tools:keep="@string/title_activity_settings">Settings</string>
+	<string name="title_activity_settings">Settings</string>
 
 </resources>

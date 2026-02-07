@@ -4,7 +4,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<array name="drawer_top_dest" tools:ignore="InconsistentArrays" tools:keep="@array/drawer_top_dest">
+	<array name="drawer_top_dest" tools:ignore="InconsistentArrays">
 		<item>@id/nav_home</item>
 		<item>@id/nav_search_browse</item>
 		<item>@id/nav_search_text</item>

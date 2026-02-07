@@ -5,7 +5,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- actions -->
-	<string name="action_setup_searchtext_wn" tools:keep="@string/action_setup_searchtext_wn">Setup text search for WordNet</string>
+	<string name="action_setup_searchtext_wn">Setup text search for WordNet</string>
 
 	<!-- send -->
 	<string name="title_intentfilter_send_activity_browse">Semantikos-WordNet</string>
@@ -28,6 +28,6 @@
 	<string name="hint_splash_browse">Exploring senses and relations</string>
 
 	<!-- databases -->
-	<string name="wordnet" tools:keep="@string/wordnet">WordNet</string>
+	<string name="wordnet">WordNet</string>
 
 </resources>

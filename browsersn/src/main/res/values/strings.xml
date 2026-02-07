@@ -6,12 +6,12 @@
 
 	<!-- app -->
 	<string name="app_name">Semantikos-SyntagNet</string>
-	<string name="app_subname" tools:keep="@string/app_subname">SyntagNet</string>
+	<string name="app_subname">SyntagNet</string>
 
 	<!-- ACTIONS -->
 
 	<!-- setup -->
-	<string name="action_setup_searchtext_wn" tools:keep="@string/action_setup_searchtext_wn">Setup text search for WordNet</string>
+	<string name="action_setup_searchtext_wn">Setup text search for WordNet</string>
 
 	<!-- TITLES -->
 
@@ -35,6 +35,6 @@
 	<string name="action_table_adjpositions">Adjective Positions</string>
 
 	<!-- hints -->
-	<string name="hint_splash_browse" tools:keep="@string/hint_splash_browse">Exploring senses, relations and collocations</string>
+	<string name="hint_splash_browse">Exploring senses, relations and collocations</string>
 
 </resources>

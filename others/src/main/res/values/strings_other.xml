@@ -4,7 +4,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="title_others" tools:keep="@string/title_others">Others</string>
+	<string name="title_others">Others</string>
 	<string name="title_activity_others">Others</string>
 
 	<string name="title_grammarscope_syntaxnet">GrammarScope (SyntaxNet)</string>

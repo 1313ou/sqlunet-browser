@@ -6,15 +6,15 @@
 
 	<!-- app -->
 	<string name="app_name">@string/semantikos</string>
-	<string name="app_subname" tools:keep="@string/app_subname" />
+	<string name="app_subname" />
 
 	<!-- ACTIONS -->
 
 	<!-- setup -->
-	<string name="action_setup_searchtext_wn" tools:keep="@string/action_setup_searchtext_wn">Setup text search for WordNet</string>
-	<string name="action_setup_searchtext_vn" tools:keep="@string/action_setup_searchtext_vn">Setup text search for VerbNet</string>
-	<string name="action_setup_searchtext_pb" tools:keep="@string/action_setup_searchtext_pb">Setup text search for PropBank</string>
-	<string name="action_setup_searchtext_fn" tools:keep="@string/action_setup_searchtext_fn">Setup text search for FrameNet</string>
+	<string name="action_setup_searchtext_wn">Setup text search for WordNet</string>
+	<string name="action_setup_searchtext_vn">Setup text search for VerbNet</string>
+	<string name="action_setup_searchtext_pb">Setup text search for PropBank</string>
+	<string name="action_setup_searchtext_fn">Setup text search for FrameNet</string>
 
 	<!-- TITLES -->
 

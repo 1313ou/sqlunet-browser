@@ -10,7 +10,7 @@
 	<string name="wordnet_authority" translatable="false">org.sqlunet.wordnet.vn.provider</string>
 	<string name="history_authority" translatable="false">org.sqlunet.history.vn.provider</string>
 
-	<string-array name="provider_authorities" tools:ignore="InconsistentArrays" tools:keep="@array/provider_authorities">
+	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
 		<item>@string/manager_authority</item>
 		<item>@string/history_authority</item>
 		<item>@string/xsqlunet_authority</item>

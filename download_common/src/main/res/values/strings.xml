@@ -11,7 +11,7 @@
 
 	<!-- action -->
 	<string name="action_download">Download</string>
-	<string name="action_zip_download" tools:keep="@string/action_zip_download">Zip Download</string>
+	<string name="action_zip_download">Zip Download</string>
 	<string name="action_cancel">Cancel</string>
 	<string name="action_ok">OK</string>
 	<string name="action_dismiss">Dismiss</string>

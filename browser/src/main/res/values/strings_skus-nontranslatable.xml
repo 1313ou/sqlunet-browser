@@ -4,7 +4,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string-array name="skus" tools:keep="@array/skus">
+	<string-array name="skus">
 
 		<item>donate_1e</item>
 		<item>donate_5e</item>

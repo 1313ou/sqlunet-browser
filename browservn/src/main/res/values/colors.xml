@@ -4,19 +4,19 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<color name="primaryColor" tools:keep="@color/primaryColor">#C8DDB7</color>
-	<color name="primaryDarkColor" tools:keep="@color/primaryDarkColor">#7D956E</color>
-	<color name="primaryLightColor" tools:keep="@color/primaryLightColor">#DBF4C7</color>
-	<color name="onPrimaryColor" tools:keep="@color/onPrimaryColor">#444444</color>
-	<color name="highlightOnPrimaryColor" tools:keep="@color/highlightOnPrimaryColor">@android:color/black</color>
+	<color name="primaryColor">#C8DDB7</color>
+	<color name="primaryDarkColor">#7D956E</color>
+	<color name="primaryLightColor">#DBF4C7</color>
+	<color name="onPrimaryColor">#444444</color>
+	<color name="highlightOnPrimaryColor">@android:color/black</color>
 
-	<color name="secondaryColor" tools:keep="@color/secondaryColor">#E9C41D</color>
-	<color name="secondaryLightColor" tools:keep="@color/secondaryLightColor">#FFD66E</color>
-	<color name="onSecondaryColor" tools:keep="@color/onSecondaryColor">#444444</color>
+	<color name="secondaryColor">#E9C41D</color>
+	<color name="secondaryLightColor">#FFD66E</color>
+	<color name="onSecondaryColor">#444444</color>
 
-	<color name="colorHighlightOnBackground" tools:keep="@color/colorHighlightOnBackground">#1B5E20</color>
-	<color name="colorHighlight1OnBackground" tools:keep="@color/colorHighlight1OnBackground">#BF360C</color>
-	<color name="colorHighlight2OnBackground" tools:keep="@color/colorHighlight2OnBackground">#4A148C</color>
-	<color name="colorDimmedOnBackground" tools:keep="@color/colorDimmedOnBackground">#808080</color>
+	<color name="colorHighlightOnBackground">#1B5E20</color>
+	<color name="colorHighlight1OnBackground">#BF360C</color>
+	<color name="colorHighlight2OnBackground">#4A148C</color>
+	<color name="colorDimmedOnBackground">#808080</color>
 
 </resources>

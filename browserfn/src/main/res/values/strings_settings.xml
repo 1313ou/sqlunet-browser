@@ -5,7 +5,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- Filter -->
-	<string name="pref_title_enable_framenet" tools:keep="@string/pref_title_enable_framenet">Enable FrameNet</string>
-	<string name="pref_description_enable_framenet" tools:keep="@string/pref_description_enable_framenet">Display FrameNet information</string>
+	<string name="pref_title_enable_framenet">Enable FrameNet</string>
+	<string name="pref_description_enable_framenet">Display FrameNet information</string>
 
 </resources>

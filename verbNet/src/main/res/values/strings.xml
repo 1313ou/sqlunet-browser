@@ -5,14 +5,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="verbnet">VerbNet</string>
-	<string name="verbnet_classes" tools:keep="@string/verbnet_classes">Classes (VerbNet)</string>
-	<string name="verbnet_blurb" tools:keep="@string/verbnet_blurb">&lt;b&gt;VerbNet&lt;/b&gt;\nexplores semantic roles</string>
+	<string name="verbnet_classes">Classes (VerbNet)</string>
+	<string name="verbnet_blurb">&lt;b&gt;VerbNet&lt;/b&gt;\nexplores semantic roles</string>
 
-	<string name="verbnet_members_" tools:keep="@string/verbnet_members_">Members</string>
-	<string name="verbnet_group_" tools:keep="@string/verbnet_group_">Group</string>
-	<string name="verbnet_roles_" tools:keep="@string/verbnet_roles_">Roles</string>
-	<string name="verbnet_frames_" tools:keep="@string/verbnet_frames_">Frames</string>
-	<string name="verbnet_examples_" tools:keep="@string/verbnet_examples_">Examples</string>
+	<string name="verbnet_members_">Members</string>
+	<string name="verbnet_group_">Group</string>
+	<string name="verbnet_roles_">Roles</string>
+	<string name="verbnet_frames_">Frames</string>
+	<string name="verbnet_examples_">Examples</string>
 
 	<string name="title_activity_vnclass">VerbNet Class</string>
 

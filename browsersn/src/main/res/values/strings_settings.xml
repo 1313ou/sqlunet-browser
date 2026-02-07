@@ -5,11 +5,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- Filter -->
-	<string name="pref_title_enable_wordnet" tools:keep="@string/pref_title_enable_wordnet">Enable WordNet</string>
-	<string name="pref_description_enable_wordnet" tools:keep="@string/pref_description_enable_wordnet">Display WordNet information</string>
-	<string name="pref_title_enable_syntagnet" tools:keep="@string/pref_title_enable_syntagnet">Enable SyntagNet</string>
-	<string name="pref_description_enable_syntagnet" tools:keep="@string/pref_description_enable_syntagnet">Display SyntagNet information</string>
-	<string name="pref_title_enable_bnc" tools:keep="@string/pref_title_enable_bnc">Enable BNC</string>
-	<string name="pref_description_enable_bnc" tools:keep="@string/pref_description_enable_bnc">Display BNC information</string>
+	<string name="pref_title_enable_wordnet">Enable WordNet</string>
+	<string name="pref_description_enable_wordnet">Display WordNet information</string>
+	<string name="pref_title_enable_syntagnet">Enable SyntagNet</string>
+	<string name="pref_description_enable_syntagnet">Display SyntagNet information</string>
+	<string name="pref_title_enable_bnc">Enable BNC</string>
+	<string name="pref_description_enable_bnc">Display BNC information</string>
 
 </resources>

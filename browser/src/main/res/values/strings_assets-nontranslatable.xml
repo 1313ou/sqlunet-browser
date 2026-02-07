@@ -4,16 +4,16 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="asset_zip_entry" translatable="false" tools:keep="@string/asset_zip_entry">sqlunet.db</string>
+	<string name="asset_zip_entry" translatable="false">sqlunet.db</string>
 
-	<string name="asset_primary" translatable="false" tools:keep="@string/asset_primary">db_ewn_asset</string>
-	<string name="asset_dir_primary" translatable="false" tools:keep="@string/asset_dir_primary">XX</string>
-	<string name="asset_zip_primary" translatable="false" tools:keep="@string/asset_zip_primary">sqlunet.db.zip</string>
+	<string name="asset_primary" translatable="false">db_ewn_asset</string>
+	<string name="asset_dir_primary" translatable="false">XX</string>
+	<string name="asset_zip_primary" translatable="false">sqlunet.db.zip</string>
 
 	<!--
-	<string name="asset_alt" translatable="false" tools:keep="@string/asset_alt">db_wn31_asset</string>
-	<string name="asset_dir_alt" translatable="false" tools:keep="@string/asset_dir_alt">31</string>
-	<string name="asset_zip_alt" translatable="false" tools:keep="@string/asset_zip_alt">sqlunet.db.zip</string>
+	<string name="asset_alt" translatable="false">db_wn31_asset</string>
+	<string name="asset_dir_alt" translatable="false">31</string>
+	<string name="asset_zip_alt" translatable="false">sqlunet.db.zip</string>
 	-->
 
 </resources>

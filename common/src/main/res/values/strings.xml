@@ -89,7 +89,7 @@
 	<!-- TITLES -->
 
 	<!-- labels -->
-	<string name="title_activity_main" tools:keep="@string/title_activity_main">Home</string>
+	<string name="title_activity_main">Home</string>
 	<string name="title_activity_browse">Browse</string>
 	<string name="title_activity_searchtext">Text Search</string>
 	<string name="title_activity_history">History</string>

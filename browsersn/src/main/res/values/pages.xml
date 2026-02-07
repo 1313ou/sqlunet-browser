@@ -4,6 +4,6 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="fragment_class_setup_status_page" translatable="false" tools:keep="@string/fragment_class_setup_status_page">org.sqlunet.browser.sn.SetupSnStatusFragment</string> <!-- 0 -->
+	<string name="fragment_class_setup_status_page" translatable="false">org.sqlunet.browser.sn.SetupSnStatusFragment</string> <!-- 0 -->
 
 </resources>

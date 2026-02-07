@@ -6,6 +6,6 @@
 
 	<!-- app -->
 	<string name="app_name">Semantikos-Open English Wordnet</string>>
-	<string name="app_subname" tools:keep="@string/app_subname">Open English Wordnet</string>
+	<string name="app_subname">Open English Wordnet</string>
 
 </resources>

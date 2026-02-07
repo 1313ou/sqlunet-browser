@@ -5,11 +5,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="propbank">PropBank</string>
-	<string name="propbank_rolesets" tools:keep="@string/propbank_rolesets">Role sets (PropBank)</string>
-	<string name="propbank_blurb" tools:keep="@string/propbank_blurb">&lt;b&gt;PropBank&lt;/b&gt;\nexplores semantic roles</string>
+	<string name="propbank_rolesets">Role sets (PropBank)</string>
+	<string name="propbank_blurb">&lt;b&gt;PropBank&lt;/b&gt;\nexplores semantic roles</string>
 
-	<string name="propbank_roles_" tools:keep="@string/propbank_roles_">Roles</string>
-	<string name="propbank_examples_" tools:keep="@string/propbank_examples_">Examples</string>
+	<string name="propbank_roles_">Roles</string>
+	<string name="propbank_examples_">Examples</string>
 
 	<string name="title_activity_pbroleset">PropBank RoleSet</string>
 

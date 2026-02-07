@@ -6,7 +6,7 @@
 
 	<!-- app -->
 	<string name="app_name">Semantikos-WordNet</string>>
-	<string name="app_subname" tools:keep="@string/app_subname">WordNet</string>
+	<string name="app_subname">WordNet</string>
 
 	<string name="obsolete_app">This app relies on Princeton\'s legacy WordNet 3.1.</string>
 	<string name="new_app"><b>Semantikos-Open English Wordnet</b> uses enhanced Open English Wordnet instead and has extra features. OEWN has evolved from WN3.1 adding and revising data while keeping its philosophy.\nSwipe this message to dismiss it.</string>

@@ -6,10 +6,10 @@
 
 	<!-- app -->
 	<string name="app_name">Semantikos-FrameNet</string>>
-	<string name="app_subname" tools:keep="@string/app_subname">FrameNet</string>
+	<string name="app_subname">FrameNet</string>
 
 	<!-- actions -->
-	<string name="action_setup_searchtext_fn" tools:keep="@string/action_setup_searchtext_fn">Setup text search for FrameNet</string>
+	<string name="action_setup_searchtext_fn">Setup text search for FrameNet</string>
 
 	<!-- send -->
 	<string name="title_intentfilter_send_activity_browse">Semantikos-FrameNet</string>
@@ -22,9 +22,9 @@
 	<string name="description_action_searchtext_fn">Prepare text search on FrameNet</string>
 
 	<!-- hints -->
-	<string name="hint_splash_browse" tools:keep="@string/hint_splash_browse">Exploring semantic roles</string>
+	<string name="hint_splash_browse">Exploring semantic roles</string>
 
 	<!-- databases -->
-	<string name="framenet" tools:keep="@string/framenet">FrameNet</string>
+	<string name="framenet">FrameNet</string>
 
 </resources>
