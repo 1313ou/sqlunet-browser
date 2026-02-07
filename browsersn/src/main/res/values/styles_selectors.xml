@@ -36,7 +36,7 @@
 
 	<!--
 		<style name="Data.Pronunciation">
-			<item name="android:textColor">?attr/colorHighlight2OnBackground</item>
+			<item name="android:textColor">@color/colorHighlight2OnBackground</item>
 			<item name="android:textSize">16sp</item>
 		</style>
 	-->
