@@ -27,10 +27,15 @@
 
 	<!-- S T Y L E  A T T R  -->
 
-	<!-- text - variants of colorOnBackground, must display on colorBackground -->
-	<color name="colorHighlightOnBackground">#e46d42</color> <!--  -->
-	<color name="colorHighlight1OnBackground">#880E4F</color> <!--  -->
-	<color name="colorHighlight2OnBackground">#006064</color> <!--  -->
-	<color name="colorDimmedOnBackground">#808080</color> <!--  -->
+	<!-- text - must display on colorBackground (variants of colorOnBackground) -->
+	<color name="colorHighlightOnBackground">#e46d42</color> <!-- Data.Definition Data.XDefinition Data.FnFrameName-->
+	<color name="colorHighlight1OnBackground">#880E4F</color> <!-- Data.Cased -->
+	<color name="colorHighlight2OnBackground">#006064</color> <!-- Data.Pronunciation -->
+	<color name="colorDimmedOnBackground">#808080</color> <!-- Data.WordId Data.SynsetId Data.SenseId Data.SenseNum Data.SenseKey Data.LexId Data.PosId Data.TagCount
+		Data.XId Data.XWordId Data.XSynsetId Data.XSources Data.XInfo Data.XMemberId
+		Data.WnWordId Data.WnCased Data.WnSynsetId Data.WnSenseId  Data.WnSenseNum Data.WnSenseKey Data.WnLexId Data.WnTagCount
+		Data.FnId Data.FnWordId Data.FnFrameId
+		Data.VnWordId
+		Data.PbWordId -->
 
 </resources>
