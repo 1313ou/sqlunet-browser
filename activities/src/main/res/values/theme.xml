@@ -28,9 +28,6 @@
 		<!-- background of activated indicator, caret -->
 		<item name="colorControlActivated">@color/secondaryColor</item>
 
-		<!-- extras color attrs -->
-		<item name="colorDimmedOnBackground">@color/colorDimmedOnBackground</item>
-
 		<!-- S T Y L E S -->
 
 		<!-- Menu dropdown -->
