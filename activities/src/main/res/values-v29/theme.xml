@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2023. Bernard Bou
+  ~ Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
   -->
 
 <resources>
@@ -44,11 +44,20 @@
 		<!-- whether this window requests a translucent navigation bar -->
 		<item name="android:windowTranslucentNavigation">false</item>
 
+		<!-- Remove contrast enforcement (API 29+) -->
+		<!-- whether the system should ensure that the status bar has enough contrast when a fully transparent background is requested.
+             if true, the system will determine whether a scrim is necessary to ensure that the status bar has enough contrast with the contents of
+             this app, and set an appropriate effective bar background color accordingly. -->
+		<item name="android:enforceStatusBarContrast">false</item>
+		<!-- whether the system should ensure that the navigation bar has enough contrast when a fully transparent background is requested.
+             if true, the system will determine whether a scrim is necessary to ensure that the navigation bar has enough contrast with the contents of
+             this app, and set an appropriate effective bar background color accordingly. -->
+		<item name="android:enforceNavigationBarContrast">false</item>
+
 		<!-- S T Y L E S -->
 
 		<!-- menu dropdown -->
 		<item name="popupMenuBackground">@color/primaryColor</item>
 
 	</style>
-
 </resources>
