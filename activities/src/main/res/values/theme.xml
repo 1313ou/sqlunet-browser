@@ -6,8 +6,6 @@
 
 	<style name="MyTheme" parent="Theme.Material3.DayNight.NoActionBar">
 
-
-
 		<!-- C O L O R S -->
 
 		<!-- framework colors -->
@@ -28,9 +26,16 @@
 		<!-- background of activated indicator, caret -->
 		<item name="colorControlActivated">@color/secondaryColor</item>
 
+		<!-- O V E R R I D E S -->
+
+		<!-- transparent statusbar and navigation bar -->
+		<item name="android:statusBarColor">@android:color/transparent</item>
+		<item name="android:navigationBarColor">@android:color/transparent</item>
+		<item name="android:windowTranslucentNavigation">false</item>
+
 		<!-- S T Y L E S -->
 
-		<!-- Menu dropdown -->
+		<!-- menu dropdown -->
 		<item name="popupMenuBackground">@color/primaryColor</item>
 
 	</style>
