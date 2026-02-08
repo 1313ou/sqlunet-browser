@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<com.google.android.material.search.SearchBar xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/search_bar"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:visibility="gone"
+	android:hint="@string/hint_search" />
