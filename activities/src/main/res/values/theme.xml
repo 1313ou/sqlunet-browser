@@ -16,7 +16,7 @@
 
 		<!-- nav bar -->
 		<item name="colorPrimaryVariant">@color/primaryLightColor</item>
-    	<item name="colorPrimaryDark">@color/primaryDarkColor</item>-->
+		<item name="colorPrimaryDark">@color/primaryDarkColor</item>-->
 
 		<!-- requires attention : snackbar, fab -->
 		<item name="colorSecondary">@color/secondaryColor</item>-->
@@ -31,7 +31,28 @@
 		<!-- transparent statusbar and navigation bar -->
 		<item name="android:statusBarColor">@android:color/transparent</item>
 		<item name="android:navigationBarColor">@android:color/transparent</item>
+
+		<!-- whether this Window is responsible for drawing the background for the system bars.
+		     if true and the window is not floating, the system bars are drawn with a
+             transparent background and the corresponding areas in this window are filled with the
+             colors specified in android.R.attr#statusBarColor and android.R.attr#navigationBarColor-->
+		<item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+		<!-- Force drawing behind system bars -->
+		<!-- whether this window requests a translucent status bar -->
+		<item name="android:windowTranslucentStatus">false</item>
+		<!-- whether this window requests a translucent navigation bar -->
 		<item name="android:windowTranslucentNavigation">false</item>
+
+		<!-- Remove contrast enforcement (API 29+) -->
+		<!-- whether the system should ensure that the status bar has enough contrast when a fully transparent background is requested.
+             if true, the system will determine whether a scrim is necessary to ensure that the status bar has enough contrast with the contents of
+             this app, and set an appropriate effective bar background color accordingly. -->
+		<item name="android:enforceStatusBarContrast">false</item>
+		<!-- whether the system should ensure that the navigation bar has enough contrast when a fully transparent background is requested.
+             if true, the system will determine whether a scrim is necessary to ensure that the navigation bar has enough contrast with the contents of
+             this app, and set an appropriate effective bar background color accordingly. -->
+		<item name="android:enforceNavigationBarContrast">false</item>
 
 		<!-- S T Y L E S -->
 
