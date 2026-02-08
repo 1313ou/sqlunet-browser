@@ -4,11 +4,14 @@
 
 package org.sqlunet.browser
 
-
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
+import com.google.android.material.appbar.AppBarLayout
+import org.sqlunet.activities.R
 
 object EdgeToEdge {
 
@@ -31,7 +34,7 @@ object EdgeToEdge {
         }
     }
 
-   /**
+    /**
      * Handle top inset
      *
      * @param view view
@@ -55,7 +58,7 @@ object EdgeToEdge {
      *
      * @param view view
      */
-   fun handleInsetsBottom(view: View?) {
+    fun handleInsetsBottom(view: View?) {
         view?.let {
             ViewCompat.setOnApplyWindowInsetsListener(view) { view, insets ->
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -66,6 +69,28 @@ object EdgeToEdge {
                 // Return the insets so children don't get them doubled
                 insets
             }
+        }
+    }
+
+    fun handleInsets2(rootView: View) {
+
+        ViewCompat.setOnApplyWindowInsetsListener(rootView) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            // Apply top inset to toolbar/appbar
+            view.findViewById<AppBarLayout?>(R.id.appbar_layout)?.let { appbar ->
+                appbar.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                    topMargin = insets.top
+                }
+            }
+
+            // Apply bottom inset to your content
+            view.findViewById<View?>(android.R.id.content)?.let { content ->
+                content.updatePadding(
+                    bottom = insets.bottom
+                )
+            }
+            WindowInsetsCompat.CONSUMED
         }
     }
 }
