@@ -31,8 +31,8 @@
 		<item>@color/onPrimaryColor</item>
 
 		<!-- [6] -->
-		<item>@color/primaryColor</item>
-		<item>@color/highlightOnPrimaryColor</item>
+		<!-- <item>@color/primaryColor</item> -->
+		<!-- <item>@color/highlightOnPrimaryColor</item> -->
 
 		<!-- [7] -->
 		<item>@color/secondaryColor</item>

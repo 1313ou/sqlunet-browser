@@ -8,7 +8,6 @@
 	<color name="primaryDarkColor">#45345e</color>
 	<color name="primaryLightColor">#85609B</color>
 	<color name="onPrimaryColor">#cccccc</color>
-	<color name="highlightOnPrimaryColor">@android:color/white</color>
 
 	<color name="secondaryColor">#E55421</color>
 	<color name="secondaryLightColor">#E35E2E</color>
