@@ -7,13 +7,6 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	tools:context="org.sqlunet.browser.xn.BrowsePredicateMatrixActivity">
 	<item
-		android:id="@+id/search"
-		android:iconifiedByDefault="true"
-		android:title="@string/hint_search_predicatematrix"
-		app:actionViewClass="androidx.appcompat.widget.SearchView"
-		app:showAsAction="always"
-		tools:ignore="AlwaysShowAction" />
-	<item
 		android:id="@+id/action_main"
 		android:title="@string/action_main"
 		app:showAsAction="never"
