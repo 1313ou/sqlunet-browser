@@ -3,5 +3,5 @@
   -->
 
 <resources>
-	<bool name="fits_system_windows">true</bool>
+	<bool name="appbar_fits_system_windows">true</bool>
 </resources>
