@@ -4,14 +4,15 @@
 
 package org.sqlunet.browser
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowInsetsControllerCompat
 import org.sqlunet.activities.R
-import org.sqlunet.browser.EdgeToEdge.handleInsetsBottom
 import org.sqlunet.browser.NightMode.isNightMode
 import android.R as AndroidR
 
@@ -25,7 +26,10 @@ open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        enableEdgeToEdge()
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT) //(DefaultLightScrim, DefaultDarkScrim)
+        )
 
         val lightBackground = !isNightMode(this)
         WindowInsetsControllerCompat(window, window.decorView).apply {
@@ -44,6 +48,7 @@ open class BaseActivity : AppCompatActivity() {
         // handleInsets(rootView)
         // handleInsetsTop(toolbar)
         // handleInsetsBottom(rootView)
-        handleInsetsBottom(fab)
+        // handleInsetsBottom(fab)
+        // handleInsets2(rootView!!)
     }
 }
