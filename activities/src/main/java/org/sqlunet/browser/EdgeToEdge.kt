@@ -72,25 +72,19 @@ object EdgeToEdge {
         }
     }
 
-    fun handleInsets2(rootView: View) {
+    fun handleInsetsToolbarAndContent(rootView: View) {
 
-        ViewCompat.setOnApplyWindowInsetsListener(rootView) { view, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+        ViewCompat.setOnApplyWindowInsetsListener(rootView) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
 
             // Apply top inset to toolbar/appbar
-            view.findViewById<AppBarLayout?>(R.id.appbar_layout)?.let { appbar ->
-                appbar.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                    topMargin = insets.top
-                }
-            }
+            view.findViewById<AppBarLayout>(R.id.appbar_layout)?.updateLayoutParams<ViewGroup.MarginLayoutParams> { topMargin = systemBars.top }
 
             // Apply bottom inset to your content
-            view.findViewById<View?>(android.R.id.content)?.let { content ->
-                content.updatePadding(
-                    bottom = insets.bottom
-                )
-            }
-            WindowInsetsCompat.CONSUMED
+            view.findViewById<View>(android.R.id.content)?.updatePadding(bottom = systemBars.bottom)
+
+            // Return the insets so children don't get them doubled
+            insets
         }
     }
 }
