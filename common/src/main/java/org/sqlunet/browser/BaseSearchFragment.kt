@@ -38,6 +38,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
 import com.google.android.material.search.SearchBar
 import com.google.android.material.search.SearchView
+import com.google.android.material.snackbar.Snackbar
 import org.sqlunet.browser.ColorUtils.fetchColor
 import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.ColorUtils.tint
@@ -162,6 +163,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         searchView = requireActivity().findViewById(ActivitiesR.id.search_view)
         suggestionContainer = requireActivity().findViewById(ActivitiesR.id.search_view_suggestion_container)
         searchView.setupWithSearchBar(searchBar)
+        setUpSearchBar()
         setupSearchView(getSearchInfo(requireActivity()))
     }
 
@@ -193,8 +195,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     /**
      * Set up toolbar's custom view, its spinner, title, background
-     *
-     * @param toolbar toolbar
      */
     @SuppressLint("InflateParams")
     fun setupToolBar() {
@@ -210,6 +210,24 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         toolbar.background = color.toDrawable()
     }
 
+    // S E A R C H   B A R
+
+    /**
+     * Set up searchbar
+     */
+    private fun setUpSearchBar() {
+        searchBar.inflateMenu(R.menu.browse)
+        searchBar.setOnMenuItemClickListener { menuItem: MenuItem? ->
+            menuItem?.title?.let {
+                Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
+            }
+            true
+        }
+        searchBar.visibility = View.VISIBLE
+    }
+
+    // S E A R C H   V I E W
+
     /**
      * Set up search view
      *
@@ -219,7 +237,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
         // search view
         // searchView.setSearchableInfo(searchableInfo)
-        searchBar.visibility = View.VISIBLE
         searchView.hide()
 
         //searchView.editText.setOnEditorActionListener { _, _, _ ->
