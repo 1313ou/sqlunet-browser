@@ -10,4 +10,15 @@
 	android:hint="@string/hint_search"
 	app:layout_anchor="@id/search_bar">
 	<!-- Search suggestions/results go here (e.g. RecyclerView) -->
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:scrollbars="none">
+
+		<LinearLayout
+			android:id="@+id/search_view_suggestion_container"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"/>
+	</ScrollView>
 </com.google.android.material.search.SearchView>
