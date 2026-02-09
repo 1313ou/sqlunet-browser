@@ -43,5 +43,6 @@ dependencies {
     implementation(libs.core.ktx)
 
     implementation(libs.appcompat)
+    implementation(libs.recyclerview)
     implementation(libs.material)
 }
