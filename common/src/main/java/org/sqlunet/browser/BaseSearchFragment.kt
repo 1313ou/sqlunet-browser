@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -24,6 +25,7 @@ import android.widget.BaseAdapter
 import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.ArrayRes
 import androidx.annotation.AttrRes
 import androidx.annotation.LayoutRes
@@ -235,16 +237,39 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     private fun setupSearchView(searchableInfo: SearchableInfo?) {
 
-        // search view
-        // searchView.setSearchableInfo(searchableInfo)
+        // initially search view
         searchView.hide()
 
-        //searchView.editText.setOnEditorActionListener { _, _, _ ->
-        //    clearSearchView(searchView)
-        //    closeKeyboard()
-        //    searchView.hide()
-        //    true
-        //}
+        // searchView.setSearchableInfo(searchableInfo)
+
+        // menu
+        searchView.inflateMenu(R.menu.browse)
+        searchView.setOnMenuItemClickListener { menuItem: MenuItem? ->
+            menuItem?.title?.let {
+                Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
+            }
+            true
+        }
+
+        // submit
+        searchView.editText.setOnEditorActionListener { _: TextView?, _: Int, _: KeyEvent? ->
+            //    clearSearchView(searchView)
+            //    closeKeyboard()
+            //    searchView.hide()
+            searchBar.setText(searchView.text.toString())
+            searchView.hide()
+            false
+        }
+
+        val onBackPressedCallback: OnBackPressedCallback =
+            object : OnBackPressedCallback( /* enabled= */false) {
+                override fun handleOnBackPressed() {
+                    searchView.hide()
+                }
+            }
+        val activity: AppCompatActivity = requireActivity() as AppCompatActivity
+        // activity.getOnBackPressedDispatcher().addCallback(activity, onBackPressedCallback)
+        // searchView.addTransitionListener { _: SearchView?, _: SearchView.TransitionState?, newState: SearchView.TransitionState? -> onBackPressedCallback.setEnabled(newState == SearchView.TransitionState.SHOWN) }
 
         // searchView.editText.addTextChangedListener {
         //     val query = it.toString()
