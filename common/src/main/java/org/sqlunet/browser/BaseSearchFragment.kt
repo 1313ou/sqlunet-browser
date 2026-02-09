@@ -59,9 +59,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     // C O M P O N E N T S
 
     /**
-     * Search view that holds query
+     * Toolbar
      */
-    private lateinit var searchView: SearchView
+    private lateinit var toolbar: Toolbar
 
     /**
      * Search bar that holds query
@@ -98,7 +98,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         manager.addOnBackStackChangedListener {
             val count = manager.backStackEntryCount
             Log.d(TAG, "BackStack: $count")
-            val toolbar = requireActivity().findViewById<Toolbar>(ActivitiesR.id.toolbar)!!
             if (count > 0) {
                 toolbar.setSubtitle(query ?: getString(R.string.app_subname))
             } else {
@@ -130,8 +129,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
                 // toolbar
                 // must have
-                val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
-                setupToolBar(toolbar)
+                setupToolBar()
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -144,6 +142,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(menuProvider, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
+
+        // toolbar
+        toolbar = requireActivity().findViewById(R.id.toolbar)
 
         // search mode
         searchBar = requireActivity().findViewById(ActivitiesR.id.search_bar)
@@ -171,7 +172,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
         toolbar.setSubtitle(R.string.app_subname)
     }
 
@@ -183,7 +183,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * @param toolbar toolbar
      */
     @SuppressLint("InflateParams")
-    fun setupToolBar(toolbar: Toolbar) {
+    fun setupToolBar() {
         Log.d(TAG, "Toolbar: set up in $this")
         val activity = requireActivity() as AppCompatActivity
 
@@ -259,7 +259,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     private val spinner: Spinner?
         get() {
             // must have
-            val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
             return toolbar.findViewById(R.id.spinner) // must be non null after resume
         }
 
@@ -270,7 +269,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     private fun ensureSpinner(): Spinner {
         // must have
-        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
         var spinner = toolbar.findViewById<Spinner>(R.id.spinner)
         if (spinner == null) {
             // toolbar customized view if toolbar does not already contain spinner
@@ -376,7 +374,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         this.query = query
 
         // subtitle
-        // var toolbar = requireActivity().findViewById(R.id.toolbar)
         // toolbar.setSubtitle(query)
     }
 
