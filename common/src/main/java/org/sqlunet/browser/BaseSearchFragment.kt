@@ -8,11 +8,11 @@ import android.app.Activity
 import android.app.SearchManager
 import android.app.SearchableInfo
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -166,7 +166,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         suggestionContainer = requireActivity().findViewById(ActivitiesR.id.search_view_suggestion_container)
         searchView.setupWithSearchBar(searchBar)
         setUpSearchBar()
-        setupSearchView(getSearchInfo(requireActivity()))
+        setupSearchView()
     }
 
     override fun onResume() {
@@ -232,15 +232,43 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     /**
      * Set up search view
-     *
-     * @param searchableInfo searchable info
      */
-    private fun setupSearchView(searchableInfo: SearchableInfo?) {
+    private fun setupSearchView() {
 
         // initially search view
         searchView.hide()
 
         // searchView.setSearchableInfo(searchableInfo)
+        val searchableInfo: SearchableInfo = getSearchInfo()
+
+        // 1. Manually set the hint from your searchable.xml
+        val hintRes = searchableInfo.hintId
+        if (hintRes != 0) {
+            searchView.hint = getString(hintRes)
+        }
+
+        // 2. Handle the search submission
+        searchView.editText.setOnEditorActionListener { textView, actionId, event ->
+            val query = textView.text.toString()
+
+            // behaviour
+            searchView.hide() // Close the search view after submission
+            searchBar.setText(searchView.text.toString())
+            //    clearSearchView(searchView)
+            //    closeKeyboard()
+            //    searchView.hide()
+
+            // emulate what the legacy SearchView did automatically
+            // trigger the search intent manually for M3 SearchView
+            val intent = Intent(Intent.ACTION_SEARCH).apply {
+
+                // use the component name directly from SearchableInfo
+                component = searchableInfo.searchActivity
+                putExtra(SearchManager.QUERY, query)
+            }
+            startActivity(intent)
+            true
+        }
 
         // menu
         searchView.inflateMenu(R.menu.browse)
@@ -249,16 +277,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
             }
             true
-        }
-
-        // submit
-        searchView.editText.setOnEditorActionListener { _: TextView?, _: Int, _: KeyEvent? ->
-            //    clearSearchView(searchView)
-            //    closeKeyboard()
-            //    searchView.hide()
-            searchBar.setText(searchView.text.toString())
-            searchView.hide()
-            false
         }
 
         val onBackPressedCallback: OnBackPressedCallback =
@@ -515,6 +533,12 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         searchView.show()
     }
 
+    private fun getSearchInfo(): SearchableInfo {
+        val componentName = requireActivity().componentName
+        val searchManager = requireContext().getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        return searchManager.getSearchableInfo(componentName)
+    }
+
     companion object {
 
         private const val TAG = "BaseSearchF"
@@ -525,12 +549,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         private const val STATE_SPINNER = "selected_mode"
 
         // S E A R C H
-
-        private fun getSearchInfo(activity: Activity): SearchableInfo? {
-            val componentName = activity.componentName
-            val searchManager = (activity.getSystemService(Context.SEARCH_SERVICE) as SearchManager)
-            return searchManager.getSearchableInfo(componentName)
-        }
 
         private fun clearSearchView(searchView: SearchView) {
             searchView.clearFocus()
