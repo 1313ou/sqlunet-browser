@@ -535,7 +535,7 @@
 			tools:ignore="ExportedContentProvider" />
 
 		<provider
-			android:name=".history.SearchSuggestionsProvider"
+			android:name="org.sqlunet.browser.history.SearchSuggestionsProvider"
 			android:authorities="@string/history_authority"
 			android:exported="false" />
 
