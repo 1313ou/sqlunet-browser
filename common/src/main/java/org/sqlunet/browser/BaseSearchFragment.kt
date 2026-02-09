@@ -7,8 +7,10 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.SearchManager
 import android.app.SearchableInfo
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -22,7 +24,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
-import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
@@ -38,9 +39,14 @@ import androidx.core.view.MenuProvider
 import androidx.core.view.size
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.search.SearchBar
 import com.google.android.material.search.SearchView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.sqlunet.browser.ColorUtils.fetchColor
 import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.ColorUtils.tint
@@ -76,11 +82,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * Search view
      */
     private lateinit var searchView: SearchView
-
-    /**
-     * View that holds sugestions
-     */
-    private lateinit var suggestionContainer: LinearLayout
 
     /**
      * Stored between onViewStateRestored and onResume
@@ -163,10 +164,13 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // search mode
         searchBar = requireActivity().findViewById(ActivitiesR.id.search_bar)
         searchView = requireActivity().findViewById(ActivitiesR.id.search_view)
-        suggestionContainer = requireActivity().findViewById(ActivitiesR.id.search_view_suggestion_container)
+
+        // connect searchbar and searchview
         searchView.setupWithSearchBar(searchBar)
         setUpSearchBar()
         setupSearchView()
+
+
     }
 
     override fun onResume() {
@@ -238,16 +242,42 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // initially search view
         searchView.hide()
 
-        // searchView.setSearchableInfo(searchableInfo)
+         // m e n u
+        searchView.inflateMenu(R.menu.browse)
+        searchView.setOnMenuItemClickListener { menuItem: MenuItem? ->
+            menuItem?.title?.let {
+                Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
+            }
+            true
+        }
+
+        // b a c k   p r e s s e d
+        val onBackPressedCallback: OnBackPressedCallback =
+            object : OnBackPressedCallback( /* enabled= */false) {
+                override fun handleOnBackPressed() {
+                    searchView.hide()
+                }
+            }
+
+        // 1. Access the dispatcher safely
+        val dispatcher = requireActivity().onBackPressedDispatcher
+        // 2. Add the callback using the Fragment's viewLifecycleOwner. This ensures the callback is removed when the fragment view is destroyed
+        dispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+        // 3. Update the SearchView listener
+        searchView.addTransitionListener { _, _, newState ->
+            onBackPressedCallback.isEnabled = (newState == SearchView.TransitionState.SHOWN)
+        }
+
+        // search info
         val searchableInfo: SearchableInfo = getSearchInfo()
 
-        // 1. Manually set the hint from your searchable.xml
+        // set the hint from your searchable.xml
         val hintRes = searchableInfo.hintId
         if (hintRes != 0) {
             searchView.hint = getString(hintRes)
         }
 
-        // 2. Handle the search submission
+        // submission
         searchView.editText.setOnEditorActionListener { textView, actionId, event ->
             val query = textView.text.toString()
 
@@ -260,46 +290,36 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
             // emulate what the legacy SearchView did automatically
             // trigger the search intent manually for M3 SearchView
-            val intent = Intent(Intent.ACTION_SEARCH).apply {
-
-                // use the component name directly from SearchableInfo
-                component = searchableInfo.searchActivity
-                putExtra(SearchManager.QUERY, query)
-            }
-            startActivity(intent)
+            performSearch(query, searchableInfo)
             true
         }
 
-        // menu
-        searchView.inflateMenu(R.menu.browse)
-        searchView.setOnMenuItemClickListener { menuItem: MenuItem? ->
-            menuItem?.title?.let {
-                Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
-            }
-            true
+        // s u g g e s t i o n
+        // adapter to recyclerview
+        val adapter = SuggestionAdapter { selectedText ->
+            // Handle suggestion click
+            searchView.setText(selectedText)
+            searchView.hide()
+            performSearch(selectedText, searchableInfo)
         }
-
-        val onBackPressedCallback: OnBackPressedCallback =
-            object : OnBackPressedCallback( /* enabled= */false) {
-                override fun handleOnBackPressed() {
-                    searchView.hide()
+        val suggestionContainer  = requireActivity().findViewById<RecyclerView>(ActivitiesR.id.search_view_suggestion_container)
+        suggestionContainer.adapter = adapter
+        // handle suggestion selection
+        searchView.editText.addTextChangedListener { text ->
+            val query = text.toString()
+            if (query.isEmpty() || query.isBlank() || query.length < 3) {
+                adapter.submitList(emptyList())
+                return@addTextChangedListener
+            }
+            // provider queried on a background thread
+            lifecycleScope.launch(Dispatchers.IO) {
+                val results = getSuggestions(query, searchableInfo)
+                Log.d(TAG, "Suggestions: $results")
+                withContext(Dispatchers.Main) {
+                    adapter.submitList(results)
                 }
             }
-
-        // back pressed
-        // 1. Access the dispatcher safely
-        val dispatcher = requireActivity().onBackPressedDispatcher
-        // 2. Add the callback using the Fragment's viewLifecycleOwner. This ensures the callback is removed when the fragment view is destroyed
-        dispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
-        // 3. Update the SearchView listener
-        searchView.addTransitionListener { _, _, newState ->
-            onBackPressedCallback.isEnabled = (newState == SearchView.TransitionState.SHOWN)
         }
-
-        // searchView.editText.addTextChangedListener {
-        //     val query = it.toString()
-        //     // same logic as before
-        // }
 
         // trigger focus
         if (triggerFocusSearch()) {
@@ -308,6 +328,55 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                                                             //searchView.hide()
                                                         }, 1500)
         }
+    }
+
+    fun performSearch(query: String, searchableInfo: SearchableInfo) {
+        val intent = Intent(Intent.ACTION_SEARCH).apply {
+
+            // use the component name directly from SearchableInfo
+            component = searchableInfo.searchActivity
+            putExtra(SearchManager.QUERY, query)
+        }
+        startActivity(intent)
+
+    }
+
+    fun getSuggestions(query: String, searchableInfo: SearchableInfo): List<String> {
+
+        val authority = searchableInfo.suggestAuthority
+        val path = searchableInfo.suggestPath ?: ""
+        return fetchSuggestions(query, authority, path)
+    }
+
+    fun fetchSuggestions(query: String, authority: String, path: String?): List<String> {
+
+        // The standard URI format for search suggestions
+        val uriBuilder = Uri.Builder()
+            .scheme(ContentResolver.SCHEME_CONTENT)
+            .authority(authority)
+            .query("")
+            .fragment("")
+
+        if (path != null && path.isNotEmpty()) {
+            uriBuilder.appendEncodedPath(path)
+        }
+
+        // Most providers expect the query appended at the end
+        uriBuilder.appendPath(SearchManager.SUGGEST_URI_PATH_QUERY)
+        uriBuilder.appendPath(query)
+
+        val uri = uriBuilder.build()
+        val suggestions = mutableListOf<String>()
+
+        requireContext().contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+            val text1Index = cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1)
+            while (cursor.moveToNext()) {
+                if (text1Index != -1) {
+                    suggestions.add(cursor.getString(text1Index))
+                }
+            }
+        }
+        return suggestions
     }
 
     protected open fun triggerFocusSearch(): Boolean {
