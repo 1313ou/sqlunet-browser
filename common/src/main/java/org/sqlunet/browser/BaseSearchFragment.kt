@@ -21,6 +21,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
+import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.annotation.ArrayRes
@@ -64,9 +65,19 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     private lateinit var toolbar: Toolbar
 
     /**
-     * Search bar that holds query
+     * Search bar
      */
     private lateinit var searchBar: SearchBar
+
+    /**
+     * Search view
+     */
+    private lateinit var searchView: SearchView
+
+    /**
+     * View that holds sugestions
+     */
+    private lateinit var suggestionContainer: LinearLayout
 
     /**
      * Stored between onViewStateRestored and onResume
@@ -149,8 +160,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // search mode
         searchBar = requireActivity().findViewById(ActivitiesR.id.search_bar)
         searchView = requireActivity().findViewById(ActivitiesR.id.search_view)
+        suggestionContainer = requireActivity().findViewById(ActivitiesR.id.search_view_suggestion_container)
         searchView.setupWithSearchBar(searchBar)
-        setupSearchView(searchView, getSearchInfo(requireActivity()))
+        setupSearchView(getSearchInfo(requireActivity()))
     }
 
     override fun onResume() {
@@ -173,6 +185,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     override fun onDestroyView() {
         super.onDestroyView()
         toolbar.setSubtitle(R.string.app_subname)
+        searchBar.visibility = View.GONE
+        searchView.hide()
     }
 
     // T O O L B A R
@@ -199,27 +213,26 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     /**
      * Set up search view
      *
-     * @param searchView     search view
      * @param searchableInfo searchable info
      */
-    private fun setupSearchView(searchView: SearchView, searchableInfo: SearchableInfo?) {
+    private fun setupSearchView(searchableInfo: SearchableInfo?) {
 
         // search view
         // searchView.setSearchableInfo(searchableInfo)
         searchBar.visibility = View.VISIBLE
         searchView.hide()
 
-        searchView.editText.setOnEditorActionListener { _, _, _ ->
-            clearSearchView(searchView)
-            closeKeyboard()
-            searchView.hide()
-            true
-        }
+        //searchView.editText.setOnEditorActionListener { _, _, _ ->
+        //    clearSearchView(searchView)
+        //    closeKeyboard()
+        //    searchView.hide()
+        //    true
+        //}
 
-        searchView.editText.addTextChangedListener {
-            val query = it.toString()
-            // same logic as before
-        }
+        // searchView.editText.addTextChangedListener {
+        //     val query = it.toString()
+        //     // same logic as before
+        // }
 
         // trigger focus
         if (triggerFocusSearch()) {
@@ -414,6 +427,44 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     // protected fun beforeSaving(fragment: Fragment, tag: String?, @IdRes where: Int, vararg childFragmentTags: String) {
     //     // FragmentUtils.removeAllChildFragment(getChildFragmentManager(), fragment, tag, where, *childFragmentTags)
     // }
+
+    // S E A R C H
+
+    fun enableSearch() {
+        // searchBar.hint = fragment.searchHint
+        searchBar.visibility = View.VISIBLE
+
+        searchView.editText.addTextChangedListener {
+            // activeSearchFragment?.onSearchQueryChanged(it.toString())
+        }
+
+        searchView.editText.setOnEditorActionListener { _, _, _ ->
+            // activeSearchFragment?.onSearchSubmit(searchView.text.toString())
+            searchView.hide()
+            true
+        }
+    }
+
+    fun hideSearch() {
+        //activeSearchFragment = null
+        searchBar.visibility = View.GONE
+        searchView.hide()
+        searchView.editText.setText("")
+    }
+
+    fun showSearchBar(hint: String) {
+        searchBar.hint = hint
+        searchBar.visibility = View.VISIBLE
+    }
+
+    fun hideSearchBar() {
+        searchBar.visibility = View.GONE
+        searchView.hide()
+    }
+
+    fun expandSearch() {
+        searchView.show()
+    }
 
     companion object {
 
