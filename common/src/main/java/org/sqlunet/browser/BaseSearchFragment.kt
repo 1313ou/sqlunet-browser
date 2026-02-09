@@ -267,9 +267,16 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     searchView.hide()
                 }
             }
-        val activity: AppCompatActivity = requireActivity() as AppCompatActivity
-        // activity.getOnBackPressedDispatcher().addCallback(activity, onBackPressedCallback)
-        // searchView.addTransitionListener { _: SearchView?, _: SearchView.TransitionState?, newState: SearchView.TransitionState? -> onBackPressedCallback.setEnabled(newState == SearchView.TransitionState.SHOWN) }
+
+        // back pressed
+        // 1. Access the dispatcher safely
+        val dispatcher = requireActivity().onBackPressedDispatcher
+        // 2. Add the callback using the Fragment's viewLifecycleOwner. This ensures the callback is removed when the fragment view is destroyed
+        dispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+        // 3. Update the SearchView listener
+        searchView.addTransitionListener { _, _, newState ->
+            onBackPressedCallback.isEnabled = (newState == SearchView.TransitionState.SHOWN)
+        }
 
         // searchView.editText.addTextChangedListener {
         //     val query = it.toString()
