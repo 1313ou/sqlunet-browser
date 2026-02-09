@@ -8,7 +8,6 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:hint="@string/hint_search"
-	android:visibility="gone"
 	app:layout_anchor="@id/search_bar">
 	<!-- Search suggestions/results go here (e.g. RecyclerView) -->
 </com.google.android.material.search.SearchView>
