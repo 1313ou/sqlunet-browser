@@ -3,22 +3,25 @@
   -->
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/coord_layout"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:context="org.sqlunet.browser.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coord_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.sqlunet.browser.MainActivity">
 
-	<com.google.android.material.appbar.AppBarLayout
-		android:id="@+id/appbar_layout"
-		android:layout_width="match_parent"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_layout"
+        android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:fitsSystemWindows="@bool/appbar_fits_system_windows">
 
-		<include layout="@layout/toolbar" />
+	    <include layout="@layout/toolbar" />
+	    <include layout="@layout/searchbar" />
 
-	</com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-	<include layout="@layout/content_main" />
+    <include layout="@layout/searchview" />
+
+    <include layout="@layout/content_main" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

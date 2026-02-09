@@ -10,7 +10,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.widget.Toolbar
+import androidx.core.widget.addTextChangedListener
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -22,9 +24,11 @@ import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.bbou.rate.AppRate.Companion.invoke
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.search.SearchBar
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.NightMode.createOverrideConfigurationForDayNight
 import org.sqlunet.settings.StorageSettings
+import org.sqlunet.activities.R as ActivitiesR
 
 /**
  * Main activity
@@ -32,6 +36,10 @@ import org.sqlunet.settings.StorageSettings
 open class MainActivity : BaseActivityWithDrawer() {
 
     private var appBarConfiguration: AppBarConfiguration? = null
+
+    private lateinit var searchBar: SearchBar
+
+    private lateinit var searchView: com.google.android.material.search.SearchView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +56,16 @@ open class MainActivity : BaseActivityWithDrawer() {
         // toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        searchBar = findViewById(ActivitiesR.id.search_bar)
+        searchView = findViewById(ActivitiesR.id.search_view)
+
+        searchView.setupWithSearchBar(searchBar)
+        //hideSearch()
+        //enableSearch()
+        //showSearchBar("hello")
+        //hideSearchBar()
+        //expandSearch()
 
         // navigation top destinations
         val topDests: IntArray
@@ -90,6 +108,42 @@ open class MainActivity : BaseActivityWithDrawer() {
     }
 
     // S E A R C H
+
+ fun enableSearch() {
+        // searchBar.hint = fragment.searchHint
+        searchBar.visibility = View.VISIBLE
+
+        searchView.editText.addTextChangedListener {
+            // activeSearchFragment?.onSearchQueryChanged(it.toString())
+        }
+
+        searchView.editText.setOnEditorActionListener { _, _, _ ->
+            // activeSearchFragment?.onSearchSubmit(searchView.text.toString())
+            searchView.hide()
+            true
+        }
+    }
+
+   fun hideSearch() {
+        //activeSearchFragment = null
+        searchBar.visibility = View.GONE
+        searchView.hide()
+        searchView.editText.setText("")
+    }
+
+    fun showSearchBar(hint: String) {
+        searchBar.hint = hint
+        searchBar.visibility = View.VISIBLE
+    }
+
+    fun hideSearchBar() {
+        searchBar.visibility = View.GONE
+        searchView.hide()
+    }
+
+    fun expandSearch() {
+        searchView.show()
+    }
 
     /**
      * Handle intent dispatched by search view (either onCreate or onNewIntent if activity is single top)

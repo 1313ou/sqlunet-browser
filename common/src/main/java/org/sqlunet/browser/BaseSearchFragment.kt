@@ -28,19 +28,22 @@ import androidx.annotation.AttrRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.core.view.size
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
+import com.google.android.material.search.SearchBar
+import com.google.android.material.search.SearchView
 import org.sqlunet.browser.ColorUtils.fetchColor
 import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.ColorUtils.tint
 import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
-import androidx.core.view.size
-import androidx.core.graphics.drawable.toDrawable
 import com.google.android.material.R as MaterialR
+import org.sqlunet.activities.R as ActivitiesR
 
 /**
  * Base search fragment
@@ -56,9 +59,14 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     // C O M P O N E N T S
 
     /**
-     * Search view -held in search menuitem) that holds query
+     * Search view that holds query
      */
-    private var searchView: SearchView? = null
+    private lateinit var searchView: SearchView
+
+    /**
+     * Search bar that holds query
+     */
+    private lateinit var searchBar: SearchBar
 
     /**
      * Stored between onViewStateRestored and onResume
@@ -90,7 +98,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         manager.addOnBackStackChangedListener {
             val count = manager.backStackEntryCount
             Log.d(TAG, "BackStack: $count")
-            val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
+            val toolbar = requireActivity().findViewById<Toolbar>(ActivitiesR.id.toolbar)!!
             if (count > 0) {
                 toolbar.setSubtitle(query ?: getString(R.string.app_subname))
             } else {
@@ -120,10 +128,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 // MenuCompat.setGroupDividerEnabled(menu, true)
                 Log.d(TAG, "MenuProvider: onCreateMenu() size=" + menu.size)
 
-                // set up search view
-                searchView = getSearchView(menu)
-                setupSearchView(searchView!!, getSearchInfo(requireActivity()))
-
                 // toolbar
                 // must have
                 val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
@@ -140,6 +144,12 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(menuProvider, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
+
+        // search mode
+        searchBar = requireActivity().findViewById(ActivitiesR.id.search_bar)
+        searchView = requireActivity().findViewById(ActivitiesR.id.search_view)
+        searchView.setupWithSearchBar(searchBar)
+        setupSearchView(searchView, getSearchInfo(requireActivity()))
     }
 
     override fun onResume() {
@@ -193,24 +203,30 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * @param searchableInfo searchable info
      */
     private fun setupSearchView(searchView: SearchView, searchableInfo: SearchableInfo?) {
-        // search view
-        searchView.setSearchableInfo(searchableInfo)
-        searchView.setIconifiedByDefault(true)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                clearSearchView(searchView)
-                closeKeyboard()
-                return false
-            }
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                return false
-            }
-        })
+        // search view
+        // searchView.setSearchableInfo(searchableInfo)
+        searchBar.visibility = View.VISIBLE
+        searchView.hide()
+
+        searchView.editText.setOnEditorActionListener { _, _, _ ->
+            clearSearchView(searchView)
+            closeKeyboard()
+            searchView.hide()
+            true
+        }
+
+        searchView.editText.addTextChangedListener {
+            val query = it.toString()
+            // same logic as before
+        }
 
         // trigger focus
         if (triggerFocusSearch()) {
-            Handler(Looper.getMainLooper()).postDelayed({ searchView.isIconified = false }, 1500)
+            Handler(Looper.getMainLooper()).postDelayed({
+                                                            searchBar.visibility = View.VISIBLE
+                                                            //searchView.hide()
+                                                        }, 1500)
         }
     }
 
@@ -219,9 +235,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     }
 
     fun clearQuery() {
-        if (searchView != null) {
-            clearSearchView(searchView!!)
-        }
+        clearSearchView(searchView)
         closeKeyboard()
     }
 
@@ -413,14 +427,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
          */
         private const val STATE_SPINNER = "selected_mode"
 
-        // S E A R C H V I E W
-
-        private fun getSearchView(menu: Menu): SearchView? {
-            // menu item
-            val searchMenuItem = menu.findItem(R.id.search) ?: return null
-            // search view
-            return searchMenuItem.actionView as SearchView?
-        }
+        // S E A R C H
 
         private fun getSearchInfo(activity: Activity): SearchableInfo? {
             val componentName = activity.componentName
@@ -431,8 +438,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         private fun clearSearchView(searchView: SearchView) {
             searchView.clearFocus()
             searchView.isFocusable = false
-            searchView.setQuery("", false)
-            searchView.isIconified = true
+            //searchView.editText.text = ""
+            //searchView.isIconified = true
         }
     }
 }
