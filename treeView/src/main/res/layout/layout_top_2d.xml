@@ -11,8 +11,7 @@
 	<HorizontalScrollView
 		android:id="@+id/tree_view_anchor"
 		android:layout_width="wrap_content"
-		android:layout_height="match_parent"
-		android:paddingBottom="@dimen/scroll_tail_padding">
+		android:layout_height="match_parent">
 
 	</HorizontalScrollView>
 </androidx.core.widget.NestedScrollView>
