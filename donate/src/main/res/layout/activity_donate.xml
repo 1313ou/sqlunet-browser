@@ -34,7 +34,7 @@
 				android:contentDescription="@string/title_donate"
 				android:gravity="center_horizontal"
 				android:padding="5dp"
-				android:src="@drawable/logo_app"
+				android:src="@drawable/ic_logo"
 				android:visibility="visible" />
 
 			<TextView
