@@ -7,13 +7,15 @@
 	android:id="@+id/senseScrollView"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:clipToPadding="false"
 	tools:context="org.sqlunet.wordnet.browser.SenseActivity">
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
-		<!-- TODO testing
+
+		<!--
 		<TextView
 			android:id="@+id/testTreeView"
 			android:layout_width="wrap_content"
@@ -41,6 +43,7 @@
 			android:layout_height="wrap_content"
 			android:text="@string/label_contents"/>
 		-->
+
 		<RelativeLayout
 			android:id="@+id/data_contents"
 			style="@style/Data.Contents"
