@@ -10,6 +10,9 @@
 	<dimen name="activity_horizontal_margin">16dp</dimen>
 	<dimen name="activity_vertical_margin">16dp</dimen>
 
+	<!-- scroll tail -->
+	<dimen name="scroll_tail_padding">35dp</dimen>
+
 	<!-- web -->
 	<dimen name="web_horizontal_padding" tools:ignore="UnusedResources">0dp</dimen>
 	<dimen name="web_vertical_padding" tools:ignore="UnusedResources">0dp</dimen>
