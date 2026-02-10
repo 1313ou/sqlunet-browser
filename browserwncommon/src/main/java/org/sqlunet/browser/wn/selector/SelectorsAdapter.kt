@@ -26,7 +26,7 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (cursor!!.moveToPosition(position)) {
-            val posId = cursor!!.getInt(cursor!!.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID))
+            val posId = cursor!!.getString(cursor!!.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID))
             val domain = cursor!!.getString(cursor!!.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN))
             val definition = cursor!!.getString(cursor!!.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DEFINITION))
             val casedWord = cursor!!.getString(cursor!!.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD))
