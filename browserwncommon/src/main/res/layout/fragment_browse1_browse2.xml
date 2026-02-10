@@ -10,19 +10,20 @@
 	android:orientation="horizontal">
 
 	<!-- selectors -->
-	<ScrollView
+	<androidx.core.widget.NestedScrollView
 		android:id="@+id/selectors_pane"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
 		android:layout_weight="1"
-		android:clipToPadding="false">
+		android:clipToPadding="false"
+		android:fillViewport="true">
 
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/container_selectors"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:paddingBottom="@dimen/scroll_tail_padding" />
-	</ScrollView>
+	</androidx.core.widget.NestedScrollView>
 
 	<!-- details -->
 	<androidx.core.widget.NestedScrollView
