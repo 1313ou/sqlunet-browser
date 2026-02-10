@@ -2,24 +2,28 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/container_browse1"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:context="org.sqlunet.browser.wn.selector.Browse1Activity">
+	android:layout_height="match_parent">
 
-	<!-- selectors -->
-	<androidx.fragment.app.FragmentContainerView
-		android:id="@+id/container_selectors"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent" />
-
-	<!-- detail -->
-	<androidx.fragment.app.FragmentContainerView
-		android:id="@+id/container_browse2"
+	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:visibility="gone" />
+		android:orientation="vertical">
 
-</RelativeLayout>
+		<!-- selectors -->
+		<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/container_selectors"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent" />
+
+		<!-- detail -->
+		<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/container_browse2"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:visibility="gone" />
+
+	</RelativeLayout>
+</ScrollView>

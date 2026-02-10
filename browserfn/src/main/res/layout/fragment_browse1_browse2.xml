@@ -3,24 +3,30 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/container_browse12"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:baselineAligned="false"
-	android:orientation="horizontal"
-	tools:context="org.sqlunet.browser.fn.selector.Browse1Activity">
+	android:orientation="horizontal">
 
 	<!-- selectors -->
-	<androidx.fragment.app.FragmentContainerView
-		android:id="@+id/container_selectors"
+	<androidx.core.widget.NestedScrollView
+		android:id="@+id/selectors_pane"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
 		android:layout_weight="1"
-		tools:layout="@layout/fragment_selectors" />
+		android:clipToPadding="false">
 
-	<!-- detail -->
+		<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/container_selectors"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingBottom="@dimen/scroll_tail_padding" />
+	</androidx.core.widget.NestedScrollView>
+
+	<!-- details -->
 	<androidx.core.widget.NestedScrollView
-		android:id="@+id/detail"
+		android:id="@+id/details_pane"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
 		android:layout_weight="2"
