@@ -29,7 +29,7 @@
 /.idea/studiobot.xml
 **.iml
 **.iws
-**.test.xml
+**_test.xml
 **/build
 **/keystore*.properties
 **/strings_license-nontranslatable.xml
