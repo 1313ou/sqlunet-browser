@@ -14,9 +14,11 @@
 		android:layout_height="wrap_content"
 		android:fitsSystemWindows="@bool/appbar_fits_system_windows">
 
-		<include layout="@layout/toolbar" />
+		<include layout="@layout/searchbar" />
 
 	</com.google.android.material.appbar.AppBarLayout>
+
+	<include layout="@layout/searchview" />
 
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/fragment_browse"
