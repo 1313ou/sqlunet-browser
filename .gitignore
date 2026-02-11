@@ -26,8 +26,10 @@
 /.idea/modules
 /.idea/workspace.xml
 /.idea/tasks.xml
+/.idea/studiobot.xml
 **.iml
 **.iws
+**.test.xml
 **/build
 **/keystore*.properties
 **/strings_license-nontranslatable.xml
