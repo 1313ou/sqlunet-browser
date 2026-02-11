@@ -6,20 +6,21 @@
 	android:id="@+id/container_browse1"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:orientation="horizontal"
-	android:paddingBottom="@dimen/scroll_tail_padding">
+	android:orientation="horizontal">
 
 	<!-- selectors -->
-	<androidx.fragment.app.FragmentContainerView
-		android:id="@+id/container_selectors"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent" />
+	<androidx.core.widget.NestedScrollView
+		android:id="@+id/selectors_pane"
+		android:layout_width="0dp"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		android:clipToPadding="false"
+		android:fillViewport="true">
 
-	<!-- details -->
-	<androidx.fragment.app.FragmentContainerView
-		android:id="@+id/container_browse2"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:visibility="gone" />
+		<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/container_selectors"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent" />
+	</androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
