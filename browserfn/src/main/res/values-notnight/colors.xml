@@ -4,10 +4,10 @@
 
 <resources>
 
-	<color name="primaryColor">#716D60</color>
+	<color name="primaryColor">#A6A69E</color>
 	<color name="primaryDarkColor">#5D5A4C</color>
-	<color name="primaryLightColor">#79735A</color>
-	<color name="onPrimaryColor">#eeeeee</color>
+	<color name="primaryLightColor">#CECAB8</color>
+	<color name="onPrimaryColor">#000000</color>
 
 	<color name="secondaryColor">#1de9b6</color>
 	<color name="secondaryLightColor">#6effe8</color>
