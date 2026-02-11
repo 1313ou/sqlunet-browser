@@ -3,7 +3,6 @@
  */
 package org.sqlunet.browser.fn.selector
 
-import android.database.Cursor
 import android.os.Bundle
 import android.view.View
 import androidx.core.net.toUri
@@ -13,7 +12,6 @@ import org.sqlunet.browser.BaseSelectorsRecyclerFragment
 import org.sqlunet.browser.fn.R
 import org.sqlunet.framenet.FnFramePointer
 import org.sqlunet.framenet.FnLexUnitPointer
-import org.sqlunet.framenet.loaders.Queries
 import org.sqlunet.framenet.loaders.Queries.prepareSelect
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_or_Frames
 import org.sqlunet.framenet.provider.FrameNetProvider.Companion.makeUri
@@ -29,6 +27,39 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
     init {
         layoutId = R.layout.fragment_selectors
         viewModelKey = "fn:selectors(word)"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // arguments
+        val args = requireArguments()
+
+        // target word
+        var query = args.getString(ProviderArgs.ARG_QUERYSTRING)!!
+        query = query.trim { it <= ' ' }.lowercase()
+        word = query
+    }
+
+    // A D A P T E R
+
+    override fun makeAdapter(): RecyclerView.Adapter<*> {
+        val adapter = SelectorsAdapter()
+        adapter.setOnClickListener(object : SelectorsAdapter.OnClickListener {
+            override fun onClick(position: Int, view: View) {
+                activate(position)
+            }
+        })
+        return adapter
+    }
+
+    // L O A D
+
+    override fun load() {
+        // load the contents
+        val sql = prepareSelect(word)
+        val uri = makeUri(sql.providerUri).toUri()
+        dataModel!!.loadData(uri, sql, null)
     }
 
     override fun activate(position: Int) {
@@ -56,41 +87,6 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
                 listener!!.onItemSelected(pointer, word, wordId)
             }
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // arguments
-        val args = requireArguments()
-
-        // target word
-        var query = args.getString(ProviderArgs.ARG_QUERYSTRING)
-        if (query != null) {
-            query = query.trim { it <= ' ' }.lowercase()
-        }
-        word = query!!
-    }
-
-    // A D A P T E R
-
-    override fun makeAdapter(): RecyclerView.Adapter<*> {
-        val adapter = SelectorsAdapter()
-        adapter.setOnClickListener(object : SelectorsAdapter.OnClickListener {
-            override fun onClick(position: Int, view: View) {
-                activate(position)
-            }
-        })
-        return adapter
-    }
-
-    // L O A D
-
-    override fun load() {
-        // load the contents
-        val sql = prepareSelect(word)
-        val uri = makeUri(sql.providerUri).toUri()
-        dataModel!!.loadData(uri, sql, null)
     }
 
     // C L I C K   L I S T E N E R
