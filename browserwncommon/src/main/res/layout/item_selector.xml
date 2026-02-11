@@ -34,16 +34,13 @@
 			android:layout_gravity="center_vertical"
 			android:textIsSelectable="false" />
 
-		<View
-			android:layout_width="0dp"
-			android:layout_height="0dp"
-			android:layout_weight="1" />
-
 		<TextView
 			android:id="@+id/domain"
 			style="@style/Data.Domain"
-			android:layout_width="wrap_content"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:gravity="end"
 			android:textIsSelectable="false" />
 	</LinearLayout>
 
@@ -74,15 +71,15 @@
 		android:orientation="horizontal">
 
 		<TextView
-			android:id="@+id/sensenum"
-			style="@style/Data.SenseNum"
+			android:id="@+id/sensekey"
+			style="@style/Data.SenseKey"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textIsSelectable="false" />
 
 		<TextView
-			android:id="@+id/sensekey"
-			style="@style/Data.SenseKey"
+			android:id="@+id/sensenum"
+			style="@style/Data.SenseNum"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textIsSelectable="false" />
