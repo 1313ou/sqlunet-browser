@@ -6,26 +6,27 @@ package org.sqlunet.browser.wn.selector
 import android.database.Cursor
 import android.os.Bundle
 import android.view.View
-import android.widget.CursorAdapter
-import android.widget.ImageView
-import android.widget.SimpleCursorAdapter
-import android.widget.TextView
-import org.sqlunet.browser.BaseSelectorsListFragment
-import org.sqlunet.browser.wn.lib.R
-import org.sqlunet.provider.ProviderArgs
-import org.sqlunet.speak.Pronunciation.Companion.sortedPronunciations
-import org.sqlunet.wordnet.SensePointer
-import org.sqlunet.wordnet.loaders.Queries.prepareWordXSelect
-import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains
-import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
 import androidx.core.net.toUri
+import androidx.recyclerview.widget.RecyclerView
+import org.sqlunet.browser.BaseSelectorsRecyclerFragment
+import org.sqlunet.browser.wn.lib.R
+import org.sqlunet.loaders.Queries.prepareWordXSelect
+import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.wordnet.SensePointer
+import org.sqlunet.wordnet.provider.WordNetContract
+import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
 
 /**
  * Selector Fragment
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class SelectorsFragment : BaseSelectorsListFragment() {
+class SelectorsFragment : BaseSelectorsRecyclerFragment() {
+
+    init {
+        layoutId = R.layout.fragment_selectors
+        viewModelKey = "wn:selectors(word)"
+    }
 
     /**
      * Word id
@@ -47,74 +48,13 @@ class SelectorsFragment : BaseSelectorsListFragment() {
 
     // A D A P T E R
 
-    override fun makeAdapter(): CursorAdapter {
-        val adapter = SimpleCursorAdapter(
-            requireContext(), R.layout.item_selector, null, arrayOf(
-                Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID,
-                Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN,
-                Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DEFINITION,
-                Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD,
-                Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATIONS,
-                Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM,
-                Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEKEY,
-                Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.LEXID,
-                Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT,
-                Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID,
-                Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID,
-                Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEID
-            ), intArrayOf(
-                R.id.pos,
-                R.id.domain,
-                R.id.definition,
-                R.id.cased,
-                R.id.pronunciation,
-                R.id.sensenum,
-                R.id.sensekey,
-                R.id.lexid,
-                R.id.tagcount,
-                R.id.wordid,
-                R.id.synsetid,
-                R.id.senseid
-            ), 0
-        )
-        adapter.viewBinder = SimpleCursorAdapter.ViewBinder setViewBinder@{ view: View, cursor: Cursor, columnIndex: Int ->
-            var text = cursor.getString(columnIndex)
-
-            // pronunciation
-            if (view.id == R.id.pronunciation) {
-                text = sortedPronunciations(text)
+    override fun makeAdapter(): RecyclerView.Adapter<*> {
+        val adapter = SelectorsAdapter()
+        adapter.setOnClickListener(object : SelectorsAdapter.OnClickListener {
+            override fun onClick(position: Int, view: View) {
+                activate(position)
             }
-
-            // visibility
-            if (text == null) {
-                view.visibility = View.GONE
-                return@setViewBinder false
-            } else {
-                view.visibility = View.VISIBLE
-            }
-
-            // type of view
-            when (view) {
-                is TextView -> {
-                    view.text = text
-                    return@setViewBinder true
-                }
-
-                is ImageView -> {
-                    try {
-                        view.setImageResource(text.toInt())
-                        return@setViewBinder true
-                    } catch (_: NumberFormatException) {
-                        view.setImageURI(text.toUri())
-                        return@setViewBinder true
-                    }
-                }
-
-                else -> {
-                    throw IllegalStateException(view.javaClass.name + " is not a view that can be bound by this SimpleCursorAdapter")
-                }
-            }
-        }
+        })
         return adapter
     }
 
@@ -134,8 +74,35 @@ class SelectorsFragment : BaseSelectorsListFragment() {
      */
     private fun wordIdFromWordPostProcess(cursor: Cursor) {
         if (cursor.moveToFirst()) {
-            val idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID)
+            val idWordId = cursor.getColumnIndex(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID)
             wordId = cursor.getLong(idWordId)
+        }
+    }
+
+    override fun activate(position: Int) {
+        positionModel!!.setPosition(position)
+        if (listener != null) {
+            val adapter = recyclerView!!.adapter as SelectorsAdapter
+            val cursor = adapter.getCursor()
+            if (cursor != null && cursor.moveToPosition(position)) {
+                // column indexes
+                val idSynsetId = cursor.getColumnIndex(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID)
+                val idPos = cursor.getColumnIndex(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POS)
+                val idCased = cursor.getColumnIndex(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD)
+                val idPronunciation = cursor.getColumnIndex(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATIONS)
+
+                // retrieve
+                val synsetId = if (cursor.isNull(idSynsetId)) 0 else cursor.getLong(idSynsetId)
+                val pos = cursor.getString(idPos)
+                val cased = cursor.getString(idCased)
+                val pronunciation = cursor.getString(idPronunciation)
+
+                // pointer
+                val pointer = SensePointer(synsetId, wordId)
+
+                // notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
+                listener!!.onItemSelected(pointer, word, cased, pronunciation, pos)
+            }
         }
     }
 
@@ -157,11 +124,6 @@ class SelectorsFragment : BaseSelectorsListFragment() {
      */
     private var listener: Listener? = null
 
-    init {
-        layoutId = R.layout.fragment_selectors
-        viewModelKey = "wn:selectors(word)"
-    }
-
     /**
      * Set listener
      *
@@ -169,32 +131,5 @@ class SelectorsFragment : BaseSelectorsListFragment() {
      */
     fun setListener(listener: Listener?) {
         this.listener = listener
-    }
-
-    override fun activate(position: Int) {
-        positionModel!!.setPosition(position)
-        if (listener != null) {
-            val adapter = adapter!! as SimpleCursorAdapter
-            val cursor = adapter.cursor!!
-            if (cursor.moveToPosition(position)) {
-                // column indexes
-                val idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID)
-                val idPos = cursor.getColumnIndex(Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POS)
-                val idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD)
-                val idPronunciation = cursor.getColumnIndex(Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATIONS)
-
-                // retrieve
-                val synsetId = if (cursor.isNull(idSynsetId)) 0 else cursor.getLong(idSynsetId)
-                val pos = cursor.getString(idPos)
-                val cased = cursor.getString(idCased)
-                val pronunciation = cursor.getString(idPronunciation)
-
-                // pointer
-                val pointer = SensePointer(synsetId, wordId)
-
-                // notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
-                listener!!.onItemSelected(pointer, word, cased, pronunciation, pos)
-            }
-        }
     }
 }

@@ -4,4 +4,5 @@
 
 <resources>
 	<item name="target" type="id" />
+	<item name="selectors_list" type="id" />
 </resources>

@@ -33,7 +33,7 @@ import org.sqlunet.activities.R as ActivitiesR
 /**
  * Main activity
  */
-open class MainActivity : BaseActivityWithDrawer() {
+open class MainActivity : BaseActivity() {
 
     private var appBarConfiguration: AppBarConfiguration? = null
 

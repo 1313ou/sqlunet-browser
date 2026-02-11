@@ -14,7 +14,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
-import android.widget.ImageButton
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
@@ -26,6 +25,7 @@ import com.bbou.donate.billing.BillingManager.BillingListener
 import com.bbou.donate.billing.Products
 import com.bbou.donate.billing.Products.inappProducts
 import com.bbou.donate.billing.Products.init
+import com.google.android.material.button.MaterialButton
 import org.sqlunet.browser.BaseActivity
 import java.util.Date
 import org.sqlunet.activities.R as ActivitiesR
@@ -45,7 +45,7 @@ class DonateActivity : BaseActivity(), BillingListener {
     /**
      * Product id to buttons
      */
-    private val buttonsByProductId: MutableMap<String, ImageButton?> = HashMap()
+    private val buttonsByProductId: MutableMap<String, MaterialButton> = HashMap()
 
     /**
      * Overlay drawable
@@ -72,7 +72,7 @@ class DonateActivity : BaseActivity(), BillingListener {
 
         // image buttons
         val buttons = Array(n) {
-            val button: ImageButton = findViewById(BUTTON_IDS[it])!!
+            val button: MaterialButton = findViewById(BUTTON_IDS[it])!!
             button.setOnClickListener { button2: View ->
                 val tag = (button2.tag as String).toInt()
                 Log.d(TAG, "clicked $tag")
@@ -143,7 +143,7 @@ class DonateActivity : BaseActivity(), BillingListener {
         if (billingManager != null) {
             try {
                 billingManager!!.destroy()
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
                 // ignore
             }
         }
@@ -217,19 +217,17 @@ class DonateActivity : BaseActivity(), BillingListener {
     // H E L P E R
 
     private fun update(productId: String, isOwned: Boolean) {
-        val imageButton = buttonsByProductId[productId]
-        if (imageButton != null) {
-            val tag = (imageButton.tag as String).toInt()
-            val drawable = getDrawable(this, DRAWABLE_IDS[tag])
-            if (isOwned) {
-                val layers = arrayOfNulls<Drawable>(2)
-                layers[0] = drawable
-                layers[1] = overlay
-                val layerDrawable = LayerDrawable(layers)
-                imageButton.setImageDrawable(layerDrawable)
-            } else {
-                imageButton.setImageDrawable(drawable)
-            }
+        val imageButton = buttonsByProductId[productId]!!
+        val tag = (imageButton.tag as String).toInt()
+        val drawable = getDrawable(this, DRAWABLE_IDS[tag])
+        if (isOwned) {
+            val layers = arrayOfNulls<Drawable>(2)
+            layers[0] = drawable
+            layers[1] = overlay
+            val layerDrawable = LayerDrawable(layers)
+            imageButton.setIcon(layerDrawable)
+        } else {
+            imageButton.setIcon(drawable)
         }
     }
 

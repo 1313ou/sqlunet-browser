@@ -124,6 +124,6 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
     private fun isTwoPane(view: View): Boolean {
         // the detail view will be present only in the large-screen layouts
         // if this view is present, then the activity should be in two-pane mode.
-        return view.findViewById<View?>(R.id.detail) != null
+        return view.findViewById<View?>(R.id.details_pane) != null
     }
 }

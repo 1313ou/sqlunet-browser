@@ -38,17 +38,18 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    open val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
-    open val toolbar: View? by lazy { findViewById(R.id.toolbar) }
-    open val fab: View? by lazy { findViewById(R.id.fab) }
+    // open val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
+    // override open val rootView: View by lazy { findViewById<ViewGroup>(CommonR.id.activity_main_sub) }
+    // open val toolbar: View? by lazy { findViewById(R.id.toolbar) }
+    // open val fab: View? by lazy { findViewById(R.id.fab) }
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
+    // override fun onPostCreate(savedInstanceState: Bundle?) {
+    //    super.onPostCreate(savedInstanceState)
 
         // handleInsets(rootView)
         // handleInsetsTop(toolbar)
         // handleInsetsBottom(rootView)
         // handleInsetsBottom(fab)
         // handleInsets2(rootView!!)
-    }
+    // }
 }

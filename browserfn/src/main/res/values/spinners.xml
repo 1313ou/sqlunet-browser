@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- browser spinner
 	SELECTORS

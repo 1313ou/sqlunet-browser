@@ -4,17 +4,17 @@
 
 <resources>
 
-	<color name="primaryColor">#e2dbbe</color>
-	<color name="primaryDarkColor">#958e6e</color>
-	<color name="primaryLightColor">#f4ebc7</color>
-	<color name="onPrimaryColor">#444444</color>
+	<color name="primaryColor">#A6A69E</color>
+	<color name="primaryDarkColor">#5D5A4C</color>
+	<color name="primaryLightColor">#CECAB8</color>
+	<color name="onPrimaryColor">#000000</color>
 
 	<color name="secondaryColor">#1de9b6</color>
 	<color name="secondaryLightColor">#6effe8</color>
-	<color name="onSecondaryColor">#F0F0F0</color>
+	<color name="onSecondaryColor">#000000</color>
 
 	<color name="colorId">#007B66</color>
-    <color name="colorName">#007B66</color>
+	<color name="colorName">#007B66</color>
 	<color name="colorDefinition">#007B66</color>
 	<color name="colorCased">#73789E</color>
 	<color name="colorPronunciation">#6275FA</color>

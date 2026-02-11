@@ -6,12 +6,14 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/container_browse2m"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:clipToPadding="false">
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical">
+		android:orientation="vertical"
+		android:paddingBottom="@dimen/scroll_tail_padding">
 
 		<TextView
 			android:id="@+id/target"
