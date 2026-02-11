@@ -7,7 +7,6 @@ import android.database.Cursor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.CursorRecyclerViewAdapter
@@ -39,13 +38,13 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
             val synsetId = cursor!!.getLong(cursor!!.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID))
             val senseId = cursor!!.getLong(cursor!!.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEID))
 
-            holder.pos.text = posId.toString()
-            holder.domain.text = domain
-            holder.definition.text = definition
-            holder.cased.text = casedWord
-            holder.pronunciation.text = pronunciations
+            bindTextView(holder.pos, posId)
+            bindTextView(holder.domain, domain)
+            bindTextView(holder.definition, definition)
+            bindTextView(holder.cased, casedWord)
+            bindTextView(holder.pronunciation, pronunciations)
+            bindTextView(holder.sensekey, senseKey)
             holder.sensenum.text = senseNum.toString()
-            holder.sensekey.text = senseKey
             holder.lexid.text = lexId.toString()
             holder.tagcount.text = tagCount.toString()
             holder.wordid.text = wordId.toString()
@@ -55,6 +54,15 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
             holder.itemView.setOnClickListener {
                 onClickListener?.onClick(position, holder.itemView)
             }
+        }
+    }
+
+    private fun bindTextView(textView: TextView, text: String?) {
+        if (text.isNullOrEmpty()) {
+            textView.visibility = View.GONE
+        } else {
+            textView.text = text
+            textView.visibility = View.VISIBLE
         }
     }
 
