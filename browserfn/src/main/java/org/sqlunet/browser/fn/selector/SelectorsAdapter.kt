@@ -14,6 +14,7 @@ import org.sqlunet.browser.CursorRecyclerViewAdapter
 import org.sqlunet.browser.fn.R
 import org.sqlunet.framenet.loaders.Queries
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_or_Frames
+import org.sqlunet.style.Colors
 import org.sqlunet.xnet.R as XNetR
 
 /**
@@ -23,10 +24,10 @@ import org.sqlunet.xnet.R as XNetR
  */
 class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), CursorRecyclerViewAdapter {
 
-     /**
+    /**
      * Cursor
      */
-   private var cursor: Cursor? = null
+    private var cursor: Cursor? = null
 
     /**
      * OnClickListener
@@ -97,8 +98,19 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
         old?.close()
     }
 
-    // click
+    // helper
 
+    private fun bindTextView(textView: TextView, text: String?, isDimmed: Boolean) {
+        if (text == null || "0" == text) {
+            textView.visibility = View.GONE
+        } else {
+            textView.visibility = View.VISIBLE
+            textView.text = text
+            textView.setTextColor(if (isDimmed) Colors.textDimmedForeColor else Colors.textNormalForeColor)
+        }
+    }
+
+    // click
 
     /**
      * Set OnClickListener
@@ -123,17 +135,6 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
         fun onClick(position: Int, view: View)
     }
 
-    // helper
-
-    private fun bindTextView(textView: TextView, text: String?, flag: Boolean) {
-        if (text.isNullOrEmpty()) {
-            textView.visibility = View.GONE
-        } else {
-            textView.text = text
-            textView.visibility = View.VISIBLE
-        }
-    }
-
     /**
      * ViewHolder
      *
@@ -142,7 +143,7 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         init {
-            itemView.setOnClickListener {  onClickListener?.onClick(position, itemView) }
+            itemView.setOnClickListener { onClickListener?.onClick(position, itemView) }
         }
 
         val fnNameView: TextView = itemView.findViewById(R.id.fnname)

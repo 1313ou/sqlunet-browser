@@ -43,18 +43,31 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
         if (!cursor.moveToPosition(position)) {
             throw IllegalStateException("Can't move cursor to position $position")
         }
-        val posId = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID))
-        val domain = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN))
-        val definition = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DEFINITION))
-        val casedWord = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD))
-        val pronunciations = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATIONS))
-        val senseNum = cursor.getInt(cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM))
-        val senseKey = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEKEY))
-        val lexId = cursor.getInt(cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.LEXID))
-        val tagCount = cursor.getInt(cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT))
-        val wordId = cursor.getLong(cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID))
-        val synsetId = cursor.getLong(cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID))
-        val senseId = cursor.getLong(cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEID))
+        val idPosId = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID)
+        val idDomain = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN)
+        val idDefinition = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DEFINITION)
+        val idCasedWord = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD)
+        val idPronunciations = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATIONS)
+        val idSenseNum = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM)
+        val idSenseKey = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEKEY)
+        val idLexId = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.LEXID)
+        val idTagCount = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT)
+        val idWordId = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID)
+        val idSynsetId = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID)
+        val idSenseId = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEID)
+
+        val posId = cursor.getString(idPosId)
+        val domain = cursor.getString(idDomain)
+        val definition = cursor.getString(idDefinition)
+        val casedWord = cursor.getString(idCasedWord)
+        val pronunciations = cursor.getString(idPronunciations)
+        val senseNum = cursor.getInt(idSenseNum)
+        val senseKey = cursor.getString(idSenseKey)
+        val lexId = cursor.getInt(idLexId)
+        val tagCount = cursor.getInt(idTagCount)
+        val wordId = cursor.getLong(idWordId)
+        val synsetId = cursor.getLong(idSynsetId)
+        val senseId = cursor.getLong(idSenseId)
 
         bindTextView(viewHolder.pos, posId)
         bindTextView(viewHolder.domain, domain)
@@ -68,7 +81,7 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
         viewHolder.wordid.text = wordId.toString()
         viewHolder.synsetid.text = synsetId.toString()
         viewHolder.senseid.text = senseId.toString()
-   }
+    }
 
     override fun getCursor(): Cursor? {
         return cursor
@@ -85,13 +98,23 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
         }
         this.cursor = cursor
         if (this.cursor != null) {
-        notifyDataSetChanged()
-    }
+            notifyDataSetChanged()
+        }
         old?.close()
     }
 
-    // click
+    // helper
 
+    private fun bindTextView(textView: TextView, text: String?) {
+        if (text.isNullOrEmpty()) {
+            textView.visibility = View.GONE
+        } else {
+            textView.text = text
+            textView.visibility = View.VISIBLE
+        }
+    }
+
+    // click
 
     /**
      * Set OnClickListener
@@ -116,17 +139,6 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
         fun onClick(position: Int, view: View)
     }
 
-    // helper
-
-    private fun bindTextView(textView: TextView, text: String?) {
-        if (text.isNullOrEmpty()) {
-            textView.visibility = View.GONE
-        } else {
-            textView.text = text
-            textView.visibility = View.VISIBLE
-        }
-    }
-
     /**
      * ViewHolder
      *
@@ -135,7 +147,7 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         init {
-            itemView.setOnClickListener {  onClickListener?.onClick(position, viewHolder.itemView) }
+            itemView.setOnClickListener { onClickListener?.onClick(position, itemView) }
         }
 
         val pos: TextView = itemView.findViewById(R.id.pos)
