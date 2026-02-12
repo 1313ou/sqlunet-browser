@@ -48,6 +48,10 @@
 
 		<!-- menu dropdown -->
 		<item name="popupMenuBackground">@color/primaryColor</item>
+
+		<!--app bar -->
+		<item name="appBarLayoutStyle">@style/MyAppBarLayout</item>
+
 	</style>
 
 	<style name="MyTheme" parent="Base.MyTheme">

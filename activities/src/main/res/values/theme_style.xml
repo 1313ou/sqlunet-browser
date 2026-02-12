@@ -12,4 +12,15 @@
 		<item name="android:textColorPrimary">?attr/colorOnPrimary</item> <!-- item foreground -->
 	</style>
 
+
+	<!-- S T Y L E S -->
+
+	<!-- This is the new style you need to add -->
+	<style name="MyAppBarLayout" parent="Widget.Material3.AppBarLayout">
+		<!--
+		    This prevents the AppBarLayout from applying an elevation overlay that would cover the statusBarColor.
+		-->
+		<item name="liftOnScroll">false</item>
+	</style>
+
 </resources>
