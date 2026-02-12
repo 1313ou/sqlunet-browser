@@ -6,19 +6,14 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	app:title="@string/pref_header_general">
 
-	<PreferenceCategory android:title="@string/pref_activity_category">
-		<ListPreference
-			android:defaultValue="@string/default_launch"
-			android:entries="@array/pref_launch_list_titles"
-			android:entryValues="@array/pref_launch_list_values"
-			android:key="pref_launch"
-			android:negativeButtonText="@null"
-			android:positiveButtonText="@null"
-			android:summary="@string/pref_description_launch"
-			android:title="@string/pref_title_launch" />
-	</PreferenceCategory>
-
 	<PreferenceCategory android:title="@string/pref_view_control_category">
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="pref_two_panes"
+			android:summary="@string/pref_description_two_panes"
+			android:title="@string/pref_title_two_panes"
+			app:singleLineTitle="false" />
+
 		<ListPreference
 			android:defaultValue="-1"
 			android:entries="@array/pref_selector_mode_list_titles"
@@ -41,17 +36,22 @@
 
 		<SwitchPreferenceCompat
 			android:defaultValue="false"
-			android:key="pref_two_panes"
-			android:summary="@string/pref_description_two_panes"
-			android:title="@string/pref_title_two_panes"
-			app:singleLineTitle="false" />
-
-		<SwitchPreferenceCompat
-			android:defaultValue="false"
 			android:key="pref_xml"
 			android:summary="@string/pref_description_xml"
 			android:title="@string/pref_title_xml"
 			app:singleLineTitle="false" />
+	</PreferenceCategory>
+
+	<PreferenceCategory android:title="@string/pref_activity_category">
+		<ListPreference
+			android:defaultValue="@string/default_launch"
+			android:entries="@array/pref_launch_list_titles"
+			android:entryValues="@array/pref_launch_list_values"
+			android:key="pref_launch"
+			android:negativeButtonText="@null"
+			android:positiveButtonText="@null"
+			android:summary="@string/pref_description_launch"
+			android:title="@string/pref_title_launch" />
 	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/pref_sql_category">
