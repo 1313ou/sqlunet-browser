@@ -31,14 +31,34 @@ open class HomeFragment : Fragment() {
         // fab
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener {
-            val activity = requireActivity()
-            val navController = activity.findNavController(R.id.nav_host_fragment)
-            navController.navigate(
-                R.id.nav_search_browse,
-                null,
-                NavOptions.Builder()
-                    .setPopUpTo(R.id.nav_home, true)  // clear back stack up to nav_home inclusive
-                    .build()
+            navigateToBrowse()
+        }
+
+        // toolbar
+        var toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
+
+            val menuProvider = object : MenuProvider {
+
+                override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
+                    menu.clear()
+                    inflater.inflate(R.menu.main_safedata, menu)
+                 }
+
+                override fun onMenuItemSelected(item: MenuItem): Boolean {
+                    return when (item.itemId) {
+                        R.id.search -> {
+                            navigateToBrowse()
+                            true
+                        }
+                        else -> false
+                    }
+                }
+            }
+
+            requireActivity().addMenuProvider(
+                menuProvider,
+                viewLifecycleOwner,
+                Lifecycle.State.RESUMED
             )
         }
     }
@@ -49,5 +69,16 @@ open class HomeFragment : Fragment() {
         val actionBar = activity.supportActionBar!!
         actionBar.customView = null
         actionBar.setBackgroundDrawable(null)
+    }
+
+    private fun navigateToBrowse() {
+        val navController = requireActivity().findNavController(R.id.nav_host_fragment)
+        navController.navigate(
+            R.id.nav_search_browse,
+            null,
+            NavOptions.Builder()
+                .setPopUpTo(R.id.nav_home, true)  // clear back stack up to nav_home inclusive
+                .build()
+        )
     }
 }
