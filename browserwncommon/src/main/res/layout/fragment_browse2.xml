@@ -29,7 +29,7 @@
 		android:fillViewport="true">
 
 		<androidx.fragment.app.FragmentContainerView
-			android:id="@+id/container_web"
+			android:id="@+id/container_data"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:paddingBottom="@dimen/scroll_tail_padding" />

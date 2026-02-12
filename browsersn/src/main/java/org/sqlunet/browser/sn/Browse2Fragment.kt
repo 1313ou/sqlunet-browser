@@ -118,7 +118,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 // detail fragment replace
                 manager.beginTransaction()
                     .setReorderingAllowed(true)
-                    .replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG)
+                    .replace(R.id.container_data, webFragment, WebFragment.FRAGMENT_TAG)
                     .commit()
             }
         }
