@@ -4,27 +4,24 @@
 
 <resources>
 
-	<style name="MyTheme" parent="Theme.Material3.DayNight.NoActionBar">
+	<style name="Base.MyTheme" parent="Theme.Material3.DayNight.NoActionBar">
 
 		<!-- C O L O R S -->
-
-		<item name="android:colorBackground">@color/backgroundColor</item>
-		<item name="android:colorForeground">@color/foregroundColor</item>
 
 		<!-- framework colors -->
 		<item name="colorSurface">@color/primaryColor</item>
 		<item name="colorPrimary">@color/primaryColor</item>
 		<item name="colorOnSurface">@color/onPrimaryColor</item>
-		<item name="colorOnPrimary">@color/onPrimaryColor</item>-->
+		<item name="colorOnPrimary">@color/onPrimaryColor</item>
 
 		<!-- nav bar -->
 		<item name="colorPrimaryVariant">@color/primaryLightColor</item>
-		<item name="colorPrimaryDark">@color/primaryDarkColor</item>-->
+		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
 
 		<!-- requires attention : snackbar, fab -->
-		<item name="colorSecondary">@color/secondaryColor</item>-->
-		<item name="colorSecondaryVariant">@color/secondaryLightColor</item>-->
-		<item name="colorOnSecondary">@color/onSecondaryColor</item>-->
+		<item name="colorSecondary">@color/secondaryColor</item>
+		<item name="colorSecondaryVariant">@color/secondaryLightColor</item>
+		<item name="colorOnSecondary">@color/onSecondaryColor</item>
 
 		<!-- background of activated indicator, caret -->
 		<item name="colorControlActivated">@color/secondaryColor</item>
@@ -51,7 +48,11 @@
 
 		<!-- menu dropdown -->
 		<item name="popupMenuBackground">@color/primaryColor</item>
+	</style>
 
+	<style name="MyTheme" parent="Base.MyTheme">
+		<item name="android:colorBackground">@color/backgroundColor</item>
+		<item name="android:colorForeground">@color/foregroundColor</item>
 	</style>
 
 </resources>
