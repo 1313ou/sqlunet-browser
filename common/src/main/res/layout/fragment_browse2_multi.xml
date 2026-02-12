@@ -10,12 +10,12 @@
 	android:clipToPadding="false"
 	tools:ignore="InconsistentLayout">
 
-	<LinearLayout
+	<View
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical"
 		android:paddingBottom="@dimen/scroll_tail_padding"
 		tools:ignore="UselessLeaf">
-	</LinearLayout>
+	</View>
 
 </androidx.core.widget.NestedScrollView>
