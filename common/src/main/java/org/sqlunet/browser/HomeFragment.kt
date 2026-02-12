@@ -5,10 +5,15 @@ package org.sqlunet.browser
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -34,33 +39,29 @@ open class HomeFragment : Fragment() {
             navigateToBrowse()
         }
 
-        // toolbar
-        var toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)
-
-            val menuProvider = object : MenuProvider {
-
-                override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
-                    menu.clear()
-                    inflater.inflate(R.menu.main_safedata, menu)
-                 }
-
-                override fun onMenuItemSelected(item: MenuItem): Boolean {
-                    return when (item.itemId) {
-                        R.id.search -> {
-                            navigateToBrowse()
-                            true
-                        }
-                        else -> false
-                    }
-                }
+        // search menu adds search icon to toolbar
+        val menuProvider = object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
+                menu.clear()
+                inflater.inflate(R.menu.search, menu)
             }
 
-            requireActivity().addMenuProvider(
-                menuProvider,
-                viewLifecycleOwner,
-                Lifecycle.State.RESUMED
-            )
+            override fun onMenuItemSelected(item: MenuItem): Boolean {
+                return when (item.itemId) {
+                    R.id.search -> {
+                        navigateToBrowse()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
         }
+        requireActivity().addMenuProvider(
+            menuProvider,
+            viewLifecycleOwner,
+            Lifecycle.State.RESUMED
+        )
     }
 
     override fun onResume() {
