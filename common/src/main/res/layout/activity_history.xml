@@ -27,7 +27,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:context="org.sqlunet.browser.history.HistoryActivity"
-		tools:layout="@layout/fragment_history" />
+		tools:context="org.sqlunet.browser.history.HistoryActivity" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
