@@ -43,11 +43,6 @@ class SensesFragment : Fragment() {
     }
 
     /**
-     * Activate on click flag: in two-pane mode, list items should be given the 'activated' state when touched.
-     */
-    private var activateOnItemClick = true
-
-    /**
      * The fragment's current callback, which is notified of list item clicks.
      */
     private var listener: Listener? = null
