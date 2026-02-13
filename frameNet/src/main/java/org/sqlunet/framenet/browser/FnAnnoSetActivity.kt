@@ -18,7 +18,7 @@ class FnAnnoSetActivity : AbstractActivity() {
         get() = R.layout.activity_fnannoset
 
     override val containerId: Int
-        get() = R.id.container_annoset
+        get() = R.id.container_fnannoset
 
     override fun makeFragment(): Fragment {
         return FnAnnoSetFragment()

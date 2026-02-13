@@ -18,7 +18,7 @@ class FnSentenceActivity : AbstractActivity() {
         get() = R.layout.activity_fnsentence
 
     override val containerId: Int
-        get() = R.id.container_sentence
+        get() = R.id.container_fnsentence
 
     override fun makeFragment(): Fragment {
         return FnSentenceFragment()

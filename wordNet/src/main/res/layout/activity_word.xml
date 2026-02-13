@@ -35,4 +35,5 @@
 				android:paddingBottom="@dimen/scroll_tail_padding" />
 		</androidx.core.widget.NestedScrollView>
 	</FrameLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
