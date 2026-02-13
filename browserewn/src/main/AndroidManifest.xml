@@ -189,7 +189,6 @@
 			android:name="org.sqlunet.wordnet.browser.SensesActivity"
 			android:label="@string/title_activity_senses"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
-			android:exported="true"
 			tools:ignore="UnusedAttribute">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
