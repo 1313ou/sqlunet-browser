@@ -2,13 +2,8 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/bncScrollView"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:clipToPadding="false">
-
-	<LinearLayout
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/bnc"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
@@ -39,5 +34,3 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content" />
 	</LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
