@@ -9,20 +9,29 @@
 		<item name="android:textSize">20sp</item>
 	</style>
 
-	<style name="Data.WnDomain">
-		<item name="android:maxLines">1</item>
-		<item name="android:textSize">20sp</item>
-	</style>
-
 	<style name="Data.WnSenseNum">
 		<item name="android:maxLines">1</item>
-		<item name="android:textColor">@color/colorDimmed</item>
-		<item name="android:textSize">12sp</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+
+	<style name="Data.WnDomain">
+		<item name="android:maxLines">1</item>
+		<item name="android:textSize">18sp</item>
 	</style>
 
 	<style name="Data.WnCased">
-		<item name="android:textColor">@color/colorDimmed</item>
+		<item name="android:textColor">@color/colorCased</item>
 		<item name="android:textSize">12sp</item>
+		<item name="android:textStyle">italic|bold</item>
+	</style>
+
+	<style name="Data.WnPronunciation">
+		<item name="android:textColor">@color/colorPronunciation</item>
+		<item name="android:textSize">16sp</item>
+	</style>
+
+	<style name="Data.WnDefinition">
+		<item name="android:textColor">@color/colorDefinition</item>
 	</style>
 
 	<style name="Data.WnTagCount">
@@ -31,13 +40,13 @@
 	</style>
 
 	<style name="Data.WnSenseKey">
-		<item name="android:textColor">@color/colorDimmed</item>
-		<item name="android:textSize">12sp</item>
+		<item name="android:textColor">@color/colorId</item>
+		<item name="android:textSize">10sp</item>
 	</style>
 
 	<style name="Data.WnLexId">
 		<item name="android:textColor">@color/colorDimmed</item>
-		<item name="android:textSize">12sp</item>
+		<item name="android:textSize">10sp</item>
 	</style>
 
 	<style name="Data.WnWordId">
@@ -55,12 +64,9 @@
 		<item name="android:textSize">10sp</item>
 	</style>
 
-	<style name="Data.WnDefinition" />
-
-	<!-- L I S T   I T E M -->
-
-	<style name="ListItemStyle">
-		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
+	<style name="Data.WnLabel">
+		<item name="android:textColor">@color/colorDimmed</item>
+		<item name="android:textSize">10sp</item>
 	</style>
 
 </resources>

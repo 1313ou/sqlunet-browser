@@ -47,5 +47,11 @@
 	<!--<string name="label_vtemplates">Verb Templates</string>-->
 	<!--<string name="label_adjposition">Adjective Position</string>-->
 	<!--<string name="label_morphology">Morphology</string>-->
+	<string name="label_tagcount">count:</string>
+	<string name="label_sensenum">sensenum:</string>
+	<string name="label_senseid">senseid:</string>
+	<string name="label_lexid">lexid:</string>
+	<string name="label_wordid">wordid:</string>
+	<string name="label_synsetid">synsetid:</string>
 
 </resources>
