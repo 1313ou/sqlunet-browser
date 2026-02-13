@@ -39,16 +39,23 @@
 	</LinearLayout>
 
 	<TextView
-		android:id="@+id/definition"
-		style="@style/Data.WnDefinition"
-		android:layout_width="match_parent"
+		android:id="@+id/cased"
+		style="@style/Data.WnCased"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:textIsSelectable="false" />
 
 	<TextView
-		android:id="@+id/cased"
-		style="@style/Data.WnCased"
+		android:id="@+id/pronunciation"
+		style="@style/Data.WnPronunciation"
 		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textIsSelectable="false" />
+
+	<TextView
+		android:id="@+id/definition"
+		style="@style/Data.WnDefinition"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:textIsSelectable="false" />
 
