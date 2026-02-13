@@ -2,44 +2,37 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/syntagnetScrollView"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/syntagnet"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:clipToPadding="false">
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
 
-	<LinearLayout
-		android:layout_width="match_parent"
+	<!--
+	<TextView
+		style="@style/Label.Info"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:orientation="vertical">
+		android:text="@string/label_info"/>
 
-		<!--
-		<TextView
-			style="@style/Label.Info"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/label_info"/>
+	<TextView
+		android:id="@+id/data_info"
+		style="@style/Data.Info"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:contentDescription="@string/description_data_info"
+		android:textIsSelectable="true"/>
 
-		<TextView
-			android:id="@+id/data_info"
-			style="@style/Data.Info"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:contentDescription="@string/description_data_info"
-			android:textIsSelectable="true"/>
+	<TextView
+		style="@style/Label.Contents"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/label_contents"/>
+	-->
 
-		<TextView
-			style="@style/Label.Contents"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/label_contents"/>
-		-->
-
-		<RelativeLayout
-			android:id="@+id/data_contents"
-			style="@style/Data.Contents"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content" />
-	</LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+	<RelativeLayout
+		android:id="@+id/data_contents"
+		style="@style/Data.Contents"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+</LinearLayout>
