@@ -8,6 +8,6 @@
 	<string name="about_sqlunet_text">SqlUNet™ is a database that unifies WordNet™, VerbNet™, PropBank™, FrameNet™ and PredicateMatrix™. With statistical data from BNC™</string>
 	<string name="about_sqlunet_label">@string/semantikos</string>
 	<string name="about_sqlunet_author">Bernard Bou</string>
-	<string name="about_sqlunet_copyright">© 2015 – 2023</string>
+	<string name="about_sqlunet_copyright">© 2015 – 2026</string>
 
 </resources>
