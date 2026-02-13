@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2023. Bernard Bou
+ ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@android:id/list"
+	android:id="@+id/senses_list"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:layout_centerHorizontal="true"
-	android:choiceMode="singleChoice"
+	android:layout_height="match_parent"
 	tools:listitem="@layout/item_sense" />
-
-	<!-- android:listSelector="@drawable/listitem_selector" -->

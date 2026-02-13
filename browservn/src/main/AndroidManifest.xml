@@ -185,6 +185,16 @@
 		</activity>
 
 		<activity
+			android:name="org.sqlunet.wordnet.browser.SensesActivity"
+			android:label="@string/title_activity_senses"
+			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			tools:ignore="UnusedAttribute">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="org.sqlunet.browser.MainActivity" />
+		</activity>
+
+		<activity
 			android:name="org.sqlunet.wordnet.browser.SynsetActivity"
 			android:label="@string/title_activity_synset"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"

@@ -34,6 +34,7 @@
 	<string name="title_activity_sense">Sense</string>
 	<string name="title_activity_synset">Synset</string>
 	<string name="title_activity_word">Word</string>
+	<string name="title_activity_senses">Senses</string>
 	<string name="title_activity_relation">Relation</string>
 	<string name="title_activity_collocation" tools:keep="@string/title_activity_collocation">Collocation</string>
 
