@@ -136,54 +136,56 @@ object Queries {
 
     fun prepareSenses(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
-        providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI
+        providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.URI
         providerSql.projection = arrayOf(
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id",
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID + " AS _id",
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEKEY,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.LEXID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DEFINITION,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POS,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD,
+            "GROUP_CONCAT(CASE WHEN " + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + " IS NULL THEN '/'||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + "||'/' ELSE '['||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + "||'] '||'/'||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + "||'/' END) AS " + PRONUNCIATIONS
         )
-        providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?"
+        providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORD + " = ?"
         providerSql.selectionArgs = arrayOf(word)
-        providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID +
-                ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC" +
-                ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD +
-                ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM
+        providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID +
+                ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT + " DESC" +
+                ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD +
+                ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM
         return providerSql
     }
 
     fun prepareSenses(wordId: Long): ContentProviderSql {
         val providerSql = ContentProviderSql()
-        providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI
+        providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.URI
         providerSql.projection = arrayOf(
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id",
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN,
-            WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID + " AS _id",
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEKEY,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.LEXID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DEFINITION,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POS,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN,
+            WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD,
+            "GROUP_CONCAT(CASE WHEN " + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + " IS NULL THEN '/'||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + "||'/' ELSE '['||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + "||'] '||'/'||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + "||'/' END) AS " + PRONUNCIATIONS
         )
-        providerSql.selection = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID + " = ?"
+        providerSql.selection = WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID + " = ?"
         providerSql.selectionArgs = arrayOf(wordId.toString())
         providerSql.sortBy =
-            WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID +
-                    ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC" +
-                    ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD +
-                    ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM
+            WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID +
+                    ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT + " DESC" +
+                    ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD +
+                    ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM
         return providerSql
     }
 

@@ -69,15 +69,15 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
         val synsetId = cursor.getLong(idSynsetId)
         val senseId = cursor.getLong(idSenseId)
 
-        bindTextView(viewHolder.pos, posId)
-        bindTextView(viewHolder.domain, domain)
-        bindTextView(viewHolder.definition, definition)
+        viewHolder.pos.text = posId
+        viewHolder.domain.text = domain
+        viewHolder.definition.text = definition
         bindTextView(viewHolder.cased, casedWord)
         bindTextView(viewHolder.pronunciation, pronunciations)
-        bindTextView(viewHolder.sensekey, senseKey)
+        bindTextView(viewHolder.tagcount, if (tagCount <= 0) null else tagCount.toString())
+        viewHolder.sensekey.text = senseKey
         viewHolder.sensenum.text = senseNum.toString()
         viewHolder.lexid.text = lexId.toString()
-        viewHolder.tagcount.text = tagCount.toString()
         viewHolder.wordid.text = wordId.toString()
         viewHolder.synsetid.text = synsetId.toString()
         viewHolder.senseid.text = senseId.toString()

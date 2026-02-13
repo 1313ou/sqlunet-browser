@@ -252,6 +252,7 @@ class SensesFragment : Fragment() {
             private val domainView: TextView = itemView.findViewById(R.id.domain)
             private val definitionView: TextView = itemView.findViewById(R.id.definition)
             private val casedView: TextView = itemView.findViewById(R.id.cased)
+            private val pronunciationView: TextView = itemView.findViewById(R.id.pronunciation)
             private val tagcountView: TextView = itemView.findViewById(R.id.tagcount)
             private val lexidView: TextView = itemView.findViewById(R.id.lexid)
             private val sensekeyView: TextView = itemView.findViewById(R.id.sensekey)
@@ -265,30 +266,55 @@ class SensesFragment : Fragment() {
 
             fun bind(cursor: Cursor) {
                 // Extract data from cursor
-                val pos = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.Poses.POS))
-                val sensenum = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.Senses.SENSENUM))
-                val domain = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.Domains.DOMAIN))
-                val definition = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.Synsets.DEFINITION))
-                val cased = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.CasedWords.CASEDWORD))
-                val tagcount = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.Senses.TAGCOUNT))
-                val lexid = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.Senses.LEXID))
-                val sensekey = cursor.getString(cursor.getColumnIndexOrThrow(WordNetContract.Senses.SENSEKEY))
-                val wordid = cursor.getLong(cursor.getColumnIndexOrThrow(WordNetContract.Words.WORDID))
-                val synsetid = cursor.getLong(cursor.getColumnIndexOrThrow(WordNetContract.Synsets.SYNSETID))
-                val senseid = cursor.getLong(cursor.getColumnIndexOrThrow(WordNetContract.Senses.SENSEID))
+                val idPos = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POS)
+                val idDomain = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN)
+                val idDefinition = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DEFINITION)
+                val idCasedWord = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD)
+                val idPronunciations = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATIONS)
+                val idSenseNum = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM)
+                val idSenseKey = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEKEY)
+                val idLexId = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.LEXID)
+                val idTagCount = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT)
+                val idWordId = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID)
+                val idSynsetId = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID)
+                val idSenseId = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEID)
+
+                val pos = cursor.getString(idPos)
+                val domain = cursor.getString(idDomain)
+                val definition = cursor.getString(idDefinition)
+                val cased = cursor.getString(idCasedWord)
+                val pronunciation = cursor.getString(idPronunciations)
+                val tagCount = cursor.getInt(idTagCount)
+                val sensenum = cursor.getInt(idSenseNum)
+                val lexid = cursor.getInt(idLexId)
+                val sensekey = cursor.getString(idSenseKey)
+                val wordid = cursor.getLong(idWordId)
+                val synsetid = cursor.getLong(idSynsetId)
+                val senseid = cursor.getLong(idSenseId)
 
                 // Bind data to views
                 posView.text = pos
-                sensenumView.text = sensenum
                 domainView.text = domain
                 definitionView.text = definition
-                casedView.text = cased
-                tagcountView.text = tagcount
-                lexidView.text = lexid
+                bindTextView(casedView, cased)
+                bindTextView(pronunciationView, pronunciation)
+                bindTextView(tagcountView, if (tagCount <= 0) null else tagCount.toString())
+                sensenumView.text = sensenum.toString()
+                lexidView.text = lexid.toString()
                 sensekeyView.text = sensekey
                 wordidView.text = wordid.toString()
                 synsetidView.text = synsetid.toString()
                 senseidView.text = senseid.toString()
+            }
+            // helper
+
+            private fun bindTextView(textView: TextView, text: String?) {
+                if (text.isNullOrEmpty()) {
+                    textView.visibility = View.GONE
+                } else {
+                    textView.text = text
+                    textView.visibility = View.VISIBLE
+                }
             }
 
             override fun onClick(view: View?) {
