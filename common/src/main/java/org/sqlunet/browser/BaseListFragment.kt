@@ -11,13 +11,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CursorAdapter
 import android.widget.SimpleCursorAdapter
+import androidx.core.net.toUri
 import androidx.fragment.app.ListFragment
 import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.browser.common.R
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.sql.Utils.join
 import java.util.Collections
-import androidx.core.net.toUri
 
 /**
  * A list fragment representing a table.
