@@ -20,17 +20,17 @@ class BaseRecyclerAdapter(
     private val context: Context,
     private val layout: Int,
     private var cursor: Cursor?,
-    from: Array<String>,
-    private val to: IntArray
+    val fromColumns: Array<String>,
+    private val viewIds: IntArray
 ) : RecyclerView.Adapter<BaseRecyclerAdapter.ViewHolder>() {
 
     private var viewBinder: ViewBinder? = null
-    private val cursorHelper: CursorHelper = CursorHelper(cursor, from)
 
     /**
      * View binder
      */
     interface ViewBinder {
+
         /**
          * Binds the Cursor to the view.
          *
@@ -63,7 +63,6 @@ class BaseRecyclerAdapter(
         }
         val oldCursor = cursor
         cursor = newCursor
-        cursorHelper.changeCursor(newCursor)
         if (newCursor != null) {
             notifyDataSetChanged()
         }
@@ -85,7 +84,7 @@ class BaseRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (!cursorHelper.isValid(position)) {
+        if (cursor == null || cursor!!.moveToPosition(position)) {
             throw IllegalStateException("couldn't move cursor to position $position")
         }
         bindView(holder.itemView, cursor!!)
@@ -98,11 +97,11 @@ class BaseRecyclerAdapter(
      * @param cursor  cursor
      */
     private fun bindView(view: View, cursor: Cursor) {
-        val count = to.size
-        val from = cursorHelper.from
-        val to = to
+        val count = viewIds.size
+        val from = columnsToIndexes(fromColumns, cursor)
+
         for (i in 0 until count) {
-            val v = view.findViewById<View>(to[i])
+            val v = view.findViewById<View>(viewIds[i])
             if (v != null) {
                 var bound = false
                 if (viewBinder != null) {
@@ -123,6 +122,21 @@ class BaseRecyclerAdapter(
         }
     }
 
+    /**
+     * Get from-columns
+     *
+     * @param columnsToIndexes from columns (names)
+     * @param cursor cursor
+     * @return from columns (indexes)
+     */
+    private fun columnsToIndexes(fromColumns: Array<String>, cursor: Cursor): IntArray {
+        val colIndexes = IntArray(fromColumns.size)
+        for (i in fromColumns.indices) {
+            colIndexes[i] = cursor.getColumnIndexOrThrow(fromColumns[i])
+        }
+        return colIndexes
+    }
+
     override fun getItemCount(): Int {
         return cursor?.count ?: 0
     }
@@ -131,60 +145,5 @@ class BaseRecyclerAdapter(
      * View holder
      */
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
-    /**
-     * Cursor helper
-     *
-     * @author [Bernard Bou](mailto:1313ou@gmail.com)
-     */
-    class CursorHelper(private var cursor: Cursor?, private val fromColumns: Array<String>) {
-
-        /**
-         * Column indexes
-         */
-        val from: IntArray
-
-        /**
-         * Constructor
-         */
-        init {
-            from = fromColumns(fromColumns)
-        }
-
-        /**
-         * Get from-columns
-         *
-         * @param fromColumns from columns (names)
-         * @return from columns (indexes)
-         */
-        private fun fromColumns(fromColumns: Array<String>): IntArray {
-            val from = IntArray(fromColumns.size)
-            if (cursor != null) {
-                for (i in fromColumns.indices) {
-                    from[i] = cursor!!.getColumnIndexOrThrow(fromColumns[i])
-                }
-            }
-            return from
-        }
-
-        /**
-         * Is cursor valid at this position
-         *
-         * @param position position
-         * @return true if cursor is valid at this position
-         */
-        fun isValid(position: Int): Boolean {
-            return cursor != null && cursor!!.moveToPosition(position)
-        }
-
-        /**
-         * Change cursor
-         *
-         * @param cursor new cursor
-         */
-        fun changeCursor(cursor: Cursor?) {
-            this.cursor = cursor
-        }
-    }
 }
 
