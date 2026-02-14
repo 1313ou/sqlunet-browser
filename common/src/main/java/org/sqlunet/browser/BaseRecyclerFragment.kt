@@ -46,7 +46,7 @@ abstract class BaseRecyclerFragment : Fragment() {
      *
      * @return view binder
      */
-    protected abstract fun makeViewBinder(): BaseRecyclerAdapter.ViewBinder?
+    protected abstract fun makeViewBinder(): BaseRecyclerAdapter.ViewBinder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
