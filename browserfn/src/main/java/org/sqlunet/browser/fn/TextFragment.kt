@@ -43,8 +43,8 @@ import java.util.regex.Pattern
  */
 class TextFragment : BaseTextFragment() {
 
-    override fun makeAdapter(): TextAdapter {
-        return TextAdapter(requireContext(), query, null, this::onItemClick)
+    override fun makeAdapter(layoutId: Int?): TextAdapter {
+        return TextAdapter(requireContext(), query, null, this::onItemClick, layoutId)
     }
 
     private fun onItemClick(cursor: Cursor, position: Int, id: Long) {

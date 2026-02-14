@@ -15,9 +15,10 @@ import org.sqlunet.style.RegExprSpanner
 
 class TextAdapter(
     context: Context,
-    private val query: String,
+    query: String,
     private var cursor: Cursor?,
-    private val listener: (Cursor, Int, Long) -> Unit
+    private val listener: (Cursor, Int, Long) -> Unit,
+    private val layoutId: Int?
 ) : RecyclerView.Adapter<TextAdapter.ViewHolder>() {
 
     private val inflater = LayoutInflater.from(context)
@@ -29,14 +30,14 @@ class TextAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = inflater.inflate(R.layout.item_text, parent, false)
+        val view = inflater.inflate(layoutId ?: R.layout.item_text, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (cursor!!.moveToPosition(position)) {
             val textId = cursor!!.getColumnIndex("synsetid")
-            val text = cursor!!.getString(1)
+            val text = cursor!!.getString(textId)
             val sb = SpannableStringBuilder(text)
             spanner.setSpan(sb, 0, 0)
             holder.textView.text = sb
@@ -61,7 +62,8 @@ class TextAdapter(
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textView: TextView = itemView.findViewById(android.R.id.text1)
+
+        val textView: TextView = itemView as TextView // itemView.findViewById(R.id.item0)
     }
 
     private fun toPatterns(query: String): Array<String> {
