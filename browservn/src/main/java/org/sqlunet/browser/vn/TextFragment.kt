@@ -3,26 +3,21 @@
  */
 package org.sqlunet.browser.vn
 
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Typeface
 import android.os.Parcelable
 import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.style.DynamicDrawableSpan
-import android.text.style.ImageSpan
 import android.text.style.StyleSpan
 import android.util.Log
 import android.util.Pair
-import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.content.res.AppCompatResources
 import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.common.BaseTextFragment
-import org.sqlunet.browser.common.R as CommonR
 import org.sqlunet.browser.common.TextAdapter
+import org.sqlunet.browser.common.TextAdapter.Companion.append
+import org.sqlunet.browser.common.TextAdapter.Companion.appendImage
 import org.sqlunet.propbank.PbRoleSetPointer
 import org.sqlunet.propbank.browser.PbRoleSetActivity
 import org.sqlunet.propbank.provider.PropBankContract
@@ -32,8 +27,9 @@ import org.sqlunet.style.Factories.spans
 import org.sqlunet.verbnet.VnClassPointer
 import org.sqlunet.verbnet.browser.VnClassActivity
 import org.sqlunet.verbnet.provider.VerbNetContract
-import org.sqlunet.xnet.R as XNetR
 import java.util.regex.Pattern
+import org.sqlunet.browser.common.R as CommonR
+import org.sqlunet.xnet.R as XNetR
 
 /**
  * Text result fragment
@@ -201,65 +197,7 @@ class TextFragment : BaseTextFragment() {
     companion object {
 
         private const val TAG = "TextF"
+
         const val FRAGMENT_TAG = "text"
-
-        private fun toPatterns(query: String): Array<String> {
-            val tokens = query.split("[\\s()]+".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            val patterns: MutableList<String> = ArrayList()
-            for (token in tokens) {
-                var token2 = token.trim { it <= ' ' }
-                token2 = token2.replace("\\*$".toRegex(), "")
-                if (token2.isEmpty() || "AND" == token2 || "OR" == token2 || "NOT" == token2 || token2.startsWith("NEAR")) {
-                    continue
-                }
-
-                // Log.d(TAG, '<' + token + '>')
-                patterns.add("((?i)$token2)")
-            }
-            return patterns.toTypedArray<String>()
-        }
-
-        /**
-         * Append text
-         *
-         * @param sb    spannable string builder
-         * @param text  text
-         * @param spans spans to apply
-         */
-        private fun append(sb: SpannableStringBuilder, text: CharSequence?, vararg spans: Any) {
-            if (text.isNullOrEmpty()) {
-                return
-            }
-            val from = sb.length
-            sb.append(text)
-            val to = sb.length
-            for (span in spans) {
-                sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            }
-        }
-
-        /**
-         * Append Image
-         *
-         * @param context context
-         * @param sb      spannable string builder
-         * @param resId   resource id
-         */
-        private fun appendImage(context: Context, sb: SpannableStringBuilder, resId: Int) {
-            append(sb, "\u0000", makeImageSpan(context, resId))
-        }
-
-        /**
-         * Make image span
-         *
-         * @param context context
-         * @param resId   res id
-         * @return image span
-         */
-        private fun makeImageSpan(context: Context, @DrawableRes resId: Int): Any {
-            val drawable = AppCompatResources.getDrawable(context, resId)!!
-            drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
-            return ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM)
-        }
     }
 }

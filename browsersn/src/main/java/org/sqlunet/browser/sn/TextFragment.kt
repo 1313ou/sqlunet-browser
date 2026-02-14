@@ -11,7 +11,6 @@ import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.common.BaseTextFragment
-import org.sqlunet.browser.common.R as CommonR
 import org.sqlunet.browser.common.TextAdapter
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.wordnet.SynsetPointer
@@ -19,6 +18,7 @@ import org.sqlunet.wordnet.WordPointer
 import org.sqlunet.wordnet.browser.SynsetActivity
 import org.sqlunet.wordnet.browser.WordActivity
 import org.sqlunet.wordnet.settings.Settings
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * Text result fragment
@@ -105,6 +105,7 @@ class TextFragment : BaseTextFragment() {
     companion object {
 
         private const val TAG = "TextF"
+
         const val FRAGMENT_TAG = "text"
     }
 }

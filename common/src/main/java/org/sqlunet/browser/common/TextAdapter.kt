@@ -6,10 +6,15 @@ package org.sqlunet.browser.common
 import android.content.Context
 import android.database.Cursor
 import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.DynamicDrawableSpan
+import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.DrawableRes
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.style.RegExprSpanner
 
@@ -36,8 +41,10 @@ class TextAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (cursor!!.moveToPosition(position)) {
-            val textId = cursor!!.getColumnIndex("synsetid")
-            val text = cursor!!.getString(textId)
+            // val idSynsetId = cursor!!.getColumnIndex("synsetid")
+            // val synsetId = cursor!!.getString(idSynsetId)
+            val idTextId = 1 // cursor!!.getColumnIndex("text")
+            val text = cursor!!.getString(idTextId)
             val sb = SpannableStringBuilder(text)
             spanner.setSpan(sb, 0, 0)
             holder.textView.text = sb
@@ -78,5 +85,51 @@ class TextAdapter(
             patterns.add("((?i)$token2)")
         }
         return patterns.toTypedArray<String>()
+    }
+
+    companion object {
+
+        /**
+         * Append text
+         *
+         * @param sb    spannable string builder
+         * @param text  text
+         * @param spans spans to apply
+         */
+        fun append(sb: SpannableStringBuilder, text: CharSequence?, vararg spans: Any) {
+            if (text.isNullOrEmpty()) {
+                return
+            }
+            val from = sb.length
+            sb.append(text)
+            val to = sb.length
+            for (span in spans) {
+                sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+        }
+
+        /**
+         * Append Image
+         *
+         * @param context context
+         * @param sb      spannable string builder
+         * @param resId   resource id
+         */
+        fun appendImage(context: Context, sb: SpannableStringBuilder, resId: Int) {
+            append(sb, "\u0000", makeImageSpan(context, resId))
+        }
+
+        /**
+         * Make image span
+         *
+         * @param context context
+         * @param resId   res id
+         * @return image span
+         */
+        private fun makeImageSpan(context: Context, @DrawableRes resId: Int): Any {
+            val drawable = AppCompatResources.getDrawable(context, resId)!!
+            drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+            return ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM)
+        }
     }
 }
