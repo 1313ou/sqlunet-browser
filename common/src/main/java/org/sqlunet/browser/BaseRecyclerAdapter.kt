@@ -20,7 +20,7 @@ class BaseRecyclerAdapter(
     private val context: Context,
     private val layout: Int,
     private var cursor: Cursor?,
-    val fromColumns: Array<String>,
+    private val fromColumns: Array<String>,
     private val viewIds: IntArray
 ) : RecyclerView.Adapter<BaseRecyclerAdapter.ViewHolder>() {
 
@@ -98,17 +98,16 @@ class BaseRecyclerAdapter(
      */
     private fun bindView(view: View, cursor: Cursor) {
         val count = viewIds.size
-        val from = columnsToIndexes(fromColumns, cursor)
-
+        val colIndexes: IntArray = columnsToColumnIndexes(fromColumns, cursor)
         for (i in 0 until count) {
             val v = view.findViewById<View>(viewIds[i])
             if (v != null) {
                 var bound = false
                 if (viewBinder != null) {
-                    bound = viewBinder!!.setViewValue(v, cursor, from[i])
+                    bound = viewBinder!!.setViewValue(v, cursor, colIndexes[i])
                 }
                 if (!bound) {
-                    var text = cursor.getString(from[i])
+                    var text = cursor.getString(colIndexes[i])
                     if (text == null) {
                         text = ""
                     }
@@ -122,23 +121,23 @@ class BaseRecyclerAdapter(
         }
     }
 
+    override fun getItemCount(): Int {
+        return cursor?.count ?: 0
+    }
+
     /**
      * Get from-columns
      *
-     * @param columnsToIndexes from columns (names)
+     * @param fromColumns from columns (names)
      * @param cursor cursor
      * @return from columns (indexes)
      */
-    private fun columnsToIndexes(fromColumns: Array<String>, cursor: Cursor): IntArray {
+    private fun columnsToColumnIndexes(fromColumns: Array<String>, cursor: Cursor): IntArray {
         val colIndexes = IntArray(fromColumns.size)
         for (i in fromColumns.indices) {
             colIndexes[i] = cursor.getColumnIndexOrThrow(fromColumns[i])
         }
         return colIndexes
-    }
-
-    override fun getItemCount(): Int {
-        return cursor?.count ?: 0
     }
 
     /**
