@@ -69,22 +69,13 @@ class BaseRecyclerAdapter(
         return oldCursor
     }
 
-    /**
-     * Change cursor
-     *
-     * @param newCursor new cursor
-     */
-    fun changeCursor(newCursor: Cursor?) {
-        swapCursor(newCursor)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(layout, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (cursor == null || cursor!!.moveToPosition(position)) {
+        if (cursor == null || !cursor!!.moveToPosition(position)) {
             throw IllegalStateException("couldn't move cursor to position $position")
         }
         bindView(holder.itemView, cursor!!)
@@ -145,4 +136,3 @@ class BaseRecyclerAdapter(
      */
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }
-
