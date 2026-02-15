@@ -21,6 +21,7 @@ import java.util.Collections
 
 /**
  * A list fragment representing a table.
+ * Not used anymore
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
