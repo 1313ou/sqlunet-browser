@@ -147,7 +147,7 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         init {
-            itemView.setOnClickListener { onClickListener?.onClick(position, itemView) }
+            itemView.setOnClickListener { onClickListener?.onClick(bindingAdapterPosition, itemView) }
         }
 
         val pos: TextView = itemView.findViewById(R.id.pos)
