@@ -3,16 +3,15 @@
  */
 package org.sqlunet.browser
 
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListAdapter
-import android.widget.Toast
-import androidx.fragment.app.ListFragment
+import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.common.R
 import org.sqlunet.provider.BaseProvider
 import org.sqlunet.sql.SqlFormatter.styledFormat
@@ -22,18 +21,28 @@ import org.sqlunet.sql.SqlFormatter.styledFormat
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class SqlStatementsFragment : ListFragment() {
+class SqlStatementsFragment : Fragment() {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var viewAdapter: SqlStatementsAdapter
+    private lateinit var viewManager: RecyclerView.LayoutManager
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_sql_statements, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val listView = getListView()
-        listView.setOnItemLongClickListener { av: AdapterView<*>, _: View?, pos: Int, _: Long ->
-            val statement = av.adapter.getItem(pos) as CharSequence
-            val clipboard =AppContext.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clipData = ClipData.newPlainText("text", statement)
-            clipboard.setPrimaryClip(clipData)
-            Toast.makeText(requireContext(), R.string.status_clipboard_copied, Toast.LENGTH_SHORT).show()
-            true
+        viewManager = LinearLayoutManager(requireContext())
+        viewAdapter = SqlStatementsAdapter(getSqlStatements())
+
+        val itemDecorator = DividerItemDecoration(requireContext(), (viewManager as LinearLayoutManager).orientation)
+        itemDecorator.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.divider_sql)!!)
+        recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view).apply {
+            setHasFixedSize(true)
+            layoutManager = viewManager
+            adapter = viewAdapter
+            addItemDecoration(itemDecorator)
         }
     }
 
@@ -42,15 +51,19 @@ class SqlStatementsFragment : ListFragment() {
         update()
     }
 
-    fun update() {
-        val context = context
-        if (context != null) {
-            val sqls = BaseProvider.sqlBuffer.reverseItems()
-            for (i in sqls.indices) {
-                sqls[i] = styledFormat(sqls[i]!!)
-            }
-            val adapter: ListAdapter = ArrayAdapter(context, R.layout.item_sql, android.R.id.text1, if (sqls.isNotEmpty()) sqls else arrayOf<CharSequence>("empty"))
-            setListAdapter(adapter)
+    private fun getSqlStatements(): Array<out CharSequence?> {
+        val sqls = BaseProvider.sqlBuffer.reverseItems()
+        for (i in sqls.indices) {
+            sqls[i] = styledFormat(sqls[i]!!)
         }
+        return if (sqls.isNotEmpty()) sqls else arrayOf<CharSequence>("empty")
+    }
+
+    fun update() {
+        if (!this::viewAdapter.isInitialized) {
+            return
+        }
+        viewAdapter.dataSet = getSqlStatements()
+        viewAdapter.notifyDataSetChanged()
     }
 }
