@@ -142,7 +142,7 @@ abstract class BaseRecyclerFragment : Fragment() {
     private fun makeModels() {
         model = ViewModelProvider(this)["elements", SqlunetViewModel::class.java]
         model!!.getData().observe(getViewLifecycleOwner()) { cursor: Cursor? ->
-            recyclerAdapter!!.cursor = cursor
+            recyclerAdapter!!.swapCursor(cursor)
         }
     }
 
