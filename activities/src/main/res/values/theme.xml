@@ -28,6 +28,11 @@
 
 		<!-- O V E R R I D E S -->
 
+		<!-- foreground and background -->
+		<!-- <item name="android:windowBackground">@color/backgroundColor</item>-->
+		<item name="android:colorBackground">@color/backgroundColor</item>
+		<item name="android:colorForeground">@color/foregroundColor</item>
+
 		<!-- transparent statusbar and navigation bar -->
 		<item name="android:statusBarColor">@android:color/transparent</item>
 		<item name="android:navigationBarColor">@android:color/transparent</item>
@@ -54,9 +59,6 @@
 
 	</style>
 
-	<style name="MyTheme" parent="Base.MyTheme">
-		<item name="android:colorBackground">@color/backgroundColor</item>
-		<item name="android:colorForeground">@color/foregroundColor</item>
-	</style>
+	<style name="MyTheme" parent="Base.MyTheme" />
 
 </resources>
