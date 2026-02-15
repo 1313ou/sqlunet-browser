@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import org.sqlunet.activities.R
+import org.sqlunet.core.R
 import org.sqlunet.browser.NightMode.createOverrideConfigurationForDayNight
 
 /**

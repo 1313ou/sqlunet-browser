@@ -8,7 +8,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import com.bbou.download.common.R
 import org.sqlunet.browser.BaseActivity
-import org.sqlunet.activities.R as ActivitiesR
+import org.sqlunet.core.R as CoreR
 
 /**
  * Update activity
@@ -27,7 +27,7 @@ class UpdateActivity : BaseActivity() {
         setContentView(R.layout.activity_update)
 
         // toolbar
-        val toolbar = findViewById<Toolbar>(ActivitiesR.id.toolbar)
+        val toolbar = findViewById<Toolbar>(CoreR.id.toolbar)
         setSupportActionBar(toolbar)
 
         // set up the action bar

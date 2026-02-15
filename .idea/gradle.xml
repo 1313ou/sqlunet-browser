@@ -10,7 +10,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/activities" />
             <option value="$PROJECT_DIR$/assetpacks" />
             <option value="$PROJECT_DIR$/bNC" />
             <option value="$PROJECT_DIR$/browser" />
@@ -23,6 +22,7 @@
             <option value="$PROJECT_DIR$/capture" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/concurrency" />
+            <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/coroutines" />
             <option value="$PROJECT_DIR$/db_ewn_asset" />
             <option value="$PROJECT_DIR$/db_wn31_asset" />

@@ -15,7 +15,7 @@ import org.sqlunet.browser.common.BuildConfig
 import org.sqlunet.browser.NightMode.nightModeToString
 import org.sqlunet.browser.NightMode.wrapContext
 import org.sqlunet.settings.Settings
-import org.sqlunet.activities.R as ActivitiesR
+import org.sqlunet.core.R as CoreR
 
 abstract class AbstractApplication : Application() {
 
@@ -28,7 +28,7 @@ abstract class AbstractApplication : Application() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        val newContext = wrapContext(this, newConfig, ActivitiesR.style.MyTheme)
+        val newContext = wrapContext(this, newConfig, CoreR.style.MyTheme)
         Log.d(LOG, "onConfigurationChanged: " + nightModeToString(this) + " -> " + nightModeToString(newContext))
         setAllColorsFromResources(newContext)
     }

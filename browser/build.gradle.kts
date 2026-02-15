@@ -85,7 +85,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(libs.core.ktx)
 
-    implementation(project(":activities"))
+    implementation(project(":core"))
     implementation(project(":common"))
     implementation(project(":expandableListFragment"))
     implementation(project(":assetpacks"))
@@ -114,7 +114,7 @@ dependencies {
     implementation(libs.annotation)
 
     androidTestImplementation(project(":common"))
-    androidTestImplementation(project(":activities"))
+    androidTestImplementation(project(":core"))
     androidTestImplementation(project(":test"))
     androidTestImplementation(libs.annotation)
     androidTestImplementation(libs.junit)

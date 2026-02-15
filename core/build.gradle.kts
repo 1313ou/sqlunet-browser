@@ -7,7 +7,7 @@ private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
 
 android {
 
-    namespace = "org.sqlunet.activities"
+    namespace = "org.sqlunet.core"
 
     defaultConfig {
         minSdk = vMinSdk

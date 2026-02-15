@@ -12,7 +12,7 @@ import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowInsetsControllerCompat
-import org.sqlunet.activities.R
+import org.sqlunet.core.R
 import org.sqlunet.browser.NightMode.isNightMode
 import android.R as AndroidR
 

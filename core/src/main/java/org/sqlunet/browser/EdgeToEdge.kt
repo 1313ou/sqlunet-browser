@@ -11,7 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import com.google.android.material.appbar.AppBarLayout
-import org.sqlunet.activities.R
+import org.sqlunet.core.R
 
 object EdgeToEdge {
 

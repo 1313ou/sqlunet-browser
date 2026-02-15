@@ -8,7 +8,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import org.sqlunet.browser.BaseActivity
 import org.sqlunet.wordnet.R
-import org.sqlunet.activities.R as ActivitiesR
+import org.sqlunet.core.R as CoreR
 
 /**
  * Synset activity
@@ -26,7 +26,7 @@ class WordActivity : BaseActivity() {
         setContentView(R.layout.activity_word)
 
         // toolbar
-        val toolbar = findViewById<Toolbar>(ActivitiesR.id.toolbar)
+        val toolbar = findViewById<Toolbar>(CoreR.id.toolbar)
         setSupportActionBar(toolbar)
 
         // set up the action bar
