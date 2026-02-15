@@ -4,7 +4,6 @@
 package org.sqlunet.browser.fn.selector
 
 import android.os.Bundle
-import android.view.View
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.Pointer
@@ -44,13 +43,9 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
     // A D A P T E R
 
     override fun makeAdapter(): RecyclerView.Adapter<*> {
-        val adapter = SelectorsAdapter()
-        adapter.setOnClickListener(object : SelectorsAdapter.OnClickListener {
-            override fun onClick(position: Int, view: View) {
-                activate(position)
-            }
-        })
-        return adapter
+        return SelectorsAdapter { position: Int ->
+            activate(position)
+        }
     }
 
     // L O A D

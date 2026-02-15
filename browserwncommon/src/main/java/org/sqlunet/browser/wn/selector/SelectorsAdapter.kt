@@ -18,7 +18,7 @@ import org.sqlunet.wordnet.provider.WordNetContract
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), CursorRecyclerViewAdapter {
+class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), CursorRecyclerViewAdapter {
 
     /**
      * Cursor
@@ -26,9 +26,21 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
     private var cursor: Cursor? = null
 
     /**
+     * Tracks activated view
+     */
+    var activated: View? = null
+
+    /**
      * OnClickListener
      */
-    private var onClickListener: OnClickListener? = null
+    private val onClickListener = { position: Int, view: View ->
+        activated?.isActivated = false
+
+        view.isActivated = true
+        activated = view
+
+        activate(position)
+    }
 
     // holder
 
@@ -117,29 +129,6 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
     // click
 
     /**
-     * Set OnClickListener
-     *
-     * @param onClickListener onClickListener
-     */
-    fun setOnClickListener(onClickListener: OnClickListener?) {
-        this.onClickListener = onClickListener
-    }
-
-    /**
-     * OnClickListener interface
-     */
-    interface OnClickListener {
-
-        /**
-         * OnClick
-         *
-         * @param position position
-         * @param view     view
-         */
-        fun onClick(position: Int, view: View)
-    }
-
-    /**
      * ViewHolder
      *
      * @param itemView view
@@ -147,7 +136,7 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         init {
-            itemView.setOnClickListener { onClickListener?.onClick(bindingAdapterPosition, itemView) }
+            itemView.setOnClickListener { onClickListener.invoke(bindingAdapterPosition, itemView) }
         }
 
         val pos: TextView = itemView.findViewById(R.id.pos)
