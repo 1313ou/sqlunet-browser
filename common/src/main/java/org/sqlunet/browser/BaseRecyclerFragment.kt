@@ -133,7 +133,7 @@ abstract class BaseRecyclerFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        recyclerAdapter?.changeCursor(null)
+        recyclerAdapter?.cursor = null
     }
 
     /**
@@ -142,7 +142,7 @@ abstract class BaseRecyclerFragment : Fragment() {
     private fun makeModels() {
         model = ViewModelProvider(this)["elements", SqlunetViewModel::class.java]
         model!!.getData().observe(getViewLifecycleOwner()) { cursor: Cursor? ->
-            recyclerAdapter!!.changeCursor(cursor)
+            recyclerAdapter!!.cursor = cursor
         }
     }
 

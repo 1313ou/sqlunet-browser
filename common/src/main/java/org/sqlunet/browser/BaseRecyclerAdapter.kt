@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 class BaseRecyclerAdapter(
     private val context: Context,
     private val layout: Int,
-    private var cursor: Cursor?,
+    var cursor: Cursor?,
     private val fromColumns: Array<String>,
     private val viewIds: IntArray
 ) : RecyclerView.Adapter<BaseRecyclerAdapter.ViewHolder>() {
@@ -29,7 +29,7 @@ class BaseRecyclerAdapter(
     /**
      * View binder
      */
-    interface ViewBinder {
+    fun interface ViewBinder {
 
         /**
          * Binds the Cursor to the view.

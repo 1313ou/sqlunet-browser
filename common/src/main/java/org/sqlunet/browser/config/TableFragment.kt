@@ -10,21 +10,24 @@ import android.widget.SimpleCursorAdapter
 import android.widget.TextView
 import org.sqlunet.browser.BaseListFragment
 import androidx.core.net.toUri
+import org.sqlunet.browser.BaseRecyclerAdapter
+import org.sqlunet.browser.BaseRecyclerFragment
 
 /**
  * A list fragment representing a table.
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class TableFragment : BaseListFragment() {
+class TableFragment : BaseRecyclerFragment() {
 
     /**
      * Make view binder
      *
      * @return ViewBinder
      */
-    override fun makeViewBinder(): SimpleCursorAdapter.ViewBinder {
-        return SimpleCursorAdapter.ViewBinder { view: View, cursor: Cursor, columnIndex: Int ->
+    override fun makeViewBinder(): BaseRecyclerAdapter.ViewBinder {
+
+        return BaseRecyclerAdapter.ViewBinder { view: View, cursor: Cursor, columnIndex: Int ->
             var value = cursor.getString(columnIndex)
             if (value == null) {
                 value = ""
