@@ -47,10 +47,8 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
 
     // A D A P T E R
 
-    override fun makeAdapter(): RecyclerView.Adapter<*> {
-        return SelectorsAdapter { position: Int ->
-            activate(position)
-        }
+    override val adapter: RecyclerView.Adapter<*> = SelectorsAdapter { position: Int ->
+        activate(position)
     }
 
     // L O A D
@@ -63,7 +61,7 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
     }
 
     /**
-     * Post processing, extraction of wordid from cursor
+     * Post-processing, extraction of wordid from cursor
      *
      * @param cursor cursor
      */
@@ -74,10 +72,12 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
         }
     }
 
+    // A C T I V A T I O N
+
     override fun activate(position: Int) {
         positionModel!!.setPosition(position)
         if (listener != null) {
-            val adapter = recyclerView!!.adapter as SelectorsAdapter
+            val adapter = recyclerView.adapter as SelectorsAdapter
             val cursor = adapter.getCursor()
             if (cursor != null && cursor.moveToPosition(position)) {
                 // column indexes

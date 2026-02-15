@@ -42,10 +42,8 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
 
     // A D A P T E R
 
-    override fun makeAdapter(): RecyclerView.Adapter<*> {
-        return SelectorsAdapter { position: Int ->
-            activate(position)
-        }
+    override val adapter: RecyclerView.Adapter<*> = SelectorsAdapter { position: Int ->
+        activate(position)
     }
 
     // L O A D
@@ -57,10 +55,12 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
         dataModel!!.loadData(uri, sql, null)
     }
 
+    // A C T I V A T I O N
+
     override fun activate(position: Int) {
         positionModel!!.setPosition(position)
         if (listener != null) {
-            val adapter = recyclerView!!.adapter as SelectorsAdapter
+            val adapter = recyclerView.adapter as SelectorsAdapter
             val cursor = adapter.getCursor()
             if (cursor != null && cursor.moveToPosition(position)) {
                 // column indexes
@@ -84,7 +84,7 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
         }
     }
 
-    // C L I C K   L I S T E N E R
+   // C L I C K   L I S T E N E R
 
     /**
      * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
