@@ -5,41 +5,44 @@ package org.sqlunet.browser
 
 import android.database.Cursor
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.CursorAdapter
-import android.widget.ListAdapter
-import android.widget.SimpleCursorAdapter
-import androidx.fragment.app.ListFragment
+import android.view.ViewGroup
+import androidx.core.net.toUri
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.common.R
 import org.sqlunet.provider.XNetContract
 import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
-import androidx.core.net.toUri
 
 /**
  * A list fragment representing sources.
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class SourceFragment : ListFragment() {
+class SourceFragment : Fragment() {
+
+    private lateinit var adapter: SourcesAdapter
 
     /**
      * View model
      */
     private var model: SqlunetViewModel? = null
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_recycler, container, false)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // make cursor adapter
-        val from = arrayOf(XNetContract.Sources.NAME, XNetContract.Sources.VERSION, XNetContract.Sources.URL, XNetContract.Sources.PROVIDER, XNetContract.Sources.REFERENCE)
-        val to = intArrayOf(R.id.name, R.id.version, R.id.url, R.id.provider, R.id.reference)
-        val adapter: ListAdapter = SimpleCursorAdapter(
-            requireContext(), R.layout.item_source, null,
-            from,
-            to, 0
-        )
-        setListAdapter(adapter)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.list)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+
+        adapter = SourcesAdapter(null)
+        recyclerView.adapter = adapter
     }
 
     override fun onStart() {
@@ -57,16 +60,7 @@ class SourceFragment : ListFragment() {
 
     override fun onStop() {
         super.onStop()
-        val listView = getListView()
-        val adapter = listAdapter as CursorAdapter?
-        listView.adapter = null
-        adapter!!.swapCursor(null)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        val adapter = listAdapter as CursorAdapter?
-        adapter?.changeCursor(null)
+        adapter.swapCursor(null)
     }
 
     /**
@@ -74,9 +68,8 @@ class SourceFragment : ListFragment() {
      */
     private fun makeModels() {
         model = ViewModelProvider(this)["sources", SqlunetViewModel::class.java]
-        model!!.getData().observe(getViewLifecycleOwner()) { cursor: Cursor? ->
-            val adapter = (listAdapter as CursorAdapter?)!!
-            adapter.changeCursor(cursor)
+        model!!.getData().observe(viewLifecycleOwner) { cursor: Cursor? ->
+            adapter.swapCursor(cursor)
         }
     }
 }
