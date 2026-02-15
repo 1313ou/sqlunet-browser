@@ -7,6 +7,5 @@
 	<size
 		android:width="1dp"
 		android:height="2dp" />
-	<solid android:color="?android:attr/foreground" />
-<!--	<solid android:color="@android:color/holo_green_dark" />-->
+	<solid android:color="?android:attr/colorForeground" />
 </shape>
