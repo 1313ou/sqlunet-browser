@@ -7,17 +7,17 @@
 	style="@style/Label.Group"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:orientation="horizontal"
 	android:background="@drawable/bg_selector"
+	android:orientation="horizontal"
 	tools:ignore="UseCompoundDrawables">
 
 	<ImageView
 		android:id="@+id/xicon"
 		style="@style/Label.GroupIcon"
-		android:contentDescription="@string/source"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_gravity="center_vertical" />
+		android:layout_gravity="center_vertical"
+		android:contentDescription="@string/source" />
 
 	<TextView
 		android:id="@+id/xn"
