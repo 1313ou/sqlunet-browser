@@ -6,7 +6,7 @@
 
 	<!--S E L E C T O R S -->
 
-	<style name="Label.Group">
+	<style name="Label.Group" parent="ListItemStyle">
 		<item name="android:padding">8dp</item>
 		<item name="android:background">?attr/colorSecondary</item>
 		<item name="android:textColor">?attr/colorOnSecondary</item>
