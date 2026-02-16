@@ -126,7 +126,7 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
                     try {
                         view.setImageResource(text.toInt())
                         return@setViewBinder true
-                    } catch (nfe: NumberFormatException) {
+                    } catch (_: NumberFormatException) {
                         view.setImageURI(text.toUri())
                         return@setViewBinder true
                     }
@@ -249,7 +249,7 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
         /**
          * Displayed columns
          */
-        private val DISPLAYED_COLUMNS = arrayOf(
+        private val DISPLAYED_COLUMNS = arrayOf<String>(
             SyntagNetContract.WORD1,
             SyntagNetContract.WORD2,
             SyntagNetContract.POS1,
