@@ -3,6 +3,6 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:state_activated="true" android:drawable="@color/primaryColor" />
+	<item android:state_activated="true" android:drawable="@color/activatedBackgroundColor" />
 	<item android:drawable="@android:color/transparent" />
 </selector>
