@@ -8,6 +8,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="horizontal"
+	android:background="@drawable/bg_selector"
 	tools:ignore="UseCompoundDrawables">
 
 	<ImageView
