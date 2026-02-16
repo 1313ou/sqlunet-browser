@@ -5,10 +5,9 @@
 <resources>
 
 	<!-- generic -->
-<!--	<color name="backgroundColor">@android:color/black</color> &lt;!&ndash; generic window background &ndash;&gt;-->
-<!--	<color name="foregroundColor">@android:color/white</color> &lt;!&ndash; generic window foreground &ndash;&gt;-->
 	<color name="backgroundColor">#404040</color> <!-- generic window background -->
 	<color name="foregroundColor">#FFFFC0</color> <!-- generic window foreground -->
+	<color name="activatedBackgroundColor">#EF9CCE</color>
 
 	<!-- primary -->
 	<color name="primaryColor">#4251bd</color> <!-- framework + nav (middle in gradient), x selector header -->
@@ -20,9 +19,6 @@
 	<color name="secondaryColor">#ef2063</color>
 	<color name="secondaryLightColor">#ff60c0</color>
 	<color name="onSecondaryColor">#F0F0F0</color>
-
-	<!-- background -->
-	<color name="activatedBackgroundColor">#10FFFFFF</color>
 
 	<!-- S T Y L E  A T T R  -->
 
