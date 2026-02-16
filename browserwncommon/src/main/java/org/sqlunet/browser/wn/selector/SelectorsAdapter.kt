@@ -4,6 +4,7 @@
 package org.sqlunet.browser.wn.selector
 
 import android.database.Cursor
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,11 +34,12 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
     /**
      * OnClickListener
      */
-    private val onClickListener = { position: Int, view: View ->
+    private val onClickListener = { position: Int, itemView: View ->
         activated?.isActivated = false
 
-        view.isActivated = true
-        activated = view
+        itemView.isActivated = true
+        activated = itemView
+        Log.d(TAG, "Activate position $position view $itemView")
 
         activate(position)
     }
@@ -151,5 +153,10 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         val wordid: TextView = itemView.findViewById(R.id.wordid)
         val synsetid: TextView = itemView.findViewById(R.id.synsetid)
         val senseid: TextView = itemView.findViewById(R.id.senseid)
+    }
+
+    companion object {
+
+        private const val TAG = "SelectorsA"
     }
 }
