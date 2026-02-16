@@ -40,13 +40,18 @@
 		<item name="android:textColor">?attr/colorOnSecondary</item>
 	</style>
 
+	<!-- As TextView -->
+	<style name="TextViewListItemStyle">
+		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
+	</style>
+
 	<!-- As Layout -->
 	<style name="ListItemStyle">
 		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
 	</style>
 
-	<!-- As TextView -->
-	<style name="TextViewListItemStyle">
+	<!-- As Layout -->
+	<style name="ExpandableListGroupItemStyle">
 		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
 	</style>
 
