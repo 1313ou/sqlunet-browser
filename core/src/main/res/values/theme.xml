@@ -23,15 +23,15 @@
 		<item name="colorSecondaryVariant">@color/secondaryLightColor</item>
 		<item name="colorOnSecondary">@color/onSecondaryColor</item>
 
-		<!-- background of activated indicator, caret -->
-		<item name="colorControlActivated">@color/secondaryColor</item>
+		<!-- caret -->
+		<item name="colorControlActivated">@color/secondaryColor</item>-->
 
 		<!-- O V E R R I D E S -->
 
 		<!-- foreground and background -->
 		<!-- <item name="android:windowBackground">@color/backgroundColor</item>-->
-		<item name="android:colorBackground">@color/backgroundColor</item>
-		<item name="android:colorForeground">@color/foregroundColor</item>
+		<!-- <item name="android:colorBackground">@color/backgroundColor</item>-->
+		<!-- <item name="android:colorForeground">@color/foregroundColor</item>-->
 
 		<!-- transparent statusbar and navigation bar -->
 		<item name="android:statusBarColor">@android:color/transparent</item>
