@@ -42,17 +42,10 @@
 
 	<!-- As TextView -->
 	<style name="TextViewListItemStyle">
-		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
 	</style>
 
 	<!-- As Layout -->
 	<style name="ListItemStyle">
-		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
-	</style>
-
-	<!-- As Layout -->
-	<style name="ExpandableListGroupItemStyle">
-		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
 	</style>
 
 	<!-- S E A R C H   T E X T -->
