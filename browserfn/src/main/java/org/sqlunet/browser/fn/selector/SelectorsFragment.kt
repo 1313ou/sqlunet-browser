@@ -94,7 +94,7 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
         /**
          * Callback for when an item has been selected.
          */
-        fun onItemSelected(pointer: Pointer?, word: String?, wordId: Long)
+        fun onItemSelected(pointer: Pointer, word: String, wordId: Long)
     }
 
     /**
