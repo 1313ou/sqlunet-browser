@@ -7,7 +7,7 @@
 	<!-- generic -->
 	<color name="backgroundColor">#D0D0D0</color> <!-- generic window background -->
 	<color name="foregroundColor">#404040</color> <!-- generic window foreground -->
-	<color name="activatedBackgroundColor">#20FF0000</color>
+	<color name="activatedBackgroundColor">#40FFFF00</color>
 
 	<!-- primary -->
 	<color name="primaryColor">#4251bd</color>
