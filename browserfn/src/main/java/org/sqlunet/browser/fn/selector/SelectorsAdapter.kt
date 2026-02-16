@@ -31,19 +31,21 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
     private var cursor: Cursor? = null
 
     /**
-     * Tracks activated view
+     * Tracks activated item position
      */
-    var activated: View? = null
+    private var activatedPosition = RecyclerView.NO_POSITION
 
     /**
      * OnClickListener
      */
-    private val onClickListener = { position: Int, itemView: View ->
-        activated?.isActivated = false
-
-        itemView.isActivated = true
-        activated = itemView
-        Log.d(TAG, "Activate position $position view $itemView")
+    private val onClickListener = { position: Int ->
+        Log.d(TAG, "Activate position $position")
+        val previouslyActivatedPosition = activatedPosition
+        activatedPosition = position
+        if (previouslyActivatedPosition != RecyclerView.NO_POSITION) {
+            notifyItemChanged(previouslyActivatedPosition)
+        }
+        notifyItemChanged(activatedPosition)
 
         activate(position)
     }
@@ -90,6 +92,7 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         bindTextView(viewHolder.fnFrameIdView, frameId.toString(), false)
 
         viewHolder.iconView.setImageResource(if (isFrame) XNetR.drawable.roles else XNetR.drawable.member)
+        viewHolder.itemView.isActivated = position == activatedPosition
     }
 
     override fun getCursor(): Cursor? {
@@ -107,6 +110,7 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         }
         this.cursor = cursor
         if (this.cursor != null) {
+            activatedPosition = RecyclerView.NO_POSITION
             notifyDataSetChanged()
         }
         old?.close()
@@ -134,7 +138,11 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         init {
-            itemView.setOnClickListener { onClickListener.invoke(bindingAdapterPosition, itemView) }
+            Log.d(TAG, "ItemView $itemView")
+            itemView.setOnClickListener {
+                Log.d(TAG, "Click position=$position, adapterPosition=$adapterPosition, bindingPosition=$bindingAdapterPosition, layoutPosition=$layoutPosition, absoluteAdapterPosition=$absoluteAdapterPosition")
+                onClickListener.invoke(bindingAdapterPosition)
+            }
         }
 
         val fnNameView: TextView = itemView.findViewById(R.id.fnname)
