@@ -48,7 +48,7 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
     // A D A P T E R
 
     override val adapter: RecyclerView.Adapter<*> = SelectorsAdapter { position: Int ->
-        activate(position)
+        select(position)
     }
 
     // L O A D
@@ -74,7 +74,7 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
 
     // A C T I V A T I O N
 
-    override fun activate(position: Int) {
+    override fun select(position: Int) {
         positionModel!!.setPosition(position)
         if (listener != null) {
             val adapter = recyclerView.adapter as SelectorsAdapter

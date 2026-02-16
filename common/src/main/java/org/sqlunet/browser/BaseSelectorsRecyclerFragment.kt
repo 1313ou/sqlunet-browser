@@ -149,7 +149,7 @@ abstract class BaseSelectorsRecyclerFragment : LoggingFragment() {
 
     // A C T I V A T I O N
 
-    protected abstract fun activate(position: Int)
+    protected abstract fun select(position: Int)
 
     companion object {
 
