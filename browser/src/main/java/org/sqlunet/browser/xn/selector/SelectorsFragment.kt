@@ -36,7 +36,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
         viewModelKey = "selectors(word)"
     }
 
-    override fun activate(position: Int) {
+    override fun select(position: Int) {
         positionModel!!.setPosition(position)
         if (listener != null) {
             val adapter = (adapter as SimpleCursorAdapter?)!!

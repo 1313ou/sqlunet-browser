@@ -177,10 +177,10 @@ abstract class BaseSelectorsListFragment : LoggingFragment(), OnItemClickListene
 
     override fun onItemClick(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
         Log.d(TAG, "Select $position")
-        activate(position)
+        select(position)
     }
 
-    protected abstract fun activate(position: Int)
+    protected abstract fun select(position: Int)
 
     companion object {
 
