@@ -6,8 +6,8 @@
 
 	<!-- generic -->
 	<color name="backgroundColor">#404040</color> <!-- generic window background -->
-	<color name="foregroundColor">#FFFFC0</color> <!-- generic window foreground -->
-	<color name="activatedBackgroundColor">#EF9CCE</color>
+	<color name="foregroundColor">#E0E0E0</color> <!-- generic window foreground -->
+	<color name="activatedBackgroundColor">#18FF0000</color>
 
 	<!-- primary -->
 	<color name="primaryColor">#4251bd</color> <!-- framework + nav (middle in gradient), x selector header -->
