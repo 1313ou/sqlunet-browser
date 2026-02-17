@@ -26,6 +26,8 @@ import org.sqlunet.settings.Settings
  */
 class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
 
+    // C R E A T I O N
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, R.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false)
     }
@@ -50,7 +52,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
         manager.beginTransaction()
             .setReorderingAllowed(true)
             .replace(R.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
-            // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) 
+            // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG)
             .commit()
 
         // two-pane specific set up
@@ -62,14 +64,17 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
             var browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG)
             if (browse2Fragment == null) {
                 browse2Fragment = Browse2Fragment()
-                val args2 = Bundle()
+                var args2 = arguments
+                if (args2 == null) {
+                    args2 = Bundle()
+                }
                 args2.putBoolean(Browse2Fragment.ARG_ALT, false)
                 browse2Fragment.setArguments(args2)
             }
             manager.beginTransaction()
                 .setReorderingAllowed(true)
                 .replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG)
-                // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) 
+                // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG)
                 .commit()
         }
     }
@@ -77,9 +82,9 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
     // S E L E C T I O N
 
     /**
-     * Callback method from [SelectorsFragment.Listener] indicating that the item with the given ID was selected.
+     * Callback method indicating that the item with the given ID was selected.
      */
-    override fun onItemSelected(pointer: SelectorPointer?, word: String?, cased: String?, pronunciation: String?, pos: String?) {
+    override fun onItemSelected(pointer: SelectorPointer, word: String, cased: String?, pronunciation: String?, pos: String) {
         val view = requireView()
         if (isTwoPane(view)) {
             // in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
@@ -100,6 +105,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
             args.putString(ProviderArgs.ARG_HINTCASED, cased)
             args.putString(ProviderArgs.ARG_HINTPRONUNCIATION, pronunciation)
             args.putString(ProviderArgs.ARG_HINTPOS, pos)
+            args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
             val intent = Intent(AppContext.context, Browse2Activity::class.java)
             intent.putExtras(args)
             startActivity(intent)
@@ -117,6 +123,6 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
     private fun isTwoPane(view: View): Boolean {
         // the detail view will be present only in the large-screen layouts
         // if this view is present, then the activity should be in two-pane mode.
-        return view.findViewById<View?>(R.id.detail) != null
+        return view.findViewById<View?>(R.id.details_pane) != null
     }
 }

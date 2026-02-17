@@ -188,7 +188,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
         /**
          * Callback for when an item has been selected.
          */
-        fun onItemSelected(pointer: SelectorPointer?, word: String?, cased: String?, pronunciation: String?, pos: String?)
+        fun onItemSelected(pointer: SelectorPointer, word: String, cased: String?, pronunciation: String?, pos: String)
     }
 
     /**
