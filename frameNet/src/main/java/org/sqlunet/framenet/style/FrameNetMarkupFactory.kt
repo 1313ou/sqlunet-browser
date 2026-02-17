@@ -60,7 +60,7 @@ class FrameNetMarkupFactory internal constructor(context: Context) : MarkupSpann
         val position = valueFrom(flags) ?: throw IllegalArgumentException()
         return when (position) {
             SpanPosition.TAG1 -> {
-                return when {
+                when {
                     "t" == selector -> ImageSpan(relationDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
                     "fen" == selector -> ImageSpan(roleDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
                     "fe" == selector -> ImageSpan(role2Drawable, DynamicDrawableSpan.ALIGN_BASELINE)

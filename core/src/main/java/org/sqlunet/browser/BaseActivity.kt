@@ -6,15 +6,11 @@ package org.sqlunet.browser
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowInsetsControllerCompat
-import org.sqlunet.core.R
 import org.sqlunet.browser.NightMode.isNightMode
-import android.R as AndroidR
 
 /**
  * Common activity
