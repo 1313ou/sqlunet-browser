@@ -13,13 +13,27 @@ import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.CursorRecyclerViewAdapter
 import org.sqlunet.browser.R
 import org.sqlunet.provider.XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords
-import org.sqlunet.speak.Pronunciation.Companion.sortedPronunciations
 
+/**
+ * Selectors adapter
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
+ */
 class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), CursorRecyclerViewAdapter {
 
+    /**
+     * Cursor
+     */
     private var cursor: Cursor? = null
+
+    /**
+     * Tracks activated item position
+     */
     private var activatedPosition = RecyclerView.NO_POSITION
 
+    /**
+     * OnClickListener
+     */
     private val onClickListener = { position: Int ->
         Log.d(TAG, "Activate position $position")
         val previouslyActivatedPosition = activatedPosition
@@ -28,77 +42,80 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
             notifyItemChanged(previouslyActivatedPosition)
         }
         notifyItemChanged(activatedPosition)
+
         activate(position)
     }
+
+    // holder
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_selector, parent, false)
         return ViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         cursor?.let {
             if (!it.moveToPosition(position)) {
                 throw IllegalStateException("Can't move cursor to position $position")
             }
 
-            // Bind data
-            bindTextView(holder.pos, it, Words_Pronunciations_FnWords_PbWords_VnWords.POS, false)
-            bindTextView(holder.sensenum, it, Words_Pronunciations_FnWords_PbWords_VnWords.SENSENUM, false)
-            bindTextView(holder.domain, it, Words_Pronunciations_FnWords_PbWords_VnWords.DOMAIN, false)
-            bindTextView(holder.definition, it, Words_Pronunciations_FnWords_PbWords_VnWords.DEFINITION, false)
-            bindTextView(holder.cased, it, Words_Pronunciations_FnWords_PbWords_VnWords.CASED, false)
+            val idPosId = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.POSID)
+            val idDomain = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.DOMAIN)
+            val idDefinition = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.DEFINITION)
+            val idCasedWord = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.CASED)
+            val idPronunciations = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.PRONUNCIATIONS)
+            val idSenseNum = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.SENSENUM)
+            val idSenseKey = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.SENSEKEY)
+            val idLexId = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.LEXID)
+            val idTagCount = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.TAGCOUNT)
+            val idWordId = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.WORDID)
+            val idSynsetId = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.SYNSETID)
+            val idSenseId = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.SENSEID)
+            val idVnwordid = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.VNWORDID)
+            val idPbwordid = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.PBWORDID)
+            val idFnwordid = it.getColumnIndexOrThrow(Words_Pronunciations_FnWords_PbWords_VnWords.FNWORDID)
 
-            // Pronunciation has special handling
-            val pronunColIdx = it.getColumnIndex(Words_Pronunciations_FnWords_PbWords_VnWords.PRONUNCIATIONS)
-            var pronunText: String? = if (pronunColIdx != -1) it.getString(pronunColIdx) else null
-            if (pronunText != null) {
-                pronunText = sortedPronunciations(pronunText)
-            }
-            if (pronunText.isNullOrEmpty()) {
-                holder.pronunciation.visibility = View.GONE
-            } else {
-                holder.pronunciation.visibility = View.VISIBLE
-                holder.pronunciation.text = pronunText
-            }
+            val posId = it.getString(idPosId)
+            val domain = it.getString(idDomain)
+            val definition = it.getString(idDefinition)
+            val casedWord = it.getString(idCasedWord)
+            val pronunciations = it.getString(idPronunciations)
+            val senseNum = it.getInt(idSenseNum)
+            val senseKey = it.getString(idSenseKey)
+            val lexId = it.getInt(idLexId)
+            val tagCount = it.getInt(idTagCount)
+            val wordId = it.getLong(idWordId)
+            val synsetId = it.getLong(idSynsetId)
+            val senseId = it.getLong(idSenseId)
+            val vnwordid = it.getLong(idVnwordid)
+            val pwordid = it.getLong(idPbwordid)
+            val fnwordid = it.getLong(idFnwordid)
 
-            val tagCountColIdx = it.getColumnIndex(Words_Pronunciations_FnWords_PbWords_VnWords.TAGCOUNT)
-            val tagCount = if (tagCountColIdx != -1) it.getInt(tagCountColIdx) else 0
-            bindTextView(holder.tagcount, if (tagCount > 0) tagCount.toString() else null, false)
-            bindTextView(holder.lexid, it, Words_Pronunciations_FnWords_PbWords_VnWords.LUID, false)
-            bindTextView(holder.sensekey, it, Words_Pronunciations_FnWords_PbWords_VnWords.SENSEKEY, false)
-            bindTextView(holder.wordid, it, Words_Pronunciations_FnWords_PbWords_VnWords.WORDID, true)
-            bindTextView(holder.synsetid, it, Words_Pronunciations_FnWords_PbWords_VnWords.SYNSETID, true)
-            bindTextView(holder.senseid, it, Words_Pronunciations_FnWords_PbWords_VnWords.SENSEID, true)
-            bindTextView(holder.vnwordid, it, Words_Pronunciations_FnWords_PbWords_VnWords.VNWORDID, true)
-            bindTextView(holder.pbwordid, it, Words_Pronunciations_FnWords_PbWords_VnWords.PBWORDID, true)
-            bindTextView(holder.fnwordid, it, Words_Pronunciations_FnWords_PbWords_VnWords.FNWORDID, true)
-
-            holder.itemView.isActivated = position == activatedPosition
+            viewHolder.pos.text = posId
+            viewHolder.domain.text = domain
+            viewHolder.definition.text = definition
+            bindTextView(viewHolder.cased, casedWord)
+            bindTextView(viewHolder.pronunciation, pronunciations)
+            bindTextView(viewHolder.tagcount, if (tagCount <= 0) null else tagCount.toString())
+            viewHolder.sensekey.text = senseKey
+            viewHolder.sensenum.text = senseNum.toString()
+            viewHolder.lexid.text = lexId.toString()
+            viewHolder.wordid.text = wordId.toString()
+            viewHolder.synsetid.text = synsetId.toString()
+            viewHolder.senseid.text = senseId.toString()
+            bindTextView(viewHolder.vnwordid, if (vnwordid <= 0) null else vnwordid.toString())
+            bindTextView(viewHolder.pbwordid, if (pwordid <= 0) null else pwordid.toString())
+            bindTextView(viewHolder.fnwordid, if (fnwordid <= 0) null else fnwordid.toString())
+            viewHolder.itemView.isActivated = position == activatedPosition
         }
-    }
-
-    private fun bindTextView(textView: TextView, cursor: Cursor, columnName: String, isId: Boolean) {
-        val columnIndex = cursor.getColumnIndex(columnName)
-        val text = if (columnIndex != -1) cursor.getString(columnIndex) else null
-        bindTextView(textView, text, isId)
-    }
-
-    private fun bindTextView(textView: TextView, text: String?, isId: Boolean) {
-        if (text.isNullOrEmpty() || (isId && text == "0")) {
-            textView.visibility = View.GONE
-        } else {
-            textView.visibility = View.VISIBLE
-            textView.text = text
-        }
-    }
-
-    override fun getItemCount(): Int {
-        return cursor?.count ?: 0
     }
 
     override fun getCursor(): Cursor? {
         return cursor
+    }
+
+    override fun getItemCount(): Int {
+        return cursor?.count ?: 0
     }
 
     override fun changeCursor(cursor: Cursor?) {
@@ -114,16 +131,33 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         old?.close()
     }
 
+    // helper
+
+    private fun bindTextView(textView: TextView, text: String?) {
+        if (text.isNullOrEmpty()) {
+            textView.visibility = View.GONE
+        } else {
+            textView.visibility = View.VISIBLE
+            textView.text = text
+        }
+    }
+
+    /**
+     * ViewHolder
+     *
+     * @param itemView view
+     */
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         val pos: TextView = itemView.findViewById(R.id.pos)
-        val sensenum: TextView = itemView.findViewById(R.id.sensenum)
         val domain: TextView = itemView.findViewById(R.id.domain)
         val definition: TextView = itemView.findViewById(R.id.definition)
         val cased: TextView = itemView.findViewById(R.id.cased)
         val pronunciation: TextView = itemView.findViewById(R.id.pronunciation)
-        val tagcount: TextView = itemView.findViewById(R.id.tagcount)
-        val lexid: TextView = itemView.findViewById(R.id.lexid)
+        val sensenum: TextView = itemView.findViewById(R.id.sensenum)
         val sensekey: TextView = itemView.findViewById(R.id.sensekey)
+        val lexid: TextView = itemView.findViewById(R.id.lexid)
+        val tagcount: TextView = itemView.findViewById(R.id.tagcount)
         val wordid: TextView = itemView.findViewById(R.id.wordid)
         val synsetid: TextView = itemView.findViewById(R.id.synsetid)
         val senseid: TextView = itemView.findViewById(R.id.senseid)
@@ -132,13 +166,16 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         val fnwordid: TextView = itemView.findViewById(R.id.fnwordid)
 
         init {
+            // Log.d(TAG, "ItemView $itemView")
             itemView.setOnClickListener {
+                // Log.d(TAG, "Click position=$position, adapterPosition=$adapterPosition, bindingPosition=$bindingAdapterPosition, layoutPosition=$layoutPosition, absoluteAdapterPosition=$absoluteAdapterPosition")
                 onClickListener.invoke(bindingAdapterPosition)
             }
         }
     }
 
     companion object {
+
         private const val TAG = "SelectorsA"
     }
 }
