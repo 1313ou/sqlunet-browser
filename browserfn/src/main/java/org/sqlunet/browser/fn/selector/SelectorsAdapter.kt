@@ -3,6 +3,7 @@
  */
 package org.sqlunet.browser.fn.selector
 
+import android.annotation.SuppressLint
 import android.database.Cursor
 import android.util.Log
 import android.view.LayoutInflater
@@ -103,6 +104,7 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         return cursor?.count ?: 0
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun changeCursor(cursor: Cursor?) {
         val old = this.cursor
         if (old === cursor) {

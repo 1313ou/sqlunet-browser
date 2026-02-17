@@ -3,6 +3,7 @@
  */
 package org.sqlunet.wordnet.browser
 
+import android.annotation.SuppressLint
 import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
@@ -128,7 +129,7 @@ class SensesFragment : Fragment() {
         // data model
         dataModel = ViewModelProvider(this)["wn.senses(word)", SqlunetViewModel::class.java]
         dataModel!!.getData().observe(getViewLifecycleOwner()) { cursor: Cursor? ->
-            adapter!!.setCursor(cursor)
+            adapter!!.changeCursor(cursor)
         }
 
         // position model
@@ -229,7 +230,8 @@ class SensesFragment : Fragment() {
             return cursor?.count ?: 0
         }
 
-        fun setCursor(cursor: Cursor?) {
+        @SuppressLint("NotifyDataSetChanged")
+        fun changeCursor(cursor: Cursor?) {
             this.cursor = cursor
             notifyDataSetChanged()
         }

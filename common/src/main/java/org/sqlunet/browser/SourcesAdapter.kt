@@ -3,6 +3,7 @@
  */
 package org.sqlunet.browser
 
+import android.annotation.SuppressLint
 import android.database.Cursor
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +30,9 @@ class SourcesAdapter(private var cursor: Cursor?) : RecyclerView.Adapter<Sources
         return cursor?.count ?: 0
     }
 
-    fun swapCursor(newCursor: Cursor?) {
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun changeCursor(newCursor: Cursor?) {
         if (cursor != newCursor) {
             val oldCursor = cursor
             cursor = newCursor

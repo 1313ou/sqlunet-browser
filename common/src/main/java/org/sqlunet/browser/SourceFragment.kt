@@ -60,7 +60,7 @@ class SourceFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        adapter.swapCursor(null)
+        adapter.changeCursor(null)
     }
 
     /**
@@ -69,7 +69,7 @@ class SourceFragment : Fragment() {
     private fun makeModels() {
         model = ViewModelProvider(this)["sources", SqlunetViewModel::class.java]
         model!!.getData().observe(viewLifecycleOwner) { cursor: Cursor? ->
-            adapter.swapCursor(cursor)
+            adapter.changeCursor(cursor)
         }
     }
 }

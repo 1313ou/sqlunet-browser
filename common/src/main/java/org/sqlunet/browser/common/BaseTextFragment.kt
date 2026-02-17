@@ -106,11 +106,11 @@ abstract class BaseTextFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        adapter.swapCursor(data)
+        adapter.changeCursor(data)
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapter.swapCursor(null)
+        adapter.changeCursor(null)
     }
 
     companion object {

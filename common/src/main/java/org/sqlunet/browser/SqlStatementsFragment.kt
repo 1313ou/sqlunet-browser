@@ -3,6 +3,7 @@
  */
 package org.sqlunet.browser
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +25,7 @@ import org.sqlunet.sql.SqlFormatter.styledFormat
 class SqlStatementsFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewAdapter: SqlStatementsAdapter
+    private lateinit var adapter: SqlStatementsAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -34,14 +35,14 @@ class SqlStatementsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewManager = LinearLayoutManager(requireContext())
-        viewAdapter = SqlStatementsAdapter(getSqlStatements())
+        adapter = SqlStatementsAdapter(getSqlStatements())
 
         val itemDecorator = DividerItemDecoration(requireContext(), (viewManager as LinearLayoutManager).orientation)
         itemDecorator.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.divider_sql)!!)
         recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view).apply {
             setHasFixedSize(true)
             layoutManager = viewManager
-            adapter = viewAdapter
+            this.adapter = this@SqlStatementsFragment.adapter
             addItemDecoration(itemDecorator)
         }
     }
@@ -59,11 +60,12 @@ class SqlStatementsFragment : Fragment() {
         return if (sqls.isNotEmpty()) sqls else arrayOf<CharSequence>("empty")
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun update() {
-        if (!this::viewAdapter.isInitialized) {
+        if (!this::adapter.isInitialized) {
             return
         }
-        viewAdapter.dataSet = getSqlStatements()
-        viewAdapter.notifyDataSetChanged()
+        adapter.dataSet = getSqlStatements()
+        adapter.notifyDataSetChanged()
     }
 }

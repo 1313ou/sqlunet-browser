@@ -3,6 +3,7 @@
  */
 package org.sqlunet.browser
 
+import android.annotation.SuppressLint
 import android.database.Cursor
 import android.os.Build
 import android.os.Bundle
@@ -142,6 +143,7 @@ abstract class BaseSelectorsRecyclerFragment : LoggingFragment() {
         }
 
     private val positionObserver: Observer<Int>
+        @SuppressLint("NotifyDataSetChanged")
         get() = Observer { position: Int ->
             Log.d(TAG, "Observed position change $position")
             adapter.notifyDataSetChanged()

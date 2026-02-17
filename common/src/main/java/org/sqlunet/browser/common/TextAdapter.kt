@@ -3,6 +3,7 @@
  */
 package org.sqlunet.browser.common
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.database.Cursor
 import android.text.SpannableStringBuilder
@@ -60,7 +61,8 @@ class TextAdapter(
         return if (cursor!!.moveToPosition(position)) cursor!!.getLong(1) else 0
     }
 
-    fun swapCursor(newCursor: Cursor?) {
+    @SuppressLint("NotifyDataSetChanged")
+    fun changeCursor(newCursor: Cursor?) {
         if (cursor === newCursor) {
             return
         }

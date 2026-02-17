@@ -128,11 +128,11 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor) {
-        adapter.swapCursor(cursor)
+        adapter.changeCursor(cursor)
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapter.swapCursor(null)
+        adapter.changeCursor(null)
     }
 
     class HistoryAdapter(private val context: Context, private var cursor: Cursor?) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
@@ -159,7 +159,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
 
         @SuppressLint("NotifyDataSetChanged")
-        fun swapCursor(newCursor: Cursor?) {
+        fun changeCursor(newCursor: Cursor?) {
             if (cursor === newCursor) {
                 return
             }

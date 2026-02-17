@@ -128,7 +128,7 @@ abstract class BaseRecyclerFragment : Fragment() {
         recyclerView!!.adapter = null
         // the cursor will be saved along with fragment state if any
         Log.d(TAG, "Nullify adapter cursor but do not close cursor. Lifecycle: onStop()")
-        recyclerAdapter!!.swapCursor(null)
+        recyclerAdapter!!.changeCursor(null)
     }
 
     override fun onDestroy() {
@@ -142,7 +142,7 @@ abstract class BaseRecyclerFragment : Fragment() {
     private fun makeModels() {
         model = ViewModelProvider(this)["elements", SqlunetViewModel::class.java]
         model!!.getData().observe(getViewLifecycleOwner()) { cursor: Cursor? ->
-            recyclerAdapter!!.swapCursor(cursor)
+            recyclerAdapter!!.changeCursor(cursor)
         }
     }
 
