@@ -6,9 +6,7 @@ package org.sqlunet.browser.config
 import android.database.Cursor
 import android.view.View
 import android.widget.ImageView
-import android.widget.SimpleCursorAdapter
 import android.widget.TextView
-import org.sqlunet.browser.BaseListFragment
 import androidx.core.net.toUri
 import org.sqlunet.browser.BaseRecyclerAdapter
 import org.sqlunet.browser.BaseRecyclerFragment
@@ -42,7 +40,7 @@ class TableFragment : BaseRecyclerFragment() {
                     try {
                         view.setImageResource(value.toInt())
                         return@ViewBinder true
-                    } catch (nfe: NumberFormatException) {
+                    } catch (_: NumberFormatException) {
                         view.setImageURI(value.toUri())
                         return@ViewBinder true
                     }
