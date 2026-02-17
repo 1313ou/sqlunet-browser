@@ -124,7 +124,7 @@ abstract class BaseRecyclerFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        Log.d(TAG, "Nullify listview adapter. Lifecycle: onStop()")
+        Log.d(TAG, "Nullify adapter. Lifecycle: onStop()")
         recyclerView!!.adapter = null
         // the cursor will be saved along with fragment state if any
         Log.d(TAG, "Nullify adapter cursor but do not close cursor. Lifecycle: onStop()")
