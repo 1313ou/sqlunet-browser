@@ -7,14 +7,10 @@ import android.database.Cursor
 import android.database.MatrixCursor
 import android.database.MergeCursor
 import android.os.Bundle
-import android.view.View
-import android.widget.CursorAdapter
-import android.widget.ImageView
-import android.widget.SimpleCursorAdapter
-import android.widget.TextView
 import androidx.core.net.toUri
+import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.AppContext
-import org.sqlunet.browser.BaseSelectorsListFragment
+import org.sqlunet.browser.BaseSelectorsRecyclerFragment
 import org.sqlunet.browser.Selectors
 import org.sqlunet.browser.sn.R
 import org.sqlunet.provider.ProviderArgs
@@ -30,7 +26,7 @@ import org.sqlunet.wordnet.provider.WordNetProvider
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class SnSelectorsFragment : BaseSelectorsListFragment() {
+class SnSelectorsFragment : BaseSelectorsRecyclerFragment() {
 
     /**
      * Word id
@@ -45,8 +41,8 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
     override fun select(position: Int) {
         positionModel!!.setPosition(position)
         if (listeners != null) {
-            val adapter = (adapter as SimpleCursorAdapter?)!!
-            val cursor = adapter.cursor!!
+            val adapter = recyclerView.adapter as SnSelectorsAdapter
+            val cursor = adapter.getCursor()!!
             if (cursor.moveToPosition(position)) {
                 // column indexes
                 val idSynset1Id = cursor.getColumnIndex(SnCollocations_X.SYNSET1ID)
@@ -80,9 +76,7 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
      * Deactivate all
      */
     fun deactivate() {
-        val listView = listView
-        listView!!.clearChoices()
-        listView.requestLayout()
+        (recyclerView.adapter as SnSelectorsAdapter).deactivate()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,41 +97,8 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
         wordId = queryId(query)
     }
 
-    override fun makeAdapter(): CursorAdapter {
-        val adapter = SimpleCursorAdapter(
-            requireContext(), R.layout.item_snselector, null,
-            DISPLAYED_COLUMNS, DISPLAYED_COLUMN_RES_IDS, 0
-        )
-        adapter.viewBinder = SimpleCursorAdapter.ViewBinder setViewBinder@{ view: View, cursor: Cursor, columnIndex: Int ->
-            val text = cursor.getString(columnIndex)
-            if (text == null) {
-                view.visibility = View.GONE
-                return@setViewBinder false
-            } else {
-                view.visibility = View.VISIBLE
-            }
-            when (view) {
-                is TextView -> {
-                    view.text = text
-                    return@setViewBinder true
-                }
-
-                is ImageView -> {
-                    try {
-                        view.setImageResource(text.toInt())
-                        return@setViewBinder true
-                    } catch (_: NumberFormatException) {
-                        view.setImageURI(text.toUri())
-                        return@setViewBinder true
-                    }
-                }
-
-                else -> {
-                    throw IllegalStateException(view.javaClass.name + " is not a view that can be bound by this SimpleCursorAdapter")
-                }
-            }
-        }
-        return adapter
+    override val adapter: RecyclerView.Adapter<*> = SnSelectorsAdapter { position ->
+        select(position)
     }
 
     // L O A D
@@ -244,26 +205,6 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
             SyntagNetContract.WORD2,
             SyntagNetContract.POS1,
             SyntagNetContract.POS2
-        )
-
-        /**
-         * Displayed columns
-         */
-        private val DISPLAYED_COLUMNS = arrayOf<String>(
-            SyntagNetContract.WORD1,
-            SyntagNetContract.WORD2,
-            SyntagNetContract.POS1,
-            SyntagNetContract.POS2
-        )
-
-        /**
-         * Column resources
-         */
-        private val DISPLAYED_COLUMN_RES_IDS = intArrayOf(
-            R.id.word1,
-            R.id.word2,
-            R.id.pos1,
-            R.id.pos2
         )
     }
 }
