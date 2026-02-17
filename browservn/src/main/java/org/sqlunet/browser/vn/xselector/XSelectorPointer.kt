@@ -173,7 +173,6 @@ class XSelectorPointer : SelectorPointer, HasXId {
             return mask
         }
 
-        @Suppress("unused")
         @JvmField
         val CREATOR = object : Parcelable.Creator<XSelectorPointer> {
 

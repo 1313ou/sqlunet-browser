@@ -34,7 +34,6 @@ class PmRolePointer : Pointer {
 
     companion object {
 
-        @Suppress("unused")
         @JvmField
         val CREATOR = object : Parcelable.Creator<PmRolePointer> {
 
