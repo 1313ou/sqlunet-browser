@@ -22,12 +22,13 @@
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
 		android:layout_gravity="start"
-		android:fitsSystemWindows="@bool/appbar_fits_system_windows"
 		android:background="@drawable/bg_nav"
-		app:itemBackground="@null"
-		app:itemIconTint="@color/fg_nav"
-		app:itemTextColor="@color/fg_nav"
+		android:fitsSystemWindows="@bool/appbar_fits_system_windows"
 		app:headerLayout="@layout/nav_header_main"
 		app:menu="@menu/main_drawer" />
+
+	<!--	app:itemBackground="@color/bg_nav"-->
+	<!--	app:itemIconTint="@color/fg_nav"-->
+	<!--	app:itemTextColor="@color/fg_nav"-->
 
 </androidx.drawerlayout.widget.DrawerLayout>
