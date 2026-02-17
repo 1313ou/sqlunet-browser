@@ -55,7 +55,7 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
         dataModel!!.loadData(uri, sql, null)
     }
 
-    // A C T I V A T I O N
+    // S E L E C T I O N
 
     override fun select(position: Int) {
         positionModel!!.setPosition(position)

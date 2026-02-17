@@ -147,7 +147,7 @@ abstract class BaseSelectorsRecyclerFragment : LoggingFragment() {
             adapter.notifyDataSetChanged()
         }
 
-    // A C T I V A T I O N
+    // S E L E C T I O N
 
     protected abstract fun select(position: Int)
 
