@@ -24,6 +24,7 @@ object Queries {
         providerSql.projection = arrayOf(
             XNetContract.Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id",
             XNetContract.Words_FnWords_PbWords_VnWords.WORDID,
+            XNetContract.Words_FnWords_PbWords_VnWords.LEXID,
             XNetContract.Words_FnWords_PbWords_VnWords.SENSEID,
             XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM,
             XNetContract.Words_FnWords_PbWords_VnWords.SENSEKEY,
@@ -59,6 +60,7 @@ object Queries {
         providerSql.projection = arrayOf(
             XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.SYNSETID + " AS _id",
             XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.WORDID,
+            XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.LEXID,
             XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.SENSEID,
             XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.SENSENUM,
             XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.SENSEKEY,

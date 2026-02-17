@@ -32,6 +32,7 @@ object XNetContract {
         const val VNWORDID = V.VNWORDID
         const val SYNSETID = V.SYNSETID
         const val LUID = V.LUID
+        const val LEXID = V.LEXID
         const val SENSEID = V.SENSEID
         const val SENSENUM = V.SENSENUM
         const val SENSEKEY = V.SENSEKEY
@@ -58,6 +59,7 @@ object XNetContract {
         const val VNWORDID = Words_FnWords_PbWords_VnWords.VNWORDID
         const val SYNSETID = Words_FnWords_PbWords_VnWords.SYNSETID
         const val LUID = Words_FnWords_PbWords_VnWords.LUID
+        const val LEXID = Words_FnWords_PbWords_VnWords.LEXID
         const val SENSEID = Words_FnWords_PbWords_VnWords.SENSEID
         const val SENSENUM = Words_FnWords_PbWords_VnWords.SENSENUM
         const val SENSEKEY = Words_FnWords_PbWords_VnWords.SENSEKEY
