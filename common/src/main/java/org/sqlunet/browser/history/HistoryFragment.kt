@@ -3,28 +3,20 @@
  */
 package org.sqlunet.browser.history
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.content.SearchRecentSuggestionsProvider
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.GestureDetector
-import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnTouchListener
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.CursorAdapter
-import android.widget.ListView
-import android.widget.SimpleCursorAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -35,6 +27,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.history.History.makeSearchIntent
@@ -46,30 +40,14 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
-import kotlin.math.abs
-import kotlin.math.roundToInt
 
-/**
- * History fragment
- *
- * @author Bernard Bou
- * @noinspection WeakerAccess
- */
-class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnItemClickListener {
+class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
-    /**
-     * List view
-     */
-    private var listView: ListView? = null
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: HistoryAdapter
 
-    /**
-     * Cursor adapter
-     */
-    private var adapter: CursorAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // launchers
         registerLaunchers()
     }
 
@@ -80,46 +58,44 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // list adapter bound to the cursor
-        adapter = SimpleCursorAdapter(
-            requireContext(),  // context
-            R.layout.item_history,  // row template to use android.R.layout.simple_list_item_1
-            null, arrayOf(SearchRecentSuggestions.SuggestionColumns.DISPLAY1), intArrayOf(android.R.id.text1),  // objects to bind to those columns
-            0
-        )
+        recyclerView = view.findViewById(R.id.list)
+        adapter = HistoryAdapter(requireContext(), null)
+        recyclerView.adapter = adapter
 
-        // list view
-        listView = view.findViewById(android.R.id.list)
+        val swipeCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                return false
+            }
 
-        // bind to adapter
-        listView!!.adapter = adapter
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.bindingAdapterPosition
+                val cursor = adapter.getCursor()
+                if (cursor != null && cursor.moveToPosition(position)) {
+                    val itemIdIdx = cursor.getColumnIndex("_id")
+                    val itemId = cursor.getString(itemIdIdx)
+                    val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
+                    val data = cursor.getString(dataIdx)
+                    val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                    suggestions.delete(itemId)
+                    // Restart the loader to get the updated cursor
+                    LoaderManager.getInstance(this@HistoryFragment).restartLoader(LOADER_ID, null, this@HistoryFragment)
+                    Toast.makeText(requireContext(), resources.getString(R.string.title_history_deleted) + ' ' + data, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        val touchHelper = ItemTouchHelper(swipeCallback)
+        touchHelper.attachToRecyclerView(recyclerView)
 
-        // click listener
-        listView!!.onItemClickListener = this
-
-        // swipe
-        val gestureListener = SwipeGestureListener()
-        listView!!.setOnTouchListener(gestureListener)
-
-        // menu
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
-
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.history, menu)
-                // MenuCompat.setGroupDividerEnabled(menu, true)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 when (menuItem.itemId) {
-                    R.id.action_history_export -> {
-                        exportHistory()
-                    }
-
-                    R.id.action_history_import -> {
-                        importHistory()
-                    }
-
+                    R.id.action_history_export -> exportHistory()
+                    R.id.action_history_import -> importHistory()
                     R.id.action_history_clear -> {
                         val suggestions = android.provider.SearchRecentSuggestions(AppContext.context, getAuthority(AppContext.context), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
                         suggestions.clearHistory()
@@ -133,15 +109,17 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
 
     override fun onStart() {
         super.onStart()
-
-        // initializes the cursor loader
         LoaderManager.getInstance(this).initLoader(LOADER_ID, null, this)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        exportLauncher!!.unregister()
-        importLauncher!!.unregister()
+        if (::exportLauncher.isInitialized) {
+            exportLauncher.unregister()
+        }
+        if (::importLauncher.isInitialized) {
+            importLauncher.unregister()
+        }
     }
 
     override fun onCreateLoader(loaderID: Int, args: Bundle?): Loader<Cursor> {
@@ -150,127 +128,77 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
     }
 
     override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor) {
-        cursor.moveToFirst()
-        adapter!!.changeCursor(cursor)
+        adapter.swapCursor(cursor)
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        adapter!!.changeCursor(null)
+        adapter.swapCursor(null)
     }
 
-    // C L I C K
+    class HistoryAdapter(private val context: Context, private var cursor: Cursor?) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
-    override fun onItemClick(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-        Log.d(TAG, "Select $position")
-        val cursor = (listView!!.adapter as SimpleCursorAdapter).cursor
-        cursor.moveToPosition(position)
-        if (!cursor.isAfterLast) {
-            val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
-            val query = cursor.getString(dataIdx)
-            if (null != query) {
-                val intent = makeSearchIntent(AppContext.context, query)
-                startActivity(intent)
-            }
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_history, parent, false)
+            return ViewHolder(view)
         }
-    }
 
-    // S W I P E
-
-    private inner class SwipeGestureListener : SimpleOnGestureListener(), OnTouchListener {
-
-        private val gestureDetector: GestureDetector = GestureDetector(requireContext(), this)
-
-        override fun onFling(e1: MotionEvent?, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
-            if (e1 == null) {
-                return false
-            }
-            val position = listView!!.pointToPosition(e1.x.roundToInt(), e1.y.roundToInt())
-            if (abs((e1.y - e2.y).toDouble()) <= SWIPE_MAX_OFF_PATH) {
-                if (abs(velocityX.toDouble()) >= SWIPE_THRESHOLD_VELOCITY) {
-                    if (e2.x - e1.x > SWIPE_MIN_DISTANCE) {
-                        val cursor = adapter!!.cursor
-                        if (!cursor.isAfterLast) {
-                            if (cursor.moveToPosition(position)) {
-                                val itemIdIdx = cursor.getColumnIndex("_id")
-                                val itemId = cursor.getString(itemIdIdx)
-                                val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
-                                val data = cursor.getString(dataIdx)
-                                val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
-                                suggestions.delete(itemId)
-                                val cursor2 = suggestions.cursor()
-                                adapter!!.changeCursor(cursor2)
-                                Toast.makeText(requireContext(), resources.getString(R.string.title_history_deleted) + ' ' + data, Toast.LENGTH_SHORT).show()
-                                return true
-                            }
-                        }
-                    }
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            if (cursor?.moveToPosition(position) == true) {
+                val dataIdx = cursor!!.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
+                val query = cursor!!.getString(dataIdx)
+                holder.textView.text = query
+                holder.itemView.setOnClickListener {
+                    val intent = makeSearchIntent(context, query)
+                    context.startActivity(intent)
                 }
             }
-            return super.onFling(e1, e2, velocityX, velocityY)
         }
 
-        override fun onTouch(view: View, event: MotionEvent): Boolean {
-            if (event.action == MotionEvent.ACTION_UP) {
-                view.performClick()
+        override fun getItemCount(): Int {
+            return cursor?.count ?: 0
+        }
+
+        @SuppressLint("NotifyDataSetChanged")
+        fun swapCursor(newCursor: Cursor?) {
+            if (cursor === newCursor) {
+                return
             }
-            return gestureDetector.onTouchEvent(event)
+            cursor = newCursor
+            notifyDataSetChanged()
+        }
+
+        fun getCursor(): Cursor? {
+            return cursor
+        }
+
+        class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            val textView: TextView = itemView.findViewById(android.R.id.text1)
         }
     }
 
-    /**
-     * Export history
-     */
+    // E X P O R T
+
     private fun exportHistory() {
-        exportLauncher!!.launch(MIME_TYPE)
+        exportLauncher.launch(MIME_TYPE)
     }
 
-    /**
-     * Import history
-     */
     private fun importHistory() {
-        importLauncher!!.launch(arrayOf(MIME_TYPE))
+        importLauncher.launch(arrayOf(MIME_TYPE))
     }
 
-    // D O C U M E N T   I N T E R F A C E
+    private lateinit var exportLauncher: ActivityResultLauncher<String>
 
-    // You can do the assignment inside onAttach or onCreate, i.e, before the activity is displayed
-    private var exportLauncher: ActivityResultLauncher<String>? = null
-    private var importLauncher: ActivityResultLauncher<Array<String>>? = null
+    private lateinit var importLauncher: ActivityResultLauncher<Array<String>>
 
     private fun registerLaunchers() {
-        val createContract = object : CreateDocument(MIME_TYPE) {
-
-            override fun createIntent(context: Context, input: String): Intent {
-                val intent: Intent = super.createIntent(context, input)
-                intent.putExtra(Intent.EXTRA_TITLE, HISTORY_FILE)
-                //intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri)
-                return intent
-            }
-        }
-        exportLauncher = registerForActivityResult(createContract) { uri: Uri? ->
-            // The result data contains a URI for the document or directory that the user selected.
+        exportLauncher = registerForActivityResult(CreateDocument(MIME_TYPE)) { uri: Uri? ->
             uri?.let { doExportHistory(it) }
         }
-
-        val openContract = object : ActivityResultContracts.OpenDocument() {
-
-            override fun createIntent(context: Context, input: Array<String>): Intent {
-                val intent: Intent = super.createIntent(context, input)
-                intent.putExtra(Intent.EXTRA_TITLE, HISTORY_FILE)
-                //intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri)
-                return intent
-            }
-        }
-        importLauncher = registerForActivityResult(openContract) { uri: Uri? ->
-
-            // The result data contains a URIs for the document or directory that the user selected.
+        importLauncher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
             uri?.let { doImportHistory(it) }
         }
     }
 
-    /**
-     * Export history
-     */
     private fun doExportHistory(uri: Uri) {
         Log.d(TAG, "Exporting to $uri")
         try {
@@ -280,7 +208,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
                         BufferedWriter(writer).use { bw ->
                             val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
                             suggestions.cursor().use { cursor ->
-                                if (cursor!!.moveToFirst()) {
+                                if (cursor?.moveToFirst() == true) {
                                     do {
                                         val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
                                         val data = cursor.getString(dataIdx)
@@ -300,18 +228,15 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
         }
     }
 
-    /**
-     * Import history
-     */
     private fun doImportHistory(uri: Uri) {
         Log.d(TAG, "Importing from $uri")
         try {
             AppContext.context.contentResolver.openInputStream(uri).use { `is` ->
                 InputStreamReader(`is`).use { reader ->
                     BufferedReader(reader).use { br ->
-                        var line: String
+                        var line: String?
                         while (br.readLine().also { line = it } != null) {
-                            recordQuery(AppContext.context, line.trim { it <= ' ' })
+                            recordQuery(AppContext.context, line!!.trim { it <= ' ' })
                         }
                         Log.i(TAG, "Imported from $uri")
                         Toast.makeText(requireContext(), resources.getText(R.string.title_history_import).toString() + " " + uri, Toast.LENGTH_SHORT).show()
@@ -325,30 +250,12 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
     }
 
     companion object {
-
         private const val TAG = "HistoryF"
 
-        const val SWIPE_MIN_DISTANCE = 120
-        const val SWIPE_MAX_OFF_PATH = 250
-        const val SWIPE_THRESHOLD_VELOCITY = 200
-
-        // L O A D E R
-
-        /**
-         * Cursor loader id
-         */
         private const val LOADER_ID = 2222
 
-        // I M P O R T / E X P O R T
-
-        /**
-         * Export/import text file
-         */
-        private const val HISTORY_FILE = "semantikos_search_history.txt"
-
-        /**
-         * Mimetype
-         */
         private const val MIME_TYPE = "text/plain"
+
+        // private const val HISTORY_FILE = "semantikos_search_history.txt"
     }
 }

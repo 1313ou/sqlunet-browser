@@ -4,11 +4,10 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>
   -->
 
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@android:id/list"
+	android:id="@+id/list"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-	tools:context="org.sqlunet.browser.history.HistoryActivity" />
+	app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
