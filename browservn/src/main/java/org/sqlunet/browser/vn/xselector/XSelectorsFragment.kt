@@ -321,7 +321,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
     }
 
     /**
-     * Post processing, extraction of wordid from cursor
+     * Post-processing, extraction of wordid from cursor
      * Closes cursor because it's no longer needed.
      *
      * @param cursor cursor

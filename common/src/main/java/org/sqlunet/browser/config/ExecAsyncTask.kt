@@ -338,7 +338,7 @@ class ExecAsyncTask
     private class AsyncExecuteFromUri(
 
         /**
-         * Data base path
+         * Database path
          */
         private val dataBase: String,
 

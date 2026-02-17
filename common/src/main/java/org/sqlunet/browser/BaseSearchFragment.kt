@@ -56,7 +56,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     // C O M P O N E N T S
 
     /**
-     * Search view -held in search menuitem) that holds query
+     * Search view (held in search menuitem) that holds query
      */
     private var searchView: SearchView? = null
 
@@ -246,7 +246,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         get() {
             // must have
             val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
-            return toolbar.findViewById(R.id.spinner) // must be non null after resume
+            return toolbar.findViewById(R.id.spinner) // must be non-null after resume
         }
 
     /**

@@ -124,7 +124,7 @@ class SetupActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
     }
 
     /**
-     * A Adapter that returns a fragment corresponding to one of the sections/tabs/pages.
+     * An Adapter that returns a fragment corresponding to one of the sections/tabs/pages.
      */
     private inner class SectionsPagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 

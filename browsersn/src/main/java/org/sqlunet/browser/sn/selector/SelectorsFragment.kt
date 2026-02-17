@@ -101,7 +101,7 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
     }
 
     /**
-     * Post processing, extraction of wordid from cursor
+     * Post-processing, extraction of wordid from cursor
      *
      * @param cursor cursor
      */

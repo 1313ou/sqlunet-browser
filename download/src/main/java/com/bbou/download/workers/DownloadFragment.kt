@@ -37,9 +37,9 @@ import androidx.core.net.toUri
  * Interface between work and activity.
  * Cancel messages are to be sent to this fragment's receiver.
  * Signals completion through the OnComplete callback in the activity.
- * This fragment uses a file downloader core (file end-to-end downloads
- * with option of md5 checking it and zip expanding it to another
- * location (in settings or files dir by default) if a zip file.
+ * This fragment uses a file downloader core
+ * - end-to-end file downloads with option of md5 checking it
+ * - zip expanding it to another location (in settings or files dir by default) if a zip file.
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */

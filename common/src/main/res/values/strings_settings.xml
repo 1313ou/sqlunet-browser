@@ -101,7 +101,7 @@
 	<!--	<string name="pref_title_asset_zip_alt">Alt asset zip</string>-->
 	<!--	<string name="pref_title_asset_zip_entry_alt">Alt asset zip entry</string>-->
 	<string name="pref_description_primary_asset_default">Use primary asset as default</string>
-	<string name="pref_description_asset_auto_cleanup">Auto clean-up of installed assets when no longer used</string>
+	<string name="pref_description_asset_auto_cleanup">Auto cleanup of installed assets when no longer used</string>
 
 	<!-- DOWNLOAD -->
 

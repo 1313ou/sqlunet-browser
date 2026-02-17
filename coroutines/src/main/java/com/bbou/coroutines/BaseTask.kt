@@ -21,7 +21,7 @@ abstract class BaseTask<Params, Result> {
     protected var hasRun = AtomicBoolean(false)
 
     /**
-     * Scope for worker job)
+     * Scope for worker job
      */
     protected lateinit var scope: CoroutineScope
 
