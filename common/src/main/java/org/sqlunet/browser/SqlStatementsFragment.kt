@@ -39,7 +39,7 @@ class SqlStatementsFragment : Fragment() {
 
         val itemDecorator = DividerItemDecoration(requireContext(), (viewManager as LinearLayoutManager).orientation)
         itemDecorator.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.divider_sql)!!)
-        recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view).apply {
+        recyclerView = view.findViewById<RecyclerView>(R.id.statements_list).apply {
             setHasFixedSize(true)
             layoutManager = viewManager
             this.adapter = this@SqlStatementsFragment.adapter

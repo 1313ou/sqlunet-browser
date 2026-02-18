@@ -42,7 +42,7 @@ abstract class BaseTextFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
         val args = requireArguments()
         val layoutId = args.getInt(ProviderArgs.ARG_QUERYLAYOUT)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.texts_list)
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = makeAdapter(layoutId)
         recyclerView.adapter = adapter

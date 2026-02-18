@@ -58,7 +58,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView = view.findViewById(R.id.list)
+        recyclerView = view.findViewById(R.id.recycler_view)
         adapter = HistoryAdapter(requireContext(), null)
         recyclerView.adapter = adapter
 

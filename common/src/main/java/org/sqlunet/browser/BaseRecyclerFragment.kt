@@ -70,7 +70,7 @@ abstract class BaseRecyclerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // recycler view
-        recyclerView = view.findViewById(R.id.list)
+        recyclerView = view.findViewById(R.id.recycler_view)
         recyclerView!!.layoutManager = LinearLayoutManager(context)
     }
 
