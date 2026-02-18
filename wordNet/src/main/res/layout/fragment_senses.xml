@@ -3,8 +3,6 @@
   -->
 
 <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/senses_list"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:listitem="@layout/item_sense" />
+	android:layout_height="wrap_content" />
