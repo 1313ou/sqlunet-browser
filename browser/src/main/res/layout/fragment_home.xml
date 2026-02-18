@@ -8,8 +8,7 @@
 	android:id="@+id/container_home"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:theme="@style/MyHomeOverlay"
-	tools:keep="@layout/fragment_home">
+	android:theme="@style/MyHomeOverlay">
 
 	<!--suppress AndroidUnresolvableTag -->
 	<org.sqlunet.browser.xn.HomeImageView

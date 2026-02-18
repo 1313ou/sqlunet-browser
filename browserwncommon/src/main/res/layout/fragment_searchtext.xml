@@ -8,5 +8,4 @@
 	android:id="@+id/container_searchtext"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-	tools:context="org.sqlunet.browser.wn.SearchTextActivity" />
+	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />

@@ -9,7 +9,6 @@
 	android:layout_height="wrap_content"
 	android:background="@drawable/bg_selector"
 	android:orientation="horizontal"
-	tools:context="org.sqlunet.browser.sn.xselector.XBrowse1Activity"
 	tools:ignore="Overdraw">
 
 	<!--

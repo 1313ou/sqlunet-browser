@@ -9,7 +9,6 @@
 	android:layout_height="wrap_content"
 	android:background="@drawable/bg_selector"
 	android:orientation="vertical"
-	tools:context="org.sqlunet.browser.xn.xselector.XBrowse1Activity"
 	tools:ignore="Overdraw">
 
 	<LinearLayout
