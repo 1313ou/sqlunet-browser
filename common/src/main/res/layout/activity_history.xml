@@ -6,10 +6,8 @@
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:context="org.sqlunet.browser.history.HistoryActivity">
+	android:layout_height="match_parent">
 
 	<com.google.android.material.appbar.AppBarLayout
 		android:id="@+id/appbar_layout"
@@ -26,7 +24,6 @@
 		android:name="org.sqlunet.browser.history.HistoryFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:context="org.sqlunet.browser.history.HistoryActivity" />
+		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

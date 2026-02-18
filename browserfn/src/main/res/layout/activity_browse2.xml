@@ -4,7 +4,6 @@
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
@@ -23,7 +22,6 @@
 		android:name="org.sqlunet.browser.fn.Browse2Fragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:layout="@layout/activity_browse2" />
+		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

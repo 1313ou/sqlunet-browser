@@ -23,7 +23,6 @@
 		android:name="org.sqlunet.browser.wn.Browse2Fragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:layout="@layout/activity_browse2" />
+		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -27,8 +27,7 @@
 			android:id="@+id/container_senses"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:paddingBottom="@dimen/scroll_tail_padding"
-			app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+			android:paddingBottom="@dimen/scroll_tail_padding" />
 	</androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
