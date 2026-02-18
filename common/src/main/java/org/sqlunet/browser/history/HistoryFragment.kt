@@ -43,8 +43,7 @@ import java.io.OutputStreamWriter
 
 class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: HistoryAdapter
+   private lateinit var adapter: HistoryAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,8 +57,8 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerView = view.findViewById(R.id.recycler_view)
         adapter = HistoryAdapter(requireContext(), null)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.adapter = adapter
 
         val swipeCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {

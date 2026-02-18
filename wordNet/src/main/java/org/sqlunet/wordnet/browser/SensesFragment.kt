@@ -14,7 +14,6 @@ import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.PositionViewModel
 import org.sqlunet.browser.SqlunetViewModel
@@ -99,13 +98,8 @@ class SensesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // recycler view
-        val recyclerView = view.findViewById<RecyclerView>(R.id.senses_list)
-        val layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.layoutManager = layoutManager
-
-        // adapter
         adapter = SensesAdapter()
+        val recyclerView = view.findViewById<RecyclerView>(R.id.senses_list)
         recyclerView.adapter = adapter
     }
 

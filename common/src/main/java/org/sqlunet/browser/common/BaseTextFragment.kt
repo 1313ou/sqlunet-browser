@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.sql.Utils.join
@@ -23,6 +22,7 @@ import java.util.Collections
 abstract class BaseTextFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     protected lateinit var query: String
+
     protected lateinit var adapter: TextAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,10 +42,10 @@ abstract class BaseTextFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
         val args = requireArguments()
         val layoutId = args.getInt(ProviderArgs.ARG_QUERYLAYOUT)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.texts_list)
-        recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = makeAdapter(layoutId)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.texts_list)
         recyclerView.adapter = adapter
+
         LoaderManager.getInstance(this).initLoader(0, null, this)
     }
 
@@ -116,7 +116,5 @@ abstract class BaseTextFragment : Fragment(), LoaderManager.LoaderCallbacks<Curs
     companion object {
 
         const val TAG = "BaseTextF"
-
-        private const val VERBOSE = true
     }
 }

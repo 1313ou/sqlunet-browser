@@ -24,9 +24,7 @@ import org.sqlunet.sql.SqlFormatter.styledFormat
  */
 class SqlStatementsFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: SqlStatementsAdapter
-    private lateinit var viewManager: RecyclerView.LayoutManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_sql_statements, container, false)
@@ -34,17 +32,15 @@ class SqlStatementsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewManager = LinearLayoutManager(requireContext())
-        adapter = SqlStatementsAdapter(getSqlStatements())
 
-        val itemDecorator = DividerItemDecoration(requireContext(), (viewManager as LinearLayoutManager).orientation)
-        itemDecorator.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.divider_sql)!!)
-        recyclerView = view.findViewById<RecyclerView>(R.id.statements_list).apply {
+        adapter = SqlStatementsAdapter(getSqlStatements())
+        val recyclerView = view.findViewById<RecyclerView>(R.id.statements_list).apply {
             setHasFixedSize(true)
-            layoutManager = viewManager
-            this.adapter = this@SqlStatementsFragment.adapter
+            val itemDecorator = DividerItemDecoration(requireContext(), (layoutManager as LinearLayoutManager).orientation)
+            itemDecorator.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.divider_sql)!!)
             addItemDecoration(itemDecorator)
         }
+        recyclerView.adapter = adapter
     }
 
     override fun onResume() {

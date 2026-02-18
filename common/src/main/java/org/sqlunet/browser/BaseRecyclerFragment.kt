@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.common.R
 import org.sqlunet.provider.ProviderArgs
@@ -71,7 +70,6 @@ abstract class BaseRecyclerFragment : Fragment() {
 
         // recycler view
         recyclerView = view.findViewById(R.id.recycler_view)
-        recyclerView!!.layoutManager = LinearLayoutManager(context)
     }
 
     override fun onStart() {

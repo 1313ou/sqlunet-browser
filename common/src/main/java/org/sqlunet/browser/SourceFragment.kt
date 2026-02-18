@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.common.R
 import org.sqlunet.provider.XNetContract
@@ -38,10 +37,8 @@ class SourceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-
         adapter = SourcesAdapter(null)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.adapter = adapter
     }
 
