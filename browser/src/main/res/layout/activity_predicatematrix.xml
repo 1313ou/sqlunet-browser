@@ -17,25 +17,19 @@
 
 	</com.google.android.material.appbar.AppBarLayout>
 
-	<FrameLayout
+	<androidx.core.widget.NestedScrollView
+		android:id="@+id/scrollview_relation"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:clipToPadding="false"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-		<androidx.core.widget.NestedScrollView
-			android:id="@+id/scrollview_relation"
+		<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/fragment_predicatematrix"
+			android:name="org.sqlunet.browser.xn.BrowsePredicateMatrixFragment"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:clipToPadding="false">
-
-			<androidx.fragment.app.FragmentContainerView
-				android:id="@+id/fragment_predicatematrix"
-				android:name="org.sqlunet.browser.xn.BrowsePredicateMatrixFragment"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:paddingBottom="@dimen/scroll_tail_padding"
-				app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
-		</androidx.core.widget.NestedScrollView>
-	</FrameLayout>
+			android:paddingBottom="@dimen/scroll_tail_padding" />
+	</androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

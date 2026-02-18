@@ -17,16 +17,12 @@
 
 	</com.google.android.material.appbar.AppBarLayout>
 
-	<FrameLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-		<androidx.core.widget.NestedScrollView
+	<androidx.core.widget.NestedScrollView
 			android:id="@+id/scrollview_word"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:clipToPadding="false">
+			android:clipToPadding="false"
+			app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 			<androidx.fragment.app.FragmentContainerView
 				android:id="@+id/container_word"
@@ -34,6 +30,5 @@
 				android:layout_height="match_parent"
 				android:paddingBottom="@dimen/scroll_tail_padding" />
 		</androidx.core.widget.NestedScrollView>
-	</FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
