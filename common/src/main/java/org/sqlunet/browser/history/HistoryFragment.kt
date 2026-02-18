@@ -57,7 +57,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = HistoryAdapter(requireContext(), null)
+        adapter = HistoryAdapter(requireContext())
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.adapter = adapter
 
@@ -134,7 +134,9 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         adapter.changeCursor(null)
     }
 
-    class HistoryAdapter(private val context: Context, private var cursor: Cursor?) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
+    class HistoryAdapter(private val context: Context) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
+
+        private var cursor: Cursor? = null
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.item_history, parent, false)
