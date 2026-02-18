@@ -18,8 +18,7 @@
 		android:importantForAutofill="no"
 		android:inputType="textUri|textNoSuggestions"
 		android:selectAllOnFocus="false"
-		android:singleLine="true"
-		tools:targetApi="o">
+		android:singleLine="true">
 
 		<requestFocus />
 	</EditText>

@@ -32,9 +32,7 @@
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:theme="@style/MyTheme"
-		android:usesCleartextTraffic="true"
-		tools:ignore="GoogleAppIndexingWarning"
-		tools:targetApi="s">
+		android:usesCleartextTraffic="true">
 
 		<meta-data
 			android:name="com.google.android.backup.api_key"
@@ -387,35 +385,35 @@
 			android:authorities="@string/manager_authority"
 			android:enabled="true"
 			android:exported="false"
-			tools:ignore="ExportedContentProvider" />
+			/>
 
 		<provider
 			android:name="org.sqlunet.provider.XSqlUNetProvider"
 			android:authorities="@string/xsqlunet_authority"
 			android:enabled="true"
 			android:exported="false"
-			tools:ignore="ExportedContentProvider" />
+			/>
 
 		<provider
 			android:name="org.sqlunet.verbnet.provider.VerbNetProvider"
 			android:authorities="@string/verbnet_authority"
 			android:enabled="true"
 			android:exported="false"
-			tools:ignore="ExportedContentProvider" />
+			/>
 
 		<provider
 			android:name="org.sqlunet.propbank.provider.PropBankProvider"
 			android:authorities="@string/propbank_authority"
 			android:enabled="true"
 			android:exported="false"
-			tools:ignore="ExportedContentProvider" />
+			/>
 
 		<provider
 			android:name="org.sqlunet.wordnet.provider.WordNetProvider"
 			android:authorities="@string/wordnet_authority"
 			android:enabled="true"
 			android:exported="false"
-			tools:ignore="ExportedContentProvider" />
+			/>
 
 		<provider
 			android:name="org.sqlunet.browser.history.SearchSuggestionsProvider"

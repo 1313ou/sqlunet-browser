@@ -4,7 +4,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="title_activity_help" tools:ignore="UnusedResources">Help</string>
+	<string name="title_activity_help" >Help</string>
 	<string name="lang_tag" />
 
 </resources>

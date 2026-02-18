@@ -20,7 +20,7 @@
 	<string name="status_task_failed">failed</string>
 
 	<!-- result -->
-	<string name="result_success" tools:ignore="UnusedResources">Success</string>
+	<string name="result_success" >Success</string>
 	<string name="result_fail">Fail</string>
 
 </resources>

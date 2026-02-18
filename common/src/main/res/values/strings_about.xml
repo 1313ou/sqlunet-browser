@@ -4,7 +4,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="title_activity_about" tools:ignore="UnusedResources">About</string>
+	<string name="title_activity_about" >About</string>
 	<string name="about_sqlunet_text">SqlUNet™ is a database that unifies WordNet™, VerbNet™, PropBank™, FrameNet™ and PredicateMatrix™. With statistical data from BNC™</string>
 	<string name="about_sqlunet_label">@string/semantikos</string>
 	<string name="about_sqlunet_author">Bernard Bou</string>

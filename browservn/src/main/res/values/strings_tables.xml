@@ -4,7 +4,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string-array name="required_tables" tools:ignore="InconsistentArrays">
+	<string-array name="required_tables" >
 
 		<!-- wordnet -->
 		<item>words</item>
@@ -77,7 +77,7 @@
 
 	</string-array>
 
-	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
+	<string-array name="required_indexes" >
 
 		<!-- wordnet -->
 		<item>pk_lexes</item>
@@ -146,14 +146,14 @@
 		<item>pb_examples_text_fts4</item>
 	</string-array>
 
-	<string-array name="non_required_tables" tools:ignore="InconsistentArrays">
+	<string-array name="non_required_tables" >
 		<item>usages</item>
 		<item>wikidatas</item>
 		<item>ilis</item>
 		<item>sources</item>
 	</string-array>
 
-	<string-array name="non_required_indexes" tools:ignore="InconsistentArrays">
+	<string-array name="non_required_indexes" >
 		<item>pk_usages</item>
 		<item>k_usages_synsetid</item>
 		<item>k_usages_luid</item>

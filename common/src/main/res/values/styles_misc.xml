@@ -50,7 +50,7 @@
 
 	<!-- S E A R C H   T E X T -->
 
-	<style name="SearchTextItem" parent="TextViewListItemStyle" tools:ignore="UnusedResources">
+	<style name="SearchTextItem" parent="TextViewListItemStyle" >
 		<item name="android:textAppearance">?attr/textAppearanceListItemSmall</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:paddingLeft">?android:attr/listPreferredItemPaddingStart</item>

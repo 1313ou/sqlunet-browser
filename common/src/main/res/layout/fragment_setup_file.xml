@@ -14,8 +14,7 @@
 		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"
 		android:layout_centerVertical="true"
-		android:orientation="vertical"
-		tools:ignore="UselessParent">
+		android:orientation="vertical">
 
 		<Spinner
 			android:id="@+id/task_spinner"

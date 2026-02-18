@@ -11,7 +11,7 @@
 	<integer name="sql_statement_do_ts_pb_position">5</integer>
 	<integer name="sql_statement_do_ts_fn_position">6</integer>
 
-	<string-array name="sql_statement_titles" tools:ignore="InconsistentArrays">
+	<string-array name="sql_statement_titles">
 		<item>[SELECT OPERATION]</item>
 		<item>Create all indexes</item>
 		<item>Prepare PredicateMatrix</item>
@@ -43,7 +43,7 @@
 		<item>@string/action_exec_from_uri</item>
 		<item>@string/action_exec_from_zipped_uri</item>
 	</string-array>
-	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays">
+	<string-array name="sql_statements_values" formatted="false">
 		<item />
 		<item>
 			<!-- all -->

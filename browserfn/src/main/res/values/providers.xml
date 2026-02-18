@@ -8,7 +8,7 @@
 	<string name="framenet_authority" translatable="false">org.sqlunet.framenet.fn.provider</string>
 	<string name="history_authority" translatable="false">org.sqlunet.history.fn.provider</string>
 
-	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
+	<string-array name="provider_authorities" >
 		<item>@string/manager_authority</item>
 		<item>@string/history_authority</item>
 		<item>@string/xsqlunet_authority</item>

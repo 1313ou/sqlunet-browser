@@ -14,8 +14,8 @@
 	<dimen name="scroll_tail_padding">35dp</dimen>
 
 	<!-- web -->
-	<dimen name="web_horizontal_padding" tools:ignore="UnusedResources">0dp</dimen>
-	<dimen name="web_vertical_padding" tools:ignore="UnusedResources">0dp</dimen>
+	<dimen name="web_horizontal_padding" >0dp</dimen>
+	<dimen name="web_vertical_padding" >0dp</dimen>
 
 	<!-- fabs -->
 	<dimen name="fab_margin">16dp</dimen>

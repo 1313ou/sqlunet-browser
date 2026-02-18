@@ -5,7 +5,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- sites -->
-	<string-array name="download_site_labels" tools:ignore="InconsistentArrays">
+	<string-array name="download_site_labels" >
 		<item>Open English WordNet 2025 (GitHub, zipped)</item>
 		<item>Open English WordNet 2025 (Sourceforge, zipped)</item>
 		<item>Open English WordNet 2025 dev (GitHub, zipped)</item>

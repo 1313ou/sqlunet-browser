@@ -8,7 +8,7 @@
 	<string name="activity_searchtext" translatable="false">org.sqlunet.browser.xn.SearchTextActivity</string>
 	<string name="activity_predicatematrix" translatable="false">org.sqlunet.browser.xn.BrowsePredicateMatrixActivity</string>
 
-	<string-array name="pref_launch_list_values" translatable="false" tools:ignore="InconsistentArrays">
+	<string-array name="pref_launch_list_values" translatable="false">
 		<item>@string/activity_main</item>
 		<item>@string/activity_browse</item>
 		<item>@string/activity_predicatematrix</item>

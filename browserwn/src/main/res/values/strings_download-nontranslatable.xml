@@ -16,7 +16,7 @@
 	<string name="sourceforge_31_site_url" translatable="false">https://sourceforge.net/projects/sqlunet/files/semantikos2/4</string>
 
 	<string name="default_download_site_url" translatable="false">@string/github_31_site_url</string>
-	<string-array name="download_site_urls" translatable="false" tools:ignore="InconsistentArrays">
+	<string-array name="download_site_urls" translatable="false" >
 		<item>@string/github_31_site_url</item>
 		<item>@string/sourceforge_31_site_url</item>
 	</string-array>

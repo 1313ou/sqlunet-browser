@@ -8,8 +8,7 @@
 	android:id="@+id/container_home"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="?attr/colorPrimary"
-	tools:ignore="Overdraw">
+	android:background="?attr/colorPrimary" >
 
 	<ImageView
 		android:id="@+id/splash"

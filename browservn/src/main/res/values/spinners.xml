@@ -8,11 +8,11 @@
 	SELECTORS
 	XSELECTORS
 	-->
-	<string-array name="selectors_names" tools:ignore="InconsistentArrays">
+	<string-array name="selectors_names" >
 		<item>words</item>
 		<item>grouped by source</item>
 	</string-array>
-	<integer-array name="selectors_icons" tools:ignore="InconsistentArrays">
+	<integer-array name="selectors_icons" >
 		<item>@drawable/ic_selector</item>
 		<item>@drawable/ic_xselector</item>
 	</integer-array>
@@ -21,11 +21,11 @@
 	VERBNET EXAMPLES
 	PROPBANK EXAMPLES
 	-->
-	<string-array name="searchtext_modes" tools:ignore="InconsistentArrays">
+	<string-array name="searchtext_modes" >
 		<item>VerbNet examples</item>
 		<item>PropBank examples</item>
 	</string-array>
-	<integer-array name="searchtext_icons" tools:ignore="InconsistentArrays">
+	<integer-array name="searchtext_icons" >
 		<item>@drawable/ic_search_vnexample</item>
 		<item>@drawable/ic_search_pbexample</item>
 	</integer-array>

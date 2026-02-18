@@ -12,4 +12,4 @@
 	android:layout_height="wrap_content"
 	android:contentDescription="@string/description_column_major"
 	android:textIsSelectable="true"
-	tools:ignore="UnusedResources" />
+	 />

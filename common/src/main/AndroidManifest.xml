@@ -327,16 +327,14 @@
 			android:name="org.sqlunet.provider.ManagerProvider"
 			android:authorities="@string/manager_authority"
 			android:enabled="true"
-			android:exported="false"
-			tools:ignore="ExportedContentProvider">
+			android:exported="false">
 		</provider>
 
 		<provider
 			android:name="org.sqlunet.provider.XSqlUNetProvider"
 			android:authorities="@string/xsqlunet_authority"
 			android:enabled="true"
-			android:exported="false"
-			tools:ignore="ExportedContentProvider">
+			android:exported="false">
 		</provider>
 
 		<provider

@@ -6,11 +6,11 @@
 
 	<!-- mode spinner -->
 	<string-array name="selectors_names" />
-	<integer-array name="selectors_icons" tools:ignore="UnusedResources" />
+	<integer-array name="selectors_icons"  />
 
 	<!-- searchtext spinner -->
 	<string-array name="searchtext_modes" />
-	<integer-array name="searchtext_icons" tools:ignore="UnusedResources" />
+	<integer-array name="searchtext_icons"  />
 
 	<!-- setup spinner -->
 	<string name="title_select">[SELECT OPERATION]</string>
