@@ -11,8 +11,7 @@
 		android:iconifiedByDefault="true"
 		android:title="@string/hint_search"
 		app:actionViewClass="androidx.appcompat.widget.SearchView"
-		app:showAsAction="always"
-		tools:ignore="AlwaysShowAction" />
+		app:showAsAction="always" />
 	<item
 		android:id="@+id/action_main"
 		android:title="@string/action_main"
