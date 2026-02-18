@@ -26,8 +26,7 @@
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/container_framenet"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:ignore="InconsistentLayout" />
+			android:layout_height="wrap_content" />
 
 		<!--     <TextView -->
 		<!--         android:id="@+id/label_bnc" -->

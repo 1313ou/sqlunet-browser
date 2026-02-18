@@ -3,12 +3,10 @@
   -->
 
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/container_browse2m"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:clipToPadding="false"
-	tools:ignore="InconsistentLayout">
+	android:clipToPadding="false">
 
 	<View
 		android:layout_width="match_parent"

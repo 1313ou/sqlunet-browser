@@ -22,8 +22,7 @@
 			android:paddingStart="4dp"
 			android:paddingEnd="4dp"
 			android:textSize="16sp"
-			android:visibility="visible"
-			tools:ignore="InconsistentLayout" />
+			android:visibility="visible" />
 
 		<!--     <TextView -->
 		<!--         android:id="@+id/label_verbnet" -->
@@ -36,8 +35,7 @@
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/container_verbnet"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:ignore="InconsistentLayout" />
+			android:layout_height="wrap_content" />
 
 		<!--     <TextView -->
 		<!--         android:id="@+id/label_propbank" -->
@@ -50,8 +48,7 @@
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/container_propbank"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:ignore="InconsistentLayout" />
+			android:layout_height="wrap_content" />
 
 		<!--     <TextView -->
 		<!--         android:id="@+id/label_framenet" -->
@@ -64,8 +61,7 @@
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/container_framenet"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:ignore="InconsistentLayout" />
+			android:layout_height="wrap_content" />
 
 		<!--     <TextView -->
 		<!--         android:id="@+id/label_wordnet" -->
@@ -78,8 +74,7 @@
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/container_wordnet"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:ignore="InconsistentLayout" />
+			android:layout_height="wrap_content" />
 
 		<!--     <TextView -->
 		<!--         android:id="@+id/label_bnc" -->
@@ -92,8 +87,7 @@
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/container_bnc"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:ignore="InconsistentLayout" />
+			android:layout_height="wrap_content" />
 
 	</LinearLayout>
 

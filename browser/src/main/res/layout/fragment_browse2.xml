@@ -4,7 +4,6 @@
 
 <!-- details -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/container_browse2"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
@@ -17,8 +16,7 @@
 			android:paddingStart="4dp"
 			android:paddingEnd="4dp"
 			android:textSize="16sp"
-			android:visibility="visible"
-			tools:ignore="InconsistentLayout" />
+			android:visibility="visible" />
 
 	<androidx.core.widget.NestedScrollView
 		android:id="@+id/details_pane"
