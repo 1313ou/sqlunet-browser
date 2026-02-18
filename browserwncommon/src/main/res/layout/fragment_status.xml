@@ -5,7 +5,6 @@
   -->
 
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/swipe_refresh"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
@@ -121,8 +120,7 @@
 						style="@style/GridStatusImage"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:contentDescription="@string/status_searchtext_wn"
-						tools:ignore="InconsistentLayout" />
+						android:contentDescription="@string/status_searchtext_wn" />
 
 					<ImageButton
 						android:id="@+id/searchtextWnButton"
@@ -130,8 +128,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:contentDescription="@string/description_action_searchtext_wn"
-						android:src="@drawable/bn_setup"
-						tools:ignore="InconsistentLayout" />
+						android:src="@drawable/bn_setup" />
 
 				</LinearLayout>
 
