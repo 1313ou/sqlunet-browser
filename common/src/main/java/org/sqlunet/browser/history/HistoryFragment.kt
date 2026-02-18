@@ -57,7 +57,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = HistoryAdapter(requireContext())
+        adapter = HistoryAdapter()
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
         recyclerView.adapter = adapter
 
@@ -134,7 +134,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         adapter.changeCursor(null)
     }
 
-    class HistoryAdapter(private val context: Context) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
+    inner class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
         private var cursor: Cursor? = null
 
@@ -149,8 +149,8 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 val query = cursor!!.getString(dataIdx)
                 holder.textView.text = query
                 holder.itemView.setOnClickListener {
-                    val intent = makeSearchIntent(context, query)
-                    context.startActivity(intent)
+                    val intent = makeSearchIntent(holder.itemView.context, query)
+                    holder.itemView.context.startActivity(intent)
                 }
             }
         }
@@ -172,7 +172,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             return cursor
         }
 
-        class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val textView: TextView = itemView.findViewById(android.R.id.text1)
         }
     }
