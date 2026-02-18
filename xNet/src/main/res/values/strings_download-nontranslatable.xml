@@ -4,7 +4,7 @@
 
 <!DOCTYPE resources [    <!ENTITY bbuser "bbuser">    <!ENTITY bbrepo "bbrepo">    <!ENTITY bbcommit "xxxx">    ]>
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources >
 
 	<!-- sites -->
 	<string name="default_download_site_url" translatable="false" />

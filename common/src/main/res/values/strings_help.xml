@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources >
 
 	<string name="title_activity_help" >Help</string>
 	<string name="lang_tag" />

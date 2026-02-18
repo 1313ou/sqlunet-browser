@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<full-backup-content xmlns:tools="http://schemas.android.com/tools">
+<full-backup-content >
 
 	<exclude
 		domain="file"

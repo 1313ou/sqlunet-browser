@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources >
 	<integer name='size_db_working_total'>81920</integer>
 	<integer name='size_searchtext'>61440</integer>
 	<integer name='size_sqlunet_db'>12288</integer> <!-- sqlunet-wn.db -->

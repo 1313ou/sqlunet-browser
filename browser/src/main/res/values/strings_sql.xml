@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources >
 
 	<integer name="sql_statement_do_indexes_position">1</integer>
 	<integer name="sql_statement_do_predicatematrix_position">2</integer>
