@@ -8,31 +8,25 @@
 	<item
 		android:id="@+id/action_copy"
 		android:title="@string/action_copy"
-		app:showAsAction="ifRoom"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="ifRoom" />
 	<item
 		android:id="@+id/action_dirs"
 		android:title="@string/action_dirs"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/action_storage_dirs"
 		android:title="@string/action_storage_dirs"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/action_cache_dirs"
 		android:title="@string/action_cache_dirs"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/action_download_dirs"
 		android:title="@string/action_download_dirs"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/action_refresh"
 		android:title="@string/action_refresh"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 </menu>

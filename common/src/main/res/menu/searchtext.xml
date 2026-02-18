@@ -17,7 +17,6 @@
 	<item
 		android:id="@+id/action_main"
 		android:title="@string/action_main"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 	<!-- </group> -->
 </menu>

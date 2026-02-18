@@ -9,6 +9,5 @@
 		android:id="@+id/action_donate_refresh"
 		android:orderInCategory="100"
 		android:title="@string/action_donate_refresh"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 </menu>

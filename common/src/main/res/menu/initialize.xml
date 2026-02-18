@@ -14,23 +14,19 @@
 			<item
 				android:id="@+id/action_status"
 				android:title="@string/action_status"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_setup"
 				android:title="@string/action_setup"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_download_settings"
 				android:title="@string/action_download_settings"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_download"
 				android:title="@string/action_download"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_assets"
 				android:title="@string/action_assets"
@@ -39,57 +35,47 @@
 					<item
 						android:id="@+id/action_asset_deliver"
 						android:title="@string/action_asset_deliver"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
+						app:showAsAction="never" />
 					<item
 						android:id="@+id/action_asset_dispose"
 						android:title="@string/action_asset_dispose"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
+						app:showAsAction="never" />
 					<!--
 					<item
 						android:id="@+id/action_asset_deliver_primary"
 						android:title="@string/action_asset_deliver_primary"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
+						app:showAsAction="never" />
 					<item
 						android:id="@+id/action_asset_dispose_primary"
 						android:title="@string/action_asset_dispose_primary"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
+						app:showAsAction="never" />
 					<item
 						android:id="@+id/action_asset_deliver_alt"
 						android:title="@string/action_asset_deliver_alt"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
+						app:showAsAction="never" />
 					<item
 						android:id="@+id/action_asset_dispose_alt"
 						android:title="@string/action_asset_dispose_alt"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
+						app:showAsAction="never" />
 					-->
 				</menu>
 			</item>
 			<item
 				android:id="@+id/action_drop"
 				android:title="@string/action_drop"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_storage"
 				android:title="@string/action_storage"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_diagnostics"
 				android:title="@string/action_diagnostics"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_logs"
 				android:title="@string/action_logs"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 		</menu>
 	</item>
 
@@ -100,13 +86,11 @@
 			<item
 				android:id="@+id/action_appsettings"
 				android:title="@string/action_appsettings"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_quit"
 				android:title="@string/action_quit"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 		</menu>
 	</item>
 

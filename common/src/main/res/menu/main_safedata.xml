@@ -10,8 +10,7 @@
 	<item
 		android:id="@+id/action_settings"
 		android:title="@string/action_settings"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 
 	<item
 		android:id="@+id/action_data"
@@ -21,24 +20,20 @@
 			<item
 				android:id="@+id/action_status"
 				android:title="@string/action_status"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_setup"
 				android:title="@string/action_setup"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 
 			<item
 				android:id="@+id/action_storage"
 				android:title="@string/action_storage"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_diagnostics"
 				android:title="@string/action_diagnostics"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_logging"
 				android:title="@string/action_logging"
@@ -47,23 +42,19 @@
 					<item
 						android:id="@+id/action_logs"
 						android:title="@string/action_logs"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
+						app:showAsAction="never" />
 					<item
 						android:id="@+id/action_logs_doc"
 						android:title="@string/action_logs_doc"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
+						app:showAsAction="never" />
 					<item
 						android:id="@+id/action_logs_exec"
 						android:title="@string/action_logs_exec"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
+						app:showAsAction="never" />
 					<item
 						android:id="@+id/action_clear_logs"
 						android:title="@string/action_clear_logs"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
+						app:showAsAction="never" />
 				</menu>
 			</item>
 		</menu>
@@ -72,20 +63,17 @@
 	<item
 		android:id="@+id/action_history"
 		android:title="@string/action_history"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 
 	<item
 		android:id="@+id/action_sql_clear"
 		android:title="@string/action_sql_clear"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 
 	<item
 		android:id="@+id/action_help"
 		android:title="@string/action_help"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 
 	<item
 		android:title="@string/action_about"
@@ -94,23 +82,19 @@
 			<item
 				android:id="@+id/action_credits"
 				android:title="@string/action_credits"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_rate"
 				android:title="@string/action_rate"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_other"
 				android:title="@string/title_activity_others"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_donate"
 				android:title="@string/title_activity_donate"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 		</menu>
 	</item>
 
@@ -121,18 +105,15 @@
 			<item
 				android:id="@+id/action_provider_info"
 				android:title="@string/action_provider_info"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_appsettings"
 				android:title="@string/action_appsettings"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_quit"
 				android:title="@string/action_quit"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 		</menu>
 	</item>
 
