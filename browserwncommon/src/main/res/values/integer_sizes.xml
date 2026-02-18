@@ -4,9 +4,9 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<integer name='size_db_working_total' tools:keep='@string/size_db_working_total'>0</integer>
-	<integer name='size_searchtext' tools:keep='@string/size_searchtext'>0</integer>
-	<integer name='size_sqlunet_db' tools:keep='@string/size_sqlunet_db'>0</integer> <!-- sqlunet-xxx.db -->
-	<integer name='size_sqlunet_db_zip' tools:keep='@string/size_sqlunet_db_zip'>0</integer> <!-- sqlunet-xxx.db.zip -->
+	<integer name='size_db_working_total'>0</integer>
+	<integer name='size_searchtext'>0</integer>
+	<integer name='size_sqlunet_db'>0</integer> <!-- sqlunet-xxx.db -->
+	<integer name='size_sqlunet_db_zip'>0</integer> <!-- sqlunet-xxx.db.zip -->
 
 </resources>

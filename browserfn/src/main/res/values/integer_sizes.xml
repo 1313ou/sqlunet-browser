@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources xmlns:tools="http://schemas.android.com/tools">
-	<integer name='size_db_working_total' tools:keep='@string/size_db_working_total'>605540352</integer>
-	<integer name='size_searchtext' tools:keep='@string/size_searchtext'>121630720</integer>
-	<integer name='size_sqlunet_db' tools:keep='@string/size_sqlunet_db'>483921920</integer> <!-- sqlunet-fn.db -->
-	<integer name='size_sqlunet_db_zip' tools:keep='@string/size_sqlunet_db_zip'>193052333</integer> <!-- sqlunet-fn.db.zip -->
+	<integer name='size_db_working_total'>605540352</integer>
+	<integer name='size_searchtext'>121630720</integer>
+	<integer name='size_sqlunet_db'>483921920</integer> <!-- sqlunet-fn.db -->
+	<integer name='size_sqlunet_db_zip'>193052333</integer> <!-- sqlunet-fn.db.zip -->
 </resources>
