@@ -30,7 +30,6 @@ import org.sqlunet.wordnet.SenseKeyPointer
 import org.sqlunet.wordnet.SynsetPointer
 import org.sqlunet.wordnet.WordPointer
 import org.sqlunet.wordnet.browser.SenseKeyActivity
-import org.sqlunet.wordnet.browser.SensesFragment
 import org.sqlunet.wordnet.browser.SynsetActivity
 import org.sqlunet.wordnet.browser.WordActivity
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions
@@ -195,7 +194,7 @@ class BrowseFragment : BaseSearchFragment() {
         } else if (trimmedQuery.startsWith("senses:")) {
             val word = trimmedQuery.substringAfter(':')
             args.putString(ProviderArgs.ARG_QUERYSTRING, word)
-            fragment = SensesFragment()
+            fragment = BrowseSensesFragment()
         } else {
             // parameters
             val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(AppContext.context)
