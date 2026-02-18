@@ -2,11 +2,11 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources >
+<resources>
 
 	<!--label -->
 
-	<style name="Label" parent="@android:style/TextAppearance.Small" >
+	<style name="Label" parent="@android:style/TextAppearance.Small">
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:textSize">16sp</item>
 	</style>

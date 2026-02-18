@@ -8,5 +8,4 @@
 	style="@style/SearchTextItem"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:textIsSelectable="false"
-	 />
+	android:textIsSelectable="false" />

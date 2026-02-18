@@ -24,7 +24,7 @@
 
 	<!-- text - must display on colorBackground (variants of colorOnBackground) -->
 	<color name="colorId">#ef2063</color>
-    <color name="colorName">#ef2063</color> <!--  -->
+	<color name="colorName">#ef2063</color> <!--  -->
 	<color name="colorDefinition">#ef2063</color> <!--  -->
 	<color name="colorCased">#9D557B</color> <!--  -->
 	<color name="colorPronunciation">#3C9497</color> <!--  -->

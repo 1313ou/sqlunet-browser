@@ -2,12 +2,12 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources >
+<resources>
 
 	<integer name="sql_statement_do_indexes_position">1</integer>
 	<integer name="sql_statement_do_ts_fn_position">2</integer>
 
-	<string-array name="sql_statement_titles" >
+	<string-array name="sql_statement_titles">
 		<item>[SELECT OPERATION]</item>
 		<item>Create all indexes</item>
 		<item>Prepare FrameNet text search</item>
@@ -17,7 +17,7 @@
 		<item>@string/action_exec_from_uri</item>
 		<item>@string/action_exec_from_zipped_uri</item>
 	</string-array>
-	<string-array name="sql_statements_values" formatted="false" >
+	<string-array name="sql_statements_values" formatted="false">
 		<item />
 		<item>
 			<!-- framenet -->

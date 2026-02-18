@@ -11,8 +11,7 @@
 	<item
 		android:id="@+id/action_diagnostics"
 		android:title="@string/action_diagnostics"
-		app:showAsAction="never"
-		 />
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/action_tables_and_indices"
 		android:title="@string/action_tables_and_indices"

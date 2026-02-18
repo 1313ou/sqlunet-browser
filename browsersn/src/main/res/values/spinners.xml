@@ -2,18 +2,18 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources >
+<resources>
 
 	<!-- mode spinner
 	SELECTORS
 	XSELECTORS
 	-->
-	<string-array name="selectors_names" >
+	<string-array name="selectors_names">
 		<item>senses</item>
 		<item>senses + collocations</item>
 		<item>collocations</item>
 	</string-array>
-	<integer-array name="selectors_icons" >
+	<integer-array name="selectors_icons">
 		<item>@drawable/ic_selector</item>
 		<item>@drawable/ic_xselector</item>
 		<item>@drawable/ic_snselector</item>
@@ -24,12 +24,12 @@
 	DEFINITIONS
 	SAMPLES
 	-->
-	<string-array name="searchtext_modes" >
+	<string-array name="searchtext_modes">
 		<item>WordNet definitions</item>
 		<item>WordNet samples</item>
 		<item>WordNet words</item>
 	</string-array>
-	<integer-array name="searchtext_icons" >
+	<integer-array name="searchtext_icons">
 		<item>@drawable/ic_search_wndefinition</item>
 		<item>@drawable/ic_search_wnsample</item>
 		<item>@drawable/ic_search_wnword</item>

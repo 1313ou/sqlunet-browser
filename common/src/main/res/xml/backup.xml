@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<full-backup-content >
+<full-backup-content>
 
 	<exclude
 		domain="file"

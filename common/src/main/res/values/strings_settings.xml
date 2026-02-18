@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources >
+<resources>
 
 	<!-- Strings related to Settings -->
 
@@ -18,7 +18,7 @@
 	<!-- Launch -->
 	<string name="pref_title_launch">Launched activity</string>
 	<string name="pref_description_launch">Launched activity on start up</string>
-	<string-array name="pref_launch_list_titles" >
+	<string-array name="pref_launch_list_titles">
 		<item>Main</item>
 		<item>Browse</item>
 		<item>Search text</item>

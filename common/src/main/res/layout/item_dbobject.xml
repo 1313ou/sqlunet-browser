@@ -14,7 +14,7 @@
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_weight=".1"
-		android:contentDescription="@string/description_column_id"  />
+		android:contentDescription="@string/description_column_id" />
 
 	<TextView
 		android:id="@+id/item1"
@@ -22,8 +22,7 @@
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_weight=".2"
-		android:contentDescription="@string/description_column_major"
-		 />
+		android:contentDescription="@string/description_column_major" />
 
 	<TextView
 		android:id="@+id/item2"
@@ -31,7 +30,6 @@
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_weight=".7"
-		android:contentDescription="@string/description_column_other"
-		 />
+		android:contentDescription="@string/description_column_other" />
 
 </LinearLayout>

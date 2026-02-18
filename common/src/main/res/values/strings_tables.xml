@@ -2,14 +2,14 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources >
+<resources>
 
 	<string-array name="required_tables" />
 
-	<string-array name="required_indexes"  />
+	<string-array name="required_indexes" />
 
-	<string-array name="non_required_tables"  />
+	<string-array name="non_required_tables" />
 
-	<string-array name="non_required_indexes"  />
+	<string-array name="non_required_indexes" />
 
 </resources>

@@ -2,14 +2,14 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources >
+<resources>
 	<string name="manager_authority" translatable="false">org.sqlunet.manager.x.provider</string>
 	<string name="xsqlunet_authority" translatable="false">org.sqlunet.xsqlunet.x.provider</string>
 	<string name="wordnet_authority" translatable="false">org.sqlunet.wordnet.x.provider</string>
 	<string name="bnc_authority" translatable="false">org.sqlunet.bnc.x.provider</string>
 	<string name="history_authority" translatable="false">org.sqlunet.history.x.provider</string>
 
-	<string-array name="provider_authorities" >
+	<string-array name="provider_authorities">
 		<item>@string/manager_authority</item>
 		<item>@string/history_authority</item>
 		<item>@string/xsqlunet_authority</item>

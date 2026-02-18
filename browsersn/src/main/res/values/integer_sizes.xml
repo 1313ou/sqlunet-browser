@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<resources >
+<resources>
 	<integer name='size_db_working_total'>113205248</integer>
 	<integer name='size_searchtext'>35061760</integer>
 	<integer name='size_sqlunet_db'>78147584</integer> <!-- sqlunet-sn.db -->

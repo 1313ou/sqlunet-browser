@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources >
+<resources>
 	<string name="manager_authority" translatable="false">org.sqlunet.manager.vn.provider</string>
 	<string name="xsqlunet_authority" translatable="false">org.sqlunet.xsqlunet.vn.provider</string>
 	<string name="verbnet_authority" translatable="false">org.sqlunet.verbnet.vn.provider</string>
@@ -10,7 +10,7 @@
 	<string name="wordnet_authority" translatable="false">org.sqlunet.wordnet.vn.provider</string>
 	<string name="history_authority" translatable="false">org.sqlunet.history.vn.provider</string>
 
-	<string-array name="provider_authorities" >
+	<string-array name="provider_authorities">
 		<item>@string/manager_authority</item>
 		<item>@string/history_authority</item>
 		<item>@string/xsqlunet_authority</item>

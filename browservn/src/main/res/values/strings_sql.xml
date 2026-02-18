@@ -2,13 +2,13 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources >
+<resources>
 
 	<integer name="sql_statement_do_indexes_position">1</integer>
 	<integer name="sql_statement_do_ts_vn_position">2</integer>
 	<integer name="sql_statement_do_ts_pb_position">3</integer>
 
-	<string-array name="sql_statement_titles" >
+	<string-array name="sql_statement_titles">
 		<item>[SELECT OPERATION]</item>
 		<item>Create all indexes</item>
 		<item>Prepare VerbNet text search</item>
@@ -27,7 +27,7 @@
 		<item>@string/action_exec_from_uri</item>
 		<item>@string/action_exec_from_zipped_uri</item>
 	</string-array>
-	<string-array name="sql_statements_values" formatted="false" >
+	<string-array name="sql_statements_values" formatted="false">
 		<item />
 		<item>
 			<!-- all -->
@@ -244,13 +244,13 @@
 			CREATE INDEX IF NOT EXISTS `pk_pb_vnroles` ON `pb_vnroles` (`vnroleid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_words` ON `pb_words` (`pbwordid`);
 			CREATE INDEX IF NOT EXISTS `k_pb_words_wordid` ON `pb_words` (`wordid`);</item>
-			<!--
-			CREATE INDEX IF NOT EXISTS `pk_pb_aspects` ON `pb_aspects` (`aspectid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_forms` ON `pb_forms` (`formid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_persons` ON `pb_persons` (`personid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_tenses` ON `pb_tenses` (`tenseid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_voices` ON `pb_voices` (`voiceid`);
-			-->
+		<!--
+		CREATE INDEX IF NOT EXISTS `pk_pb_aspects` ON `pb_aspects` (`aspectid`);
+		CREATE INDEX IF NOT EXISTS `pk_pb_forms` ON `pb_forms` (`formid`);
+		CREATE INDEX IF NOT EXISTS `pk_pb_persons` ON `pb_persons` (`personid`);
+		CREATE INDEX IF NOT EXISTS `pk_pb_tenses` ON `pb_tenses` (`tenseid`);
+		CREATE INDEX IF NOT EXISTS `pk_pb_voices` ON `pb_voices` (`voiceid`);
+		-->
 		<item>
 			<!-- drop propbank indexes -->
 			DROP INDEX IF EXISTS `pk_pb_rolesets`;
@@ -269,13 +269,13 @@
 			DROP INDEX IF EXISTS `pk_pb_vnroles`;
 			DROP INDEX IF EXISTS `pk_pb_words`;
 			DROP INDEX IF EXISTS `k_pb_words_wordid`;</item>
-			<!--
-			DROP INDEX IF EXISTS `pk_pb_aspects`;
-			DROP INDEX IF EXISTS `pk_pb_forms`;
-			DROP INDEX IF EXISTS `pk_pb_persons`;
-			DROP INDEX IF EXISTS `pk_pb_tenses`;
-			DROP INDEX IF EXISTS `pk_pb_voices`;
-			-->
+		<!--
+		DROP INDEX IF EXISTS `pk_pb_aspects`;
+		DROP INDEX IF EXISTS `pk_pb_forms`;
+		DROP INDEX IF EXISTS `pk_pb_persons`;
+		DROP INDEX IF EXISTS `pk_pb_tenses`;
+		DROP INDEX IF EXISTS `pk_pb_voices`;
+		-->
 		<item>
 			<!-- drop verbnet text search -->
 			DROP TABLE IF EXISTS `vn_examples_example_fts4`;</item>

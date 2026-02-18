@@ -2,7 +2,7 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources >
+<resources>
 
 	<!-- labels -->
 	<string name="title_activity_download">Download</string>
@@ -112,7 +112,7 @@
 	<string name="status_download_downloadable_content">Exploring available content…</string>
 
 	<!-- result -->
-	<string name="result_success" >Success</string>
+	<string name="result_success">Success</string>
 	<string name="result_fail">Fail</string>
 	<string name="result_deleted">deleted</string>
 

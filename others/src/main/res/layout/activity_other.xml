@@ -3,9 +3,9 @@
   -->
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 
 	<com.google.android.material.appbar.AppBarLayout
 		android:id="@+id/appbar_layout"
@@ -18,47 +18,47 @@
 	</com.google.android.material.appbar.AppBarLayout>
 
 	<ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
 		android:clipToPadding="false"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
 
-            <!-- treebolic wordnet -->
-            <include layout="@layout/inc_treebolic_wordnet" />
+			<!-- treebolic wordnet -->
+			<include layout="@layout/inc_treebolic_wordnet" />
 
-            <!-- grammarscope -->
-            <include layout="@layout/inc_grammarscope_syntaxnet" />
+			<!-- grammarscope -->
+			<include layout="@layout/inc_grammarscope_syntaxnet" />
 
-            <include layout="@layout/inc_grammarscope_syntaxnet_premium" />
+			<include layout="@layout/inc_grammarscope_syntaxnet_premium" />
 
-            <include layout="@layout/inc_grammarscope_udpipe" />
+			<include layout="@layout/inc_grammarscope_udpipe" />
 
-            <include layout="@layout/inc_grammarscope_udpipe_premium" />
+			<include layout="@layout/inc_grammarscope_udpipe_premium" />
 
-            <include layout="@layout/inc_grammarscope_corenlp" />
+			<include layout="@layout/inc_grammarscope_corenlp" />
 
-            <include layout="@layout/inc_grammarscope_corenlp_premium" />
+			<include layout="@layout/inc_grammarscope_corenlp_premium" />
 
-            <!-- semantikos -->
-            <include layout="@layout/inc_semantikos" />
+			<!-- semantikos -->
+			<include layout="@layout/inc_semantikos" />
 
-            <include layout="@layout/inc_semantikos_ewn" />
+			<include layout="@layout/inc_semantikos_ewn" />
 
-            <include layout="@layout/inc_semantikos_wn" />
+			<include layout="@layout/inc_semantikos_wn" />
 
-            <include layout="@layout/inc_semantikos_vn" />
+			<include layout="@layout/inc_semantikos_vn" />
 
-            <include layout="@layout/inc_semantikos_sn" />
+			<include layout="@layout/inc_semantikos_sn" />
 
-            <include layout="@layout/inc_semantikos_fn" />
+			<include layout="@layout/inc_semantikos_fn" />
 
-        </LinearLayout>
+		</LinearLayout>
 
-    </ScrollView>
+	</ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

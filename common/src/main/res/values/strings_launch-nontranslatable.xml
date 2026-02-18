@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources >
+<resources>
 
 	<string name="default_launch" translatable="false">org.sqlunet.browser.MainActivity</string>
 
@@ -10,7 +10,7 @@
 	<string name="activity_browse" translatable="false">org.sqlunet.browser.zn.BrowseActivity</string>
 	<string name="activity_searchtext" translatable="false">org.sqlunet.browser.zn.SearchTextActivity</string>
 
-	<string-array name="pref_launch_list_values" translatable="false" >
+	<string-array name="pref_launch_list_values" translatable="false">
 		<item>@string/activity_main</item>
 		<item>@string/activity_browse</item>
 		<item>@string/activity_searchtext</item>
