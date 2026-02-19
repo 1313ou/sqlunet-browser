@@ -50,8 +50,8 @@ open class MainActivity : BaseActivity() {
         setSupportActionBar(toolbar)
 
         // search bar and view
-        // val searchBar: SearchBar = findViewById(ActivitiesR.id.search_bar)
-        // val searchView: SearchView = findViewById(ActivitiesR.id.search_view)
+        // val searchBar: SearchBar = findViewById(CoreR.id.search_bar)
+        // val searchView: SearchView = findViewById(CoreR.id.search_view)
         // searchView.setupWithSearchBar(searchBar)
         // searchBar.visibility = View.GONE
         // searchView.hide()
