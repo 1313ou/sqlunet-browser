@@ -5,6 +5,8 @@
 <resources>
 
 	<color name="surfaceColor">#766f58</color>
+	<color name="surfaceVariantColor">#80795F</color>
+	<color name="onSurfaceColor">#EEEEEE</color>
 
 	<color name="primaryColor">#766f58</color>
 	<color name="primaryDarkColor">#565141</color>
