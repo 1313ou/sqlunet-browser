@@ -53,7 +53,7 @@ import org.sqlunet.browser.ColorUtils.tint
 import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
 import com.google.android.material.R as MaterialR
-import org.sqlunet.activities.R as ActivitiesR
+import org.sqlunet.core.R as CoreR
 
 /**
  * Base search fragment
@@ -162,8 +162,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         toolbar = requireActivity().findViewById(R.id.toolbar)
 
         // search mode
-        searchBar = requireActivity().findViewById(ActivitiesR.id.search_bar)
-        searchView = requireActivity().findViewById(ActivitiesR.id.search_view)
+        searchBar = requireActivity().findViewById(CoreR.id.search_bar)
+        searchView = requireActivity().findViewById(CoreR.id.search_view)
 
         // connect searchbar and searchview
         searchView.setupWithSearchBar(searchBar)
@@ -302,7 +302,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             searchView.hide()
             performSearch(selectedText, searchableInfo)
         }
-        val suggestionContainer  = requireActivity().findViewById<RecyclerView>(ActivitiesR.id.search_view_suggestion_container)
+        val suggestionContainer  = requireActivity().findViewById<RecyclerView>(CoreR.id.search_view_suggestion_container)
         suggestionContainer.adapter = adapter
         // handle suggestion selection
         searchView.editText.addTextChangedListener { text ->

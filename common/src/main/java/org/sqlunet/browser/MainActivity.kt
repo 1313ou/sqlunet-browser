@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -23,12 +22,9 @@ import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.bbou.rate.AppRate.Companion.invoke
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.search.SearchBar
-import com.google.android.material.search.SearchView
 import org.sqlunet.browser.NightMode.createOverrideConfigurationForDayNight
 import org.sqlunet.browser.common.R
 import org.sqlunet.settings.StorageSettings
-import org.sqlunet.activities.R as ActivitiesR
 
 /**
  * Main activity
