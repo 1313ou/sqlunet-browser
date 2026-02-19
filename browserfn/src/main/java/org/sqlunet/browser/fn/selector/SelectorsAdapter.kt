@@ -143,9 +143,9 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         val iconView: ImageView = itemView.findViewById(R.id.icon)
 
         init {
-            Log.d(TAG, "ItemView $itemView")
+            // Log.d(TAG, "ItemView $itemView")
             itemView.setOnClickListener {
-                Log.d(TAG, "Click position=$position, adapterPosition=$adapterPosition, bindingPosition=$bindingAdapterPosition, layoutPosition=$layoutPosition, absoluteAdapterPosition=$absoluteAdapterPosition")
+                // Log.d(TAG, "Click position=$position, adapterPosition=$adapterPosition, bindingPosition=$bindingAdapterPosition, layoutPosition=$layoutPosition, absoluteAdapterPosition=$absoluteAdapterPosition")
                 onClickListener.invoke(bindingAdapterPosition)
             }
         }
