@@ -30,7 +30,7 @@ class SearchTextFragment : BaseSearchFragment() {
     init {
         layoutId = R.layout.fragment_searchtext
         menuId = CommonR.menu.searchtext
-        colorAttrId = AndroidR.attr.colorPrimary
+        // colorAttrId = AndroidR.attr.colorPrimary
         spinnerLabels = R.array.searchtext_modes
         spinnerIcons = R.array.searchtext_icons
     }

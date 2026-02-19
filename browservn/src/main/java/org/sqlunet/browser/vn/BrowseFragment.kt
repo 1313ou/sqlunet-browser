@@ -49,7 +49,7 @@ class BrowseFragment : BaseSearchFragment() {
     init {
         layoutId = R.layout.fragment_browse
         menuId = R.menu.browse
-        colorAttrId = AndroidR.attr.colorPrimary
+        // colorAttrId = AndroidR.attr.colorPrimary
         spinnerLabels = R.array.selectors_names
         spinnerIcons = R.array.selectors_icons
     }
