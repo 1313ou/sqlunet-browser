@@ -11,6 +11,9 @@
 	<color name="foregroundColor">@android:color/black</color> <!-- generic window foreground -->
 	<color name="activatedBackgroundColor">#80808080</color>
 
+	<!-- surface -->
+	<color name="surfaceColor">#4251bd</color> <!-- framework + nav (middle in gradient), x selector header -->
+
 	<!-- primary -->
 	<color name="primaryColor">#4251bd</color> <!-- framework + nav (middle in gradient), x selector header -->
 	<color name="primaryDarkColor">#293073</color> <!-- framework + nav (end in gradient) -->

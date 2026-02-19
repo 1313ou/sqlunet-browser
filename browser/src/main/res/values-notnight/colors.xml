@@ -4,6 +4,8 @@
 
 <resources>
 
+	<color name="surfaceColor">#AEC8D7</color>
+
 	<color name="primaryColor">#AEC8D7</color>
 	<color name="primaryDarkColor">#648797</color>
 	<color name="primaryLightColor">#C2E1F2</color>
