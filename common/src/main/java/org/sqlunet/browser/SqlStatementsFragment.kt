@@ -8,6 +8,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,28 +73,54 @@ class SqlStatementsFragment : Fragment() {
 
     inner class SqlStatementsAdapter(var dataSet: Array<out CharSequence?>) : RecyclerView.Adapter<SqlStatementsAdapter.SqlStatementsViewHolder>() {
 
-        inner class SqlStatementsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val textView: TextView = itemView.findViewById(android.R.id.text1)
-        }
+        /**
+         * Tracks activated item position
+         */
+        private var activatedPosition = RecyclerView.NO_POSITION
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SqlStatementsViewHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.item_sql, parent, false)
             return SqlStatementsViewHolder(view)
         }
 
-        override fun onBindViewHolder(holder: SqlStatementsViewHolder, position: Int) {
-            val statement = dataSet[position]
-            holder.textView.text = statement
-            holder.itemView.setOnLongClickListener {
-                val context = holder.itemView.context
-                val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                val clipData = ClipData.newPlainText("text", statement)
-                clipboard.setPrimaryClip(clipData)
-                Toast.makeText(context, R.string.status_clipboard_copied, Toast.LENGTH_SHORT).show()
+        override fun onBindViewHolder(viewHolder: SqlStatementsViewHolder, position: Int) {
+            val statement = dataSet[position]!!
+            viewHolder.textView.text = statement
+            viewHolder.itemView.setOnLongClickListener {
+
+                val position2 = viewHolder.bindingAdapterPosition
+                val statement2 = dataSet[position2]!!
+                Log.d(TAG, "Activate position $position2")
+                val previouslyActivatedPosition = activatedPosition
+                activatedPosition = position2
+                if (previouslyActivatedPosition != RecyclerView.NO_POSITION) {
+                    notifyItemChanged(previouslyActivatedPosition)
+                }
+                notifyItemChanged(activatedPosition)
+
+                activate(viewHolder.itemView.context, statement2)
                 true
             }
+            viewHolder.itemView.isActivated = position == activatedPosition
         }
 
         override fun getItemCount() = dataSet.size
+
+        private fun activate(context: Context, statement: CharSequence) {
+            val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData = ClipData.newPlainText("text", statement)
+            clipboard.setPrimaryClip(clipData)
+            Toast.makeText(context, R.string.status_clipboard_copied, Toast.LENGTH_SHORT).show()
+        }
+
+        inner class SqlStatementsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+            val textView: TextView = itemView.findViewById(android.R.id.text1)
+        }
+    }
+
+    companion object {
+
+        private const val TAG = "SqlStatementsF"
     }
 }
