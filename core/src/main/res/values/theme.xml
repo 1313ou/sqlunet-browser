@@ -10,6 +10,7 @@
 
 		<!-- framework colors -->
 		<item name="colorSurface">@color/primaryColor</item>
+
 		<item name="colorPrimary">@color/primaryColor</item>
 		<item name="colorOnSurface">@color/onPrimaryColor</item>
 		<item name="colorOnPrimary">@color/onPrimaryColor</item>
