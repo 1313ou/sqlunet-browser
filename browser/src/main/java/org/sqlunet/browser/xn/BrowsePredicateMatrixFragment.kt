@@ -42,7 +42,6 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
     init {
         layoutId = R.layout.fragment_browse_predicatematrix
         menuId = R.menu.predicate_matrix
-        // colorAttrId = AndroidR.attr.colorPrimary
         spinnerLabels = R.array.predicatematrix_modes
         spinnerIcons = R.array.predicatematrix_icons
     }
