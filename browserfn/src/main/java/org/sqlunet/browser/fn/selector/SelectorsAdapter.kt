@@ -36,23 +36,6 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
      */
     private var activatedPosition = RecyclerView.NO_POSITION
 
-    /**
-     * OnClickListener
-     */
-    private val onClickListener = { position: Int ->
-        Log.d(TAG, "Activate position $position")
-        val previouslyActivatedPosition = activatedPosition
-        activatedPosition = position
-        if (previouslyActivatedPosition != RecyclerView.NO_POSITION) {
-            notifyItemChanged(previouslyActivatedPosition)
-        }
-        notifyItemChanged(activatedPosition)
-
-        activate(position)
-    }
-
-    // holder
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_selector, parent, false)
         return ViewHolder(itemView)
@@ -118,8 +101,6 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         old?.close()
     }
 
-    // helper
-
     private fun bindTextView(textView: TextView, text: String?, isDimmed: Boolean) {
         if (text == null || "0" == text) {
             textView.visibility = View.GONE
@@ -130,7 +111,20 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         }
     }
 
-    // click
+    /**
+     * OnClickListener
+     */
+    private val onClickListener = { position: Int ->
+        Log.d(TAG, "Activate position $position")
+        val previouslyActivatedPosition = activatedPosition
+        activatedPosition = position
+        if (previouslyActivatedPosition != RecyclerView.NO_POSITION) {
+            notifyItemChanged(previouslyActivatedPosition)
+        }
+        notifyItemChanged(activatedPosition)
+
+        activate(position)
+    }
 
     /**
      * ViewHolder
@@ -138,14 +132,6 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
      * @param itemView view
      */
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        init {
-            Log.d(TAG, "ItemView $itemView")
-            itemView.setOnClickListener {
-                Log.d(TAG, "Click position=$position, adapterPosition=$adapterPosition, bindingPosition=$bindingAdapterPosition, layoutPosition=$layoutPosition, absoluteAdapterPosition=$absoluteAdapterPosition")
-                onClickListener.invoke(bindingAdapterPosition)
-            }
-        }
 
         val fnNameView: TextView = itemView.findViewById(R.id.fnname)
         val fnFrameNameView: TextView = itemView.findViewById(R.id.fnframename)
@@ -155,6 +141,14 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         val wordIdView: TextView = itemView.findViewById(R.id.wordid)
         val fnFrameIdView: TextView = itemView.findViewById(R.id.fnframeid)
         val iconView: ImageView = itemView.findViewById(R.id.icon)
+
+        init {
+            Log.d(TAG, "ItemView $itemView")
+            itemView.setOnClickListener {
+                Log.d(TAG, "Click position=$position, adapterPosition=$adapterPosition, bindingPosition=$bindingAdapterPosition, layoutPosition=$layoutPosition, absoluteAdapterPosition=$absoluteAdapterPosition")
+                onClickListener.invoke(bindingAdapterPosition)
+            }
+        }
     }
 
     companion object {

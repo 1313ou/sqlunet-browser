@@ -32,23 +32,6 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
      */
     private var activatedPosition = RecyclerView.NO_POSITION
 
-    /**
-     * OnClickListener
-     */
-    private val onClickListener = { position: Int ->
-        Log.d(TAG, "Activate position $position")
-        val previouslyActivatedPosition = activatedPosition
-        activatedPosition = position
-        if (previouslyActivatedPosition != RecyclerView.NO_POSITION) {
-            notifyItemChanged(previouslyActivatedPosition)
-        }
-        notifyItemChanged(activatedPosition)
-
-        activate(position)
-    }
-
-    // holder
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_selector, parent, false)
         return ViewHolder(itemView)
@@ -124,8 +107,6 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         old?.close()
     }
 
-    // helper
-
     private fun bindTextView(textView: TextView, text: String?) {
         if (text.isNullOrEmpty()) {
             textView.visibility = View.GONE
@@ -136,11 +117,27 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
     }
 
     /**
+     * OnClickListener
+     */
+    private val onClickListener = { position: Int ->
+        Log.d(TAG, "Activate position $position")
+        val previouslyActivatedPosition = activatedPosition
+        activatedPosition = position
+        if (previouslyActivatedPosition != RecyclerView.NO_POSITION) {
+            notifyItemChanged(previouslyActivatedPosition)
+        }
+        notifyItemChanged(activatedPosition)
+
+        activate(position)
+    }
+
+    /**
      * ViewHolder
      *
      * @param itemView view
      */
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         val pos: TextView = itemView.findViewById(R.id.pos)
         val domain: TextView = itemView.findViewById(R.id.domain)
         val definition: TextView = itemView.findViewById(R.id.definition)

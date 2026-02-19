@@ -17,19 +17,15 @@ import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Syns
 
 class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), CursorRecyclerViewAdapter {
 
+    /**
+     * Cursor
+     */
     private var cursor: Cursor? = null
-    private var activatedPosition = RecyclerView.NO_POSITION
 
-    private val onClickListener = { position: Int ->
-        Log.d(TAG, "Activate position $position")
-        val previouslyActivatedPosition = activatedPosition
-        activatedPosition = position
-        if (previouslyActivatedPosition != RecyclerView.NO_POSITION) {
-            notifyItemChanged(previouslyActivatedPosition)
-        }
-        notifyItemChanged(activatedPosition)
-        activate(position)
-    }
+    /**
+     * Tracks activated item position
+     */
+    private var activatedPosition = RecyclerView.NO_POSITION
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_selector, parent, false)
@@ -51,7 +47,7 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         bindTextView(holder.sensekey, cursor, Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY)
         bindTextView(holder.lexid, cursor, Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID)
         val tagCountCol = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT)
-        val tagCount = if(tagCountCol != -1) cursor.getInt(tagCountCol) else 0
+        val tagCount = if (tagCountCol != -1) cursor.getInt(tagCountCol) else 0
         bindTextView(holder.tagcount, if (tagCount > 0) tagCount.toString() else null)
         bindTextView(holder.wordid, cursor, Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID)
         bindTextView(holder.synsetid, cursor, Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID)
@@ -81,7 +77,7 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         }
         old?.close()
     }
-    
+
     fun deactivate() {
         val previouslyActivatedPosition = activatedPosition
         activatedPosition = RecyclerView.NO_POSITION
@@ -94,7 +90,7 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         val text = cursor.getString(cursor.getColumnIndexOrThrow(columnName))
         bindTextView(textView, text)
     }
-    
+
     private fun bindTextView(textView: TextView, text: String?) {
         if (text == null) {
             textView.visibility = View.GONE
@@ -104,7 +100,19 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         }
     }
 
+    private val onClickListener = { position: Int ->
+        Log.d(TAG, "Activate position $position")
+        val previouslyActivatedPosition = activatedPosition
+        activatedPosition = position
+        if (previouslyActivatedPosition != RecyclerView.NO_POSITION) {
+            notifyItemChanged(previouslyActivatedPosition)
+        }
+        notifyItemChanged(activatedPosition)
+        activate(position)
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         val pos: TextView = itemView.findViewById(R.id.pos)
         val domain: TextView = itemView.findViewById(R.id.domain)
         val definition: TextView = itemView.findViewById(R.id.definition)
@@ -116,15 +124,16 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         val wordid: TextView = itemView.findViewById(R.id.wordid)
         val synsetid: TextView = itemView.findViewById(R.id.synsetid)
         val senseid: TextView = itemView.findViewById(R.id.senseid)
-        
+
         init {
             itemView.setOnClickListener {
                 onClickListener.invoke(bindingAdapterPosition)
             }
         }
     }
-    
+
     companion object {
+
         private const val TAG = "SelectorsA"
     }
 }

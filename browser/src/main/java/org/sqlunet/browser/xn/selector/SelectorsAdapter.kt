@@ -32,8 +32,6 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
      */
     private var activatedPosition = RecyclerView.NO_POSITION
 
-    // holder
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_selector, parent, false)
         return ViewHolder(itemView)
@@ -117,8 +115,6 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
         }
         old?.close()
     }
-
-    // helper
 
     private fun bindTextView(textView: TextView, text: String?) {
         if (text.isNullOrEmpty()) {
