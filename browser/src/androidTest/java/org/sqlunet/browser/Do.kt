@@ -5,7 +5,6 @@ package org.sqlunet.browser
 
 import android.util.Log
 import android.widget.ListView
-import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.AdapterViewProtocols
@@ -13,8 +12,17 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import org.hamcrest.CoreMatchers
+import org.sqlunet.browser.ContainerUtils
+import org.sqlunet.browser.DataUtils
+import org.sqlunet.browser.Seq
+import org.sqlunet.browser.ToBoolean
+import org.sqlunet.browser.Wait
+import org.sqlunet.browser.WaitUntil
+import org.sqlunet.browser.WaitUntilText
 import com.bbou.download.common.R as DownloadR
 import org.sqlunet.browser.common.R as CommonR
+import org.sqlunet.browser.wn.lib.R as LibR
+import org.sqlunet.core.R as CoreR
 
 internal object Do {
 
@@ -29,11 +37,11 @@ internal object Do {
     }
 
     private fun download() {
-        Seq.doClick(R.id.databaseButton)
+        Seq.doClick(LibR.id.databaseButton)
         // download activity
         Seq.doClick(DownloadR.id.downloadButton)
         //Wait.until_not_text(R.id.status, Seq.getResourceString(R.string.status_task_running), 10)
-        WaitUntilText.changesFrom(CommonR.id.status, Seq.getResourceString(CommonR.string.status_task_running))
+        WaitUntilText.changesFrom(DownloadR.id.status, Seq.getResourceString(CommonR.string.status_task_running))
     }
 
     fun ensureTextSearchSetup(@IdRes buttonId: Int) {
@@ -46,21 +54,19 @@ internal object Do {
 
     private fun textSearchSetup(@IdRes buttonId: Int) {
         Seq.doClick(buttonId)
-        Seq.doClick(R.id.task_run)
+        Seq.doClick(CommonR.id.task_run)
         //Wait.until_not_text(R.id.task_status, Seq.getResourceString(R.string.status_task_running), 10)
-        WaitUntilText.changesFrom(R.id.task_status, Seq.getResourceString(CommonR.string.status_task_running))
+        WaitUntilText.changesFrom(CommonR.id.task_status, Seq.getResourceString(CommonR.string.status_task_running))
     }
 
     fun searchRunFlat() {
         for (word in DataUtils.wordList!!) {
-            Seq.doTypeSearch(R.id.search_view, word)
-
+            Seq.doTypeSearch(CoreR.id.search_view, word)
             // selector list
-            //Wait.until(android.R.id.list, 5)
+            Wait.until(android.R.id.list, 5)
             WaitUntil.shown(android.R.id.list)
             val list = CoreMatchers.allOf(ViewMatchers.withId(android.R.id.list), CoreMatchers.instanceOf(ListView::class.java))
             Espresso.onView(list).check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
-
             // for all selectors
             val n = ContainerUtils.getItemCount(list)
             Log.d("Searching ", "$word has $n results")
@@ -78,7 +84,7 @@ internal object Do {
 
     fun searchRunTree() {
         for (word in DataUtils.wordList!!) {
-            Seq.doTypeSearch(R.id.search_view, word)
+            Seq.doTypeSearch(CoreR.id.search_view, word)
 
             // selector list
             //Wait.until(android.R.id.list, 5)
@@ -121,7 +127,7 @@ internal object Do {
 
     fun xselectorsRunTree() {
         for (word in DataUtils.wordList!!) {
-            Seq.doTypeSearch(R.id.search_view, word)
+            Seq.doTypeSearch(CoreR.id.search_view, word)
 
             // selector list
             //Wait.until(android.R.id.list, 5)
@@ -144,7 +150,7 @@ internal object Do {
     fun textSearchRun(position: Int) {
         Seq.doChoose(CommonR.id.spinner, position)
         for (word in DataUtils.wordList!!) {
-            Seq.doTypeSearch(R.id.search_view, word)
+            Seq.doTypeSearch(CoreR.id.search_view, word)
         }
     }
 }
