@@ -32,21 +32,6 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
      */
     private var activatedPosition = RecyclerView.NO_POSITION
 
-    /**
-     * OnClickListener
-     */
-    private val onClickListener = { position: Int ->
-        Log.d(TAG, "Activate position $position")
-        val previouslyActivatedPosition = activatedPosition
-        activatedPosition = position
-        if (previouslyActivatedPosition != RecyclerView.NO_POSITION) {
-            notifyItemChanged(previouslyActivatedPosition)
-        }
-        notifyItemChanged(activatedPosition)
-
-        activate(position)
-    }
-
     // holder
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -142,6 +127,21 @@ class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Ada
             textView.visibility = View.VISIBLE
             textView.text = text
         }
+    }
+
+    /**
+     * OnClickListener
+     */
+    private val onClickListener = { position: Int ->
+        Log.d(TAG, "Activate position $position")
+        val previouslyActivatedPosition = activatedPosition
+        activatedPosition = position
+        if (previouslyActivatedPosition != RecyclerView.NO_POSITION) {
+            notifyItemChanged(previouslyActivatedPosition)
+        }
+        notifyItemChanged(activatedPosition)
+
+        activate(position)
     }
 
     /**
