@@ -4,7 +4,6 @@
 package org.sqlunet.browser.fn.selector
 
 import android.os.Bundle
-import android.view.View
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.Pointer
@@ -43,14 +42,8 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
 
     // A D A P T E R
 
-    override fun makeAdapter(): RecyclerView.Adapter<*> {
-        val adapter = SelectorsAdapter()
-        adapter.setOnClickListener(object : SelectorsAdapter.OnClickListener {
-            override fun onClick(position: Int, view: View) {
-                activate(position)
-            }
-        })
-        return adapter
+    override val adapter: RecyclerView.Adapter<*> = SelectorsAdapter { position: Int ->
+        select(position)
     }
 
     // L O A D
@@ -62,10 +55,12 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
         dataModel!!.loadData(uri, sql, null)
     }
 
-    override fun activate(position: Int) {
+    // S E L E C T I O N
+
+    override fun select(position: Int) {
         positionModel!!.setPosition(position)
         if (listener != null) {
-            val adapter = recyclerView!!.adapter as SelectorsAdapter
+            val adapter = recyclerView.adapter as SelectorsAdapter
             val cursor = adapter.getCursor()
             if (cursor != null && cursor.moveToPosition(position)) {
                 // column indexes
@@ -89,7 +84,7 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
         }
     }
 
-    // C L I C K   L I S T E N E R
+   // C L I C K   L I S T E N E R
 
     /**
      * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
@@ -99,7 +94,7 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
         /**
          * Callback for when an item has been selected.
          */
-        fun onItemSelected(pointer: Pointer?, word: String?, wordId: Long)
+        fun onItemSelected(pointer: Pointer, word: String, wordId: Long)
     }
 
     /**

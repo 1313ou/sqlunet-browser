@@ -3,28 +3,23 @@
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools">
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 	<item
 		android:id="@+id/action_diagnostics"
 		android:title="@string/action_diagnostics"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/action_tables_and_indices"
 		android:title="@string/action_tables_and_indices"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/action_logs"
 		android:title="@string/action_logs"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 	<!--
 	<item
 		android:id="@+id/action_refresh"
 		android:title="@string/action_refresh"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 	-->
 </menu>

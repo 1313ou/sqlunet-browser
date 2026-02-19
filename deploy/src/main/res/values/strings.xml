@@ -2,7 +2,7 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<!-- action -->
 	<string name="action_cancel">Cancel</string>
@@ -20,7 +20,7 @@
 	<string name="status_task_failed">failed</string>
 
 	<!-- result -->
-	<string name="result_success" tools:ignore="UnusedResources">Success</string>
+	<string name="result_success">Success</string>
 	<string name="result_fail">Fail</string>
 
 </resources>

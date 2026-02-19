@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment
 abstract class SplashFragment : Fragment() {
 
     /**
-     * Layout id set bu super class
+     * Layout id set in super class
      */
     protected var layoutId = 0
 

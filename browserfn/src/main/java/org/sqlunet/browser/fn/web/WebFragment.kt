@@ -346,7 +346,7 @@ class WebFragment : Fragment() {
             // header
             sb.append(BODY1)
 
-            // css style sheet
+            // ss style sheet
             sb.append(STYLESHEET1).append("css/style.css").append(STYLESHEET2)
             sb.append(STYLESHEET1).append("css/tree.css").append(STYLESHEET2)
             sb.append(STYLESHEET1).append("css/wordnet.css").append(STYLESHEET2)

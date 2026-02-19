@@ -20,7 +20,7 @@ interface Cancelable {
     /**
      * Cancel status
      *
-     * @return true if it as been cancelled
+     * @return true if it has been cancelled
      */
     fun isCancelled(): Boolean
 }

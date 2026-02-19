@@ -2,10 +2,10 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<!-- Launch -->
-	<string-array name="pref_launch_list_titles" tools:ignore="InconsistentArrays">
+	<string-array name="pref_launch_list_titles">
 		<item>Main</item>
 		<item>Browse</item>
 		<item>Browse PredicateMatrix</item>

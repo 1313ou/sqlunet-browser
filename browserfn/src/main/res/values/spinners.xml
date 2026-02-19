@@ -2,25 +2,25 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<!-- browser spinner
 	SELECTORS
 	-->
-	<string-array name="selectors_names" tools:ignore="InconsistentArrays">
+	<string-array name="selectors_names">
 		<item>FrameNet words</item>
 	</string-array>
-	<integer-array name="selectors_icons" tools:ignore="InconsistentArrays">
+	<integer-array name="selectors_icons">
 		<item>@drawable/ic_selector</item>
 	</integer-array>
 
 	<!-- searchtext spinner
 	FRAMENET SENTENCES
 	-->
-	<string-array name="searchtext_modes" tools:ignore="InconsistentArrays">
+	<string-array name="searchtext_modes">
 		<item>FrameNet sentences</item>
 	</string-array>
-	<integer-array name="searchtext_icons" tools:ignore="InconsistentArrays">
+	<integer-array name="searchtext_icons">
 		<item>@drawable/ic_search_fnsentence</item>
 	</integer-array>
 

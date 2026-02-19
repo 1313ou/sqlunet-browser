@@ -2,9 +2,9 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-	<string-array name="required_tables" tools:ignore="InconsistentArrays">
+	<string-array name="required_tables">
 
 		<!-- wordnet -->
 		<item>words</item>
@@ -137,7 +137,7 @@
 
 	</string-array>
 
-	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
+	<string-array name="required_indexes">
 
 		<!-- wordnet -->
 		<item>pk_lexes</item>
@@ -237,14 +237,14 @@
 		<item>fn_sentences_text_fts4</item>
 	</string-array>
 
-	<string-array name="non_required_tables" tools:ignore="InconsistentArrays">
+	<string-array name="non_required_tables">
 		<item>usages</item>
 		<item>wikidatas</item>
 		<item>ilis</item>
 		<item>sources</item>
 	</string-array>
 
-	<string-array name="non_required_indexes" tools:ignore="InconsistentArrays">
+	<string-array name="non_required_indexes">
 		<item>pk_usages</item>
 		<item>k_usages_synsetid</item>
 		<item>k_usages_luid</item>

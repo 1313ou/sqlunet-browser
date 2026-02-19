@@ -4,12 +4,11 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
+
 	android:id="@+id/container_home"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:theme="@style/MyHomeOverlay"
-	tools:keep="@layout/fragment_home">
+	android:theme="@style/MyHomeOverlay">
 
 	<!--suppress AndroidUnresolvableTag -->
 	<org.sqlunet.browser.xn.HomeImageView

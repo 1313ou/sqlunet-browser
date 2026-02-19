@@ -3,7 +3,9 @@
  */
 package org.sqlunet.browser.fn.selector
 
+import android.annotation.SuppressLint
 import android.database.Cursor
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,7 +24,7 @@ import org.sqlunet.xnet.R as XNetR
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), CursorRecyclerViewAdapter {
+class SelectorsAdapter(val activate: (position: Int) -> Unit) : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), CursorRecyclerViewAdapter {
 
     /**
      * Cursor
@@ -30,11 +32,9 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
     private var cursor: Cursor? = null
 
     /**
-     * OnClickListener
+     * Tracks activated item position
      */
-    private var onClickListener: OnClickListener? = null
-
-    // holder
+    private var activatedPosition = RecyclerView.NO_POSITION
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_selector, parent, false)
@@ -76,6 +76,7 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
         bindTextView(viewHolder.fnFrameIdView, frameId.toString(), false)
 
         viewHolder.iconView.setImageResource(if (isFrame) XNetR.drawable.roles else XNetR.drawable.member)
+        viewHolder.itemView.isActivated = position == activatedPosition
     }
 
     override fun getCursor(): Cursor? {
@@ -86,6 +87,7 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
         return cursor?.count ?: 0
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun changeCursor(cursor: Cursor?) {
         val old = this.cursor
         if (old === cursor) {
@@ -93,12 +95,11 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
         }
         this.cursor = cursor
         if (this.cursor != null) {
+            activatedPosition = RecyclerView.NO_POSITION
             notifyDataSetChanged()
         }
         old?.close()
     }
-
-    // helper
 
     private fun bindTextView(textView: TextView, text: String?, isDimmed: Boolean) {
         if (text == null || "0" == text) {
@@ -110,29 +111,19 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
         }
     }
 
-    // click
-
     /**
-     * Set OnClickListener
-     *
-     * @param onClickListener onClickListener
+     * OnClickListener
      */
-    fun setOnClickListener(onClickListener: OnClickListener?) {
-        this.onClickListener = onClickListener
-    }
+    private val onClickListener = { position: Int ->
+        Log.d(TAG, "Activate position $position")
+        val previouslyActivatedPosition = activatedPosition
+        activatedPosition = position
+        if (previouslyActivatedPosition != RecyclerView.NO_POSITION) {
+            notifyItemChanged(previouslyActivatedPosition)
+        }
+        notifyItemChanged(activatedPosition)
 
-    /**
-     * OnClickListener interface
-     */
-    interface OnClickListener {
-
-        /**
-         * OnClick
-         *
-         * @param position position
-         * @param view     view
-         */
-        fun onClick(position: Int, view: View)
+        activate(position)
     }
 
     /**
@@ -142,10 +133,6 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
      */
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        init {
-            itemView.setOnClickListener { onClickListener?.onClick(position, itemView) }
-        }
-
         val fnNameView: TextView = itemView.findViewById(R.id.fnname)
         val fnFrameNameView: TextView = itemView.findViewById(R.id.fnframename)
         val fnWordView: TextView = itemView.findViewById(R.id.fnword)
@@ -154,5 +141,18 @@ class SelectorsAdapter : RecyclerView.Adapter<SelectorsAdapter.ViewHolder>(), Cu
         val wordIdView: TextView = itemView.findViewById(R.id.wordid)
         val fnFrameIdView: TextView = itemView.findViewById(R.id.fnframeid)
         val iconView: ImageView = itemView.findViewById(R.id.icon)
+
+        init {
+            Log.d(TAG, "ItemView $itemView")
+            itemView.setOnClickListener {
+                Log.d(TAG, "Click position=$position, adapterPosition=$adapterPosition, bindingPosition=$bindingAdapterPosition, layoutPosition=$layoutPosition, absoluteAdapterPosition=$absoluteAdapterPosition")
+                onClickListener.invoke(bindingAdapterPosition)
+            }
+        }
+    }
+
+    companion object {
+
+        private const val TAG = "SelectorsA"
     }
 }

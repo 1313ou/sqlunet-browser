@@ -5,13 +5,9 @@ package org.sqlunet.browser.sn.selector
 
 import android.database.Cursor
 import android.os.Bundle
-import android.view.View
-import android.widget.CursorAdapter
-import android.widget.ImageView
-import android.widget.SimpleCursorAdapter
-import android.widget.TextView
 import androidx.core.net.toUri
-import org.sqlunet.browser.BaseSelectorsListFragment
+import androidx.recyclerview.widget.RecyclerView
+import org.sqlunet.browser.BaseSelectorsRecyclerFragment
 import org.sqlunet.browser.Selectors
 import org.sqlunet.browser.sn.R
 import org.sqlunet.provider.ProviderArgs
@@ -24,7 +20,7 @@ import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class SelectorsFragment : BaseSelectorsListFragment() {
+class SelectorsFragment : BaseSelectorsRecyclerFragment() {
 
     /**
      * Word id
@@ -36,11 +32,11 @@ class SelectorsFragment : BaseSelectorsListFragment() {
         viewModelKey = "sn:selectors(word)"
     }
 
-    override fun activate(position: Int) {
+    override fun select(position: Int) {
         positionModel!!.setPosition(position)
         if (listeners != null) {
-            val adapter = (adapter as SimpleCursorAdapter?)!!
-            val cursor = adapter.cursor!!
+            val adapter = recyclerView.adapter as SelectorsAdapter
+            val cursor = adapter.getCursor()!!
             if (cursor.moveToPosition(position)) {
                 // column indexes
                 val idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID)
@@ -68,9 +64,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
      * Deactivate all
      */
     fun deactivate() {
-        val listView = listView
-        listView!!.clearChoices()
-        listView.requestLayout()
+        (recyclerView.adapter as SelectorsAdapter).deactivate()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,64 +87,8 @@ class SelectorsFragment : BaseSelectorsListFragment() {
 
     // A D A P T E R
 
-    override fun makeAdapter(): CursorAdapter {
-        val adapter = SimpleCursorAdapter(
-            requireContext(), R.layout.item_selector, null, arrayOf(
-                Words_Senses_CasedWords_Synsets_Poses_Domains.POSID,
-                Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN,
-                Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION,
-                Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD,
-                Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM,
-                Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY,
-                Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID,
-                Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT,
-                Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID,
-                Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID,
-                Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID
-            ), intArrayOf(
-                R.id.pos,
-                R.id.domain,
-                R.id.definition,
-                R.id.cased,
-                R.id.sensenum,
-                R.id.sensekey,
-                R.id.lexid,
-                R.id.tagcount,
-                R.id.wordid,
-                R.id.synsetid,
-                R.id.senseid
-            ), 0
-        )
-        adapter.viewBinder = SimpleCursorAdapter.ViewBinder setViewBinder@{ view: View, cursor: Cursor, columnIndex: Int ->
-            val text = cursor.getString(columnIndex)
-            if (text == null) {
-                view.visibility = View.GONE
-                return@setViewBinder false
-            } else {
-                view.visibility = View.VISIBLE
-            }
-            when (view) {
-                is TextView -> {
-                    view.text = text
-                    return@setViewBinder true
-                }
-
-                is ImageView -> {
-                    try {
-                        view.setImageResource(text.toInt())
-                        return@setViewBinder true
-                    } catch (nfe: NumberFormatException) {
-                        view.setImageURI(text.toUri())
-                        return@setViewBinder true
-                    }
-                }
-
-                else -> {
-                    throw IllegalStateException(view.javaClass.name + " is not a view that can be bound by this SimpleCursorAdapter")
-                }
-            }
-        }
-        return adapter
+    override val adapter: RecyclerView.Adapter<*> = SelectorsAdapter { position: Int ->
+        select(position)
     }
 
     // L O A D
@@ -163,7 +101,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
     }
 
     /**
-     * Post processing, extraction of wordid from cursor
+     * Post-processing, extraction of wordid from cursor
      *
      * @param cursor cursor
      */

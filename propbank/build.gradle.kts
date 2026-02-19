@@ -49,14 +49,14 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(libs.core.ktx)
 
-    implementation(project(":activities"))
+    implementation(project(":core"))
     implementation(project(":xNet"))
     implementation(project(":treeView"))
 
+    implementation(libs.appcompat)
     implementation(libs.lifecycle.ktx)
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
-    implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.annotation)
 

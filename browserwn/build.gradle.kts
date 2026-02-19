@@ -85,7 +85,7 @@ dependencies {
     implementation(libs.core.ktx)
 
     implementation(project(":browserwncommon"))
-    implementation(project(":activities"))
+    implementation(project(":core"))
     implementation(project(":common"))
     // for manifest
     implementation(project(":wordNet"))
@@ -103,7 +103,7 @@ dependencies {
     androidTestImplementation(project(":browserwncommon"))
     androidTestImplementation(project(":common"))
     androidTestImplementation(project(":xNet"))
-    androidTestImplementation(project(":activities"))
+    androidTestImplementation(project(":core"))
     androidTestImplementation(project(":test"))
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.annotation)

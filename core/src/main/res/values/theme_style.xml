@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<resources>
+
+	<!-- O V E R L A Y S -->
+
+	<!-- Custom home overlay -->
+	<style name="MyHomeOverlay" parent="ThemeOverlay.Material3">
+		<item name="android:background">?attr/colorPrimary</item> <!-- submenu background -->
+		<item name="android:textColorPrimary">?attr/colorOnPrimary</item> <!-- item foreground -->
+	</style>
+
+
+	<!-- S T Y L E S -->
+
+	<!-- This is the new style you need to add -->
+	<style name="MyAppBarLayout" parent="Widget.Material3.AppBarLayout">
+		<!-- This prevents the AppBarLayout from applying an elevation overlay that would cover the statusBarColor -->
+		<item name="liftOnScroll">false</item>
+	</style>
+
+</resources>

@@ -42,7 +42,7 @@ class WebActivity : BaseActivity() {
             supportFragmentManager
                 .beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.container_web, fragment, WebFragment.FRAGMENT_TAG)
+                .replace(R.id.container_data, fragment, WebFragment.FRAGMENT_TAG)
                 // .addToBackStack(WebFragment.FRAGMENT_TAG) 
                 .commit()
         }

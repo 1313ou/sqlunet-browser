@@ -4,13 +4,11 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	tools:ignore="UnusedResources">
+	xmlns:tools="http://schemas.android.com/tools">
 	<!-- <group> -->
 	<item
 		android:id="@+id/action_main"
 		android:title="@string/action_main"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 	<!-- </group> -->
 </menu>

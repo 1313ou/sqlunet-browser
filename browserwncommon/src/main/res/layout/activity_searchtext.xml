@@ -4,7 +4,6 @@
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
@@ -24,15 +23,13 @@
 	<FrameLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:context="org.sqlunet.browser.wn.SearchTextActivity">
+		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/fragment_searchtext"
 			android:name="org.sqlunet.browser.wn.SearchTextFragment"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			tools:layout="@layout/fragment_searchtext" />
+			android:layout_height="match_parent" />
 
 	</FrameLayout>
 

@@ -3,22 +3,18 @@
  */
 package org.sqlunet.wordnet.browser
 
+import android.annotation.SuppressLint
 import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AbsListView
-import android.widget.AdapterView
-import android.widget.CursorAdapter
-import android.widget.ImageView
-import android.widget.ListAdapter
-import android.widget.ListView
-import android.widget.SimpleCursorAdapter
 import android.widget.TextView
-import androidx.fragment.app.ListFragment
+import androidx.core.net.toUri
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.PositionViewModel
 import org.sqlunet.browser.SqlunetViewModel
 import org.sqlunet.provider.ProviderArgs
@@ -27,14 +23,13 @@ import org.sqlunet.wordnet.SensePointer
 import org.sqlunet.wordnet.loaders.Queries.prepareSenses
 import org.sqlunet.wordnet.provider.WordNetContract
 import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
-import androidx.core.net.toUri
 
 /**
  * Senses selector fragment
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class SensesFragment : ListFragment() {
+class SensesFragment : Fragment() {
 
     /**
      * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
@@ -46,11 +41,6 @@ class SensesFragment : ListFragment() {
          */
         fun onItemSelected(sense: SensePointer?, word: String?, cased: String?, pos: String?)
     }
-
-    /**
-     * Activate on click flag: in two-pane mode, list items should be given the 'activated' state when touched.
-     */
-    private var activateOnItemClick = true
 
     /**
      * The fragment's current callback, which is notified of list item clicks.
@@ -77,6 +67,11 @@ class SensesFragment : ListFragment() {
      */
     private var positionModel: PositionViewModel? = null
 
+    /**
+     * Recycler view adapter
+     */
+    private var adapter: SensesAdapter? = null
+
     // L I F E C Y C L E
 
     // --activate--
@@ -94,22 +89,18 @@ class SensesFragment : ListFragment() {
         }
         word = query
         wordId = 0
-
-        // list adapter, with no data
-        val adapter = makeAdapter()
-        setListAdapter(adapter)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_senses, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-        getListView().choiceMode = if (activateOnItemClick) AbsListView.CHOICE_MODE_SINGLE else AbsListView.CHOICE_MODE_NONE
+        adapter = SensesAdapter()
+        val recyclerView = view.findViewById<RecyclerView>(R.id.senses_list)
+        recyclerView.adapter = adapter
     }
 
     override fun onStart() {
@@ -123,83 +114,6 @@ class SensesFragment : ListFragment() {
         senses()
     }
 
-    // --deactivate--
-
-    override fun onDestroy() {
-        super.onDestroy()
-        val adapter = listAdapter as CursorAdapter?
-        adapter?.changeCursor(null)
-    }
-
-    // H E L P E R S
-
-    /**
-     * Make adapter
-     *
-     * @return adapter
-     */
-    private fun makeAdapter(): ListAdapter {
-        Log.d(TAG, "Make adapter")
-        val adapter = SimpleCursorAdapter(
-            requireContext(), R.layout.item_sense, null, arrayOf(
-                WordNetContract.Poses.POS,
-                WordNetContract.Senses.SENSENUM,
-                WordNetContract.Domains.DOMAIN,
-                WordNetContract.Synsets.DEFINITION,
-                WordNetContract.CasedWords.CASEDWORD,
-                WordNetContract.Senses.TAGCOUNT,
-                WordNetContract.Senses.LEXID,
-                WordNetContract.Senses.SENSEKEY,
-                WordNetContract.Words.WORDID,
-                WordNetContract.Synsets.SYNSETID,
-                WordNetContract.Senses.SENSEID
-            ), intArrayOf(
-                R.id.pos,
-                R.id.sensenum,
-                R.id.domain,
-                R.id.definition,
-                R.id.cased,
-                R.id.tagcount,
-                R.id.lexid,
-                R.id.sensekey,
-                R.id.wordid,
-                R.id.synsetid,
-                R.id.senseid
-            ), 0
-        )
-        adapter.viewBinder = SimpleCursorAdapter.ViewBinder setViewBinder@{ view: View, cursor: Cursor, columnIndex: Int ->
-            val text = cursor.getString(columnIndex)
-            if (text == null) {
-                view.visibility = View.GONE
-                return@setViewBinder false
-            } else {
-                view.visibility = View.VISIBLE
-            }
-            when (view) {
-
-                is TextView -> {
-                    view.text = text
-                    return@setViewBinder true
-                }
-
-                is ImageView -> {
-                    try {
-                        view.setImageResource(text.toInt())
-                        return@setViewBinder true
-                    } catch (nfe: NumberFormatException) {
-                        view.setImageURI(text.toUri())
-                        return@setViewBinder true
-                    }
-                }
-
-                else -> {
-                    throw IllegalStateException(view.javaClass.name + " is not a view that can be bound by this SimpleCursorAdapter")
-                }
-            }
-        }
-        return adapter
-    }
-
     // V I E W M O D E L S
 
     /**
@@ -209,18 +123,16 @@ class SensesFragment : ListFragment() {
         // data model
         dataModel = ViewModelProvider(this)["wn.senses(word)", SqlunetViewModel::class.java]
         dataModel!!.getData().observe(getViewLifecycleOwner()) { cursor: Cursor? ->
-            // pass on to list adapter
-            val adapter = (listAdapter as CursorAdapter?)!!
-            adapter.changeCursor(cursor)
+            adapter!!.changeCursor(cursor)
         }
 
         // position model
         positionModel = ViewModelProvider(this)[PositionViewModel::class.java]
         positionModel!!.positionLiveData.observe(getViewLifecycleOwner()) { position: Int ->
             Log.d(TAG, "Observed position change $position")
-            getListView().setItemChecked(position, position != AdapterView.INVALID_POSITION)
+            adapter!!.setSelectedPosition(position)
         }
-        positionModel!!.setPosition(AdapterView.INVALID_POSITION)
+        positionModel!!.setPosition(RecyclerView.NO_POSITION)
     }
 
     // L O A D
@@ -236,7 +148,7 @@ class SensesFragment : ListFragment() {
     }
 
     /**
-     * Post processing, extraction of wordid from cursor
+     * Post-processing, extraction of wordid from cursor
      *
      * @param cursor cursor
      */
@@ -260,11 +172,6 @@ class SensesFragment : ListFragment() {
 
     // C L I C K
 
-    override fun onListItemClick(listView: ListView, view: View, position: Int, id: Long) {
-        super.onListItemClick(listView, view, position, id)
-        activate(position)
-    }
-
     /**
      * Activate item at position
      *
@@ -273,9 +180,8 @@ class SensesFragment : ListFragment() {
     private fun activate(position: Int) {
         positionModel!!.setPosition(position)
         if (listener != null) {
-            val adapter = (listAdapter as SimpleCursorAdapter?)!!
-            val cursor = adapter.cursor!!
-            if (cursor.moveToPosition(position)) {
+            val cursor = adapter!!.getCursor()
+            if (cursor != null && cursor.moveToPosition(position)) {
                 // column indexes
                 val idSynsetId = cursor.getColumnIndex(WordNetContract.Synsets.SYNSETID)
                 val idPos = cursor.getColumnIndex(WordNetContract.Poses.POS)
@@ -295,8 +201,131 @@ class SensesFragment : ListFragment() {
         }
     }
 
+    // A D A P T E R
+
+    inner class SensesAdapter : RecyclerView.Adapter<SensesAdapter.ViewHolder>() {
+
+        private var cursor: Cursor? = null
+        private var selectedPosition = RecyclerView.NO_POSITION
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_sense, parent, false)
+            return ViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            if (cursor!!.moveToPosition(position)) {
+                holder.bind(cursor!!)
+                holder.itemView.isSelected = selectedPosition == position
+            }
+        }
+
+        override fun getItemCount(): Int {
+            return cursor?.count ?: 0
+        }
+
+        @SuppressLint("NotifyDataSetChanged")
+        fun changeCursor(cursor: Cursor?) {
+            this.cursor = cursor
+            notifyDataSetChanged()
+        }
+
+        fun getCursor(): Cursor? {
+            return cursor
+        }
+
+        fun setSelectedPosition(position: Int) {
+            val previousPosition = selectedPosition
+            selectedPosition = position
+            notifyItemChanged(previousPosition)
+            notifyItemChanged(selectedPosition)
+        }
+
+        inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+            private val posView: TextView = itemView.findViewById(R.id.pos)
+            private val sensenumView: TextView = itemView.findViewById(R.id.sensenum)
+            private val domainView: TextView = itemView.findViewById(R.id.domain)
+            private val definitionView: TextView = itemView.findViewById(R.id.definition)
+            private val casedView: TextView = itemView.findViewById(R.id.cased)
+            private val pronunciationView: TextView = itemView.findViewById(R.id.pronunciation)
+            private val tagcountView: TextView = itemView.findViewById(R.id.tagcount)
+            private val lexidView: TextView = itemView.findViewById(R.id.lexid)
+            private val sensekeyView: TextView = itemView.findViewById(R.id.sensekey)
+            private val wordidView: TextView = itemView.findViewById(R.id.wordid)
+            private val synsetidView: TextView = itemView.findViewById(R.id.synsetid)
+            private val senseidView: TextView = itemView.findViewById(R.id.senseid)
+
+            init {
+                itemView.setOnClickListener(this)
+            }
+
+            fun bind(cursor: Cursor) {
+                // Extract data from cursor
+                val idPos = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POS)
+                val idDomain = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN)
+                val idDefinition = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DEFINITION)
+                val idCasedWord = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD)
+                val idPronunciations = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATIONS)
+                val idSenseNum = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM)
+                val idSenseKey = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEKEY)
+                val idLexId = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.LEXID)
+                val idTagCount = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT)
+                val idWordId = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID)
+                val idSynsetId = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID)
+                val idSenseId = cursor.getColumnIndexOrThrow(WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEID)
+
+                val pos = cursor.getString(idPos)
+                val domain = cursor.getString(idDomain)
+                val definition = cursor.getString(idDefinition)
+                val cased = cursor.getString(idCasedWord)
+                val pronunciation = cursor.getString(idPronunciations)
+                val tagCount = cursor.getInt(idTagCount)
+                val sensenum = cursor.getInt(idSenseNum)
+                val lexid = cursor.getInt(idLexId)
+                val sensekey = cursor.getString(idSenseKey)
+                val wordid = cursor.getLong(idWordId)
+                val synsetid = cursor.getLong(idSynsetId)
+                val senseid = cursor.getLong(idSenseId)
+
+                // Bind data to views
+                posView.text = pos
+                domainView.text = domain
+                definitionView.text = definition
+                bindTextView(casedView, cased)
+                bindTextView(pronunciationView, pronunciation)
+                bindTextView(tagcountView, if (tagCount <= 0) null else tagCount.toString())
+                sensenumView.text = sensenum.toString()
+                lexidView.text = lexid.toString()
+                sensekeyView.text = sensekey
+                wordidView.text = wordid.toString()
+                synsetidView.text = synsetid.toString()
+                senseidView.text = senseid.toString()
+            }
+            // helper
+
+            private fun bindTextView(textView: TextView, text: String?) {
+                if (text.isNullOrEmpty()) {
+                    textView.visibility = View.GONE
+                } else {
+                    textView.text = text
+                    textView.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onClick(view: View?) {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    activate(position)
+                }
+            }
+        }
+    }
+
     companion object {
 
         private const val TAG = "SensesF"
+
+        const val FRAGMENT_TAG = "senses"
     }
 }

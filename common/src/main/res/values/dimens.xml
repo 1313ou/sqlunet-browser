@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<!-- Default screen margins, per the Android Design guidelines. -->
 	<dimen name="activity_horizontal_padding">16dp</dimen>
@@ -14,8 +14,8 @@
 	<dimen name="scroll_tail_padding">35dp</dimen>
 
 	<!-- web -->
-	<dimen name="web_horizontal_padding" tools:ignore="UnusedResources">0dp</dimen>
-	<dimen name="web_vertical_padding" tools:ignore="UnusedResources">0dp</dimen>
+	<dimen name="web_horizontal_padding">0dp</dimen>
+	<dimen name="web_vertical_padding">0dp</dimen>
 
 	<!-- fabs -->
 	<dimen name="fab_margin">16dp</dimen>

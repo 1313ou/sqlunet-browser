@@ -18,7 +18,7 @@ class FnLexUnitActivity : AbstractActivity() {
         get() = R.layout.activity_fnlexunit
 
     override val containerId: Int
-        get() = R.id.container_lexunit
+        get() = R.id.container_fnlexunit
 
     override fun makeFragment(): Fragment {
         return FnLexUnitFragment()

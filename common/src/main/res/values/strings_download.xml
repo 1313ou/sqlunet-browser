@@ -2,10 +2,10 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<!-- sites -->
-	<string-array name="download_site_labels" tools:ignore="InconsistentArrays">
+	<string-array name="download_site_labels">
 		<item>Default</item>
 	</string-array>
 

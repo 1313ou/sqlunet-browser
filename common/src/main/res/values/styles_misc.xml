@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<!-- L I S T  I T E M -->
 
@@ -40,19 +40,15 @@
 		<item name="android:textColor">?attr/colorOnSecondary</item>
 	</style>
 
-	<!-- As Layout -->
-	<style name="ListItemStyle">
-		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
-	</style>
-
 	<!-- As TextView -->
-	<style name="TextViewListItemStyle">
-		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
-	</style>
+	<style name="TextViewListItemStyle"></style>
+
+	<!-- As Layout -->
+	<style name="ListItemStyle"></style>
 
 	<!-- S E A R C H   T E X T -->
 
-	<style name="SearchTextItem" parent="TextViewListItemStyle" tools:ignore="UnusedResources">
+	<style name="SearchTextItem" parent="TextViewListItemStyle">
 		<item name="android:textAppearance">?attr/textAppearanceListItemSmall</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:paddingLeft">?android:attr/listPreferredItemPaddingStart</item>

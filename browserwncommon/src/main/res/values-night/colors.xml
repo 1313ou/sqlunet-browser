@@ -14,7 +14,7 @@
 	<color name="onSecondaryColor">#444444</color>
 
 	<color name="colorId">#ffffff</color>
-    <color name="colorName">#f8dc4a</color>
+	<color name="colorName">#f8dc4a</color>
 	<color name="colorDefinition">#f8dc4a</color>
 	<color name="colorCased">#E65100</color> <!--  -->
 	<color name="colorPronunciation">#A075D7</color> <!--  -->

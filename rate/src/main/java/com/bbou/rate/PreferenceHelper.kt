@@ -37,7 +37,7 @@ internal object PreferenceHelper {
 
     /**
      * Set agree flag about show dialog.<br></br>
-     * If it is false, rate dialog will never shown unless data is cleared.
+     * If it is false, rate dialog will never show unless data is cleared.
      *
      * @param context context
      * @param agree   agree forActivity showing rate dialog

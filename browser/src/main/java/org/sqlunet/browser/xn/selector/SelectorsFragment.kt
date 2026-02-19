@@ -5,26 +5,21 @@ package org.sqlunet.browser.xn.selector
 
 import android.database.Cursor
 import android.os.Bundle
-import android.view.View
-import android.widget.CursorAdapter
-import android.widget.ImageView
-import android.widget.SimpleCursorAdapter
-import android.widget.TextView
-import org.sqlunet.browser.BaseSelectorsListFragment
+import androidx.core.net.toUri
+import androidx.recyclerview.widget.RecyclerView
+import org.sqlunet.browser.BaseSelectorsRecyclerFragment
 import org.sqlunet.browser.R
 import org.sqlunet.loaders.Queries.prepareWordPronunciationSelect
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.provider.XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords
 import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
-import org.sqlunet.speak.Pronunciation.Companion.sortedPronunciations
-import androidx.core.net.toUri
 
 /**
  * Selector Fragment
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class SelectorsFragment : BaseSelectorsListFragment() {
+class SelectorsFragment : BaseSelectorsRecyclerFragment() {
 
     /**
      * Word id
@@ -36,12 +31,56 @@ class SelectorsFragment : BaseSelectorsListFragment() {
         viewModelKey = "selectors(word)"
     }
 
-    override fun activate(position: Int) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // arguments
+        val args = requireArguments()
+
+        // target word
+        var query = args.getString(ProviderArgs.ARG_QUERYSTRING)
+        if (query != null) {
+            query = query.trim { it <= ' ' }.lowercase()
+        }
+        word = query!!
+        wordId = 0
+    }
+
+    // A D A P T E R
+
+    override val adapter: RecyclerView.Adapter<*> = SelectorsAdapter { position: Int ->
+        select(position)
+    }
+
+    // L O A D
+
+    override fun load() {
+        // load the contents
+        val sql = prepareWordPronunciationSelect(word)
+        val uri = makeUri(sql.providerUri).toUri()
+        dataModel!!.loadData(uri, sql) { cursor: Cursor -> wordIdFromWordPostProcess(cursor) }
+    }
+
+    /**
+     * Post-processing, extraction of wordid from cursor
+     *
+     * @param cursor cursor
+     */
+    private fun wordIdFromWordPostProcess(cursor: Cursor) {
+        if (cursor.moveToFirst()) {
+            val idWordId = cursor.getColumnIndex(Words_Pronunciations_FnWords_PbWords_VnWords.WORDID)
+            wordId = cursor.getLong(idWordId)
+        }
+    }
+
+    // S E L E C T I O N
+
+    override fun select(position: Int) {
         positionModel!!.setPosition(position)
         if (listener != null) {
-            val adapter = (adapter as SimpleCursorAdapter?)!!
-            val cursor = adapter.cursor!!
-            if (cursor.moveToPosition(position)) {
+            val adapter = recyclerView.adapter as SelectorsAdapter
+            val cursor = adapter.getCursor()
+            if (cursor != null && cursor.moveToPosition(position)) {
                 // column indexes
                 val idSynsetId = cursor.getColumnIndex(Words_Pronunciations_FnWords_PbWords_VnWords.SYNSETID)
                 val idPos = cursor.getColumnIndex(Words_Pronunciations_FnWords_PbWords_VnWords.POS)
@@ -63,121 +102,6 @@ class SelectorsFragment : BaseSelectorsListFragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // arguments
-        val args = requireArguments()
-
-        // target word
-        var query = args.getString(ProviderArgs.ARG_QUERYSTRING)
-        if (query != null) {
-            query = query.trim { it <= ' ' }.lowercase()
-        }
-        word = query!!
-        wordId = 0
-    }
-
-    // A D A P T E R
-
-    override fun makeAdapter(): CursorAdapter {
-        val adapter = SimpleCursorAdapter(
-            requireContext(), R.layout.item_selector, null, arrayOf(
-                Words_Pronunciations_FnWords_PbWords_VnWords.POS,
-                Words_Pronunciations_FnWords_PbWords_VnWords.SENSENUM,
-                Words_Pronunciations_FnWords_PbWords_VnWords.DOMAIN,
-                Words_Pronunciations_FnWords_PbWords_VnWords.DEFINITION,
-                Words_Pronunciations_FnWords_PbWords_VnWords.CASED,
-                Words_Pronunciations_FnWords_PbWords_VnWords.PRONUNCIATIONS,
-                Words_Pronunciations_FnWords_PbWords_VnWords.TAGCOUNT,
-                Words_Pronunciations_FnWords_PbWords_VnWords.LUID,
-                Words_Pronunciations_FnWords_PbWords_VnWords.SENSEKEY,
-                Words_Pronunciations_FnWords_PbWords_VnWords.WORDID,
-                Words_Pronunciations_FnWords_PbWords_VnWords.SYNSETID,
-                Words_Pronunciations_FnWords_PbWords_VnWords.SENSEID,
-                Words_Pronunciations_FnWords_PbWords_VnWords.VNWORDID,
-                Words_Pronunciations_FnWords_PbWords_VnWords.PBWORDID,
-                Words_Pronunciations_FnWords_PbWords_VnWords.FNWORDID
-            ), intArrayOf(
-                R.id.pos,
-                R.id.sensenum,
-                R.id.domain,
-                R.id.definition,
-                R.id.cased,
-                R.id.pronunciation,
-                R.id.tagcount,
-                R.id.lexid,
-                R.id.sensekey,
-                R.id.wordid,
-                R.id.synsetid,
-                R.id.senseid,
-                R.id.vnwordid,
-                R.id.pbwordid,
-                R.id.fnwordid
-            ), 0
-        )
-        adapter.viewBinder = SimpleCursorAdapter.ViewBinder setViewBinder@{ view: View, cursor: Cursor, columnIndex: Int ->
-            var text = cursor.getString(columnIndex)
-
-            // pronunciation
-            if (view.id == R.id.pronunciation) {
-                text = sortedPronunciations(text)
-            }
-
-            // visibility
-            if (text == null) {
-                view.visibility = View.GONE
-                return@setViewBinder false
-            } else {
-                view.visibility = View.VISIBLE
-            }
-
-            // type of view
-            when (view) {
-                is TextView -> {
-                    view.text = text
-                    return@setViewBinder true
-                }
-
-                is ImageView -> {
-                    try {
-                        view.setImageResource(text.toInt())
-                        return@setViewBinder true
-                    } catch (_: NumberFormatException) {
-                        view.setImageURI(text.toUri())
-                        return@setViewBinder true
-                    }
-                }
-
-                else -> {
-                    throw IllegalStateException(view.javaClass.name + " is not a view that can be bound by this SimpleCursorAdapter")
-                }
-            }
-        }
-        return adapter
-    }
-
-    // L O A D
-
-    override fun load() {
-        // load the contents
-        val sql = prepareWordPronunciationSelect(word)
-        val uri = makeUri(sql.providerUri).toUri()
-        dataModel!!.loadData(uri, sql) { cursor: Cursor -> wordIdFromWordPostProcess(cursor) }
-    }
-
-    /**
-     * Post processing, extraction of wordid from cursor
-     *
-     * @param cursor cursor
-     */
-    private fun wordIdFromWordPostProcess(cursor: Cursor) {
-        if (cursor.moveToFirst()) {
-            val idWordId = cursor.getColumnIndex(Words_Pronunciations_FnWords_PbWords_VnWords.WORDID)
-            wordId = cursor.getLong(idWordId)
-        }
-    }
-
     // C L I C K   L I S T E N E R
 
     /**
@@ -188,7 +112,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
         /**
          * Callback for when an item has been selected.
          */
-        fun onItemSelected(pointer: SelectorPointer?, word: String?, cased: String?, pronunciation: String?, pos: String?)
+        fun onItemSelected(pointer: SelectorPointer, word: String, cased: String?, pronunciation: String?, pos: String)
     }
 
     /**

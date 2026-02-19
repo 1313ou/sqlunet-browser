@@ -502,7 +502,7 @@ class TreeViewer(
             for (child in node.children.toTypedArray<TreeNode>()) {
                 //	TreeNode child = it.next();
 
-                // add child node to children view view
+                // add child node to children view
                 addSubtreeView(childrenView, child, -1)
 
                 // recurse

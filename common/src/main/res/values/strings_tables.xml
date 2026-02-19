@@ -2,14 +2,14 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-	<string-array name="required_tables" tools:ignore="InconsistentArrays"/>
+	<string-array name="required_tables" />
 
-	<string-array name="required_indexes" tools:ignore="InconsistentArrays" />
+	<string-array name="required_indexes" />
 
-	<string-array name="non_required_tables" tools:ignore="InconsistentArrays" />
+	<string-array name="non_required_tables" />
 
-	<string-array name="non_required_indexes" tools:ignore="InconsistentArrays" />
+	<string-array name="non_required_indexes" />
 
 </resources>

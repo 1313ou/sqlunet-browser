@@ -4,74 +4,73 @@
 
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/mobile_navigation"
-	app:startDestination="@+id/nav_home"
-	tools:keep="@navigation/mobile_navigation">
+	app:startDestination="@+id/nav_home">
 
 	<fragment
 		android:id="@+id/nav_home"
 		android:name="org.sqlunet.browser.HomeFragment"
-		android:tag="fragment_home"
 		android:label="@string/nav_home"
-		tools:layout="@layout/fragment_home" />
+		android:tag="fragment_home" />
 
 	<fragment
 		android:id="@+id/nav_search_browse"
 		android:name="org.sqlunet.browser.fn.BrowseFragment"
 		android:label="@string/nav_search_browse"
-		tools:layout="@layout/fragment_browse" />
+		android:tag="fragment_browse" />
 
 	<fragment
 		android:id="@+id/nav_search_text"
 		android:name="org.sqlunet.browser.fn.SearchTextFragment"
 		android:label="@string/nav_search_text"
-		tools:layout="@layout/fragment_searchtext" />
+		android:tag="fragment_searchtext" />
 
 	<fragment
 		android:id="@+id/nav_status"
 		android:name="org.sqlunet.browser.fn.SetupFnStatusFragment"
 		android:label="@string/nav_status"
-		tools:layout="@layout/fragment_status" />
+		android:tag="fragment_status" />
 
 	<activity
 		android:id="@+id/nav_setup"
 		android:name="org.sqlunet.browser.config.SetupActivity"
-		android:label="@string/nav_setup" />
-
-	<fragment
-		android:id="@+id/nav_storage"
-		android:name="org.sqlunet.browser.config.StorageFragment"
-		android:label="@string/nav_storage"
-		tools:layout="@layout/fragment_storage" />
+		android:label="@string/nav_setup"
+		android:tag="fragment_setup" />
 
 	<activity
 		android:id="@+id/nav_settings"
 		android:name="org.sqlunet.browser.config.SettingsActivity"
-		android:label="@string/nav_settings" />
+		android:label="@string/nav_settings"
+		android:tag="fragment_settings" />
 
 	<fragment
 		android:id="@+id/nav_sql"
 		android:name="org.sqlunet.browser.SqlFragment"
 		android:label="@string/nav_sql"
-		tools:layout="@layout/fragment_sql" />
+		android:tag="fragment_sql" />
 
 	<fragment
 		android:id="@+id/nav_history"
 		android:name="org.sqlunet.browser.history.HistoryFragment"
 		android:label="@string/nav_history"
-		tools:layout="@layout/fragment_history" />
+		android:tag="fragment_history" />
 
 	<fragment
 		android:id="@+id/nav_help"
 		android:name="org.sqlunet.browser.HelpFragment"
 		android:label="@string/nav_help"
-		tools:layout="@layout/fragment_help" />
+		android:tag="fragment_help" />
+
+	<fragment
+		android:id="@+id/nav_storage"
+		android:name="org.sqlunet.browser.config.StorageFragment"
+		android:label="@string/nav_storage"
+		android:tag="fragment_storage" />
 
 	<fragment
 		android:id="@+id/nav_about"
 		android:name="org.sqlunet.browser.AboutFragment"
 		android:label="@string/nav_about"
-		tools:layout="@layout/fragment_about" />
+		android:tag="fragment_about" />
 
 </navigation>

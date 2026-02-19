@@ -11,7 +11,7 @@ rootProject.name = "semantikos"
 include(":concurrency")
 include(":coroutines")
 include(":treeView")
-include(":activities")
+include(":core")
 include(":deploy")
 include(":download")
 include(":download_common")

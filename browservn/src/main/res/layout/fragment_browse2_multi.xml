@@ -3,7 +3,7 @@
   -->
 
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/container_browse2m"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:clipToPadding="false">
@@ -12,8 +12,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical"
-		android:paddingBottom="@dimen/scroll_tail_padding"
-		tools:keep="@layout/fragment_browse2_multi">
+		android:paddingBottom="@dimen/scroll_tail_padding">
 
 		<!--     <TextView -->
 		<!--         android:id="@+id/label_verbnet" -->
@@ -26,8 +25,7 @@
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/container_verbnet"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:ignore="InconsistentLayout" />
+			android:layout_height="wrap_content" />
 
 		<!--     <TextView -->
 		<!--         android:id="@+id/label_propbank" -->
@@ -40,8 +38,7 @@
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/container_propbank"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:ignore="InconsistentLayout" />
+			android:layout_height="wrap_content" />
 
 		<!--     <TextView -->
 		<!--         android:id="@+id/label_wordnet" -->
@@ -54,8 +51,7 @@
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/container_wordnet"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:ignore="InconsistentLayout" />
+			android:layout_height="wrap_content" />
 
 	</LinearLayout>
 

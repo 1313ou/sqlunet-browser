@@ -62,7 +62,6 @@ open class PosSelectorPointer : SelectorPointer, HasPos {
 
     companion object {
 
-        @Suppress("unused")
         @JvmField
         val CREATOR = object : Parcelable.Creator<PosSelectorPointer> {
 

@@ -34,7 +34,7 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
     /**
      * Asset pack path
      *
-     * @return asset pack path if installed, null other wise
+     * @return asset pack path if installed, null otherwise
      */
     fun assetPackPathIfInstalled(): String? {
         val packLocation = assetPackManager.getPackLocation(pack)

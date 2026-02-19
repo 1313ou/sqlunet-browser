@@ -2,9 +2,9 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-	<string-array name="required_tables" tools:ignore="InconsistentArrays">
+	<string-array name="required_tables">
 
 		<!-- framenet -->
 		<item>fn_annosets</item>
@@ -56,7 +56,7 @@
 
 	</string-array>
 
-	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
+	<string-array name="required_indexes">
 		<item>pk_fn_words</item>
 		<item>k_fn_frames_related_frameid</item>
 		<item>k_fn_frames_related_frame2id</item>
@@ -78,7 +78,7 @@
 	</string-array>
 
 
-	<string-array name="non_required_tables" tools:ignore="InconsistentArrays">
+	<string-array name="non_required_tables">
 		<item>sources</item>
 	</string-array>
 

@@ -35,16 +35,16 @@ internal class CollocationNullableQueryFromWordIds(connection: SQLiteDatabase, w
         val wheres = mapOf(
             0 to SqLiteDialect.SyntagNetCollocationWhereWordIdClause,
             1 to SqLiteDialect.SyntagNetCollocationWhereWord2IdClause,
-         )
+        )
 
         private fun getQuery(wordid: Long?, word2id: Long?): String {
             val ids = listOf(wordid, word2id)
-            return "$SyntagNetBaseCollocationQuery WHERE " + ids
+            val where = "$SyntagNetBaseCollocationQuery WHERE " + ids
                 .asSequence()
                 .withIndex()
                 .filter { (i, _) -> ids[i] != null && ids[i]!! > 0L }
-                .map { (i, _) -> wheres[i] }
-                .joinToString(separator = " OR ") + ' ' + SyntagNetBaseCollocationOrder
+                .joinToString(separator = " OR ", transform = { (i, _) -> wheres[i].toString() })
+            return "$where $SyntagNetBaseCollocationOrder"
         }
     }
 }

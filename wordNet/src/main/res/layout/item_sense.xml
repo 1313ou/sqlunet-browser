@@ -3,21 +3,16 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
 	style="@style/ListItemStyle"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:layout_marginTop="6dp"
-	android:descendantFocusability="blocksDescendants"
-	android:orientation="vertical"
-	android:paddingLeft="0dp"
-	android:paddingRight="0dp"
-	android:paddingBottom="8dp"
-	tools:context="org.sqlunet.wordnet.browser.SenseActivity">
+	android:background="@drawable/bg_selector"
+	android:orientation="vertical">
 
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
 
 		<TextView
 			android:id="@+id/pos"
@@ -31,6 +26,7 @@
 			style="@style/Data.WnSenseNum"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
 			android:textIsSelectable="false" />
 
 		<TextView
@@ -43,6 +39,20 @@
 	</LinearLayout>
 
 	<TextView
+		android:id="@+id/cased"
+		style="@style/Data.WnCased"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textIsSelectable="false" />
+
+	<TextView
+		android:id="@+id/pronunciation"
+		style="@style/Data.WnPronunciation"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textIsSelectable="false" />
+
+	<TextView
 		android:id="@+id/definition"
 		style="@style/Data.WnDefinition"
 		android:layout_width="match_parent"
@@ -51,18 +61,19 @@
 
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			style="@style/Data.WnLabel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/label_tagcount"
+			android:textIsSelectable="false" />
 
 		<TextView
 			android:id="@+id/tagcount"
 			style="@style/Data.WnTagCount"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="false" />
-
-		<TextView
-			android:id="@+id/cased"
-			style="@style/Data.WnCased"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textIsSelectable="false" />
@@ -82,13 +93,28 @@
 
 	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			style="@style/Data.WnLabel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/label_lexid"
+			android:textIsSelectable="false" />
 
 		<TextView
 			android:id="@+id/lexid"
 			style="@style/Data.WnLexId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:textIsSelectable="false" />
+
+		<TextView
+			style="@style/Data.WnLabel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/label_wordid"
 			android:textIsSelectable="false" />
 
 		<TextView
@@ -99,10 +125,24 @@
 			android:textIsSelectable="false" />
 
 		<TextView
+			style="@style/Data.WnLabel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/label_synsetid"
+			android:textIsSelectable="false" />
+
+		<TextView
 			android:id="@+id/synsetid"
 			style="@style/Data.WnSynsetId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:textIsSelectable="false" />
+
+		<TextView
+			style="@style/Data.WnLabel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/label_senseid"
 			android:textIsSelectable="false" />
 
 		<TextView

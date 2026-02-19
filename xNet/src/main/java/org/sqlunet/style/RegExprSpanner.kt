@@ -26,7 +26,7 @@ open class RegExprSpanner : Spanner {
      * @param regexprs  regexprs
      * @param factories span factories, distinct for each regexpr
      */
-    protected constructor(regexprs: Array<String>, factories: Array<Array<SpanFactory>>) {
+    constructor(regexprs: Array<String>, factories: Array<Array<SpanFactory>>) {
         val n = min(regexprs.size, factories.size)
         spanReplacers = Array(n) {
             SpanReplacer(regexprs[it], *factories[it])
@@ -39,7 +39,7 @@ open class RegExprSpanner : Spanner {
      * @param regexprs  regexprs
      * @param factories span factories common to all regexprs
      */
-    constructor(regexprs: Array<String>, factories: Array<SpanFactory>) {
+    constructor(regexprs: Array<String>, vararg factories: SpanFactory) {
         val n = min(regexprs.size, factories.size)
         spanReplacers = Array(n) {
             SpanReplacer(regexprs[it], *factories)

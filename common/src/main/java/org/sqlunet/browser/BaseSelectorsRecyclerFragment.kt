@@ -3,6 +3,7 @@
  */
 package org.sqlunet.browser
 
+import android.annotation.SuppressLint
 import android.database.Cursor
 import android.os.Build
 import android.os.Bundle
@@ -28,12 +29,12 @@ abstract class BaseSelectorsRecyclerFragment : LoggingFragment() {
     /**
      * Recycler view
      */
-    protected var recyclerView: RecyclerView? = null
+    protected lateinit var recyclerView: RecyclerView
 
     /**
      * Cursor adapter
      */
-    protected var adapter: RecyclerView.Adapter<*>? = null
+    protected abstract val adapter: RecyclerView.Adapter<*>
 
     /**
      * Layout resource id
@@ -69,9 +70,8 @@ abstract class BaseSelectorsRecyclerFragment : LoggingFragment() {
 
         // list adapter bound to view
         Log.d(TAG, "Make adapter. Lifecycle: onStart()")
-        adapter = makeAdapter()
         Log.d(TAG, "Set recyclerview adapter. Lifecycle: onStart()")
-        recyclerView!!.adapter = adapter
+        recyclerView.adapter = adapter
 
         // load data
         Log.d(TAG, "Load data. Lifecycle: onStart()")
@@ -82,7 +82,7 @@ abstract class BaseSelectorsRecyclerFragment : LoggingFragment() {
         super.onStop()
 
         Log.d(TAG, "Nullify recyclerview adapter. Lifecycle: onStop()")
-        recyclerView!!.adapter = null
+        recyclerView.adapter = null
     }
 
     // A D A P T E R
@@ -91,8 +91,6 @@ abstract class BaseSelectorsRecyclerFragment : LoggingFragment() {
      * Load data from word
      */
     protected abstract fun load()
-
-    protected abstract fun makeAdapter(): RecyclerView.Adapter<*>?
 
     // V I E W M O D E L S
 
@@ -145,14 +143,15 @@ abstract class BaseSelectorsRecyclerFragment : LoggingFragment() {
         }
 
     private val positionObserver: Observer<Int>
+        @SuppressLint("NotifyDataSetChanged")
         get() = Observer { position: Int ->
             Log.d(TAG, "Observed position change $position")
-            adapter?.notifyDataSetChanged()
+            adapter.notifyDataSetChanged()
         }
 
-    // C L I C K
+    // S E L E C T I O N
 
-    protected abstract fun activate(position: Int)
+    protected abstract fun select(position: Int)
 
     companion object {
 

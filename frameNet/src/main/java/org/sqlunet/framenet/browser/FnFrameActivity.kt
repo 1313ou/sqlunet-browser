@@ -18,7 +18,7 @@ class FnFrameActivity : AbstractActivity() {
         get() = R.layout.activity_fnframe
 
     override val containerId: Int
-        get() = R.id.container_frame
+        get() = R.id.container_fnframe
 
     override fun makeFragment(): Fragment {
         return FnFrameFragment()

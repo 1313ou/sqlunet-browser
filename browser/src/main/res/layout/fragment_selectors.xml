@@ -2,13 +2,11 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@android:id/list"
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/selectors_list"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:layout_centerHorizontal="true"
-	android:choiceMode="singleChoice"
 	android:focusable="true"
-	android:listSelector="@drawable/listitem_selector"
-	tools:listitem="@layout/item_selector" />
+	app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

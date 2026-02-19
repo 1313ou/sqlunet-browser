@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import org.w3c.dom.Document
 
 /**
- * Business methods fro SyntagNet interface
+ * Business methods for SyntagNet interface
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */

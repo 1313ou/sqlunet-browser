@@ -12,20 +12,20 @@
 	<string name="description_logo_grammarscope_syntaxnet">GrammarScope (SyntaxNet) Logo</string>
 	<string name="description_googleplay_grammarscope_syntaxnet">GrammarScope (SyntaxNet) on GooglePlay</string>
 
-    <string name="title_grammarscope_udpipe">GrammarScope (UDPipe)</string>
-    <string name="text_grammarscope_udpipe">GrammarScope (UDPipe) is a dependency parser. It parses sentences, analyses their syntactic structures (in the form of labelled dependencies) and displays its findings. It is powered by UDPipe machine learning framework.</string>
-    <string name="description_logo_grammarscope_udpipe">GrammarScope UDPipe Logo</string>
-    <string name="description_googleplay_grammarscope_udpipe">GrammarScope UDPipe on GooglePlay</string>
+	<string name="title_grammarscope_udpipe">GrammarScope (UDPipe)</string>
+	<string name="text_grammarscope_udpipe">GrammarScope (UDPipe) is a dependency parser. It parses sentences, analyses their syntactic structures (in the form of labelled dependencies) and displays its findings. It is powered by UDPipe machine learning framework.</string>
+	<string name="description_logo_grammarscope_udpipe">GrammarScope UDPipe Logo</string>
+	<string name="description_googleplay_grammarscope_udpipe">GrammarScope UDPipe on GooglePlay</string>
 
-    <string name="title_grammarscope_corenlp">GrammarScope (CoreNLP)</string>
-    <string name="text_grammarscope_corenlp">GrammarScope (CoreNLP) is a dependency parser. It parses sentences, analyses their syntactic structures (in the form of labelled dependencies) and displays its findings. It is powered by CoreNLP machine learning framework.</string>
-    <string name="description_logo_grammarscope_corenlp">GrammarScope CoreNLP Logo</string>
-    <string name="description_googleplay_grammarscope_corenlp">GrammarScope CoreNLP on GooglePlay</string>
+	<string name="title_grammarscope_corenlp">GrammarScope (CoreNLP)</string>
+	<string name="text_grammarscope_corenlp">GrammarScope (CoreNLP) is a dependency parser. It parses sentences, analyses their syntactic structures (in the form of labelled dependencies) and displays its findings. It is powered by CoreNLP machine learning framework.</string>
+	<string name="description_logo_grammarscope_corenlp">GrammarScope CoreNLP Logo</string>
+	<string name="description_googleplay_grammarscope_corenlp">GrammarScope CoreNLP on GooglePlay</string>
 
-    <string name="title_grammarscope_syntaxnet_premium">GrammarScope (SyntaxNet) Premium</string>
-    <string name="title_grammarscope_udpipe_premium">GrammarScope (UDPipe) Premium</string>
-    <string name="title_grammarscope_corenlp_premium">GrammarScope (CoreNLP) Premium</string>
-    <string name="text_grammarscope_premium">GrammarScope Premium offers text acquisition and OCR capabilities.</string>
+	<string name="title_grammarscope_syntaxnet_premium">GrammarScope (SyntaxNet) Premium</string>
+	<string name="title_grammarscope_udpipe_premium">GrammarScope (UDPipe) Premium</string>
+	<string name="title_grammarscope_corenlp_premium">GrammarScope (CoreNLP) Premium</string>
+	<string name="text_grammarscope_premium">GrammarScope Premium offers text acquisition and OCR capabilities.</string>
 	<string name="description_googleplay_grammarscope_syntaxnet_premium">GrammarScope (SyntaxNet) Premium</string>
 	<string name="description_googleplay_grammarscope_udpipe_premium">GrammarScope (UDPipe) Premium</string>
 	<string name="description_googleplay_grammarscope_corenlp_premium">GrammarScope (CoreNLP) Premium</string>

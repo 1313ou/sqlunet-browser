@@ -2,7 +2,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<!-- Strings related to Settings -->
 
@@ -18,7 +18,7 @@
 	<!-- Launch -->
 	<string name="pref_title_launch">Launched activity</string>
 	<string name="pref_description_launch">Launched activity on start up</string>
-	<string-array name="pref_launch_list_titles" tools:ignore="InconsistentArrays">
+	<string-array name="pref_launch_list_titles">
 		<item>Main</item>
 		<item>Browse</item>
 		<item>Search text</item>
@@ -101,7 +101,7 @@
 	<!--	<string name="pref_title_asset_zip_alt">Alt asset zip</string>-->
 	<!--	<string name="pref_title_asset_zip_entry_alt">Alt asset zip entry</string>-->
 	<string name="pref_description_primary_asset_default">Use primary asset as default</string>
-	<string name="pref_description_asset_auto_cleanup">Auto clean-up of installed assets when no longer used</string>
+	<string name="pref_description_asset_auto_cleanup">Auto cleanup of installed assets when no longer used</string>
 
 	<!-- DOWNLOAD -->
 

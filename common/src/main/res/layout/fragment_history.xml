@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
   -->
 
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@android:id/list"
+	android:id="@+id/search_list"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-	tools:context="org.sqlunet.browser.history.HistoryActivity" />
+	android:layout_height="wrap_content"
+	android:layout_centerHorizontal="true"
+	android:layout_margin="10dp"
+	android:focusable="true"
+	app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

@@ -5,11 +5,9 @@
   -->
 
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/swipe_refresh"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:keep="@layout/fragment_status">
+	android:layout_height="match_parent">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -95,8 +93,7 @@
 						style="@style/GridStatusImage"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:contentDescription="@string/status_predicatematrix"
-						tools:ignore="InconsistentLayout" />
+						android:contentDescription="@string/status_predicatematrix" />
 
 					<ImageButton
 						android:id="@+id/predicatematrixButton"
@@ -104,8 +101,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:contentDescription="@string/description_action_predicatematrix"
-						android:src="@drawable/bn_setup"
-						tools:ignore="InconsistentLayout" />
+						android:src="@drawable/bn_setup" />
 
 				</LinearLayout>
 
@@ -151,8 +147,7 @@
 						style="@style/GridStatusImage"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:contentDescription="@string/status_searchtext_wn"
-						tools:ignore="InconsistentLayout" />
+						android:contentDescription="@string/status_searchtext_wn" />
 
 					<ImageButton
 						android:id="@+id/searchtextWnButton"
@@ -160,8 +155,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:contentDescription="@string/description_action_searchtext_wn"
-						android:src="@drawable/bn_setup"
-						tools:ignore="InconsistentLayout" />
+						android:src="@drawable/bn_setup" />
 
 				</LinearLayout>
 
@@ -180,8 +174,7 @@
 						style="@style/GridStatusImage"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:contentDescription="@string/status_searchtext_vn"
-						tools:ignore="InconsistentLayout" />
+						android:contentDescription="@string/status_searchtext_vn" />
 
 					<ImageButton
 						android:id="@+id/searchtextVnButton"
@@ -189,8 +182,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:contentDescription="@string/description_action_searchtext_vn"
-						android:src="@drawable/bn_setup"
-						tools:ignore="InconsistentLayout" />
+						android:src="@drawable/bn_setup" />
 
 				</LinearLayout>
 
@@ -209,8 +201,7 @@
 						style="@style/GridStatusImage"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:contentDescription="@string/status_searchtext_pb"
-						tools:ignore="InconsistentLayout" />
+						android:contentDescription="@string/status_searchtext_pb" />
 
 					<ImageButton
 						android:id="@+id/searchtextPbButton"
@@ -218,8 +209,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:contentDescription="@string/description_action_searchtext_pb"
-						android:src="@drawable/bn_setup"
-						tools:ignore="InconsistentLayout" />
+						android:src="@drawable/bn_setup" />
 
 				</LinearLayout>
 
@@ -238,8 +228,7 @@
 						style="@style/GridStatusImage"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:contentDescription="@string/status_searchtext_fn"
-						tools:ignore="InconsistentLayout" />
+						android:contentDescription="@string/status_searchtext_fn" />
 
 					<ImageButton
 						android:id="@+id/searchtextFnButton"
@@ -247,8 +236,7 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:contentDescription="@string/description_action_searchtext_fn"
-						android:src="@drawable/bn_setup"
-						tools:ignore="InconsistentLayout" />
+						android:src="@drawable/bn_setup" />
 
 				</LinearLayout>
 

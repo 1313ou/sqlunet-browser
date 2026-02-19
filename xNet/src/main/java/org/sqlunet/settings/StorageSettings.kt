@@ -116,7 +116,7 @@ object StorageSettings {
      * @return download db file
      */
     fun getDbDownloadName(context: Context): String {
-        // test if already already in preferences
+        // test if already in preferences
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         var value = sharedPref.getString(PREF_DOWNLOAD_DBFILE, null)
         if (value != null) {

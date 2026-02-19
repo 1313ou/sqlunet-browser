@@ -2,14 +2,14 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 	<string name="manager_authority" translatable="false">org.sqlunet.manager.ewn.provider</string>
 	<string name="xsqlunet_authority" translatable="false">org.sqlunet.xsqlunet.ewn.provider</string>
 	<string name="wordnet_authority" translatable="false">org.sqlunet.wordnet.ewn.provider</string>
 	<string name="bnc_authority" translatable="false">org.sqlunet.bnc.ewn.provider</string>
 	<string name="history_authority" translatable="false">org.sqlunet.history.ewn.provider</string>
 
-	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
+	<string-array name="provider_authorities">
 		<item>@string/manager_authority</item>
 		<item>@string/history_authority</item>
 		<item>@string/xsqlunet_authority</item>

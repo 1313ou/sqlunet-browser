@@ -302,7 +302,7 @@ abstract class BaseProvider : ContentProvider() {
         // /**
         //  * Convert args to string
         //  *
-        //  * @param args args
+        //  * @param args arguments
         //  * @return string
         //  */
         //

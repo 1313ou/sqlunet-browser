@@ -4,11 +4,11 @@
 
 <!DOCTYPE resources [    <!ENTITY bbuser "bbuser">    <!ENTITY bbrepo "bbrepo">    <!ENTITY bbcommit "xxxx">    ]>
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<!-- sites -->
 	<string name="default_download_site_url" translatable="false" />
-	<string-array name="download_site_urls" translatable="false" tools:ignore="InconsistentArrays" />
+	<string-array name="download_site_urls" translatable="false" />
 
 	<!-- site files -->
 	<string name="default_download_datapack_file" translatable="false">sqlunet.db</string>

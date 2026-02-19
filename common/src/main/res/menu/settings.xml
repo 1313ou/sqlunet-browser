@@ -3,9 +3,7 @@
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	tools:context="org.sqlunet.browser.config.SetupActivity">
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 	<item
 		android:id="@+id/action_clear_settings"
 		android:title="@string/title_reset_settings"
@@ -13,13 +11,11 @@
 	<item
 		android:id="@+id/action_diagnostics"
 		android:title="@string/action_diagnostics"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/action_tables_and_indices"
 		android:title="@string/action_tables_and_indices"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/action_logging"
 		android:title="@string/action_logging"
@@ -28,23 +24,19 @@
 			<item
 				android:id="@+id/action_logs"
 				android:title="@string/action_logs"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_logs_doc"
 				android:title="@string/action_logs_doc"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_logs_exec"
 				android:title="@string/action_logs_exec"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_clear_logs"
 				android:title="@string/action_clear_logs"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+				app:showAsAction="never" />
 		</menu>
 	</item>
 </menu>

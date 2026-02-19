@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import org.w3c.dom.Document
 
 /**
- * Business methods fro PropBank interface
+ * Business methods for PropBank interface
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */

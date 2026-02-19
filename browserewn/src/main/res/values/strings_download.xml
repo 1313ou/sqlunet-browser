@@ -2,13 +2,13 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<!-- sites -->
-	<string-array name="download_site_labels" tools:ignore="InconsistentArrays">
-		<item>Open English WordNet 2025 (Github, zipped)</item>
+	<string-array name="download_site_labels">
+		<item>Open English WordNet 2025 (GitHub, zipped)</item>
 		<item>Open English WordNet 2025 (Sourceforge, zipped)</item>
-		<item>Open English WordNet 2025 dev (Github, zipped)</item>
+		<item>Open English WordNet 2025 dev (GitHub, zipped)</item>
 		<item>Open English WordNet 2025 dev (Sourceforge, zipped)</item>
 	</string-array>
 

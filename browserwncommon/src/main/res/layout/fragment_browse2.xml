@@ -2,8 +2,8 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
+<!-- details -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/container_browse2"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
@@ -16,10 +16,8 @@
 		android:paddingStart="4dp"
 		android:paddingEnd="4dp"
 		android:textSize="16sp"
-		android:visibility="visible"
-		tools:ignore="InconsistentLayout" />
+		android:visibility="visible" />
 
-	<!-- details -->
 	<androidx.core.widget.NestedScrollView
 		android:id="@+id/details_pane"
 		android:layout_width="0dp"
@@ -29,9 +27,11 @@
 		android:fillViewport="true">
 
 		<androidx.fragment.app.FragmentContainerView
-			android:id="@+id/container_web"
+			android:id="@+id/container_data"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent" />
+			android:layout_height="match_parent"
+			android:paddingBottom="@dimen/scroll_tail_padding" />
+
 	</androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

@@ -48,7 +48,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(libs.core.ktx)
 
-    implementation(project(":activities"))
+    implementation(project(":core"))
     implementation(project(":xNet"))
     implementation(project(":treeView"))
     implementation(project(":common"))

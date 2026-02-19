@@ -2,9 +2,9 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
-	<array name="drawer_top_dest" tools:ignore="InconsistentArrays">
+	<array name="drawer_top_dest">
 		<item>@id/nav_home</item>
 		<item>@id/nav_search_browse</item>
 		<item>@id/nav_search_predicatematrix</item>

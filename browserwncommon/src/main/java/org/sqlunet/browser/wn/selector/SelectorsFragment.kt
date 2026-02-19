@@ -5,7 +5,6 @@ package org.sqlunet.browser.wn.selector
 
 import android.database.Cursor
 import android.os.Bundle
-import android.view.View
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.BaseSelectorsRecyclerFragment
@@ -48,14 +47,8 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
 
     // A D A P T E R
 
-    override fun makeAdapter(): RecyclerView.Adapter<*> {
-        val adapter = SelectorsAdapter()
-        adapter.setOnClickListener(object : SelectorsAdapter.OnClickListener {
-            override fun onClick(position: Int, view: View) {
-                activate(position)
-            }
-        })
-        return adapter
+    override val adapter: RecyclerView.Adapter<*> = SelectorsAdapter { position: Int ->
+        select(position)
     }
 
     // L O A D
@@ -68,7 +61,7 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
     }
 
     /**
-     * Post processing, extraction of wordid from cursor
+     * Post-processing, extraction of wordid from cursor
      *
      * @param cursor cursor
      */
@@ -79,10 +72,12 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
         }
     }
 
-    override fun activate(position: Int) {
+    // S E L E C T I O N
+
+    override fun select(position: Int) {
         positionModel!!.setPosition(position)
         if (listener != null) {
-            val adapter = recyclerView!!.adapter as SelectorsAdapter
+            val adapter = recyclerView.adapter as SelectorsAdapter
             val cursor = adapter.getCursor()
             if (cursor != null && cursor.moveToPosition(position)) {
                 // column indexes
