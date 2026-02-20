@@ -4,15 +4,14 @@
 
 <ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/downloadButton"
+	android:id="@+id/update"
 	style="@style/ActionButton"
 	android:layout_width="64dp"
 	android:layout_height="64dp"
 	android:background="@drawable/bg_button_action"
-	android:contentDescription="@string/description_download_datapack"
+	android:contentDescription="@string/action_update"
 	android:elevation="1dp"
 	android:padding="5dp"
 	android:src="@drawable/bn_download"
-	android:text="@string/action_download"
 	android:visibility="visible"
 	app:tint="@android:color/white" />
