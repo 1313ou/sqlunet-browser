@@ -5,7 +5,7 @@
 <resources>
 
 	<color name="surfaceColor">#503D62</color>
-	<color name="surfaceVariantColor">>#79598D</color>
+	<color name="surfaceVariantColor">#79598D</color>
 	<color name="onSurfaceColor">#cccccc</color>
 
 	<color name="primaryColor">#503D62</color>
