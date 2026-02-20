@@ -295,8 +295,9 @@ abstract class BaseDownloadFragment : Fragment() {
 
         // click listeners
         downloadButton.setOnClickListener {
-            val wasNotDownloading = isDownloading.getAndSet(true)
-            if (wasNotDownloading) {
+            val wasDownloading = isDownloading.getAndSet(true)
+            Log.d(TAG, "Clicked download button: was downloading=$wasDownloading")
+            if (!wasDownloading) {
                 onDownloadStart()
                 startUI()
                 try {
