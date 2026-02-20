@@ -10,12 +10,15 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.filters.LargeTest
 import androidx.test.internal.runner.junit4.statement.UiThreadStatement
-import org.junit.Assert
+import org.junit.Assert.assertTrue
+import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.sqlunet.browser.MainActivity
 import org.sqlunet.browser.NightMode.checkDarkMode
+import org.sqlunet.browser.fn.ColorsLib.dumpDefaultColors
+import org.sqlunet.browser.fn.ColorsLib.testColorsFromResources
 import org.sqlunet.browser.common.R as CommonR
 import org.sqlunet.framenet.R as FrameNetR
 import org.sqlunet.xnet.R as XNetR
@@ -37,7 +40,7 @@ abstract class AbstractColors {
         context = ColorsLib.getContext(mode)
         UiThreadStatement.runOnUiThread {
             AppCompatDelegate.setDefaultNightMode(mode)
-            // Colors.dumpDefaultColors(this.context);
+            dumpDefaultColors(this.context)
             @ColorInt val defaultColors = ColorsLib.getDefaultColorAttrs(context)
             Log.i(LOGTAG, String.format("Default color #%x on #%x", defaultColors[1], defaultColors[0]))
         }
@@ -46,27 +49,27 @@ abstract class AbstractColors {
     @Test
     @Throws(ColorsLib.IllegalColorPair::class)
     fun colorContrast() {
-        Assert.assertTrue(checkDarkMode(mode))
-        ColorsLib.testColorsFromResources(context, CommonR.array.palette_ui, false)
-        ColorsLib.testColorsFromResources(context, XNetR.array.palette, false)
-        ColorsLib.testColorsFromResources(context, FrameNetR.array.palette_fn, false)
+        assertTrue(checkDarkMode(mode))
+        testColorsFromResources(context, CommonR.array.palette_ui, false)
+        testColorsFromResources(context, XNetR.array.palette, false)
+        testColorsFromResources(context, FrameNetR.array.palette_fn, false)
     }
 
     @Test
-    fun colorContrastXNet() {
-        Assert.assertTrue(checkDarkMode(mode))
+    fun colorContrastFail() {
+        assertTrue(checkDarkMode(mode))
         try {
-            ColorsLib.testColorsFromResources(context, CommonR.array.palette_ui, true)
-            ColorsLib.testColorsFromResources(context, XNetR.array.palette, true)
-            ColorsLib.testColorsFromResources(context, FrameNetR.array.palette_fn, true)
+            testColorsFromResources(context, CommonR.array.palette_ui, true)
+            testColorsFromResources(context, XNetR.array.palette, true)
+            testColorsFromResources(context, FrameNetR.array.palette_fn, true)
         } catch (ce: ColorsLib.IllegalColorPair) {
             Log.e(LOGTAG, ce.message)
-            Assert.fail(ce.message)
+            fail(ce.message)
         }
     }
 
     companion object {
 
-        private const val LOGTAG = "ColorsDay"
+        private const val LOGTAG = "Colors"
     }
 }
