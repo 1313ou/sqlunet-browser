@@ -5,6 +5,9 @@
 <resources>
 
 	<array name="palette_ui">
+		<!-- when @android:color/transparent is used, the value defaults to: -->
+		<!-- default background = android.R.attr.colorBackground,-->
+		<!-- default foreground = android.R.attr.colorForeground-->
 
 		<!-- [0] -->
 		<item>@android:color/transparent</item>
@@ -19,88 +22,68 @@
 		<item>@color/onPrimaryColor</item>
 
 		<!-- [3] -->
-		<item>@color/primaryColor</item>
-		<item>@color/onPrimaryColor</item>
-
-		<!-- [4] -->
-		<!--		<item>@color/primaryDarkColor</item>-->
-		<!--		<item>@color/onPrimaryColor</item>-->
-
-		<!-- [5] -->
-		<!--		<item>@color/primaryLightColor</item>-->
-		<!--		<item>@color/onPrimaryColor</item>-->
-
-		<!-- [6] -->
-		<!-- <item>@color/primaryColor</item> -->
-		<!-- <item>@color/highlightOnPrimaryColor</item> -->
-
-		<!-- [7] -->
 		<item>@color/secondaryColor</item>
 		<item>@color/onSecondaryColor</item>
 
-		<!-- [8] -->
-		<!--		<item>@color/secondaryLightColor</item>-->
-		<!--		<item>@color/onSecondaryColor</item>-->
+		<!-- [4] -->
+		<item>@android:color/transparent</item>
+		<item>@color/colorId</item>
 
-		<!-- [9] -->
+		<!-- [5] -->
 		<item>@android:color/transparent</item>
 		<item>@color/colorDefinition</item>
 
-		<!-- [10] -->
+		<!-- [6] -->
 		<item>@android:color/transparent</item>
 		<item>@color/colorCased</item>
 
-		<!-- [11] -->
+		<!-- [7] -->
 		<item>@android:color/transparent</item>
 		<item>@color/colorPronunciation</item>
 
-		<!-- [12] -->
+		<!-- [8] -->
 		<item>@android:color/transparent</item>
 		<item>@color/colorDimmed</item>
 
-		<!-- [13] -->
+		<!-- [9] -->
 		<item>@android:color/transparent</item>
 		<item>@color/shadow</item>
 
-		<!-- [14] -->
-		<item>@android:color/transparent</item>
-		<item>@color/info_button_color</item>
+		<!-- [9] -->
+		<!--		<item>@android:color/transparent</item>-->
+		<!--		<item>@color/info_button_color</item>-->
 
-		<!-- [15] -->
-		<item>@android:color/transparent</item>
-		<item>@color/info_button_activated_color</item>
+		<!-- [10] -->
+		<!--		<item>@android:color/transparent</item>-->
+		<!--		<item>@color/info_button_activated_color</item>-->
 
-		<!-- [16] -->
-		<item>@android:color/transparent</item>
-		<item>@color/ok_button_color</item>
+		<!-- [11] -->
+		<!--		<item>@android:color/transparent</item>-->
+		<!--		<item>@color/ok_button_color</item>-->
 
-		<!-- [17] -->
-		<item>@android:color/transparent</item>
-		<item>@color/err_button_color</item>
+		<!-- [12] -->
+		<!--		<item>@android:color/transparent</item>-->
+		<!--		<item>@color/err_button_color</item>-->
 
-		<!-- [18] -->
+		<!-- [13] -->
 		<!--		<item>@android:color/transparent</item>-->
 		<!--		<item>@color/swipe_down_1_color</item>-->
 
-		<!-- [19] -->
+		<!-- [14] -->
 		<!--		<item>@android:color/transparent</item>-->
 		<!--		<item>@color/swipe_down_2_color</item>-->
 
-		<!-- [20] -->
+		<!-- [15] -->
 		<!--		<item>@color/info_button_color</item>-->
 		<!--		<item>@color/onSecondaryColor</item>-->
 
-		<!-- [21] -->
+		<!-- [16] -->
 		<!--		<item>@color/info_button_activated_color</item>-->
 		<!--		<item>@color/onSecondaryColor</item>-->
 
-		<!-- [22] -->
+		<!-- [17] -->
 		<!--		<item>@color/err_button_color</item>-->
 		<!--		<item>@color/onSecondaryColor</item>-->
-
-		<!-- [23] -->
-		<item>@color/activatedBackgroundColor</item>
-		<item>@color/foregroundColor</item>
 
 	</array>
 
