@@ -60,16 +60,16 @@ object ColorsLib {
                     foreColor = defaultColors[1]
                 }
                 try {
-                val contrast = ColorUtils.calculateContrast(foreColor, backColor)
-                val info = String.format("[%02d] Contrast %s on %s is %f", i / 2, colorToString(foreColor), colorToString(backColor), contrast)
-                if (contrast < MIN_CONTRAST) {
-                    Log.e(TAG, info)
-                    if (throwError) {
-                        throw IllegalColorPair(res, paletteId, i / 2, backColor0, foreColor0, defaultColors[0], defaultColors[1], contrast)
+                    val contrast = ColorUtils.calculateContrast(foreColor, backColor)
+                    val info = String.format("[%02d] Contrast %s on %s is %f", i / 2, colorToString(foreColor), colorToString(backColor), contrast)
+                    if (contrast < MIN_CONTRAST) {
+                        Log.e(TAG, info)
+                        if (throwError) {
+                            throw IllegalColorPair(res, paletteId, i / 2, backColor0, foreColor0, defaultColors[0], defaultColors[1], contrast)
+                        }
+                    } else {
+                        Log.d(TAG, info)
                     }
-                } else {
-                    Log.d(TAG, info)
-                }
                 } catch (iae: IllegalArgumentException) {
                     val message = "${where(res, paletteId, i / 2)} ${what(foreColor, backColor, defaultColors[0], defaultColors[1])} $iae"
                     throw IllegalArgumentException(message)
