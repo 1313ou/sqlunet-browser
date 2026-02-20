@@ -48,7 +48,7 @@
 		<!-- S T Y L E S -->
 
 		<!-- menu dropdown -->
-		<item name="popupMenuBackground">@color/primaryColor</item>
+		<item name="popupMenuBackground">@color/surfaceColor</item>
 
 		<!--app bar -->
 		<item name="appBarLayoutStyle">@style/MyAppBarLayout</item>
