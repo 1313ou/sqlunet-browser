@@ -16,7 +16,7 @@
 
 	<color name="colorId">#000000</color>
 	<color name="colorName">#ef6c00</color>
-	<color name="colorDefinition">#ef6c00</color>
+	<color name="colorDefinition">#BF360C</color>
 	<color name="colorCased">#880E4F</color>
 	<color name="colorPronunciation">#006064</color>
 	<color name="colorDimmed">#808080</color>
