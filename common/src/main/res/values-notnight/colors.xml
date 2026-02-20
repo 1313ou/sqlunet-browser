@@ -11,13 +11,10 @@
 
 	<!-- primary -->
 	<color name="primaryColor">#4251bd</color>
-	<color name="primaryDarkColor">#293073</color>
-	<color name="primaryLightColor">#4251dd</color>
 	<color name="onPrimaryColor">#cccccc</color> <!-- framework + nav, tabs -->
 
 	<!-- secondary -->
 	<color name="secondaryColor">#ef2063</color>
-	<color name="secondaryLightColor">#ff60C0</color>
 	<color name="onSecondaryColor">#F0F0F0</color>
 
 	<!-- S T Y L E  A T T R  -->

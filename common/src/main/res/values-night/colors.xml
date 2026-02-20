@@ -10,20 +10,17 @@
 	<color name="activatedBackgroundColor">#30800080</color>
 
 	<!-- primary -->
-	<color name="primaryColor">#4251bd</color> <!-- framework + nav (middle in gradient), x selector header -->
-	<color name="primaryDarkColor">#293073</color> <!-- framework + nav (end in gradient) -->
-	<color name="primaryLightColor">#4251dd</color> <!-- framework + nav (start in gradient), browse action bar, search text action bar, pm action bar, major list item -->
-	<color name="onPrimaryColor">#cccccc</color> <!-- framework + nav, tabs -->
+	<color name="primaryColor">#4251bd</color>
+	<color name="onPrimaryColor">#cccccc</color>
 
 	<!-- secondary -->
 	<color name="secondaryColor">#ef2063</color>
-	<color name="secondaryLightColor">#ff60c0</color>
 	<color name="onSecondaryColor">#F0F0F0</color>
 
 	<!-- S T Y L E  A T T R  -->
 
-	<!-- text - must display on colorBackground (variants of colorOnBackground) -->
-	<color name="colorId">#ef2063</color>
+	<!-- text -->
+	<color name="colorId">#ef2063</color> <!--  -->
 	<color name="colorName">#ef2063</color> <!--  -->
 	<color name="colorDefinition">#ef2063</color> <!--  -->
 	<color name="colorCased">#9D557B</color> <!--  -->

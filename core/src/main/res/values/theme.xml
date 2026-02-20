@@ -13,13 +13,10 @@
 		<item name="colorOnSurface">@color/onSurfaceColor</item>
 
 		<item name="colorPrimary">@color/primaryColor</item>
-		<item name="colorPrimaryVariant">@color/primaryLightColor</item>
-		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
 		<item name="colorOnPrimary">@color/onPrimaryColor</item>
 
 		<!-- requires attention : snackbar, fab -->
 		<item name="colorSecondary">@color/secondaryColor</item>
-		<item name="colorSecondaryVariant">@color/secondaryLightColor</item>
 		<item name="colorOnSecondary">@color/onSecondaryColor</item>
 
 		<!-- caret -->

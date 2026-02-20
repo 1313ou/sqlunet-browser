@@ -9,12 +9,9 @@
 	<color name="onSurfaceColor">#cccccc</color>
 
 	<color name="primaryColor">#4D5647</color>
-	<color name="primaryDarkColor">#364131</color>
-	<color name="primaryLightColor">#67725E</color>
 	<color name="onPrimaryColor">#cccccc</color>
 
 	<color name="secondaryColor">#e9c41d</color>
-	<color name="secondaryLightColor">#ffd66e</color>
 	<color name="onSecondaryColor">#444444</color>
 
 	<color name="colorId">#e9c41d</color>

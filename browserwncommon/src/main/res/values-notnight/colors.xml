@@ -9,19 +9,16 @@
 	<color name="onSurfaceColor">#444444</color>
 
 	<color name="primaryColor">#fff59d</color>
-	<color name="primaryDarkColor">#cbc26d</color>
-	<color name="primaryLightColor">#ffffcf</color>
 	<color name="onPrimaryColor">#444444</color>
 
 	<color name="secondaryColor">#BF360C</color>
-	<color name="secondaryLightColor">#CC6C12</color>
 	<color name="onSecondaryColor">#F0F0F0</color>
 
 	<color name="colorId">#000000</color>
 	<color name="colorName">#ef6c00</color>
 	<color name="colorDefinition">#ef6c00</color>
-	<color name="colorCased">#880E4F</color> <!--  -->
-	<color name="colorPronunciation">#006064</color> <!--  -->
+	<color name="colorCased">#880E4F</color>
+	<color name="colorPronunciation">#006064</color>
 	<color name="colorDimmed">#808080</color>
 
 </resources>
