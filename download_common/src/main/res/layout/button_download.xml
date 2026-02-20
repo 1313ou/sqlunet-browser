@@ -1,0 +1,23 @@
+<!--
+  ~ Copyright (c) 2025. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/downloadButton"
+	style="@style/ActionButton"
+	android:layout_width="64dp"
+	android:layout_height="64dp"
+	android:background="@drawable/bg_button_action"
+	android:contentDescription="@string/description_download_datapack"
+	android:elevation="1dp"
+	android:src="@drawable/bn_download"
+	android:text="@string/action_download"
+	android:visibility="visible"
+	app:layout_constraintBottom_toBottomOf="parent"
+	app:layout_constraintEnd_toEndOf="parent"
+	app:layout_constraintHorizontal_bias="0.5"
+	app:layout_constraintStart_toStartOf="parent"
+	app:layout_constraintTop_toTopOf="parent"
+	app:layout_constraintVertical_bias="0.5"
+	app:tint="@android:color/white" />
