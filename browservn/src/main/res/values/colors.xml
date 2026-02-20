@@ -4,20 +4,4 @@
 
 <resources>
 
-	<color name="primaryColor">#C8DDB7</color>
-	<color name="primaryDarkColor">#7D956E</color>
-	<color name="primaryLightColor">#DBF4C7</color>
-	<color name="onPrimaryColor">#444444</color>
-
-	<color name="secondaryColor">#E9C41D</color>
-	<color name="secondaryLightColor">#FFD66E</color>
-	<color name="onSecondaryColor">#444444</color>
-
-	<color name="colorId">#1B5E20</color>
-	<color name="colorName">#1B5E20</color>
-	<color name="colorDefinition">#1B5E20</color>
-	<color name="colorCased">#BF360C</color>
-	<color name="colorPronunciation">#4A148C</color>
-	<color name="colorDimmed">#808080</color>
-
 </resources>

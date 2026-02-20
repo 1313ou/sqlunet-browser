@@ -96,9 +96,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     @MenuRes
     protected var menuId = 0
 
-    @AttrRes
-    protected var colorAttrId = 0
-
     @ArrayRes
     protected var spinnerLabels = 0
 
@@ -205,15 +202,14 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     @SuppressLint("InflateParams")
     fun setupToolBar() {
         Log.d(TAG, "Toolbar: set up in $this")
-        val activity = requireActivity() as AppCompatActivity
 
         // title
         toolbar.setTitle(R.string.title_activity_browse)
         // toolbar.setSubtitle(R.string.app_subname)
 
         // background
-        val color = fetchColor(activity, colorAttrId)
-        toolbar.background = color.toDrawable()
+        // val color = fetchColor(requireContext(), androidx.appcompat.R.attr.colorPrimary)
+        // toolbar.background = color.toDrawable()
     }
 
     // S E A R C H   B A R

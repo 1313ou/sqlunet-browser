@@ -36,10 +36,6 @@
 			android:icon="@drawable/ic_setup"
 			android:title="@string/nav_setup" />
 		<item
-			android:id="@+id/nav_storage"
-			android:icon="@drawable/ic_storage"
-			android:title="@string/nav_storage" />
-		<item
 			android:id="@+id/nav_settings"
 			android:icon="@drawable/ic_settings"
 			android:title="@string/nav_settings" />
@@ -55,6 +51,10 @@
 			android:id="@+id/nav_help"
 			android:icon="@drawable/ic_help"
 			android:title="@string/nav_help" />
+		<item
+			android:id="@+id/nav_storage"
+			android:icon="@drawable/ic_storage"
+			android:title="@string/nav_storage" />
 		<item
 			android:id="@+id/nav_about"
 			android:icon="@drawable/ic_about"

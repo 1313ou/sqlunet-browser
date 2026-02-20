@@ -4,6 +4,10 @@
 
 <resources>
 
+	<color name="surfaceColor">#4D5647</color>
+	<color name="surfaceVariantColor">#67725E</color>
+	<color name="onSurfaceColor">#cccccc</color>
+
 	<color name="primaryColor">#4D5647</color>
 	<color name="primaryDarkColor">#364131</color>
 	<color name="primaryLightColor">#67725E</color>
