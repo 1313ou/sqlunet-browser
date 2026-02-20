@@ -22,7 +22,7 @@ import androidx.annotation.CallSuper
 import androidx.annotation.UiThread
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.bbou.download.Keys.CANCEL_BTN_STATE
 import com.bbou.download.Keys.DEPLOY_BTN_STATE
@@ -43,7 +43,6 @@ import com.bbou.download.storage.FormatUtils.formatAsInformationString
 import java.io.File
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.properties.Delegates
-import androidx.core.net.toUri
 
 /**
  * Base download fragment that handles
@@ -356,7 +355,6 @@ abstract class BaseDownloadFragment : Fragment() {
             downloadButton.visibility = savedInstanceState.getInt(DOWNLOAD_BTN_STATE, View.VISIBLE)
             downloadButtonImageResId = savedInstanceState.getInt(DOWNLOAD_BTN_IMAGE_STATE, R.drawable.bn_download)
             val drawable = AppCompatResources.getDrawable(requireContext(), downloadButtonImageResId)!!
-            DrawableCompat.setTint(drawable, android.R.attr.colorForeground)
             downloadButton.setImageDrawable(drawable)
             downloadButtonBackgroundResId = savedInstanceState.getInt(DOWNLOAD_BTN_BACKGROUND_STATE, R.drawable.bg_button_action)
             downloadButton.setBackgroundResource(downloadButtonBackgroundResId)
@@ -533,7 +531,6 @@ abstract class BaseDownloadFragment : Fragment() {
         // buttons
         downloadButtonImageResId = if (status == Status.STATUS_SUCCEEDED) R.drawable.bn_download_ok else R.drawable.bn_download
         val drawable = AppCompatResources.getDrawable(requireContext(), downloadButtonImageResId)!!
-        DrawableCompat.setTint(drawable, android.R.attr.colorForeground)
         downloadButton.setImageDrawable(drawable)
         downloadButtonBackgroundResId = if (status == Status.STATUS_SUCCEEDED) R.drawable.bg_button_ok else R.drawable.bg_button_err
         downloadButton.setBackgroundResource(downloadButtonBackgroundResId)
