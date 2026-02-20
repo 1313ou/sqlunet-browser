@@ -23,12 +23,12 @@
 		<item>@color/onPrimaryColor</item>
 
 		<!-- [4] -->
-		<item>@color/primaryDarkColor</item>
-		<item>@color/onPrimaryColor</item>
+		<!--		<item>@color/primaryDarkColor</item>-->
+		<!--		<item>@color/onPrimaryColor</item>-->
 
 		<!-- [5] -->
-		<item>@color/primaryLightColor</item>
-		<item>@color/onPrimaryColor</item>
+		<!--		<item>@color/primaryLightColor</item>-->
+		<!--		<item>@color/onPrimaryColor</item>-->
 
 		<!-- [6] -->
 		<!-- <item>@color/primaryColor</item> -->
@@ -39,8 +39,8 @@
 		<item>@color/onSecondaryColor</item>
 
 		<!-- [8] -->
-		<item>@color/secondaryLightColor</item>
-		<item>@color/onSecondaryColor</item>
+		<!--		<item>@color/secondaryLightColor</item>-->
+		<!--		<item>@color/onSecondaryColor</item>-->
 
 		<!-- [9] -->
 		<item>@android:color/transparent</item>
@@ -99,8 +99,8 @@
 		<!--		<item>@color/onSecondaryColor</item>-->
 
 		<!-- [23] -->
-		<!--		<item>@color/activatedBackgroundColor</item>-->
-		<!--		<item>@color/foregroundColor</item>-->
+		<item>@color/activatedBackgroundColor</item>
+		<item>@color/foregroundColor</item>
 
 	</array>
 
