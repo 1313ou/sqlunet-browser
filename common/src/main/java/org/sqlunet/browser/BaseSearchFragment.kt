@@ -311,7 +311,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     val textView = view.findViewById<TextView>(android.R.id.text1)
                     textView.text = ""
                     val resId = modeIcons[position]
-                    val color = fetchColor(context, MaterialR.attr.colorOnPrimary)
+                    val color = fetchColor(context, MaterialR.attr.colorOnSurface)
                     val drawable = getDrawable(context, resId)
                     tint(color, drawable!!)
                     textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
@@ -324,7 +324,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     val textView = view.findViewById<TextView>(android.R.id.text1)
                     textView.text = rowItem
                     val resId = modeIcons[position]
-                    val color = fetchColor(context, MaterialR.attr.colorOnPrimary)
+                    val color = fetchColor(context, MaterialR.attr.colorOnSurface)
                     val drawable = getDrawable(context, resId)
                     tint(color, drawable!!)
                     textView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
