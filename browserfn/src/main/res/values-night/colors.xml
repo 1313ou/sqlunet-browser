@@ -8,11 +8,11 @@
 	<color name="surfaceVariantColor">#686455</color>
 	<color name="onSurfaceColor">#cccccc</color>
 
-	<color name="primaryColor">#66614F</color>
-	<color name="onPrimaryColor">#cccccc</color>
+	<color name="primaryColor">#1de9b6</color>
+	<color name="onPrimaryColor">#333333</color>
 
-	<color name="secondaryColor">#179072</color>
-	<color name="onSecondaryColor">#F0F0F0</color>
+	<color name="secondaryColor">#027359</color>
+	<color name="onSecondaryColor">#333333</color>
 
 	<color name="colorId">#1de9b6</color>
 	<color name="colorName">#1de9b6</color>

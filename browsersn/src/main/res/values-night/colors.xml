@@ -8,8 +8,8 @@
 	<color name="surfaceVariantColor">#79598D</color>
 	<color name="onSurfaceColor">#cccccc</color>
 
-	<color name="primaryColor">#503D62</color>
-	<color name="onPrimaryColor">#cccccc</color>
+	<color name="primaryColor">#C75B33</color>
+	<color name="onPrimaryColor">#F0F0F0</color>
 
 	<color name="secondaryColor">#CA491A</color>
 	<color name="onSecondaryColor">#F0F0F0</color>
