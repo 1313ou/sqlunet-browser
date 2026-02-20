@@ -20,6 +20,10 @@ import org.sqlunet.core.R as CoreR
 
 object ColorsLib {
 
+    fun where(res: String, resId: Int, index: Int) = "$res [$index]"
+
+    fun what(backColor: Int, foreColor: Int, defaultBackColor: Int, defaultForeColor: Int) = "${colorToString(foreColor)} on ${colorToString(backColor)} (default ${colorToString(defaultForeColor)} on ${colorToString(defaultBackColor)})"
+
     internal class IllegalColorPair(
         private val res: String,
         private val resId: Int,
@@ -32,17 +36,7 @@ object ColorsLib {
     ) : Exception() {
 
         override val message: String
-            get() = String.format(
-                "%d %s [%02d] %s on %s (default %s on %s) with contrast %f ",
-                resId,
-                res,
-                index,
-                colorToString(foreColor),
-                colorToString(backColor),
-                colorToString(defaultForeColor),
-                colorToString(defaultBackColor),
-                contrast
-            )
+            get() = "${where(res, resId, index)} ${what(foreColor, backColor, defaultForeColor, defaultBackColor)} with contrast $contrast "
     }
 
     @Throws(IllegalColorPair::class)
@@ -65,15 +59,20 @@ object ColorsLib {
                 if (foreColor == 0) {
                     foreColor = defaultColors[1]
                 }
-                val contrast = ColorUtils.calculateContrast(foreColor, backColor)
-                val info = String.format("[%02d] Contrast %s on %s is %f", i / 2, colorToString(foreColor), colorToString(backColor), contrast)
-                if (contrast < MIN_CONTRAST) {
-                    Log.e(TAG, info)
-                    if (throwError) {
-                        throw IllegalColorPair(res, paletteId, i / 2, backColor0, foreColor0, defaultColors[0], defaultColors[1], contrast)
+                try {
+                    val contrast = ColorUtils.calculateContrast(foreColor, backColor)
+                    val info = String.format("[%02d] Contrast %s on %s is %f", i / 2, colorToString(foreColor), colorToString(backColor), contrast)
+                    if (contrast < MIN_CONTRAST) {
+                        Log.e(TAG, info)
+                        if (throwError) {
+                            throw IllegalColorPair(res, paletteId, i / 2, backColor0, foreColor0, defaultColors[0], defaultColors[1], contrast)
+                        }
+                    } else {
+                        Log.d(TAG, info)
                     }
-                } else {
-                    Log.d(TAG, info)
+                } catch (iae: IllegalArgumentException) {
+                    val message = "${where(res, paletteId, i / 2)} ${what(foreColor, backColor, defaultColors[0], defaultColors[1])} $iae"
+                    throw IllegalArgumentException(message)
                 }
             }
             i += 2
