@@ -4,15 +4,15 @@
 
 <resources>
 
-	<color name="surfaceColor">#66614F</color>
-	<color name="surfaceVariantColor">#686455</color>
+	<color name="surfaceColor">#6D665A</color>
+	<color name="surfaceVariantColor">#524E48</color>
 	<color name="onSurfaceColor">#cccccc</color>
 
-	<color name="primaryColor">#1de9b6</color>
-	<color name="onPrimaryColor">#333333</color>
+	<color name="primaryColor">#3565A2</color>
+	<color name="onPrimaryColor">#F0F0F0</color>
 
-	<color name="secondaryColor">#0EA884</color>
-	<color name="onSecondaryColor">#333333</color>
+	<color name="secondaryColor">#4C709E</color>
+	<color name="onSecondaryColor">#F0F0F0</color>
 
 	<color name="colorId">#1de9b6</color>
 	<color name="colorName">#1de9b6</color>
