@@ -6,12 +6,11 @@
 
 	<!-- O V E R L A Y S -->
 
-	<!-- Custom home overlay -->
-	<style name="MyHomeOverlay" parent="ThemeOverlay.Material3">
-		<item name="android:background">?attr/colorSurface</item> <!-- submenu background -->
-		<item name="android:textColorPrimary">?attr/colorOnSurface</item> <!-- item foreground -->
+	<!-- Custom surface overlay -->
+	<style name="MySurfaceOverlay" parent="ThemeOverlay.Material3">
+		<item name="android:background">?attr/colorSurface</item>
+		<item name="android:textColor">?attr/colorOnSurface</item>
 	</style>
-
 
 	<!-- S T Y L E S -->
 
