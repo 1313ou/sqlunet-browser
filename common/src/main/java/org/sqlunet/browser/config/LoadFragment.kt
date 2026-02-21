@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.config.DownloadIntentFactory.makeIntent
@@ -30,14 +29,14 @@ class LoadFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // buttons
-        val assetLoadButton = view.findViewById<ImageButton>(R.id.assetload)
+        val assetLoadButton = view.findViewById<Button>(R.id.assetload)
         assetLoadButton.setOnClickListener {
             val activity: Activity = requireActivity()
             val intent = Intent(activity, AssetLoadActivity::class.java)
             intent.addFlags(0)
             activity.startActivity(intent)
         }
-        val downloadButton = view.findViewById<ImageButton>(R.id.download)
+        val downloadButton = view.findViewById<Button>(R.id.download)
         downloadButton.setOnClickListener {
             val activity: Activity = requireActivity()
             val intent = makeIntent(activity)

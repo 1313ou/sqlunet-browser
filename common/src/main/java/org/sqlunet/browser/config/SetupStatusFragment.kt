@@ -11,7 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
@@ -41,15 +41,15 @@ import org.sqlunet.xnet.R as XNetR
  */
 open class SetupStatusFragment : Fragment(), Updatable {
 
-    private var imageDb: ImageView? = null
+    private lateinit var imageDb: ImageView
 
-    private var imageIndexes: ImageView? = null
+    private lateinit var imageIndexes: ImageView
 
-    protected var buttonDb: ImageButton? = null
+    protected lateinit var buttonDb: Button
 
-    protected var buttonIndexes: ImageButton? = null
+    protected lateinit var buttonIndexes: Button
 
-    protected var infoDatabaseButton: ImageButton? = null
+    protected lateinit var infoDatabaseButton: Button
 
     /**
      * Activity result launcher
@@ -174,19 +174,19 @@ open class SetupStatusFragment : Fragment(), Updatable {
             val existsDb = status and Status.EXISTS != 0
             val existsTables = status and Status.EXISTS_TABLES != 0
             if (existsDb && existsTables) {
-                imageDb!!.setImageDrawable(okDrawable)
-                ImageViewCompat.setImageTintMode(imageDb!!, PorterDuff.Mode.SRC_IN)
-                buttonDb!!.visibility = View.GONE
+                imageDb.setImageDrawable(okDrawable)
+                ImageViewCompat.setImageTintMode(imageDb, PorterDuff.Mode.SRC_IN)
+                buttonDb.visibility = View.GONE
                 val existsIndexes = status and Status.EXISTS_INDEXES != 0
-                imageIndexes!!.setImageDrawable(if (existsIndexes) okDrawable else failDrawable)
-                ImageViewCompat.setImageTintMode(imageIndexes!!, if (existsIndexes) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
-                buttonIndexes!!.visibility = if (existsIndexes) View.GONE else View.VISIBLE
+                imageIndexes.setImageDrawable(if (existsIndexes) okDrawable else failDrawable)
+                ImageViewCompat.setImageTintMode(imageIndexes, if (existsIndexes) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
+                buttonIndexes.visibility = if (existsIndexes) View.GONE else View.VISIBLE
             } else {
-                imageDb!!.setImageDrawable(failDrawable)
-                ImageViewCompat.setImageTintMode(imageDb!!, PorterDuff.Mode.DST)
-                buttonDb!!.visibility = View.VISIBLE
-                buttonIndexes!!.visibility = View.GONE
-                imageIndexes!!.setImageResource(R.drawable.ic_unknown)
+                imageDb.setImageDrawable(failDrawable)
+                ImageViewCompat.setImageTintMode(imageDb, PorterDuff.Mode.DST)
+                buttonDb.visibility = View.VISIBLE
+                buttonIndexes.visibility = View.GONE
+                imageIndexes.setImageResource(R.drawable.ic_unknown)
             }
         }
     }

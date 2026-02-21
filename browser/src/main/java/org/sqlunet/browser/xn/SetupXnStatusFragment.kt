@@ -9,7 +9,7 @@ import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageButton
+import android.widget.Button
 import android.widget.ImageView
 import androidx.core.widget.ImageViewCompat
 import com.bbou.download.preference.Settings.Mode
@@ -26,10 +26,10 @@ import org.sqlunet.settings.StorageUtils.countToStorageString
 import org.sqlunet.settings.StorageUtils.getFree
 import java.io.File
 import org.sqlunet.browser.common.R as CommonR
-import org.sqlunet.wordnet.R as WordnetR
-import org.sqlunet.verbnet.R as VerbnetR
-import org.sqlunet.propbank.R as PropbankR
 import org.sqlunet.framenet.R as FramenetR
+import org.sqlunet.propbank.R as PropbankR
+import org.sqlunet.verbnet.R as VerbnetR
+import org.sqlunet.wordnet.R as WordnetR
 
 /**
  * Setup Status fragment
@@ -39,16 +39,16 @@ import org.sqlunet.framenet.R as FramenetR
 class SetupXnStatusFragment : SetupStatusFragment() {
 
     // components
-    private var imagePm: ImageView? = null
-    private var imageTextSearchWn: ImageView? = null
-    private var imageTextSearchVn: ImageView? = null
-    private var imageTextSearchPb: ImageView? = null
-    private var imageTextSearchFn: ImageView? = null
-    private var buttonPm: ImageButton? = null
-    private var buttonTextSearchWn: ImageButton? = null
-    private var buttonTextSearchVn: ImageButton? = null
-    private var buttonTextSearchPb: ImageButton? = null
-    private var buttonTextSearchFn: ImageButton? = null
+    private lateinit var imagePm: ImageView
+    private lateinit var imageTextSearchWn: ImageView
+    private lateinit var imageTextSearchVn: ImageView
+    private lateinit var imageTextSearchPb: ImageView
+    private lateinit var imageTextSearchFn: ImageView
+    private lateinit var buttonPm: Button
+    private lateinit var buttonTextSearchWn: Button
+    private lateinit var buttonTextSearchVn: Button
+    private lateinit var buttonTextSearchPb: Button
+    private lateinit var buttonTextSearchFn: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -69,40 +69,40 @@ class SetupXnStatusFragment : SetupStatusFragment() {
         infoDatabaseButton = view.findViewById(R.id.info_database)
 
         // click listeners
-        buttonDb!!.setOnClickListener { download() }
-        buttonIndexes!!.setOnClickListener { index() }
-        infoDatabaseButton!!.setOnClickListener { info() }
-        buttonPm!!.setOnClickListener {
+        buttonDb.setOnClickListener { download() }
+        buttonIndexes.setOnClickListener { index() }
+        infoDatabaseButton.setOnClickListener { info() }
+        buttonPm.setOnClickListener {
             val index = resources.getInteger(R.integer.sql_statement_do_predicatematrix_position)
             val intent = Intent(AppContext.context, SetupDatabaseActivity::class.java)
             intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
             startActivity(intent)
         }
-        buttonTextSearchWn!!.setOnClickListener {
+        buttonTextSearchWn.setOnClickListener {
             val index = resources.getInteger(R.integer.sql_statement_do_ts_wn_position)
             val intent = Intent(AppContext.context, SetupDatabaseActivity::class.java)
             intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
             startActivity(intent)
         }
-        buttonTextSearchVn!!.setOnClickListener {
+        buttonTextSearchVn.setOnClickListener {
             val index = resources.getInteger(R.integer.sql_statement_do_ts_vn_position)
             val intent = Intent(AppContext.context, SetupDatabaseActivity::class.java)
             intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
             startActivity(intent)
         }
-        buttonTextSearchPb!!.setOnClickListener {
+        buttonTextSearchPb.setOnClickListener {
             val index = resources.getInteger(R.integer.sql_statement_do_ts_pb_position)
             val intent = Intent(AppContext.context, SetupDatabaseActivity::class.java)
             intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
             startActivity(intent)
         }
-        buttonTextSearchFn!!.setOnClickListener {
+        buttonTextSearchFn.setOnClickListener {
             val index = resources.getInteger(R.integer.sql_statement_do_ts_fn_position)
             val intent = Intent(AppContext.context, SetupDatabaseActivity::class.java)
             intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
             startActivity(intent)
         }
-        infoDatabaseButton!!.setOnClickListener {
+        infoDatabaseButton.setOnClickListener {
             val activity: Activity = requireActivity()
             val database = StorageSettings.getDatabasePath(activity)
             val free = getFree(activity, database)
@@ -193,35 +193,35 @@ class SetupXnStatusFragment : SetupStatusFragment() {
                 // images
                 val okDrawable = getDrawable(context, CommonR.drawable.ic_ok)
                 val failDrawable = getDrawable(context, CommonR.drawable.ic_fail)
-                imagePm!!.setImageDrawable(if (existsPm) okDrawable else failDrawable)
-                ImageViewCompat.setImageTintMode(imagePm!!, if (existsPm) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
-                imageTextSearchFn!!.setImageDrawable(if (existsTsFn) okDrawable else failDrawable)
-                ImageViewCompat.setImageTintMode(imageTextSearchFn!!, if (existsTsFn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
-                imageTextSearchWn!!.setImageDrawable(if (existsTsWn) okDrawable else failDrawable)
-                ImageViewCompat.setImageTintMode(imageTextSearchWn!!, if (existsTsWn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
-                imageTextSearchVn!!.setImageDrawable(if (existsTsVn) okDrawable else failDrawable)
-                ImageViewCompat.setImageTintMode(imageTextSearchVn!!, if (existsTsVn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
-                imageTextSearchPb!!.setImageDrawable(if (existsTsPb) okDrawable else failDrawable)
-                ImageViewCompat.setImageTintMode(imageTextSearchPb!!, if (existsTsPb) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
-                buttonPm!!.visibility = if (existsPm) View.GONE else View.VISIBLE
-                buttonTextSearchFn!!.visibility = if (existsTsFn) View.GONE else View.VISIBLE
-                buttonTextSearchWn!!.visibility = if (existsTsWn) View.GONE else View.VISIBLE
-                buttonTextSearchVn!!.visibility = if (existsTsVn) View.GONE else View.VISIBLE
-                buttonTextSearchPb!!.visibility = if (existsTsPb) View.GONE else View.VISIBLE
-                buttonTextSearchFn!!.visibility = if (existsTsFn) View.GONE else View.VISIBLE
+                imagePm.setImageDrawable(if (existsPm) okDrawable else failDrawable)
+                ImageViewCompat.setImageTintMode(imagePm, if (existsPm) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
+                imageTextSearchFn.setImageDrawable(if (existsTsFn) okDrawable else failDrawable)
+                ImageViewCompat.setImageTintMode(imageTextSearchFn, if (existsTsFn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
+                imageTextSearchWn.setImageDrawable(if (existsTsWn) okDrawable else failDrawable)
+                ImageViewCompat.setImageTintMode(imageTextSearchWn, if (existsTsWn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
+                imageTextSearchVn.setImageDrawable(if (existsTsVn) okDrawable else failDrawable)
+                ImageViewCompat.setImageTintMode(imageTextSearchVn, if (existsTsVn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
+                imageTextSearchPb.setImageDrawable(if (existsTsPb) okDrawable else failDrawable)
+                ImageViewCompat.setImageTintMode(imageTextSearchPb, if (existsTsPb) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
+                buttonPm.visibility = if (existsPm) View.GONE else View.VISIBLE
+                buttonTextSearchFn.visibility = if (existsTsFn) View.GONE else View.VISIBLE
+                buttonTextSearchWn.visibility = if (existsTsWn) View.GONE else View.VISIBLE
+                buttonTextSearchVn.visibility = if (existsTsVn) View.GONE else View.VISIBLE
+                buttonTextSearchPb.visibility = if (existsTsPb) View.GONE else View.VISIBLE
+                buttonTextSearchFn.visibility = if (existsTsFn) View.GONE else View.VISIBLE
             } else {
-                buttonPm!!.visibility = View.GONE
-                buttonTextSearchFn!!.visibility = View.GONE
-                buttonTextSearchWn!!.visibility = View.GONE
-                buttonTextSearchVn!!.visibility = View.GONE
-                buttonTextSearchPb!!.visibility = View.GONE
-                buttonTextSearchFn!!.visibility = View.GONE
-                imagePm!!.setImageResource(CommonR.drawable.ic_unknown)
-                imageTextSearchFn!!.setImageResource(CommonR.drawable.ic_unknown)
-                imageTextSearchWn!!.setImageResource(CommonR.drawable.ic_unknown)
-                imageTextSearchVn!!.setImageResource(CommonR.drawable.ic_unknown)
-                imageTextSearchPb!!.setImageResource(CommonR.drawable.ic_unknown)
-                imageTextSearchFn!!.setImageResource(CommonR.drawable.ic_unknown)
+                buttonPm.visibility = View.GONE
+                buttonTextSearchFn.visibility = View.GONE
+                buttonTextSearchWn.visibility = View.GONE
+                buttonTextSearchVn.visibility = View.GONE
+                buttonTextSearchPb.visibility = View.GONE
+                buttonTextSearchFn.visibility = View.GONE
+                imagePm.setImageResource(CommonR.drawable.ic_unknown)
+                imageTextSearchFn.setImageResource(CommonR.drawable.ic_unknown)
+                imageTextSearchWn.setImageResource(CommonR.drawable.ic_unknown)
+                imageTextSearchVn.setImageResource(CommonR.drawable.ic_unknown)
+                imageTextSearchPb.setImageResource(CommonR.drawable.ic_unknown)
+                imageTextSearchFn.setImageResource(CommonR.drawable.ic_unknown)
             }
         }
     }
