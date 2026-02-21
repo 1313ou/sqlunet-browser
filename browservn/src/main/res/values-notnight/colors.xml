@@ -11,8 +11,8 @@
 	<color name="primaryColor">#e9c41d</color>
 	<color name="onPrimaryColor">#444444</color>
 
-	<color name="secondaryColor">#DECA6F</color>
-	<color name="onSecondaryColor">#444444</color>
+	<color name="secondaryColor">#CEA400</color>
+	<color name="onSecondaryColor">#000000</color>
 
 	<color name="colorId">#1b5e20</color>
 	<color name="colorName">#1b5e20</color>
