@@ -26,64 +26,36 @@
 		<item>@color/onSecondaryColor</item>
 
 		<!-- [4] -->
-		<item>@android:color/transparent</item>
-		<item>@color/colorId</item>
+		<item>@color/surfaceColor</item>
+		<item>@color/primaryColor</item>
 
 		<!-- [5] -->
-		<item>@android:color/transparent</item>
-		<item>@color/colorDefinition</item>
+		<item>@color/surfaceColor</item>
+		<item>@color/secondaryColor</item>
 
 		<!-- [6] -->
 		<item>@android:color/transparent</item>
-		<item>@color/colorCased</item>
+		<item>@color/colorId</item>
 
 		<!-- [7] -->
 		<item>@android:color/transparent</item>
-		<item>@color/colorPronunciation</item>
+		<item>@color/colorDefinition</item>
 
 		<!-- [8] -->
 		<item>@android:color/transparent</item>
-		<item>@color/colorDimmed</item>
+		<item>@color/colorCased</item>
 
 		<!-- [9] -->
 		<item>@android:color/transparent</item>
-		<item>@color/shadow</item>
-
-		<!-- [9] -->
-		<!--		<item>@android:color/transparent</item>-->
-		<!--		<item>@color/info_button_color</item>-->
+		<item>@color/colorPronunciation</item>
 
 		<!-- [10] -->
-		<!--		<item>@android:color/transparent</item>-->
-		<!--		<item>@color/info_button_activated_color</item>-->
+		<item>@android:color/transparent</item>
+		<item>@color/colorDimmed</item>
 
 		<!-- [11] -->
-		<!--		<item>@android:color/transparent</item>-->
-		<!--		<item>@color/ok_button_color</item>-->
-
-		<!-- [12] -->
-		<!--		<item>@android:color/transparent</item>-->
-		<!--		<item>@color/err_button_color</item>-->
-
-		<!-- [13] -->
-		<!--		<item>@android:color/transparent</item>-->
-		<!--		<item>@color/swipe_down_1_color</item>-->
-
-		<!-- [14] -->
-		<!--		<item>@android:color/transparent</item>-->
-		<!--		<item>@color/swipe_down_2_color</item>-->
-
-		<!-- [15] -->
-		<!--		<item>@color/info_button_color</item>-->
-		<!--		<item>@color/onSecondaryColor</item>-->
-
-		<!-- [16] -->
-		<!--		<item>@color/info_button_activated_color</item>-->
-		<!--		<item>@color/onSecondaryColor</item>-->
-
-		<!-- [17] -->
-		<!--		<item>@color/err_button_color</item>-->
-		<!--		<item>@color/onSecondaryColor</item>-->
+		<item>@android:color/transparent</item>
+		<item>@color/shadow</item>
 
 	</array>
 
