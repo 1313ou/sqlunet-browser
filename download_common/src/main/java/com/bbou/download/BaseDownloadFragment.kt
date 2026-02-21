@@ -8,26 +8,23 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.annotation.UiThread
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.bbou.download.Keys.CANCEL_BTN_STATE
 import com.bbou.download.Keys.DEPLOY_BTN_STATE
-import com.bbou.download.Keys.DOWNLOAD_BTN_BACKGROUND_STATE
-import com.bbou.download.Keys.DOWNLOAD_BTN_IMAGE_STATE
 import com.bbou.download.Keys.DOWNLOAD_BTN_STATE
 import com.bbou.download.Keys.DOWNLOAD_FROM_ARG
 import com.bbou.download.Keys.DOWNLOAD_TARGET_FILE_ARG
@@ -40,9 +37,9 @@ import com.bbou.download.Notifier.Companion.ACTION_DOWNLOAD_CANCEL
 import com.bbou.download.common.R
 import com.bbou.download.preference.Settings
 import com.bbou.download.storage.FormatUtils.formatAsInformationString
+import com.google.android.material.button.MaterialButton
 import java.io.File
 import java.util.concurrent.atomic.AtomicBoolean
-import kotlin.properties.Delegates
 
 /**
  * Base download fragment that handles
@@ -210,7 +207,7 @@ abstract class BaseDownloadFragment : Fragment() {
     /**
      * Download button
      */
-    private lateinit var downloadButton: ImageButton
+    private lateinit var downloadButton: MaterialButton
 
     // R E S O U R C E S
 
@@ -218,16 +215,6 @@ abstract class BaseDownloadFragment : Fragment() {
      * Layout id
      */
     abstract val layoutId: Int
-
-    /**
-     * Saved resource id of image applied to download button
-     */
-    private var downloadButtonImageResId by Delegates.notNull<Int>()
-
-    /**
-     * Saved resource id of background applied to download button
-     */
-    private var downloadButtonBackgroundResId by Delegates.notNull<Int>()
 
     // L I F E C Y C L E
 
@@ -282,10 +269,6 @@ abstract class BaseDownloadFragment : Fragment() {
         progressBar = view.findViewById(R.id.progressBar)
         progressStatus = view.findViewById(R.id.progressStatus)
         statusTextView = view.findViewById(R.id.status)
-
-        // default button resources
-        downloadButtonImageResId = R.drawable.bn_download
-        downloadButtonBackgroundResId = R.drawable.bg_button_action
 
         // buttons
         downloadButton = view.findViewById(R.id.downloadButton)
@@ -354,11 +337,6 @@ abstract class BaseDownloadFragment : Fragment() {
         if (savedInstanceState != null) {
 
             downloadButton.visibility = savedInstanceState.getInt(DOWNLOAD_BTN_STATE, View.VISIBLE)
-            downloadButtonImageResId = savedInstanceState.getInt(DOWNLOAD_BTN_IMAGE_STATE, R.drawable.bn_download)
-            val drawable = AppCompatResources.getDrawable(requireContext(), downloadButtonImageResId)!!
-            downloadButton.setImageDrawable(drawable)
-            downloadButtonBackgroundResId = savedInstanceState.getInt(DOWNLOAD_BTN_BACKGROUND_STATE, R.drawable.bg_button_action)
-            downloadButton.setBackgroundResource(downloadButtonBackgroundResId)
 
             progressBar.visibility = savedInstanceState.getInt(PROGRESS_STATE, View.INVISIBLE)
             progressStatus.visibility = savedInstanceState.getInt(PROGRESS_STATUS_STATE, View.INVISIBLE)
@@ -377,8 +355,6 @@ abstract class BaseDownloadFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(DOWNLOAD_BTN_STATE, downloadButton.visibility)
-        outState.putInt(DOWNLOAD_BTN_IMAGE_STATE, downloadButtonImageResId)
-        outState.putInt(DOWNLOAD_BTN_BACKGROUND_STATE, downloadButtonBackgroundResId)
         outState.putInt(CANCEL_BTN_STATE, cancelButton.visibility)
         deployButton?.visibility?.let { outState.putInt(DEPLOY_BTN_STATE, it) }
         md5Button?.visibility?.let { outState.putInt(MD5_BTN_STATE, it) }
@@ -530,11 +506,10 @@ abstract class BaseDownloadFragment : Fragment() {
         statusTextView.visibility = View.VISIBLE
 
         // buttons
-        downloadButtonImageResId = if (status == Status.STATUS_SUCCEEDED) R.drawable.bn_download_ok else R.drawable.bn_download
-        val drawable = AppCompatResources.getDrawable(requireContext(), downloadButtonImageResId)!!
-        downloadButton.setImageDrawable(drawable)
-        downloadButtonBackgroundResId = if (status == Status.STATUS_SUCCEEDED) R.drawable.bg_button_ok else R.drawable.bg_button_err
-        downloadButton.setBackgroundResource(downloadButtonBackgroundResId)
+        downloadButton.setIconResource(if (status == Status.STATUS_SUCCEEDED) R.drawable.bn_download_ok else R.drawable.bn_download)
+        val colorRes = if (status == Status.STATUS_SUCCEEDED) R.color.ok_button_color else R.color.err_button_color
+        val tint = ContextCompat.getColor(requireContext(), colorRes)
+        downloadButton.backgroundTintList = ColorStateList.valueOf(tint)
         downloadButton.isEnabled = false
         downloadButton.visibility = View.VISIBLE
 
