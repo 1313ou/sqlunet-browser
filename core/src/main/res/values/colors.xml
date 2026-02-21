@@ -12,8 +12,8 @@
 	<color name="activatedBackgroundColor">#80808080</color>
 
 	<!-- surface -->
-	<color name="surfaceColor">#4251bd</color>
-	<color name="surfaceVariantColor">#293073</color>
+	<color name="surfaceColor">#BABDDB</color>
+	<color name="surfaceVariantColor">#9195BD</color>
 	<color name="onSurfaceColor">#cccccc</color>
 
 	<!-- primary -->
