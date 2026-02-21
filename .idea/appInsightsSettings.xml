@@ -9,7 +9,7 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="org.sqlunet.browser" />
+                  <option name="appId" value="org.sqlunet.browser.ewn" />
                 </ConnectionSetting>
               </option>
               <option name="failureTypes">
