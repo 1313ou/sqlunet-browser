@@ -6,10 +6,10 @@
 
 	<!-- Filter -->
 	<string name="pref_title_enable_wordnet">Enable WordNet</string>
-	<string name="pref_description_enable_wordnet">Display WordNet information</string>
+	<string name="pref_description_enable_wordnet">Display WordNet data</string>
 	<string name="pref_title_enable_syntagnet">Enable SyntagNet</string>
-	<string name="pref_description_enable_syntagnet">Display SyntagNet information</string>
+	<string name="pref_description_enable_syntagnet">Display SyntagNet data</string>
 	<string name="pref_title_enable_bnc">Enable BNC</string>
-	<string name="pref_description_enable_bnc">Display BNC information</string>
+	<string name="pref_description_enable_bnc">Display BNC data</string>
 
 </resources>
