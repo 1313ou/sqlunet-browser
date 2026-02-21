@@ -300,7 +300,7 @@
 			android:text="@string/status_state_unknown" />
 
 		<include
-			android:id="@+id/update"
+			android:id="@+id/updateButton"
 			layout="@layout/button_update"
 			android:layout_width="64dp"
 			android:layout_height="64dp"
