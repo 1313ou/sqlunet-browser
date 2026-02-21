@@ -114,10 +114,26 @@
 	</style>
 
 	<!-- -->
-	<style name="ActionButton" parent="Widget.AppCompat.Button.Borderless">
-		<item name="android:tint">?attr/colorOnSecondary</item>
+	<style name="BaseButton" parent="Widget.Material3.Button.IconButton">
 		<item name="android:layout_width">@dimen/action_button_diameter</item>
 		<item name="android:layout_height">@dimen/action_button_diameter</item>
+		<item name="android:layout_centerHorizontal">true</item>
+		<item name="android:layout_centerVertical">true</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="backgroundTint">?attr/colorPrimary</item>
+		<item name="iconGravity">textStart</item>
+		<item name="iconPadding">0dp</item>
+		<item name="iconSize">@dimen/action_button_icon_diameter</item>
+	</style>
+
+	<style name="ActionButton" parent="BaseButton">
+		<item name="iconTint">?attr/colorOnPrimary</item>
+		<item name="android:tint">?attr/colorOnPrimary</item>
+	</style>
+
+	<style name="InfoButton" parent="BaseButton">
+		<item name="iconTint">?attr/colorOnSecondary</item>
+		<item name="android:tint">?attr/colorOnSecondary</item>
 	</style>
 
 </resources>

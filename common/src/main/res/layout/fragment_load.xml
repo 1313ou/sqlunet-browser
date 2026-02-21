@@ -3,12 +3,9 @@
   -->
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:layout_weight="1"
-	android:clipToPadding="false"
-	android:fillViewport="false"
-	android:orientation="vertical">
+	android:layout_height="match_parent">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -71,16 +68,11 @@
 			android:gravity="center_horizontal"
 			android:text="@string/action_assetload" />
 
-		<ImageButton
+		<com.google.android.material.button.MaterialButton
 			android:id="@+id/assetload"
 			style="@style/ActionButton"
-			android:layout_width="64dp"
-			android:layout_height="64dp"
-			android:layout_gravity="center_horizontal"
-			android:background="@drawable/bg_button_action"
 			android:contentDescription="@string/description_assetload"
-			android:src="@drawable/bn_assetload"
-			android:text="@string/action_assetload" />
+			app:icon="@drawable/bn_assetload" />
 
 		<TextView
 			android:layout_width="wrap_content"
@@ -101,16 +93,11 @@
 			android:gravity="center_horizontal"
 			android:text="@string/action_download" />
 
-		<ImageButton
+		<com.google.android.material.button.MaterialButton
 			android:id="@+id/download"
 			style="@style/ActionButton"
-			android:layout_width="64dp"
-			android:layout_height="64dp"
-			android:layout_gravity="center_horizontal"
-			android:background="@drawable/bg_button_action"
 			android:contentDescription="@string/description_download_datapack"
-			android:src="@drawable/bn_download"
-			android:text="@string/action_download" />
+			app:icon="@drawable/bn_download" />
 
 		<TextView
 			android:layout_width="wrap_content"

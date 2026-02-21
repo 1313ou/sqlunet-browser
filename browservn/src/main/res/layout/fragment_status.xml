@@ -5,6 +5,7 @@
   -->
 
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/swipe_refresh"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
@@ -60,21 +61,17 @@
 						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_database" />
 
-					<ImageButton
+					<com.google.android.material.button.MaterialButton
 						android:id="@+id/databaseButton"
-						style="@style/GridActionButton"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
+						style="@style/ActionButton"
 						android:contentDescription="@string/description_action_database"
-						android:src="@drawable/bn_download" />
+						app:icon="@drawable/bn_download" />
 
-					<ImageButton
+					<com.google.android.material.button.MaterialButton
 						android:id="@+id/info_database"
-						style="@style/GridInfoButton"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
+						style="@style/InfoButton"
 						android:contentDescription="@string/description_info_database"
-						android:src="@drawable/bn_info" />
+						app:icon="@drawable/bn_info" />
 
 				</LinearLayout>
 
@@ -95,13 +92,11 @@
 						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_indexes" />
 
-					<ImageButton
+					<com.google.android.material.button.MaterialButton
 						android:id="@+id/indexesButton"
-						style="@style/GridActionButton"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
+						style="@style/ActionButton"
 						android:contentDescription="@string/description_action_indexes"
-						android:src="@drawable/bn_setup" />
+						app:icon="@drawable/bn_setup" />
 
 				</LinearLayout>
 
@@ -122,13 +117,11 @@
 						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_searchtext_vn" />
 
-					<ImageButton
+					<com.google.android.material.button.MaterialButton
 						android:id="@+id/searchtextVnButton"
-						style="@style/GridActionButton"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
+						style="@style/ActionButton"
 						android:contentDescription="@string/description_action_searchtext_vn"
-						android:src="@drawable/bn_setup" />
+						app:icon="@drawable/bn_setup" />
 
 				</LinearLayout>
 
@@ -149,13 +142,11 @@
 						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_searchtext_pb" />
 
-					<ImageButton
+					<com.google.android.material.button.MaterialButton
 						android:id="@+id/searchtextPbButton"
-						style="@style/GridActionButton"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
+						style="@style/ActionButton"
 						android:contentDescription="@string/description_action_searchtext_pb"
-						android:src="@drawable/bn_setup" />
+						app:icon="@drawable/bn_setup" />
 
 				</LinearLayout>
 
