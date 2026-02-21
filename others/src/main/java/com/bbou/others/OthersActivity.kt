@@ -67,7 +67,7 @@ class OthersActivity : BaseActivity() {
             val goToMarket = Intent(Intent.ACTION_VIEW).setData(uri!!.toUri())
             try {
                 activity.startActivity(goToMarket)
-            } catch (e: ActivityNotFoundException) {
+            } catch (_: ActivityNotFoundException) {
                 var message: String? = activity.getString(R.string.market_fail)
                 message += ' '
                 message += uri
@@ -84,7 +84,7 @@ class OthersActivity : BaseActivity() {
                     packageManager.getPackageInfo(uri, PackageManager.GET_ACTIVITIES)
                 }
                 true
-            } catch (e: PackageManager.NameNotFoundException) {
+            } catch (_: PackageManager.NameNotFoundException) {
                 false
             }
             return isInstalled
