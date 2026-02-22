@@ -95,8 +95,6 @@ internal class HomeImageView : AppCompatImageView {
                 val html = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) Html.fromHtml(message, 0) else @Suppress("DEPRECATION") Html.fromHtml(message)
                 //Log.i("Pick ", message);
                 val snackbar = Snackbar.make(v, html, Snackbar.LENGTH_LONG)
-                // View snackBarView = snackbar.getView();
-                // snackBarView.setBackgroundColor(context.getResources().getColor(R.color.secondaryColor));
                 snackbar.show()
             }
             false
