@@ -8,11 +8,16 @@ import android.content.res.Resources
 import android.content.res.Resources.Theme
 import android.graphics.drawable.Drawable
 import android.util.TypedValue
+import android.view.View
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.StyleRes
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
+import androidx.core.content.withStyledAttributes
+import com.google.android.material.color.MaterialColors
 
 /**
  * Color utils
@@ -56,19 +61,50 @@ object ColorUtils {
         return AppCompatResources.getDrawable(context, resId)
     }
 
+    //@ColorInt
+    //fun fetchColor(context: Context, @AttrRes attr: Int): Int {
+    //    val typedValue = TypedValue()
+    //    val theme = context.theme
+    //    theme.resolveAttribute(attr, typedValue, true)
+    //    return typedValue.data
+    //}
+
     @ColorInt
     fun fetchColor(context: Context, @AttrRes attr: Int): Int {
         val typedValue = TypedValue()
         val theme = context.theme
         theme.resolveAttribute(attr, typedValue, true)
-        return typedValue.data
+        return ContextCompat.getColor(context, typedValue.resourceId)
     }
 
     @ColorRes
-    fun fetchColorRes(context: Context, @AttrRes attr: Int): Int {
+    fun fetchColorResId(context: Context, @AttrRes attr: Int): Int {
         val typedValue = TypedValue()
         val theme = context.theme
         theme.resolveAttribute(attr, typedValue, true)
         return typedValue.resourceId
+    }
+
+    @ColorInt
+    fun fetchColors(view: View): Pair<Int, Int> {
+        val backgroundColor = MaterialColors.getColor(view, android.R.attr.background)
+        val textColor = MaterialColors.getColor(view, android.R.attr.textColor)
+        return backgroundColor to textColor
+    }
+
+    @ColorInt
+    fun fetchTextColor(view: View): Int {
+        return MaterialColors.getColor(view, android.R.attr.background)
+    }
+
+    fun fetchColorsFromStyle(context: Context, @StyleRes style: Int, @AttrRes attrs: IntArray): IntArray {
+        // 'context' is Activity or View's context
+        val colors = IntArray(attrs.size)
+        context.withStyledAttributes(style, attrs) {
+            for (i in attrs.indices) {
+                colors[i] = getColor(i, 0)
+            }
+        }
+        return colors
     }
 }
