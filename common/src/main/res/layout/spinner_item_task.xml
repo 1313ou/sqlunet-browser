@@ -16,7 +16,7 @@
 	android:gravity="center"
 	android:paddingBottom="5dp"
 	android:singleLine="true"
-	android:textColor="?attr/colorOnSecondary"
+	android:textColor="?attr/colorOnPrimary"
 	android:textIsSelectable="false"
 	app:drawableBottomCompat="?android:attr/listDivider" />
 
