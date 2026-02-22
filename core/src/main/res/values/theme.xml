@@ -9,8 +9,8 @@
 		<!-- C O L O R S -->
 
 		<!-- framework colors -->
-		<item name="colorSurface">@color/surfaceColor</item>
-		<item name="colorOnSurface">@color/onSurfaceColor</item>
+		<item name="colorSurface">@color/backgroundColor</item>
+		<item name="colorOnSurface">@color/foregroundColor</item>
 
 		<item name="colorPrimary">@color/primaryColor</item>
 		<item name="colorOnPrimary">@color/onPrimaryColor</item>

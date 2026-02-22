@@ -8,14 +8,16 @@
 
 	<!-- Custom surface overlay -->
 	<style name="MySurfaceOverlay" parent="ThemeOverlay.Material3">
-		<item name="android:background">?attr/colorSurface</item>
-		<item name="android:textColor">?attr/colorOnSurface</item>
+		<item name="android:background">@color/surfaceColor</item>
+		<item name="android:textColor">@color/onSurfaceColor</item>
 	</style>
 
 	<!-- S T Y L E S -->
 
 	<!-- This is the new style you need to add -->
 	<style name="MyAppBarLayout" parent="Widget.Material3.AppBarLayout">
+		<item name="android:background">@color/surfaceColor</item>
+		<item name="android:textColor">@color/onSurfaceColor</item>
 		<!-- This prevents the AppBarLayout from applying an elevation overlay that would cover the statusBarColor -->
 		<item name="liftOnScroll">false</item>
 	</style>
