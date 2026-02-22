@@ -4,11 +4,11 @@
 
 <resources>
 
-	<style name="Base.Framework" parent="Theme.Material3.DayNight.NoActionBar">
+	<style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
 		<!-- from material builder -->
 	</style>
 
-	<style name="Base.MyTheme" parent="Base.Framework">
+	<style name="Base.MyTheme" parent="AppTheme">
 
 		<!-- O V E R R I D E S -->
 
