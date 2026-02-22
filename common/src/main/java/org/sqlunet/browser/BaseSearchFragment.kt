@@ -176,10 +176,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // title
         toolbar.setTitle(R.string.title_activity_browse)
         // toolbar.setSubtitle(R.string.app_subname)
-
-        // background
-        // val color = fetchColor(requireContext(), androidx.appcompat.R.attr.colorPrimary)
-        // toolbar.background = color.toDrawable()
     }
 
     /**
