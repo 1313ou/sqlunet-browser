@@ -4,15 +4,9 @@
 
 <resources>
 
-	<color name="surfaceColor">#4D5647</color>
-	<color name="surfaceVariantColor">#67725E</color>
-	<color name="onSurfaceColor">#cccccc</color>
-
-	<color name="primaryColor">#DECA6F</color>
-	<color name="onPrimaryColor">#444444</color>
-
-	<color name="secondaryColor">#e9c41d</color>
-	<color name="onSecondaryColor">#444444</color>
+	<color name="customColor">#4D5647</color>
+	<color name="customVariantColor">#67725E</color>
+	<color name="onCustomColor">#cccccc</color>
 
 	<color name="colorId">#e9c41d</color>
 	<color name="colorName">#e9c41d</color>

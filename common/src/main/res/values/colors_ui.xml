@@ -18,42 +18,34 @@
 		<item>@color/foregroundColor</item>
 
 		<!-- [2] -->
-		<item>@color/primaryColor</item>
-		<item>@color/onPrimaryColor</item>
+		<item>@color/customColor</item>
+		<item>?attr/colorPrimary</item>
 
 		<!-- [3] -->
-		<item>@color/secondaryColor</item>
-		<item>@color/onSecondaryColor</item>
+		<item>@color/customColor</item>
+		<item>?attr/colorPrimary</item>
 
 		<!-- [4] -->
-		<item>@color/surfaceColor</item>
-		<item>@color/primaryColor</item>
-
-		<!-- [5] -->
-		<item>@color/surfaceColor</item>
-		<item>@color/secondaryColor</item>
-
-		<!-- [6] -->
 		<item>@android:color/transparent</item>
 		<item>@color/colorId</item>
 
-		<!-- [7] -->
+		<!-- [5] -->
 		<item>@android:color/transparent</item>
 		<item>@color/colorDefinition</item>
 
-		<!-- [8] -->
+		<!-- [6] -->
 		<item>@android:color/transparent</item>
 		<item>@color/colorCased</item>
 
-		<!-- [9] -->
+		<!-- [7] -->
 		<item>@android:color/transparent</item>
 		<item>@color/colorPronunciation</item>
 
-		<!-- [10] -->
+		<!-- [8] -->
 		<item>@android:color/transparent</item>
 		<item>@color/colorDimmed</item>
 
-		<!-- [11] -->
+		<!-- [9] -->
 		<item>@android:color/transparent</item>
 		<item>@color/shadow</item>
 

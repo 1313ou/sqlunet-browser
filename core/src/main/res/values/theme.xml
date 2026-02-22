@@ -31,7 +31,7 @@
 		<!-- S T Y L E S -->
 
 		<!-- menu dropdown -->
-		<item name="popupMenuBackground">@color/surfaceColor</item>
+		<item name="popupMenuBackground">@color/customColor</item>
 
 		<!--app bar -->
 		<item name="appBarLayoutStyle">@style/MyAppBarLayout</item>

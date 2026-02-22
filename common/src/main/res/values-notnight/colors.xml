@@ -9,14 +9,6 @@
 	<color name="foregroundColor">#404040</color> <!-- generic window foreground -->
 	<color name="activatedBackgroundColor">#40FFFF00</color>
 
-	<!-- primary -->
-	<color name="primaryColor">#4251bd</color>
-	<color name="onPrimaryColor">#cccccc</color> <!-- framework + nav, tabs -->
-
-	<!-- secondary -->
-	<color name="secondaryColor">#ef2063</color>
-	<color name="onSecondaryColor">#F0F0F0</color>
-
 	<!-- S T Y L E  A T T R  -->
 
 	<!-- text - must display on colorBackground (variants of colorOnBackground) -->
