@@ -296,7 +296,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     val textView = view.findViewById<TextView>(android.R.id.text1)
                     textView.text = ""
                     val resId = modeIcons[position]
-                    val drawable = getDrawable(context, resId)!!
+                    val drawable = getDrawable(context, resId)
                     textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
                     return view
                 }
@@ -307,7 +307,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     val textView = view.findViewById<TextView>(android.R.id.text1)
                     textView.text = rowItem
                     val resId = modeIcons[position]
-                    val drawable = getDrawable(context, resId)!!
+                    val drawable = getDrawable(context, resId)
                     textView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
                     return view
                 }
