@@ -53,6 +53,13 @@
 		<!--app bar -->
 		<item name="appBarLayoutStyle">@style/MyAppBarLayout</item>
 
+		<!-- dropdowns -->
+		<item name="android:dropDownListViewStyle">@style/MyDropDownListViewStyle</item>
+		<item name="android:dropDownItemStyle">@style/MyDropDownItemStyle</item>
+
+		<!-- autocomplete text view -->
+		<item name="android:autoCompleteTextViewStyle">@style/MyAutoCompleteTextViewStyle</item>
+
 	</style>
 
 	<style name="MyTheme" parent="Base.MyTheme" />
