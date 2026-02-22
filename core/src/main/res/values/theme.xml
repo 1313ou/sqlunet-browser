@@ -4,11 +4,8 @@
 
 <resources>
 
-	<style name="Base.MyTheme" parent="Theme.Material3.DayNight.NoActionBar">
+	<style name="Base.Framework" parent="Theme.Material3.DayNight.NoActionBar">
 
-		<!-- C O L O R S -->
-
-		<!-- framework colors -->
 		<item name="colorSurface">@color/backgroundColor</item>
 		<item name="colorOnSurface">@color/foregroundColor</item>
 
@@ -21,6 +18,13 @@
 
 		<!-- caret -->
 		<item name="colorControlActivated">@color/secondaryColor</item>-->
+	</style>
+
+	<style name="Base.MyTheme" parent="Base.Framework">
+
+		<!-- C O L O R S -->
+
+		<!-- framework colors -->
 
 		<!-- O V E R R I D E S -->
 
