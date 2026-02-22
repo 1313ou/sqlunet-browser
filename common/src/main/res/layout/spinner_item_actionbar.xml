@@ -5,10 +5,12 @@
   -->
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@android:id/text1"
 	style="?android:attr/spinnerItemStyle"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:background="@null"
 	android:gravity="center"
-	android:textColor="?attr/colorOnSurface" />
+	android:textColor="?attr/colorOnSurface"
+	app:drawableTint="?attr/colorOnSurface" />

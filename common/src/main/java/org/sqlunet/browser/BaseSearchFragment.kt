@@ -24,7 +24,6 @@ import android.widget.BaseAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.annotation.ArrayRes
-import androidx.annotation.AttrRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
 import androidx.appcompat.app.AppCompatActivity
@@ -32,15 +31,11 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.core.view.size
 import androidx.lifecycle.Lifecycle
-import org.sqlunet.browser.ColorUtils.fetchColor
 import org.sqlunet.browser.ColorUtils.getDrawable
-import org.sqlunet.browser.ColorUtils.tint
 import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
-import androidx.core.view.size
-import androidx.core.graphics.drawable.toDrawable
-import com.google.android.material.R as MaterialR
 
 /**
  * Base search fragment
@@ -125,6 +120,10 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 // must have
                 val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
                 setupToolBar(toolbar)
+
+                // spinner, added to toolbar if it does not have one
+                val spinner = ensureSpinner()
+                acquireSpinner(spinner)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -139,27 +138,17 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         menuHost.addMenuProvider(menuProvider, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        // spinner, added to toolbar if it does not have one
-        val spinner = ensureSpinner()
-        // acquire it
-        acquireSpinner(spinner)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
+        toolbar.setSubtitle(R.string.app_subname)
+        // spinner
+        releaseSpinner(spinner!!)
     }
 
     override fun onPause() {
         super.onPause()
         closeKeyboard()
-        // after resume
-        val spinner = spinner!!
-        releaseSpinner(spinner)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
-        toolbar.setSubtitle(R.string.app_subname)
     }
 
     // T O O L B A R
@@ -307,9 +296,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     val textView = view.findViewById<TextView>(android.R.id.text1)
                     textView.text = ""
                     val resId = modeIcons[position]
-                    val drawable = getDrawable(context, resId)
-                    val color = fetchColor(context, MaterialR.attr.colorOnSurface)
-                    tint(color, drawable!!)
+                    val drawable = getDrawable(context, resId)!!
                     textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
                     return view
                 }
@@ -320,9 +307,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     val textView = view.findViewById<TextView>(android.R.id.text1)
                     textView.text = rowItem
                     val resId = modeIcons[position]
-                    val drawable = getDrawable(context, resId)
-                    val color = fetchColor(context, MaterialR.attr.colorOnSurface)
-                    tint(color, drawable!!)
+                    val drawable = getDrawable(context, resId)!!
                     textView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
                     return view
                 }

@@ -14,7 +14,8 @@
 	android:background="?attr/colorSurface"
 	android:ellipsize="marquee"
 	android:gravity="center"
+	android:singleLine="true"
 	android:textColor="?attr/colorOnSurface"
 	android:textIsSelectable="false"
-	android:singleLine="true"
-	app:drawableBottomCompat="?android:attr/listDivider" />
+	app:drawableBottomCompat="?android:attr/listDivider"
+	app:drawableTint="?attr/colorOnSurface" />
