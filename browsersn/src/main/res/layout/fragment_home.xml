@@ -30,12 +30,12 @@
 		android:elevation="4dp"
 		android:focusable="true"
 		android:visibility="visible"
-		app:backgroundTint="?attr/colorSecondary"
+		app:backgroundTint="?attr/colorPrimary"
 		app:fabSize="normal"
 		app:layout_anchor="@+id/container_home"
 		app:layout_anchorGravity="bottom|end"
 		app:srcCompat="@drawable/ic_search_browse"
-		app:tint="?attr/colorOnSecondary"
+		app:tint="?attr/colorOnPrimary"
 		app:useCompatPadding="true" />
 
 </FrameLayout>
