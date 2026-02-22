@@ -31,7 +31,7 @@
 	<!-- Dropdown item -->
 	<style name="MyDropDownItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
 		<item name="android:background">@color/customColor</item>
-		<item name="android:textColor">>@color/onCustomColor</item>
+		<item name="android:textColor">@color/onCustomColor</item>
 		<item name="android:textSize">14sp</item>
 	</style>
 
