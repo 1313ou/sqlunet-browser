@@ -24,20 +24,20 @@
 
 	<!-- Dropdown list -->
 	<style name="MyDropDownListViewStyle" parent="Widget.AppCompat.ListView.DropDown">
-		<item name="android:background">?attr/colorSurface</item>
-		<item name="android:textColor">?attr/colorOnSurface</item>
+		<item name="android:background">@color/customColor</item>
+		<item name="android:textColor">@color/onCustomColor</item>
 	</style>
 
 	<!-- Dropdown item -->
 	<style name="MyDropDownItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
-		<item name="android:background">?attr/colorSurface</item>
-		<item name="android:textColor">?attr/colorOnSurface</item>
+		<item name="android:background">@color/customColor</item>
+		<item name="android:textColor">>@color/onCustomColor</item>
 		<item name="android:textSize">14sp</item>
 	</style>
 
 	<!-- Autocomplete -->
 	<style name="MyAutoCompleteTextViewStyle" parent="Widget.AppCompat.Light.AutoCompleteTextView">
-		<item name="android:popupBackground">?attr/colorSurface</item>
+		<item name="android:popupBackground">@color/customColor</item>
 	</style>
 
 </resources>
