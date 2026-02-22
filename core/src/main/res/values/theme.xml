@@ -5,33 +5,12 @@
 <resources>
 
 	<style name="Base.Framework" parent="Theme.Material3.DayNight.NoActionBar">
-
-		<item name="colorSurface">@color/backgroundColor</item>
-		<item name="colorOnSurface">@color/foregroundColor</item>
-
-		<item name="colorPrimary">@color/primaryColor</item>
-		<item name="colorOnPrimary">@color/onPrimaryColor</item>
-
-		<!-- requires attention : snackbar, fab -->
-		<item name="colorSecondary">@color/secondaryColor</item>
-		<item name="colorOnSecondary">@color/onSecondaryColor</item>
-
-		<!-- caret -->
-		<item name="colorControlActivated">@color/secondaryColor</item>-->
+		<!-- from material builder -->
 	</style>
 
 	<style name="Base.MyTheme" parent="Base.Framework">
 
-		<!-- C O L O R S -->
-
-		<!-- framework colors -->
-
 		<!-- O V E R R I D E S -->
-
-		<!-- foreground and background -->
-		<!-- <item name="android:windowBackground">@color/backgroundColor</item>-->
-		<!-- <item name="android:colorBackground">@color/backgroundColor</item>-->
-		<!-- <item name="android:colorForeground">@color/foregroundColor</item>-->
 
 		<!-- transparent statusbar and navigation bar -->
 		<item name="android:statusBarColor">@android:color/transparent</item>
