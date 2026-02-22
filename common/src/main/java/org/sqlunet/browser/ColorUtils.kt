@@ -62,19 +62,6 @@ object ColorUtils {
     }
 
     /**
-     * Fetch background and text colors from view
-     *
-     * @param view view
-     * @return pair of colors
-     */
-    @ColorInt
-    fun fetchColorsFromView(view: View): Pair<Int, Int> {
-        val backgroundColor = fetchColorFromView(view, android.R.attr.background)
-        val textColor = fetchColorFromView(view, android.R.attr.textColor)
-        return backgroundColor to textColor
-    }
-
-    /**
      * Fetch text color
      *
      * @param view view
