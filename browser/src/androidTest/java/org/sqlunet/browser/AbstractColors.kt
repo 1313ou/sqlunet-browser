@@ -18,8 +18,8 @@ import org.junit.Test
 import org.sqlunet.browser.ColorsLib.dumpDefaultColors
 import org.sqlunet.browser.ColorsLib.testColorsFromResources
 import org.sqlunet.browser.NightMode.checkDarkMode
+import org.sqlunet.browser.test.R
 import org.sqlunet.bnc.R as BNCR
-import org.sqlunet.browser.common.R as CommonR
 import org.sqlunet.framenet.R as FrameNetR
 import org.sqlunet.predicatematrix.R as PredicateMatrixR
 import org.sqlunet.propbank.R as PropbankR
@@ -54,7 +54,7 @@ abstract class AbstractColors {
     @Throws(ColorsLib.IllegalColorPair::class)
     fun colorContrast() {
         assertTrue(checkDarkMode(mode))
-        testColorsFromResources(context, CommonR.array.palette_ui, false)
+        testColorsFromResources(context, R.array.palette_ui, false)
         testColorsFromResources(context, XNetR.array.palette, false)
         testColorsFromResources(context, WordNetR.array.palette_wn, false)
         testColorsFromResources(context, FrameNetR.array.palette_fn, false)
@@ -68,7 +68,7 @@ abstract class AbstractColors {
     fun colorContrastFail() {
         assertTrue(checkDarkMode(mode))
         try {
-            testColorsFromResources(context, CommonR.array.palette_ui, true)
+            testColorsFromResources(context, R.array.palette_ui, true)
             testColorsFromResources(context, XNetR.array.palette, true)
             testColorsFromResources(context, WordNetR.array.palette_wn, true)
             testColorsFromResources(context, FrameNetR.array.palette_fn, true)
