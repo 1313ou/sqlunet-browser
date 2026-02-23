@@ -120,10 +120,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 // must have
                 val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
                 setupToolBar(toolbar)
-
-                // spinner, added to toolbar if it does not have one
-                val spinner = ensureSpinner()
-                acquireSpinner(spinner)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -138,17 +134,37 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         menuHost.addMenuProvider(menuProvider, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
     }
 
+    /**
+     * On resume
+     * The fragment is responsible for activating the spinner while active.
+     * Activate spinner if not already activated.
+     */
+    override fun onResume() {
+        super.onResume()
+
+        // spinner, added to toolbar if it does not have one
+        val spinner = ensureSpinner()
+        // acquire it
+        acquireSpinner(spinner)
+    }
+
+     /**
+     * On pause
+     * The fragment is responsible for deactivating the spinner while active.
+     * Deactivate spinner.
+     */
+   override fun onPause() {
+        super.onPause()
+        closeKeyboard()
+        // after resume
+        val spinner = spinner!!
+        releaseSpinner(spinner)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
         toolbar.setSubtitle(R.string.app_subname)
-        // spinner
-        releaseSpinner(spinner!!)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        closeKeyboard()
     }
 
     // T O O L B A R
