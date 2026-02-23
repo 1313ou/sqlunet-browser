@@ -13,4 +13,4 @@
 	android:background="@null"
 	android:gravity="center"
 	android:textColor="@color/onCustomColor"
-	app:drawableTint="@color/customColor" />
+	app:drawableTint="@color/onCustomColor" />
