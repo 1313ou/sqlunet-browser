@@ -4,9 +4,7 @@
 
 <resources>
 
-	<color name="customColor">#766f58</color>
 	<color name="customVariantColor">#80795F</color>
-	<color name="onCustomColor">#EEEEEE</color>
 
 	<color name="colorId">#ffffff</color>
 	<color name="colorName">#f8dc4a</color>

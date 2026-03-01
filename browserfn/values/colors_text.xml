@@ -4,10 +4,6 @@
 
 <resources>
 
-	<color name="customColor">#B6ABA0</color>
-	<color name="customVariantColor">#78746A</color>
-	<color name="onCustomColor">#000000</color>
-
 	<color name="colorId">#007B66</color>
 	<color name="colorName">#007B66</color>
 	<color name="colorDefinition">#007B66</color>
