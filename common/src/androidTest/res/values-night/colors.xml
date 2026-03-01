@@ -3,6 +3,6 @@
   -->
 
 <resources>
-	<color name="backgroundColor">#404040</color> <!-- generic window background -->
-	<color name="foregroundColor">#E0E0E0</color> <!-- generic window foreground -->
+	<color name="backgroundColor">#404040</color>
+	<color name="foregroundColor">#E0E0E0</color>
 </resources>
