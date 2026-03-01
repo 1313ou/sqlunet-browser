@@ -18,11 +18,11 @@
         <item>@color/foregroundColor</item>
 
         <!-- [2] -->
-        <item>@color/customColor</item>
+        <item>?attr/colorCustom</item>
         <item>?attr/colorPrimary</item>
 
         <!-- [3] -->
-        <item>@color/customColor</item>
+        <item>?attr/colorCustom</item>
         <item>?attr/colorPrimary</item>
 
         <!-- [4] -->
