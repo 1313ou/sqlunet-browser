@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<resources>
+
+	<color name="customColor">#4D5647</color>
+	<color name="customVariantColor">#67725E</color>
+	<color name="onCustomColor">#cccccc</color>
+
+	<color name="colorId">#e9c41d</color>
+	<color name="colorName">#e9c41d</color>
+	<color name="colorDefinition">#e9c41d</color>
+	<color name="colorCased">#E65100</color>
+	<color name="colorPronunciation">#6F568E</color>
+	<color name="colorDimmed">#808080</color>
+
+</resources>
