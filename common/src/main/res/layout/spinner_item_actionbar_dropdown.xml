@@ -11,11 +11,11 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:layout_gravity="center"
-	android:background="@color/customColor"
+	android:background="?attr/colorCustom"
 	android:ellipsize="marquee"
 	android:gravity="center"
 	android:singleLine="true"
-	android:textColor="@color/onCustomColor"
+	android:textColor="?attr/colorOnCustom"
 	android:textIsSelectable="false"
 	app:drawableBottomCompat="?android:attr/listDivider"
-	app:drawableTint="@color/onCustomColor" />
+	app:drawableTint="?attr/colorOnCustom" />

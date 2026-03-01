@@ -17,7 +17,7 @@
 		android:background="@drawable/bg_spinner_actionbar"
 		android:gravity="start|center_vertical"
 		android:visibility="gone"
-		app:backgroundTint="@color/customColor"
-		app:tint="@color/onCustomColor" />
+		app:backgroundTint="?attr/colorCustom"
+		app:tint="?attr/colorOnCustom" />
 
 </LinearLayout>

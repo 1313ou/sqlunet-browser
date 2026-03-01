@@ -8,36 +8,36 @@
 
 	<!-- Custom surface overlay -->
 	<style name="MySurfaceOverlay" parent="ThemeOverlay.Material3">
-		<item name="android:background">@color/customColor</item>
-		<item name="android:textColor">@color/onCustomColor</item>
+		<item name="android:background">?attr/colorCustom</item>
+		<item name="android:textColor">?attr/colorOnCustom</item>
 	</style>
 
 	<!-- S T Y L E S -->
 
 	<!-- This is the new style you need to add -->
 	<style name="MyAppBarLayout" parent="Widget.Material3.AppBarLayout">
-		<item name="android:background">@color/customColor</item>
-		<item name="android:textColor">@color/onCustomColor</item>
+		<item name="android:background">?attr/colorCustom</item>
+		<item name="android:textColor">?attr/colorOnCustom</item>
 		<!-- This prevents the AppBarLayout from applying an elevation overlay that would cover the statusBarColor -->
 		<item name="liftOnScroll">false</item>
 	</style>
 
 	<!-- Dropdown list -->
 	<style name="MyDropDownListViewStyle" parent="Widget.AppCompat.ListView.DropDown">
-		<item name="android:background">@color/customColor</item>
-		<item name="android:textColor">@color/onCustomColor</item>
+		<item name="android:background">?attr/colorCustom</item>
+		<item name="android:textColor">?attr/colorOnCustom</item>
 	</style>
 
 	<!-- Dropdown item -->
 	<style name="MyDropDownItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
-		<item name="android:background">@color/customColor</item>
-		<item name="android:textColor">@color/onCustomColor</item>
+		<item name="android:background">?attr/colorCustom</item>
+		<item name="android:textColor">?attr/colorOnCustom</item>
 		<item name="android:textSize">14sp</item>
 	</style>
 
 	<!-- Autocomplete -->
 	<style name="MyAutoCompleteTextViewStyle" parent="Widget.AppCompat.Light.AutoCompleteTextView">
-		<item name="android:popupBackground">@color/customColor</item>
+		<item name="android:popupBackground">?attr/colorCustom</item>
 	</style>
 
 </resources>
