@@ -12,5 +12,5 @@
 	android:layout_height="wrap_content"
 	android:background="@null"
 	android:gravity="center"
-	android:textColor="@color/onCustomColor"
-	app:drawableTint="@color/onCustomColor" />
+	android:textColor="?attr/colorOnCustom"
+	app:drawableTint="?attr/colorOnCustom" />
