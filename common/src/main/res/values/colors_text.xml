@@ -4,13 +4,6 @@
 
 <resources>
 
-	<!-- generic -->
-	<color name="backgroundColor">#D0D0D0</color> <!-- generic window background -->
-	<color name="foregroundColor">#404040</color> <!-- generic window foreground -->
-	<color name="activatedBackgroundColor">#40FFFF00</color>
-
-	<!-- S T Y L E  A T T R  -->
-
 	<!-- text - must display on colorBackground (variants of colorOnBackground) -->
 	<color name="colorId">#ef2063</color>
 	<color name="colorName">#ef2063</color> <!--  -->
@@ -18,10 +11,5 @@
 	<color name="colorCased">#880E4F</color> <!--  -->
 	<color name="colorPronunciation">#006064</color> <!--  -->
 	<color name="colorDimmed">#808080</color> <!--  -->
-
-	<!-- B A S E -->
-
-	<!-- shadow -->
-	<color name="shadow">#80202020</color>
 
 </resources>

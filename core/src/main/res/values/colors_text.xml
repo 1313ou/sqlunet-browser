@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<resources>
+
+	<!-- S T Y L E  A T T R  -->
+
+	<!-- text -->
+	<color name="colorId">#e46d42</color> <!-- Data.SenseKey-->
+	<color name="colorName">#e46d42</color> <!-- Data.FnFrameName-->
+	<color name="colorDefinition">#e46d42</color> <!-- Data.Definition Data.XDefinition-->
+	<color name="colorCased">#880E4F</color> <!-- Data.Cased -->
+	<color name="colorPronunciation">#006064</color> <!-- Data.Pronunciation -->
+	<color name="colorDimmed">#808080</color> <!-- Data.WordId Data.SynsetId Data.SenseId Data.SenseNum Data.SenseKey Data.LexId Data.PosId Data.TagCount
+		Data.XId Data.XWordId Data.XSynsetId Data.XSources Data.XInfo Data.XMemberId
+		Data.WnWordId Data.WnCased Data.WnSynsetId Data.WnSenseId  Data.WnSenseNum Data.WnSenseKey Data.WnLexId Data.WnTagCount
+		Data.FnId Data.FnWordId Data.FnFrameId
+		Data.VnWordId
+		Data.PbWordId -->
+
+</resources>

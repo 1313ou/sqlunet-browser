@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<resources>
+	<color name="backgroundColor">#404040</color> <!-- generic window background -->
+	<color name="foregroundColor">#E0E0E0</color> <!-- generic window foreground -->
+</resources>
