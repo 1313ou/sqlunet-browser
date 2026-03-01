@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/semantikos.iml" filepath="$PROJECT_DIR$/.idea/semantikos.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/semantikos.common.iml" filepath="$PROJECT_DIR$/.idea/modules/common/semantikos.common.iml" />
     </modules>
   </component>

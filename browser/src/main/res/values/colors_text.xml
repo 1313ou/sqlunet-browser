@@ -4,4 +4,15 @@
 
 <resources>
 
+	<color name="customColor">#AEC8D7</color>
+	<color name="customVariantColor">#648797</color>
+	<color name="onCustomColor">#000000</color>
+
+	<color name="colorId">#d500f9</color>
+	<color name="colorName">#d500f9</color>
+	<color name="colorDefinition">#d500f9</color>
+	<color name="colorCased">#C55A02</color>
+	<color name="colorPronunciation">#283593</color>
+	<color name="colorDimmed">#808080</color>
+
 </resources>
