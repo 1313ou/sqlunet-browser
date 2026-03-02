@@ -4,5 +4,6 @@
   <attr name="colorOnCustom" format="color" />
   <attr name="colorContainerCustom" format="color" />
   <attr name="colorOnContainerCustom" format="color" />
+  <attr name="colorCustomVariant" format="color" />
 </resources>
 

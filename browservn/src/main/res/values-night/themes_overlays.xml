@@ -4,6 +4,7 @@
 <style name="ThemeOverlays.AppTheme.MediumContrast" parent="Theme.Material3.Dark.NoActionBar">
 	<item name="colorCustom">@color/md_theme_custom</item>
 	<item name="colorOnCustom">@color/md_theme_onCustom</item>
+	<item name="colorCustomVariant">@color/md_theme_customVariant</item>
 	<item name="colorSurface">@color/md_theme_surface_mediumContrast</item>
 	<item name="colorOnSurface">@color/md_theme_onSurface_mediumContrast</item>
 	<item name="colorSurfaceVariant">@color/md_theme_surfaceVariant_mediumContrast</item>
@@ -57,6 +58,7 @@
 <style name="ThemeOverlays.AppTheme.HighContrast" parent="Theme.Material3.Dark.NoActionBar">
 	<item name="colorCustom">@color/md_theme_custom</item>
 	<item name="colorOnCustom">@color/md_theme_onCustom</item>
+	<item name="colorCustomVariant">@color/md_theme_customVariant</item>
 	<item name="colorSurface">@color/md_theme_surface_highContrast</item>
 	<item name="colorOnSurface">@color/md_theme_onSurface_highContrast</item>
 	<item name="colorSurfaceVariant">@color/md_theme_surfaceVariant_highContrast</item>
