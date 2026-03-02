@@ -1,0 +1,4 @@
+#4D5647  Charcoal grey
+#DECA6F  Sand
+#E9C41D  Gold
+#6F83DE  Periwinkle blue

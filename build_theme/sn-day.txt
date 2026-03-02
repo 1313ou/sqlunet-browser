@@ -1,0 +1,4 @@
+#D1C3E4  Pale lavender
+#CA491A  Rusty red
+#C75B33  Terra cotta
+#1A9BCA  Teal blue

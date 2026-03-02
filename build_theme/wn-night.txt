@@ -1,0 +1,4 @@
+#766F58  Brown grey
+#F8DC4A  Dark yellow
+#FFC500  Sunflower
+#98A8FB  Periwinkle blue

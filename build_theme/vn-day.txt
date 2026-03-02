@@ -1,0 +1,4 @@
+#CADBC2  Off white
+#96B384  Greyish green
+#954900  Warm brown
+#CEA400  Burnt yellow
