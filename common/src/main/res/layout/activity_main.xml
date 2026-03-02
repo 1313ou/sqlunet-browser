@@ -24,7 +24,6 @@
 		android:fitsSystemWindows="@bool/appbar_fits_system_windows"
 		android:textColor="?attr/colorOnCustom"
 		app:headerLayout="@layout/nav_header_main"
-		app:itemBackground="?attr/colorCustom"
 		app:itemIconTint="?attr/colorOnCustom"
 		app:itemTextColor="?attr/colorOnCustom"
 		app:menu="@menu/main_drawer"
