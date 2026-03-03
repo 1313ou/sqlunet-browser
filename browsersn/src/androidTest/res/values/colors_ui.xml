@@ -14,40 +14,32 @@
         <item>@android:color/transparent</item>
 
         <!-- [1] -->
-        <item>@color/backgroundColor</item>
-        <item>@color/foregroundColor</item>
+        <item>?attr/colorCustom</item>
+        <item>?attr/colorPrimary</item>
 
         <!-- [2] -->
         <item>?attr/colorCustom</item>
         <item>?attr/colorPrimary</item>
 
         <!-- [3] -->
-        <item>?attr/colorCustom</item>
-        <item>?attr/colorPrimary</item>
-
-        <!-- [4] -->
         <item>@android:color/transparent</item>
         <item>@color/colorId</item>
 
-        <!-- [5] -->
+        <!-- [4] -->
         <item>@android:color/transparent</item>
         <item>@color/colorDefinition</item>
 
-        <!-- [6] -->
+        <!-- [5] -->
         <item>@android:color/transparent</item>
         <item>@color/colorCased</item>
 
-        <!-- [7] -->
+        <!-- [6] -->
         <item>@android:color/transparent</item>
         <item>@color/colorPronunciation</item>
 
-        <!-- [8] -->
+        <!-- [7] -->
         <item>@android:color/transparent</item>
         <item>@color/colorDimmed</item>
-
-        <!-- [9] -->
-<!--        <item>@android:color/transparent</item>-->
-<!--        <item>@color/shadow</item>-->
 
     </array>
 
