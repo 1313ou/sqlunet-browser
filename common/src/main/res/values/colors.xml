@@ -12,7 +12,5 @@
 
 	<!-- activated color -->
 	<color name="activatedBackgroundColor">#40FFFF00</color>
-	<!-- shadow -->
-	<color name="shadow">#80202020</color>
 
 </resources>
