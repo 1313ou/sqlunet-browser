@@ -2,8 +2,8 @@
 <!-- light -->
 <resources>
 	<color name="md_theme_custom">#4D5647</color>
-	<color name="md_theme_onCustom">#C0CAB7</color>
-	<color name="md_theme_customVariant">#DFE4D7</color>
+	<color name="md_theme_onCustom">#F0FAE6</color>
+	<color name="md_theme_customVariant">#1C520A</color>
 	<color name="md_theme_surface">#FCF9F6</color>
 	<color name="md_theme_onSurface">#1B1C1A</color>
 	<color name="md_theme_surfaceVariant">#E1E3DA</color>

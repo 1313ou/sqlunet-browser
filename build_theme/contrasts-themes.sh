@@ -23,5 +23,9 @@ for m in ${!tasks[@]}; do
   seedsNight=${m}-night.txt
   echo -e "${Y}${m}${Z}"
 
-  ./build-theme.sh "$res" "$seedsDay" "$seedsNight"
-done  
+  echo -e "${B}day ${K} $seedsDay${Z}"
+  ./run.sh -o contrasts  -f "$seedsDay"
+
+   echo -e "${B}night ${K} $seedsNight${Z}"
+ ./run.sh -o contrasts  -f "$seedsNight"
+done
