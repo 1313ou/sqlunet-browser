@@ -1,12 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
+  -->
+
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="true">
-        <inset android:insetLeft="12dp" android:insetRight="12dp" android:insetTop="4dp" android:insetBottom="4dp">
-            <shape>
-                <corners android:radius="100dp" />
-                <solid android:color="?attr/colorSurfaceVariant" />
-            </shape>
-        </inset>
-    </item>
+	<item android:state_checked="true">
+		<inset android:insetLeft="12dp" android:insetTop="2dp" android:insetRight="12dp" android:insetBottom="2dp">
+			<shape>
+				<corners android:radius="100dp" />
+				<solid android:color="@color/custom_variant_with_alpha" />
+			</shape>
+		</inset>
+	</item>
+	<item android:state_activated="true">
+		<inset android:insetLeft="12dp" android:insetTop="2dp" android:insetRight="12dp" android:insetBottom="2dp">
+			<shape>
+				<corners android:radius="100dp" />
+				<solid android:color="@color/custom_variant_with_alpha" />
+			</shape>
+		</inset>
+	</item>
     <item android:drawable="@android:color/transparent" />
 </selector>
