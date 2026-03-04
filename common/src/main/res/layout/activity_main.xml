@@ -20,7 +20,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
 		android:layout_gravity="start"
-		android:background="@drawable/bg_nav"
+		android:background="?attr/colorCustom"
 		android:textColor="?attr/colorOnCustom"
 		android:fitsSystemWindows="@bool/appbar_fits_system_windows"
 		app:headerLayout="@layout/nav_header_main"
