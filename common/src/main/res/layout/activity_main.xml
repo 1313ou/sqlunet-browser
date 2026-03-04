@@ -22,17 +22,19 @@
 		android:layout_gravity="start"
 		android:background="@drawable/bg_nav"
 		android:fitsSystemWindows="@bool/appbar_fits_system_windows"
-		android:textColor="?attr/colorOnCustom"
 		app:headerLayout="@layout/nav_header_main"
-		app:itemActiveIndicatorStyle="@style/Widget.Material3.BottomNavigationView.ActiveIndicator"
-		app:itemBackground="@color/bg_item_nav"
+		app:itemBackground="@drawable/bg_nav_item_pill"
 		app:itemIconTint="?attr/colorOnCustom"
-		app:itemShapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
-		app:itemTextAppearanceActive="@macro/m3_comp_nav_bar_item_horizontal_label_text_font"
-		app:itemTextAppearanceInactive="@macro/m3_comp_nav_bar_item_horizontal_label_text_font"
 		app:itemTextColor="?attr/colorOnCustom"
-		app:menu="@menu/main_drawer"
-		app:tint="?attr/colorOnCustom" />
+		app:menu="@menu/main_drawer" />
+
+	<!--    android:textColor="?attr/colorOnCustom"-->
+	<!--    app:tint="?attr/colorOnCustom"-->
+
+	<!--	app:itemActiveIndicatorStyle="@style/Widget.Material3.BottomNavigationView.ActiveIndicator"-->
+	<!--	app:itemShapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"-->
+	<!--	app:itemTextAppearanceActive="@macro/m3_comp_nav_bar_item_horizontal_label_text_font"-->
+	<!--	app:itemTextAppearanceInactive="@macro/m3_comp_nav_bar_item_horizontal_label_text_font"-->
 
 	<!--	Selected Text/Icon Color	colorPrimary	The brand's primary color.-->
 	<!--	Unselected Text/Icon Color	colorOnSurfaceVariant	Medium-emphasis neutral.-->
