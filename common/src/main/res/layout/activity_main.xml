@@ -21,6 +21,7 @@
 		android:layout_height="match_parent"
 		android:layout_gravity="start"
 		android:background="@drawable/bg_nav"
+		android:textColor="?attr/colorOnCustom"
 		android:fitsSystemWindows="@bool/appbar_fits_system_windows"
 		app:headerLayout="@layout/nav_header_main"
 		app:itemBackground="@drawable/bg_nav_item_pill"
@@ -28,7 +29,6 @@
 		app:itemTextColor="?attr/colorOnCustom"
 		app:menu="@menu/main_drawer" />
 
-	<!--    android:textColor="?attr/colorOnCustom"-->
 	<!--    app:tint="?attr/colorOnCustom"-->
 
 	<!--	app:itemActiveIndicatorStyle="@style/Widget.Material3.BottomNavigationView.ActiveIndicator"-->
