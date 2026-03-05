@@ -88,7 +88,7 @@
 		<item name="android:paddingLeft">@dimen/grid_image_padding_horizontal</item>
 		<item name="android:paddingRight">@dimen/grid_image_padding_horizontal</item>
 		<item name="android:src">@drawable/ic_unknown</item>
-		<item name="android:tint">?attr/colorSecondary</item>
+		<item name="android:tint">?attr/colorOnCustom</item>
 	</style>
 
 	<!-- B U T T O N S-->
