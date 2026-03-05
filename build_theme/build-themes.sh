@@ -16,7 +16,11 @@ tasks=(
 
 ./convert_all_gpa.sh
 
-for m in ${!tasks[@]}; do
+all="$@"
+if [ -z "$all"]; then
+  all="${!tasks[@]}"
+  fi
+for m in ${all}; do
   d=${tasks[$m]}
   res=$H/$d/src/main/res
   seedsDay=${m}-day.txt 
