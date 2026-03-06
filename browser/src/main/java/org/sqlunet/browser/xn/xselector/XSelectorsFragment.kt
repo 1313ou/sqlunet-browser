@@ -30,7 +30,7 @@ import org.sqlunet.browser.xn.xselector.XSelectorPointer.Companion.getMask
 import org.sqlunet.loaders.Queries.prepareFnXSelect
 import org.sqlunet.loaders.Queries.preparePbXSelect
 import org.sqlunet.loaders.Queries.prepareVnXSelect
-import org.sqlunet.loaders.Queries.prepareWordPronunciationXSelect
+import org.sqlunet.loaders.Queries.prepareWordXSelect
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.provider.XNetContract.Words_FnWords_PbWords_VnWords
 import org.sqlunet.provider.XNetContract.Words_XNet_U
@@ -417,7 +417,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
      */
     private fun load() {
         // load the contents
-        val sql = prepareWordPronunciationXSelect(word!!)
+        val sql = prepareWordXSelect(word!!)
         val uri = XSqlUNetProvider.makeUri(sql.providerUri).toUri()
         wordIdFromWordModel!!.loadData(uri, sql) { cursor: Cursor -> wordIdFromWordPostProcess(cursor) }
     }
