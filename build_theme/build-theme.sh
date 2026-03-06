@@ -46,12 +46,11 @@ mkdir -p "$D/values-night"
 
 ./run.sh -o attrs > "$Dcore/values/attrs.xml"
 
-./run.sh -o themeday > "$D/values/themes.xml"
-./run.sh -o overlaysday > "$D/values/themes_overlays.xml"
+./run.sh -o theme_day > "$D/values/themes.xml"
+./run.sh -o overlays_day > "$D/values/themes_overlays.xml"
 
-./run.sh -o themenight > "$D/values-night/themes.xml"
-./run.sh -o overlaysnight > "$D/values-night/themes_overlays.xml"
+./run.sh -o theme_night > "$D/values-night/themes.xml"
+./run.sh -o overlays_night > "$D/values-night/themes_overlays.xml"
 
-./run.sh -o colorsday $seedsDay  -x > "$D/values/colors.xml"
-./run.sh -o colorsnight $seedsNight -x > "$D/values-night/colors.xml"
-
+./run.sh -o colors_day $seedsDay  -x > "$D/values/colors.xml"
+./run.sh -o colors_night $seedsNight -x > "$D/values-night/colors.xml"
