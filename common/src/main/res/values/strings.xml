@@ -207,6 +207,7 @@
 	<string name="title_history_import">Imported from</string>
 	<string name="title_history_export">Exported to</string>
 	<string name="title_history_deleted">History deleted</string>
+	<string name="title_sql_howto">Long-press to select and copy statement</string>
 
 	<!-- rows -->
 	<string name="description_row">row</string>
