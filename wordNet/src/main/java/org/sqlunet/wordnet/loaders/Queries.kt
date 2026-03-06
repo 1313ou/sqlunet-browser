@@ -84,6 +84,7 @@ object Queries {
             WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN + " AS " + XNetContract.Words_XNet_U.XHEADER,
             WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY + " AS " + XNetContract.Words_XNet_U.XINFO,
             WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION + " AS " + XNetContract.Words_XNet_U.XDEFINITION,
+            "NULL AS " + XNetContract.Words_XNet_U.XPRONUNCIATION,
             WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id"
         )
         providerSql.selection = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID + " = ?"
