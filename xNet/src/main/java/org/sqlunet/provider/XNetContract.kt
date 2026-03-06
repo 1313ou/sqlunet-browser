@@ -132,6 +132,7 @@ object XNetContract {
         const val XHEADER = V.XHEADER
         const val XINFO = V.XINFO
         const val XDEFINITION = V.XDEFINITION
+        const val XPRONUNCIATION = V.XPRONUNCIATION
         const val SOURCE = V.SOURCE
         const val SOURCES = V.SOURCES
     }

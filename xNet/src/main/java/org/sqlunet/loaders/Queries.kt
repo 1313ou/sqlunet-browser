@@ -265,6 +265,7 @@ object Queries {
             XNetContract.Words_VnWords_VnClasses.CLASS + " AS " + XNetContract.Words_XNet.XHEADER,
             XNetContract.Words_VnWords_VnClasses.CLASSTAG + " AS " + XNetContract.Words_XNet.XINFO,
             XNetContract.Words_VnWords_VnClasses.DEFINITION + " AS " + XNetContract.Words_XNet.XDEFINITION,
+            "NULL AS " + XNetContract.Words_XNet.XPRONUNCIATION,
             "'vn' AS " + XNetContract.Words_XNet.SOURCES,
             XNetContract.AS_CLASSES + ".rowid AS _id"
         )
@@ -293,6 +294,7 @@ object Queries {
             //Words_PbWords_PbRoleSets.ROLESETHEAD + " AS " + Words_XNet.XHEADER, 
             XNetContract.Words_PbWords_PbRoleSets.ROLESETDESCR + " AS " + XNetContract.Words_XNet.XINFO,
             "NULL AS " + XNetContract.Words_XNet.XDEFINITION,
+            "NULL AS " + XNetContract.Words_XNet.XPRONUNCIATION,
             "'pb' AS " + XNetContract.Words_XNet.SOURCES,
             XNetContract.AS_CLASSES + ".rowid AS _id"
         )
