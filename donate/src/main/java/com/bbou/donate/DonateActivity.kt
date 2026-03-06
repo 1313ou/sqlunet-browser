@@ -217,17 +217,17 @@ class DonateActivity : BaseActivity(), BillingListener {
     // H E L P E R
 
     private fun update(productId: String, isOwned: Boolean) {
-        val imageButton = buttonsByProductId[productId]!!
-        val tag = (imageButton.tag as String).toInt()
+        val button = buttonsByProductId[productId]!!
+        val tag = (button.tag as String).toInt()
         val drawable = getDrawable(this, DRAWABLE_IDS[tag])
         if (isOwned) {
             val layers = arrayOfNulls<Drawable>(2)
             layers[0] = drawable
             layers[1] = overlay
             val layerDrawable = LayerDrawable(layers)
-            imageButton.setIcon(layerDrawable)
+            button.setIcon(layerDrawable)
         } else {
-            imageButton.setIcon(drawable)
+            button.setIcon(drawable)
         }
     }
 

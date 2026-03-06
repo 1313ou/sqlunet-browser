@@ -1,0 +1,4 @@
+#AEC8D7  Bluegrey
+#A602C1  Barney
+#8E2A9E  Purply
+#31424B  Dark

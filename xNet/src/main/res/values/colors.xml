@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<resources>
+
+	<array name="palette">
+
+		<!--  COMMON -->
+
+		<item>@color/classBackColor</item>
+		<item>@color/classForeColor</item>
+
+		<item>@color/roleBackColor</item>
+		<item>@color/roleForeColor</item>
+
+		<item>@color/memberBackColor</item>
+		<item>@color/memberForeColor</item>
+
+		<item>@color/definitionBackColor</item>
+		<item>@color/definitionForeColor</item>
+
+		<item>@color/exampleBackColor</item>
+		<item>@color/exampleForeColor</item>
+
+		<item>@color/usageBackColor</item>
+		<item>@color/usageForeColor</item>
+
+		<item>@color/relationBackColor</item>
+		<item>@color/relationForeColor</item>
+
+		<item>@color/dataBackColor</item>
+		<item>@color/dataForeColor</item>
+
+		<item>@color/wordBackColor</item>
+		<item>@color/wordForeColor</item>
+
+		<item>@color/casedBackColor</item>
+		<item>@color/casedForeColor</item>
+
+		<item>@color/pronunciationBackColor</item>
+		<item>@color/pronunciationForeColor</item>
+
+		<item>@color/posBackColor</item>
+		<item>@color/posForeColor</item>
+
+		<!--  TEXT -->
+		<item>@color/textBackColor</item>
+		<item>@color/textForeColor</item>
+
+		<item>@color/textNormalBackColor</item>
+		<item>@color/textNormalForeColor</item>
+
+		<item>@color/textHighlightBackColor</item>
+		<item>@color/textHighlightForeColor</item>
+
+		<item>@color/textDimmedBackColor</item>
+		<item>@color/textDimmedForeColor</item>
+
+		<item>@color/textMatchBackColor</item>
+		<item>@color/textMatchForeColor</item>
+
+		<!--  SQL -->
+		<item>@color/sqlKeywordBackColor</item>
+		<item>@color/sqlKeywordForeColor</item>
+
+		<item>@color/sqlSlashBackColor</item>
+		<item>@color/sqlSlashForeColor</item>
+
+		<item>@color/sqlQuestionMarkBackColor</item>
+		<item>@color/sqlQuestionMarkForeColor</item>
+
+		<!--  REPORT -->
+
+		<item>@color/storageTypeBackColor</item>
+		<item>@color/storageTypeForeColor</item>
+
+		<item>@color/storageValueBackColor</item>
+		<item>@color/storageValueForeColor</item>
+
+		<item>@color/dirTypeBackColor</item>
+		<item>@color/dirTypeForeColor</item>
+
+		<item>@color/dirValueBackColor</item>
+		<item>@color/dirValueForeColor</item>
+
+		<item>@color/dirOkBackColor</item>
+		<item>@color/dirOkForeColor</item>
+
+		<item>@color/dirFailBackColor</item>
+		<item>@color/dirFailForeColor</item>
+
+	</array>
+
+</resources>

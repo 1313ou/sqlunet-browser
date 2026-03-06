@@ -207,6 +207,7 @@
 	<string name="title_history_import">Imported from</string>
 	<string name="title_history_export">Exported to</string>
 	<string name="title_history_deleted">History deleted</string>
+	<string name="title_sql_howto">Long-press to select and copy statement</string>
 
 	<!-- rows -->
 	<string name="description_row">row</string>
@@ -222,5 +223,15 @@
 	<string name="description_column_provider">provider</string>
 	<string name="description_column_url">url</string>
 	<string name="description_column_reference">reference</string>
+
+	<!-- summaries -->
+	<string name="pref_header_summary_general">General preferences (views, sql, …)</string>
+	<string name="pref_header_summary_database">Database info</string>
+	<string name="pref_header_summary_assets">Assets preferences</string>
+	<string name="pref_header_summary_download">Download preferences</string>
+	<string name="pref_header_summary_filter">Dataset preferences</string>
+	<string name="pref_header_summary_tree">Tree rendering preferences</string>
+	<string name="pref_header_summary_speak">Speak preferences</string>
+	<string name="pref_header_summary_wordnet">Wordnet preferences</string>
 
 </resources>

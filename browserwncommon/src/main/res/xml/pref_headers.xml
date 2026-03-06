@@ -8,41 +8,49 @@
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$GeneralPreferenceFragment"
 		app:icon="@drawable/ic_settings_general"
 		app:key="pref_header_general"
+		app:summary="@string/pref_header_summary_general"
 		app:title="@string/pref_header_general" />
 	<Preference
 		app:fragment="org.sqlunet.treeview.settings.TreePreferenceFragment"
 		app:icon="@drawable/ic_settings_tree"
 		app:key="pref_header_tree"
+		app:summary="@string/pref_header_summary_tree"
 		app:title="@string/pref_header_tree" />
 	<Preference
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$FilterPreferenceFragment"
 		app:icon="@drawable/ic_settings_filter"
 		app:key="pref_header_filter"
+		app:summary="@string/pref_header_summary_filter"
 		app:title="@string/pref_header_filter" />
 	<Preference
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$AssetsPreferenceFragment"
 		app:icon="@drawable/ic_settings_assets"
 		app:key="pref_header_assets"
+		app:summary="@string/pref_header_summary_assets"
 		app:title="@string/pref_header_assets" />
 	<Preference
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$DownloadPreferenceFragment"
 		app:icon="@drawable/ic_settings_download"
 		app:key="pref_header_download"
+		app:summary="@string/pref_header_summary_download"
 		app:title="@string/pref_header_download" />
 	<Preference
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$DatabasePreferenceFragment"
 		app:icon="@drawable/ic_settings_database"
 		app:key="pref_header_database"
+		app:summary="@string/pref_header_summary_database"
 		app:title="@string/pref_header_database" />
 	<Preference
 		app:fragment="org.sqlunet.speak.SpeakSettingsFragment"
 		app:icon="@drawable/ic_settings_speak"
 		app:key="pref_header_voice"
+		app:summary="@string/pref_header_summary_speak"
 		app:title="@string/pref_header_speak" />
 	<Preference
 		app:fragment="org.sqlunet.wordnet.browser.WordNetSettingsFragment"
 		app:icon="@drawable/ic_settings_wordnet"
 		app:key="pref_header_wordnet"
+		app:summary="@string/pref_header_summary_wordnet"
 		app:title="@string/pref_header_wordnet" />
 	<Preference
 		app:fragment="com.bbou.capture.CapturePreferenceFragment"

@@ -17,6 +17,9 @@
 /dist/stats
 /dist/resources
 /dist/release
+/dist/palette
+/build_theme/html
+/build_theme/txt
 /data
 /data2
 /captures

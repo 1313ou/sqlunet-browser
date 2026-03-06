@@ -7,6 +7,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.annotation.StringRes
@@ -38,19 +40,19 @@ class OthersActivity : BaseActivity() {
         actionBar.displayOptions = ActionBar.DISPLAY_SHOW_HOME or ActionBar.DISPLAY_HOME_AS_UP or ActionBar.DISPLAY_SHOW_TITLE
 
         // menu listeners
-        findViewById<ImageButton>(R.id.market_grammarscope_syntaxnet)?.setOnClickListener { install(R.string.grammarscope_syntaxnet_uri) }
-        findViewById<ImageButton>(R.id.market_grammarscope_syntaxnet_premium)?.setOnClickListener { install(R.string.grammarscope_syntaxnet_premium_uri) }
-        findViewById<ImageButton>(R.id.market_grammarscope_udpipe)?.setOnClickListener { install(R.string.grammarscope_udpipe_uri) }
-        findViewById<ImageButton>(R.id.market_grammarscope_udpipe_premium)?.setOnClickListener { install(R.string.grammarscope_udpipe_premium_uri) }
-        findViewById<ImageButton>(R.id.market_grammarscope_corenlp)?.setOnClickListener { install(R.string.grammarscope_corenlp_uri) }
-        findViewById<ImageButton>(R.id.market_grammarscope_corenlp_premium)?.setOnClickListener { install(R.string.grammarscope_corenlp_premium_uri) }
-        findViewById<ImageButton>(R.id.market_treebolic_wordnet)?.setOnClickListener { install(R.string.semantikos_uri) }
-        findViewById<ImageButton>(R.id.market_semantikos)?.setOnClickListener { install(R.string.treebolic_wordnet_uri) }
-        findViewById<ImageButton>(R.id.market_semantikos_wn)?.setOnClickListener { install(R.string.semantikos_wn_uri) }
-        findViewById<ImageButton>(R.id.market_semantikos_ewn)?.setOnClickListener { install(R.string.semantikos_ewn_uri) }
-        findViewById<ImageButton>(R.id.market_semantikos_vn)?.setOnClickListener { install(R.string.semantikos_vn_uri) }
-        findViewById<ImageButton>(R.id.market_semantikos_fn)?.setOnClickListener { install(R.string.semantikos_fn_uri) }
-        findViewById<ImageButton>(R.id.market_semantikos_sn)?.setOnClickListener { install(R.string.semantikos_sn_uri) }
+        findViewById<View>(R.id.market_grammarscope_syntaxnet)?.setOnClickListener { install(R.string.grammarscope_syntaxnet_uri) }
+        findViewById<View>(R.id.market_grammarscope_syntaxnet_premium)?.setOnClickListener { install(R.string.grammarscope_syntaxnet_premium_uri) }
+        findViewById<View>(R.id.market_grammarscope_udpipe)?.setOnClickListener { install(R.string.grammarscope_udpipe_uri) }
+        findViewById<View>(R.id.market_grammarscope_udpipe_premium)?.setOnClickListener { install(R.string.grammarscope_udpipe_premium_uri) }
+        findViewById<View>(R.id.market_grammarscope_corenlp)?.setOnClickListener { install(R.string.grammarscope_corenlp_uri) }
+        findViewById<View>(R.id.market_grammarscope_corenlp_premium)?.setOnClickListener { install(R.string.grammarscope_corenlp_premium_uri) }
+        findViewById<View>(R.id.market_treebolic_wordnet)?.setOnClickListener { install(R.string.semantikos_uri) }
+        findViewById<View>(R.id.market_semantikos)?.setOnClickListener { install(R.string.treebolic_wordnet_uri) }
+        findViewById<View>(R.id.market_semantikos_wn)?.setOnClickListener { install(R.string.semantikos_wn_uri) }
+        findViewById<View>(R.id.market_semantikos_ewn)?.setOnClickListener { install(R.string.semantikos_ewn_uri) }
+        findViewById<View>(R.id.market_semantikos_vn)?.setOnClickListener { install(R.string.semantikos_vn_uri) }
+        findViewById<View>(R.id.market_semantikos_fn)?.setOnClickListener { install(R.string.semantikos_fn_uri) }
+        findViewById<View>(R.id.market_semantikos_sn)?.setOnClickListener { install(R.string.semantikos_sn_uri) }
     }
 
     private fun install(@StringRes uri: Int) {
@@ -67,7 +69,7 @@ class OthersActivity : BaseActivity() {
             val goToMarket = Intent(Intent.ACTION_VIEW).setData(uri!!.toUri())
             try {
                 activity.startActivity(goToMarket)
-            } catch (e: ActivityNotFoundException) {
+            } catch (_: ActivityNotFoundException) {
                 var message: String? = activity.getString(R.string.market_fail)
                 message += ' '
                 message += uri
@@ -84,7 +86,7 @@ class OthersActivity : BaseActivity() {
                     packageManager.getPackageInfo(uri, PackageManager.GET_ACTIVITIES)
                 }
                 true
-            } catch (e: PackageManager.NameNotFoundException) {
+            } catch (_: PackageManager.NameNotFoundException) {
                 false
             }
             return isInstalled

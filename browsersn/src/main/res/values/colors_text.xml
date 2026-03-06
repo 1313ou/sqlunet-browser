@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<resources>
+
+	<color name="colorId">#e46d42</color>
+	<color name="colorName">#e46d42</color>
+	<color name="colorDefinition">#e46d42</color>
+	<color name="colorCased">#E65100</color>
+	<color name="colorPronunciation">#6F568E</color>
+	<color name="colorDimmed">#808080</color>
+
+</resources>

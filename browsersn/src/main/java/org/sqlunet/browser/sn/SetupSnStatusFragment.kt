@@ -9,7 +9,7 @@ import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageButton
+import android.widget.Button
 import android.widget.ImageView
 import androidx.core.widget.ImageViewCompat
 import com.bbou.download.preference.Settings.Mode
@@ -35,9 +35,9 @@ import org.sqlunet.wordnet.R as WordnetR
 class SetupSnStatusFragment : SetupStatusFragment() {
 
     // components
-    private var imageTextSearchWn: ImageView? = null
+    private lateinit var imageTextSearchWn: ImageView
 
-    private var buttonTextSearchWn: ImageButton? = null
+    private lateinit var buttonTextSearchWn: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,15 +49,15 @@ class SetupSnStatusFragment : SetupStatusFragment() {
         buttonTextSearchWn = view.findViewById(R.id.searchtextWnButton)
 
         // click listeners
-        buttonDb!!.setOnClickListener { download() }
-        buttonIndexes!!.setOnClickListener { index() }
-        buttonTextSearchWn!!.setOnClickListener {
+        buttonDb.setOnClickListener { download() }
+        buttonIndexes.setOnClickListener { index() }
+        buttonTextSearchWn.setOnClickListener {
             val index = resources.getInteger(R.integer.sql_statement_do_ts_wn_position)
             val intent = Intent(AppContext.context, SetupDatabaseActivity::class.java)
             intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
             startActivity(intent)
         }
-        infoDatabaseButton!!.setOnClickListener {
+        infoDatabaseButton.setOnClickListener {
             val activity: Activity = requireActivity()
             val database = StorageSettings.getDatabasePath(activity)
             val free = getFree(activity, database)
@@ -114,12 +114,12 @@ class SetupSnStatusFragment : SetupStatusFragment() {
                 // images
                 val okDrawable = getDrawable(context, CommonR.drawable.ic_ok)
                 val failDrawable = getDrawable(context, CommonR.drawable.ic_fail)
-                imageTextSearchWn!!.setImageDrawable(if (existsTsWn) okDrawable else failDrawable)
-                ImageViewCompat.setImageTintMode(imageTextSearchWn!!, if (existsTsWn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
-                buttonTextSearchWn!!.visibility = if (existsTsWn) View.GONE else View.VISIBLE
+                imageTextSearchWn.setImageDrawable(if (existsTsWn) okDrawable else failDrawable)
+                ImageViewCompat.setImageTintMode(imageTextSearchWn, if (existsTsWn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
+                buttonTextSearchWn.visibility = if (existsTsWn) View.GONE else View.VISIBLE
             } else {
-                imageTextSearchWn!!.setImageResource(CommonR.drawable.ic_unknown)
-                buttonTextSearchWn!!.visibility = View.GONE
+                imageTextSearchWn.setImageResource(CommonR.drawable.ic_unknown)
+                buttonTextSearchWn.visibility = View.GONE
             }
         }
     }

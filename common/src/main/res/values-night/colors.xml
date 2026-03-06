@@ -4,35 +4,13 @@
 
 <resources>
 
-	<!-- generic -->
-	<color name="backgroundColor">#404040</color> <!-- generic window background -->
-	<color name="foregroundColor">#E0E0E0</color> <!-- generic window foreground -->
+	<!-- button -->
+	<color name="info_button_color">#4251bd</color>
+	<color name="info_button_activated_color">#4251dd</color>
+	<color name="ok_button_color">#008000</color>
+	<color name="err_button_color">@color/dark_red_color</color>
+
+	<!-- activated color -->
 	<color name="activatedBackgroundColor">#30800080</color>
-
-	<!-- primary -->
-	<color name="primaryColor">#4251bd</color> <!-- framework + nav (middle in gradient), x selector header -->
-	<color name="primaryDarkColor">#293073</color> <!-- framework + nav (end in gradient) -->
-	<color name="primaryLightColor">#4251dd</color> <!-- framework + nav (start in gradient), browse action bar, search text action bar, pm action bar, major list item -->
-	<color name="onPrimaryColor">#cccccc</color> <!-- framework + nav, tabs -->
-
-	<!-- secondary -->
-	<color name="secondaryColor">#ef2063</color>
-	<color name="secondaryLightColor">#ff60c0</color>
-	<color name="onSecondaryColor">#F0F0F0</color>
-
-	<!-- S T Y L E  A T T R  -->
-
-	<!-- text - must display on colorBackground (variants of colorOnBackground) -->
-	<color name="colorId">#ef2063</color>
-	<color name="colorName">#ef2063</color> <!--  -->
-	<color name="colorDefinition">#ef2063</color> <!--  -->
-	<color name="colorCased">#9D557B</color> <!--  -->
-	<color name="colorPronunciation">#3C9497</color> <!--  -->
-	<color name="colorDimmed">#808080</color> <!--  -->
-
-	<!-- B A S E -->
-
-	<!-- shadow -->
-	<color name="shadow">#80c0c0c0</color>
 
 </resources>

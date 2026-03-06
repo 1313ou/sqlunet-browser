@@ -59,6 +59,9 @@ class SqlFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // how to
+        Toast.makeText(requireActivity(), R.string.title_sql_howto, Toast.LENGTH_SHORT).show()
+
         // swipe refresh
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh)
         swipeRefreshLayout.setOnRefreshListener {

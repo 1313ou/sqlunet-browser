@@ -1,0 +1,25 @@
+<!--
+  ~ Copyright (c) 2025. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/updateButton"
+	style="@style/Widget.MaterialComponents.Button.Icon"
+	android:layout_width="@dimen/action_button_diameter"
+	android:layout_height="@dimen/action_button_diameter"
+	android:contentDescription="@string/action_update"
+	android:elevation="1dp"
+	android:insetLeft="0dp"
+	android:insetTop="0dp"
+	android:insetRight="0dp"
+	android:insetBottom="0dp"
+	android:padding="0dp"
+	android:visibility="visible"
+	app:backgroundTint="?attr/colorPrimary"
+	app:cornerRadius="32dp"
+	app:icon="@drawable/bn_download"
+	app:iconGravity="textStart"
+	app:iconPadding="0dp"
+	app:iconSize="@dimen/action_button_icon_diameter"
+	app:iconTint="?attr/colorOnPrimary" />

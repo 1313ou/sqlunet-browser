@@ -4,6 +4,10 @@
 
 <resources>
 
+	<dimen name="action_button_diameter">64dp</dimen>
+	<dimen name="action_button_icon_diameter">36dp</dimen>
+	<dimen name="action_button_shadow_offset">10dp</dimen>
+
 	<!-- Default screen margins, per the Android Design guidelines. -->
 	<dimen name="activity_horizontal_padding">16dp</dimen>
 

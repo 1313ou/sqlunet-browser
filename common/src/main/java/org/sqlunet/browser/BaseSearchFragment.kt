@@ -170,6 +170,11 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     }
 
+    /**
+     * On resume
+     * The fragment is responsible for activating the spinner while active.
+     * Activate spinner if not already activated.
+     */
     override fun onResume() {
         super.onResume()
 
@@ -179,7 +184,12 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         acquireSpinner(spinner)
     }
 
-    override fun onPause() {
+     /**
+     * On pause
+     * The fragment is responsible for deactivating the spinner while active.
+     * Deactivate spinner.
+     */
+   override fun onPause() {
         super.onPause()
         closeKeyboard()
         // after resume
@@ -206,10 +216,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // title
         toolbar.setTitle(R.string.title_activity_browse)
         // toolbar.setSubtitle(R.string.app_subname)
-
-        // background
-        // val color = fetchColor(requireContext(), androidx.appcompat.R.attr.colorPrimary)
-        // toolbar.background = color.toDrawable()
     }
 
     // S E A R C H   B A R
@@ -472,9 +478,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     val textView = view.findViewById<TextView>(android.R.id.text1)
                     textView.text = ""
                     val resId = modeIcons[position]
-                    val color = fetchColor(context, MaterialR.attr.colorOnPrimary)
                     val drawable = getDrawable(context, resId)
-                    tint(color, drawable!!)
                     textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
                     return view
                 }
@@ -485,9 +489,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     val textView = view.findViewById<TextView>(android.R.id.text1)
                     textView.text = rowItem
                     val resId = modeIcons[position]
-                    val color = fetchColor(context, MaterialR.attr.colorOnPrimary)
                     val drawable = getDrawable(context, resId)
-                    tint(color, drawable!!)
                     textView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
                     return view
                 }

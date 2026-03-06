@@ -9,7 +9,7 @@ import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageButton
+import android.widget.Button
 import android.widget.ImageView
 import androidx.core.widget.ImageViewCompat
 import com.bbou.download.preference.Settings.Mode
@@ -34,8 +34,8 @@ import org.sqlunet.browser.common.R as CommonR
 class SetupFnStatusFragment : SetupStatusFragment() {
 
     // components
-    private var imageTextSearchFn: ImageView? = null
-    private var buttonTextSearchFn: ImageButton? = null
+    private lateinit var imageTextSearchFn: ImageView
+    private lateinit var buttonTextSearchFn: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,16 +47,16 @@ class SetupFnStatusFragment : SetupStatusFragment() {
         buttonTextSearchFn = view.findViewById(R.id.searchtextFnButton)
 
         // click listeners
-        buttonDb!!.setOnClickListener { download() }
-        buttonIndexes!!.setOnClickListener { index() }
-        infoDatabaseButton!!.setOnClickListener { info() }
-        buttonTextSearchFn!!.setOnClickListener {
+        buttonDb.setOnClickListener { download() }
+        buttonIndexes.setOnClickListener { index() }
+        infoDatabaseButton.setOnClickListener { info() }
+        buttonTextSearchFn.setOnClickListener {
             val index = resources.getInteger(R.integer.sql_statement_do_ts_fn_position)
             val intent = Intent(AppContext.context, SetupDatabaseActivity::class.java)
             intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
             startActivity(intent)
         }
-        infoDatabaseButton!!.setOnClickListener {
+        infoDatabaseButton.setOnClickListener {
             val activity: Activity = requireActivity()
             val database = StorageSettings.getDatabasePath(activity)
             val free = getFree(AppContext.context, database)
@@ -112,12 +112,12 @@ class SetupFnStatusFragment : SetupStatusFragment() {
                 val okDrawable = getDrawable(context, CommonR.drawable.ic_ok)
                 val failDrawable = getDrawable(context, CommonR.drawable.ic_fail)
                 val existsTsFn = status and FnStatus.EXISTS_TS_FN != 0
-                imageTextSearchFn!!.setImageDrawable(if (existsTsFn) okDrawable else failDrawable)
-                ImageViewCompat.setImageTintMode(imageTextSearchFn!!, if (existsTsFn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
-                buttonTextSearchFn!!.visibility = if (existsTsFn) View.GONE else View.VISIBLE
+                imageTextSearchFn.setImageDrawable(if (existsTsFn) okDrawable else failDrawable)
+                ImageViewCompat.setImageTintMode(imageTextSearchFn, if (existsTsFn) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
+                buttonTextSearchFn.visibility = if (existsTsFn) View.GONE else View.VISIBLE
             } else {
-                buttonTextSearchFn!!.visibility = View.GONE
-                imageTextSearchFn!!.setImageResource(CommonR.drawable.ic_unknown)
+                buttonTextSearchFn.visibility = View.GONE
+                imageTextSearchFn.setImageResource(CommonR.drawable.ic_unknown)
             }
         }
     }

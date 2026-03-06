@@ -19,8 +19,15 @@
 			android:id="@+id/tab_layout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:backgroundTint="?attr/colorCustom"
 			app:layout_scrollFlags="scroll|enterAlways"
-			app:tabTextColor="?attr/colorOnPrimary" />
+			app:tabIndicatorColor="?attr/colorPrimary"
+			app:tabSelectedTextColor="?attr/colorPrimary"
+			app:tabTextColor="?attr/colorOnCustom" />
+
+		<!--	app:tabTextColor ?attr/colorOnSurfaceVariant	This is the standard "medium emphasis" color for inactive text and icons on a surface.-->
+		<!--	app:tabSelectedTextColor ?attr/colorPrimary	    In M3, the active/selected state of a component almost always uses the Primary brand color.-->
+		<!--	app:tabIndicatorColor	?attr/colorPrimary -->
 
 	</com.google.android.material.appbar.AppBarLayout>
 

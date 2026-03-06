@@ -10,7 +10,7 @@
 	<color name="ok_button_color">#008000</color>
 	<color name="err_button_color">@color/dark_red_color</color>
 
-	<!-- shadow -->
-	<color name="shadow">#80202020</color>
+	<!-- activated color -->
+	<color name="activatedBackgroundColor">#40FFFF00</color>
 
 </resources>

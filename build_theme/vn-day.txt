@@ -1,0 +1,4 @@
+#CADBC2  Off white
+#96B384  Greyish green
+#FECC00  Burnt yellow
+#FE9B00  Goldenrod

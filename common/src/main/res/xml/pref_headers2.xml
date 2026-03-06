@@ -8,16 +8,19 @@
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$AssetsPreferenceFragment"
 		app:icon="@drawable/ic_settings_assets"
 		app:key="pref_header_assets"
+		app:summary="@string/pref_header_summary_assets"
 		app:title="@string/pref_header_assets" />
 	<Preference
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$DownloadPreferenceFragment"
 		app:icon="@drawable/ic_settings_download"
 		app:key="pref_header_download"
+		app:summary="@string/pref_header_summary_download"
 		app:title="@string/pref_header_download" />
 	<Preference
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$DatabasePreference2Fragment"
 		app:icon="@drawable/ic_settings_database"
 		app:key="pref_header_database2"
+		app:summary="@string/pref_header_summary_database"
 		app:title="@string/pref_header_database" />
 
 </PreferenceScreen>

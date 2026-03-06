@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ImageButton
+import android.widget.Button
 import android.widget.Spinner
 import android.widget.SpinnerAdapter
 import android.widget.TextView
@@ -25,17 +25,17 @@ abstract class BaseTaskFragment : Fragment() {
     /**
      * Action spinner
      */
-    var spinner: Spinner? = null
+    lateinit var spinner: Spinner
 
     /**
      * Status view
      */
-    var status: TextView? = null
+    lateinit var status: TextView
 
     /**
      * Run button
      */
-    var runButton: ImageButton? = null
+    lateinit var runButton: Button
 
     /**
      * Layout id set by derived class
@@ -63,8 +63,8 @@ abstract class BaseTaskFragment : Fragment() {
         val adapter = makeAdapter()
 
         // apply the adapter to the spinner
-        spinner!!.adapter = adapter
-        spinner!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spinner.adapter = adapter
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
             override fun onItemSelected(parent: AdapterView<*>?, view0: View, position: Int, id: Long) {
                 select(position)
@@ -83,6 +83,6 @@ abstract class BaseTaskFragment : Fragment() {
     }
 
     open fun select(position: Int) {
-        status!!.text = ""
+        status.text = ""
     }
 }

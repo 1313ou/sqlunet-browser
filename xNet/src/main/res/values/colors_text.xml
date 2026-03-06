@@ -4,174 +4,87 @@
 
 <resources>
 
-	<color name="classBackColor">#FFFFFF</color>
-	<color name="classForeColor">#000000</color>
+	<!--  COMMON -->
+	<color name="classBackColor">#8B0000</color>
+	<color name="classForeColor">#FFFFFF</color>
 
-	<color name="roleBackColor">#FFFFFF</color>
-	<color name="roleForeColor">#000000</color>
+	<color name="roleBackColor">#FF00FF</color>
+	<color name="roleForeColor">#FFFFFF</color>
 
-	<color name="memberBackColor">#FFFFFF</color>
-	<color name="memberForeColor">#000000</color>
+	<color name="memberBackColor">#FF0000</color>
+	<color name="memberForeColor">#FFFFFF</color>
 
-	<color name="definitionBackColor">#FFFFFF</color>
-	<color name="definitionForeColor">#000000</color>
+	<color name="definitionBackColor">#00000000</color>
+	<color name="definitionForeColor">#4682B4</color>
 
-	<color name="exampleBackColor">#FFFFFF</color>
-	<color name="exampleForeColor">#000000</color>
+	<color name="exampleBackColor">#00000000</color>
+	<color name="exampleForeColor">#FFFFA0</color>
 
-	<color name="usageBackColor">#FFFFFF</color>
-	<color name="usageForeColor">#000000</color>
+	<color name="usageBackColor">#00000000</color>
+	<color name="usageForeColor">#B1EF9D</color>
 
-	<color name="relationBackColor">#FFFFFF</color>
-	<color name="relationForeColor">#000000</color>
+	<color name="relationBackColor">#00000000</color>
+	<color name="relationForeColor">#F3805C</color>
 
-	<color name="dataBackColor">#FFFFFF</color>
-	<color name="dataForeColor">#000000</color>
+	<color name="dataBackColor">#00000000</color>
+	<color name="dataForeColor">#888888</color>
 
-	<color name="wordBackColor">#FFFFFF</color>
-	<color name="wordForeColor">#000000</color>
+	<color name="wordBackColor">#00000000</color>
+	<color name="wordForeColor">#FFFFFF</color>
 
-	<color name="casedBackColor">#FFFFFF</color>
-	<color name="casedForeColor">#000000</color>
+	<color name="casedBackColor">#00000000</color>
+	<color name="casedForeColor">#F3805C</color>
 
-	<color name="pronunciationBackColor">#FFFFFF</color>
-	<color name="pronunciationForeColor">#000000</color>
+	<color name="pronunciationBackColor">#00000000</color>
+	<color name="pronunciationForeColor">#8C709C</color>
 
-	<color name="posBackColor">#FFFFFF</color>
-	<color name="posForeColor">#000000</color>
+	<color name="posBackColor">#00000000</color>
+	<color name="posForeColor">#888888</color>
 
-	<!--  TEXT -->
-	<color name="textBackColor">#FFFFFF</color>
-	<color name="textForeColor">#000000</color>
+	<!--  TEXT -->shakes
+	<color name="textBackColor">#00000000</color>
+	<color name="textForeColor">#888888</color>
 
-	<color name="textNormalBackColor">#FFFFFF</color>
-	<color name="textNormalForeColor">#000000</color>
+	<color name="textNormalBackColor">#00000000</color>
+	<color name="textNormalForeColor">#ffffff</color>
 
-	<color name="textHighlightBackColor">#FFFFFF</color>
-	<color name="textHighlightForeColor">#000000</color>
+	<color name="textHighlightBackColor">#00000000</color>
+	<color name="textHighlightForeColor">#FFFF59</color>
 
-	<color name="textDimmedBackColor">#FFFFFF</color>
-	<color name="textDimmedForeColor">#000000</color>
+	<color name="textDimmedBackColor">#00000000</color>
+	<color name="textDimmedForeColor">#808080</color>
 
-	<color name="textMatchBackColor">#FFFFFF</color>
-	<color name="textMatchForeColor">#000000</color>
+	<color name="textMatchBackColor">#00000000</color>
+	<color name="textMatchForeColor">#ffff00</color>
 
 	<!--  SQL -->
-	<color name="sqlKeywordBackColor">#FFFFFF</color>
-	<color name="sqlKeywordForeColor">#000000</color>
+	<color name="sqlKeywordBackColor">#00000000</color>
+	<color name="sqlKeywordForeColor">#A050A0</color>
 
-	<color name="sqlSlashBackColor">#FFFFFF</color>
-	<color name="sqlSlashForeColor">#000000</color>
+	<color name="sqlSlashBackColor">#00000000</color>
+	<color name="sqlSlashForeColor">#0EB70E</color>
 
-	<color name="sqlQuestionMarkBackColor">#FFFFFF</color>
-	<color name="sqlQuestionMarkForeColor">#000000</color>
+	<color name="sqlQuestionMarkBackColor">#00000000</color>
+	<color name="sqlQuestionMarkForeColor">#FF0000</color>
 
 	<!--  REPORT -->
 
-	<color name="storageTypeBackColor">#FFFFFF</color>
+	<color name="storageTypeBackColor">#E9967A</color>
 	<color name="storageTypeForeColor">#000000</color>
 
-	<color name="storageValueBackColor">#FFFFFF</color>
-	<color name="storageValueForeColor">#000000</color>
+	<color name="storageValueBackColor">#00000000</color>
+	<color name="storageValueForeColor">#888888</color>
 
-	<color name="dirTypeBackColor">#FFFFFF</color>
+	<color name="dirTypeBackColor">#FFFF99</color>
 	<color name="dirTypeForeColor">#000000</color>
 
-	<color name="dirValueBackColor">#FFFFFF</color>
-	<color name="dirValueForeColor">#000000</color>
+	<color name="dirValueBackColor">#00000000</color>
+	<color name="dirValueForeColor">#888888</color>
 
-	<color name="dirOkBackColor">#FFFFFF</color>
-	<color name="dirOkForeColor">#000000</color>
+	<color name="dirOkBackColor">#00000000</color>
+	<color name="dirOkForeColor">#008B00</color>
 
-	<color name="dirFailBackColor">#FFFFFF</color>
-	<color name="dirFailForeColor">#000000</color>
-
-	<array name="palette">
-
-		<!--  COMMON -->
-
-		<item>@color/classBackColor</item>
-		<item>@color/classForeColor</item>
-
-		<item>@color/roleBackColor</item>
-		<item>@color/roleForeColor</item>
-
-		<item>@color/memberBackColor</item>
-		<item>@color/memberForeColor</item>
-
-		<item>@color/definitionBackColor</item>
-		<item>@color/definitionForeColor</item>
-
-		<item>@color/exampleBackColor</item>
-		<item>@color/exampleForeColor</item>
-
-		<item>@color/usageBackColor</item>
-		<item>@color/usageForeColor</item>
-
-		<item>@color/relationBackColor</item>
-		<item>@color/relationForeColor</item>
-
-		<item>@color/dataBackColor</item>
-		<item>@color/dataForeColor</item>
-
-		<item>@color/wordBackColor</item>
-		<item>@color/wordForeColor</item>
-
-		<item>@color/casedBackColor</item>
-		<item>@color/casedForeColor</item>
-
-		<item>@color/pronunciationBackColor</item>
-		<item>@color/pronunciationForeColor</item>
-
-		<item>@color/posBackColor</item>
-		<item>@color/posForeColor</item>
-
-		<!--  TEXT -->
-		<item>@color/textBackColor</item>
-		<item>@color/textForeColor</item>
-
-		<item>@color/textNormalBackColor</item>
-		<item>@color/textNormalForeColor</item>
-
-		<item>@color/textHighlightBackColor</item>
-		<item>@color/textHighlightForeColor</item>
-
-		<item>@color/textDimmedBackColor</item>
-		<item>@color/textDimmedForeColor</item>
-
-		<item>@color/textMatchBackColor</item>
-		<item>@color/textMatchForeColor</item>
-
-		<!--  SQL -->
-		<item>@color/sqlKeywordBackColor</item>
-		<item>@color/sqlKeywordForeColor</item>
-
-		<item>@color/sqlSlashBackColor</item>
-		<item>@color/sqlSlashForeColor</item>
-
-		<item>@color/sqlQuestionMarkBackColor</item>
-		<item>@color/sqlQuestionMarkForeColor</item>
-
-		<!--  REPORT -->
-
-		<item>@color/storageTypeBackColor</item>
-		<item>@color/storageTypeForeColor</item>
-
-		<item>@color/storageValueBackColor</item>
-		<item>@color/storageValueForeColor</item>
-
-		<item>@color/dirTypeBackColor</item>
-		<item>@color/dirTypeForeColor</item>
-
-		<item>@color/dirValueBackColor</item>
-		<item>@color/dirValueForeColor</item>
-
-		<item>@color/dirOkBackColor</item>
-		<item>@color/dirOkForeColor</item>
-
-		<item>@color/dirFailBackColor</item>
-		<item>@color/dirFailForeColor</item>
-
-	</array>
+	<color name="dirFailBackColor">#00000000</color>
+	<color name="dirFailForeColor">#C01B1B</color>
 
 </resources>

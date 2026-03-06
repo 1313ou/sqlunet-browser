@@ -1,0 +1,4 @@
+#4D5647  Charcoal grey
+#7CB7B3  Charcoal grey
+#DECA31  Sand
+#DADE6F  Manilla

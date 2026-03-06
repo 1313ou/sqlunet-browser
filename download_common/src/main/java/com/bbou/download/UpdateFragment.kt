@@ -13,11 +13,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.bbou.download.common.R
+import com.google.android.material.button.MaterialButton
 
 /**
  * Update fragment
@@ -106,9 +106,9 @@ class UpdateFragment : Fragment() {
         // proceed with update button
         // if (newerArg) // do not depend on newer flag
         run {
-            val button = view.findViewById<ImageButton>(R.id.update)
+            val button = view.findViewById<MaterialButton>(R.id.updateButton)
             button.visibility = View.VISIBLE
-            button.setOnClickListener {
+            button.setOnClickListener { 
                 val activityContext = requireContext()
                 confirm(activityContext, R.string.title_activity_update, R.string.askUpdate) {
                     val downloadIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) intent.getParcelableExtra(DOWNLOAD_INTENT_ARG, Intent::class.java) else @Suppress("DEPRECATION") intent.getParcelableExtra(DOWNLOAD_INTENT_ARG)

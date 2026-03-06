@@ -30,7 +30,7 @@ import org.sqlunet.browser.xn.xselector.XSelectorPointer.Companion.getMask
 import org.sqlunet.loaders.Queries.prepareFnXSelect
 import org.sqlunet.loaders.Queries.preparePbXSelect
 import org.sqlunet.loaders.Queries.prepareVnXSelect
-import org.sqlunet.loaders.Queries.prepareWordPronunciationXSelect
+import org.sqlunet.loaders.Queries.prepareWordXSelect
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.provider.XNetContract.Words_FnWords_PbWords_VnWords
 import org.sqlunet.provider.XNetContract.Words_XNet_U
@@ -417,7 +417,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
      */
     private fun load() {
         // load the contents
-        val sql = prepareWordPronunciationXSelect(word!!)
+        val sql = prepareWordXSelect(word!!)
         val uri = XSqlUNetProvider.makeUri(sql.providerUri).toUri()
         wordIdFromWordModel!!.loadData(uri, sql) { cursor: Cursor -> wordIdFromWordPostProcess(cursor) }
     }
@@ -443,9 +443,8 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         Log.d(TAG, "Invoking startChildLoader() for groupId=$groupId")
         when (groupId) {
             GROUPID_WORDNET -> {
-
-                //	var<Cursor> wnLiveData = this.wnFromWordIdModel.getMutableData();
-                //	var wnCursor = wnLiveData.getValue();
+                //	val wnLiveData = this.wnFromWordIdModel.getMutableData();
+                //	val wnCursor = wnLiveData.getValue();
                 //	if (wnCursor != null && !wnCursor.isClosed())
                 //	{
                 //		wnLiveData.setValue(wnCursor);
@@ -455,9 +454,8 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
             }
 
             GROUPID_VERBNET -> {
-
-                //	var<Cursor> vnLiveData = this.vnFromWordIdModel.getMutableData();
-                //	var vnCursor = vnLiveData.getValue();
+                //	val vnLiveData = this.vnFromWordIdModel.getMutableData();
+                //	val vnCursor = vnLiveData.getValue();
                 //	if (vnCursor != null && !vnCursor.isClosed())
                 //	{
                 //		vnLiveData.setValue(vnCursor);
@@ -467,26 +465,24 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
             }
 
             GROUPID_PROPBANK -> {
-
-                //				var<Cursor> pbLiveData = this.pbFromWordIdModel.getMutableData();
-                //				var pbCursor = pbLiveData.getValue();
-                //				if (pbCursor != null && !pbCursor.isClosed())
-                //				{
-                //					pbLiveData.setValue(pbCursor);
-                //				}
-                //				else
+                //	val pbLiveData = this.pbFromWordIdModel.getMutableData();
+                //	val pbCursor = pbLiveData.getValue();
+                //	if (pbCursor != null && !pbCursor.isClosed())
+                //	{
+                //		pbLiveData.setValue(pbCursor);
+                //	}
+                //	else
                 loadPb(wordId)
             }
 
             GROUPID_FRAMENET -> {
-
-                //				var<Cursor> fnLiveData = this.fnFromWordIdModel.getMutableData();
-                //				var fnCursor = fnLiveData.getValue();
-                //				if (fnCursor != null && !fnCursor.isClosed())
-                //				{
-                //					fnLiveData.setValue(fnCursor);
-                //				}
-                //				else
+                //	val fnLiveData = this.fnFromWordIdModel.getMutableData();
+                //	val fnCursor = fnLiveData.getValue();
+                //	if (fnCursor != null && !fnCursor.isClosed())
+                //	{
+                //		fnLiveData.setValue(fnCursor);
+                //	}
+                //	else
                 loadFn(wordId)
             }
 

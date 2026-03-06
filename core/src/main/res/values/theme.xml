@@ -4,33 +4,13 @@
 
 <resources>
 
-	<style name="Base.MyTheme" parent="Theme.Material3.DayNight.NoActionBar">
+	<style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
+		<!-- from material builder -->
+	</style>
 
-		<!-- C O L O R S -->
-
-		<!-- framework colors -->
-		<item name="colorSurface">@color/surfaceColor</item>
-		<item name="colorOnSurface">@color/onSurfaceColor</item>
-
-		<item name="colorPrimary">@color/primaryColor</item>
-		<item name="colorPrimaryVariant">@color/primaryLightColor</item>
-		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
-		<item name="colorOnPrimary">@color/onPrimaryColor</item>
-
-		<!-- requires attention : snackbar, fab -->
-		<item name="colorSecondary">@color/secondaryColor</item>
-		<item name="colorSecondaryVariant">@color/secondaryLightColor</item>
-		<item name="colorOnSecondary">@color/onSecondaryColor</item>
-
-		<!-- caret -->
-		<item name="colorControlActivated">@color/secondaryColor</item>-->
+	<style name="Base.MyTheme" parent="AppTheme">
 
 		<!-- O V E R R I D E S -->
-
-		<!-- foreground and background -->
-		<!-- <item name="android:windowBackground">@color/backgroundColor</item>-->
-		<!-- <item name="android:colorBackground">@color/backgroundColor</item>-->
-		<!-- <item name="android:colorForeground">@color/foregroundColor</item>-->
 
 		<!-- transparent statusbar and navigation bar -->
 		<item name="android:statusBarColor">@android:color/transparent</item>
@@ -51,10 +31,17 @@
 		<!-- S T Y L E S -->
 
 		<!-- menu dropdown -->
-		<item name="popupMenuBackground">@color/primaryColor</item>
+		<item name="popupMenuBackground">?attr/colorCustom</item>
 
 		<!--app bar -->
 		<item name="appBarLayoutStyle">@style/MyAppBarLayout</item>
+
+		<!-- dropdowns -->
+		<item name="android:dropDownListViewStyle">@style/MyDropDownListViewStyle</item>
+		<item name="android:dropDownItemStyle">@style/MyDropDownItemStyle</item>
+
+		<!-- autocomplete text view -->
+		<item name="android:autoCompleteTextViewStyle">@style/MyAutoCompleteTextViewStyle</item>
 
 	</style>
 

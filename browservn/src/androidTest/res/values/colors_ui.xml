@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<resources>
+
+    <array name="palette_ui">
+        <!-- when @android:color/transparent is used, the value defaults to: -->
+        <!-- default background = android.R.attr.colorBackground,-->
+        <!-- default foreground = android.R.attr.colorForeground-->
+
+        <!-- [0] -->
+        <item>@android:color/transparent</item>
+        <item>@android:color/transparent</item>
+
+        <!-- [1] -->
+        <item>?attr/colorCustom</item>
+        <item>?attr/colorPrimary</item>
+
+        <!-- [2] -->
+        <item>?attr/colorCustom</item>
+        <item>?attr/colorPrimary</item>
+
+        <!-- [3] -->
+        <item>@android:color/transparent</item>
+        <item>@color/colorId</item>
+
+        <!-- [4] -->
+        <item>@android:color/transparent</item>
+        <item>@color/colorDefinition</item>
+
+        <!-- [5] -->
+        <item>@android:color/transparent</item>
+        <item>@color/colorCased</item>
+
+        <!-- [6] -->
+        <item>@android:color/transparent</item>
+        <item>@color/colorPronunciation</item>
+
+        <!-- [7] -->
+        <item>@android:color/transparent</item>
+        <item>@color/colorDimmed</item>
+
+     </array>
+
+</resources>
