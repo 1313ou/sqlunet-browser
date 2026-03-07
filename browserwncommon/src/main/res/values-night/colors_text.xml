@@ -4,13 +4,11 @@
 
 <resources>
 
-	<color name="customVariantColor">#80795F</color>
-
 	<color name="colorId">#ffffff</color>
 	<color name="colorName">#f8dc4a</color>
 	<color name="colorDefinition">#f8dc4a</color>
-	<color name="colorCased">#E65100</color> <!--  -->
-	<color name="colorPronunciation">#A075D7</color> <!--  -->
+	<color name="colorCased">#E65100</color>
+	<color name="colorPronunciation">#A075D7</color>
 	<color name="colorDimmed">#808080</color>
 
 </resources>

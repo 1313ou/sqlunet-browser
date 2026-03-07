@@ -20,7 +20,6 @@ import org.sqlunet.settings.Settings
 import org.sqlunet.verbnet.provider.VerbNetContract
 import org.sqlunet.verbnet.provider.VerbNetProvider
 import org.sqlunet.browser.common.R as CommonR
-import android.R as AndroidR
 
 /**
  * Search text fragment

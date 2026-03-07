@@ -20,7 +20,6 @@ import org.sqlunet.predicatematrix.PmRolePointer
 import org.sqlunet.predicatematrix.browser.PredicateMatrixFragment
 import org.sqlunet.predicatematrix.settings.Settings.PMMode
 import org.sqlunet.provider.ProviderArgs
-import android.R as AndroidR
 
 /**
  * PredicateMatrix fragment

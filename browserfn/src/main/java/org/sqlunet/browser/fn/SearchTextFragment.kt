@@ -13,7 +13,6 @@ import org.sqlunet.browser.SplashFragment
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FTS_FnSentences_X
 import org.sqlunet.framenet.provider.FrameNetProvider.Companion.makeUri
 import org.sqlunet.provider.ProviderArgs
-import android.R as AndroidR
 import org.sqlunet.browser.common.R as CommonR
 
 /**

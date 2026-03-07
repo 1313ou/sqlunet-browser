@@ -44,7 +44,6 @@ import org.sqlunet.wordnet.provider.WordNetContract.Domains
 import org.sqlunet.wordnet.provider.WordNetContract.Poses
 import org.sqlunet.wordnet.provider.WordNetContract.Relations
 import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
-import android.R as AndroidR
 import org.sqlunet.browser.common.R as CommonR
 
 /**

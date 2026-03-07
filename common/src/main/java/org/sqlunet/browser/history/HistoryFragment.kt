@@ -4,7 +4,6 @@
 package org.sqlunet.browser.history
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.SearchRecentSuggestionsProvider
 import android.database.Cursor
 import android.net.Uri
