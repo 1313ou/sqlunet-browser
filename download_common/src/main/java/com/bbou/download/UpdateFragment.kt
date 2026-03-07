@@ -96,10 +96,12 @@ class UpdateFragment : Fragment() {
         val newerArg = intent.getBooleanExtra(NEWER_ARG, false)
         val newer = view.findViewById<TextView>(R.id.newer)
         if (newerArg) {
-            newer.setTextColor(Color.BLUE)
+            newer.setBackgroundResource(android.R.color.holo_blue_dark)
+            newer.setTextColor(Color.WHITE)
             newer.setText(R.string.download_newer)
         } else {
-            newer.setTextColor(Color.GREEN)
+            newer.setBackgroundResource(android.R.color.holo_green_dark)
+            newer.setTextColor(Color.WHITE)
             newer.setText(R.string.download_uptodate)
         }
 
@@ -108,7 +110,7 @@ class UpdateFragment : Fragment() {
         run {
             val button = view.findViewById<MaterialButton>(R.id.updateButton)
             button.visibility = View.VISIBLE
-            button.setOnClickListener { 
+            button.setOnClickListener {
                 val activityContext = requireContext()
                 confirm(activityContext, R.string.title_activity_update, R.string.askUpdate) {
                     val downloadIntent = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) intent.getParcelableExtra(DOWNLOAD_INTENT_ARG, Intent::class.java) else @Suppress("DEPRECATION") intent.getParcelableExtra(DOWNLOAD_INTENT_ARG)
