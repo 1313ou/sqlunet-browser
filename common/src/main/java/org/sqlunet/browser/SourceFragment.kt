@@ -94,10 +94,8 @@ class SourceFragment : Fragment() {
         @SuppressLint("NotifyDataSetChanged")
         fun changeCursor(newCursor: Cursor?) {
             if (cursor != newCursor) {
-                val oldCursor = cursor
                 cursor = newCursor
                 notifyDataSetChanged()
-                oldCursor?.close()
             }
         }
 

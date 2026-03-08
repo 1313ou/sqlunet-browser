@@ -44,12 +44,21 @@ class SqlunetViewModel(application: Application) : AndroidViewModel(application)
         }
         viewModelScope.launch {
             val result = task.run(Dispatchers.Default, null)
+            val oldCursor = mutableData.value
+            if (oldCursor != null && oldCursor != result) {
+                oldCursor.close()
+            }
             mutableData.value = result
         }
     }
 
     fun loadData(uri: Uri, sql: ContentProviderSql, postProcessor: PostProcessor?) {
         loadData(uri, sql.projection, sql.selection, sql.selectionArgs, sql.sortBy, postProcessor)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        mutableData.value?.close()
     }
 
     companion object {
