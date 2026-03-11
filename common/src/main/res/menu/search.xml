@@ -12,6 +12,6 @@
 		android:icon="@drawable/ic_search_browse"
 		android:title="@string/hint_search"
 		app:showAsAction="always"
-		app:tint="#880E4F"
+		app:iconTint="?attr/colorOnCustom"
 		tools:ignore="AlwaysShowAction" />
 </menu>
