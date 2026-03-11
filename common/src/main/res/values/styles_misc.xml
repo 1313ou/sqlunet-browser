@@ -41,10 +41,10 @@
 	</style>
 
 	<!-- As TextView -->
-	<style name="TextViewListItemStyle"></style>
+	<style name="TextViewListItemStyle"/>
 
 	<!-- As Layout -->
-	<style name="ListItemStyle"></style>
+	<style name="ListItemStyle"/>
 
 	<!-- S E A R C H   T E X T -->
 

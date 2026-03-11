@@ -24,7 +24,6 @@ import org.sqlunet.verbnet.provider.VerbNetContract
 import org.sqlunet.verbnet.provider.VerbNetProvider
 import org.sqlunet.wordnet.provider.WordNetContract
 import org.sqlunet.wordnet.provider.WordNetProvider
-import android.R as AndroidR
 import org.sqlunet.browser.common.R as CommonR
 
 /**

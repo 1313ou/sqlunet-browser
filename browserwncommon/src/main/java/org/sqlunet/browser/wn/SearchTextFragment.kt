@@ -18,7 +18,6 @@ import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
 import org.sqlunet.wordnet.provider.WordNetContract
 import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
-import android.R as AndroidR
 import org.sqlunet.browser.common.R as CommonR
 
 /**

@@ -34,7 +34,7 @@ class BrowseSensesFragment : Fragment() {
 
         manager.beginTransaction()
             .setReorderingAllowed(true)
-            .replace(LibR.id.container_senses, sensesFragment, BaseBrowse2Fragment.Companion.FRAGMENT_TAG)
+            .replace(LibR.id.container_senses, sensesFragment, BaseBrowse2Fragment.FRAGMENT_TAG)
             // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG)
             .commit()
     }

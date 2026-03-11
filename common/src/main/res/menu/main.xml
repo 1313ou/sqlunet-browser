@@ -45,7 +45,6 @@
 					android:id="@+id/action_update"
 					android:title="@string/action_update"
 					app:showAsAction="never" />
-
 			</group>
 
 			<item
@@ -63,6 +62,10 @@
 			<item
 				android:id="@+id/action_tables_and_indices"
 				android:title="@string/action_tables_and_indices"
+				app:showAsAction="never" />
+			<item
+				android:id="@+id/action_provider_info"
+				android:title="@string/action_provider_info"
 				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_logging"
@@ -132,10 +135,6 @@
 		android:title="@string/action_app"
 		app:showAsAction="never">
 		<menu>
-			<item
-				android:id="@+id/action_provider_info"
-				android:title="@string/action_provider_info"
-				app:showAsAction="never" />
 			<item
 				android:id="@+id/action_appsettings"
 				android:title="@string/action_appsettings"

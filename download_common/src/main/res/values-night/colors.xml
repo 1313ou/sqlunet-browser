@@ -6,9 +6,9 @@
 
 	<!-- R A W -->
 
-	<color name="red_color">#800000</color>
-	<color name="green_color">#008000</color>
-	<color name="blue_color">#000080</color>
+	<color name="red_color">#EF9A9A</color>
+	<color name="green_color">#A5D6A7</color>
+	<color name="blue_color">#80CBC4</color>
 
 	<!-- M A I N -->
 
@@ -24,7 +24,7 @@
 	<color name="dirTypeForeColor">#FFFFFF</color>
 
 	<color name="storageValueBackColor">@android:color/transparent</color>
-	<color name="storageValueForeColor">#000000</color>
+	<color name="storageValueForeColor">#FFFFFF</color>
 
 	<color name="dirValueBackColor">@android:color/transparent</color>
 	<color name="dirValueForeColor">@color/blue_color</color>

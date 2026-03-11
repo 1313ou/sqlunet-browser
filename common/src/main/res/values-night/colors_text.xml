@@ -5,11 +5,11 @@
 <resources>
 
 	<!-- text -->
-	<color name="colorId">#ef2063</color> <!--  -->
-	<color name="colorName">#ef2063</color> <!--  -->
-	<color name="colorDefinition">#ef2063</color> <!--  -->
-	<color name="colorCased">#9D557B</color> <!--  -->
-	<color name="colorPronunciation">#3C9497</color> <!--  -->
-	<color name="colorDimmed">#808080</color> <!--  -->
+	<color name="colorId">#ef2063</color>
+	<color name="colorName">#ef2063</color>
+	<color name="colorDefinition">#ef2063</color>
+	<color name="colorCased">#9D557B</color>
+	<color name="colorPronunciation">#3C9497</color>
+	<color name="colorDimmed">#808080</color>
 
 </resources>

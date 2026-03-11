@@ -54,7 +54,7 @@ class SetupActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
         // create the adapter that will return a fragment for each of the three sections of the activity.
         val pagerAdapter = SectionsPagerAdapter(this)
 
-        // set up the pager with the sections adapter.
+        // set up the pager with the sections' adapter.
         viewPager = findViewById(R.id.container)
         viewPager.setAdapter(pagerAdapter)
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

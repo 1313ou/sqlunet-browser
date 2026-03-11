@@ -35,7 +35,6 @@ import org.sqlunet.settings.Settings
 import org.sqlunet.settings.Settings.DetailViewMode
 import org.sqlunet.settings.Settings.SelectorViewMode
 import org.sqlunet.browser.common.R as CommonR
-import android.R as AndroidR
 
 /**
  * Browse fragment
