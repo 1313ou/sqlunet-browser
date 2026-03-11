@@ -357,7 +357,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             .query("")
             .fragment("")
 
-        if (path != null && path.isNotEmpty()) {
+        if (!path.isNullOrEmpty()) {
             uriBuilder.appendEncodedPath(path)
         }
 
