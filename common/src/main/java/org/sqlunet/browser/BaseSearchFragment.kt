@@ -166,8 +166,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         searchView.setupWithSearchBar(searchBar)
         setUpSearchBar()
         setupSearchView()
-
-
     }
 
     /**
