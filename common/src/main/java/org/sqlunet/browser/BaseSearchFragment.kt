@@ -167,7 +167,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // toolbar
         toolbar = requireActivity().findViewById(R.id.toolbar)
 
-        // search mode
+        // search bar and view
         searchBar = requireActivity().findViewById(CoreR.id.search_bar)
         searchView = requireActivity().findViewById(CoreR.id.search_view)
 
@@ -252,6 +252,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * Set up searchbar
      */
     private fun setUpSearchBar() {
+        Log.d(TAG, "SearchBar: set up in $this")
         searchBar.inflateMenu(R.menu.browse)
         searchBar.setOnMenuItemClickListener { menuItem: MenuItem? ->
             menuItem?.title?.let {
@@ -268,9 +269,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * Set up search view
      */
     private fun setupSearchView() {
-
-        // initially search view
-        searchView.hide()
+        Log.d(TAG, "SearchView: set up in $this")
 
          // m e n u
         searchView.inflateMenu(R.menu.browse)
@@ -368,7 +367,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             putExtra(SearchManager.QUERY, query)
         }
         startActivity(intent)
-
     }
 
     fun getSuggestions(query: String, searchableInfo: SearchableInfo): List<String> {
