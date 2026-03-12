@@ -276,7 +276,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             }
             true
         }
-        searchBar.visibility = View.VISIBLE
+        searchBar.setNavigationOnClickListener {
+            exitSearch()
+        }
     }
 
     private fun SearchBar.show() {
