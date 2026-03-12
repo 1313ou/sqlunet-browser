@@ -28,12 +28,10 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.ArrayRes
-import androidx.annotation.AttrRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.view.size
@@ -47,12 +45,9 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.sqlunet.browser.ColorUtils.fetchColor
 import org.sqlunet.browser.ColorUtils.getDrawable
-import org.sqlunet.browser.ColorUtils.tint
 import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
-import com.google.android.material.R as MaterialR
 import org.sqlunet.core.R as CoreR
 
 /**
@@ -161,7 +156,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             }
         }
         val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(menuProvider, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
+        menuHost.addMenuProvider(menuProvider, getViewLifecycleOwner(), Lifecycle.State.DESTROYED)
 
         // toolbar
         toolbar = requireActivity().findViewById(R.id.toolbar)
@@ -360,17 +355,24 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         searchView.editText.setOnEditorActionListener { textView, actionId, event ->
             val query = textView.text.toString()
 
-            // behaviour
-            searchView.hide() // Close the search view after submission
-            searchBar.setText(searchView.text.toString())
-            //    clearSearchView(searchView)
-            //    closeKeyboard()
-            //    searchView.hide()
+            // Close the search view after submission
+            searchView.hide()
 
-            // emulate what the legacy SearchView did automatically
-            // trigger the search intent manually for M3 SearchView
+            // Update search bar with the submitted query
+            searchBar.setText(searchView.text.toString())
+
+            // Search view clear
+            // clearSearchView(searchView)
+
+            // Emulate what the legacy SearchView did automatically
+            // Trigger the search intent manually for M3 SearchView
             performSearch(query, searchableInfo)
             true
+        }
+
+        // text change and edit action
+        searchView.editText.addTextChangedListener {
+            // activeSearchFragment?.onSearchQueryChanged(it.toString())
         }
 
         // s u g g e s t i o n
@@ -403,7 +405,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // trigger focus
         if (triggerFocusSearch()) {
             Handler(Looper.getMainLooper()).postDelayed({
-                                                            searchBar.visibility = View.VISIBLE
+                                                            toolbar.hide()
+                                                            searchBar.show()
                                                             //searchView.hide()
                                                         }, 1500)
         }
