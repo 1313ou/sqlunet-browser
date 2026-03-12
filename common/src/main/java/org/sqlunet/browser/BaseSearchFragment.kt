@@ -211,6 +211,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
+
+        exitSearch()
+
         toolbar.setSubtitle(R.string.app_subname)
     }
 
