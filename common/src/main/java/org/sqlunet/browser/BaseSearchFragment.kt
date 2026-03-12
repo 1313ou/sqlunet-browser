@@ -279,6 +279,14 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         searchBar.visibility = View.VISIBLE
     }
 
+    private fun SearchBar.show() {
+        visibility = View.VISIBLE
+    }
+
+    private fun SearchBar.hide() {
+        visibility = View.GONE
+    }
+
     // S E A R C H   V I E W
 
     /**
