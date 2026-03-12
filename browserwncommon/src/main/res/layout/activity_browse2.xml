@@ -14,8 +14,21 @@
 		android:layout_height="wrap_content"
 		android:fitsSystemWindows="@bool/appbar_fits_system_windows">
 
-		<include layout="@layout/toolbar" />
-		<include layout="@layout/searchbar" />
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize">
+
+			<include
+				layout="@layout/toolbar"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent" />
+
+			<include
+				layout="@layout/searchbar"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:visibility="gone" />
+		</FrameLayout>
 
 	</com.google.android.material.appbar.AppBarLayout>
 
