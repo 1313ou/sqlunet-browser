@@ -102,6 +102,15 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     @ArrayRes
     protected var spinnerIcons = 0
 
+    // S E A R C H   L I S T E N E R
+
+    override fun search(query: String) {
+        this.query = query
+
+        // subtitle
+        // toolbar.setSubtitle(query)
+    }
+
     // C R E A T I O N
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -198,8 +207,29 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     override fun onDestroyView() {
         super.onDestroyView()
         toolbar.setSubtitle(R.string.app_subname)
-        searchBar.visibility = View.GONE
-        searchView.hide()
+    }
+
+    // S A V E / R E S T O R E
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        // always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(outState)
+
+        // spinner
+        if (spinner != null) {
+            // serialize the current dropdown position
+            val position = spinner!!.selectedItemPosition
+            outState.putInt(STATE_SPINNER, position)
+        }
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        // restore from saved instance
+        if (savedInstanceState != null) {
+            spinnerPosition = savedInstanceState.getInt(STATE_SPINNER)
+        }
     }
 
     // T O O L B A R
@@ -379,6 +409,12 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         return suggestions
     }
 
+    private fun getSearchInfo(): SearchableInfo {
+        val componentName = requireActivity().componentName
+        val searchManager = requireContext().getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        return searchManager.getSearchableInfo(componentName)
+    }
+
     protected open fun triggerFocusSearch(): Boolean {
         return true
     }
@@ -512,97 +548,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * Search type position, obtained by peeking at spinner state or registry if spinner is still null
      */
     protected var searchModePosition: Int = -1
-
-    // S E A R C H   L I S T E N E R
-
-    override fun search(query: String) {
-        this.query = query
-
-        // subtitle
-        // toolbar.setSubtitle(query)
-    }
-
-    // S A V E / R E S T O R E
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        // always call the superclass so it can save the view hierarchy state
-        super.onSaveInstanceState(outState)
-
-        // spinner
-        if (spinner != null) {
-            // serialize the current dropdown position
-            val position = spinner!!.selectedItemPosition
-            outState.putInt(STATE_SPINNER, position)
-        }
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-
-        // restore from saved instance
-        if (savedInstanceState != null) {
-            spinnerPosition = savedInstanceState.getInt(STATE_SPINNER)
-        }
-    }
-
-    // F R A G M E N T   M A N A G E M E N T
-
-    // /**
-    //  * Remove children fragments with tags and insert given fragment with at given location
-    //  *
-    //  * @param fragment          new fragment
-    //  * @param tag               new fragment's tag
-    //  * @param where             new fragment's location
-    //  * @param childFragmentTags removed children's tags
-    //  * @noinspection SameParameterValue, EmptyMethod
-    //  */
-    // protected fun beforeSaving(fragment: Fragment, tag: String?, @IdRes where: Int, vararg childFragmentTags: String) {
-    //     // FragmentUtils.removeAllChildFragment(getChildFragmentManager(), fragment, tag, where, *childFragmentTags)
-    // }
-
-    // S E A R C H
-
-    fun enableSearch() {
-        // searchBar.hint = fragment.searchHint
-        searchBar.visibility = View.VISIBLE
-
-        searchView.editText.addTextChangedListener {
-            // activeSearchFragment?.onSearchQueryChanged(it.toString())
-        }
-
-        searchView.editText.setOnEditorActionListener { _, _, _ ->
-            // activeSearchFragment?.onSearchSubmit(searchView.text.toString())
-            searchView.hide()
-            true
-        }
-    }
-
-    fun hideSearch() {
-        //activeSearchFragment = null
-        searchBar.visibility = View.GONE
-        searchView.hide()
-        searchView.editText.setText("")
-    }
-
-    fun showSearchBar(hint: String) {
-        searchBar.hint = hint
-        searchBar.visibility = View.VISIBLE
-    }
-
-    fun hideSearchBar() {
-        searchBar.visibility = View.GONE
-        searchView.hide()
-    }
-
-    fun expandSearch() {
-        searchView.show()
-    }
-
-    private fun getSearchInfo(): SearchableInfo {
-        val componentName = requireActivity().componentName
-        val searchManager = requireContext().getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        return searchManager.getSearchableInfo(componentName)
-    }
 
     companion object {
 
