@@ -6,9 +6,11 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/search_view"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
+	android:layout_height="wrap_content"
 	android:hint="@string/hint_search"
-	app:layout_anchor="@id/search_bar">
+	app:layout_anchor="@id/search_bar"
+	app:layout_behavior="com.google.android.material.search.SearchView$Behavior">
+
 	<!-- Search suggestions/results go here (e.g. RecyclerView) -->
 	<ScrollView
 		android:layout_width="match_parent"
