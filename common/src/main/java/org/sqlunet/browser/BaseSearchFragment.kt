@@ -150,7 +150,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
                 // toolbar
                 // must have
-                setupToolBar()
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -173,8 +172,14 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
         // connect searchbar and searchview
         searchView.setupWithSearchBar(searchBar)
+
+        // set ups
+        setupToolBar()
         setUpSearchBar()
         setupSearchView()
+
+        // search mode
+        enterSearch()
     }
 
     /**
