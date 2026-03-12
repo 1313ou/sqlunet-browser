@@ -246,6 +246,14 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // toolbar.setSubtitle(R.string.app_subname)
     }
 
+    private fun Toolbar.show() {
+        visibility = View.VISIBLE
+    }
+
+    private fun Toolbar.hide() {
+        visibility = View.GONE
+    }
+
     // S E A R C H   B A R
 
     /**
@@ -432,6 +440,23 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             val imm = (activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    // S E A R C H
+
+    fun enterSearch() {
+        Log.d(TAG, "SearchMode enter")
+        //searchBar.hint =
+        toolbar.hide()
+        searchBar.show()
+    }
+
+    fun exitSearch() {
+        Log.d(TAG, "SearchMode exit")
+        //activeSearchFragment = null
+        searchBar.hide()
+        searchView.hide()
+        toolbar.show()
     }
 
     // S P I N N E R
