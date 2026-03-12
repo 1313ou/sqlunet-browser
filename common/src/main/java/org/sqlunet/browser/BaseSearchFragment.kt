@@ -252,6 +252,30 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // title
         toolbar.setTitle(R.string.title_activity_browse)
         // toolbar.setSubtitle(R.string.app_subname)
+
+        // search menu adds search icon to toolbar
+        val menuProvider = object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
+                menu.clear()
+                inflater.inflate(R.menu.search, menu)
+            }
+
+            override fun onMenuItemSelected(item: MenuItem): Boolean {
+                return when (item.itemId) {
+                    R.id.search -> {
+                        enterSearch()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+        }
+        requireActivity().addMenuProvider(
+            menuProvider,
+            viewLifecycleOwner,
+            Lifecycle.State.RESUMED
+        )
     }
 
     private fun Toolbar.show() {
