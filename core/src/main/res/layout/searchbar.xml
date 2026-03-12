@@ -3,8 +3,11 @@
   -->
 
 <com.google.android.material.search.SearchBar xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/search_bar"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
+	android:hint="@string/hint_search"
 	android:visibility="gone"
-	android:hint="@string/hint_search" />
+	app:navigationIcon="?attr/homeAsUpIndicator" />
+	<!--	style="@style/Widget.Material3Expressive.SearchBar.AppBarWithSearch"-->
