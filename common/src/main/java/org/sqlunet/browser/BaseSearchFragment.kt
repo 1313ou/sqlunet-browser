@@ -177,6 +177,18 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         enterSearch()
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        // trigger focus in 1.5s
+        if (triggerFocusSearch()) {
+            Handler(Looper.getMainLooper())
+                .postDelayed({
+                                 searchView.show()
+                             }, 1500)
+        }
+    }
+
     /**
      * On resume
      * The fragment is responsible for activating the spinner while active.
