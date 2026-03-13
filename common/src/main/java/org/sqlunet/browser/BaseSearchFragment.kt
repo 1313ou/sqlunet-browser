@@ -369,7 +369,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
 
         // submission
-        searchView.editText.setOnEditorActionListener { textView, actionId, event ->
+        searchView.editText.setOnEditorActionListener { textView, _, _ ->
             val query = textView.text.toString()
 
             // Close the search view after submission
