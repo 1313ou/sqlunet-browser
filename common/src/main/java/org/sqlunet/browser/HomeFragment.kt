@@ -44,6 +44,7 @@ open class HomeFragment : Fragment() {
             override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
                 menu.clear()
                 inflater.inflate(R.menu.search, menu)
+                inflater.inflate(R.menu.main, menu)
             }
 
             override fun onMenuItemSelected(item: MenuItem): Boolean {
