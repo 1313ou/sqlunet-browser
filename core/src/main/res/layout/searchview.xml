@@ -12,16 +12,12 @@
 	app:layout_behavior="com.google.android.material.search.SearchView$Behavior">
 
 	<!-- Search suggestions/results go here (e.g. RecyclerView) -->
-	<ScrollView
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/search_view_suggestion_container"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:scrollbars="none">
+		android:layout_height="wrap_content"
+		android:theme="@style/MySurfaceOverlay"
+		app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-		<androidx.recyclerview.widget.RecyclerView
-			android:id="@+id/search_view_suggestion_container"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-	</ScrollView>
 </com.google.android.material.search.SearchView>
