@@ -530,7 +530,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     private val spinner: Spinner?
         get() {
             // must have
-            return toolbar.findViewById(R.id.spinner) // must be non null after resume
+            return toolbar.findViewById(R.id.spinner) // must be non-null after resume
         }
 
     /**
