@@ -11,8 +11,6 @@
 	app:layout_anchor="@id/search_bar"
 	app:layout_behavior="com.google.android.material.search.SearchView$Behavior">
 
-	<!-- Search suggestions/results go here (e.g. RecyclerView) -->
-
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/search_view_suggestion_container"
 		android:layout_width="match_parent"
