@@ -262,16 +262,24 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
                 menu.clear()
                 inflater.inflate(R.menu.search, menu)
+                inflater.inflate(R.menu.main_safedata, menu)
+                inflater.inflate(menuId, menu)
             }
 
-            override fun onMenuItemSelected(item: MenuItem): Boolean {
-                return when (item.itemId) {
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
                     R.id.search -> {
                         enterSearch()
                         true
                     }
 
-                    else -> false
+                    else -> {
+                        @Suppress("DEPRECATION")
+                        val handled = onOptionsItemSelected(menuItem) // use it a normal function
+                        if (handled) {
+                            true
+                        } else menuDispatch((requireActivity() as AppCompatActivity), menuItem)
+                    }
                 }
             }
         }
