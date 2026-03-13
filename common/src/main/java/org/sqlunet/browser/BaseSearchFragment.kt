@@ -142,9 +142,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 menuInflater.inflate(menuId, menu)
                 // MenuCompat.setGroupDividerEnabled(menu, true)
                 Log.d(TAG, "MenuProvider: onCreateMenu() size=" + menu.size)
-
-                // toolbar
-                // must have
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
