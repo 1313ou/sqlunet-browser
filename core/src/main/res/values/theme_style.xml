@@ -14,7 +14,7 @@
 
 	<!-- S T Y L E S -->
 
-	<!-- This is the new style you need to add -->
+	<!-- App bar -->
 	<style name="MyAppBarLayout" parent="Widget.Material3.AppBarLayout">
 		<item name="android:background">?attr/colorCustom</item>
 		<item name="android:textColor">?attr/colorOnCustom</item>
