@@ -428,15 +428,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 }
             }
         }
-
-        // trigger focus
-        if (triggerFocusSearch()) {
-            Handler(Looper.getMainLooper()).postDelayed({
-                                                            toolbar.hide()
-                                                            searchBar.show()
-                                                            //searchView.hide()
-                                                        }, 1500)
-        }
     }
 
     fun performSearch(query: String, searchableInfo: SearchableInfo) {
