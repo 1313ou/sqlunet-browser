@@ -305,12 +305,18 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     private fun setUpSearchBar() {
         Log.d(TAG, "SearchBar: set up in $this")
+
+        // m e n u
         searchBar.inflateMenu(R.menu.browse)
-        searchBar.setOnMenuItemClickListener { menuItem: MenuItem? ->
+        searchBar.setOnMenuItemClickListener { menuItem: MenuItem ->
             menuItem?.title?.let {
                 Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
             }
-            true
+            @Suppress("DEPRECATION")
+            val handled = onOptionsItemSelected(menuItem) // use it a normal function
+            if (handled) {
+                true
+            } else menuDispatch((requireActivity() as AppCompatActivity), menuItem)
         }
         searchBar.setNavigationOnClickListener {
             exitSearch()
@@ -335,11 +341,15 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
         // m e n u
         searchView.inflateMenu(R.menu.browse)
-        searchView.setOnMenuItemClickListener { menuItem: MenuItem? ->
-            menuItem?.title?.let {
+        searchView.setOnMenuItemClickListener { menuItem: MenuItem ->
+            menuItem.title?.let {
                 Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
             }
-            true
+            @Suppress("DEPRECATION")
+            val handled = onOptionsItemSelected(menuItem) // use it a normal function
+            if (handled) {
+                true
+            } else menuDispatch((requireActivity() as AppCompatActivity), menuItem)
         }
 
         // b a c k   p r e s s e d
