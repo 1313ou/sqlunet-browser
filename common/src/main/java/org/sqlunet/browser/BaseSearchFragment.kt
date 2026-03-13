@@ -191,12 +191,12 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         acquireSpinner(spinner)
     }
 
-     /**
+    /**
      * On pause
      * The fragment is responsible for deactivating the spinner while active.
      * Deactivate spinner.
      */
-   override fun onPause() {
+    override fun onPause() {
         super.onPause()
         closeKeyboard()
         // after resume
@@ -316,7 +316,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     private fun setupSearchView() {
         Log.d(TAG, "SearchView: set up in $this")
 
-         // m e n u
+        // m e n u
         searchView.inflateMenu(R.menu.browse)
         searchView.setOnMenuItemClickListener { menuItem: MenuItem? ->
             menuItem?.title?.let {
@@ -383,7 +383,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             searchView.hide()
             performSearch(selectedText, searchableInfo)
         }
-        val suggestionContainer  = requireActivity().findViewById<RecyclerView>(CoreR.id.search_view_suggestion_container)
+        val suggestionContainer = requireActivity().findViewById<RecyclerView>(CoreR.id.search_view_suggestion_container)
         suggestionContainer.adapter = adapter
         // handle suggestion selection
         searchView.editText.addTextChangedListener { text ->
@@ -449,7 +449,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         val uri = uriBuilder.build()
         val suggestions = mutableListOf<String>()
 
-        requireContext().contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+        context?.contentResolver?.query(uri, null, null, null, null)?.use { cursor ->
             val text1Index = cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1)
             while (cursor.moveToNext()) {
                 if (text1Index != -1) {
