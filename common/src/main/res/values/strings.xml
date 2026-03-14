@@ -211,7 +211,7 @@
 
 	<!-- rows -->
 	<string name="description_row">row</string>
-	<string name="description_suggested">History Icon</string>
+	<string name="description_suggested">suggested</string>
 
 	<!-- columns -->
 	<string name="description_column_id">id</string>

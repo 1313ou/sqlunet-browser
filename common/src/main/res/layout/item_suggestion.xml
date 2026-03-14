@@ -14,9 +14,9 @@
 	<ImageView
 		android:layout_width="24dp"
 		android:layout_height="24dp"
-		android:src="@drawable/ic_history"
-		android:contentDescription="@string/description_suggested"
-		app:tint="?attr/colorOnSurfaceVariant" />
+		android:src="@drawable/ic_item"
+		android:contentDescription="@string/description_suggested" />
+		<!-- app:tint="?attr/colorOnSurfaceVariant" />-->
 
 	<TextView
 		android:id="@+id/suggestion_text"
