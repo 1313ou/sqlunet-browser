@@ -5,4 +5,5 @@
 <resources>
 	<item name="fab" type="id" />
 	<item name="appbar_layout" type="id" />
+	<item name="toolbar" type="id" />
 </resources>
