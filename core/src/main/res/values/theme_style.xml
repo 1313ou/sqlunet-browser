@@ -12,6 +12,16 @@
 		<item name="android:textColor">?attr/colorOnCustom</item>
 	</style>
 
+	<!-- S T Y L E S -->
+
+	<!-- App bar -->
+	<style name="MyAppBarLayout" parent="Widget.Material3.AppBarLayout">
+		<item name="android:background">?attr/colorCustom</item>
+		<item name="android:textColor">?attr/colorOnCustom</item>
+		<!-- This prevents the AppBarLayout from applying an elevation overlay that would cover the statusBarColor -->
+		<item name="liftOnScroll">false</item>
+	</style>
+
 	<!-- Search view -->
 	<style name="MySearchViewStyle" parent="Widget.Material3.SearchView">
 		<item name="colorSurfaceContainerHigh">?attr/colorCustom</item> <!-- full screen -->
@@ -22,16 +32,6 @@
 
 	<style name="MySearchViewToolbarStyle" parent="Widget.Material3.SearchView.Toolbar">
 		<item name="android:background">?attr/colorCustom</item>
-	</style>
-
-	<!-- S T Y L E S -->
-
-	<!-- App bar -->
-	<style name="MyAppBarLayout" parent="Widget.Material3.AppBarLayout">
-		<item name="android:background">?attr/colorCustom</item>
-		<item name="android:textColor">?attr/colorOnCustom</item>
-		<!-- This prevents the AppBarLayout from applying an elevation overlay that would cover the statusBarColor -->
-		<item name="liftOnScroll">false</item>
 	</style>
 
 	<!-- Dropdown list -->
