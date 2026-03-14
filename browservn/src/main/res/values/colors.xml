@@ -3,7 +3,7 @@
 <resources>
 	<color name="md_theme_custom">#CADBC2</color>
 	<color name="md_theme_onCustom">#354432</color>
-	<color name="md_theme_customVariant">#0E5212</color>
+	<color name="md_theme_customVariant">#85C97A</color>
 	<color name="md_theme_surface">#FBF9F6</color>
 	<color name="md_theme_onSurface">#1B1C1A</color>
 	<color name="md_theme_surfaceVariant">#E0E4DA</color>
