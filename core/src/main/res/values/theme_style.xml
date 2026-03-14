@@ -12,6 +12,18 @@
 		<item name="android:textColor">?attr/colorOnCustom</item>
 	</style>
 
+	<!-- Search view -->
+	<style name="MySearchViewOverlay" parent="">
+		<item name="colorSurfaceContainerHigh">?attr/colorCustom</item> <!-- full screen -->
+		<item name="colorOnSurface">?attr/colorOnCustom</item> <!-- back icon -->
+		<item name="colorOnSurfaceVariant">?attr/colorOnCustom</item> <!-- hint text -->
+		<item name="materialSearchViewToolbarStyle">@style/MySearchView.Toolbar</item>
+	</style>
+
+	<style name="MySearchView.Toolbar" parent="Widget.Material3.SearchView.Toolbar">
+		<item name="android:background">?attr/colorCustom</item>
+	</style>
+
 	<!-- S T Y L E S -->
 
 	<!-- App bar -->

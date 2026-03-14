@@ -9,6 +9,7 @@
 	android:layout_height="wrap_content"
 	android:hint="@string/hint_search"
 	app:layout_anchor="@id/search_bar"
+	app:materialThemeOverlay="@style/MySearchViewOverlay"
 	app:layout_behavior="com.google.android.material.search.SearchView$Behavior">
 
 	<androidx.recyclerview.widget.RecyclerView
