@@ -13,7 +13,7 @@
 	</style>
 
 	<!-- Search view -->
-	<style name="MySearchViewStyle" parent="">
+	<style name="MySearchViewStyle" parent="Widget.Material3.SearchView">
 		<item name="colorSurfaceContainerHigh">?attr/colorCustom</item> <!-- full screen -->
 		<item name="colorOnSurface">?attr/colorOnCustom</item> <!-- back icon -->
 		<item name="colorOnSurfaceVariant">?attr/colorOnCustom</item> <!-- hint text -->
