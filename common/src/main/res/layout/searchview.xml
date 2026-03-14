@@ -11,7 +11,8 @@
 	android:hint="@string/hint_search"
 	app:headerLayout="@layout/searchview_header"
 	app:layout_anchor="@id/search_bar"
-	app:layout_behavior="com.google.android.material.search.SearchView$Behavior">
+	app:layout_behavior="com.google.android.material.search.SearchView$Behavior"
+	app:menu="@menu/searchview">
 
 	<androidx.recyclerview.widget.RecyclerView
 		android:id="@+id/search_view_suggestion_container"

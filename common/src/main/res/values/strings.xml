@@ -170,6 +170,7 @@
 	<!-- misc -->
 	<string name="hint_search">Search</string>
 	<string name="hint_searchtext">Text search</string>
+	<string name="hint_history">History</string>
 	<string name="hint_splash_browse">Exploring senses and semantic roles</string>
 	<string name="hint_splash_searchtext">Text search</string>
 	<string name="hint_sql">SQL statements stack</string>

@@ -10,6 +10,7 @@ import android.app.SearchableInfo
 import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
+import android.content.SearchRecentSuggestionsProvider
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -25,7 +26,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
-import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
@@ -43,13 +43,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.search.SearchBar
 import com.google.android.material.search.SearchView
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
+import org.sqlunet.browser.history.SearchRecentSuggestions
+import java.io.IOException
 
 /**
  * Base search fragment
@@ -78,6 +79,11 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * Search view
      */
     private lateinit var searchView: SearchView
+
+    /**
+     * Suggestion container
+     */
+    private lateinit var suggestionContainer: RecyclerView
 
     /**
      * Stored between onViewStateRestored and onResume
@@ -162,6 +168,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // search bar and view
         searchBar = requireActivity().findViewById(R.id.search_bar)
         searchView = requireActivity().findViewById(R.id.search_view)
+        suggestionContainer = requireActivity().findViewById<RecyclerView>(R.id.search_view_suggestion_container)
 
         // connect searchbar and searchview
         searchView.setupWithSearchBar(searchBar)
@@ -310,9 +317,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // m e n u
         searchBar.inflateMenu(R.menu.browse)
         searchBar.setOnMenuItemClickListener { menuItem: MenuItem ->
-            menuItem?.title?.let {
-                Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
-            }
+            //menuItem.title?.let {
+            //    Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
+            //}
             @Suppress("DEPRECATION")
             val handled = onOptionsItemSelected(menuItem) // use it a normal function
             if (handled) {
@@ -353,16 +360,26 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         searchEditText.gravity = Gravity.CENTER_VERTICAL
 
         // m e n u
-        searchView.inflateMenu(R.menu.browse)
+        searchView.inflateMenu(R.menu.searchview)
         searchView.setOnMenuItemClickListener { menuItem: MenuItem ->
-            menuItem.title?.let {
-                Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
+            //menuItem.title?.let {
+            //    Snackbar.make(requireActivity().findViewById(android.R.id.content), it, Snackbar.LENGTH_SHORT).show()
+            //}
+            when (menuItem.itemId) {
+                R.id.searchview_history -> {
+                    historyToSuggestions()
+                    true
+                }
+
+                else -> {
+                    @Suppress("DEPRECATION")
+                    val handled = onOptionsItemSelected(menuItem) // use it a normal function
+                    if (handled)
+                        true
+                    else menuDispatch((requireActivity() as AppCompatActivity), menuItem)
+                }
             }
-            @Suppress("DEPRECATION")
-            val handled = onOptionsItemSelected(menuItem) // use it a normal function
-            if (handled) {
-                true
-            } else menuDispatch((requireActivity() as AppCompatActivity), menuItem)
+
         }
 
         // b a c k   p r e s s e d
@@ -415,7 +432,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             // activeSearchFragment?.onSearchQueryChanged(it.toString())
         }
 
-        // s u g g e s t i o n
+        // s u g g e s t i o n S
         // adapter to recyclerview
         val adapter = SuggestionAdapter { selectedText ->
             // Handle suggestion click
@@ -423,7 +440,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             searchView.hide()
             performSearch(selectedText, searchableInfo)
         }
-        val suggestionContainer = requireActivity().findViewById<RecyclerView>(R.id.search_view_suggestion_container)
         suggestionContainer.adapter = adapter
         // handle suggestion selection
         searchView.editText.addTextChangedListener { text ->
@@ -453,14 +469,14 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         startActivity(intent)
     }
 
-    fun getSuggestions(query: String, searchableInfo: SearchableInfo): List<String> {
+    fun getSuggestions(query: String, searchableInfo: SearchableInfo): List<Pair<String, Int>> {
 
         val authority = searchableInfo.suggestAuthority
         val path = searchableInfo.suggestPath ?: ""
         return fetchSuggestions(query, authority, path)
     }
 
-    fun fetchSuggestions(query: String, authority: String, path: String?): List<String> {
+    fun fetchSuggestions(query: String, authority: String, path: String?): List<Pair<String, Int>> {
 
         // The standard URI format for search suggestions
         val uriBuilder = Uri.Builder()
@@ -478,13 +494,13 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         uriBuilder.appendPath(query)
 
         val uri = uriBuilder.build()
-        val suggestions = mutableListOf<String>()
+        val suggestions = mutableListOf<Pair<String, Int>>()
 
         context?.contentResolver?.query(uri, null, null, null, null)?.use { cursor ->
             val text1Index = cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1)
             while (cursor.moveToNext()) {
                 if (text1Index != -1) {
-                    suggestions.add(cursor.getString(text1Index))
+                    suggestions.add(cursor.getString(text1Index) to R.drawable.ic_item)
                 }
             }
         }
@@ -495,6 +511,24 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         val componentName = requireActivity().componentName
         val searchManager = requireContext().getSystemService(Context.SEARCH_SERVICE) as SearchManager
         return searchManager.getSearchableInfo(componentName)
+    }
+
+    private fun historyToSuggestions() {
+        try {
+            val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+            suggestions.cursor().use { cursor ->
+                if (cursor?.moveToFirst() == true) {
+                    val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
+                    val history = generateSequence { if (cursor.moveToNext()) cursor else null }
+                        .map { it.getString(dataIdx) to R.drawable.ic_history }
+                        .toList()
+                    val adapter = suggestionContainer.adapter as SuggestionAdapter
+                    adapter.submitList(history)
+                }
+            }
+        } catch (e: IOException) {
+            Log.e(TAG, "While getting history", e)
+        }
     }
 
     protected open fun triggerFocusSearch(): Boolean {
