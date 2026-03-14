@@ -5,11 +5,11 @@
 <com.google.android.material.search.SearchView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/search_view"
+	style="@style/MySearchViewStyle"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:hint="@string/hint_search"
 	app:layout_anchor="@id/search_bar"
-	app:materialThemeOverlay="@style/MySearchViewStyle"
 	app:layout_behavior="com.google.android.material.search.SearchView$Behavior">
 
 	<androidx.recyclerview.widget.RecyclerView
