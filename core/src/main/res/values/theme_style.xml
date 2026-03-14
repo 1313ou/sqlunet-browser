@@ -31,7 +31,8 @@
 	</style>
 
 	<style name="MySearchViewToolbarStyle" parent="Widget.Material3.SearchView.Toolbar">
-		<item name="android:background">?attr/colorCustom</item>
+		<item name="android:background">@android:color/white</item>
+<!--		<item name="android:background">?attr/colorCustom</item>-->
 	</style>
 
 	<!-- Dropdown list -->
