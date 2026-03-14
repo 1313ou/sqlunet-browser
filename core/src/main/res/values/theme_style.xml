@@ -28,11 +28,19 @@
 		<item name="colorOnSurface">?attr/colorOnCustom</item> <!-- back icon -->
 		<item name="colorOnSurfaceVariant">?attr/colorOnCustom</item> <!-- hint text -->
 		<item name="materialSearchViewToolbarStyle">@style/MySearchViewToolbarStyle</item>
+		<item name="editTextStyle">@style/MySearchViewEditStyle</item> <!-- ignored -->
+		<item name="android:editTextStyle">@style/MySearchViewEditStyle</item> <!-- ignored -->
 	</style>
 
 	<style name="MySearchViewToolbarStyle" parent="Widget.Material3.SearchView.Toolbar">
+		<item name="android:background">?attr/colorCustom</item>
+		<item name="android:textColor">?attr/colorOnCustom</item>
+		<item name="editTextBackground">@android:color/white</item> <!-- ignored -->
+		<item name="editTextStyle">@style/MySearchViewEditStyle</item> <!-- ignored -->
+	</style>
+
+	<style name="MySearchViewEditStyle" parent="Widget.AppCompat.EditText">
 		<item name="android:background">@android:color/white</item>
-<!--		<item name="android:background">?attr/colorCustom</item>-->
 	</style>
 
 	<!-- Dropdown list -->
