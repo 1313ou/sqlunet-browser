@@ -52,5 +52,5 @@ mkdir -p "$D/values-night"
 ./run.sh -o theme_night > "$D/values-night/themes.xml"
 ./run.sh -o overlays_night > "$D/values-night/themes_overlays.xml"
 
-./run.sh -o colors_day $seedsDay  -x > "$D/values/colors.xml"
-./run.sh -o colors_night $seedsNight -x > "$D/values-night/colors.xml"
+./run.sh -o colors    $seedsDay   -x > "$D/values/colors.xml"
+./run.sh -o colors -d $seedsNight -x > "$D/values-night/colors.xml"
