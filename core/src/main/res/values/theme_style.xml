@@ -17,10 +17,10 @@
 		<item name="colorSurfaceContainerHigh">?attr/colorCustom</item> <!-- full screen -->
 		<item name="colorOnSurface">?attr/colorOnCustom</item> <!-- back icon -->
 		<item name="colorOnSurfaceVariant">?attr/colorOnCustom</item> <!-- hint text -->
-		<item name="materialSearchViewToolbarStyle">@style/MySearchView.Toolbar</item>
+		<item name="materialSearchViewToolbarStyle">@style/MySearchViewToolbarStyle</item>
 	</style>
 
-	<style name="MySearchView.Toolbar" parent="Widget.Material3.SearchView.Toolbar">
+	<style name="MySearchViewToolbarStyle" parent="Widget.Material3.SearchView.Toolbar">
 		<item name="android:background">?attr/colorCustom</item>
 	</style>
 
