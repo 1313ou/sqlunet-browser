@@ -15,6 +15,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -24,6 +25,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
@@ -337,6 +339,18 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     private fun setupSearchView() {
         Log.d(TAG, "SearchView: set up in $this")
+
+        // e d i t t e x t   t w e a k
+        val searchEditText = searchView.editText
+        // Set the white pill background
+        searchEditText.setBackgroundResource(R.drawable.searchview_edittext_pill)
+        // Match the height
+        searchEditText.layoutParams.height = resources.getDimensionPixelSize(R.dimen.search_pill_height)
+        // Center text vertically
+        val horizontalPadding = resources.getDimensionPixelSize(R.dimen.search_pill_horizontal_padding)
+        searchEditText.setPadding(horizontalPadding, 0, horizontalPadding, 0)
+        // Optional: adjust gravity to center the text perfectly
+        searchEditText.gravity = Gravity.CENTER_VERTICAL
 
         // m e n u
         searchView.inflateMenu(R.menu.browse)
