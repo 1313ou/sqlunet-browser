@@ -173,7 +173,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // connect searchbar and searchview
         searchView.setupWithSearchBar(searchBar)
 
-        // set ups
+        // set up search container
         setupToolBar()
         setUpSearchBar()
         setupSearchView()
@@ -188,9 +188,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // trigger focus in 1.5s
         if (triggerFocusSearch()) {
             Handler(Looper.getMainLooper())
-                .postDelayed({
-                                 searchView.show()
-                             }, 1500)
+                .postDelayed({ searchView.show() }, 1500)
         }
     }
 
