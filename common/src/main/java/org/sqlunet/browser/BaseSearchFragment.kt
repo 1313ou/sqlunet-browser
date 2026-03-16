@@ -20,7 +20,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
@@ -513,16 +512,17 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     protected open fun triggerFocusSearch(): Boolean = true
 
     fun clearQuery() {
-        clearSearchView(searchView)
-        closeKeyboard()
+         //searchView.clearFocus()
+         //searchView.isFocusable = false
+         //closeKeyboard()
     }
 
     private fun closeKeyboard() {
-        val view = requireActivity().currentFocus
-        if (view != null) {
-            val imm = requireActivity().getSystemService<InputMethodManager>()
-            imm?.hideSoftInputFromWindow(view.windowToken, 0)
-        }
+        //val view = requireActivity().currentFocus
+        //if (view != null) {
+        //    val imm = requireActivity().getSystemService<InputMethodManager>()
+        //    imm?.hideSoftInputFromWindow(view.windowToken, 0)
+        //}
     }
 
     // S E A R C H
@@ -628,12 +628,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
 
     /**
-     * Search type position, obtained by peeking at spinner state
-     */
-     protected val spinnerSearchModePosition: Int
-        get() = searchSpinner.selectedItemPosition
-
-    /**
      * Search type position, obtained by peeking at spinner state or registry if spinner is still null
      */
     protected var searchModePosition: Int = -1
@@ -646,13 +640,5 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
          * Saved state of spinner
          */
         private const val STATE_SPINNER = "selected_mode"
-
-        // S E A R C H
-
-        private fun clearSearchView(searchView: SearchView) {
-            searchView.clearFocus()
-            searchView.isFocusable = false
-            //searchView.editText.text = ""
-        }
     }
 }
