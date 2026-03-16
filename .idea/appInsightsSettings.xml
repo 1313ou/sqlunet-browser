@@ -42,8 +42,8 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="org.sqlunet.browser.vn" />
-                  <option name="mobileSdkAppId" value="1:733364453143:android:2053a6c566c071305bc152" />
+                  <option name="appId" value="org.sqlunet.browser.fn" />
+                  <option name="mobileSdkAppId" value="1:733364453143:android:7a1207cb8c1ee4205bc152" />
                   <option name="projectId" value="semantikos-302b1" />
                   <option name="projectNumber" value="733364453143" />
                 </ConnectionSetting>
