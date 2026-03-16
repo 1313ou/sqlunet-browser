@@ -96,6 +96,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     private lateinit var suggestionContainer: RecyclerView
 
+    // S T A T E
+
     /**
      * Stored between onViewStateRestored and onResume
      */
@@ -115,13 +117,10 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     @ArrayRes
     protected var spinnerIcons = 0
 
-    // S E A R C H   L I S T E N E R
+    // S E A R C H   E X E C U T O R
 
     override fun search(query: String) {
         this.query = query
-
-        // subtitle
-        // toolbar.setSubtitle(query)
     }
 
     // C R E A T I O N
@@ -177,6 +176,14 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         toolbar = requireActivity().findViewById(R.id.toolbar)
 
         // search bar and view
+        // searchBar and searchView are declared as properties (members) of your fragment instance:
+        // however, they are being retrieved from the Activity's view hierarchy, not the Fragment's own view.
+        // as such they are shared across fragments
+        // the variables (searchBar and searchView) are members of the fragment instance, but the objects they point to are not.
+        // When you navigate from Fragment A to Fragment B:
+        // 1. fragment A's instance is destroyed (or put in backstack), but the Activity and its views (the SearchBar/View) stay alive.
+        // 2. fragment B is created. It calls findViewById on the Activity and gets a reference to the exact same view objects that fragment A was using.
+        // 3. when fragment B calls inflateMenu(), it adds items to the menu that was already populated by fragment A.
         searchBarGroup = requireActivity().findViewById(R.id.search_bar_group)
         searchBar = requireActivity().findViewById(R.id.search_bar)
         searchBarSpinner = requireActivity().findViewById(R.id.search_bar_spinner)
@@ -348,6 +355,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
 
         // m e n u
+        searchBar.menu.clear()
         searchBar.inflateMenu(R.menu.browse)
         searchBar.setOnMenuItemClickListener { menuItem: MenuItem ->
             //menuItem.title?.let {
@@ -393,6 +401,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         searchEditText.gravity = Gravity.CENTER_VERTICAL
 
         // m e n u
+        searchView.toolbar.menu.clear()
         searchView.inflateMenu(R.menu.searchview)
         searchView.setOnMenuItemClickListener { menuItem: MenuItem ->
             //menuItem.title?.let {
