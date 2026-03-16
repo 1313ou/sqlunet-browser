@@ -4,17 +4,14 @@
 package org.sqlunet.browser
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.SearchManager
 import android.app.SearchableInfo
 import android.content.ContentResolver
-import android.content.Context
 import android.content.Intent
 import android.content.SearchRecentSuggestionsProvider
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.text.TextWatcher
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -35,6 +32,8 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.getSystemService
+import androidx.core.content.res.use
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.view.size
@@ -45,6 +44,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.search.SearchBar
 import com.google.android.material.search.SearchView
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.sqlunet.browser.ColorUtils.getDrawable
@@ -103,6 +103,16 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     private var spinnerPosition = 0
 
+    /**
+     * Search view text watcher
+     */
+    private var searchTextWatcher: TextWatcher? = null
+
+    /**
+     * Search view transition listener
+     */
+    private var searchTransitionListener: SearchView.TransitionListener? = null
+
     // R E S O U R C E S
 
     @LayoutRes
@@ -127,14 +137,15 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val manager = getChildFragmentManager()
-        manager.addOnBackStackChangedListener {
-            val count = manager.backStackEntryCount
-            Log.d(TAG, "BackStack: $count")
-            if (count > 0) {
-                toolbar.setSubtitle(query ?: getString(R.string.app_subname))
-            } else {
-                toolbar.setSubtitle(R.string.app_subname)
+        childFragmentManager.addOnBackStackChangedListener {
+            if (::toolbar.isInitialized) {
+                val count = childFragmentManager.backStackEntryCount
+                Log.d(TAG, "BackStack: $count")
+                toolbar.subtitle = if (count > 0) {
+                    query ?: getString(R.string.app_subname)
+                } else {
+                    getString(R.string.app_subname)
+                }
             }
         }
     }
@@ -151,26 +162,23 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         super.onViewCreated(view, savedInstanceState)
 
         // menu provider
-        val menuProvider: MenuProvider = object : MenuProvider {
+        val menuProvider = object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 // inflate
                 menu.clear()
                 menuInflater.inflate(R.menu.main_safedata, menu)
                 menuInflater.inflate(menuId, menu)
                 // MenuCompat.setGroupDividerEnabled(menu, true)
-                Log.d(TAG, "MenuProvider: onCreateMenu() size=" + menu.size)
+                Log.d(TAG, "MenuProvider: onCreateMenu() size=${menu.size}")
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 @Suppress("DEPRECATION")
-                val handled = onOptionsItemSelected(menuItem) // use it a normal function
-                return if (handled) {
-                    true
-                } else menuDispatch((requireActivity() as AppCompatActivity), menuItem)
+                val handled = onOptionsItemSelected(menuItem)
+                return handled || menuDispatch(requireActivity() as AppCompatActivity, menuItem)
             }
         }
-        val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(menuProvider, getViewLifecycleOwner(), Lifecycle.State.DESTROYED)
+        (requireActivity() as MenuHost).addMenuProvider(menuProvider, viewLifecycleOwner, Lifecycle.State.DESTROYED)
 
         // toolbar, searchBar and searchView
         // searchBar and searchView are declared as properties (members) of your fragment instance:
@@ -195,7 +203,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // connect searchbar and searchview
         searchView.setupWithSearchBar(searchBar)
 
-        // set up search container
+        // set up search components
         setupToolBar()
         setUpSearchBar()
         setupSearchView()
@@ -209,8 +217,12 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
         // trigger focus in 1.5s
         if (triggerFocusSearch()) {
-            Handler(Looper.getMainLooper())
-                .postDelayed({ searchView.show() }, 1500)
+            viewLifecycleOwner.lifecycleScope.launch {
+                delay(1500)
+                if (isAdded && ::searchView.isInitialized) {
+                    searchView.show()
+                }
+            }
         }
     }
 
@@ -237,38 +249,45 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         super.onPause()
         closeKeyboard()
         // after resume
-        val spinner = spinner!!
-        releaseSpinner(spinner)
+        releaseSpinner(spinner!!)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-
         exitSearch()
+        if (::toolbar.isInitialized) {
+            toolbar.setSubtitle(R.string.app_subname)
+        }
 
-        toolbar.setSubtitle(R.string.app_subname)
+        // remove listeners from shared searchView/editText
+        if (::searchView.isInitialized) {
+            searchTextWatcher?.let { searchView.editText.removeTextChangedListener(it) }
+            searchTextWatcher = null
+            searchTransitionListener?.let { searchView.removeTransitionListener(it) }
+            searchTransitionListener = null
+            searchView.setOnMenuItemClickListener(null)
+            searchView.editText.setOnEditorActionListener(null)
+        }
+        if (::suggestionContainer.isInitialized) {
+            suggestionContainer.adapter = null
+        }
     }
 
     // S A V E / R E S T O R E
 
     override fun onSaveInstanceState(outState: Bundle) {
-        // always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(outState)
-
-        // spinner
-        if (spinner != null) {
-            // serialize the current dropdown position
-            val position = spinner!!.selectedItemPosition
-            outState.putInt(STATE_SPINNER, position)
+        if (::toolbar.isInitialized) {
+            spinner?.let {
+                outState.putInt(STATE_SPINNER, it.selectedItemPosition)
+            }
         }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-
-        // restore from saved instance
-        if (savedInstanceState != null) {
-            spinnerPosition = savedInstanceState.getInt(STATE_SPINNER)
+        savedInstanceState?.let {
+            spinnerPosition = it.getInt(STATE_SPINNER)
         }
     }
 
@@ -277,7 +296,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     /**
      * Set up toolbar's custom view, its spinner, title, background
      */
-    @SuppressLint("InflateParams")
     fun setupToolBar() {
         Log.d(TAG, "Toolbar: set up in $this")
 
@@ -303,19 +321,13 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
                     else -> {
                         @Suppress("DEPRECATION")
-                        val handled = onOptionsItemSelected(menuItem) // use it a normal function
-                        if (handled) {
-                            true
-                        } else menuDispatch((requireActivity() as AppCompatActivity), menuItem)
+                        val handled = onOptionsItemSelected(menuItem)
+                        handled || menuDispatch(requireActivity() as AppCompatActivity, menuItem)
                     }
                 }
             }
         }
-        requireActivity().addMenuProvider(
-            menuProvider,
-            viewLifecycleOwner,
-            Lifecycle.State.RESUMED
-        )
+        requireActivity().addMenuProvider(menuProvider, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     private fun Toolbar.show() {
@@ -374,11 +386,11 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
     }
 
-    private fun View.show() {
+    private fun SearchBar.show() {
         visibility = View.VISIBLE
     }
 
-    private fun View.hide() {
+    private fun SearchBar.hide() {
         visibility = View.GONE
     }
 
@@ -444,12 +456,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
 
         // search info
-        val searchableInfo: SearchableInfo = getSearchInfo()
-
-        // set the hint from your searchable.xml
-        val hintRes = searchableInfo.hintId
-        if (hintRes != 0) {
-            searchView.hint = getString(hintRes)
+        val searchableInfo = getSearchInfo()!!
+        searchableInfo.hintId.takeIf { it != 0 }?.let {
+            searchView.hint = getString(it)
         }
 
         // submission
@@ -509,8 +518,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     fun performSearch(query: String, searchableInfo: SearchableInfo) {
         val intent = Intent(Intent.ACTION_SEARCH).apply {
-
-            // use the component name directly from SearchableInfo
             component = searchableInfo.searchActivity
             putExtra(SearchManager.QUERY, query)
         }
@@ -518,32 +525,25 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     }
 
     fun getSuggestions(query: String, searchableInfo: SearchableInfo): List<Pair<String, Int>> {
-
         val authority = searchableInfo.suggestAuthority
         val path = searchableInfo.suggestPath ?: ""
         return fetchSuggestions(query, authority, path)
     }
 
     fun fetchSuggestions(query: String, authority: String, path: String?): List<Pair<String, Int>> {
-
-        // The standard URI format for search suggestions
-        val uriBuilder = Uri.Builder()
+        val uri = Uri.Builder()
             .scheme(ContentResolver.SCHEME_CONTENT)
             .authority(authority)
-            .query("")
-            .fragment("")
+            .apply {
+                if (!path.isNullOrEmpty()) {
+                    appendEncodedPath(path)
+                }
+            }
+            .appendPath(SearchManager.SUGGEST_URI_PATH_QUERY)
+            .appendPath(query)
+            .build()
 
-        if (!path.isNullOrEmpty()) {
-            uriBuilder.appendEncodedPath(path)
-        }
-
-        // Most providers expect the query appended at the end
-        uriBuilder.appendPath(SearchManager.SUGGEST_URI_PATH_QUERY)
-        uriBuilder.appendPath(query)
-
-        val uri = uriBuilder.build()
         val suggestions = mutableListOf<Pair<String, Int>>()
-
         context?.contentResolver?.query(uri, null, null, null, null)?.use { cursor ->
             val text1Index = cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1)
             while (cursor.moveToNext()) {
@@ -555,10 +555,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         return suggestions
     }
 
-    private fun getSearchInfo(): SearchableInfo {
-        val componentName = requireActivity().componentName
-        val searchManager = requireContext().getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        return searchManager.getSearchableInfo(componentName)
+    private fun getSearchInfo(): SearchableInfo? {
+        val searchManager = context?.getSystemService<SearchManager>()
+        return searchManager?.getSearchableInfo(activity?.componentName ?: return null)
     }
 
     private fun historyToSuggestions() {
@@ -579,9 +578,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
     }
 
-    protected open fun triggerFocusSearch(): Boolean {
-        return true
-    }
+    protected open fun triggerFocusSearch(): Boolean = true
 
     fun clearQuery() {
         clearSearchView(searchView)
@@ -589,14 +586,10 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     }
 
     private fun closeKeyboard() {
-        // activity
-        val activity: Activity = requireActivity()
-
-        // view
-        val view = activity.currentFocus
+        val view = requireActivity().currentFocus
         if (view != null) {
-            val imm = (activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
-            imm.hideSoftInputFromWindow(view.windowToken, 0)
+            val imm = requireActivity().getSystemService<InputMethodManager>()
+            imm?.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 
@@ -604,15 +597,15 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     fun enterSearch() {
         Log.d(TAG, "SearchMode enter")
-        //searchBar.hint =
         toolbar.hide()
-        searchBarGroup.show()
+        searchBar.show()
+        searchBarGroup.visibility = View.VISIBLE
     }
 
     fun exitSearch() {
         Log.d(TAG, "SearchMode exit")
-        //activeSearchFragment = null
-        searchBarGroup.hide()
+        searchBarGroup.visibility = View.GONE
+        searchBar.hide()
         searchView.hide()
         toolbar.show()
     }
@@ -634,7 +627,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * @return spinner
      */
     private fun ensureSpinner(): Spinner {
-        // must have
         var spinner = toolbar.findViewById<Spinner>(R.id.spinner)
         if (spinner == null) {
             // toolbar customized view if toolbar does not already contain spinner
@@ -661,10 +653,12 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * @param spinner spinner
      */
     private fun releaseSpinner(spinner: Spinner) {
-        spinner.setSelection(0)
-        spinner.onItemSelectedListener = null
-        spinner.adapter = null
-        spinner.visibility = View.GONE
+        spinner.apply {
+            setSelection(0)
+            onItemSelectedListener = null
+            adapter = null
+            visibility = View.GONE
+        }
     }
 
     /**
