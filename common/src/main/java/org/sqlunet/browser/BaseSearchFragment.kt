@@ -33,6 +33,7 @@ import androidx.annotation.MenuRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.getSystemService
+import androidx.core.content.res.use
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.view.size
@@ -438,14 +439,13 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     }
                 }
 
-            // 1. Access the dispatcher safely
-            val dispatcher = requireActivity().onBackPressedDispatcher
-            // 2. Add the callback using the Fragment's viewLifecycleOwner. This ensures the callback is removed when the fragment view is destroyed
-            dispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
-            // 3. Update the SearchView listener
-            addTransitionListener { _, _, newState ->
+            // Add the callback using the Fragment's viewLifecycleOwner. This ensures the callback is removed when the fragment view is destroyed
+            requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+            // Update the SearchView listener
+            searchTransitionListener = SearchView.TransitionListener { _, _, newState ->
                 onBackPressedCallback.isEnabled = (newState == SearchView.TransitionState.SHOWN)
             }
+            searchTransitionListener?.let { addTransitionListener(it) }
 
             // search info
             val searchableInfo = getSearchInfo()!!
@@ -491,9 +491,12 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             }
             suggestionContainer.adapter = adapter
             // handle suggestion selection
-            editText.addTextChangedListener { text ->
+            searchTextWatcher = editText.addTextChangedListener { text ->
+                if (view == null) {
+                    return@addTextChangedListener
+                }
                 val queryText = text.toString()
-                if (queryText.isEmpty() || queryText.isBlank() || queryText.length < 3) {
+                if (queryText.isBlank() || queryText.length < 3) {
                     adapter.submitList(emptyList())
                     return@addTextChangedListener
                 }
@@ -608,10 +611,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * Toolbar's spinner
      */
     private val spinner: Spinner?
-        get() {
-            // must have
-            return toolbar.findViewById(R.id.spinner) // must be non-null after resume
-        }
+        get() = if (::toolbar.isInitialized) toolbar.findViewById(R.id.spinner) else null
 
     /**
      * Ensure toolbar has a spinner
@@ -622,9 +622,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         var spinner = toolbar.findViewById<Spinner>(R.id.spinner)
         if (spinner == null) {
             // toolbar customized view if toolbar does not already contain spinner
-            @SuppressLint("InflateParams") val customView = getLayoutInflater().inflate(R.layout.actionbar_custom, null) // raises "The specified child already has a parent" if toolbar
+            val customView = layoutInflater.inflate(R.layout.actionbar_custom, toolbar, false)
             toolbar.addView(customView)
-            spinner = toolbar.findViewById(R.id.spinner)
+            spinner = customView.findViewById(R.id.spinner)
         }
         return spinner
     }
@@ -661,42 +661,34 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
             // adapter values and icons
             val modeLabels = resources.getTextArray(spinnerLabels)
-            val modeIcons: IntArray
-            resources.obtainTypedArray(spinnerIcons).let {
-                val n = it.length()
-                modeIcons = IntArray(n)
-                for (i in 0 until n) {
-                    modeIcons[i] = it.getResourceId(i, -1)
-                }
-                it.recycle()
+            val modeIcons = resources.obtainTypedArray(spinnerIcons).use { typedArray ->
+                IntArray(typedArray.length()) { i -> typedArray.getResourceId(i, -1) }
             }
 
-            // adapter
-            val adapter = object : ArrayAdapter<CharSequence?>(requireContext(), R.layout.spinner_item_actionbar, android.R.id.text1, modeLabels) {
-
+            return object : ArrayAdapter<CharSequence?>(requireContext(), R.layout.spinner_item_actionbar, android.R.id.text1, modeLabels) {
                 override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                    val view = super.getView(position, convertView, parent)
-                    val textView = view.findViewById<TextView>(android.R.id.text1)
-                    textView.text = ""
-                    val resId = modeIcons[position]
-                    val drawable = getDrawable(context, resId)
-                    textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
-                    return view
+                    return super.getView(position, convertView, parent).apply {
+                        findViewById<TextView>(android.R.id.text1).apply {
+                            text = ""
+                            val drawable = getDrawable(context, modeIcons[position])
+                            setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
+                        }
+                    }
                 }
 
                 override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
-                    val rowItem = getItem(position)!!
-                    val view = super.getDropDownView(position, convertView, parent)
-                    val textView = view.findViewById<TextView>(android.R.id.text1)
-                    textView.text = rowItem
-                    val resId = modeIcons[position]
-                    val drawable = getDrawable(context, resId)
-                    textView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
-                    return view
+                    val rowItem = getItem(position)
+                    return super.getDropDownView(position, convertView, parent).apply {
+                        findViewById<TextView>(android.R.id.text1).apply {
+                            text = rowItem
+                            val drawable = getDrawable(context, modeIcons[position])
+                            setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
+                        }
                 }
             }
-            adapter.setDropDownViewResource(R.layout.spinner_item_actionbar_dropdown)
-            return adapter
+            }.apply {
+                setDropDownViewResource(R.layout.spinner_item_actionbar_dropdown)
+            }
         }
 
     /**
@@ -704,12 +696,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     @Suppress("unused")
     protected val spinnerSearchModePosition: Int
-        get() {
-            if (spinner != null) {
-                return spinner!!.selectedItemPosition
-            }
-            return -1
-        }
+        get() = spinner?.selectedItemPosition ?: -1
 
     /**
      * Search type position, obtained by peeking at spinner state or registry if spinner is still null
