@@ -140,17 +140,15 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
         // backstack
         childFragmentManager.addOnBackStackChangedListener {
-            if (::toolbar.isInitialized) {
-                val count = childFragmentManager.backStackEntryCount
-                Log.d(TAG, "BackStack: $count")
-                toolbar.subtitle = if (count > 0 && !query.isNullOrEmpty())
-                    query
-                else
-                    getString(R.string.app_subname)
-            }
+            val count = childFragmentManager.backStackEntryCount
+            Log.d(TAG, "BackStack: $count")
+            toolbar.subtitle = if (count > 0 && !query.isNullOrEmpty())
+                query
+            else
+                getString(R.string.app_subname)
         }
 
-        // menu provider
+        // menu provider for fragment
         val menuProvider = object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 // inflate
@@ -179,15 +177,13 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // 3. when fragment B calls inflateMenu(), it adds items to the menu that was already populated by fragment A.
 
         // toolbar
-        toolbar = requireActivity().findViewById(R.id.toolbar)
-
         // searchBar and searchView
+        // spinner
+        toolbar = requireActivity().findViewById(R.id.toolbar)
         searchBarGroup = requireActivity().findViewById(R.id.search_bar_group)
         searchBar = requireActivity().findViewById(R.id.search_bar)
         searchView = requireActivity().findViewById(R.id.search_view)
         suggestionContainer = requireActivity().findViewById(R.id.search_view_suggestion_container)
-
-        // spinner
         searchSpinner = requireActivity().findViewById(R.id.search_bar_spinner)
 
         // connect searchbar and searchview
@@ -199,17 +195,17 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         setupSearchView()
         setupSpinner()
 
-        // search mode
+        // enter search mode
         enterSearch()
     }
 
     override fun onStart() {
         super.onStart()
 
-        // trigger focus in 1.5s
+        // trigger focus in 2.0s
         if (triggerFocusSearch()) {
             viewLifecycleOwner.lifecycleScope.launch {
-                delay(1500)
+                delay(2000)
                 if (isAdded && ::searchView.isInitialized) {
                     searchView.show()
                 }
@@ -217,37 +213,17 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
     }
 
-    /**
-     * On pause
-     * The fragment is responsible for deactivating the spinner while active.
-     * Deactivate spinner.
-     */
-    override fun onPause() {
-        super.onPause()
-        closeKeyboard()
-    }
+    //override fun onPause() {
+    //    super.onPause()
+    //    closeKeyboard()
+    //}
 
     override fun onDestroyView() {
         super.onDestroyView()
+        toolbar.setSubtitle(R.string.app_subname)
         exitSearch()
-        if (::toolbar.isInitialized) {
-            toolbar.setSubtitle(R.string.app_subname)
-        }
-
+        releaseSearchView()
         releaseSpinner()
-
-        // remove listeners from shared searchView/editText
-        if (::searchView.isInitialized) {
-            searchTextWatcher?.let { searchView.editText.removeTextChangedListener(it) }
-            searchTextWatcher = null
-            searchTransitionListener?.let { searchView.removeTransitionListener(it) }
-            searchTransitionListener = null
-            searchView.setOnMenuItemClickListener(null)
-            searchView.editText.setOnEditorActionListener(null)
-        }
-        if (::suggestionContainer.isInitialized) {
-            suggestionContainer.adapter = null
-        }
     }
 
     // S A V E / R E S T O R E
@@ -269,21 +245,20 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     // T O O L B A R
 
     /**
-     * Set up toolbar's custom view, its spinner, title, background
+     * Set up toolbar
      */
     fun setupToolBar() {
         Log.d(TAG, "Toolbar: set up in $this")
 
         // title
         toolbar.setTitle(R.string.title_activity_browse)
-        // toolbar.setSubtitle(R.string.app_subname)
+        toolbar.setSubtitle(R.string.app_subname)
 
         // search menu adds search icon to toolbar
         val menuProvider = object : MenuProvider {
             override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
                 menu.clear()
                 inflater.inflate(R.menu.search, menu)
-                inflater.inflate(R.menu.main_safedata, menu)
                 inflater.inflate(menuId, menu)
             }
 
@@ -392,8 +367,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     hide()
                 }
             }
-
-            // add the callback using the Fragment's viewLifecycleOwner. This ensures the callback is removed when the fragment view is destroyed
+            // add the callback using the Fragment's viewLifecycleOwner.
+            // (ensures the callback is removed when the fragment view is destroyed)
             requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
             // update the SearchView listener
             searchTransitionListener = SearchView.TransitionListener { _, _, newState ->
@@ -407,77 +382,79 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 hint = getString(it)
             }
 
-            // submission
+            // s u b m i s s i o n
             editText.setOnEditorActionListener { textView, _, _ ->
                 val query = textView.text.toString()
 
-                // Update search bar with the submitted query
+                // update search bar with the submitted query
                 searchBar.setText(searchView.text.toString())
 
-                // Close the search view after submission
+                // close the search view after submission
                 searchView.hide()
 
-                // Emulate what the legacy SearchView did automatically
-                // Trigger the search intent manually for M3 SearchView
+                // emulate what the legacy SearchView did automatically
+                // trigger the search intent manually for M3 SearchView
                 performSearch(query, searchableInfo)
                 true
             }
 
-            // text change and edit action
-            editText.addTextChangedListener {
-                // activeSearchFragment?.onSearchQueryChanged(it.toString())
-            }
-
-            // s u g g e s t i o n S
+            // s u g g e s t i o n s
             // adapter to recyclerview
             val adapter = SuggestionAdapter { selectedText ->
-                // Update search view with the submitted query
+                // update search view with the submitted query
                 setText(selectedText)
 
-                // Update search bar with the submitted query
+                // update search bar with the submitted query
                 searchBar.setText(selectedText)
 
-                // Close the search view after submission
+                // close the search view after submission
                 hide()
 
                 // Handle suggestion click: perform search
                 performSearch(selectedText, searchableInfo)
             }
             suggestionContainer.adapter = adapter
+
             // handle suggestion selection
             searchTextWatcher = editText.addTextChangedListener { text ->
-                if (view == null) {
-                    return@addTextChangedListener
-                }
+
                 val queryText = text.toString()
                 if (queryText.isBlank() || queryText.length < 3) {
                     adapter.submitList(emptyList())
-                    return@addTextChangedListener
-                }
-                // provider queried on a background thread
-                viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-                    val results = getSuggestions(queryText, searchableInfo)
-                    Log.d(TAG, "Suggestions: $results")
-                    withContext(Dispatchers.Main) {
-                        adapter.submitList(results)
+                } else {
+                    // provider queried on a background thread
+                    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                        val results = getSuggestions(queryText, searchableInfo)
+                        withContext(Dispatchers.Main) {
+                            adapter.submitList(results)
+                        }
                     }
                 }
             }
         }
     }
 
-    fun getSuggestions(query: String, searchableInfo: SearchableInfo): List<Pair<String, Int>> {
-        val authority = searchableInfo.suggestAuthority
-        val path = searchableInfo.suggestPath ?: ""
-        return fetchSuggestions(query, authority, path)
+    private fun releaseSearchView() {
+
+        // remove listeners from shared searchView/editText
+        searchTextWatcher?.let { searchView.editText.removeTextChangedListener(it) }
+        searchTextWatcher = null
+        searchTransitionListener?.let { searchView.removeTransitionListener(it) }
+        searchTransitionListener = null
+
+        searchView.setOnMenuItemClickListener(null)
+        searchView.editText.setOnEditorActionListener(null)
+        suggestionContainer.adapter = null
     }
 
-    fun fetchSuggestions(query: String, authority: String, path: String?): List<Pair<String, Int>> {
+    private fun getSuggestions(query: String, searchableInfo: SearchableInfo): List<Pair<String, Int>> {
+        val authority = searchableInfo.suggestAuthority
+        val path = searchableInfo.suggestPath ?: ""
         val uri = Uri.Builder()
             .scheme(ContentResolver.SCHEME_CONTENT)
             .authority(authority)
             .apply {
-                if (!path.isNullOrEmpty()) {
+                if (path.isNotEmpty()) {
                     appendEncodedPath(path)
                 }
             }
@@ -653,8 +630,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     /**
      * Search type position, obtained by peeking at spinner state
      */
-    @Suppress("unused")
-    protected val spinnerSearchModePosition: Int
+     protected val spinnerSearchModePosition: Int
         get() = searchSpinner.selectedItemPosition
 
     /**
@@ -677,7 +653,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             searchView.clearFocus()
             searchView.isFocusable = false
             //searchView.editText.text = ""
-            //searchView.isIconified = true
         }
     }
 }
