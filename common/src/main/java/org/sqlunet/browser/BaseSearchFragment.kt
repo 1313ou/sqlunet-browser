@@ -72,7 +72,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     private lateinit var toolbar: Toolbar
 
     /**
-     * Search bar group
+     * Search bar group (searchbar and spinner)
      */
     private lateinit var searchBarGroup: View
 
@@ -84,7 +84,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     /**
      * Search bar spinner
      */
-    protected lateinit var searchBarSpinner: Spinner
+    protected lateinit var searchSpinner: Spinner
 
     /**
      * Search view
@@ -127,29 +127,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     @ArrayRes
     protected var spinnerIcons = 0
 
-    // S E A R C H   E X E C U T O R
-
-    override fun search(query: String) {
-        this.query = query
-    }
-
-    // C R E A T I O N
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        childFragmentManager.addOnBackStackChangedListener {
-            if (::toolbar.isInitialized) {
-                val count = childFragmentManager.backStackEntryCount
-                Log.d(TAG, "BackStack: $count")
-                toolbar.subtitle = if (count > 0) {
-                    query ?: getString(R.string.app_subname)
-                } else {
-                    getString(R.string.app_subname)
-                }
-            }
-        }
-    }
-
     // V I E W
 
     @SuppressLint("InflateParams")
@@ -161,6 +138,18 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // backstack
+        childFragmentManager.addOnBackStackChangedListener {
+            if (::toolbar.isInitialized) {
+                val count = childFragmentManager.backStackEntryCount
+                Log.d(TAG, "BackStack: $count")
+                toolbar.subtitle = if (count > 0 && !query.isNullOrEmpty())
+                    query
+                else
+                    getString(R.string.app_subname)
+            }
+        }
+
         // menu provider
         val menuProvider = object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -168,7 +157,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 menu.clear()
                 menuInflater.inflate(R.menu.main_safedata, menu)
                 menuInflater.inflate(menuId, menu)
-                // MenuCompat.setGroupDividerEnabled(menu, true)
                 Log.d(TAG, "MenuProvider: onCreateMenu() size=${menu.size}")
             }
 
@@ -200,7 +188,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         suggestionContainer = requireActivity().findViewById(R.id.search_view_suggestion_container)
 
         // spinner
-        searchBarSpinner = requireActivity().findViewById(R.id.search_bar_spinner)
+        searchSpinner = requireActivity().findViewById(R.id.search_bar_spinner)
 
         // connect searchbar and searchview
         searchView.setupWithSearchBar(searchBar)
@@ -266,7 +254,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        searchBarSpinner.apply {
+        searchSpinner.apply {
             outState.putInt(STATE_SPINNER, selectedItemPosition)
         }
     }
@@ -365,6 +353,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         Log.d(TAG, "SearchView: set up in $this")
 
         searchView.apply {
+
             // e d i t t e x t   t w e a k
             editText.apply {
                 // set the white pill background
@@ -477,14 +466,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
     }
 
-    fun performSearch(query: String, searchableInfo: SearchableInfo) {
-        val intent = Intent(Intent.ACTION_SEARCH).apply {
-            component = searchableInfo.searchActivity
-            putExtra(SearchManager.QUERY, query)
-        }
-        startActivity(intent)
-    }
-
     fun getSuggestions(query: String, searchableInfo: SearchableInfo): List<Pair<String, Int>> {
         val authority = searchableInfo.suggestAuthority
         val path = searchableInfo.suggestPath ?: ""
@@ -516,11 +497,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         return suggestions
     }
 
-    private fun getSearchInfo(): SearchableInfo? {
-        val searchManager = context?.getSystemService<SearchManager>()
-        return searchManager?.getSearchableInfo(activity?.componentName ?: return null)
-    }
-
     private fun historyToSuggestions() {
         try {
             val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
@@ -536,6 +512,25 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         } catch (e: IOException) {
             Log.e(TAG, "While getting history", e)
         }
+    }
+
+    private fun getSearchInfo(): SearchableInfo? {
+        val searchManager = context?.getSystemService<SearchManager>()
+        return searchManager?.getSearchableInfo(activity?.componentName ?: return null)
+    }
+
+    fun performSearch(query: String, searchableInfo: SearchableInfo) {
+        val intent = Intent(Intent.ACTION_SEARCH).apply {
+            component = searchableInfo.searchActivity
+            putExtra(SearchManager.QUERY, query)
+        }
+        startActivity(intent)
+    }
+
+    // S E A R C H   E X E C U T O R
+
+    override fun search(query: String) {
+        this.query = query
     }
 
     protected open fun triggerFocusSearch(): Boolean = true
@@ -582,14 +577,14 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     protected open fun setupSpinner() {
         if (spinnerLabels != 0) {
-            searchBarSpinner.apply {
+            searchSpinner.apply {
                 adapter = spinnerAdapter
                 setSelection(selection0)
                 onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
                     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                         spinnerPosition = position
-                        if (searchBarSpinner.selectedItemPosition != position) {
+                        if (searchSpinner.selectedItemPosition != position) {
                             setSelection(position)
                         }
                         onSelection(position)
@@ -601,7 +596,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 visibility = View.VISIBLE
             }
         } else {
-            searchBarSpinner.visibility = View.GONE
+            searchSpinner.visibility = View.GONE
         }
     }
 
@@ -609,7 +604,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * Release spinner
      */
     private fun releaseSpinner() {
-        searchBarSpinner.apply {
+        searchSpinner.apply {
             setSelection(0)
             adapter = null
             onItemSelectedListener = null
@@ -660,7 +655,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     @Suppress("unused")
     protected val spinnerSearchModePosition: Int
-        get() = searchBarSpinner.selectedItemPosition
+        get() = searchSpinner.selectedItemPosition
 
     /**
      * Search type position, obtained by peeking at spinner state or registry if spinner is still null
