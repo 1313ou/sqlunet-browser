@@ -417,8 +417,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 } else {
                     // provider queried on a background thread
                     viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-                        val results = getSuggestions(queryText, searchableInfo)
-                        withContext(Dispatchers.Main) {
+                         withContext(Dispatchers.Main) {
+                            val results = getSuggestions(queryText, searchableInfo)
                             adapter.submitList(results)
                         }
                     }
