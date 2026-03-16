@@ -455,12 +455,10 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             .appendPath(query)
             .build()
         context?.contentResolver?.query(uri, null, null, null, null)?.use { cursor ->
-            if (cursor.moveToFirst()) {
-                val text1Idx = cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1)
-                return generateSequence { if (cursor.moveToNext()) cursor else null }
-                    .map { it.getString(text1Idx) to R.drawable.ic_item }
-                    .toList()
-            }
+            val text1Idx = cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1)
+            return generateSequence { if (cursor.moveToNext()) cursor else null }
+                .map { it.getString(text1Idx) to R.drawable.ic_item }
+                .toList()
         }
         return emptyList()
     }
@@ -469,7 +467,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         try {
             val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
             suggestions.cursor().use { cursor ->
-                if (cursor?.moveToFirst() == true) {
+                if (cursor != null) {
                     val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
                     val history = generateSequence { if (cursor.moveToNext()) cursor else null }
                         .map { it.getString(dataIdx) to R.drawable.ic_history }
