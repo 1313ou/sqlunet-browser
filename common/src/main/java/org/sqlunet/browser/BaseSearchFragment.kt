@@ -417,7 +417,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 } else {
                     // provider queried on a background thread
                     viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-                         withContext(Dispatchers.Main) {
+                        withContext(Dispatchers.Main) {
                             val results = getSuggestions(queryText, searchableInfo)
                             adapter.submitList(results)
                         }
@@ -454,17 +454,15 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             .appendPath(SearchManager.SUGGEST_URI_PATH_QUERY)
             .appendPath(query)
             .build()
-
-        val suggestions = mutableListOf<Pair<String, Int>>()
         context?.contentResolver?.query(uri, null, null, null, null)?.use { cursor ->
-            val text1Index = cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1)
-            while (cursor.moveToNext()) {
-                if (text1Index != -1) {
-                    suggestions.add(cursor.getString(text1Index) to R.drawable.ic_item)
-                }
+            if (cursor.moveToFirst()) {
+                val text1Idx = cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1)
+                return generateSequence { if (cursor.moveToNext()) cursor else null }
+                    .map { it.getString(text1Idx) to R.drawable.ic_item }
+                    .toList()
             }
         }
-        return suggestions
+        return emptyList()
     }
 
     private fun historyToSuggestions() {
