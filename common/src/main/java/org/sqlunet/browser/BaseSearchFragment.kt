@@ -367,14 +367,14 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         searchView.apply {
             // e d i t t e x t   t w e a k
             editText.apply {
-                // Set the white pill background
+                // set the white pill background
                 setBackgroundResource(R.drawable.searchview_edittext_pill)
-                // Match the height
+                // match the height
                 layoutParams.height = resources.getDimensionPixelSize(R.dimen.search_pill_height)
-                // Center text vertically
+                // center text vertically
                 val horizontalPadding = resources.getDimensionPixelSize(R.dimen.search_pill_horizontal_padding)
                 setPadding(horizontalPadding, 0, horizontalPadding, 0)
-                // Optional: adjust gravity to center the text perfectly
+                // optional: adjust gravity to center the text perfectly
                 gravity = Gravity.CENTER_VERTICAL
             }
 
@@ -404,9 +404,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 }
             }
 
-            // Add the callback using the Fragment's viewLifecycleOwner. This ensures the callback is removed when the fragment view is destroyed
+            // add the callback using the Fragment's viewLifecycleOwner. This ensures the callback is removed when the fragment view is destroyed
             requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
-            // Update the SearchView listener
+            // update the SearchView listener
             searchTransitionListener = SearchView.TransitionListener { _, _, newState ->
                 onBackPressedCallback.isEnabled = (newState == SearchView.TransitionState.SHOWN)
             }
@@ -446,7 +446,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 setText(selectedText)
 
                 // Update search bar with the submitted query
-                setText(selectedText)
+                searchBar.setText(selectedText)
 
                 // Close the search view after submission
                 hide()
