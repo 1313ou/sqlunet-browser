@@ -212,11 +212,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
     }
 
-    //override fun onPause() {
-    //    super.onPause()
-    //    closeKeyboard()
-    //}
-
     override fun onDestroyView() {
         super.onDestroyView()
         toolbar.setSubtitle(R.string.app_subname)
@@ -357,7 +352,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                         handled || menuDispatch((requireActivity() as AppCompatActivity), menuItem)
                     }
                 }
-
             }
 
             // b a c k   p r e s s e d
@@ -512,17 +506,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     protected open fun triggerFocusSearch(): Boolean = true
 
     fun clearQuery() {
-         //searchView.clearFocus()
-         //searchView.isFocusable = false
-         //closeKeyboard()
-    }
-
-    private fun closeKeyboard() {
-        //val view = requireActivity().currentFocus
-        //if (view != null) {
-        //    val imm = requireActivity().getSystemService<InputMethodManager>()
-        //    imm?.hideSoftInputFromWindow(view.windowToken, 0)
-        //}
     }
 
     // S E A R C H
@@ -553,7 +536,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * Set up  spinner
      */
     protected open fun setupSpinner() {
-        if (spinnerLabels != 0) {
+        if (spinnerLabels != 0 && !resources.getTextArray(spinnerLabels).isEmpty()) {
             searchSpinner.apply {
                 adapter = spinnerAdapter
                 setSelection(selection0)

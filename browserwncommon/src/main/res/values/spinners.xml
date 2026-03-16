@@ -7,12 +7,8 @@
 	<!-- browser spinner
 	SELECTORS
 	-->
-	<string-array name="selectors_names">
-		<item>WordNet words</item>
-	</string-array>
-	<integer-array name="selectors_icons">
-		<item>@drawable/ic_selector</item>
-	</integer-array>
+	<string-array name="selectors_names" />
+	<integer-array name="selectors_icons" />
 
 	<!-- searchtext spinner
 	WORDNET DEFINITIONS
