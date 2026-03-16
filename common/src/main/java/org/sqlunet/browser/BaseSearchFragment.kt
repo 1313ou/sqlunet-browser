@@ -24,6 +24,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
 import android.widget.Spinner
@@ -71,9 +72,19 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     private lateinit var toolbar: Toolbar
 
     /**
+     * Search bar group
+     */
+    private lateinit var searchBarGroup: View
+
+    /**
      * Search bar
      */
     private lateinit var searchBar: SearchBar
+
+    /**
+     * Search bar spinner
+     */
+    protected lateinit var searchBarSpinner: Spinner
 
     /**
      * Search view
@@ -166,7 +177,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         toolbar = requireActivity().findViewById(R.id.toolbar)
 
         // search bar and view
+        searchBarGroup = requireActivity().findViewById(R.id.search_bar_group)
         searchBar = requireActivity().findViewById(R.id.search_bar)
+        searchBarSpinner = requireActivity().findViewById(R.id.search_bar_spinner)
         searchView = requireActivity().findViewById(R.id.search_view)
         suggestionContainer = requireActivity().findViewById(R.id.search_view_suggestion_container)
 
@@ -312,6 +325,28 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     private fun setUpSearchBar() {
         Log.d(TAG, "SearchBar: set up in $this")
 
+        // s p i n n e r
+        if (spinnerLabels != 0) {
+            searchBarSpinner.adapter = spinnerAdapter
+            searchBarSpinner.visibility = View.VISIBLE
+            searchBarSpinner.setSelection(spinnerPosition)
+            searchBarSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    spinnerPosition = position
+                    // sync toolbar spinner if it exists
+                    val ts = spinner
+                    if (ts != null && ts.selectedItemPosition != position) {
+                        ts.setSelection(position)
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+            }
+        } else {
+            searchBarSpinner.visibility = View.GONE
+        }
+
         // m e n u
         searchBar.inflateMenu(R.menu.browse)
         searchBar.setOnMenuItemClickListener { menuItem: MenuItem ->
@@ -329,11 +364,11 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
     }
 
-    private fun SearchBar.show() {
+    private fun View.show() {
         visibility = View.VISIBLE
     }
 
-    private fun SearchBar.hide() {
+    private fun View.hide() {
         visibility = View.GONE
     }
 
@@ -556,13 +591,13 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         Log.d(TAG, "SearchMode enter")
         //searchBar.hint =
         toolbar.hide()
-        searchBar.show()
+        searchBarGroup.show()
     }
 
     fun exitSearch() {
         Log.d(TAG, "SearchMode exit")
         //activeSearchFragment = null
-        searchBar.hide()
+        searchBarGroup.hide()
         searchView.hide()
         toolbar.show()
     }

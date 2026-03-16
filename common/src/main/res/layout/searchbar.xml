@@ -2,12 +2,27 @@
   ~ Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
   -->
 
-<com.google.android.material.search.SearchBar xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/search_bar"
+	android:id="@+id/search_bar_group"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:hint="@string/hint_search"
-	android:visibility="gone"
-	app:navigationIcon="?attr/homeAsUpIndicator" />
-	<!--	style="@style/Widget.Material3Expressive.SearchBar.AppBarWithSearch"-->
+	android:gravity="center_vertical"
+	android:orientation="horizontal"
+	android:visibility="gone">
+
+	<com.google.android.material.search.SearchBar
+		android:id="@+id/search_bar"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:hint="@string/hint_search"
+		app:navigationIcon="?attr/homeAsUpIndicator" />
+
+	<Spinner
+		android:id="@+id/search_bar_spinner"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="8dp" />
+
+</LinearLayout>

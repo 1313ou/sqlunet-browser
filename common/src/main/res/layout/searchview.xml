@@ -10,7 +10,7 @@
 	android:layout_height="wrap_content"
 	android:hint="@string/hint_search"
 	app:headerLayout="@layout/searchview_header"
-	app:layout_anchor="@id/search_bar"
+	app:layout_anchor="@id/search_bar_group"
 	app:layout_behavior="com.google.android.material.search.SearchView$Behavior"
 	app:menu="@menu/searchview">
 
