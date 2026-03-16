@@ -172,10 +172,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(menuProvider, getViewLifecycleOwner(), Lifecycle.State.DESTROYED)
 
-        // toolbar
-        toolbar = requireActivity().findViewById(R.id.toolbar)
-
-        // search bar and view
+        // toolbar, searchBar and searchView
         // searchBar and searchView are declared as properties (members) of your fragment instance:
         // however, they are being retrieved from the Activity's view hierarchy, not the Fragment's own view.
         // as such they are shared across fragments
@@ -184,6 +181,11 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // 1. fragment A's instance is destroyed (or put in backstack), but the Activity and its views (the SearchBar/View) stay alive.
         // 2. fragment B is created. It calls findViewById on the Activity and gets a reference to the exact same view objects that fragment A was using.
         // 3. when fragment B calls inflateMenu(), it adds items to the menu that was already populated by fragment A.
+
+        // toolbar
+        toolbar = requireActivity().findViewById(R.id.toolbar)
+
+        // searchBar and searchView
         searchBarGroup = requireActivity().findViewById(R.id.search_bar_group)
         searchBar = requireActivity().findViewById(R.id.search_bar)
         searchBarSpinner = requireActivity().findViewById(R.id.search_bar_spinner)
@@ -454,7 +456,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         searchView.editText.setOnEditorActionListener { textView, _, _ ->
             val query = textView.text.toString()
 
-             // Update search bar with the submitted query
+            // Update search bar with the submitted query
             searchBar.setText(searchView.text.toString())
 
             // Close the search view after submission
