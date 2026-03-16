@@ -445,14 +445,11 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         searchView.editText.setOnEditorActionListener { textView, _, _ ->
             val query = textView.text.toString()
 
-            // Close the search view after submission
-            searchView.hide()
-
-            // Update search bar with the submitted query
+             // Update search bar with the submitted query
             searchBar.setText(searchView.text.toString())
 
-            // Search view clear
-            // clearSearchView(searchView)
+            // Close the search view after submission
+            searchView.hide()
 
             // Emulate what the legacy SearchView did automatically
             // Trigger the search intent manually for M3 SearchView
@@ -468,9 +465,16 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // s u g g e s t i o n S
         // adapter to recyclerview
         val adapter = SuggestionAdapter { selectedText ->
-            // Handle suggestion click
+            // Update search view with the submitted query
             searchView.setText(selectedText)
+
+            // Update search bar with the submitted query
+            searchBar.setText(selectedText)
+
+            // Close the search view after submission
             searchView.hide()
+
+            // Handle suggestion click: perform search
             performSearch(selectedText, searchableInfo)
         }
         suggestionContainer.adapter = adapter
