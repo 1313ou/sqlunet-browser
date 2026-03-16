@@ -6,8 +6,6 @@ package org.sqlunet.browser.wn
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseSearchFragment
@@ -58,31 +56,12 @@ class SearchTextFragment : BaseSearchFragment() {
 
     // S P I N N E R
 
-    override fun acquireSpinner(spinner: Spinner) {
-        // to set position
-        super.acquireSpinner(spinner)
-
-        // visible
-        spinner.visibility = View.VISIBLE
-
-        // apply spinner adapter
-        spinner.adapter = spinnerAdapter
-
-        // spinner listener
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
-                searchModePosition = position
-                Settings.setSearchModePref(AppContext.context, position)
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>?) {
-            }
-        }
-
-        // spinner position
-        val position: Int = Settings.getSearchModePref(AppContext.context)
-        spinner.setSelection(position)
+    override fun onSelection(position: Int) {
+        searchModePosition = position
+        Settings.setSearchModePref(AppContext.context, position)
     }
+
+    override val selection0: Int = Settings.getSearchModePref(AppContext.context)
 
     // S E A R C H
 

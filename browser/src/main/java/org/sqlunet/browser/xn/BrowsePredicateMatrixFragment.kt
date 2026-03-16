@@ -8,8 +8,6 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import org.sqlunet.Word
 import org.sqlunet.browser.AppContext
@@ -66,12 +64,6 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         }
     }
 
-    // override fun onStop() {
-    //     super.onStop()
-    //     // remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
-    //     beforeSaving(BrowsePredicateMatrixSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_predicatematrix, PredicateMatrixFragment.FRAGMENT_TAG)
-    // }
-
     // S A V E
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -89,45 +81,22 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
 
     // S P I N N E R
 
-    override fun acquireSpinner(spinner: Spinner) {
-        // to set position
-        super.acquireSpinner(spinner)
+    override fun onSelection(position: Int) {
+        val mode2: PMMode = PMMode.entries.toTypedArray()[position]
+        val hasChanged = mode2.setPref(AppContext.context)
+        Log.d(TAG, "mode=" + mode2.name + " has changed=" + hasChanged)
 
-        // visible
-        spinner.visibility = View.VISIBLE
-
-        // apply spinner adapter
-        spinner.adapter = spinnerAdapter
-
-        // saved mode
-        val mode = PMMode.getPref(AppContext.context)
-
-        // no listener yet
-        spinner.onItemSelectedListener = null
-        spinner.setSelection(mode.ordinal)
-
-        // spinner listener
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-
-            override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
-                val mode2: PMMode = PMMode.entries.toTypedArray()[position]
-                val hasChanged = mode2.setPref(AppContext.context)
-                Log.d(TAG, "mode=" + mode2.name + " has changed=" + hasChanged)
-
-                // restart
-                if (hasChanged) {
-                    if (this@BrowsePredicateMatrixFragment.pointer != null) {
-                        search(this@BrowsePredicateMatrixFragment.pointer!!)
-                    } else if (this@BrowsePredicateMatrixFragment.query2 != null) {
-                        search(this@BrowsePredicateMatrixFragment.query2!!)
-                    }
-                }
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>?) {
+        // restart
+        if (hasChanged) {
+            if (this@BrowsePredicateMatrixFragment.pointer != null) {
+                search(this@BrowsePredicateMatrixFragment.pointer!!)
+            } else if (this@BrowsePredicateMatrixFragment.query2 != null) {
+                search(this@BrowsePredicateMatrixFragment.query2!!)
             }
         }
     }
+
+    override val selection0: Int = PMMode.getPref(AppContext.context).ordinal
 
     // S E A R C H
 

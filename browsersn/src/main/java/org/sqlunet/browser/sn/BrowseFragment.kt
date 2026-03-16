@@ -9,8 +9,6 @@ import android.os.Parcelable
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseBrowse1Fragment
@@ -19,7 +17,6 @@ import org.sqlunet.browser.BrowseSplashFragment
 import org.sqlunet.browser.SplashFragment
 import org.sqlunet.browser.config.TableActivity
 import org.sqlunet.browser.history.History.recordQuery
-import org.sqlunet.browser.sn.SnSettings.Selector
 import org.sqlunet.browser.sn.selector.Browse1Activity
 import org.sqlunet.browser.sn.selector.Browse1Fragment
 import org.sqlunet.browser.sn.selector.SnBrowse1Fragment
@@ -74,39 +71,14 @@ class BrowseFragment : BaseSearchFragment() {
         }
     }
 
-    // override fun onStop() {
-    //     super.onStop()
-    //     // remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
-    //     beforeSaving(BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG)
-    // }
-
     // S P I N N E R
 
-    override fun acquireSpinner(spinner: Spinner) {
-        // to set position
-        super.acquireSpinner(spinner)
-
-        // visible
-        spinner.visibility = View.VISIBLE
-
-        // apply spinner adapter
-        spinner.adapter = spinnerAdapter
-
-        // spinner listener
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
-                val selectorMode = Selector.entries.toTypedArray()[position]
-                selectorMode.setPref(AppContext.context)
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>?) {
-            }
-        }
-
-        // saved selector mode
-        val selectorMode = Selector.getPref(AppContext.context)
-        spinner.setSelection(selectorMode.ordinal)
+    override fun onSelection(position: Int) {
+        val selectorMode = SnSettings.Selector.entries.toTypedArray()[position]
+        selectorMode.setPref(AppContext.context)
     }
+
+    override val selection0: Int = SnSettings.Selector.getPref(AppContext.context).ordinal
 
     // M E N U
 
@@ -284,9 +256,9 @@ class BrowseFragment : BaseSearchFragment() {
         val selectorMode: SelectorViewMode = Settings.getSelectorViewModePref(AppContext.context)
         return when (selectorMode) {
             SelectorViewMode.VIEW -> when (selectorType) {
-                Selector.SELECTOR -> Browse1Fragment()
-                Selector.XSELECTOR -> XBrowse1Fragment()
-                Selector.SELECTOR_ALT -> SnBrowse1Fragment()
+                SnSettings.Selector.SELECTOR -> Browse1Fragment()
+                SnSettings.Selector.XSELECTOR -> XBrowse1Fragment()
+                SnSettings.Selector.SELECTOR_ALT -> SnBrowse1Fragment()
             }
 
             SelectorViewMode.WEB -> WebFragment()
@@ -311,9 +283,9 @@ class BrowseFragment : BaseSearchFragment() {
             SelectorViewMode.VIEW -> {
                 val intentClass: Class<*> =
                     when (selectorType) {
-                        Selector.SELECTOR -> Browse1Activity::class.java
-                        Selector.SELECTOR_ALT -> SnBrowse1Fragment::class.java
-                        Selector.XSELECTOR -> XBrowse1Activity::class.java
+                        SnSettings.Selector.SELECTOR -> Browse1Activity::class.java
+                        SnSettings.Selector.SELECTOR_ALT -> SnBrowse1Fragment::class.java
+                        SnSettings.Selector.XSELECTOR -> XBrowse1Activity::class.java
                     }
                 Intent(AppContext.context, intentClass)
             }

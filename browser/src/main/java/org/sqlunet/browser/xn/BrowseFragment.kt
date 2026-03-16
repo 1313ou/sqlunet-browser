@@ -9,8 +9,6 @@ import android.os.Parcelable
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseBrowse1Fragment
@@ -84,39 +82,14 @@ class BrowseFragment : BaseSearchFragment() {
         }
     }
 
-    // override fun onStop() {
-    //     super.onStop()
-    //     // remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
-    //     beforeSaving(BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG)
-    // }
-
     // S P I N N E R
 
-    override fun acquireSpinner(spinner: Spinner) {
-        // to set position
-        super.acquireSpinner(spinner)
-
-        // visible
-        spinner.visibility = View.VISIBLE
-
-        // apply spinner adapter
-        spinner.adapter = spinnerAdapter
-
-        // spinner listener
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
-                val selectorMode: Settings.Selector = Settings.Selector.entries.toTypedArray()[position]
-                selectorMode.setPref(AppContext.context)
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>?) {
-            }
-        }
-
-        // saved selector mode
-        val selectorMode = Settings.Selector.getPref(AppContext.context)
-        spinner.setSelection(selectorMode.ordinal)
+    override fun onSelection(position: Int) {
+        val selectorMode = Settings.Selector.entries.toTypedArray()[position]
+        selectorMode.setPref(AppContext.context)
     }
+
+    override val selection0: Int = Settings.Selector.getPref(AppContext.context).ordinal
 
     // M E N U
 
@@ -380,7 +353,7 @@ class BrowseFragment : BaseSearchFragment() {
      * @return intent
      */
     private fun makeDetailIntent(intentClass: Class<*>): Intent {
- 
+
         // mode
         val detailMode: Settings.DetailViewMode = Settings.getDetailViewModePref(AppContext.context)
         val intent: Intent = when (detailMode) {

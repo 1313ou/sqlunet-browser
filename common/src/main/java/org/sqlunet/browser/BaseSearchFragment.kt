@@ -196,9 +196,11 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // searchBar and searchView
         searchBarGroup = requireActivity().findViewById(R.id.search_bar_group)
         searchBar = requireActivity().findViewById(R.id.search_bar)
-        searchBarSpinner = requireActivity().findViewById(R.id.search_bar_spinner)
         searchView = requireActivity().findViewById(R.id.search_view)
         suggestionContainer = requireActivity().findViewById(R.id.search_view_suggestion_container)
+
+        // spinner
+        searchBarSpinner = requireActivity().findViewById(R.id.search_bar_spinner)
 
         // connect searchbar and searchview
         searchView.setupWithSearchBar(searchBar)
@@ -207,6 +209,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         setupToolBar()
         setUpSearchBar()
         setupSearchView()
+        setupSpinner()
 
         // search mode
         enterSearch()
@@ -227,20 +230,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     }
 
     /**
-     * On resume
-     * The fragment is responsible for activating the spinner while active.
-     * Activate spinner if not already activated.
-     */
-    override fun onResume() {
-        super.onResume()
-
-        // spinner, added to toolbar if it does not have one
-        val spinner = ensureSpinner()
-        // acquire it
-        acquireSpinner(spinner)
-    }
-
-    /**
      * On pause
      * The fragment is responsible for deactivating the spinner while active.
      * Deactivate spinner.
@@ -248,8 +237,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     override fun onPause() {
         super.onPause()
         closeKeyboard()
-        // after resume
-        releaseSpinner(spinner!!)
     }
 
     override fun onDestroyView() {
@@ -258,6 +245,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         if (::toolbar.isInitialized) {
             toolbar.setSubtitle(R.string.app_subname)
         }
+
+        releaseSpinner()
 
         // remove listeners from shared searchView/editText
         if (::searchView.isInitialized) {
@@ -277,10 +266,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        if (::toolbar.isInitialized) {
-            spinner?.let {
-                outState.putInt(STATE_SPINNER, it.selectedItemPosition)
-            }
+        searchBarSpinner.apply {
+            outState.putInt(STATE_SPINNER, selectedItemPosition)
         }
     }
 
@@ -345,28 +332,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     private fun setUpSearchBar() {
         Log.d(TAG, "SearchBar: set up in $this")
-
-        // s p i n n e r
-        if (spinnerLabels != 0) {
-            searchBarSpinner.adapter = spinnerAdapter
-            searchBarSpinner.visibility = View.VISIBLE
-            searchBarSpinner.setSelection(spinnerPosition)
-            searchBarSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    spinnerPosition = position
-                    // sync toolbar spinner if it exists
-                    val ts = spinner
-                    if (ts != null && ts.selectedItemPosition != position) {
-                        ts.setSelection(position)
-                    }
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                }
-            }
-        } else {
-            searchBarSpinner.visibility = View.GONE
-        }
 
         // m e n u
         searchBar.apply {
@@ -434,10 +399,10 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
             // b a c k   p r e s s e d
             val onBackPressedCallback = object : OnBackPressedCallback( /* enabled= */false) {
-                    override fun handleOnBackPressed() {
-                        hide()
-                    }
+                override fun handleOnBackPressed() {
+                    hide()
                 }
+            }
 
             // Add the callback using the Fragment's viewLifecycleOwner. This ensures the callback is removed when the fragment view is destroyed
             requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
@@ -607,48 +572,47 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     // S P I N N E R
 
-    /**
-     * Toolbar's spinner
-     */
-    private val spinner: Spinner?
-        get() = if (::toolbar.isInitialized) toolbar.findViewById(R.id.spinner) else null
-
-    /**
-     * Ensure toolbar has a spinner
-     *
-     * @return spinner
-     */
-    private fun ensureSpinner(): Spinner {
-        var spinner = toolbar.findViewById<Spinner>(R.id.spinner)
-        if (spinner == null) {
-            // toolbar customized view if toolbar does not already contain spinner
-            val customView = layoutInflater.inflate(R.layout.actionbar_custom, toolbar, false)
-            toolbar.addView(customView)
-            spinner = customView.findViewById(R.id.spinner)
-        }
-        return spinner
+    open fun onSelection(position: Int) {
     }
 
+    open val selection0: Int = spinnerPosition
+
     /**
-     * Acquire the spinner
-     *
-     * @param spinner spinner
+     * Set up  spinner
      */
-    protected open fun acquireSpinner(spinner: Spinner) {
-        // leave in limbo if spinner is not needed
-        spinner.setSelection(spinnerPosition)
+    protected open fun setupSpinner() {
+        if (spinnerLabels != 0) {
+            searchBarSpinner.apply {
+                adapter = spinnerAdapter
+                setSelection(selection0)
+                onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                        spinnerPosition = position
+                        if (searchBarSpinner.selectedItemPosition != position) {
+                            setSelection(position)
+                        }
+                        onSelection(position)
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                    }
+                }
+                visibility = View.VISIBLE
+            }
+        } else {
+            searchBarSpinner.visibility = View.GONE
+        }
     }
 
     /**
      * Release spinner
-     *
-     * @param spinner spinner
      */
-    private fun releaseSpinner(spinner: Spinner) {
-        spinner.apply {
+    private fun releaseSpinner() {
+        searchBarSpinner.apply {
             setSelection(0)
-            onItemSelectedListener = null
             adapter = null
+            onItemSelectedListener = null
             visibility = View.GONE
         }
     }
@@ -684,8 +648,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                             val drawable = getDrawable(context, modeIcons[position])
                             setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
                         }
+                    }
                 }
-            }
             }.apply {
                 setDropDownViewResource(R.layout.spinner_item_actionbar_dropdown)
             }
@@ -696,7 +660,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     @Suppress("unused")
     protected val spinnerSearchModePosition: Int
-        get() = spinner?.selectedItemPosition ?: -1
+        get() = searchBarSpinner.selectedItemPosition
 
     /**
      * Search type position, obtained by peeking at spinner state or registry if spinner is still null
