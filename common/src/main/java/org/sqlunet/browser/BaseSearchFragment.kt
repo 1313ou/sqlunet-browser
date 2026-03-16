@@ -472,7 +472,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     val history = generateSequence { if (cursor.moveToNext()) cursor else null }
                         .map { it.getString(dataIdx) to R.drawable.ic_history }
                         .toList()
-                    (suggestionContainer.adapter as SuggestionAdapter).submitList(history)
+                    (suggestionContainer.adapter as SuggestionAdapter).submitAddedList(history)
                 }
             }
         } catch (e: IOException) {

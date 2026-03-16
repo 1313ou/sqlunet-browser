@@ -36,9 +36,15 @@ class SuggestionAdapter(private val onClick: (String) -> Unit) :
         holder.itemView.setOnClickListener { onClick(suggestion) }
     }
 
+    fun submitAddedList(list: List<Pair<String, Int>>) {
+        val combinedList = (list + currentList).distinctBy { it.first }
+        submitList(combinedList)
+    }
+
     object DiffCallback : DiffUtil.ItemCallback<Pair<String, Int>>() {
 
         override fun areItemsTheSame(oldItem: Pair<String, Int>, newItem: Pair<String, Int>) = oldItem.first == newItem.first
-        override fun areContentsTheSame(oldItem: Pair<String, Int>, newItem: Pair<String, Int>) = oldItem.first == newItem.first
+
+        override fun areContentsTheSame(oldItem: Pair<String, Int>, newItem: Pair<String, Int>) = oldItem == newItem
     }
 }
