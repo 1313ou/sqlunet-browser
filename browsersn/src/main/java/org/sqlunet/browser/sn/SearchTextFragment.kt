@@ -49,10 +49,10 @@ class SearchTextFragment : BaseSearchFragment() {
 
     override fun onSelection(position: Int) {
         searchModePosition = position
-        Settings.setSearchModePref(AppContext.context, position)
+        Settings.setSearchTextModePref(AppContext.context, position)
     }
 
-    override val selection0: Int = Settings.getSearchModePref(AppContext.context)
+    override val initialSelection: Int = Settings.getSearchTextModePref(AppContext.context)
 
     // S E A R C H
 

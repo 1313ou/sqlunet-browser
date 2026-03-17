@@ -96,7 +96,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         }
     }
 
-    override val selection0: Int = PMMode.getPref(AppContext.context).ordinal
+    override val initialSelection: Int = PMMode.getPref(AppContext.context).ordinal
 
     // S E A R C H
 

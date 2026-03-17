@@ -228,23 +228,23 @@ open class Settings {
         }
 
         /**
-         * Get preferred search mode
+         * Get preferred text search mode
          *
          * @param context context
          * @return preferred search mode
          */
-        fun getSearchModePref(context: Context): Int {
+        fun getSearchTextModePref(context: Context): Int {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             return sharedPref.getInt(PREF_TEXTSEARCH_MODE, 0)
         }
 
         /**
-         * Set preferred search mode
+         * Set preferred text search mode
          *
          * @param context context
          * @param value   preferred search mode
          */
-        fun setSearchModePref(context: Context, value: Int) {
+        fun setSearchTextModePref(context: Context, value: Int) {
             val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
             sharedPref.edit { putInt(PREF_TEXTSEARCH_MODE, value)}
         }

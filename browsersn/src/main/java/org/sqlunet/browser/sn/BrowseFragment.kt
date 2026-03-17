@@ -78,7 +78,7 @@ class BrowseFragment : BaseSearchFragment() {
         selectorMode.setPref(AppContext.context)
     }
 
-    override val selection0: Int = SnSettings.Selector.getPref(AppContext.context).ordinal
+    override val initialSelection: Int = SnSettings.Selector.getPref(AppContext.context).ordinal
 
     // M E N U
 

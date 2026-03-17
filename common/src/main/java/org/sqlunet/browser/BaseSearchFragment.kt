@@ -526,7 +526,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     open fun onSelection(position: Int) {
     }
 
-    open val selection0: Int = spinnerPosition
+    open val initialSelection: Int = spinnerPosition
 
     /**
      * Set up  spinner
@@ -535,7 +535,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         if (spinnerLabels != 0 && !resources.getTextArray(spinnerLabels).isEmpty()) {
             searchSpinner.apply {
                 adapter = spinnerAdapter
-                setSelection(selection0)
+                setSelection(initialSelection)
                 onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
                     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
