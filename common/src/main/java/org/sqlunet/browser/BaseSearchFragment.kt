@@ -46,11 +46,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.sqlunet.browser.ColorUtils.fetchColor
 import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.history.SearchRecentSuggestions
 import java.io.IOException
+import com.google.android.material.R as MaterialR
 
 /**
  * Base search fragment
@@ -226,8 +228,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         super.onSaveInstanceState(outState)
         if (::searchSpinner.isInitialized)
             searchSpinner.apply {
-            outState.putInt(STATE_SPINNER, selectedItemPosition)
-        }
+                outState.putInt(STATE_SPINNER, selectedItemPosition)
+            }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -328,6 +330,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             editText.apply {
                 // set the white pill background
                 setBackgroundResource(R.drawable.searchview_edittext_pill)
+                setTextColor(fetchColor(context, MaterialR.attr.colorOnSurface))
+
                 // match the height
                 layoutParams.height = resources.getDimensionPixelSize(R.dimen.search_pill_height)
                 // center text vertically
