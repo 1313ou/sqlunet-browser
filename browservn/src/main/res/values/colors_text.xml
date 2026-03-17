@@ -4,8 +4,6 @@
 
 <resources>
 
-	<color name="customVariantColor">#96B384</color>
-
 	<color name="colorId">#1b5e20</color>
 	<color name="colorName">#1b5e20</color>
 	<color name="colorDefinition">#1b5e20</color>
