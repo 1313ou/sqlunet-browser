@@ -33,7 +33,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.getSystemService
 import androidx.core.content.res.use
-import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.view.size
 import androidx.core.widget.addTextChangedListener
@@ -150,22 +149,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
 
         // menu provider for fragment
-        val menuProvider = object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                // inflate
-                menu.clear()
-                menuInflater.inflate(R.menu.main_safedata, menu)
-                menuInflater.inflate(menuId, menu)
-                Log.d(TAG, "MenuProvider: onCreateMenu() size=${menu.size}")
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                @Suppress("DEPRECATION")
-                val handled = onOptionsItemSelected(menuItem)
-                return handled || menuDispatch(requireActivity() as AppCompatActivity, menuItem)
-            }
-        }
-        (requireActivity() as MenuHost).addMenuProvider(menuProvider, viewLifecycleOwner, Lifecycle.State.DESTROYED)
+        requireActivity().addMenuProvider(fragmentMenuProvider, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         // toolbar, searchBar and searchView
         // searchBar and searchView are declared as properties (members) of your fragment instance:
@@ -205,19 +189,20 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
         // trigger focus in 2.0s
         if (triggerFocusSearch()) {
-            viewLifecycleOwner.lifecycleScope.launch {
-                delay(2000)
-                if (isAdded && ::searchView.isInitialized) {
-                    searchView.show()
-                }
-            }
+            // TODO
+            //viewLifecycleOwner.lifecycleScope.launch {
+            //    delay(2000)
+            //    if (isAdded && ::searchView.isInitialized) {
+            //        searchView.show()
+            //    }
+            //}
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        toolbar.setSubtitle(R.string.app_subname)
         exitSearch()
+        releaseToolbar()
         releaseSearchView()
         releaseSpinner()
     }
@@ -241,6 +226,34 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     // T O O L B A R
 
+    val fragmentMenuProvider = object : MenuProvider {
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            // inflate
+            menu.clear()
+            menuInflater.inflate(R.menu.search, menu)
+            menuInflater.inflate(R.menu.main_safedata, menu)
+            menuInflater.inflate(menuId, menu)
+            Log.d(TAG, "MenuProvider: onCreateMenu() size=${menu.size}")
+        }
+
+        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            return when (menuItem.itemId) {
+                R.id.search -> {
+                    enterSearch()
+                    true
+                }
+
+                else -> {
+                    @Suppress("DEPRECATION")
+                    val handled = onOptionsItemSelected(menuItem)
+                    handled || menuDispatch(requireActivity() as AppCompatActivity, menuItem)
+                }
+            }
+        }
+    }
+
+    // T O O L B A R
+
     /**
      * Set up toolbar
      */
@@ -250,31 +263,11 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // title
         toolbar.setTitle(R.string.title_activity_browse)
         toolbar.setSubtitle(R.string.app_subname)
+    }
 
-        // search menu adds search icon to toolbar
-        val menuProvider = object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
-                menu.clear()
-                inflater.inflate(R.menu.search, menu)
-                inflater.inflate(menuId, menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return when (menuItem.itemId) {
-                    R.id.search -> {
-                        enterSearch()
-                        true
-                    }
-
-                    else -> {
-                        @Suppress("DEPRECATION")
-                        val handled = onOptionsItemSelected(menuItem)
-                        handled || menuDispatch(requireActivity() as AppCompatActivity, menuItem)
-                    }
-                }
-            }
-        }
-        requireActivity().addMenuProvider(menuProvider, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    private fun releaseToolbar() {
+        toolbar.setTitle(R.string.app_name)
+        toolbar.setSubtitle(R.string.app_subname)
     }
 
     private fun Toolbar.show() {
@@ -342,7 +335,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             }
 
             // m e n u
-            toolbar.menu.clear()
+            searchView.toolbar.menu.clear()
             inflateMenu(R.menu.searchview)
             setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
