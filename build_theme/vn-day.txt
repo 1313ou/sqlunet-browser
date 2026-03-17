@@ -1,4 +1,4 @@
 #CADBC2  Off white
 #96B384  Greyish green
-#FECC00  Burnt yellow
-#FE9B00  Goldenrod
+#84A9B3  Bluegrey
+#B3849C  Light mauve
