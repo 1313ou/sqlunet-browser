@@ -173,15 +173,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
         // connect searchbar and searchview
         searchView.setupWithSearchBar(searchBar)
-
-        // set up search components
-        setupToolBar()
-        setUpSearchBar()
-        setupSearchView()
-        setupSpinner()
-
-        // enter search mode
-        enterSearch()
     }
 
     override fun onStart() {
@@ -189,22 +180,35 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
         // trigger focus in 2.0s
         if (triggerFocusSearch()) {
-            // TODO
-            //viewLifecycleOwner.lifecycleScope.launch {
-            //    delay(2000)
-            //    if (isAdded && ::searchView.isInitialized) {
-            //        searchView.show()
-            //    }
-            //}
+            viewLifecycleOwner.lifecycleScope.launch {
+                delay(2000)
+                if (isAdded && ::searchView.isInitialized) {
+                    searchView.show()
+                }
+            }
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        exitSearch()
-        releaseToolbar()
+    override fun onResume() {
+        super.onResume()
+
+        takeToolBar()
+        takeSearchBar()
+        takeSpinner()
+        takeSearchView()
+
+        enterSearch()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
         releaseSearchView()
         releaseSpinner()
+        releaseSearchBar()
+        releaseToolbar()
+
+        exitSearch()
     }
 
     // S A V E / R E S T O R E
@@ -257,10 +261,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     /**
      * Set up toolbar
      */
-    fun setupToolBar() {
+    fun takeToolBar() {
         Log.d(TAG, "Toolbar: set up in $this")
-
-        // title
         toolbar.setTitle(R.string.title_activity_browse)
         toolbar.setSubtitle(R.string.app_subname)
     }
@@ -283,10 +285,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     /**
      * Set up searchbar
      */
-    private fun setUpSearchBar() {
-        Log.d(TAG, "SearchBar: set up in $this")
-
-        // m e n u
+    private fun takeSearchBar() {
+        Log.d(TAG, "SearchBar: controlled by $this")
         searchBar.apply {
             menu.clear()
             inflateMenu(R.menu.browse)
@@ -299,6 +299,15 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 exitSearch()
             }
         }
+    }
+
+    private fun releaseSearchBar() {
+        searchBar.apply {
+            menu.clear()
+            setOnMenuItemClickListener(null)
+            setNavigationOnClickListener(null)
+        }
+        Log.d(TAG, "SearchBar: released by $this")
     }
 
     private fun SearchBar.show() {
@@ -314,7 +323,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     /**
      * Set up search view
      */
-    private fun setupSearchView() {
+    private fun takeSearchView() {
         Log.d(TAG, "SearchView: set up in $this")
 
         searchView.apply {
@@ -324,7 +333,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 // set the white pill background
                 setBackgroundResource(R.drawable.searchview_edittext_pill)
                 setTextColor(fetchColor(context, MaterialR.attr.colorOnSurface))
-
                 // match the height
                 layoutParams.height = resources.getDimensionPixelSize(R.dimen.search_pill_height)
                 // center text vertically
@@ -367,7 +375,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             }
             searchTransitionListener?.let { addTransitionListener(it) }
 
-            // search info
+            // s e a r c h   i n f o
             val searchableInfo = getSearchInfo()!!
             searchableInfo.hintId.takeIf { it != 0 }?.let {
                 hint = getString(it)
@@ -435,6 +443,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
         searchView.setOnMenuItemClickListener(null)
         searchView.editText.setOnEditorActionListener(null)
+        searchView.toolbar.menu.clear()
+
         suggestionContainer.adapter = null
     }
 
@@ -529,7 +539,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     /**
      * Set up  spinner
      */
-    protected open fun setupSpinner() {
+    protected open fun takeSpinner() {
         if (spinnerLabels != 0 && !resources.getTextArray(spinnerLabels).isEmpty()) {
             searchSpinner.apply {
                 adapter = spinnerAdapter
