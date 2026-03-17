@@ -8,14 +8,8 @@
 	SELECTORS
 	XSELECTORS
 	-->
-	<string-array name="selectors_names">
-		<item>words</item>
-		<item>grouped by source</item>
-	</string-array>
-	<integer-array name="selectors_icons">
-		<item>@drawable/ic_selector</item>
-		<item>@drawable/ic_xselector</item>
-	</integer-array>
+	<string-array name="selectors_names"/>
+	<integer-array name="selectors_icons"/>
 
 	<!-- searchtext spinner
 	VERBNET EXAMPLES
