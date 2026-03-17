@@ -224,7 +224,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        searchSpinner.apply {
+        if (::searchSpinner.isInitialized)
+            searchSpinner.apply {
             outState.putInt(STATE_SPINNER, selectedItemPosition)
         }
     }
