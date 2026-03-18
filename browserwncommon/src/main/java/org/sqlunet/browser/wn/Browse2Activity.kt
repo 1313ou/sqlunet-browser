@@ -53,7 +53,7 @@ class Browse2Activity : AbstractBrowse2Activity() {
     // M E N U
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(CommonR.menu.main, menu)
+        menuInflater.inflate(CommonR.menu.activity_main, menu)
         menuInflater.inflate(CommonR.menu.activity_theme, menu)
         // MenuCompat.setGroupDividerEnabled(menu, true)
         return true

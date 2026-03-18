@@ -33,7 +33,7 @@ class AboutActivity : BaseActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(R.menu.activity_main, menu)
         menuInflater.inflate(R.menu.activity_theme, menu)
         // MenuCompat.setGroupDividerEnabled(menu, true)
         return true

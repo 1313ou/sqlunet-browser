@@ -133,7 +133,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             // inflate
             menu.clear()
             menuInflater.inflate(R.menu.search, menu)
-            menuInflater.inflate(R.menu.main_safedata, menu)
             menuIds.forEach { menuInflater.inflate(it, menu) }
             Log.d(TAG, "MenuProvider: onCreateMenu() size=${menu.size}")
         }

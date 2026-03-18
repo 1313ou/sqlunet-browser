@@ -70,7 +70,6 @@ class StorageFragment : Fragment() {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 // inflate
                 menu.clear()
-                menuInflater.inflate(R.menu.main, menu)
                 menuInflater.inflate(R.menu.storage, menu)
                 // MenuCompat.setGroupDividerEnabled(menu, true)
             }
