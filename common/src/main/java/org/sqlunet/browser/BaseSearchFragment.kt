@@ -96,7 +96,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     private lateinit var suggestionContainer: RecyclerView
 
-    // S T A T E
+    // S T A T E   A N D   C A L L B A C K S
 
     /**
      * Stored between onViewStateRestored and onResume
@@ -112,6 +112,47 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * Search view transition listener
      */
     private var searchTransitionListener: SearchView.TransitionListener? = null
+
+    /**
+     * Back press callback to close search view
+     * Managed as a member to avoid redundant registrations
+     */
+    private val onBackPressedCallback = object : OnBackPressedCallback(false) {
+        override fun handleOnBackPressed() {
+            if (::searchView.isInitialized) {
+                searchView.hide()
+            }
+        }
+    }
+
+    /**
+     * Fragment menu provider
+     */
+    private val fragmentMenuProvider = object : MenuProvider {
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            // inflate
+            menu.clear()
+            menuInflater.inflate(R.menu.search, menu)
+            menuInflater.inflate(R.menu.main_safedata, menu)
+            menuInflater.inflate(menuId, menu)
+            Log.d(TAG, "MenuProvider: onCreateMenu() size=${menu.size}")
+        }
+
+        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            return when (menuItem.itemId) {
+                R.id.search -> {
+                    enterSearch()
+                    true
+                }
+
+                else -> {
+                    @Suppress("DEPRECATION")
+                    val handled = onOptionsItemSelected(menuItem)
+                    handled || menuDispatch(requireActivity() as AppCompatActivity, menuItem)
+                }
+            }
+        }
+    }
 
     // R E S O U R C E S
 
@@ -140,16 +181,21 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
         // backstack
         childFragmentManager.addOnBackStackChangedListener {
-            val count = childFragmentManager.backStackEntryCount
-            Log.d(TAG, "BackStack: $count")
-            toolbar.subtitle = if (count > 0 && !query.isNullOrEmpty())
-                query
-            else
-                getString(R.string.app_subname)
+            if (isResumed) {
+                val count = childFragmentManager.backStackEntryCount
+                Log.d(TAG, "BackStack: $count")
+                toolbar.subtitle = if (count > 0 && !query.isNullOrEmpty())
+                    query
+                else
+                    getString(R.string.app_subname)
+            }
         }
 
         // menu provider for fragment
         requireActivity().addMenuProvider(fragmentMenuProvider, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+        // back press callback registration (once per view lifecycle)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
 
         // toolbar, searchBar and searchView
         // searchBar and searchView are declared as properties (members) of your fragment instance:
@@ -179,10 +225,12 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         super.onStart()
 
         // trigger focus in 2.0s
-        if (triggerFocusSearch()) {
+        if (!triggeredFocusSearch && triggerFocusSearch()) {
             viewLifecycleOwner.lifecycleScope.launch {
+                triggeredFocusSearch = true
                 delay(2000)
-                if (isAdded && ::searchView.isInitialized) {
+                // ensure fragment is still resumed before touching shared components
+                if (isResumed && ::searchView.isInitialized) {
                     searchView.show()
                 }
             }
@@ -230,34 +278,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     // T O O L B A R
 
-    val fragmentMenuProvider = object : MenuProvider {
-        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-            // inflate
-            menu.clear()
-            menuInflater.inflate(R.menu.search, menu)
-            menuInflater.inflate(R.menu.main_safedata, menu)
-            menuInflater.inflate(menuId, menu)
-            Log.d(TAG, "MenuProvider: onCreateMenu() size=${menu.size}")
-        }
-
-        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-            return when (menuItem.itemId) {
-                R.id.search -> {
-                    enterSearch()
-                    true
-                }
-
-                else -> {
-                    @Suppress("DEPRECATION")
-                    val handled = onOptionsItemSelected(menuItem)
-                    handled || menuDispatch(requireActivity() as AppCompatActivity, menuItem)
-                }
-            }
-        }
-    }
-
-    // T O O L B A R
-
     /**
      * Set up toolbar
      */
@@ -270,6 +290,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     private fun releaseToolbar() {
         toolbar.setTitle(R.string.app_name)
         toolbar.setSubtitle(R.string.app_subname)
+        Log.d(TAG, "Toolbar: released $this")
     }
 
     private fun Toolbar.show() {
@@ -324,7 +345,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * Set up search view
      */
     private fun takeSearchView() {
-        Log.d(TAG, "SearchView: set up in $this")
+        Log.d(TAG, "SearchView: controlled by $this")
 
         searchView.apply {
 
@@ -360,23 +381,15 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 }
             }
 
-            // b a c k   p r e s s e d
-            val onBackPressedCallback = object : OnBackPressedCallback( /* enabled= */false) {
-                override fun handleOnBackPressed() {
-                    hide()
-                }
-            }
-            // add the callback using the Fragment's viewLifecycleOwner.
-            // (ensures the callback is removed when the fragment view is destroyed)
-            requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
-            // update the SearchView listener
+            // b a c k   h a n d l e r
+            // update the SearchView listener to toggle the existing member callback
             searchTransitionListener = SearchView.TransitionListener { _, _, newState ->
                 onBackPressedCallback.isEnabled = (newState == SearchView.TransitionState.SHOWN)
             }
             searchTransitionListener?.let { addTransitionListener(it) }
 
             // s e a r c h   i n f o
-            val searchableInfo = getSearchInfo()!!
+            val searchableInfo = getSearchInfo() ?: return@apply // safety check
             searchableInfo.hintId.takeIf { it != 0 }?.let {
                 hint = getString(it)
             }
@@ -422,11 +435,11 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     adapter.submitList(emptyList())
                 } else {
                     // provider queried on a background thread
-                    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-                        withContext(Dispatchers.Main) {
-                            val results = getSuggestions(queryText, searchableInfo)
-                            adapter.submitList(results)
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        val results = withContext(Dispatchers.IO) {
+                            getSuggestions(queryText, searchableInfo)
                         }
+                        adapter.submitList(results)
                     }
                 }
             }
@@ -434,6 +447,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     }
 
     private fun releaseSearchView() {
+        // disable the back press callback when releasing control
+        onBackPressedCallback.isEnabled = false
 
         // remove listeners from shared searchView/editText
         searchTextWatcher?.let { searchView.editText.removeTextChangedListener(it) }
@@ -444,8 +459,10 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         searchView.setOnMenuItemClickListener(null)
         searchView.editText.setOnEditorActionListener(null)
         searchView.toolbar.menu.clear()
+        searchView.hint = null
 
         suggestionContainer.adapter = null
+        Log.d(TAG, "SearchView: released by $this")
     }
 
     private fun getSuggestions(query: String, searchableInfo: SearchableInfo): List<Pair<String, Int>> {
@@ -472,19 +489,21 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     }
 
     private fun historyToSuggestions() {
-        try {
-            val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
-            suggestions.cursor().use { cursor ->
-                if (cursor != null) {
-                    val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
-                    val history = generateSequence { if (cursor.moveToNext()) cursor else null }
-                        .map { it.getString(dataIdx) to R.drawable.ic_history }
-                        .toList()
-                    (suggestionContainer.adapter as SuggestionAdapter).submitAddedList(history)
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val history = withContext(Dispatchers.IO) {
+                    val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                    suggestions.cursor()?.use { cursor ->
+                        val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
+                        generateSequence { if (cursor.moveToNext()) cursor else null }
+                            .map { it.getString(dataIdx) to R.drawable.ic_history }
+                            .toList()
+                    } ?: emptyList()
                 }
+                (suggestionContainer.adapter as? SuggestionAdapter)?.submitAddedList(history)
+            } catch (e: IOException) {
+                Log.e(TAG, "While getting history", e)
             }
-        } catch (e: IOException) {
-            Log.e(TAG, "While getting history", e)
         }
     }
 
@@ -508,6 +527,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     }
 
     protected open fun triggerFocusSearch(): Boolean = true
+
+    protected var triggeredFocusSearch: Boolean = false
 
     fun clearQuery() {
     }
@@ -548,9 +569,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
                     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                         spinnerPosition = position
-                        if (searchSpinner.selectedItemPosition != position) {
-                            setSelection(position)
-                        }
                         onSelection(position)
                     }
 
