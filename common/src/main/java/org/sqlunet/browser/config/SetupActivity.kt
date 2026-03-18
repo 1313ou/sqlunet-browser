@@ -167,10 +167,10 @@ class SetupActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.setup, menu)
-        menuInflater.inflate(R.menu.status, menu)
-        menuInflater.inflate(R.menu.setup_file, menu)
-        menuInflater.inflate(R.menu.setup_database, menu)
+        menuInflater.inflate(R.menu.activity_setup, menu)
+        menuInflater.inflate(R.menu.activity_status, menu)
+        menuInflater.inflate(R.menu.activity_setup_file, menu)
+        menuInflater.inflate(R.menu.activity_setup_database, menu)
         // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }

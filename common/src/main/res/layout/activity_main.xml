@@ -27,7 +27,7 @@
 		app:itemBackground="@drawable/bg_nav_item_pill"
 		app:itemIconTint="?attr/colorOnCustom"
 		app:itemTextColor="?attr/colorOnCustom"
-		app:menu="@menu/main_drawer" />
+		app:menu="@menu/activity_main_drawer" />
 
 	<!--    app:tint="?attr/colorOnCustom"-->
 
