@@ -51,6 +51,7 @@ class Browse2Activity : AbstractBrowse2Activity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // inflate the menu; this adds items to the type bar if it is present.
         menuInflater.inflate(CommonR.menu.main, menu)
+        menuInflater.inflate(CommonR.menu.theme, menu)
         // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }

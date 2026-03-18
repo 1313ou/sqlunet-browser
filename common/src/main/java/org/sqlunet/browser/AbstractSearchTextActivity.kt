@@ -69,6 +69,7 @@ abstract class AbstractSearchTextActivity<F : BaseSearchFragment?> : BaseActivit
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // inflate the menu; this adds items to the type bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(R.menu.theme, menu)
         // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }

@@ -20,4 +20,8 @@
 		android:id="@+id/action_download_dirs"
 		android:title="@string/action_download_dirs"
 		app:showAsAction="never" />
+	<item
+		android:id="@+id/action_main"
+		android:title="@string/action_main"
+		app:showAsAction="never" />
 </menu>

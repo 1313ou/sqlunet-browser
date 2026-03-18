@@ -44,6 +44,7 @@ class HelpActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(R.menu.theme, menu)
         // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }

@@ -95,6 +95,7 @@ class SqlFragment : Fragment() {
                 menu.clear()
                 // menuInflater.inflate(R.menu.main, menu)
                 menuInflater.inflate(R.menu.sql, menu)
+                menuInflater.inflate(R.menu.theme, menu)
                 // MenuCompat.setGroupDividerEnabled(menu, true)
             }
 

@@ -134,7 +134,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             menu.clear()
             menuInflater.inflate(R.menu.search, menu)
             menuInflater.inflate(R.menu.main_safedata, menu)
-            menuInflater.inflate(menuId, menu)
+            menuIds.forEach { menuInflater.inflate(it, menu) }
             Log.d(TAG, "MenuProvider: onCreateMenu() size=${menu.size}")
         }
 
@@ -160,7 +160,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     protected var layoutId = 0
 
     @MenuRes
-    protected var menuId = 0
+    protected var menuIds: List<Int> = emptyList()
 
     @ArrayRes
     protected var spinnerLabels = 0

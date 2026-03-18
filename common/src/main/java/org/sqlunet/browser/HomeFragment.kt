@@ -41,10 +41,11 @@ open class HomeFragment : Fragment() {
 
         // search menu adds search icon to toolbar
         val menuProvider = object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menu.clear()
-                inflater.inflate(R.menu.search, menu)
-                inflater.inflate(R.menu.main, menu)
+                menuInflater.inflate(R.menu.search, menu)
+                menuInflater.inflate(R.menu.main, menu)
+                menuInflater.inflate(R.menu.theme, menu)
             }
 
             override fun onMenuItemSelected(item: MenuItem): Boolean {

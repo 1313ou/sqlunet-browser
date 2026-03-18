@@ -8,4 +8,8 @@
 		android:id="@+id/action_tables_and_indices"
 		android:title="@string/action_tables_and_indices"
 		app:showAsAction="never" />
+	<item
+		android:id="@+id/action_main"
+		android:title="@string/action_main"
+		app:showAsAction="never" />
 </menu>

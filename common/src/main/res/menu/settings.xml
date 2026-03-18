@@ -39,4 +39,8 @@
 				app:showAsAction="never" />
 		</menu>
 	</item>
+	<item
+		android:id="@+id/action_main"
+		android:title="@string/action_main"
+		app:showAsAction="never" />
 </menu>

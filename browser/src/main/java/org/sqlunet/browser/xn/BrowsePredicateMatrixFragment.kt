@@ -14,6 +14,7 @@ import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseSearchFragment
 import org.sqlunet.browser.R
 import org.sqlunet.browser.SplashFragment
+import org.sqlunet.browser.common.R
 import org.sqlunet.predicatematrix.PmRolePointer
 import org.sqlunet.predicatematrix.browser.PredicateMatrixFragment
 import org.sqlunet.predicatematrix.settings.Settings.PMMode
@@ -38,7 +39,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
 
     init {
         layoutId = R.layout.fragment_browse_predicatematrix
-        menuId = R.menu.predicate_matrix
+        menuIds = listOf(CommonR.menu.theme, R.menu.predicate_matrix)
         spinnerLabels = R.array.predicatematrix_modes
         spinnerIcons = R.array.predicatematrix_icons
     }

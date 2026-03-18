@@ -88,6 +88,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.history, menu)
+                menuInflater.inflate(R.menu.theme, menu)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

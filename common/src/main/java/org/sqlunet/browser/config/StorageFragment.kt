@@ -72,6 +72,7 @@ class StorageFragment : Fragment() {
                 menu.clear()
                 menuInflater.inflate(R.menu.main, menu)
                 menuInflater.inflate(R.menu.storage, menu)
+                menuInflater.inflate(R.menu.theme, menu)
                 // MenuCompat.setGroupDividerEnabled(menu, true)
             }
 
