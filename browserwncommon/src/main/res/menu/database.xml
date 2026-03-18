@@ -7,7 +7,7 @@
 	<!-- <group> -->
 	<item
 		android:id="@+id/action_database"
-		android:title="@string/action_data"
+		android:title="@string/action_database"
 		app:showAsAction="never">
 		<menu>
 			<item
