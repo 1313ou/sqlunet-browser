@@ -23,7 +23,6 @@
 				android:id="@+id/action_setup"
 				android:title="@string/action_setup"
 				app:showAsAction="never" />
-
 			<item
 				android:id="@+id/action_storage"
 				android:title="@string/action_storage"
