@@ -182,6 +182,10 @@ object MenuHandler {
         if (view != null && view.width > 0 && view.height > 0) {
             return view
         }
+        view = activity.findViewById(R.id.container_browse_extra)
+        if (view != null && view.width > 0 && view.height > 0) {
+            return view
+        }
         Toast.makeText(activity, R.string.status_capture_no_view, Toast.LENGTH_SHORT).show()
         return null
     }

@@ -18,7 +18,6 @@ import org.sqlunet.predicatematrix.PmRolePointer
 import org.sqlunet.predicatematrix.browser.PredicateMatrixFragment
 import org.sqlunet.predicatematrix.settings.Settings.PMMode
 import org.sqlunet.provider.ProviderArgs
-import org.sqlunet.browser.common.R as CommonR
 
 /**
  * PredicateMatrix fragment
@@ -59,7 +58,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
             getChildFragmentManager()
                 .beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.container_predicatematrix, fragment, SplashFragment.FRAGMENT_TAG)
+                .replace(R.id.container_browse_extra, fragment, SplashFragment.FRAGMENT_TAG)
                 // .addToBackStack(SplashFragment.FRAGMENT_TAG) 
                 .commit()
         }
@@ -135,7 +134,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         getChildFragmentManager()
             .beginTransaction()
             .setReorderingAllowed(true)
-            .replace(R.id.container_predicatematrix, fragment, PredicateMatrixFragment.FRAGMENT_TAG)
+            .replace(R.id.container_browse_extra, fragment, PredicateMatrixFragment.FRAGMENT_TAG)
             .addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG)
             .commit()
     }
@@ -183,7 +182,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         getChildFragmentManager()
             .beginTransaction()
             .setReorderingAllowed(true)
-            .replace(R.id.container_predicatematrix, fragment, PredicateMatrixFragment.FRAGMENT_TAG)
+            .replace(R.id.container_browse_extra, fragment, PredicateMatrixFragment.FRAGMENT_TAG)
             .addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG)
             .commit()
     }
@@ -192,7 +191,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         if (!isAdded) {
             return false
         }
-        val active = getChildFragmentManager().findFragmentById(R.id.container_predicatematrix)
+        val active = getChildFragmentManager().findFragmentById(R.id.container_browse_extra)
         return active != null && SplashFragment.FRAGMENT_TAG == active.tag
     }
 

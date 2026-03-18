@@ -5,4 +5,5 @@
 <resources>
 	<item name="target" type="id" />
 	<item name="selectors_list" type="id" />
+	<item name="container_browse_extra" type="id" />
 </resources>
