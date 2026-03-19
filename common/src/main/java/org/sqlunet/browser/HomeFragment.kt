@@ -26,6 +26,27 @@ import org.sqlunet.browser.common.R
  */
 open class HomeFragment : Fragment() {
 
+    /**
+     * Menu provider
+     */
+    val menuProvider = object : MenuProvider {
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            // search menu adds search icon to toolbar
+            menuInflater.inflate(R.menu.search, menu)
+        }
+
+        override fun onMenuItemSelected(item: MenuItem): Boolean {
+            return when (item.itemId) {
+                R.id.search -> {
+                    navigateToBrowse()
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -39,26 +60,7 @@ open class HomeFragment : Fragment() {
             navigateToBrowse()
         }
 
-        // search menu adds search icon to toolbar
-        val menuProvider = object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menu.clear()
-                menuInflater.inflate(R.menu.search, menu)
-                menuInflater.inflate(R.menu.activity_main, menu)
-                menuInflater.inflate(R.menu.activity_theme, menu)
-            }
-
-            override fun onMenuItemSelected(item: MenuItem): Boolean {
-                return when (item.itemId) {
-                    R.id.search -> {
-                        navigateToBrowse()
-                        true
-                    }
-
-                    else -> false
-                }
-            }
-        }
+        // menu
         requireActivity().addMenuProvider(
             menuProvider,
             viewLifecycleOwner,
