@@ -93,6 +93,19 @@ internal object XnStatus : Status() {
         return status and (EXISTS or EXISTS_TABLES or EXISTS_INDEXES or EXISTS_PREDICATEMATRIX) == EXISTS or EXISTS_TABLES or EXISTS_INDEXES or EXISTS_PREDICATEMATRIX
     }
 
+    fun validTable(context: Context, table: String): Boolean {
+        if (existsDatabase(context)) {
+            val existingTables: List<String>? = try {
+                tables(context)
+            } catch (e: Exception) {
+                Log.e(TAG, "While getting _status", e)
+                return false
+            }
+            return contains(existingTables, table)
+        }
+        return false
+    }
+
     fun toString(status: Int): CharSequence {
         val sb: Editable = SpannableStringBuilder()
         sb.append(Integer.toHexString(status))

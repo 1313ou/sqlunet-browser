@@ -7,12 +7,12 @@ import android.content.Context
 import android.text.Editable
 import android.text.SpannableStringBuilder
 import android.util.Log
+import androidx.core.net.toUri
 import org.sqlunet.browser.common.R
 import org.sqlunet.provider.ManagerContract.TablesAndIndices
 import org.sqlunet.provider.ManagerProvider
 import org.sqlunet.settings.StorageSettings
 import java.io.File
-import androidx.core.net.toUri
 
 /**
  * Database _status
@@ -98,23 +98,43 @@ abstract class Status {
                     + "ELSE " + TablesAndIndices.TYPE + " END ASC,"
                     + TablesAndIndices.NAME + " ASC")
             context.contentResolver.query(
-                ManagerProvider.makeUri(TablesAndIndices.URI).toUri(), arrayOf(TablesAndIndices.TYPE, TablesAndIndices.NAME),  // projection
-                "name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'",  // selection criteria 
+                ManagerProvider.makeUri(TablesAndIndices.URI).toUri(),
+                arrayOf(TablesAndIndices.TYPE, TablesAndIndices.NAME),  // projection
+                "${TablesAndIndices.NAME} NOT LIKE 'sqlite_%' AND ${TablesAndIndices.NAME} NOT LIKE 'android_%'",  // selection criteria
                 null,
                 order
-            ).use {
-                var result: MutableList<String>? = null
-                if (it != null) {
-                    if (it.moveToFirst()) {
-                        val nameId = it.getColumnIndex(TablesAndIndices.NAME)
-                        result = ArrayList()
-                        do {
-                            val name = it.getString(nameId)
-                            result.add(name)
-                        } while (it.moveToNext())
-                    }
+            ).use { cursor ->
+                if (cursor != null) {
+                    val nameId = cursor.getColumnIndex(TablesAndIndices.NAME)
+                    return generateSequence { if (cursor.moveToNext()) cursor else null }
+                        .map { it.getString(nameId) }
+                        .toList()
                 }
-                return result
+                return null
+            }
+        }
+
+        /**
+         * Get tables
+         *
+         * @param context context
+         * @return list of tables
+         */
+        fun tables(context: Context): List<String>? {
+            context.contentResolver.query(
+                ManagerProvider.makeUri(TablesAndIndices.URI).toUri(),
+                arrayOf(TablesAndIndices.TYPE, TablesAndIndices.NAME),  // projection
+                "${TablesAndIndices.TYPE} = 'table' AND ${TablesAndIndices.NAME} NOT LIKE 'sqlite_%' AND ${TablesAndIndices.NAME} NOT LIKE 'android_%'",  // selection criteria
+                null,
+                null
+            ).use { cursor ->
+                if (cursor != null) {
+                    val nameId = cursor.getColumnIndex(TablesAndIndices.NAME)
+                    return generateSequence { if (cursor.moveToNext()) cursor else null }
+                        .map { it.getString(nameId) }
+                        .toList()
+                }
+                return null
             }
         }
 
