@@ -3,15 +3,19 @@
  */
 package org.sqlunet.browser.xn
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseSearchFragment
 import org.sqlunet.browser.R
 import org.sqlunet.browser.SearchTextSplashFragment
 import org.sqlunet.browser.SplashFragment
+import org.sqlunet.browser.StatusActivity
+import org.sqlunet.browser.xn.XnStatus.validTable
 import org.sqlunet.framenet.provider.FrameNetContract
 import org.sqlunet.framenet.provider.FrameNetProvider
 import org.sqlunet.propbank.provider.PropBankContract
@@ -87,6 +91,7 @@ class SearchTextFragment : BaseSearchFragment() {
         // var[] textSearches = getResources().getTextArray(R.array.searchtext_modes)
 
         // as per selected mode
+        val table: String
         val searchUri: String
         val id: String
         val idType: String
@@ -96,7 +101,8 @@ class SearchTextFragment : BaseSearchFragment() {
         val database: String
         when (modePosition) {
             0 -> {
-                searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Definitions.URI)
+                table = WordNetContract.Lookup_Definitions.URI
+                searchUri = WordNetProvider.makeUri(table)
                 id = WordNetContract.Lookup_Definitions.SYNSETID
                 idType = "synset"
                 target = WordNetContract.Lookup_Definitions.DEFINITION
@@ -106,7 +112,8 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             1 -> {
-                searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Samples.URI)
+                table = WordNetContract.Lookup_Samples.URI
+                searchUri = WordNetProvider.makeUri(table)
                 id = WordNetContract.Lookup_Samples.SYNSETID
                 idType = "synset"
                 target = WordNetContract.Lookup_Samples.SAMPLE
@@ -116,7 +123,8 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             2 -> {
-                searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Words.URI)
+                table = WordNetContract.Lookup_Words.URI
+                searchUri = WordNetProvider.makeUri(table)
                 id = WordNetContract.Lookup_Words.WORDID
                 idType = "word"
                 target = WordNetContract.Lookup_Words.WORD
@@ -126,6 +134,7 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             3 -> {
+                table = VerbNetContract.Lookup_VnExamples_X.URI
                 searchUri = VerbNetProvider.makeUri(VerbNetContract.Lookup_VnExamples_X.URI_BY_EXAMPLE)
                 id = VerbNetContract.Lookup_VnExamples_X.EXAMPLEID
                 idType = "vnexample"
@@ -138,6 +147,7 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             4 -> {
+                table = PropBankContract.Lookup_PbExamples_X.URI
                 searchUri = PropBankProvider.makeUri(PropBankContract.Lookup_PbExamples_X.URI_BY_EXAMPLE)
                 id = PropBankContract.Lookup_PbExamples_X.EXAMPLEID
                 idType = "pbexample"
@@ -150,6 +160,7 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             5 -> {
+                table = FrameNetContract.Lookup_FTS_FnSentences_X.URI
                 searchUri = FrameNetProvider.makeUri(FrameNetContract.Lookup_FTS_FnSentences_X.URI_BY_SENTENCE)
                 id = FrameNetContract.Lookup_FTS_FnSentences_X.SENTENCEID
                 idType = "fnsentence"
@@ -164,6 +175,19 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             else -> return
+        }
+        Log.d(TAG, "Search text $table $searchUri")
+        if (!validTable(requireContext(), table)) {
+            if (view != null) {
+                Snackbar.make(requireView(), getString(CommonR.string.error_invalid_table, table), Snackbar.LENGTH_LONG)
+                    .setTextMaxLines(10)
+                    .setAction(CommonR.string.fix_it) {
+                        val intent = Intent(AppContext.context, StatusActivity::class.java)
+                        startActivity(intent)
+                    }
+                    .show()
+            }
+            return
         }
 
         // parameters
