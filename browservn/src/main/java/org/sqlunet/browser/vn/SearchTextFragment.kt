@@ -97,7 +97,7 @@ class SearchTextFragment : BaseSearchFragment() {
         val database: String
         when (modePosition) {
             0 -> {
-                table = VerbNetContract.Lookup_VnExamples_X.URI
+                table = VerbNetContract.Lookup_VnExamples.URI
                 searchUri = VerbNetProvider.makeUri(VerbNetContract.Lookup_VnExamples_X.URI_BY_EXAMPLE)
                 id = VerbNetContract.Lookup_VnExamples_X.EXAMPLEID
                 idType = "vn_example"
@@ -110,7 +110,7 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             1 -> {
-                table = PropBankContract.Lookup_PbExamples_X.URI
+                table = PropBankContract.Lookup_PbExamples.URI
                 searchUri = PropBankProvider.makeUri(PropBankContract.Lookup_PbExamples_X.URI_BY_EXAMPLE)
                 id = PropBankContract.Lookup_PbExamples_X.EXAMPLEID
                 idType = "pb_example"

@@ -134,7 +134,7 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             3 -> {
-                table = VerbNetContract.Lookup_VnExamples_X.URI
+                table = VerbNetContract.Lookup_VnExamples.URI
                 searchUri = VerbNetProvider.makeUri(VerbNetContract.Lookup_VnExamples_X.URI_BY_EXAMPLE)
                 id = VerbNetContract.Lookup_VnExamples_X.EXAMPLEID
                 idType = "vnexample"
@@ -147,7 +147,7 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             4 -> {
-                table = PropBankContract.Lookup_PbExamples_X.URI
+                table = PropBankContract.Lookup_PbExamples.URI
                 searchUri = PropBankProvider.makeUri(PropBankContract.Lookup_PbExamples_X.URI_BY_EXAMPLE)
                 id = PropBankContract.Lookup_PbExamples_X.EXAMPLEID
                 idType = "pbexample"
@@ -160,7 +160,7 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             5 -> {
-                table = FrameNetContract.Lookup_FTS_FnSentences_X.URI
+                table = FrameNetContract.Lookup_FTS_FnSentences.URI
                 searchUri = FrameNetProvider.makeUri(FrameNetContract.Lookup_FTS_FnSentences_X.URI_BY_SENTENCE)
                 id = FrameNetContract.Lookup_FTS_FnSentences_X.SENTENCEID
                 idType = "fnsentence"
