@@ -93,6 +93,13 @@ internal object XnStatus : Status() {
         return status and (EXISTS or EXISTS_TABLES or EXISTS_INDEXES or EXISTS_PREDICATEMATRIX) == EXISTS or EXISTS_TABLES or EXISTS_INDEXES or EXISTS_PREDICATEMATRIX
     }
 
+    /**
+     * Valid table
+     *
+     * @param context context
+     * @param table target table
+     * @return true if table exists
+     */
     fun validTable(context: Context, table: String): Boolean {
         if (existsDatabase(context)) {
             val existingTables: List<String>? = try {

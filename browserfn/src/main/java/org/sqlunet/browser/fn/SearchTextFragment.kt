@@ -3,13 +3,18 @@
  */
 package org.sqlunet.browser.fn
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
+import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseSearchFragment
 import org.sqlunet.browser.SearchTextSplashFragment
 import org.sqlunet.browser.SplashFragment
+import org.sqlunet.browser.StatusActivity
+import org.sqlunet.browser.fn.FnStatus.validTable
 import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FTS_FnSentences_X
 import org.sqlunet.framenet.provider.FrameNetProvider.Companion.makeUri
 import org.sqlunet.provider.ProviderArgs
@@ -66,6 +71,7 @@ class SearchTextFragment : BaseSearchFragment() {
         // var[] textSearches = getResources().getTextArray(R.array.searchtext_modes)
 
         // arguments
+        val table: String = Lookup_FTS_FnSentences_X.URI
         val searchUri: String = makeUri(Lookup_FTS_FnSentences_X.URI_BY_SENTENCE)
         val id: String = Lookup_FTS_FnSentences_X.SENTENCEID
         val idType = "fnsentence"
@@ -77,6 +83,20 @@ class SearchTextFragment : BaseSearchFragment() {
             "GROUP_CONCAT(DISTINCT  lexunit || '@' || luid) AS " + Lookup_FTS_FnSentences_X.LEXUNITS
         )
         val database = "fn"
+
+        Log.d(TAG, "Search text $table $searchUri")
+        if (!validTable(requireContext(), table)) {
+            if (view != null) {
+                Snackbar.make(requireView(), getString(CommonR.string.error_invalid_table, table), Snackbar.LENGTH_LONG)
+                    .setTextMaxLines(10)
+                    .setAction(CommonR.string.fix_it) {
+                        val intent = Intent(AppContext.context, StatusActivity::class.java)
+                        startActivity(intent)
+                    }
+                    .show()
+            }
+            return
+        }
 
         // parameters
         val args = Bundle()

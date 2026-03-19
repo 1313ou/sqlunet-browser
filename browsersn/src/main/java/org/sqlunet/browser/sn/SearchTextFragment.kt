@@ -3,14 +3,18 @@
  */
 package org.sqlunet.browser.sn
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseSearchFragment
 import org.sqlunet.browser.SearchTextSplashFragment
 import org.sqlunet.browser.SplashFragment
+import org.sqlunet.browser.StatusActivity
+import org.sqlunet.browser.sn.SnStatus.validTable
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
 import org.sqlunet.wordnet.provider.WordNetContract
@@ -80,6 +84,7 @@ class SearchTextFragment : BaseSearchFragment() {
         // var textSearches = getResources().getTextArray(R.array.searchtext_modes)
 
         // as per selected mode
+        val table: String
         val searchUri: String
         val id: String
         val idType: String
@@ -89,7 +94,8 @@ class SearchTextFragment : BaseSearchFragment() {
         val database: String
         when (modePosition) {
             0 -> {
-                searchUri = makeUri(WordNetContract.Lookup_Definitions.URI)
+                table = WordNetContract.Lookup_Definitions.URI
+                searchUri = makeUri(table)
                 id = WordNetContract.Lookup_Definitions.SYNSETID
                 idType = "synset"
                 target = WordNetContract.Lookup_Definitions.DEFINITION
@@ -99,7 +105,8 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             1 -> {
-                searchUri = makeUri(WordNetContract.Lookup_Samples.URI)
+                table = WordNetContract.Lookup_Samples.URI
+                searchUri = makeUri(table)
                 id = WordNetContract.Lookup_Samples.SYNSETID
                 idType = "synset"
                 target = WordNetContract.Lookup_Samples.SAMPLE
@@ -109,7 +116,8 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             2 -> {
-                searchUri = makeUri(WordNetContract.Lookup_Words.URI)
+                table = WordNetContract.Lookup_Words.URI
+                searchUri = makeUri(table)
                 id = WordNetContract.Lookup_Words.WORDID
                 idType = "word"
                 target = WordNetContract.Lookup_Words.WORD
@@ -119,6 +127,20 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             else -> return
+        }
+
+        Log.d(TAG, "Search text $table $searchUri")
+        if (!validTable(requireContext(), table)) {
+            if (view != null) {
+                Snackbar.make(requireView(), getString(CommonR.string.error_invalid_table, table), Snackbar.LENGTH_LONG)
+                    .setTextMaxLines(10)
+                    .setAction(CommonR.string.fix_it) {
+                        val intent = Intent(AppContext.context, StatusActivity::class.java)
+                        startActivity(intent)
+                    }
+                    .show()
+            }
+            return
         }
 
         // parameters

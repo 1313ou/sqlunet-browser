@@ -3,14 +3,18 @@
  */
 package org.sqlunet.browser.vn
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseSearchFragment
 import org.sqlunet.browser.SearchTextSplashFragment
 import org.sqlunet.browser.SplashFragment
+import org.sqlunet.browser.StatusActivity
+import org.sqlunet.browser.vn.VnStatus.validTable
 import org.sqlunet.propbank.provider.PropBankContract
 import org.sqlunet.propbank.provider.PropBankProvider
 import org.sqlunet.provider.ProviderArgs
@@ -83,6 +87,7 @@ class SearchTextFragment : BaseSearchFragment() {
         // val textSearches = getResources().getTextArray(R.array.searchtext_modes)
 
         // as per selected mode
+        val table: String
         val searchUri: String
         val id: String
         val idType: String
@@ -116,6 +121,20 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             else -> return
+        }
+
+        Log.d(org.sqlunet.browser.xn.SearchTextFragment.Companion.TAG, "Search text $table $searchUri")
+        if (!validTable(requireContext(), table)) {
+            if (view != null) {
+                Snackbar.make(requireView(), getString(CommonR.string.error_invalid_table, table), Snackbar.LENGTH_LONG)
+                    .setTextMaxLines(10)
+                    .setAction(CommonR.string.fix_it) {
+                        val intent = Intent(AppContext.context, StatusActivity::class.java)
+                        startActivity(intent)
+                    }
+                    .show()
+            }
+            return
         }
 
         // parameters

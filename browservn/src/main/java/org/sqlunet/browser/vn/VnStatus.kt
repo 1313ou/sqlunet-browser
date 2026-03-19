@@ -63,6 +63,26 @@ internal object VnStatus : Status() {
         return 0
     }
 
+    /**
+     * Valid table
+     *
+     * @param context context
+     * @param table target table
+     * @return true if table exists
+     */
+    fun validTable(context: Context, table: String): Boolean {
+        if (existsDatabase(context)) {
+            val existingTables: List<String>? = try {
+                tables(context)
+            } catch (e: Exception) {
+                Log.e(TAG, "While getting _status", e)
+                return false
+            }
+            return contains(existingTables, table)
+        }
+        return false
+    }
+
     fun toString(status: Int): CharSequence {
         val sb: Editable = SpannableStringBuilder()
         sb.append(Integer.toHexString(status))
