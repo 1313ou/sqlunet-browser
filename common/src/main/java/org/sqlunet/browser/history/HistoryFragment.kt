@@ -20,7 +20,6 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.CreateDocument
-import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -42,7 +41,62 @@ import java.io.OutputStreamWriter
 
 class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
-   private lateinit var adapter: HistoryAdapter
+    /**
+     * Fragment menu provider
+     */
+    private val fragmentMenuProvider = object : MenuProvider {
+
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            menuInflater.inflate(R.menu.history, menu)
+        }
+
+        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            return when (menuItem.itemId) {
+                R.id.action_history_export -> {
+                    exportHistory()
+                    true
+                }
+
+                R.id.action_history_import -> {
+                    importHistory()
+                    true
+                }
+
+                R.id.action_history_clear -> {
+                    val suggestions = android.provider.SearchRecentSuggestions(AppContext.context, getAuthority(AppContext.context), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                    suggestions.clearHistory()
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+
+    private val adapter = HistoryAdapter()
+
+    private val swipeCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+
+        override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+            return false
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            val position = viewHolder.bindingAdapterPosition
+            val cursor = adapter.getCursor()
+            if (cursor != null && cursor.moveToPosition(position)) {
+                val itemIdIdx = cursor.getColumnIndex("_id")
+                val itemId = cursor.getString(itemIdIdx)
+                val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
+                val data = cursor.getString(dataIdx)
+                val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                suggestions.delete(itemId)
+                // Restart the loader to get the updated cursor
+                LoaderManager.getInstance(this@HistoryFragment).restartLoader(LOADER_ID, null, this@HistoryFragment)
+                Toast.makeText(requireContext(), resources.getString(R.string.title_history_deleted) + ' ' + data, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,53 +110,13 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = HistoryAdapter()
         val recyclerView = view.findViewById<RecyclerView>(R.id.search_list)
         recyclerView.adapter = adapter
 
-        val swipeCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-                return false
-            }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.bindingAdapterPosition
-                val cursor = adapter.getCursor()
-                if (cursor != null && cursor.moveToPosition(position)) {
-                    val itemIdIdx = cursor.getColumnIndex("_id")
-                    val itemId = cursor.getString(itemIdIdx)
-                    val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
-                    val data = cursor.getString(dataIdx)
-                    val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
-                    suggestions.delete(itemId)
-                    // Restart the loader to get the updated cursor
-                    LoaderManager.getInstance(this@HistoryFragment).restartLoader(LOADER_ID, null, this@HistoryFragment)
-                    Toast.makeText(requireContext(), resources.getString(R.string.title_history_deleted) + ' ' + data, Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
         val touchHelper = ItemTouchHelper(swipeCallback)
         touchHelper.attachToRecyclerView(recyclerView)
 
-        val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.history, menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                when (menuItem.itemId) {
-                    R.id.action_history_export -> exportHistory()
-                    R.id.action_history_import -> importHistory()
-                    R.id.action_history_clear -> {
-                        val suggestions = android.provider.SearchRecentSuggestions(AppContext.context, getAuthority(AppContext.context), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
-                        suggestions.clearHistory()
-                        return true
-                    }
-                }
-                return false
-            }
-        }, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
+        requireActivity().addMenuProvider(fragmentMenuProvider, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
     }
 
     override fun onStart() {
@@ -172,6 +186,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
 
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
             val textView: TextView = itemView.findViewById(android.R.id.text1)
         }
     }
@@ -250,6 +265,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     companion object {
+
         private const val TAG = "HistoryF"
 
         private const val LOADER_ID = 2222

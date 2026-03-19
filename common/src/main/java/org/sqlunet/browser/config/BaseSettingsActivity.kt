@@ -89,10 +89,8 @@ abstract class BaseSettingsActivity : BaseActivity(), PreferenceFragmentCompat.O
     // M E N U
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.activity_settings, menu)
         menuInflater.inflate(R.menu.activity_theme, menu)
-        // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }
 

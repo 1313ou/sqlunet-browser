@@ -27,9 +27,10 @@ import org.sqlunet.browser.common.R
 open class HomeFragment : Fragment() {
 
     /**
-     * Menu provider
+     * Fragment menu provider
      */
-    val menuProvider = object : MenuProvider {
+    private val fragmentMenuProvider = object : MenuProvider {
+
         override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
             // search menu adds search icon to toolbar
             menuInflater.inflate(R.menu.search, menu)
@@ -62,7 +63,7 @@ open class HomeFragment : Fragment() {
 
         // menu
         requireActivity().addMenuProvider(
-            menuProvider,
+            fragmentMenuProvider,
             viewLifecycleOwner,
             Lifecycle.State.RESUMED
         )

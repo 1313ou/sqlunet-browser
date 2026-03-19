@@ -129,9 +129,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * Fragment menu provider
      */
     private val fragmentMenuProvider = object : MenuProvider {
+
         override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-            // inflate
-            menu.clear()
             menuInflater.inflate(R.menu.search, menu)
             menuIds.forEach { menuInflater.inflate(it, menu) }
             Log.d(TAG, "MenuProvider: onCreateMenu() size=${menu.size}")
@@ -144,11 +143,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     true
                 }
 
-                else -> {
-                    @Suppress("DEPRECATION")
-                    val handled = onOptionsItemSelected(menuItem)
-                    handled || menuDispatch(requireActivity() as AppCompatActivity, menuItem)
-                }
+                else -> false
             }
         }
     }
@@ -167,7 +162,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     @ArrayRes
     protected var spinnerIcons = 0
 
-     // L I F E C Y C L E
+    // L I F E C Y C L E
 
     @SuppressLint("InflateParams")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -308,7 +303,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         Log.d(TAG, "SearchBar: controlled by $this")
         searchBar.apply {
             menu.clear()
-            inflateMenu(R.menu.browse)
+            inflateMenu(R.menu.searchbar)
             setOnMenuItemClickListener { menuItem ->
                 @Suppress("DEPRECATION")
                 val handled = onOptionsItemSelected(menuItem) // use it a normal function

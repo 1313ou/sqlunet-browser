@@ -9,7 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import org.sqlunet.browser.EntryActivity.Companion.rerun
-import org.sqlunet.browser.MenuHandler
+import org.sqlunet.browser.MenuHandler.menuDispatchWhenCantRun
 import org.sqlunet.browser.common.R
 
 /**
@@ -40,10 +40,8 @@ class DownloadActivity : com.bbou.download.workers.DownloadActivity() {
     // M E N U
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // inflate the menu; this adds items to the type bar if it is present.
         menuInflater.inflate(R.menu.activity_initialize, menu)
         menuInflater.inflate(R.menu.activity_theme, menu)
-        // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }
 
@@ -54,7 +52,7 @@ class DownloadActivity : com.bbou.download.workers.DownloadActivity() {
             rerun(this)
             return true
         }
-        return MenuHandler.menuDispatchWhenCantRun(this, item)
+        return menuDispatchWhenCantRun(this, item)
     }
 
     companion object {

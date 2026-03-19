@@ -20,13 +20,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.Sender.send
 import org.sqlunet.browser.common.R
 import org.sqlunet.provider.BaseProvider
@@ -42,6 +40,46 @@ import java.io.OutputStreamWriter
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class SqlFragment : Fragment() {
+
+    /**
+     * Fragment menu provider
+     */
+    private val fragmentMenuProvider = object : MenuProvider {
+
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            menuInflater.inflate(R.menu.sql, menu)
+        }
+
+        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            return when (menuItem.itemId) {
+                R.id.action_copy -> {
+                    val sqls = stylizedSqls()
+                    val clipboard = AppContext.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                    val clip = ClipData.newPlainText("SQL", sqls)
+                    clipboard.setPrimaryClip(clip)
+                    true
+                }
+
+                R.id.action_sql_export -> {
+                    export()
+                    true
+                }
+
+                R.id.action_sql_send -> {
+                    send(requireContext())
+                    true
+                }
+
+                R.id.action_sql_clear_and_refresh -> {
+                    BaseProvider.sqlBuffer.clear()
+                    refresh()
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
 
     private var exportLauncher: ActivityResultLauncher<String>? = null
 
@@ -88,48 +126,7 @@ class SqlFragment : Fragment() {
 
         // menu
         val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(object : MenuProvider {
-
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                // inflate
-                menu.clear()
-                // menuInflater.inflate(R.menu.main, menu)
-                menuInflater.inflate(R.menu.sql, menu)
-                // MenuCompat.setGroupDividerEnabled(menu, true)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return when (menuItem.itemId) {
-                    R.id.action_copy -> {
-                        val sqls = stylizedSqls()
-                        val clipboard = AppContext.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                        val clip = ClipData.newPlainText("SQL", sqls)
-                        clipboard.setPrimaryClip(clip)
-                        true
-                    }
-
-                    R.id.action_sql_export -> {
-                        export()
-                        true
-                    }
-
-                    R.id.action_sql_send -> {
-                        send(requireContext())
-                        true
-                    }
-
-                    R.id.action_sql_clear_and_refresh -> {
-                        BaseProvider.sqlBuffer.clear()
-                        refresh()
-                        true
-                    }
-
-                    else -> {
-                        menuDispatch((requireActivity() as AppCompatActivity), menuItem)
-                    }
-                }
-            }
-        }, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
+        menuHost.addMenuProvider(fragmentMenuProvider, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
     }
 
     override fun onDestroy() {

@@ -11,7 +11,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import org.sqlunet.browser.BaseActivity
 import org.sqlunet.browser.EntryActivity.Companion.rerun
-import org.sqlunet.browser.MenuHandler
+import org.sqlunet.browser.MenuHandler.menuDispatchWhenCantRun
 import org.sqlunet.browser.common.R
 
 /**
@@ -41,10 +41,8 @@ class LoadActivity : BaseActivity() {
     // M E N U
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // inflate the menu; this adds items to the type bar if it is present.
         menuInflater.inflate(R.menu.activity_initialize, menu)
         menuInflater.inflate(R.menu.activity_theme, menu)
-        // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }
 
@@ -55,16 +53,8 @@ class LoadActivity : BaseActivity() {
             rerun(this)
             return true
         }
-        return MenuHandler.menuDispatchWhenCantRun(this, item)
+        return menuDispatchWhenCantRun(this, item)
     }
-
-    // /** @noinspection deprecation
-    //  */
-    // @Deprecated("Deprecated in Java")
-    // override fun onBackPressed() {
-    //     Log.d(TAG, "onBackPressed")
-    //     super.onBackPressed()
-    // }
 
     companion object {
 

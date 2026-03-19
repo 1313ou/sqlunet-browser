@@ -16,14 +16,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import org.sqlunet.browser.AppContext
-import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
 import org.sqlunet.settings.Storage.getSqlUNetStorage
 import org.sqlunet.settings.StorageReports.getStyledCachesNamesValues
@@ -44,9 +42,107 @@ import org.sqlunet.settings.StorageReports.reportStyledStorageDirectories
 class StorageFragment : Fragment() {
 
     /**
+     * Fragment menu provider
+     */
+    private val fragmentMenuProvider = object : MenuProvider {
+
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            menuInflater.inflate(R.menu.storage, menu)
+        }
+
+        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            val activityContext = requireContext()
+            return when (menuItem.itemId) {
+                R.id.action_dirs -> {
+                    val message = reportStyledDirs(activityContext)
+                    AlertDialog.Builder(activityContext)
+                        .setTitle(R.string.action_dirs)
+                        .setMessage(message)
+                        .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
+                        .show()
+                    true
+                }
+
+                R.id.action_storage_dirs -> {
+                    val dirs = getStyledStorageDirectoriesNamesValues(activityContext)
+                    val message = namesValuesToReportStyled(dirs)
+                    AlertDialog.Builder(activityContext)
+                        .setTitle(R.string.action_storage_dirs)
+                        .setMessage(message)
+                        .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
+                        .show()
+                    true
+                }
+
+                R.id.action_cache_dirs -> {
+                    val dirs = getStyledCachesNamesValues(activityContext)
+                    val message = namesValuesToReportStyled(dirs)
+                    AlertDialog.Builder(activityContext)
+                        .setTitle(R.string.action_cache_dirs)
+                        .setMessage(message)
+                        .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
+                        .show()
+                    true
+                }
+
+                R.id.action_download_dirs -> {
+                    val dirs = getStyledDownloadNamesValues(activityContext)
+                    val message = namesValuesToReportStyled(dirs)
+                    AlertDialog.Builder(activityContext)
+                        .setTitle(R.string.action_download_dirs)
+                        .setMessage(message)
+                        .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
+                        .show()
+                    true
+                }
+
+                R.id.action_copy -> {
+                    val sb = StringBuilder()
+
+                    // db
+                    sb.append(getString(R.string.title_database))
+                        .append('\n')
+                        .append(getSqlUNetStorage(activityContext).absolutePath)
+                        .append('\n')
+                        .append('\n')
+
+                        // storage
+                        .append(getString(R.string.title_storage))
+                        .append('\n')
+                        .append(reportStorageDirectories(activityContext))
+
+                        // storage devices
+                        .append(getString(R.string.title_external_storage_devices))
+                        .append('\n')
+                        .append(reportExternalStorage(activityContext))
+
+                    val clipboard = AppContext.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                    val clip = ClipData.newPlainText("Storage", sb)
+                    clipboard.setPrimaryClip(clip)
+                    true
+                }
+
+                R.id.action_refresh -> {
+                    // make sure that the SwipeRefreshLayout is displaying its refreshing indicator
+                    if (!swipeRefreshLayout!!.isRefreshing) {
+                        swipeRefreshLayout!!.isRefreshing = true
+                    }
+                    update()
+
+                    // stop the refreshing indicator
+                    swipeRefreshLayout!!.isRefreshing = false
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+
+    /**
      * Swipe refresh layout
      */
-    private var swipeRefreshLayout: SwipeRefreshLayout? = null
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_storage, container, false)
@@ -57,113 +153,16 @@ class StorageFragment : Fragment() {
 
         // swipe refresh
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh)
-        swipeRefreshLayout!!.setOnRefreshListener {
+        swipeRefreshLayout.setOnRefreshListener {
             update()
 
             // stop the refreshing indicator
-            swipeRefreshLayout!!.isRefreshing = false
+            swipeRefreshLayout.isRefreshing = false
         }
 
         // menu
         val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                // inflate
-                menu.clear()
-                menuInflater.inflate(R.menu.storage, menu)
-                // MenuCompat.setGroupDividerEnabled(menu, true)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                val activityContext = requireContext()
-
-                // handle item selection
-                when (menuItem.itemId) {
-                    R.id.action_dirs -> {
-                        val message = reportStyledDirs(activityContext)
-                        AlertDialog.Builder(activityContext)
-                            .setTitle(R.string.action_dirs)
-                            .setMessage(message)
-                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
-                            .show()
-                        return true
-                    }
-
-                    R.id.action_storage_dirs -> {
-                        val dirs = getStyledStorageDirectoriesNamesValues(activityContext)
-                        val message = namesValuesToReportStyled(dirs)
-                        AlertDialog.Builder(activityContext)
-                            .setTitle(R.string.action_storage_dirs)
-                            .setMessage(message)
-                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
-                            .show()
-                        return true
-                    }
-
-                    R.id.action_cache_dirs -> {
-                        val dirs = getStyledCachesNamesValues(activityContext)
-                        val message = namesValuesToReportStyled(dirs)
-                        AlertDialog.Builder(activityContext)
-                            .setTitle(R.string.action_cache_dirs)
-                            .setMessage(message)
-                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
-                            .show()
-                        return true
-                    }
-
-                    R.id.action_download_dirs -> {
-                        val dirs = getStyledDownloadNamesValues(activityContext)
-                        val message = namesValuesToReportStyled(dirs)
-                        AlertDialog.Builder(activityContext)
-                            .setTitle(R.string.action_download_dirs)
-                            .setMessage(message)
-                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
-                            .show()
-                        return true
-                    }
-
-                    R.id.action_copy -> {
-                        val sb = StringBuilder()
-
-                        // db
-                        sb.append(getString(R.string.title_database))
-                            .append('\n')
-                            .append(getSqlUNetStorage(activityContext).absolutePath)
-                            .append('\n')
-                            .append('\n')
-
-                            // storage
-                            .append(getString(R.string.title_storage))
-                            .append('\n')
-                            .append(reportStorageDirectories(activityContext))
-
-                            // storage devices
-                            .append(getString(R.string.title_external_storage_devices))
-                            .append('\n')
-                            .append(reportExternalStorage(activityContext))
-
-                        val clipboard = AppContext.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                        val clip = ClipData.newPlainText("Storage", sb)
-                        clipboard.setPrimaryClip(clip)
-                        return true
-                    }
-
-                    R.id.action_refresh -> {
-                        // make sure that the SwipeRefreshLayout is displaying its refreshing indicator
-                        if (!swipeRefreshLayout!!.isRefreshing) {
-                            swipeRefreshLayout!!.isRefreshing = true
-                        }
-                        update()
-
-                        // stop the refreshing indicator
-                        swipeRefreshLayout!!.isRefreshing = false
-                        return true
-                    }
-
-                    else -> return menuDispatch((requireActivity() as AppCompatActivity), menuItem)
-                }
-            }
-        }, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
+        menuHost.addMenuProvider(fragmentMenuProvider, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
     }
 
     override fun onResume() {

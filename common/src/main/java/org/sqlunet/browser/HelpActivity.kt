@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
+import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
 
 /**
@@ -45,11 +46,10 @@ class HelpActivity : BaseActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.activity_main, menu)
         menuInflater.inflate(R.menu.activity_theme, menu)
-        // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return MenuHandler.menuDispatch(this, item)
+        return menuDispatch(this, item)
     }
 }

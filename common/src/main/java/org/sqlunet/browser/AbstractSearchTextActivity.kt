@@ -10,8 +10,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
-import org.sqlunet.browser.common.R
+import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.NightMode.createOverrideConfigurationForDayNight
+import org.sqlunet.browser.common.R
 
 /**
  * Abstract search text activity
@@ -67,15 +68,13 @@ abstract class AbstractSearchTextActivity<F : BaseSearchFragment?> : BaseActivit
     // M E N U
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // inflate the menu; this adds items to the type bar if it is present.
         menuInflater.inflate(R.menu.activity_main, menu)
         menuInflater.inflate(R.menu.activity_theme, menu)
-        // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return MenuHandler.menuDispatch(this, item)
+        return menuDispatch(this, item)
     }
 
     // S E A R C H
