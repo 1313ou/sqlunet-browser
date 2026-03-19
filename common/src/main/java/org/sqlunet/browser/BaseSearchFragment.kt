@@ -167,7 +167,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     @ArrayRes
     protected var spinnerIcons = 0
 
-    // V I E W
+     // L I F E C Y C L E
 
     @SuppressLint("InflateParams")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
