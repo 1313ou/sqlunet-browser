@@ -17,8 +17,8 @@
 	<color name="definitionBackColor">#00000000</color>
 	<color name="definitionForeColor">#4682B4</color>
 
-	<color name="exampleBackColor">#00000000</color>
-	<color name="exampleForeColor">#C58101</color>
+	<color name="exampleBackColor">#FFF59D</color>
+	<color name="exampleForeColor">#000000</color>
 
 	<color name="usageBackColor">#00000000</color>
 	<color name="usageForeColor">#278909</color>
