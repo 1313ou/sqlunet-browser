@@ -208,7 +208,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         searchBarGroup = requireActivity().findViewById(R.id.search_bar_group)
         searchBar = requireActivity().findViewById(R.id.search_bar)
         searchView = requireActivity().findViewById(R.id.search_view)
-        suggestionContainer = requireActivity().findViewById(R.id.search_view_suggestion_container)
+        suggestionContainer = requireActivity().findViewById(R.id.search_view_data_container)
         searchSpinner = requireActivity().findViewById(R.id.search_bar_spinner)
 
         // connect searchbar and searchview
