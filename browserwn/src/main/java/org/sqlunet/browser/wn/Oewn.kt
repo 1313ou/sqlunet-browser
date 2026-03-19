@@ -49,12 +49,13 @@ object Oewn {
             sb.append(message1).append('\n')
             sb.append('@').setSpan(ImageSpan(activity, OthersR.drawable.logo_semantikos_ewn), sb.length - 1, sb.length, 0)
             sb.append('\n').append(message2)
-            val snackbar = Snackbar.make(parentLayout, sb, Snackbar.LENGTH_INDEFINITE)
-            snackbar.setTextMaxLines(10)
+            Snackbar.make(parentLayout, sb, Snackbar.LENGTH_INDEFINITE)
+                .setTextMaxLines(10)
                 .setBackgroundTint(ContextCompat.getColor(activity, R.color.snackbar_oewn))
                 .setAction(R.string.obsolete_get_oewn) { install(activity.getString(OthersR.string.semantikos_ewn_uri), activity) }
                 .setActionTextColor(ContextCompat.getColor(activity, android.R.color.white))
-                .setBehavior(behavior).show()
+                .setBehavior(behavior)
+                .show()
         }
     }
 }
