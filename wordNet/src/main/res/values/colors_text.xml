@@ -4,10 +4,10 @@
 
 <resources>
 
-	<color name="membersBackColor">#FFFFFF</color>
-	<color name="membersForeColor">#000000</color>
+	<color name="membersBackColor">#00000000</color>
+	<color name="membersForeColor">#444444</color>
 
-	<color name="wordBackColor">#FFFFFF</color>
+	<color name="wordBackColor">#00000000</color>
 	<color name="wordForeColor">#000000</color>
 
 	<array name="palette_wn">

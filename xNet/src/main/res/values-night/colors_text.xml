@@ -18,10 +18,10 @@
 	<color name="definitionForeColor">#4682B4</color>
 
 	<color name="exampleBackColor">#00000000</color>
-	<color name="exampleForeColor">#C58101</color>
+	<color name="exampleForeColor">#FFFFA0</color>
 
 	<color name="usageBackColor">#00000000</color>
-	<color name="usageForeColor">#278909</color>
+	<color name="usageForeColor">#B1EF9D</color>
 
 	<color name="relationBackColor">#00000000</color>
 	<color name="relationForeColor">#F3805C</color>

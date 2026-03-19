@@ -4,7 +4,7 @@
 
 <resources>
 
-	<color name="bncHeaderBackColor">#FFFFFF</color>
+	<color name="bncHeaderBackColor">#E9967A</color>
 	<color name="bncHeaderForeColor">#000000</color>
 
 	<array name="palette_bnc">

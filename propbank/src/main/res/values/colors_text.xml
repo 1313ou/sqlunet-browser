@@ -4,11 +4,11 @@
 
 <resources>
 
-	<color name="vnroleBackColor">#FFFFFF</color>
-	<color name="vnroleForeColor">#000000</color>
+	<color name="vnroleBackColor">#0000FF</color>
+	<color name="vnroleForeColor">#FFFFFF</color>
 
-	<color name="pbrelationBackColor">#FFFFFF</color>
-	<color name="pbrelationForeColor">#000000</color>
+	<color name="pbrelationBackColor">#888888</color>
+	<color name="pbrelationForeColor">#FFFFFF</color>
 
 	<array name="palette_pb">
 

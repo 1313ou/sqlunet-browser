@@ -4,35 +4,35 @@
 
 <resources>
 
-	<color name="vnPredicateBackColor">#FFFFFF</color>
-	<color name="vnPredicateForeColor">#000000</color>
+	<color name="vnPredicateBackColor">#FFA501</color>
+	<color name="vnPredicateForeColor">#444444</color>
 
-	<color name="groupingBackColor">#FFFFFF</color>
-	<color name="groupingForeColor">#000000</color>
+	<color name="groupingBackColor">#00000000</color>
+	<color name="groupingForeColor">#808080</color>
 
-	<color name="vnFrameBackColor">#FFFFFF</color>
-	<color name="vnFrameForeColor">#000000</color>
+	<color name="vnFrameBackColor">#6F4E37</color>
+	<color name="vnFrameForeColor">#FFFFFF</color>
 
-	<color name="vnFrameSubnameBackColor">#FFFFFF</color>
-	<color name="vnFrameSubnameForeColor">#000000</color>
+	<color name="vnFrameSubnameBackColor">#00000000</color>
+	<color name="vnFrameSubnameForeColor">#6F4E37</color>
 
-	<color name="themroleBackColor">#FFFFFF</color>
-	<color name="themroleForeColor">#000000</color>
+	<color name="themroleBackColor">#D551D5</color>
+	<color name="themroleForeColor">#FFFFFF</color>
 
-	<color name="catBackColor">#FFFFFF</color>
-	<color name="catForeColor">#000000</color>
+	<color name="catBackColor">#FFE5B4</color>
+	<color name="catForeColor">#444444</color>
 
-	<color name="catValueBackColor">#FFFFFF</color>
-	<color name="catValueForeColor">#000000</color>
+	<color name="catValueBackColor">#D861D8</color>
+	<color name="catValueForeColor">#FFFFFF</color>
 
-	<color name="restrBackColor">#FFFFFF</color>
-	<color name="restrForeColor">#000000</color>
+	<color name="restrBackColor">#FFE5B4</color>
+	<color name="restrForeColor">#444444</color>
 
-	<color name="constantBackColor">#FFFFFF</color>
+	<color name="constantBackColor">#CCCCCC</color>
 	<color name="constantForeColor">#000000</color>
 
-	<color name="eventBackColor">#FFFFFF</color>
-	<color name="eventForeColor">#000000</color>
+	<color name="eventBackColor">#0000FF</color>
+	<color name="eventForeColor">#FFFFFF</color>
 
 	<array name="palette_vn">
 
