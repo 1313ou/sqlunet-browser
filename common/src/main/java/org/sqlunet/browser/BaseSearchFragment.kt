@@ -99,9 +99,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     // S T A T E   A N D   C A L L B A C K S
 
     /**
-     * Stored between onViewStateRestored and onResume
+     * Search type position, obtained by peeking at spinner state or registry if spinner is still null
      */
-    private var spinnerPosition = 0
+    protected var searchModePosition: Int = -1
 
     /**
      * Search view text watcher
@@ -262,16 +262,15 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        if (::searchSpinner.isInitialized)
-            searchSpinner.apply {
-                outState.putInt(STATE_SPINNER, selectedItemPosition)
-            }
+        outState.putInt(STATE_SPINNER, searchModePosition)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         savedInstanceState?.let {
-            spinnerPosition = it.getInt(STATE_SPINNER)
+            if (it.containsKey(STATE_SPINNER)) {
+                searchModePosition = it.getInt(STATE_SPINNER)
+            }
         }
     }
 
@@ -545,6 +544,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         Log.d(TAG, "SearchMode exit")
         searchBarGroup.visibility = View.GONE
         searchBar.hide()
+        searchBar.setText(null)
         searchView.hide()
         toolbar.show()
     }
@@ -554,7 +554,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     open fun onSelection(position: Int) {
     }
 
-    open val initialSelection: Int = spinnerPosition
+    open val initialSelection: Int = 0
 
     /**
      * Set up  spinner
@@ -563,12 +563,18 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         if (spinnerLabels != 0 && !resources.getTextArray(spinnerLabels).isEmpty()) {
             searchSpinner.apply {
                 adapter = spinnerAdapter
-                setSelection(initialSelection)
+                // contention fix: use restored position if available, otherwise initial selection
+                val selection = if (searchModePosition != -1) searchModePosition else initialSelection
+                setSelection(selection)
+                searchModePosition = selection
+
                 onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
                     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                        spinnerPosition = position
-                        onSelection(position)
+                        if (searchModePosition != position) {
+                            searchModePosition = position
+                            onSelection(position)
+                        }
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -586,9 +592,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     private fun releaseSpinner() {
         searchSpinner.apply {
-            setSelection(0)
-            adapter = null
             onItemSelectedListener = null
+            adapter = null
             visibility = View.GONE
         }
     }
@@ -630,11 +635,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 setDropDownViewResource(R.layout.spinner_item_actionbar_dropdown)
             }
         }
-
-    /**
-     * Search type position, obtained by peeking at spinner state or registry if spinner is still null
-     */
-    protected var searchModePosition: Int = -1
 
     companion object {
 
