@@ -45,6 +45,7 @@ open class HomeFragment : Fragment() {
                 menu.clear()
                 menuInflater.inflate(R.menu.search, menu)
                 menuInflater.inflate(R.menu.activity_main, menu)
+                menuInflater.inflate(R.menu.activity_theme, menu)
             }
 
             override fun onMenuItemSelected(item: MenuItem): Boolean {
