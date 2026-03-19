@@ -161,6 +161,7 @@
 	<string name="yes">Yes</string>
 	<string name="no">No</string>
 	<string name="ask_drop">Do you wish to drop the database ?</string>
+	<string name="fix_it">Fix it</string>
 	<string name="description_cancel">Cancel operation</string>
 
 	<!-- gloss -->
