@@ -97,6 +97,7 @@ class SearchTextFragment : BaseSearchFragment() {
         val database: String
         when (modePosition) {
             0 -> {
+                table = VerbNetContract.Lookup_VnExamples_X.URI
                 searchUri = VerbNetProvider.makeUri(VerbNetContract.Lookup_VnExamples_X.URI_BY_EXAMPLE)
                 id = VerbNetContract.Lookup_VnExamples_X.EXAMPLEID
                 idType = "vn_example"
@@ -109,6 +110,7 @@ class SearchTextFragment : BaseSearchFragment() {
             }
 
             1 -> {
+                table = PropBankContract.Lookup_PbExamples_X.URI
                 searchUri = PropBankProvider.makeUri(PropBankContract.Lookup_PbExamples_X.URI_BY_EXAMPLE)
                 id = PropBankContract.Lookup_PbExamples_X.EXAMPLEID
                 idType = "pb_example"
@@ -123,7 +125,7 @@ class SearchTextFragment : BaseSearchFragment() {
             else -> return
         }
 
-        Log.d(org.sqlunet.browser.xn.SearchTextFragment.Companion.TAG, "Search text $table $searchUri")
+        Log.d(TAG, "Search text $table $searchUri")
         if (!validTable(requireContext(), table)) {
             if (view != null) {
                 Snackbar.make(requireView(), getString(CommonR.string.error_invalid_table, table), Snackbar.LENGTH_LONG)
