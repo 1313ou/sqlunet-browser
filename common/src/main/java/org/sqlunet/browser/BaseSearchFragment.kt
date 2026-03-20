@@ -307,6 +307,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     private fun takeSearchBar() {
         Log.d(TAG, "SearchBar: controlled by $this")
         searchBar.apply {
+            query?.let { setText(it) }
             menu.clear()
             inflateMenu(R.menu.searchbar)
             setOnMenuItemClickListener { menuItem ->
@@ -346,6 +347,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         Log.d(TAG, "SearchView: controlled by $this")
 
         searchView.apply {
+
+            query?.let { setText(it) }
 
             // e d i t t e x t   t w e a k
             editText.apply {
@@ -522,6 +525,12 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     override fun search(query: String) {
         this.query = query
+        if (::searchBar.isInitialized) {
+            searchBar.setText(query)
+        }
+        if (::searchView.isInitialized) {
+            searchView.setText(query)
+        }
     }
 
     protected open fun triggerFocusSearch(): Boolean = true
@@ -529,6 +538,14 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     protected var triggeredFocusSearch: Boolean = false
 
     fun clearQuery() {
+        Log.d(TAG, "Clear query")
+        this.query = null
+        if (::searchBar.isInitialized) {
+            searchBar.setText(null)
+        }
+        if (::searchView.isInitialized) {
+            searchView.setText(null)
+        }
     }
 
     // S E A R C H
