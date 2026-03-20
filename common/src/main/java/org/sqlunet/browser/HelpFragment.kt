@@ -36,7 +36,7 @@ class HelpFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return try {
             inflater.inflate(R.layout.fragment_help, container, false)
-        } catch (e: InflateException) {
+        } catch (_: InflateException) {
             Toast.makeText(requireContext(), "No WebView support", Toast.LENGTH_LONG).show()
             null
         }
