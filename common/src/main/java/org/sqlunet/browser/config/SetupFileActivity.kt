@@ -10,7 +10,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import org.sqlunet.browser.BaseActivity
-import org.sqlunet.browser.MenuHandler
+import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
 
 /**
@@ -51,6 +51,6 @@ class SetupFileActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return MenuHandler.menuDispatch(this, item)
+        return menuDispatch(this, item)
     }
 }

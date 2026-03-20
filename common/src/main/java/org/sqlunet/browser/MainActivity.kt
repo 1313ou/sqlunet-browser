@@ -22,6 +22,7 @@ import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.bbou.rate.AppRate.Companion.invoke
 import com.google.android.material.navigation.NavigationView
+import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.NightMode.createOverrideConfigurationForDayNight
 import org.sqlunet.browser.common.R
 import org.sqlunet.settings.StorageSettings
@@ -137,7 +138,7 @@ open class MainActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return MenuHandler.menuDispatch(this, item)
+        return menuDispatch(this, item)
     }
 
     // N A V

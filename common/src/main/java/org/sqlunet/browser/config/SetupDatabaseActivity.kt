@@ -9,7 +9,7 @@ import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import org.sqlunet.browser.BaseActivity
-import org.sqlunet.browser.MenuHandler
+import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
 
 /**
@@ -59,6 +59,6 @@ class SetupDatabaseActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == android.R.id.home) {
             super.onOptionsItemSelected(item)
-        } else MenuHandler.menuDispatch(this, item)
+        } else menuDispatch(this, item)
     }
 }

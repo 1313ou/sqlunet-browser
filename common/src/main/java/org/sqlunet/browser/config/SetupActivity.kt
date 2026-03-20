@@ -19,7 +19,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import org.sqlunet.browser.BaseActivity
-import org.sqlunet.browser.MenuHandler
+import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
 import org.sqlunet.provider.ManagerContract
 import org.sqlunet.provider.ProviderArgs
@@ -176,30 +176,24 @@ class SetupActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        if (MenuHandler.menuDispatch(this, item)) {
-            return true
-        }
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.action_diagnostics -> {
                 val intent = Intent(this, DiagnosticsActivity::class.java)
                 startActivity(intent)
-                return true
+                true
             }
 
             R.id.action_logs -> {
                 val intent = Intent(this, LogsActivity::class.java)
                 startActivity(intent)
-                return true
+                true
             }
 
             R.id.action_tables_and_indices -> {
                 val intent = ManagerContract.makeTablesAndIndexesIntent(this)
                 intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_dbobject)
                 startActivity(intent)
-                return true
+                true
             }
 
             R.id.action_dirs -> {
@@ -209,6 +203,7 @@ class SetupActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
                     .setMessage(message)
                     .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                     .show()
+                true
             }
 
             R.id.action_storage_dirs -> {
@@ -219,6 +214,7 @@ class SetupActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
                     .setMessage(message)
                     .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                     .show()
+                true
             }
 
             R.id.action_cache_dirs -> {
@@ -229,6 +225,7 @@ class SetupActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
                     .setMessage(message)
                     .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                     .show()
+                true
             }
 
             R.id.action_download_dirs -> {
@@ -239,11 +236,11 @@ class SetupActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
                     .setMessage(message)
                     .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                     .show()
+                true
             }
 
-            else -> {}
+            else -> menuDispatch(this, item)
         }
-        return super.onOptionsItemSelected(item)
     }
 
     companion object {
