@@ -148,6 +148,11 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
     }
 
+    open fun fragmentMenuDispatch(item: MenuItem): Boolean {
+        // menuDispatch(requireActivity() as AppCompatActivity, item)
+        return false
+    }
+
     // R E S O U R C E S
 
     @LayoutRes
@@ -306,7 +311,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             inflateMenu(R.menu.searchbar)
             setOnMenuItemClickListener { menuItem ->
                 @Suppress("DEPRECATION")
-                val handled = onOptionsItemSelected(menuItem) // use it a normal function
+                val handled = fragmentMenuDispatch(menuItem)
                 handled || menuDispatch((requireActivity() as AppCompatActivity), menuItem)
             }
             setNavigationOnClickListener {
@@ -368,7 +373,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
                     else -> {
                         @Suppress("DEPRECATION")
-                        val handled = onOptionsItemSelected(menuItem) // use it a normal function
+                        val handled = fragmentMenuDispatch(menuItem)
                         handled || menuDispatch((requireActivity() as AppCompatActivity), menuItem)
                     }
                 }

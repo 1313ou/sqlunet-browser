@@ -71,10 +71,7 @@ class BrowseFragment : BaseSearchFragment() {
 
     // M E N U
 
-    @Deprecated("Deprecated in Java", ReplaceWith("Add a MenuHost"))
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = fragmentMenuDispatch(item)
-
-    private fun fragmentMenuDispatch(item: MenuItem): Boolean {
+    override fun fragmentMenuDispatch(item: MenuItem): Boolean {
 
         // intent
         val intent: Intent

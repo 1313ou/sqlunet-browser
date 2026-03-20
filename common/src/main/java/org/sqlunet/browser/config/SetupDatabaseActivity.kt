@@ -50,15 +50,11 @@ class SetupDatabaseActivity : BaseActivity() {
     // M E N U
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // inflate the menu; this adds items to the type bar if it is present.
         menuInflater.inflate(R.menu.activity_main, menu)
-        // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == android.R.id.home) {
-            super.onOptionsItemSelected(item)
-        } else menuDispatch(this, item)
+        return menuDispatch(this, item)
     }
 }
