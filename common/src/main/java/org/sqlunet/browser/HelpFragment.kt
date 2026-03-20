@@ -63,9 +63,7 @@ class HelpFragment : Fragment() {
 
                 @RequiresApi(Build.VERSION_CODES.N)
                 override fun onReceivedError(webView: WebView, request: WebResourceRequest, error: WebResourceError) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        super.onReceivedError(webView, request, error)
-                    }
+                    super.onReceivedError(webView, request, error)
                     Log.e(TAG, error.toString())
                 }
 
