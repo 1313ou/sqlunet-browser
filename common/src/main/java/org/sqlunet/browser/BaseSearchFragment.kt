@@ -143,7 +143,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     true
                 }
 
-                else -> false
+                else -> fragmentMenuDispatch(menuItem)
             }
         }
     }
