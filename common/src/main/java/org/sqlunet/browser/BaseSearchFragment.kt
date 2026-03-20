@@ -195,6 +195,13 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
         // back press callback registration (once per view lifecycle)
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        // Initialize lateinit properties here
+        val activity = requireActivity()
 
         // toolbar, searchBar and searchView
         // searchBar and searchView are declared as properties (members) of your fragment instance:
@@ -209,15 +216,22 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         // toolbar
         // searchBar and searchView
         // spinner
-        toolbar = requireActivity().findViewById(R.id.toolbar)
-        searchBarGroup = requireActivity().findViewById(R.id.search_bar_group)
-        searchBar = requireActivity().findViewById(R.id.search_bar)
-        searchView = requireActivity().findViewById(R.id.search_view)
-        suggestionContainer = requireActivity().findViewById(R.id.search_view_data_container)
-        searchSpinner = requireActivity().findViewById(R.id.search_bar_spinner)
+        toolbar = activity.findViewById(R.id.toolbar)
+        searchBarGroup = activity.findViewById(R.id.search_bar_group)
+        searchBar = activity.findViewById(R.id.search_bar)
+        searchView = activity.findViewById(R.id.search_view)
+        suggestionContainer = activity.findViewById(R.id.search_view_data_container)
+        searchSpinner = activity.findViewById(R.id.search_bar_spinner)
 
         // connect searchbar and searchview
         searchView.setupWithSearchBar(searchBar)
+
+        // restore state
+        savedInstanceState?.let {
+            if (it.containsKey(STATE_SPINNER)) {
+                searchModePosition = it.getInt(STATE_SPINNER)
+            }
+        }
     }
 
     override fun onStart() {
@@ -263,15 +277,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putInt(STATE_SPINNER, searchModePosition)
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        savedInstanceState?.let {
-            if (it.containsKey(STATE_SPINNER)) {
-                searchModePosition = it.getInt(STATE_SPINNER)
-            }
-        }
     }
 
     // T O O L B A R
