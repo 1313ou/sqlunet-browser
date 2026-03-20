@@ -119,7 +119,7 @@ class HelpFragment : Fragment() {
             intentUrl.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intentUrl)
             return true
-        } catch (e: ActivityNotFoundException) {
+        } catch (_: ActivityNotFoundException) {
             Toast.makeText(requireContext(), R.string.status_viewer_failed, Toast.LENGTH_LONG).show()
         }
         return false
