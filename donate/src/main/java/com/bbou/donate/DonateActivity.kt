@@ -50,7 +50,7 @@ class DonateActivity : BaseActivity(), BillingListener {
     /**
      * Overlay drawable
      */
-    private var overlay: Drawable? = null
+    private lateinit var overlay: Drawable
 
     // L I F E C Y C L E   A N D   S E T U P
 
@@ -67,47 +67,50 @@ class DonateActivity : BaseActivity(), BillingListener {
 
         // init product ids from resources
         init(this)
-        val inappProducts = inappProducts!!
         val n = inappProducts.size
 
         // image buttons
         val buttons = Array(n) {
             val button: MaterialButton = findViewById(BUTTON_IDS[it])!!
+            // click: donate
             button.setOnClickListener { button2: View ->
                 val tag = (button2.tag as String).toInt()
                 Log.d(TAG, "clicked $tag")
                 donate(inappProducts[tag])
             }
+            // long click: info
             button.setOnLongClickListener { button2: View ->
                 val tag = (button2.tag as String).toInt()
                 Log.d(TAG, "long clicked $tag")
                 val productId = inappProducts[tag]
                 val sb = StringBuilder()
-                val purchase = if (billingManager == null) null else billingManager!!.productIdToPurchase(productId)
-                if (purchase != null) {
-                    Log.i(TAG, purchase.toString())
-                    sb.append("Order ID: ")
-                    sb.append(purchase.orderId)
-                    sb.append('\n')
-                    sb.append("Products: ")
-                    for (productId2 in purchase.products) {
-                        sb.append(productId2)
-                        sb.append(' ')
+                    .apply {
+                        val purchase = if (billingManager == null) null else billingManager!!.productIdToPurchase(productId)
+                        if (purchase != null) {
+                            Log.i(TAG, purchase.toString())
+                            append("Order ID: ")
+                            append(purchase.orderId)
+                            append('\n')
+                            append("Products: ")
+                            for (productId2 in purchase.products) {
+                                append(productId2)
+                                append(' ')
+                            }
+                            append('\n')
+                            append("Date: ")
+                            append(Date(purchase.purchaseTime))
+                            append('\n')
+                            append("Token: ")
+                            append(purchase.purchaseToken)
+                            if (purchase.isAcknowledged) {
+                                append('\n')
+                                append("Acknowledged")
+                            }
+                        } else {
+                            append("ProductId: ")
+                            append(productId)
+                        }
                     }
-                    sb.append('\n')
-                    sb.append("Date: ")
-                    sb.append(Date(purchase.purchaseTime))
-                    sb.append('\n')
-                    sb.append("Token: ")
-                    sb.append(purchase.purchaseToken)
-                    if (purchase.isAcknowledged) {
-                        sb.append('\n')
-                        sb.append("Acknowledged")
-                    }
-                } else {
-                    sb.append("ProductId: ")
-                    sb.append(productId)
-                }
                 inform(sb.toString())
                 true
             }
@@ -117,12 +120,11 @@ class DonateActivity : BaseActivity(), BillingListener {
         // image buttons per product
         buttonsByProductId.clear()
         for (i in 0 until n) {
-            buttonsByProductId[Products.inappProducts!![i]] = buttons[i]
+            buttonsByProductId[inappProducts[i]] = buttons[i]
         }
 
         // consume button
-        val btn = findViewById<Button>(R.id.consume)
-        btn.setOnClickListener { onConsume() }
+        findViewById<Button>(R.id.consume).setOnClickListener { onConsume() }
 
         // setup manager
         if (billingManager == null) {
@@ -148,6 +150,8 @@ class DonateActivity : BaseActivity(), BillingListener {
             }
         }
     }
+
+    // S E T U P   C O M P L E T E   L I S T E N E R
 
     override fun onBillingClientSetupFinished() {
         Log.d(TAG, "onBillingClientSetupFinished()")
