@@ -70,6 +70,16 @@ class BillingManager(activity: Activity, listener: BillingListener) {
     private var isServiceConnected = false
 
     /**
+     * True if billing service is connecting now.
+     */
+    private var isConnecting = false
+
+    /**
+     * Pending requests to be executed when service is connected
+     */
+    private val pendingRequests: MutableList<Runnable> = ArrayList()
+
+    /**
      * Service connection response code
      * The value Billing client response code or BillingResponseCode.SERVICE_DISCONNECTED if the client connection response was not received yet.
      */
@@ -124,10 +134,6 @@ class BillingManager(activity: Activity, listener: BillingListener) {
 
             // Notifying the listener that billing client is ready
             this.listener.onBillingClientSetupFinished()
-
-            // IAB is fully set up. Now, let's get an inventory of stuff we own.
-            Log.d(TAG, "Querying inventory.")
-            queryPurchases()
         }
     }
 
@@ -137,14 +143,28 @@ class BillingManager(activity: Activity, listener: BillingListener) {
      * @param executeOnSuccess runnable to be executed on success
      */
     private fun startServiceConnection(executeOnSuccess: Runnable?) {
+        if (isServiceConnected) {
+            executeOnSuccess?.run()
+            return
+        }
+        if (isConnecting) {
+            if (executeOnSuccess != null) {
+                pendingRequests.add(executeOnSuccess)
+            }
+            return
+        }
+
         // guard against destroyed client
         if (client == null) {
             Log.e(TAG, "Start service connection failed. Null billing client.")
             return
         }
+
+        isConnecting = true
         Log.d(TAG, "Setting up client.")
         client!!.startConnection(object : BillingClientStateListener {
             override fun onBillingSetupFinished(billingResult: BillingResult) {
+                isConnecting = false
                 billingClientResponseCode = billingResult.responseCode
                 if (BillingResponseCode.OK == billingClientResponseCode) {
                     Log.d(TAG, "Setup succeeded.")
@@ -154,14 +174,20 @@ class BillingManager(activity: Activity, listener: BillingListener) {
 
                     // Execute success tail
                     executeOnSuccess?.run()
+                    for (pendingRequest in pendingRequests) {
+                        pendingRequest.run()
+                    }
+                    pendingRequests.clear()
                 } else {
                     Log.e(TAG, "Setup failed. Response: " + billingResult.responseCode + " " + billingResult.debugMessage)
                     Toast.makeText(context, billingResult.debugMessage, Toast.LENGTH_LONG).show()
+                    pendingRequests.clear()
                 }
             }
 
             override fun onBillingServiceDisconnected() {
                 isServiceConnected = false
+                isConnecting = false
             }
         })
     }
@@ -473,7 +499,7 @@ class BillingManager(activity: Activity, listener: BillingListener) {
             for (purchase in purchases) {
                 if (!verifyValidSignature(purchase.originalJson, purchase.signature)) {
                     Log.e(TAG, "Ignoring purchase: $purchase whose signature is bad.")
-                    return
+                    continue
                 }
                 verifiedPurchases.add(purchase)
             }
