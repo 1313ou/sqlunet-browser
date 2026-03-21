@@ -19,6 +19,7 @@
 		android:paddingEnd="32sp"
 		android:paddingRight="32sp"
 		android:textSize="24sp"
+		app:drawableTint="?attr/colorOnSurface"
 		app:drawableLeftCompat="@drawable/ic_itemhistory"
 		app:drawableStartCompat="@drawable/ic_itemhistory" />
 
