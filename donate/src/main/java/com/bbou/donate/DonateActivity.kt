@@ -140,6 +140,11 @@ class DonateActivity : BaseActivity(), BillingListener {
         actionBar.displayOptions = ActionBar.DISPLAY_SHOW_HOME or ActionBar.DISPLAY_HOME_AS_UP or ActionBar.DISPLAY_SHOW_TITLE
     }
 
+    override fun onResume() {
+        super.onResume()
+        billingManager?.queryPurchases()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         if (billingManager != null) {
@@ -159,23 +164,13 @@ class DonateActivity : BaseActivity(), BillingListener {
 
     // P U R C H A S E  L I S T E N E R
 
-    override fun onPurchaseFinished(purchase: Purchase) {
-        Log.d(TAG, "New purchase $purchase")
-        for (productId in purchase.products) {
-            update(productId, true)
-        }
-    }
-
     @Synchronized
     override fun onPurchaseList(purchases: List<Purchase>) {
         Log.d(TAG, "onPurchaseList()")
 
         // reset all buttons and overlays
-        val productIds = inappProducts
-        if (productIds != null) {
-            for (productId in productIds) {
-                update(productId, false)
-            }
+        for (productId in inappProducts) {
+            update(productId, false)
         }
 
         // update buttons and overlays with purchases
@@ -187,6 +182,13 @@ class DonateActivity : BaseActivity(), BillingListener {
             for (productId in purchase.products) {
                 update(productId, true)
             }
+        }
+    }
+
+    override fun onPurchaseFinished(purchase: Purchase) {
+        Log.d(TAG, "New purchase $purchase")
+        for (productId in purchase.products) {
+            update(productId, true)
         }
     }
 
