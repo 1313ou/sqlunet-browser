@@ -183,8 +183,8 @@ class BrowseFragment : BaseSearchFragment() {
                 args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
                 targetIntent = makeDetailIntent(SenseKeyActivity::class.java)
             }
-        } else if (trimmedQuery.startsWith("senses:")) {
-            val word = trimmedQuery.substringAfter(':')
+        } else if (trimmedQuery.startsWith("*")) {
+            val word = trimmedQuery.substringAfter('*')
             args.putString(ProviderArgs.ARG_QUERYSTRING, word)
             fragment = BrowseSensesFragment()
         } else {
