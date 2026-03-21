@@ -23,11 +23,10 @@ import com.bbou.donate.R
  */
 object Products {
 
-    var inappProducts: Array<String>? = null
+    lateinit var inappProducts: Array<String>
         private set
 
     fun init(context: Context) {
-        val res = context.resources
-        inappProducts = res.getStringArray(R.array.skus)
+        inappProducts = context.resources.getStringArray(R.array.skus)
     }
 }
