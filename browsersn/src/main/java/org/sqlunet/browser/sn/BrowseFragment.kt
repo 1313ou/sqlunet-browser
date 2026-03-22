@@ -184,6 +184,8 @@ class BrowseFragment : BaseSearchFragment() {
                 args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse)
                 args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
                 targetIntent = makeDetailIntent(CollocationActivity::class.java)
+            } else {
+                return
             }
         }
         if (trimmedQuery.matches("#\\p{Lower}\\p{Lower}[\\w:%]+".toRegex())) {
@@ -196,6 +198,10 @@ class BrowseFragment : BaseSearchFragment() {
                 args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
                 targetIntent = makeDetailIntent(SenseKeyActivity::class.java)
             }
+        } else if (trimmedQuery.startsWith("*")) {
+            val word = trimmedQuery.substringAfter('*')
+            args.putString(ProviderArgs.ARG_QUERYSTRING, word)
+            fragment = BrowseSensesFragment()
         } else {
             // search for string
             args.putString(ProviderArgs.ARG_QUERYSTRING, trimmedQuery)

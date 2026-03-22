@@ -174,8 +174,6 @@ class BrowseFragment : BaseSearchFragment() {
         val args = Bundle()
         if (trimmedQuery.matches("#\\p{Lower}\\p{Lower}\\d+".toRegex())) {
             val id = trimmedQuery.substring(3).toLong()
-
-            // wordnet
             targetIntent = if (trimmedQuery.startsWith("#ws")) {
                 val synsetPointer: Parcelable = SynsetPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET)
@@ -249,13 +247,15 @@ class BrowseFragment : BaseSearchFragment() {
                 args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
                 targetIntent = makeDetailIntent(SenseKeyActivity::class.java)
             }
+        } else if (trimmedQuery.startsWith("*")) {
+            val word = trimmedQuery.substringAfter('*')
+            args.putString(ProviderArgs.ARG_QUERYSTRING, word)
+            fragment = BrowseSensesFragment()
         } else {
             // search for string
             args.putString(ProviderArgs.ARG_QUERYSTRING, trimmedQuery)
             args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse)
             args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
-
-            //targetIntent = makeSelectorIntent()
             fragment = makeBrowse1Fragment()
         }
 

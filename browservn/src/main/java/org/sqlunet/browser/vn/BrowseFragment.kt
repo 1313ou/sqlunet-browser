@@ -141,7 +141,7 @@ class BrowseFragment : BaseSearchFragment() {
         recordQuery(AppContext.context, trimmedQuery)
 
         // menuDispatch as per query prefix
-        var fragment: Fragment?
+        var fragment: Fragment? = null
         var targetIntent: Intent? = null
         val args = Bundle()
         if (trimmedQuery.matches("#\\p{Lower}\\p{Lower}\\d+".toRegex())) {
@@ -151,40 +151,40 @@ class BrowseFragment : BaseSearchFragment() {
             val parameters = org.sqlunet.wordnet.settings.Settings.makeParametersPref(AppContext.context)
 
             // wordnet
-            targetIntent = if (trimmedQuery.startsWith("#ws")) {
+            if (trimmedQuery.startsWith("#ws")) {
                 val synsetPointer: Parcelable = SynsetPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, synsetPointer)
                 args.putInt(ProviderArgs.ARG_QUERYRECURSE, 0)
                 args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
-                makeDetailIntent(SynsetActivity::class.java)
+                targetIntent = makeDetailIntent(SynsetActivity::class.java)
             } else if (trimmedQuery.startsWith("#ww")) {
                 val wordPointer: Parcelable = WordPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, wordPointer)
                 args.putInt(ProviderArgs.ARG_QUERYRECURSE, 0)
                 args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
-                makeDetailIntent(WordActivity::class.java)
+                targetIntent = makeDetailIntent(WordActivity::class.java)
             } else if (trimmedQuery.startsWith("#vc")) {
                 val framePointer: Parcelable = VnClassPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, framePointer)
-                makeDetailIntent(VnClassActivity::class.java)
+                targetIntent = makeDetailIntent(VnClassActivity::class.java)
             } else if (trimmedQuery.startsWith("#pr")) {
                 val roleSetPointer: Parcelable = PbRoleSetPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, roleSetPointer)
-                makeDetailIntent(PbRoleSetActivity::class.java)
+                targetIntent = makeDetailIntent(PbRoleSetActivity::class.java)
             } else {
                 return
             }
-        }
-        run {
-
+        } else if (trimmedQuery.startsWith("*")) {
+            val word = trimmedQuery.substringAfter('*')
+            args.putString(ProviderArgs.ARG_QUERYSTRING, word)
+            fragment = BrowseSensesFragment()
+        } else {
             // search for string
             args.putString(ProviderArgs.ARG_QUERYSTRING, trimmedQuery)
-
-            //targetIntent = makeSelectorIntent()
             fragment = makeOverviewFragment()
         }
 
