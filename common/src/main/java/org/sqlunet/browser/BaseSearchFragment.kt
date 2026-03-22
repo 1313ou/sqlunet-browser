@@ -234,22 +234,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        // trigger focus in 2.0s
-        if (!triggeredFocusSearch && triggerFocusSearch()) {
-            viewLifecycleOwner.lifecycleScope.launch {
-                triggeredFocusSearch = true
-                delay(2000)
-                // ensure fragment is still resumed before touching shared components
-                if (isResumed && ::searchView.isInitialized) {
-                    searchView.show()
-                }
-            }
-        }
-    }
-
     override fun onResume() {
         super.onResume()
 
@@ -259,6 +243,18 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         takeSearchView()
 
         enterSearch()
+
+        // trigger focus in 2.0s
+        if ((query == null || query!!.isNotEmpty()) && !triggeredFocusSearch && triggerFocusSearch()) {
+            viewLifecycleOwner.lifecycleScope.launch {
+                triggeredFocusSearch = true
+                delay(2000)
+                // ensure fragment is still resumed before touching shared components
+                if (isResumed && ::searchView.isInitialized) {
+                    searchView.show()
+                }
+            }
+        }
     }
 
     override fun onPause() {
