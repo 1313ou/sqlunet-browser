@@ -47,11 +47,6 @@ class DonateActivity : BaseActivity(), BillingListener {
      */
     private val buttonsByProductId: MutableMap<String, MaterialButton> = HashMap()
 
-    /**
-     * Overlay drawable
-     */
-    private lateinit var overlay: Drawable
-
     // L I F E C Y C L E   A N D   S E T U P
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,11 +54,6 @@ class DonateActivity : BaseActivity(), BillingListener {
 
         // content view
         setContentView(R.layout.activity_donate)
-
-        // overlay drawable
-        val overlay = (getDrawable(this, R.drawable.ic_overlay) as BitmapDrawable?)!!
-        overlay.gravity = Gravity.TOP or Gravity.END
-        this.overlay = overlay
 
         // init product ids from resources
         init(this)
@@ -160,41 +150,43 @@ class DonateActivity : BaseActivity(), BillingListener {
 
     override fun onBillingClientSetupFinished() {
         Log.d(TAG, "onBillingClientSetupFinished()")
+        // Trigger initial query as soon as connection is ready
+        billingManager?.queryPurchases()
     }
 
     // P U R C H A S E  L I S T E N E R
 
-    @Synchronized
     override fun onPurchaseList(purchases: List<Purchase>) {
-        Log.d(TAG, "onPurchaseList()")
+        Log.d(TAG, "onPurchaseList() count=${purchases.size}")
+        runOnUiThread {
+            // reset all buttons and overlays
+            for (productId in inappProducts) {
+                update(productId, false)
+            }
 
-        // reset all buttons and overlays
-        for (productId in inappProducts) {
-            update(productId, false)
-        }
-
-        // update buttons and overlays with purchases
-        Log.d(TAG, "Purchase count " + purchases.size)
-
-        // set buttons and overlays
-        for (purchase in purchases) {
-            Log.d(TAG, "Owned $purchase")
-            for (productId in purchase.products) {
-                update(productId, true)
+            // set buttons and overlays
+            for (purchase in purchases) {
+                Log.d(TAG, "Owned $purchase")
+                for (productId in purchase.products) {
+                    update(productId, true)
+                }
             }
         }
     }
 
     override fun onPurchaseFinished(purchase: Purchase) {
         Log.d(TAG, "New purchase $purchase")
-        for (productId in purchase.products) {
-            update(productId, true)
+        runOnUiThread {
+            for (productId in purchase.products) {
+                update(productId, true)
+            }
         }
     }
 
     // C O N S U M E
 
-    private fun consumeAll() {
+    private fun onConsume() {
+        Log.d(TAG, "onConsume()")
         if (billingManager != null) {
             billingManager!!.consumeAll()
         }
@@ -202,14 +194,11 @@ class DonateActivity : BaseActivity(), BillingListener {
 
     override fun onConsumeFinished(purchase: Purchase) {
         Log.d(TAG, "onConsumeFinished() $purchase")
-        for (productId in purchase.products) {
-            update(productId, false)
+        runOnUiThread {
+            for (productId in purchase.products) {
+                update(productId, false)
+            }
         }
-    }
-
-    private fun onConsume() {
-        Log.d(TAG, "onConsume()")
-        consumeAll()
     }
 
     // D O N A T E
@@ -223,17 +212,21 @@ class DonateActivity : BaseActivity(), BillingListener {
     // H E L P E R
 
     private fun update(productId: String, isOwned: Boolean) {
-        val button = buttonsByProductId[productId]!!
-        val tag = (button.tag as String).toInt()
-        val drawable = getDrawable(this, DRAWABLE_IDS[tag])
+        val button = buttonsByProductId[productId] ?: return
+        val tag = (button.tag as String).toIntOrNull() ?: return
+        val baseDrawable = getDrawable(this, DRAWABLE_IDS[tag]) ?: return
+        
         if (isOwned) {
-            val layers = arrayOfNulls<Drawable>(2)
-            layers[0] = drawable
-            layers[1] = overlay
-            val layerDrawable = LayerDrawable(layers)
-            button.setIcon(layerDrawable)
+            // Fresh overlay instance to avoid sharing between buttons
+            val overlayDrawable = AppCompatResources.getDrawable(this, R.drawable.ic_overlay)?.mutate()
+            if (overlayDrawable is BitmapDrawable) {
+                overlayDrawable.gravity = Gravity.TOP or Gravity.END
+            }
+            
+            val layerDrawable = LayerDrawable(arrayOf(baseDrawable, overlayDrawable!!))
+            button.icon = layerDrawable
         } else {
-            button.setIcon(drawable)
+            button.icon = baseDrawable
         }
     }
 
