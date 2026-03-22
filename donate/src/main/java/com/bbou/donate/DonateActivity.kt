@@ -22,7 +22,6 @@ import androidx.appcompat.widget.Toolbar
 import com.android.billingclient.api.Purchase
 import com.bbou.donate.billing.BillingManager
 import com.bbou.donate.billing.BillingManager.BillingListener
-import com.bbou.donate.billing.Products
 import com.bbou.donate.billing.Products.inappProducts
 import com.bbou.donate.billing.Products.init
 import com.google.android.material.button.MaterialButton
@@ -184,6 +183,12 @@ class DonateActivity : BaseActivity(), BillingListener {
     }
 
     // C O N S U M E
+
+    private fun consumeAll() {
+        if (billingManager != null) {
+            billingManager!!.consumeAll()
+        }
+    }
 
     private fun onConsume() {
         Log.d(TAG, "onConsume()")
