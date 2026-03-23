@@ -30,11 +30,11 @@
 
 		<!-- S T Y L E S -->
 
-		<!-- menu dropdown -->
-		<item name="popupMenuBackground">?attr/colorCustom</item>
-
 		<!--app bar -->
 		<item name="appBarLayoutStyle">@style/MyAppBarLayout</item>
+
+		<!-- menu dropdown -->
+		<item name="popupMenuBackground">?attr/colorCustom</item>
 
 		<!-- dropdowns -->
 		<item name="android:dropDownListViewStyle">@style/MyDropDownListViewStyle</item>
