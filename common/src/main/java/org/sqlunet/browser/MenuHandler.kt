@@ -40,6 +40,7 @@ import org.sqlunet.browser.config.SetupAsset.disposeAsset
 import org.sqlunet.browser.config.SetupFileActivity
 import org.sqlunet.browser.config.SetupFileFragment
 import org.sqlunet.browser.config.StorageActivity
+import org.sqlunet.browser.config.Utils
 import org.sqlunet.browser.history.HistoryActivity
 import org.sqlunet.provider.BaseProvider
 import org.sqlunet.provider.BaseProvider.Companion.closeProviders
@@ -76,6 +77,11 @@ object MenuHandler {
 
             R.id.action_provider_info -> {
                 listProviders(activity)
+                return true
+            }
+
+            R.id.action_version -> {
+                Utils.version(activity)
                 return true
             }
 

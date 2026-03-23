@@ -76,6 +76,7 @@
 	<!-- misc -->
 	<string name="action_help">Help</string>
 	<string name="action_credits">Credits</string>
+	<string name="action_version">Version</string>
 	<string name="action_provider_info">Providers</string>
 	<string name="action_appsettings">Application</string>
 	<string name="action_theme_system">Theme follows system</string>

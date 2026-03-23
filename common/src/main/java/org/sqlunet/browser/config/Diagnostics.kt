@@ -5,14 +5,11 @@ package org.sqlunet.browser.config
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.database.DatabaseUtils
 import android.database.sqlite.SQLiteCantOpenDatabaseException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.graphics.Typeface
-import android.os.Build
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.StyleSpan
@@ -24,6 +21,7 @@ import com.bbou.download.preference.Settings.Mode
 import org.sqlunet.assetpack.AssetPackLoader
 import org.sqlunet.browser.AbstractApplication
 import org.sqlunet.browser.common.R
+import org.sqlunet.browser.config.Utils.reportVersion
 import org.sqlunet.provider.XNetContract
 import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
 import org.sqlunet.settings.StorageSettings
@@ -46,35 +44,12 @@ object Diagnostics {
         sb.append('\n')
         append(sb, "app", StyleSpan(Typeface.BOLD))
         sb.append('\n')
-        val packageName = context.applicationInfo.packageName
-        sb.append(packageName)
-        sb.append('\n')
-        val pInfo: PackageInfo
-        try {
-            pInfo = context.packageManager.getPackageInfo(packageName, 0)
-            val code = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) pInfo.longVersionCode else @Suppress("DEPRECATION") pInfo.versionCode.toLong()
-            sb.append("version: ")
-            sb.append(code.toString())
-            sb.append('\n')
-        } catch (e: PackageManager.NameNotFoundException) {
-            sb.append("package info: ")
-            sb.append(e.message)
-            sb.append('\n')
-        }
-        sb.append("api: ")
-        sb.append(Build.VERSION.SDK_INT.toString())
-        sb.append(' ')
-        sb.append(Build.VERSION.CODENAME)
-        sb.append('\n')
 
-        val app = context.applicationContext as AbstractApplication
-        sb.append("build time: ")
-        sb.append(app.buildTime())
-        sb.append('\n')
-        sb.append("git commit hash: ")
-        sb.append(app.gitHash())
-        sb.append('\n')
+        // version
+        sb.append(reportVersion(context))
+
         sb.append("drop data: ")
+        val app = context.applicationContext as AbstractApplication
         sb.append(app.dropData().toString())
         sb.append('\n')
 
@@ -160,6 +135,7 @@ object Diagnostics {
                         val requiredIndexes = res.getStringArray(R.array.required_indexes)
                         val nonRequiredTables = res.getStringArray(R.array.non_required_tables)
                         val nonRequiredIndexes = res.getStringArray(R.array.non_required_indexes)
+                        val packageName = context.applicationInfo.packageName
                         val requiredPmTablesResId = res.getIdentifier("required_pm", "array", packageName)
                         val requiredTSWnResId = res.getIdentifier("required_texts_wn", "array", packageName)
                         val requiredTSVnResId = res.getIdentifier("required_texts_vn", "array", packageName)
