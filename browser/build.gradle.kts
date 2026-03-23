@@ -1,4 +1,8 @@
 import java.util.Properties
+import java.text.SimpleDateFormat
+import java.util.Date
+
+val buildTime = SimpleDateFormat("yyyy-MM-dd_HH:mm").format(Date())
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -29,10 +33,11 @@ android {
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        // BuildConfig fields
+         // BuildConfig fields
         buildConfigField("int", "VERSION_CODE", vCode.toString())
         buildConfigField("String", "VERSION_NAME", "\"$vName\"")
         buildConfigField("boolean", "DROP_DATA", "false")
+        buildConfigField("String", "BUILD_TIME", "\"$buildTime\"")
     }
 
     compileSdk = vCompileSdk
