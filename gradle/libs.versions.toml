@@ -37,6 +37,8 @@ espresso = "3.7.0"
 uiautomator = "2.3.0"
 junit = "4.13.2"
 
+gitversionplugin="1.5.1"
+
 querybuilder = "1.1.0"
 
 [libraries]
@@ -92,3 +94,4 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 navigationSafeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navplugin" }
+gitVersion = { id = "io.github.gmazzo.gitversion", version.ref = "gitversionplugin" }
