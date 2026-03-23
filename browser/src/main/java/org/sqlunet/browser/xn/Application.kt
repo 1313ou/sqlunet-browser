@@ -39,6 +39,24 @@ class Application : AbstractApplication() {
         return BuildConfig.DROP_DATA
     }
 
+    /**
+     * Build time
+     *
+     * @return build time
+     */
+    override fun buildTime(): String {
+        return BuildConfig.BUILD_TIME
+    }
+
+    /**
+     * Git hash
+     *
+     * @return git hasj
+     */
+    override fun gitHash(): String {
+        return BuildConfig.GIT_HASH
+    }
+
     companion object {
         init {
             FnFlags.standAlone = false
