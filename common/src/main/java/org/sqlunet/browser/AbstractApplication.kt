@@ -71,6 +71,10 @@ abstract class AbstractApplication : Application() {
 
     abstract fun dropData(): Boolean
 
+    abstract fun buildTime(): String
+
+    abstract fun gitHash(): String
+
     // T A S K S
 
     fun dumpTasks() {

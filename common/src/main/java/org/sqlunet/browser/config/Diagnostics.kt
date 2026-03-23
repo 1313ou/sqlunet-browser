@@ -16,11 +16,13 @@ import android.os.Build
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.StyleSpan
+import androidx.core.net.toUri
 import com.bbou.concurrency.Task
 import com.bbou.deploy.workers.Deploy.computeDigest
 import com.bbou.download.preference.Settings
 import com.bbou.download.preference.Settings.Mode
 import org.sqlunet.assetpack.AssetPackLoader
+import org.sqlunet.browser.AbstractApplication
 import org.sqlunet.browser.common.R
 import org.sqlunet.provider.XNetContract
 import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
@@ -31,7 +33,6 @@ import org.sqlunet.settings.StorageUtils.storageStats
 import java.io.File
 import java.util.Date
 import java.util.function.Consumer
-import androidx.core.net.toUri
 
 object Diagnostics {
 
@@ -64,6 +65,17 @@ object Diagnostics {
         sb.append(Build.VERSION.SDK_INT.toString())
         sb.append(' ')
         sb.append(Build.VERSION.CODENAME)
+        sb.append('\n')
+
+        val app = context.applicationContext as AbstractApplication
+        sb.append("build time: ")
+        sb.append(app.buildTime())
+        sb.append('\n')
+        sb.append("git commit hash: ")
+        sb.append(app.gitHash())
+        sb.append('\n')
+        sb.append("drop data: ")
+        sb.append(app.dropData().toString())
         sb.append('\n')
 
         val sqliteVersion = sqliteVersion()
