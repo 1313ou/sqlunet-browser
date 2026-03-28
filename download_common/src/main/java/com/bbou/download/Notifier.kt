@@ -205,7 +205,7 @@ class Notifier {
          * @param notificationId notification id
          * @return
          */
-        fun makeCancelIntent(context: Context, notificationId: Int): Intent {
+        private fun makeCancelIntent(context: Context, notificationId: Int): Intent {
             val intent = Intent()
             intent.setPackage(context.applicationContext.packageName)
             intent.action = ACTION_DOWNLOAD_CANCEL
@@ -221,7 +221,7 @@ class Notifier {
          * @param intent payload intent
          * @return pending intent
          */
-        fun makePendingIntent(context: Context, intent: Intent): PendingIntent {
+        private fun makePendingIntent(context: Context, intent: Intent): PendingIntent {
             val uid = System.currentTimeMillis().toInt()
             val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT else
