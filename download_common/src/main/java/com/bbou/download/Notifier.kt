@@ -147,7 +147,7 @@ class Notifier {
                 val action = NotificationCompat.Action.Builder(R.drawable.ic_notif_cancel, appContext.getString(R.string.action_cancel).uppercase(Locale.getDefault()), pendingIntent).build()
                 builder.addAction(action)
                 return builder.build()
-            } catch (ignored: SecurityException) {
+            } catch (_: SecurityException) {
             }
             return null
         }
