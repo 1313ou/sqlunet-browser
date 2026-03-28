@@ -163,7 +163,7 @@ class Notifier {
 
                 // build notification
                 return builder.build()
-            } catch (ignored: SecurityException) {
+            } catch (_: SecurityException) {
             }
             return null
         }
