@@ -6,85 +6,77 @@ package org.sqlunet.browser
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.graphics.Insets
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
-import com.google.android.material.appbar.AppBarLayout
-import org.sqlunet.core.R
 
 object EdgeToEdge {
 
-    /**
-     * Handle insets
-     *
-     * @param view view
-     */
-    fun handleInsets(view: View?) {
-        view?.let {
-            ViewCompat.setOnApplyWindowInsetsListener(view) { view, insets ->
-                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-
-                // Apply the insets as padding to the view
-                view.updatePadding(top = systemBars.top, bottom = systemBars.bottom)
-
-                // Return the insets so children don't get them doubled
-                insets
-            }
-        }
-    }
+    // P A D D I N G
 
     /**
-     * Handle top inset
+     * Update horizontal paddings
      *
-     * @param view view
+     * @receiver view
+     * @param systemBars system bars insets
      */
-    fun handleInsetsTop(view: View?) {
-        view?.let {
-            ViewCompat.setOnApplyWindowInsetsListener(view) { view, insets ->
-                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-
-                // Apply the insets as padding to the view
-                view.updatePadding(top = systemBars.top)
-
-                // Return the insets so children don't get them doubled
-                insets
-            }
-        }
-    }
+    fun View.updateHorizontalPadding(systemBars: Insets) = updatePadding(top = systemBars.left, bottom = systemBars.right)
 
     /**
-     * Handle bottom inset
+     * Update vertical paddings
      *
-     * @param view view
+     * @receiver view
+     * @param systemBars system bars insets
      */
-    fun handleInsetsBottom(view: View?) {
-        view?.let {
-            ViewCompat.setOnApplyWindowInsetsListener(view) { view, insets ->
-                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+    fun View.updateVerticalPadding(systemBars: Insets) = updatePadding(top = systemBars.top, bottom = systemBars.bottom)
 
-                // Apply the insets as padding to the view
-                view.updatePadding(bottom = systemBars.bottom)
+    /**
+     * Update vertical padding
+     *
+     * @receiver view
+     * @param systemBars system bars insets
+     */
+    fun View.updateTopPadding(systemBars: Insets) = updatePadding(top = systemBars.top)
 
-                // Return the insets so children don't get them doubled
-                insets
-            }
-        }
-    }
+    /**
+     * Update vertical padding
+     *
+     * @receiver view
+     * @param systemBars system bars insets
+     */
+    fun View.updateBottomPadding(systemBars: Insets) = updatePadding(bottom = systemBars.bottom)
 
-    fun handleInsetsToolbarAndContent(rootView: View) {
+    // M A R G I N
 
-        ViewCompat.setOnApplyWindowInsetsListener(rootView) { view, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+    /**
+     * Update horizontal margins
+     *
+     * @receiver view
+     * @param systemBars system bars insets
+     */
+    fun View.updateHorizontalMargin(systemBars: Insets) = updateLayoutParams<ViewGroup.MarginLayoutParams> { topMargin = systemBars.top; bottomMargin = systemBars.bottom }
 
-            // Apply top inset to toolbar/appbar
-            view.findViewById<AppBarLayout>(R.id.appbar_layout)?.updateLayoutParams<ViewGroup.MarginLayoutParams> { topMargin = systemBars.top }
+    /**
+     * Update vertical margins
+     *
+     * @receiver view
+     * @param systemBars system bars insets
+     */
+    fun View.updateVerticalMargin(systemBars: Insets) = updateLayoutParams<ViewGroup.MarginLayoutParams> { topMargin = systemBars.top; bottomMargin = systemBars.bottom }
 
-            // Apply bottom inset to your content
-            view.findViewById<View>(android.R.id.content)?.updatePadding(bottom = systemBars.bottom)
+    /**
+     * Update vertical margin
+     *
+     * @receiver view
+     * @param systemBars system bars insets
+     */
+    fun View.updateTopMargin(systemBars: Insets) = updateLayoutParams<ViewGroup.MarginLayoutParams> { topMargin = systemBars.top }
 
-            // Return the insets so children don't get them doubled
-            insets
-        }
-    }
+    /**
+     * Update vertical margin
+     *
+     * @receiver view
+     * @param systemBars system bars insets
+     */
+    fun View.updateBottomMargin(systemBars: Insets) = updateLayoutParams<ViewGroup.MarginLayoutParams> { bottomMargin = systemBars.bottom }
 }
