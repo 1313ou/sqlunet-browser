@@ -6,11 +6,18 @@ package org.sqlunet.browser
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import org.sqlunet.browser.EdgeToEdge.updateVerticalPadding
 import org.sqlunet.browser.NightMode.isNightMode
+import org.sqlunet.core.R
+import android.R as AndroidR
 
 /**
  * Common activity
@@ -34,18 +41,22 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    // open val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
     // override open val rootView: View by lazy { findViewById<ViewGroup>(CommonR.id.activity_main_sub) }
     // open val toolbar: View? by lazy { findViewById(R.id.toolbar) }
     // open val fab: View? by lazy { findViewById(R.id.fab) }
 
-    // override fun onPostCreate(savedInstanceState: Bundle?) {
-    //    super.onPostCreate(savedInstanceState)
+    private val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
 
-        // handleInsets(rootView)
-        // handleInsetsTop(toolbar)
-        // handleInsetsBottom(rootView)
-        // handleInsetsBottom(fab)
-        // handleInsets2(rootView!!)
-    // }
+    private val appBarLayout: View? by lazy { findViewById(R.id.appbar_layout) }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        if (appBarLayout != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(rootView!!) { _, insets ->
+                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                appBarLayout?.updateVerticalPadding(systemBars)
+                insets
+            }
+        }
+    }
 }
