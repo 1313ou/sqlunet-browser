@@ -13,7 +13,6 @@ import org.sqlunet.browser.common.R
  * History activity
  *
  * @author Bernard Bou
- * @noinspection WeakerAccess
  */
 class HistoryActivity : BaseActivity() {
 
