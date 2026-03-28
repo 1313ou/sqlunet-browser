@@ -39,7 +39,6 @@ object Chooser {
      * @return radio group
      */
     @SuppressLint("SetTextI18n")
-
     @SafeVarargs
     fun toRadioGroup(context: Context, names: Array<out CharSequence>, values: Array<String>): RadioGroup? {
         val group = RadioGroup(context)

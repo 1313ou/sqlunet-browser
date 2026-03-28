@@ -256,7 +256,7 @@ object Settings {
      */
     fun setCachePref(context: Context, cache: String?) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DEVICE, Context.MODE_PRIVATE)
-        sharedPref.edit {putString(PREF_CACHE, cache) }
+        sharedPref.edit { putString(PREF_CACHE, cache) }
     }
 
     // M O D E L
@@ -280,11 +280,11 @@ object Settings {
      */
     fun setDatapackName(context: Context, name: String?) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
-        sharedPref.edit {putString(PREF_DATAPACK_NAME, name) }
+        sharedPref.edit { putString(PREF_DATAPACK_NAME, name) }
     }
 
     /**
-    * Get datapack date
+     * Get datapack date
      *
      * @param context context
      * @return timestamp
@@ -302,7 +302,7 @@ object Settings {
      */
     fun setDatapackDate(context: Context, timestamp: Long) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
-        sharedPref.edit {putLong(PREF_DATAPACK_DATE, timestamp) }
+        sharedPref.edit { putLong(PREF_DATAPACK_DATE, timestamp) }
     }
 
     /**
@@ -324,7 +324,7 @@ object Settings {
      */
     fun setDatapackSize(context: Context, size: Long) {
         val sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE)
-        sharedPref.edit {putLong(PREF_DATAPACK_SIZE, size) }
+        sharedPref.edit { putLong(PREF_DATAPACK_SIZE, size) }
     }
 
     /**
@@ -624,7 +624,7 @@ object Settings {
              */
             fun setModePref(context: Context, value: Mode) {
                 val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-                sharedPref.edit {putString(PREF_DOWNLOAD_MODE, value.toString()) }
+                sharedPref.edit { putString(PREF_DOWNLOAD_MODE, value.toString()) }
             }
         }
     }

@@ -43,8 +43,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:paddingStart="0dp"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/size" />
 
 			<TextView
@@ -62,8 +62,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:paddingStart="0dp"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/date" />
 
 			<TextView
@@ -81,8 +81,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:paddingStart="0dp"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/etag" />
 
 			<TextView
@@ -100,8 +100,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:paddingStart="0dp"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/version" />
 
 			<TextView
@@ -119,8 +119,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:paddingStart="0dp"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/static_version" />
 
 			<TextView
@@ -167,8 +167,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:paddingStart="0dp"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/local_size" />
 
 			<TextView
@@ -186,8 +186,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:paddingStart="0dp"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/local_date" />
 
 			<TextView
@@ -205,8 +205,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:paddingStart="0dp"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/size" />
 
 			<TextView
@@ -224,8 +224,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:paddingStart="0dp"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/date" />
 
 			<TextView
@@ -243,8 +243,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:paddingStart="0dp"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/etag" />
 
 			<TextView
@@ -262,8 +262,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:paddingStart="0dp"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/version" />
 
 			<TextView
@@ -282,8 +282,8 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:paddingStart="0dp"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/static_version" />
 
 			<TextView

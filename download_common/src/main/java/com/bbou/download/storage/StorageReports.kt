@@ -210,7 +210,6 @@ object StorageReports {
                 try {
                     sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
                 } catch (_: Throwable) {
-
                 }
                 sb.append('\n')
             }
