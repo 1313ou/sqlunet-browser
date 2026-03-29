@@ -2,7 +2,7 @@
   ~ Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -18,7 +18,8 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:paddingBottom="@dimen/scroll_tail_padding"
+			android:theme="@style/MySurfaceOverlay"
 			app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 	</androidx.core.widget.NestedScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
 
