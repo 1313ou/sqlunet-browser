@@ -9,11 +9,11 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.BaseSelectorsRecyclerFragment
 import org.sqlunet.browser.Selectors
-import org.sqlunet.browser.sn.R
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.wordnet.loaders.Queries.prepareSelectSn
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains
 import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * Selector Fragment
@@ -28,7 +28,7 @@ class SelectorsFragment : BaseSelectorsRecyclerFragment() {
     private var wordId: Long = -1
 
     init {
-        layoutId = R.layout.fragment_selectors
+        layoutId = CommonR.layout.fragment_selectors
         viewModelKey = "sn:selectors(word)"
     }
 

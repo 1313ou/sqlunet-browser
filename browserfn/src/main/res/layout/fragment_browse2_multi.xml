@@ -15,26 +15,10 @@
 		android:orientation="vertical"
 		android:paddingBottom="@dimen/scroll_tail_padding">
 
-		<!--     <TextView -->
-		<!--         android:id="@+id/label_framenet" -->
-		<!--         android:layout_width="match_parent" -->
-		<!--         android:layout_height="wrap_content" -->
-		<!--         android:text="@string/framenet" -->
-		<!--         android:textSize="30sp" -->
-		<!--         android:visibility="visible" /> -->
-
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/container_framenet"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content" />
-
-		<!--     <TextView -->
-		<!--         android:id="@+id/label_bnc" -->
-		<!--         android:layout_width="match_parent" -->
-		<!--         android:layout_height="wrap_content" -->
-		<!--         android:text="@string/bnc" -->
-		<!--         android:textSize="30sp" -->
-		<!--         android:visibility="visible" /> -->
 
 	</LinearLayout>
 

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.BaseSelectorsRecyclerFragment
 import org.sqlunet.browser.Selectors
-import org.sqlunet.browser.sn.R
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.syntagnet.loaders.Queries.prepareSnSelect
 import org.sqlunet.syntagnet.provider.SyntagNetContract
@@ -20,6 +19,7 @@ import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X
 import org.sqlunet.syntagnet.provider.SyntagNetProvider
 import org.sqlunet.wordnet.provider.WordNetContract
 import org.sqlunet.wordnet.provider.WordNetProvider
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * Selector Fragment
@@ -34,7 +34,7 @@ class SnSelectorsFragment : BaseSelectorsRecyclerFragment() {
     private var wordId: Long = -1
 
     init {
-        layoutId = R.layout.fragment_selectors
+        layoutId = CommonR.layout.fragment_selectors
         viewModelKey = "snx:selectors(word)"
     }
 
