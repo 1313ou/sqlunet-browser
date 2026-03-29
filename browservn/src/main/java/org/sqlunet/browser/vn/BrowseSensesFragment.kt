@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import org.sqlunet.browser.BaseBrowse2Fragment
 import org.sqlunet.browser.vn.R as LibR
 import org.sqlunet.wordnet.browser.SensesFragment
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * Senses fragment
@@ -21,7 +22,7 @@ import org.sqlunet.wordnet.browser.SensesFragment
 class BrowseSensesFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(LibR.layout.fragment_browse_senses, container, false)
+        return inflater.inflate(CommonR.layout.fragment_browse_senses, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,7 +35,7 @@ class BrowseSensesFragment : Fragment() {
 
         manager.beginTransaction()
             .setReorderingAllowed(true)
-            .replace(LibR.id.container_senses, sensesFragment, BaseBrowse2Fragment.FRAGMENT_TAG)
+            .replace(CommonR.id.container_senses, sensesFragment, BaseBrowse2Fragment.FRAGMENT_TAG)
             // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG)
             .commit()
     }

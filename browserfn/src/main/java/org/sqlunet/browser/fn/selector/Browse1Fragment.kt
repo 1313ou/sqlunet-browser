@@ -29,7 +29,7 @@ import org.sqlunet.browser.common.R as CommonR
 class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, CommonR.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false)
+        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, CommonR.layout.fragment_browse1, CommonR.layout.fragment_browse1_browse2), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,7 +51,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
         selectorsFragment.setListener(this)
         manager.beginTransaction()
             .setReorderingAllowed(true)
-            .replace(R.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
+            .replace(CommonR.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
             // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) 
             .commit()
 
@@ -70,7 +70,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
             }
             manager.beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG)
+                .replace(CommonR.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG)
                 // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) 
                 .commit()
         }
@@ -88,7 +88,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
             if (!isAdded) {
                 return
             }
-            val fragment = (getChildFragmentManager().findFragmentById(R.id.container_browse2) as Browse2Fragment?)!!
+            val fragment = (getChildFragmentManager().findFragmentById(CommonR.id.container_browse2) as Browse2Fragment?)!!
             fragment.search(pointer, null, null, null, null)
         } else {
             // in single-pane mode, simply start the detail activity for the selected item ID.
@@ -113,6 +113,6 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
     private fun isTwoPane(view: View): Boolean {
         // the detail view will be present only in the large-screen layouts
         // if this view is present, then the activity should be in two-pane mode.
-        return view.findViewById<View?>(R.id.details_pane) != null
+        return view.findViewById<View?>(CommonR.id.details_pane) != null
     }
 }

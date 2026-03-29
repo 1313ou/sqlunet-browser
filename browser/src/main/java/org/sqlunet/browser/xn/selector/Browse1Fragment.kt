@@ -30,7 +30,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
     // C R E A T I O N
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, CommonR.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false)
+        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, CommonR.layout.fragment_browse1, CommonR.layout.fragment_browse1_browse2), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,7 +52,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
         selectorsFragment.setListener(this)
         manager.beginTransaction()
             .setReorderingAllowed(true)
-            .replace(R.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
+            .replace(CommonR.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
             // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG)
             .commit()
 

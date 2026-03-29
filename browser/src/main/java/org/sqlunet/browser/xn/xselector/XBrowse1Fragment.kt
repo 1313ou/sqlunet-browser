@@ -19,6 +19,7 @@ import org.sqlunet.browser.xn.Browse2Activity
 import org.sqlunet.browser.xn.Browse2Fragment
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * X selector fragment
@@ -29,7 +30,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, R.layout.fragment_xbrowse1_browse2), container, false)
+        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, CommonR.layout.fragment_xbrowse1_browse2), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -122,7 +123,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
     private fun isTwoPane(view: View): Boolean {
         // the detail view will be present only in the large-screen layouts
         // if this view is present, then the activity should be in two-pane mode.
-        return view.findViewById<View?>(R.id.detail) != null
+        return view.findViewById<View?>(CommonR.id.detail) != null
     }
 
     companion object {
