@@ -6,6 +6,7 @@ package org.sqlunet.browser
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.SystemBarStyle
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import org.sqlunet.browser.EdgeToEdge.updateHorizontalMargin
 import org.sqlunet.browser.EdgeToEdge.updateHorizontalPadding
 import org.sqlunet.browser.NightMode.isNightMode
 import org.sqlunet.core.R
@@ -29,11 +31,18 @@ open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Resolve custom theme color
+        val typedValue = TypedValue()
+        theme.resolveAttribute(R.attr.colorCustom, typedValue, true)
+        val navBarColor = typedValue.data
+
+        // Set the navigation bar style to your themed color instead of TRANSPARENT
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT),
-            navigationBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT) //(DefaultLightScrim, DefaultDarkScrim)
+            navigationBarStyle = SystemBarStyle.light(navBarColor, navBarColor)
         )
 
+        // Ensure contrast
         val lightBackground = !isNightMode(this)
         WindowInsetsControllerCompat(window, window.decorView).apply {
             isAppearanceLightStatusBars = lightBackground  // Dark icons on light background
@@ -41,28 +50,30 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    // val toolbar: View? by lazy { findViewById(R.id.toolbar) }
-    // val fab: View? by lazy { findViewById(R.id.fab) }
+    // private val toolbar: View? by lazy { findViewById(R.id.toolbar) }
 
-    private val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
+    // private val fab: View? by lazy { findViewById(R.id.fab) }
 
-    private val appBar: View? by lazy { findViewById(R.id.appbar_layout) }
+    // private val rootView: View? by lazy { findViewById(AndroidR.id.content).getChildAt(0) }
 
-    private val contentView: View? by lazy { findViewById<ViewGroup>(R.id.content) }
+    // private val appBar: View? by lazy { findViewById(R.id.appbar_layout) }
 
-    private val navView: View? by lazy { findViewById<ViewGroup>(R.id.nav_view) }
+    // private val contentView: View? by lazy { findViewById(R.id.content) }
 
-    private val searchViewDataView: View? by lazy { findViewById<ViewGroup>(R.id.search_view_data_container) }
+    // private val navView: View? by lazy { findViewById(R.id.nav_view) }
+
+    // private val searchViewDataView: View? by lazy { findViewById(R.id.search_view_data_container) }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         if (rootView != null) {
-            ViewCompat.setOnApplyWindowInsetsListener(rootView!!) { _, insets ->
+            ViewCompat.setOnApplyWindowInsetsListener(rootView!!) { view, insets ->
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-                contentView?.updateHorizontalPadding(systemBars)
-                appBar?.updateHorizontalPadding(systemBars)
-                navView?.updateHorizontalPadding(systemBars)
-                searchViewDataView?.updateHorizontalPadding(systemBars)
+                view.updateHorizontalMargin(systemBars)
+                //contentView?.updateHorizontalPadding(systemBars)
+                //appBar?.updateHorizontalPadding(systemBars)
+                //navView?.updateHorizontalPadding(systemBars)
+                //searchViewDataView?.updateHorizontalPadding(systemBars)
                 insets
             }
         }
