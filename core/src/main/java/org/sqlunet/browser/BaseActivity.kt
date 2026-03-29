@@ -54,8 +54,6 @@ open class BaseActivity : AppCompatActivity() {
 
     // private val fab: View? by lazy { findViewById(R.id.fab) }
 
-    // private val rootView: View? by lazy { findViewById(AndroidR.id.content).getChildAt(0) }
-
     // private val appBar: View? by lazy { findViewById(R.id.appbar_layout) }
 
     // private val contentView: View? by lazy { findViewById(R.id.content) }
@@ -63,6 +61,8 @@ open class BaseActivity : AppCompatActivity() {
     // private val navView: View? by lazy { findViewById(R.id.nav_view) }
 
     // private val searchViewDataView: View? by lazy { findViewById(R.id.search_view_data_container) }
+
+    private val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
