@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<!-- selectors -->
+<androidx.core.widget.NestedScrollView android:id="@+id/selectors_pane"
+	android:layout_height="match_parent"
+	android:clipToPadding="false"
+	android:fillViewport="true"
+	android:layout_width="match_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/container_selectors"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:paddingBottom="@dimen/scroll_tail_padding" />
+</androidx.core.widget.NestedScrollView>

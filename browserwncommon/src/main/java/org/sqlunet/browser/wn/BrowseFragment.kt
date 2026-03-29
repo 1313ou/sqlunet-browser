@@ -49,7 +49,7 @@ class BrowseFragment : BaseSearchFragment() {
     // C R E A T I O N
 
     init {
-        layoutId = R.layout.fragment_browse
+        layoutId = CommonR.layout.fragment_browse
         menuIds = listOf(R.menu.database, CommonR.menu.browse)
         spinnerLabels = R.array.selectors_names
         spinnerIcons = R.array.selectors_icons

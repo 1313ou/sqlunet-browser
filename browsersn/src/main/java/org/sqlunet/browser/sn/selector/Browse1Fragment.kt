@@ -18,6 +18,7 @@ import org.sqlunet.browser.sn.Browse2Fragment
 import org.sqlunet.browser.sn.R
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * Selector fragment
@@ -27,7 +28,7 @@ import org.sqlunet.settings.Settings
 class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, R.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false)
+        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, CommonR.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

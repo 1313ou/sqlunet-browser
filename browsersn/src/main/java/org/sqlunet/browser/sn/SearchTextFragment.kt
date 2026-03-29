@@ -29,7 +29,7 @@ import org.sqlunet.browser.common.R as CommonR
 class SearchTextFragment : BaseSearchFragment() {
 
     init {
-        layoutId = R.layout.fragment_searchtext
+        layoutId = CommonR.layout.fragment_searchtext
         menuIds = listOf(CommonR.menu.searchtext)
         spinnerLabels = R.array.searchtext_modes
         spinnerIcons = R.array.searchtext_icons
@@ -43,7 +43,7 @@ class SearchTextFragment : BaseSearchFragment() {
             getChildFragmentManager()
                 .beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.container_searchtext, fragment, SplashFragment.FRAGMENT_TAG)
+                .replace(CommonR.id.container_searchtext, fragment, SplashFragment.FRAGMENT_TAG)
                 //.addToBackStack(SplashFragment.FRAGMENT_TAG)
                 .commit()
         }
@@ -164,7 +164,7 @@ class SearchTextFragment : BaseSearchFragment() {
         getChildFragmentManager()
             .beginTransaction()
             .setReorderingAllowed(true)
-            .replace(R.id.container_searchtext, fragment, TextFragment.FRAGMENT_TAG)
+            .replace(CommonR.id.container_searchtext, fragment, TextFragment.FRAGMENT_TAG)
             .addToBackStack(TextFragment.FRAGMENT_TAG)
             .commit()
     }
@@ -173,7 +173,7 @@ class SearchTextFragment : BaseSearchFragment() {
         if (!isAdded) {
             return false
         }
-        val active = getChildFragmentManager().findFragmentById(R.id.container_searchtext)
+        val active = getChildFragmentManager().findFragmentById(CommonR.id.container_searchtext)
         return active != null && SplashFragment.FRAGMENT_TAG == active.tag
     }
 

@@ -62,7 +62,7 @@ import org.sqlunet.browser.common.R as CommonR
 class BrowseFragment : BaseSearchFragment() {
 
     init {
-        layoutId = R.layout.fragment_browse
+        layoutId = CommonR.layout.fragment_browse
         menuIds = listOf(R.menu.database, CommonR.menu.browse)
         spinnerLabels = R.array.selectors_names
         spinnerIcons = R.array.selectors_icons

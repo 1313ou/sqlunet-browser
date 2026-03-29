@@ -19,6 +19,7 @@ import org.sqlunet.browser.wn.lib.R
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
 import org.sqlunet.wordnet.SensePointer
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * Selector fragment
@@ -30,7 +31,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
     // C R E A T I O N
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, R.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false)
+        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, CommonR.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
