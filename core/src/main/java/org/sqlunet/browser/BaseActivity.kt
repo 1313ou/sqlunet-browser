@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import org.sqlunet.browser.EdgeToEdge.updateVerticalPadding
+import org.sqlunet.browser.EdgeToEdge.updateHorizontalPadding
 import org.sqlunet.browser.NightMode.isNightMode
 import org.sqlunet.core.R
 import android.R as AndroidR
@@ -54,7 +54,7 @@ open class BaseActivity : AppCompatActivity() {
         if (appBarLayout != null) {
             ViewCompat.setOnApplyWindowInsetsListener(rootView!!) { _, insets ->
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-                appBarLayout?.updateVerticalPadding(systemBars)
+                appBarLayout?.updateHorizontalPadding(systemBars)
                 insets
             }
         }
