@@ -43,6 +43,7 @@ import org.sqlunet.predicatematrix.R as PredicatematrixR
 import org.sqlunet.propbank.R as PropbankR
 import org.sqlunet.verbnet.R as VerbnetR
 import org.sqlunet.wordnet.R as WordnetR
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * X selector fragment
@@ -136,7 +137,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment_xselectors, container, false)
+        return inflater.inflate(CommonR.layout.fragment_xselectors, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

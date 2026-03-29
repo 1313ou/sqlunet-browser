@@ -99,6 +99,7 @@
 						style="@style/ActionButton"
 						android:contentDescription="@string/description_action_indexes"
 						app:icon="@drawable/bn_setup" />
+
 				</LinearLayout>
 
 				<!-- searchtext wordnet -->
