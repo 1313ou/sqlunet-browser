@@ -51,7 +51,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
         selectorsFragment.setListeners(this)
         manager.beginTransaction()
             .setReorderingAllowed(true)
-            .replace(R.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
+            .replace(CommonR.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
             // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG)
             .commit()
 
@@ -119,6 +119,6 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
     private fun isTwoPane(view: View): Boolean {
         // the detail view will be present only in the large-screen layouts
         // if this view is present, then the activity should be in two-pane mode.
-        return view.findViewById<View?>(R.id.detail) != null
+        return view.findViewById<View?>(CommonR.id.details_pane) != null
     }
 }

@@ -18,6 +18,7 @@ import org.sqlunet.browser.sn.R
 import org.sqlunet.browser.sn.SnBrowse2Activity
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * Selector fragment
@@ -27,7 +28,7 @@ import org.sqlunet.settings.Settings
 class SnBrowse1Fragment : BaseBrowse1Fragment(), SnSelectorsFragment.Listener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_snbrowse_first, R.layout.fragment_snbrowse1, R.layout.fragment_snbrowse1_browse2), container, false)
+        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_snbrowse_first, CommonR.layout.fragment_browse1, CommonR.layout.fragment_browse1_browse2), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,7 +50,7 @@ class SnBrowse1Fragment : BaseBrowse1Fragment(), SnSelectorsFragment.Listener {
         selectorsFragment.setListeners(this)
         manager.beginTransaction()
             .setReorderingAllowed(true)
-            .replace(R.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
+            .replace(CommonR.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
             // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG)
             .commit()
 
@@ -113,6 +114,6 @@ class SnBrowse1Fragment : BaseBrowse1Fragment(), SnSelectorsFragment.Listener {
     private fun isTwoPane(view: View): Boolean {
         // the detail view will be present only in the large-screen layouts
         // if this view is present, then the activity should be in two-pane mode.
-        return view.findViewById<View?>(R.id.detail) != null
+        return view.findViewById<View?>(CommonR.id.details_pane) != null
     }
 }
