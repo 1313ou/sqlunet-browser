@@ -1,13 +1,13 @@
 <!--
-  ~ Copyright (c) 2023. Bernard Bou
+  ~ Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-
 	android:id="@+id/container_home"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:theme="@style/MyCustomOverlay">
 
 	<ImageView
 		android:id="@+id/splash"
