@@ -31,7 +31,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
     // C R E A T I O N
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, CommonR.layout.fragment_xbrowse1_browse2), container, false)
+        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, CommonR.layout.fragment_xbrowse1, CommonR.layout.fragment_xbrowse1_browse2), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,7 +53,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
         args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane)
         xSelectorsFragment.setListener(this)
         manager.beginTransaction()
-            .replace(R.id.container_xselectors, xSelectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
+            .replace(CommonR.id.container_xselectors, xSelectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
             // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG)
             .commit()
 
@@ -74,7 +74,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
             }
             manager.beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG)
+                .replace(CommonR.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG)
                 // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG)
                 .commit()
         }
@@ -92,7 +92,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
             if (!isAdded) {
                 return
             }
-            val fragment = (getChildFragmentManager().findFragmentById(R.id.container_browse2) as Browse2Fragment?)!!
+            val fragment = (getChildFragmentManager().findFragmentById(CommonR.id.container_browse2) as Browse2Fragment?)!!
             fragment.search(pointer, word, cased, pronunciation, pos)
         } else {
             // in single-pane mode, simply start the detail activity for the selected item ID.

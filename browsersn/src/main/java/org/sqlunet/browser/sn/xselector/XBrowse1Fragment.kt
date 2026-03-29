@@ -33,7 +33,7 @@ import org.sqlunet.browser.common.R as CommonR
 class XBrowse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener, SnSelectorsFragment.Listener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, CommonR.layout.fragment_xbrowse1_browse2), container, false)
+        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, CommonR.layout.fragment_xbrowse1, CommonR.layout.fragment_xbrowse1_browse2), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,7 +57,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener, SnSe
         args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane)
         xSelectorsFragment.setListener(this, this)
         manager.beginTransaction()
-            .replace(R.id.container_xselectors, xSelectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
+            .replace(CommonR.id.container_xselectors, xSelectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
             // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG)
             .commit()
 

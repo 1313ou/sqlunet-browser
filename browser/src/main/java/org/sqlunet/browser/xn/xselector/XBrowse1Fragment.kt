@@ -30,7 +30,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, CommonR.layout.fragment_xbrowse1_browse2), container, false)
+        return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, CommonR.layout.fragment_xbrowse1, CommonR.layout.fragment_xbrowse1_browse2), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,7 +53,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
         Log.d(TAG, "create 'selectors' fragment")
         manager.beginTransaction()
             .setReorderingAllowed(true)
-            .replace(R.id.container_xselectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
+            .replace(CommonR.id.container_xselectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
             // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) 
             .commit()
 
