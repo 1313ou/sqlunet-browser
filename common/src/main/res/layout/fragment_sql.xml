@@ -12,6 +12,7 @@
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_sql_statements"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent" />
+		android:layout_height="match_parent"
+		android:theme="@style/MySurfaceOverlay" />
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

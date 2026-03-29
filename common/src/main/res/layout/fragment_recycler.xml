@@ -10,4 +10,5 @@
 	android:layout_centerHorizontal="true"
 	android:layout_margin="10dp"
 	android:focusable="true"
+	android:theme="@style/MySurfaceOverlay"
 	app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
