@@ -46,20 +46,23 @@ open class BaseActivity : AppCompatActivity() {
 
     private val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
 
-    private val appBarLayout: View? by lazy { findViewById(R.id.appbar_layout) }
-
-    private val mainView: View? by lazy { findViewById<ViewGroup>(R.id.main) }
+    private val appBar: View? by lazy { findViewById(R.id.appbar_layout) }
 
     private val contentView: View? by lazy { findViewById<ViewGroup>(R.id.content) }
+
+    private val navView: View? by lazy { findViewById<ViewGroup>(R.id.nav_view) }
+
+    private val searchViewDataView: View? by lazy { findViewById<ViewGroup>(R.id.search_view_data_container) }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         if (rootView != null) {
             ViewCompat.setOnApplyWindowInsetsListener(rootView!!) { _, insets ->
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-                //mainView?.updateHorizontalPadding(systemBars)
                 contentView?.updateHorizontalPadding(systemBars)
-                appBarLayout?.updateHorizontalPadding(systemBars)
+                appBar?.updateHorizontalPadding(systemBars)
+                navView?.updateHorizontalPadding(systemBars)
+                searchViewDataView?.updateHorizontalPadding(systemBars)
                 insets
             }
         }
