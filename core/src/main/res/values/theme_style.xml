@@ -6,10 +6,16 @@
 
 	<!-- O V E R L A Y S -->
 
-	<!-- Custom surface overlay -->
-	<style name="MySurfaceOverlay" parent="ThemeOverlay.Material3">
+	<!-- Custom overlay -->
+	<style name="MyCustomOverlay" parent="ThemeOverlay.Material3">
 		<item name="android:background">?attr/colorCustom</item>
 		<item name="android:textColor">?attr/colorOnCustom</item>
+	</style>
+
+	<!-- Surface overlay -->
+	<style name="MySurfaceOverlay" parent="ThemeOverlay.Material3">
+		<item name="android:background">?attr/colorSurface</item>
+		<item name="android:textColor">?attr/colorOnSurface</item>
 	</style>
 
 	<!-- S T Y L E S -->
