@@ -14,7 +14,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.navigateUp
@@ -72,7 +71,8 @@ open class MainActivity : BaseActivity() {
         // navigation
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         val navView = findViewById<NavigationView>(R.id.nav_view)
-        val navController = findNavController(this, R.id.nav_host_fragment)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration.Builder(*topDests).setOpenableLayout(drawer).build()
         setupActionBarWithNavController(this, navController, appBarConfiguration!!)
         setupWithNavController(navView, navController)
@@ -110,19 +110,21 @@ open class MainActivity : BaseActivity() {
         }
         val manager = navHostFragment.getChildFragmentManager()
         val fragments = manager.fragments
-        val fragment = fragments[0]
-        if (fragment is BaseSearchFragment) {
-            val action = intent.action
-            val isActionView = Intent.ACTION_VIEW == action
-            if (isActionView || Intent.ACTION_SEARCH == action) {
-                // search query submit (SEARCH) or suggestion selection (when a suggested item is selected) (VIEW)
-                val query = intent.getStringExtra(SearchManager.QUERY)!!
-                if (isActionView) {
-                    fragment.clearQuery()
+        if (fragments.isNotEmpty()) {
+            val fragment = fragments[0]
+            if (fragment is BaseSearchFragment) {
+                val action = intent.action
+                val isActionView = Intent.ACTION_VIEW == action
+                if (isActionView || Intent.ACTION_SEARCH == action) {
+                    // search query submit (SEARCH) or suggestion selection (when a suggested item is selected) (VIEW)
+                    val query = intent.getStringExtra(SearchManager.QUERY)!!
+                    if (isActionView) {
+                        fragment.clearQuery()
+                    }
+                    // search query submit or suggestion selection (when a suggested item is selected)
+                    Log.d(TAG, "Search intent having query '$query'")
+                    fragment.search(query)
                 }
-                // search query submit or suggestion selection (when a suggested item is selected)
-                Log.d(TAG, "Search intent having query '$query'")
-                fragment.search(query)
             }
         }
     }
@@ -144,7 +146,8 @@ open class MainActivity : BaseActivity() {
     // N A V
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(this, R.id.nav_host_fragment)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
         return navigateUp(navController, appBarConfiguration!!) || super.onSupportNavigateUp()
     }
 

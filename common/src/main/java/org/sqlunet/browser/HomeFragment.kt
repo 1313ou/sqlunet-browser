@@ -15,7 +15,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavOptions
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.sqlunet.browser.common.R
 
@@ -78,7 +78,7 @@ open class HomeFragment : Fragment() {
     }
 
     private fun navigateToBrowse() {
-        val navController = requireActivity().findNavController(R.id.nav_host_fragment)
+        val navController = findNavController()
         navController.navigate(
             R.id.nav_search_browse,
             null,
