@@ -8,4 +8,5 @@
 	android:id="@+id/container_searchtext"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:theme="@style/MySurfaceOverlay"
 	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
