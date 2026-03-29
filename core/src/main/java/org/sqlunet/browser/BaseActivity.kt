@@ -51,7 +51,7 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
-        if (appBarLayout != null) {
+        if (rootView != null) {
             ViewCompat.setOnApplyWindowInsetsListener(rootView!!) { _, insets ->
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
                 appBarLayout?.updateHorizontalPadding(systemBars)
