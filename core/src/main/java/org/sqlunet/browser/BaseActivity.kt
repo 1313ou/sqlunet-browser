@@ -16,7 +16,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import org.sqlunet.browser.EdgeToEdge.updateHorizontalMargin
-import org.sqlunet.browser.EdgeToEdge.updateHorizontalPadding
 import org.sqlunet.browser.NightMode.isNightMode
 import org.sqlunet.core.R
 import android.R as AndroidR
@@ -28,13 +27,25 @@ import android.R as AndroidR
  */
 open class BaseActivity : AppCompatActivity() {
 
+    /**
+     * Whether orientation is landscape
+     */
+    protected var isLandscape: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Read
+        isLandscape = resources.configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+
         // Resolve custom theme color
-        val typedValue = TypedValue()
-        theme.resolveAttribute(R.attr.colorCustom, typedValue, true)
-        val navBarColor = typedValue.data
+        val navBarColor = if (isLandscape) {
+            val typedValue = TypedValue()
+            theme.resolveAttribute(R.attr.colorCustom, typedValue, true)
+            typedValue.data
+        } else {
+            Color.TRANSPARENT
+        }
 
         // Set the navigation bar style to your themed color instead of TRANSPARENT
         enableEdgeToEdge(
@@ -66,7 +77,7 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
-        if (rootView != null) {
+        if (rootView != null && isLandscape) {
             ViewCompat.setOnApplyWindowInsetsListener(rootView!!) { view, insets ->
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
                 view.updateHorizontalMargin(systemBars)
