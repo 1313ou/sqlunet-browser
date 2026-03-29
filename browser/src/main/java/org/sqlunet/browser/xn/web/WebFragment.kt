@@ -61,6 +61,7 @@ import org.w3c.dom.Document
 import java.net.URLDecoder
 import androidx.core.net.toUri
 import org.sqlunet.browser.AppContext
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * A fragment representing a SqlUNet web view.
@@ -237,7 +238,7 @@ class WebFragment : Fragment() {
     private var model: WebModel? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return try {
-            inflater.inflate(R.layout.fragment_web, container, false)
+            inflater.inflate(CommonR.layout.fragment_web, container, false)
         } catch (_: InflateException) {
             Toast.makeText(requireContext(), "No WebView support", Toast.LENGTH_LONG).show()
             null
@@ -248,7 +249,7 @@ class WebFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // webview
-        webview = view.findViewById(R.id.webView)
+        webview = view.findViewById(CommonR.id.webView)
 
         // models
         makeModels()
