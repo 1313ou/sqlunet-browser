@@ -75,7 +75,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
             }
             manager.beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG)
+                .replace(CommonR.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG)
                 // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG)
                 .commit()
         }
@@ -93,7 +93,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
             if (!isAdded) {
                 return
             }
-            val fragment = (getChildFragmentManager().findFragmentById(R.id.container_browse2) as Browse2Fragment?)!!
+            val fragment = (getChildFragmentManager().findFragmentById(CommonR.id.container_browse2) as Browse2Fragment?)!!
             fragment.search(pointer, word, cased, pronunciation, pos)
         } else {
             // in single-pane mode, simply start the detail activity for the selected item ID.
@@ -125,6 +125,6 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
     private fun isTwoPane(view: View): Boolean {
         // the detail view will be present only in the large-screen layouts
         // if this view is present, then the activity should be in two-pane mode.
-        return view.findViewById<View?>(R.id.details_pane) != null
+        return view.findViewById<View?>(CommonR.id.details_pane) != null
     }
 }
