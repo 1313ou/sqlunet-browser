@@ -20,7 +20,7 @@ object EdgeToEdge {
      * @receiver view
      * @param systemBars system bars insets
      */
-    fun View.updateHorizontalPadding(systemBars: Insets) = updatePadding(top = systemBars.left, bottom = systemBars.right)
+    fun View.updateHorizontalPadding(systemBars: Insets) = updatePadding(left = systemBars.left, right = systemBars.right)
 
     /**
      * Update vertical paddings
@@ -54,7 +54,7 @@ object EdgeToEdge {
      * @receiver view
      * @param systemBars system bars insets
      */
-    fun View.updateHorizontalMargin(systemBars: Insets) = updateLayoutParams<ViewGroup.MarginLayoutParams> { topMargin = systemBars.top; bottomMargin = systemBars.bottom }
+    fun View.updateHorizontalMargin(systemBars: Insets) = updateLayoutParams<ViewGroup.MarginLayoutParams> { leftMargin = systemBars.left; rightMargin = systemBars.right }
 
     /**
      * Update vertical margins
