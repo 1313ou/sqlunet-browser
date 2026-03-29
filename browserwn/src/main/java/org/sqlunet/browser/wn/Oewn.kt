@@ -41,7 +41,7 @@ object Oewn {
     private fun suggestOewn(activity: Activity) {
         val behavior = BaseTransientBottomBar.Behavior()
         behavior.setSwipeDirection(SwipeDismissBehavior.SWIPE_DIRECTION_ANY)
-        val parentLayout = activity.findViewById<View>(CommonR.id.activity_main_sub) // view to find a parent from
+        val parentLayout = activity.findViewById<View>(CommonR.id.main) // view to find a parent from
         if (parentLayout != null) {
             val message1 = activity.getString(R.string.obsolete_app)
             val message2 = activity.getString(R.string.new_app)

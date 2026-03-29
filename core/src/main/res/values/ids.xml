@@ -3,6 +3,8 @@
   -->
 
 <resources>
+	<item name="main" type="id" />
+	<item name="content" type="id" />
 	<item name="fab" type="id" />
 	<item name="appbar_layout" type="id" />
 	<item name="toolbar" type="id" />

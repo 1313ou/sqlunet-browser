@@ -10,7 +10,7 @@
 	android:fitsSystemWindows="false">
 
 	<include
-		android:id="@+id/activity_main_sub"
+		android:id="@+id/main"
 		layout="@layout/activity_main_sub"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent" />
