@@ -6,9 +6,9 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/search_list"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
+	android:layout_height="match_parent"
 	android:layout_centerHorizontal="true"
-	android:layout_margin="10dp"
+	android:padding="10dp"
 	android:focusable="true"
 	android:theme="@style/MySurfaceOverlay"
 	app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
