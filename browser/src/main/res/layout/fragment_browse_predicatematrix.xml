@@ -7,5 +7,4 @@
 	android:id="@+id/container_browse_extra"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:paddingBottom="@dimen/scroll_tail_padding"
 	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
