@@ -156,7 +156,6 @@ class TaskDialogObserver<Progress : Pair<Number, Number>>(private val fragmentMa
             val builder = AlertDialog.Builder(activity)
             builder.setView(view)
             builder.setNegativeButton(R.string.action_cancel) { _: DialogInterface?, _: Int ->
-
                 // cancelled.
                 val result = task.cancel(true)
                 Log.d(TAG, "Cancel task @" + (Integer.toHexString(task.hashCode())) + ' ' + result)

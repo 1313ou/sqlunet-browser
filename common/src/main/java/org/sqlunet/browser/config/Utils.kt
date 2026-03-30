@@ -39,7 +39,8 @@ object Utils {
             .setIconAttribute(android.R.attr.alertDialogIcon)
             .setTitle(titleId)
             .setMessage(askId)
-            .setPositiveButton(R.string.yes) { _: DialogInterface?, _: Int -> runnable.run() }.setNegativeButton(R.string.no, null).show()
+            .setPositiveButton(R.string.yes) { _: DialogInterface?, _: Int -> runnable.run() }
+            .setNegativeButton(R.string.no, null).show()
     }
 
     // Human-readable sizes
