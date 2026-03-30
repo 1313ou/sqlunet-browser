@@ -12,8 +12,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical"
-		android:paddingBottom="@dimen/scroll_tail_padding"
-		android:theme="@style/MySurfaceOverlay">
+		android:paddingBottom="@dimen/scroll_tail_padding">
 
 		<TextView
 			android:id="@+id/target"
