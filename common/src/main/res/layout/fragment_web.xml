@@ -8,7 +8,8 @@
 	android:paddingBottom="@dimen/web_vertical_padding"
 	android:paddingLeft="@dimen/web_horizontal_padding"
 	android:paddingRight="@dimen/web_horizontal_padding"
-	android:paddingTop="@dimen/web_vertical_padding">
+	android:paddingTop="@dimen/web_vertical_padding"
+	android:theme="@style/MySurfaceOverlay">
 
 	<WebView
 		android:id="@+id/webView"

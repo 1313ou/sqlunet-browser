@@ -3,16 +3,17 @@
   -->
 
 <!-- selectors -->
-<androidx.core.widget.NestedScrollView android:id="@+id/selectors_pane"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/selectors_pane"
 	android:layout_height="match_parent"
 	android:clipToPadding="false"
 	android:fillViewport="true"
-	android:layout_width="match_parent"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	android:layout_width="match_parent">
 
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_selectors"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:paddingBottom="@dimen/scroll_tail_padding" />
+		android:paddingBottom="@dimen/scroll_tail_padding"
+		android:theme="@style/MySurfaceOverlay" />
 </androidx.core.widget.NestedScrollView>

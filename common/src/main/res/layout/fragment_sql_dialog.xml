@@ -10,7 +10,8 @@
 	android:paddingTop="16dp"
 	android:paddingRight="16dp"
 	android:paddingBottom="16dp"
-	android:weightSum="1">
+	android:weightSum="1"
+	android:theme="@style/MySurfaceOverlay">
 
 	<TextView
 		style="@android:style/TextAppearance.Small"
@@ -24,7 +25,6 @@
 		android:id="@+id/container_sql_statements"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
-		android:layout_weight="1"
-		android:theme="@style/MySurfaceOverlay" />
+		android:layout_weight="1" />
 
 </LinearLayout>

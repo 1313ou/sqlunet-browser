@@ -8,4 +8,5 @@
 	android:layout_height="wrap_content"
 	android:layout_centerHorizontal="true"
 	android:choiceMode="singleChoice"
-	android:groupIndicator="@drawable/expander_group_arrow" />
+	android:groupIndicator="@drawable/expander_group_arrow"
+	android:theme="@style/MySurfaceOverlay" />

@@ -25,7 +25,8 @@
 			android:paddingLeft="@dimen/activity_horizontal_padding"
 			android:paddingTop="@dimen/activity_vertical_padding"
 			android:paddingRight="@dimen/activity_horizontal_padding"
-			android:paddingBottom="@dimen/activity_vertical_padding">
+			android:paddingBottom="@dimen/activity_vertical_padding"
+			android:theme="@style/MySurfaceOverlay">
 
 			<TextView
 				android:layout_width="match_parent"
