@@ -6,13 +6,13 @@
 	android:id="@+id/container_browse2m"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:clipToPadding="false">
+	android:clipToPadding="false"
+	android:theme="@style/MySurfaceOverlay">
 
 	<View
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical"
-		android:paddingBottom="@dimen/scroll_tail_padding"
-		android:theme="@style/MySurfaceOverlay" />
+		android:paddingBottom="@dimen/scroll_tail_padding" />
 
 </androidx.core.widget.NestedScrollView>
