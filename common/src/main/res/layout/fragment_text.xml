@@ -8,7 +8,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:layout_centerHorizontal="true"
-	android:layout_margin="10dp"
+	android:paddingHorizontal="10dp"
 	android:focusable="true"
 	android:theme="@style/MySurfaceOverlay"
 	app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
