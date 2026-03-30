@@ -5,6 +5,7 @@
 package com.bbou.rate
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.view.View
 import java.util.Date
@@ -18,6 +19,8 @@ class AppRate {
     private var remindInterval = 1
     var isDebug = false
         private set
+
+    private var dialog: Dialog? = null
 
     fun setLaunchTimes(launchTimes: Int): AppRate {
         this.launchTimes = launchTimes
@@ -138,9 +141,24 @@ class AppRate {
     }
 
     private fun showRateDialog(activity: Activity) {
-        if (!activity.isFinishing) {
-            DialogBuilder.build(activity, options).show()
+        if (!activity.isFinishing && !activity.isDestroyed) {
+            dismiss()
+            val dialog = DialogBuilder.build(activity, options)
+            dialog.setOnDismissListener { this.dialog = null }
+            dialog.show()
+            this.dialog = dialog
         }
+    }
+
+    fun dismiss() {
+        try {
+            if (dialog?.isShowing == true) {
+                dialog?.dismiss()
+            }
+        } catch (_: Exception) {
+            // ignore
+        }
+        dialog = null
     }
 
     private fun shouldShowRateDialog(context: Context): Boolean {
@@ -199,6 +217,10 @@ class AppRate {
 
         fun rate(activity: Activity) {
             forActivity()!!.showRateDialog(activity)
+        }
+
+        fun dismiss() {
+            singleton?.dismiss()
         }
     }
 }

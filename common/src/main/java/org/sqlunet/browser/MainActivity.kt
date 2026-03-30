@@ -19,6 +19,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import com.bbou.rate.AppRate
 import com.bbou.rate.AppRate.Companion.invoke
 import com.google.android.material.navigation.NavigationView
 import org.sqlunet.browser.MenuHandler.menuDispatch
@@ -77,6 +78,11 @@ open class MainActivity : BaseActivity() {
         setupActionBarWithNavController(this, navController, appBarConfiguration!!)
         setupWithNavController(navView, navController)
         navController.addOnDestinationChangedListener { _: NavController?, destination: NavDestination, _: Bundle? -> Log.d(TAG, "Nav: to $destination") }
+    }
+
+    override fun onDestroy() {
+        AppRate.dismiss()
+        super.onDestroy()
     }
 
     override fun onResume() {
