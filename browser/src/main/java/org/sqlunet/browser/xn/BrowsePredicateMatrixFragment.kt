@@ -15,7 +15,6 @@ import org.sqlunet.browser.BaseSearchFragment
 import org.sqlunet.browser.R
 import org.sqlunet.browser.SplashFragment
 import org.sqlunet.predicatematrix.PmRolePointer
-import org.sqlunet.predicatematrix.browser.PredicateMatrixFragment
 import org.sqlunet.predicatematrix.settings.Settings.PMMode
 import org.sqlunet.provider.ProviderArgs
 
@@ -126,7 +125,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PM)
 
         // fragment
-        val fragment: Fragment = PredicateMatrixFragment()
+        val fragment: Fragment = BrowsePredicateMatrixFragment()
         fragment.setArguments(args)
         if (!isAdded) {
             return
@@ -134,8 +133,8 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         getChildFragmentManager()
             .beginTransaction()
             .setReorderingAllowed(true)
-            .replace(R.id.container_browse_extra, fragment, PredicateMatrixFragment.FRAGMENT_TAG)
-            .addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG)
+            .replace(R.id.container_browse_extra, fragment, Browse2PredicateMatrixFragment.FRAGMENT_TAG)
+            .addToBackStack(Browse2PredicateMatrixFragment.FRAGMENT_TAG)
             .commit()
     }
 
@@ -174,7 +173,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PM)
 
         // fragment
-        val fragment: Fragment = PredicateMatrixFragment()
+        val fragment: Fragment = Browse2PredicateMatrixFragment()
         fragment.setArguments(args)
         if (!isAdded) {
             return
@@ -182,8 +181,8 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         getChildFragmentManager()
             .beginTransaction()
             .setReorderingAllowed(true)
-            .replace(R.id.container_browse_extra, fragment, PredicateMatrixFragment.FRAGMENT_TAG)
-            .addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG)
+            .replace(R.id.container_browse_extra, fragment, Browse2PredicateMatrixFragment.FRAGMENT_TAG)
+            .addToBackStack(Browse2PredicateMatrixFragment.FRAGMENT_TAG)
             .commit()
     }
 

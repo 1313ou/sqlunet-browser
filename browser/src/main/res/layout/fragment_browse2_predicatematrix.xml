@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/container_predicatematrix"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:clipToPadding="false">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:paddingBottom="@dimen/scroll_tail_padding"
+		android:theme="@style/MySurfaceOverlay">
+
+		<TextView
+			android:id="@+id/target"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingStart="4dp"
+			android:paddingEnd="4dp"
+			android:textSize="16sp"
+			android:text="RESULT"
+			android:visibility="visible" />
+
+		<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/container_browse_extra"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+</androidx.core.widget.NestedScrollView>
