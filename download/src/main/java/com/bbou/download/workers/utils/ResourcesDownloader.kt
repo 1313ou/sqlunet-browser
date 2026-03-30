@@ -6,6 +6,7 @@ package com.bbou.download.workers.utils
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.widget.RadioButton
@@ -145,6 +146,7 @@ class ResourcesDownloader internal constructor(private val listener: Listener) :
                     AlertDialog.Builder(activity)
                         .setTitle(activity.getString(R.string.action_directory) + " of " + url)
                         .setMessage(R.string.status_task_failed)
+                        .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                         .show()
                 } else {
                     if (!activity.isFinishing && !activity.isDestroyed) {
@@ -158,6 +160,7 @@ class ResourcesDownloader internal constructor(private val listener: Listener) :
                         AlertDialog.Builder(activity)
                             .setTitle(activity.getString(R.string.resource_directory) + ' ' + url)
                             .setMessage(sb)
+                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                             .show()
                     }
                 }
