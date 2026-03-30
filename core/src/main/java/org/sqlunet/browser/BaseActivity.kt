@@ -6,6 +6,7 @@ package org.sqlunet.browser
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
@@ -67,11 +68,11 @@ open class BaseActivity : AppCompatActivity() {
 
     // private val appBar: View? by lazy { findViewById(R.id.appbar_layout) }
 
-    // private val contentView: View? by lazy { findViewById(R.id.content) }
-
-    // private val navView: View? by lazy { findViewById(R.id.nav_view) }
+    // private val contentView: View? by lazy { findViewById(R.id.content) }ase
 
     // private val searchViewDataView: View? by lazy { findViewById(R.id.search_view_data_container) }
+
+    // private val navView: View? by lazy { findViewById(R.id.nav_view) }
 
     private val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
 
@@ -80,13 +81,19 @@ open class BaseActivity : AppCompatActivity() {
         if (rootView != null && isLandscape) {
             ViewCompat.setOnApplyWindowInsetsListener(rootView!!) { view, insets ->
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                Log.d(TAG, "Inset listener systemBars=$systemBars")
                 view.updateHorizontalMargin(systemBars)
+                //navView?.updateHorizontalPadding(systemBars)
                 //contentView?.updateHorizontalPadding(systemBars)
                 //appBar?.updateHorizontalPadding(systemBars)
-                //navView?.updateHorizontalPadding(systemBars)
                 //searchViewDataView?.updateHorizontalPadding(systemBars)
                 insets
             }
         }
+    }
+
+    companion object {
+
+        private const val TAG = "BaseActivity"
     }
 }
