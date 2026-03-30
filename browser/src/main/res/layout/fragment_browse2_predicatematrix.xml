@@ -22,7 +22,6 @@
 			android:paddingStart="4dp"
 			android:paddingEnd="4dp"
 			android:textSize="16sp"
-			android:text="RESULT"
 			android:visibility="visible" />
 
 		<androidx.fragment.app.FragmentContainerView
