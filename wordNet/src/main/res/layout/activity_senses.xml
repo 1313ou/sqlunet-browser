@@ -22,7 +22,6 @@
 		android:id="@+id/content"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:theme="@style/MyCustomOverlay"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 		<androidx.core.widget.NestedScrollView
@@ -36,7 +35,6 @@
 				android:id="@+id/container_senses"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:theme="@style/MySurfaceOverlay"
 				android:paddingBottom="@dimen/scroll_tail_padding" />
 		</androidx.core.widget.NestedScrollView>
 	</FrameLayout>
