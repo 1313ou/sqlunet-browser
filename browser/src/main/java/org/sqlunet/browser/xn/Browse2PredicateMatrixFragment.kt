@@ -39,7 +39,7 @@ class Browse2PredicateMatrixFragment : BaseBrowse2Fragment() {
         childFragmentManager
             .beginTransaction()
             .setReorderingAllowed(true)
-            .replace(R.id.container_predicatematrix, fragment, PredicateMatrixFragment.FRAGMENT_TAG)
+            .replace(R.id.container_browse_extra, fragment, PredicateMatrixFragment.FRAGMENT_TAG)
             .commit()
     }
 
