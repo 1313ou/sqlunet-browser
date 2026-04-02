@@ -16,8 +16,8 @@
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
 		android:layout_weight="1"
-		android:clipToPadding="false"
-		android:fillViewport="true">
+		android:fillViewport="true"
+		android:clipToPadding="false">
 
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/container_selectors"
@@ -32,8 +32,8 @@
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
 		android:layout_weight="2"
-		android:clipToPadding="false"
-		android:fillViewport="true">
+		android:fillViewport="true"
+		android:clipToPadding="false">
 
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/container_browse2"

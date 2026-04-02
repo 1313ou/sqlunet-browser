@@ -37,6 +37,7 @@
 		android:id="@+id/scrollview_relation"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:fillViewport="true"
 		android:clipToPadding="false"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -44,7 +45,7 @@
 			android:id="@+id/fragment_predicatematrix"
 			android:name="org.sqlunet.browser.xn.BrowsePredicateMatrixFragment"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
+			android:layout_height="wrap_content"
 			android:paddingBottom="@dimen/scroll_tail_padding" />
 	</androidx.core.widget.NestedScrollView>
 

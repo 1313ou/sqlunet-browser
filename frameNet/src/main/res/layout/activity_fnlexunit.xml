@@ -28,13 +28,14 @@
 			android:id="@+id/scrollview_fnlexunit"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:fillViewport="true"
 			android:clipToPadding="false"
 			app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 			<androidx.fragment.app.FragmentContainerView
 				android:id="@+id/container_fnlexunit"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				android:paddingBottom="@dimen/scroll_tail_padding" />
 		</androidx.core.widget.NestedScrollView>
 	</FrameLayout>
