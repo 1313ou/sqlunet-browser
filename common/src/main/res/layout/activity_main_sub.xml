@@ -32,7 +32,7 @@
 
 	</com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/searchview" />
+	<include layout="@layout/searchview" />
 
 	<include layout="@layout/content_main" />
 

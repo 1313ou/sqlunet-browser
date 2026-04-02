@@ -30,12 +30,12 @@
 		android:text="@string/label_contents"/>
 -->
 
-	<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:id="@+id/data_contents"
-		style="@style/Data.Contents"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content" />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/data_contents"
+	style="@style/Data.Contents"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content" />
 
-<!--
-</LinearLayout>
--->
+	<!--
+	</LinearLayout>
+	-->
