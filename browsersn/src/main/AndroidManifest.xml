@@ -38,7 +38,7 @@
 			android:name="com.google.android.backup.api_key"
 			android:value="@string/backup_api_key" />
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.EntryActivity"
 			android:exported="true"
 			android:launchMode="singleTask"
@@ -49,25 +49,25 @@
 			</intent-filter>
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.config.LoadActivity"
 			android:label="@string/title_activity_assetload"
 			android:launchMode="singleTop"
 			android:noHistory="true" />
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.config.AssetLoadActivity"
 			android:label="@string/title_activity_assetload"
 			android:launchMode="singleTop"
 			android:noHistory="true" />
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.config.DownloadActivity"
 			android:label="@string/title_activity_download"
 			android:launchMode="singleTop"
 			android:noHistory="true" />
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.MainActivity"
 			android:exported="false"
 			android:launchMode="singleTop">
@@ -79,7 +79,7 @@
 				android:resource="@xml/searchable" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.sn.BrowseActivity"
 			android:exported="true"
 			android:label="@string/title_activity_browse"
@@ -102,7 +102,7 @@
 				android:resource="@xml/searchable" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.sn.selector.Browse1Activity"
 			android:exported="false"
 			android:label="@string/title_activity_selector"
@@ -116,7 +116,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.sn.SnBrowse1Activity"
 			android:exported="false"
 			android:label="@string/title_activity_selector"
@@ -130,7 +130,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.sn.xselector.XBrowse1Activity"
 			android:exported="false"
 			android:label="@string/title_activity_xselector"
@@ -144,7 +144,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.sn.SearchTextActivity"
 			android:exported="true"
 			android:label="@string/title_activity_searchtext"
@@ -167,7 +167,7 @@
 				android:resource="@xml/searchable" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.sn.Browse2Activity"
 			android:label="@string/title_activity_browse2"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -176,7 +176,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.sn.SnBrowse2Activity"
 			android:label="@string/title_activity_browse2"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -185,7 +185,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.history.HistoryActivity"
 			android:label="@string/title_activity_history"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -194,7 +194,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.sn.web.WebActivity"
 			android:label="@string/title_activity_web"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -203,7 +203,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.wordnet.browser.WordActivity"
 			android:label="@string/title_activity_word"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -212,7 +212,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.wordnet.browser.SensesActivity"
 			android:label="@string/title_activity_senses"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -221,7 +221,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.wordnet.browser.SynsetActivity"
 			android:label="@string/title_activity_synset"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -230,7 +230,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.wordnet.browser.SenseActivity"
 			android:label="@string/title_activity_sense"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -239,7 +239,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.wordnet.browser.SenseKeyActivity"
 			android:label="@string/title_activity_sense"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -248,7 +248,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.wordnet.browser.RelationActivity"
 			android:label="@string/title_activity_relation"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -257,7 +257,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.syntagnet.browser.CollocationActivity"
 			android:label="@string/title_activity_collocation"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -266,7 +266,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.config.TableActivity"
 			android:label="@string/title_activity_table"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -275,7 +275,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.config.SettingsActivity"
 			android:label="@string/title_activity_settings"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -284,7 +284,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.config.SetupActivity"
 			android:label="@string/title_activity_setup"
 			android:launchMode="singleTop"
@@ -294,7 +294,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.config.SetupFileActivity"
 			android:label="@string/title_activity_setup"
 			android:launchMode="singleTop"
@@ -304,7 +304,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.config.SetupDatabaseActivity"
 			android:label="@string/title_activity_setup_database"
 			android:launchMode="singleTop"
@@ -314,7 +314,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.config.OperationActivity"
 			android:exported="false"
 			android:label="@string/title_activity_operation"
@@ -324,7 +324,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="com.bbou.download.UpdateActivity"
 			android:label="@string/title_activity_update"
 			android:launchMode="singleTop"
@@ -334,7 +334,7 @@
 				android:value="org.sqlunet.browser.EntryActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.config.StorageActivity"
 			android:label="@string/title_activity_storage"
 			android:launchMode="singleTop"
@@ -344,7 +344,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.StatusActivity"
 			android:label="@string/title_activity_status"
 			android:launchMode="singleTop"
@@ -354,7 +354,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.config.DiagnosticsActivity"
 			android:label="@string/title_activity_diagnostics"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -363,7 +363,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.config.LogsActivity"
 			android:label="@string/title_activity_logs"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -372,7 +372,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.AboutActivity"
 			android:label="@string/title_activity_about"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -381,7 +381,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="org.sqlunet.browser.HelpActivity"
 			android:label="@string/title_activity_help"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -390,7 +390,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="com.bbou.donate.DonateActivity"
 			android:label="@string/title_activity_donate"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
@@ -399,7 +399,7 @@
 				android:value="org.sqlunet.browser.MainActivity" />
 		</activity>
 
-		<activity
+		<activity android:configChanges="uiMode|orientation|screenSize|screenLayout|smallestScreenSize"
 			android:name="com.bbou.others.OthersActivity"
 			android:label="@string/title_activity_others"
 			android:parentActivityName="org.sqlunet.browser.MainActivity">
