@@ -18,6 +18,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import org.sqlunet.browser.EdgeToEdge.updateHorizontalMargin
+import org.sqlunet.browser.NightMode.createOverrideConfigurationForDayNight
 import org.sqlunet.browser.NightMode.isNightMode
 import org.sqlunet.core.R
 import android.R as AndroidR
