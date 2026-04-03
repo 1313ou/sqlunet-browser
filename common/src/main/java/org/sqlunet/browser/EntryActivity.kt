@@ -23,7 +23,7 @@ import org.sqlunet.settings.StorageSettings
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class EntryActivity : AppCompatActivity() {
+class EntryActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +59,8 @@ class EntryActivity : AppCompatActivity() {
 
     @SuppressLint("MissingSuperCall")
     override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
+        // super.onNewIntent(intent) // BUG: ClassCastException on some devices (Xiaomi/MIUI)
+        setIntent(intent)
         Log.d(TAG, "Lifecycle: OnNewIntent()")
     }
 

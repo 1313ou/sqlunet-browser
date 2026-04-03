@@ -4,7 +4,11 @@
 
 package org.sqlunet.browser
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -17,6 +21,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import org.sqlunet.browser.EdgeToEdge.updateHorizontalMargin
+import org.sqlunet.browser.NightMode.createOverrideConfigurationForDayNight
 import org.sqlunet.browser.NightMode.isNightMode
 import org.sqlunet.core.R as CoreR
 import android.R as AndroidR
@@ -33,11 +38,14 @@ open class BaseActivity : AppCompatActivity() {
      */
     protected var isLandscape: Boolean = false
 
+    protected var wasNightMode: Int = Configuration.UI_MODE_NIGHT_UNDEFINED
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Read
         isLandscape = resources.configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+        wasNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
 
         // Resolve custom theme color
         val navBarColor = if (isLandscape) {
@@ -73,6 +81,39 @@ open class BaseActivity : AppCompatActivity() {
                 view.updateHorizontalMargin(systemBars)
                 insets
             }
+        }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        Log.d(TAG, "uiMode changed, not recreating. nightMode=${newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK}")
+
+        isLandscape = newConfig.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+
+        val newNightMode: Int = newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        if (newNightMode != wasNightMode) {
+            wasNightMode = newNightMode
+            restartActivityClean()
+        }
+    }
+
+    override fun onNightModeChanged(mode: Int) {
+        super.onNightModeChanged(mode)
+        val overrideConfig = createOverrideConfigurationForDayNight(this, mode)
+        application.onConfigurationChanged(overrideConfig)
+    }
+
+    private fun restartActivityClean() {
+        val intent = intent.addFlags(
+            Intent.FLAG_ACTIVITY_NO_ANIMATION
+        )
+        finish()
+        startActivity(intent)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, 0, 0)
+        } else {
+            @Suppress("DEPRECATION")
+            overridePendingTransition(0, 0)
         }
     }
 

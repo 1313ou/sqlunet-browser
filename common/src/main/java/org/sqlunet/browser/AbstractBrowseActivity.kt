@@ -62,9 +62,9 @@ abstract class AbstractBrowseActivity<F : BaseSearchFragment?> : BaseActivity() 
         handleSearchIntent(intent)
     }
 
-    @SuppressLint("MissingSuperCall") // BUG
+    @SuppressLint("MissingSuperCall")
     override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
+        // super.onNewIntent(intent) // BUG: ClassCastException on some devices (Xiaomi/MIUI)
         setIntent(intent)
         handleSearchIntent(intent)
     }

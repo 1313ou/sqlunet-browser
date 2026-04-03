@@ -91,9 +91,9 @@ open class MainActivity : BaseActivity() {
         EntryActivity.branchOffToLoadIfCantRun(this)
     }
 
-    @SuppressLint("MissingSuperCall") // BUG
+    @SuppressLint("MissingSuperCall")
     override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
+        // super.onNewIntent(intent) // BUG: ClassCastException on some devices (Xiaomi/MIUI)
         setIntent(intent)
         handleSearchIntent(intent)
     }
