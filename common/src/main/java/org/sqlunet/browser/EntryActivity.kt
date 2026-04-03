@@ -23,7 +23,7 @@ import org.sqlunet.settings.StorageSettings
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class EntryActivity : AppCompatActivity() {
+class EntryActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

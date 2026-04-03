@@ -4,6 +4,7 @@
 
 package org.sqlunet.browser
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -75,6 +76,15 @@ open class BaseActivity : AppCompatActivity() {
     // private val navView: View? by lazy { findViewById(R.id.nav_view) }
 
     private val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onResume() {
+        try {
+            super.onResume()
+        } catch (e: ClassCastException) {
+            Log.e(TAG, "MIUI onResume bug", e)
+        }
+    }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
