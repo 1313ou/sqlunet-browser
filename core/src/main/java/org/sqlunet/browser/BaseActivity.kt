@@ -78,10 +78,6 @@ open class BaseActivity : AppCompatActivity() {
 
     private val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         if (rootView != null && isLandscape) {
