@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityCompat.recreate
 import androidx.preference.PreferenceManager
 import com.bbou.capture.Capture.captureAndSave
 import com.bbou.capture.Capture.captureAndShare
@@ -315,19 +316,17 @@ object MenuHandler {
             }
 
             R.id.action_theme_system -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                switchToLightMode(activity, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                 return true
             }
 
             R.id.action_theme_night -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                Log.d("MenuHandler", "set night mode from " + activity.componentName)
+                switchToLightMode(activity, AppCompatDelegate.MODE_NIGHT_YES)
                 return true
             }
 
             R.id.action_theme_day -> {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                Log.d("MenuHandler", "set day mode from " + activity.componentName)
+                switchToLightMode(activity, AppCompatDelegate.MODE_NIGHT_NO)
                 return true
             }
 
@@ -343,6 +342,16 @@ object MenuHandler {
         // start activity
         activity.startActivity(intent)
         return true
+    }
+
+    fun switchToLightMode(activity: AppCompatActivity, mode: Int) {
+        Log.d("MenuHandler", "set $mode mode from " + activity.componentName)
+        if (AppCompatDelegate.getDefaultNightMode() != mode) {
+            activity.window.decorView.post {
+                AppCompatDelegate.setDefaultNightMode(mode)
+                //activity.recreate()
+            }
+        }
     }
 
     /**
