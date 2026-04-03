@@ -23,7 +23,7 @@ object NightMode {
         }
     }
 
-    fun createOverrideConfigurationForDayNight(context: Context, mode: Int): Configuration {
+     fun createOverrideConfigurationForDayNight(context: Context, mode: Int): Configuration {
         val newNightMode: Int = when (mode) {
             AppCompatDelegate.MODE_NIGHT_YES -> Configuration.UI_MODE_NIGHT_YES
             AppCompatDelegate.MODE_NIGHT_NO -> Configuration.UI_MODE_NIGHT_NO
