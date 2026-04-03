@@ -18,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import org.sqlunet.browser.EdgeToEdge.updateHorizontalMargin
 import org.sqlunet.browser.NightMode.isNightMode
-import org.sqlunet.core.R
+import org.sqlunet.core.R as CoreR
 import android.R as AndroidR
 
 /**
@@ -42,7 +42,7 @@ open class BaseActivity : AppCompatActivity() {
         // Resolve custom theme color
         val navBarColor = if (isLandscape) {
             val typedValue = TypedValue()
-            theme.resolveAttribute(R.attr.colorCustom, typedValue, true)
+            theme.resolveAttribute(CoreR.attr.colorCustom, typedValue, true)
             typedValue.data
         } else {
             Color.TRANSPARENT
@@ -62,18 +62,6 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    // private val toolbar: View? by lazy { findViewById(R.id.toolbar) }
-
-    // private val fab: View? by lazy { findViewById(R.id.fab) }
-
-    // private val appBar: View? by lazy { findViewById(R.id.appbar_layout) }
-
-    // private val contentView: View? by lazy { findViewById(R.id.content) }ase
-
-    // private val searchViewDataView: View? by lazy { findViewById(R.id.search_view_data_container) }
-
-    // private val navView: View? by lazy { findViewById(R.id.nav_view) }
-
     private val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -83,10 +71,6 @@ open class BaseActivity : AppCompatActivity() {
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
                 Log.d(TAG, "Inset listener systemBars=$systemBars")
                 view.updateHorizontalMargin(systemBars)
-                //navView?.updateHorizontalPadding(systemBars)
-                //contentView?.updateHorizontalPadding(systemBars)
-                //appBar?.updateHorizontalPadding(systemBars)
-                //searchViewDataView?.updateHorizontalPadding(systemBars)
                 insets
             }
         }
