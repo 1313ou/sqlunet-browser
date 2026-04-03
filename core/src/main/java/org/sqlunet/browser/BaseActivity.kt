@@ -86,6 +86,13 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+
+    override fun onNightModeChanged(mode: Int) {
+        super.onNightModeChanged(mode)
+        val overrideConfig = createOverrideConfigurationForDayNight(this, mode)
+        application.onConfigurationChanged(overrideConfig)
+    }
+
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         if (rootView != null && isLandscape) {
