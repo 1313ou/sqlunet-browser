@@ -78,20 +78,14 @@ open class BaseActivity : AppCompatActivity() {
 
     private val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
 
-    @SuppressLint("MissingSuperCall")
     override fun onResume() {
-        try {
-            super.onResume()
-        } catch (e: ClassCastException) {
-            Log.e(TAG, "MIUI onResume bug", e)
-        }
-    }
 
 
     override fun onNightModeChanged(mode: Int) {
         super.onNightModeChanged(mode)
         val overrideConfig = createOverrideConfigurationForDayNight(this, mode)
         application.onConfigurationChanged(overrideConfig)
+        super.onResume()
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
