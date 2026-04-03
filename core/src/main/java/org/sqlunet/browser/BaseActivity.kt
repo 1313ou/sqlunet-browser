@@ -79,12 +79,6 @@ open class BaseActivity : AppCompatActivity() {
     private val rootView: View? by lazy { findViewById<ViewGroup>(AndroidR.id.content).getChildAt(0) }
 
     override fun onResume() {
-
-
-    override fun onNightModeChanged(mode: Int) {
-        super.onNightModeChanged(mode)
-        val overrideConfig = createOverrideConfigurationForDayNight(this, mode)
-        application.onConfigurationChanged(overrideConfig)
         super.onResume()
     }
 
