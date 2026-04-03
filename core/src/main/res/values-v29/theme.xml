@@ -16,5 +16,7 @@
              this app, and set an appropriate effective bar background color accordingly. -->
 		<item name="android:enforceNavigationBarContrast">false</item>
 
+		<!-- force dark mode -->
+		<item name="android:forceDarkAllowed">false</item>
 	</style>
 </resources>
