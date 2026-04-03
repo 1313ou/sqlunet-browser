@@ -40,8 +40,7 @@ object NightMode {
         }
 
         // If we're here then we can try and apply an override configuration on the Context.
-        val overrideConf = Configuration()
-        overrideConf.fontScale = 0f
+        val overrideConf = Configuration(context.applicationContext.resources.configuration)
         overrideConf.uiMode = newNightMode or (overrideConf.uiMode and Configuration.UI_MODE_NIGHT_MASK.inv())
         return overrideConf
     }
