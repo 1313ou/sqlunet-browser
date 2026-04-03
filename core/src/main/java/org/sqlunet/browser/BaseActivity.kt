@@ -98,6 +98,17 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {
+        super.onConfigurationChanged(newConfig)
+        isLandscape = newConfig.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+    }
+
+    override fun onNightModeChanged(mode: Int) {
+        super.onNightModeChanged(mode)
+        val overrideConfig = createOverrideConfigurationForDayNight(this, mode)
+        application.onConfigurationChanged(overrideConfig)
+    }
+
     companion object {
 
         private const val TAG = "BaseActivity"
