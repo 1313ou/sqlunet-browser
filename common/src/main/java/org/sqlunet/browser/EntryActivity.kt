@@ -59,7 +59,8 @@ class EntryActivity : AppCompatActivity() {
 
     @SuppressLint("MissingSuperCall")
     override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
+        // super.onNewIntent(intent) // BUG: ClassCastException on some devices (Xiaomi/MIUI)
+        setIntent(intent)
         Log.d(TAG, "Lifecycle: OnNewIntent()")
     }
 
