@@ -29,8 +29,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:fillViewport="true"
-			android:clipToPadding="false"
-			app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+			android:clipToPadding="false">
 
 			<androidx.fragment.app.FragmentContainerView
 				android:id="@+id/container_senses"
