@@ -16,7 +16,8 @@
              this app, and set an appropriate effective bar background color accordingly. -->
 		<item name="android:enforceNavigationBarContrast">false</item>
 
-		<!-- force dark mode -->
+		<!-- force dark mode
+			 this fixes Xiaomi bug on day/night mode changes -->
 		<item name="android:forceDarkAllowed">false</item>
 	</style>
 </resources>
