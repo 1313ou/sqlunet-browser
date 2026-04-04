@@ -30,7 +30,6 @@ import org.sqlunet.browser.web.DocumentStringLoader
 import org.sqlunet.browser.web.WebModel
 import org.sqlunet.browser.wn.DocumentTransformer
 import org.sqlunet.browser.wn.lib.BuildConfig
-import org.sqlunet.browser.wn.lib.R
 import org.sqlunet.dom.DomFactory.makeDocument
 import org.sqlunet.dom.DomTransformer.docToXml
 import org.sqlunet.dom.DomValidator.validateDocs

@@ -30,7 +30,6 @@ import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.getParcelable
 import org.sqlunet.browser.sn.BuildConfig
 import org.sqlunet.browser.sn.DocumentTransformer
-import org.sqlunet.browser.sn.R
 import org.sqlunet.browser.sn.selector.CollocationSelectorPointer
 import org.sqlunet.browser.sn.xselector.XSelectorPointer
 import org.sqlunet.browser.web.DocumentStringLoader

@@ -2,314 +2,308 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:layout_centerVertical="true"
+	android:orientation="vertical"
+	android:paddingStart="@dimen/activity_horizontal_padding"
+	android:paddingEnd="@dimen/activity_horizontal_padding"
 	android:theme="@style/MySurfaceOverlay">
+
+	<ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:contentDescription="@string/download_up"
+		android:src="@drawable/ic_download_source"
+		app:tint="?android:attr/colorForeground" />
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/download_up"
+		android:textStyle="bold" />
+
+	<TextView
+		android:id="@+id/up_src"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/status_state_unknown"
+		android:textStyle="italic" />
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_centerVertical="true"
-		android:orientation="vertical"
-		android:paddingStart="@dimen/activity_horizontal_padding"
-		android:paddingEnd="@dimen/activity_horizontal_padding">
+		android:orientation="horizontal">
 
-		<ImageView
+		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:contentDescription="@string/download_up"
-			android:src="@drawable/ic_download_source"
-			app:tint="?android:attr/colorForeground" />
+			android:paddingEnd="5dp"
+			android:paddingStart="0dp"
+			android:text="@string/size" />
 
 		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/download_up"
-			android:textStyle="bold" />
-
-		<TextView
-			android:id="@+id/up_src"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown"
-			android:textStyle="italic" />
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingEnd="5dp"
-				android:paddingStart="0dp"
-				android:text="@string/size" />
-
-			<TextView
-				android:id="@+id/up_size"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/status_state_unknown" />
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingEnd="5dp"
-				android:paddingStart="0dp"
-				android:text="@string/date" />
-
-			<TextView
-				android:id="@+id/up_date"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/status_state_unknown" />
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingEnd="5dp"
-				android:paddingStart="0dp"
-				android:text="@string/etag" />
-
-			<TextView
-				android:id="@+id/up_etag"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/status_state_unknown" />
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingEnd="5dp"
-				android:paddingStart="0dp"
-				android:text="@string/version" />
-
-			<TextView
-				android:id="@+id/up_version"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/status_state_unknown" />
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingEnd="5dp"
-				android:paddingStart="0dp"
-				android:text="@string/static_version" />
-
-			<TextView
-				android:id="@+id/up_static_version"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@string/status_state_unknown" />
-		</LinearLayout>
-
-		<ImageView
+			android:id="@+id/up_size"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="10dp"
-			android:contentDescription="@string/download_down"
-			android:gravity="start"
-			android:src="@drawable/ic_download_dest"
-			app:tint="?android:attr/colorForeground" />
-
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:drawablePadding="10dp"
-			android:text="@string/download_down"
-			android:textStyle="bold" />
-
-		<TextView
-			android:id="@+id/down_datapack"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown" />
-
-		<TextView
-			android:id="@+id/down_source"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown"
-			android:textStyle="italic" />
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingEnd="5dp"
-				android:paddingStart="0dp"
-				android:text="@string/local_size" />
-
-			<TextView
-				android:id="@+id/down_datapack_size"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="@string/status_state_unknown" />
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingEnd="5dp"
-				android:paddingStart="0dp"
-				android:text="@string/local_date" />
-
-			<TextView
-				android:id="@+id/down_datapack_date"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="@string/status_state_unknown" />
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingEnd="5dp"
-				android:paddingStart="0dp"
-				android:text="@string/size" />
-
-			<TextView
-				android:id="@+id/down_source_size"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="@string/status_state_unknown" />
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingEnd="5dp"
-				android:paddingStart="0dp"
-				android:text="@string/date" />
-
-			<TextView
-				android:id="@+id/down_source_date"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="@string/status_state_unknown" />
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingEnd="5dp"
-				android:paddingStart="0dp"
-				android:text="@string/etag" />
-
-			<TextView
-				android:id="@+id/down_source_etag"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="@string/status_state_unknown" />
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingEnd="5dp"
-				android:paddingStart="0dp"
-				android:text="@string/version" />
-
-			<TextView
-				android:id="@+id/down_source_version"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="@string/status_state_unknown" />
-		</LinearLayout>
-
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:paddingEnd="5dp"
-				android:paddingStart="0dp"
-				android:text="@string/static_version" />
-
-			<TextView
-				android:id="@+id/down_source_static_version"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="@string/status_state_unknown" />
-		</LinearLayout>
-
-		<TextView
-			android:id="@+id/newer"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
-
-		<include
-			android:id="@+id/updateButton"
-			layout="@layout/button_update"
-			android:layout_width="64dp"
-			android:layout_height="64dp"
-			android:layout_gravity="center_horizontal"
-			android:layout_marginTop="10dp"
-			android:layout_marginBottom="10dp"
-			android:visibility="invisible" />
-
 	</LinearLayout>
 
-</RelativeLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingEnd="5dp"
+			android:paddingStart="0dp"
+			android:text="@string/date" />
+
+		<TextView
+			android:id="@+id/up_date"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingEnd="5dp"
+			android:paddingStart="0dp"
+			android:text="@string/etag" />
+
+		<TextView
+			android:id="@+id/up_etag"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingEnd="5dp"
+			android:paddingStart="0dp"
+			android:text="@string/version" />
+
+		<TextView
+			android:id="@+id/up_version"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingEnd="5dp"
+			android:paddingStart="0dp"
+			android:text="@string/static_version" />
+
+		<TextView
+			android:id="@+id/up_static_version"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown" />
+	</LinearLayout>
+
+	<ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:contentDescription="@string/download_down"
+		android:gravity="start"
+		android:src="@drawable/ic_download_dest"
+		app:tint="?android:attr/colorForeground" />
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:drawablePadding="10dp"
+		android:text="@string/download_down"
+		android:textStyle="bold" />
+
+	<TextView
+		android:id="@+id/down_datapack"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/status_state_unknown" />
+
+	<TextView
+		android:id="@+id/down_source"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/status_state_unknown"
+		android:textStyle="italic" />
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingEnd="5dp"
+			android:paddingStart="0dp"
+			android:text="@string/local_size" />
+
+		<TextView
+			android:id="@+id/down_datapack_size"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingEnd="5dp"
+			android:paddingStart="0dp"
+			android:text="@string/local_date" />
+
+		<TextView
+			android:id="@+id/down_datapack_date"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingEnd="5dp"
+			android:paddingStart="0dp"
+			android:text="@string/size" />
+
+		<TextView
+			android:id="@+id/down_source_size"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingEnd="5dp"
+			android:paddingStart="0dp"
+			android:text="@string/date" />
+
+		<TextView
+			android:id="@+id/down_source_date"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingEnd="5dp"
+			android:paddingStart="0dp"
+			android:text="@string/etag" />
+
+		<TextView
+			android:id="@+id/down_source_etag"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingEnd="5dp"
+			android:paddingStart="0dp"
+			android:text="@string/version" />
+
+		<TextView
+			android:id="@+id/down_source_version"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown" />
+	</LinearLayout>
+
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingEnd="5dp"
+			android:paddingStart="0dp"
+			android:text="@string/static_version" />
+
+		<TextView
+			android:id="@+id/down_source_static_version"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown" />
+	</LinearLayout>
+
+	<TextView
+		android:id="@+id/newer"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/status_state_unknown" />
+
+	<include
+		android:id="@+id/updateButton"
+		layout="@layout/button_update"
+		android:layout_width="64dp"
+		android:layout_height="64dp"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+		android:visibility="invisible" />
+
+</LinearLayout>

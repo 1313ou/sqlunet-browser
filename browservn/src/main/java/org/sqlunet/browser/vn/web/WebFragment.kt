@@ -27,7 +27,6 @@ import org.sqlunet.Pointer
 import org.sqlunet.browser.getParcelable
 import org.sqlunet.browser.vn.BuildConfig
 import org.sqlunet.browser.vn.DocumentTransformer
-import org.sqlunet.browser.vn.R
 import org.sqlunet.browser.web.DocumentStringLoader
 import org.sqlunet.browser.web.WebModel
 import org.sqlunet.dom.DomFactory.makeDocument

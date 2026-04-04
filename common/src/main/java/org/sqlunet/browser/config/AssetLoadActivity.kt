@@ -11,7 +11,6 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import org.sqlunet.browser.BaseActivity
 import org.sqlunet.browser.EntryActivity.Companion.rerun
-import org.sqlunet.browser.MenuHandler
 import org.sqlunet.browser.MenuHandler.menuDispatchWhenCantRun
 import org.sqlunet.browser.common.R
 

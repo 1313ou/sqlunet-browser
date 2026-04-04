@@ -4,7 +4,6 @@
 
 package org.sqlunet.browser
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
@@ -44,7 +43,7 @@ open class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // Read
-        isLandscape = resources.configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+        isLandscape = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
         wasNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
 
         // Resolve custom theme color
@@ -88,7 +87,7 @@ open class BaseActivity : AppCompatActivity() {
         super.onConfigurationChanged(newConfig)
         Log.d(TAG, "uiMode changed, not recreating. nightMode=${newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK}")
 
-        isLandscape = newConfig.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+        isLandscape = newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE
 
         val newNightMode: Int = newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK
         if (newNightMode != wasNightMode) {

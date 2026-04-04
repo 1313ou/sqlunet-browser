@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityCompat.recreate
 import androidx.preference.PreferenceManager
 import com.bbou.capture.Capture.captureAndSave
 import com.bbou.capture.Capture.captureAndShare

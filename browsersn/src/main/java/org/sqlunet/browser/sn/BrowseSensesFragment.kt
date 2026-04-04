@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.sqlunet.browser.BaseBrowse2Fragment
-import org.sqlunet.browser.sn.R as LibR
 import org.sqlunet.wordnet.browser.SensesFragment
 import org.sqlunet.browser.common.R as CommonR
 

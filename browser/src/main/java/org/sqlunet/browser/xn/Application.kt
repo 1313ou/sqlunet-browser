@@ -51,7 +51,7 @@ class Application : AbstractApplication() {
     /**
      * Git hash
      *
-     * @return git hasj
+     * @return git hash
      */
     override fun gitHash(): String {
         return BuildConfig.GIT_HASH

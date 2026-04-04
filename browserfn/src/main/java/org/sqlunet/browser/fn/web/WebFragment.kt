@@ -26,7 +26,6 @@ import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.Pointer
 import org.sqlunet.browser.fn.BuildConfig
 import org.sqlunet.browser.fn.DocumentTransformer
-import org.sqlunet.browser.fn.R
 import org.sqlunet.browser.getParcelable
 import org.sqlunet.browser.web.DocumentStringLoader
 import org.sqlunet.browser.web.WebModel
