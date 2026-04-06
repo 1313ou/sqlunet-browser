@@ -148,21 +148,7 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
                     observer.taskProgress(Pair<Number, Number>(percent2, -1))
                 }
 
-                AssetPackStatus.WAITING_FOR_WIFI -> {
-                    observer.taskUpdate(statusStr)
-                    if (!waitForWifiConfirmationShown) {
-                        assetPackManager.showConfirmationDialog(activity).addOnSuccessListener { resultCode: Int ->
-                            if (resultCode == Activity.RESULT_OK) {
-                                Log.d(TAG, "Confirmation dialog has been accepted.")
-                            } else if (resultCode == Activity.RESULT_CANCELED) {
-                                Log.d(TAG, "Confirmation dialog has been denied by the user.")
-                            }
-                        }
-                        waitForWifiConfirmationShown = true
-                    }
-                }
-
-                AssetPackStatus.COMPLETED -> {
+                 AssetPackStatus.COMPLETED -> {
                     assetPackManager.unregisterListener(this)
                     val packLocation1 = assetPackManager.getPackLocation(pack)
                     Log.i(TAG, "Status asset path " + if (packLocation1 == null) "null" else packLocation1.assetsPath())
@@ -186,6 +172,20 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
                     Log.i(TAG, "Status canceled " + errorCode2 + ' ' + errorToString(errorCode2))
                     observer.taskUpdate(statusStr)
                     observer.taskFinish(false)
+                }
+
+                AssetPackStatus.WAITING_FOR_WIFI -> {
+                    observer.taskUpdate(statusStr)
+                    if (!waitForWifiConfirmationShown) {
+                        assetPackManager.showConfirmationDialog(activity).addOnSuccessListener { resultCode: Int ->
+                            if (resultCode == Activity.RESULT_OK) {
+                                Log.d(TAG, "Wait for WIFI confirmation dialog has been accepted.")
+                            } else if (resultCode == Activity.RESULT_CANCELED) {
+                                Log.d(TAG, "Wait for WIFI confirmation dialog has been denied by the user.")
+                            }
+                        }
+                        waitForWifiConfirmationShown = true
+                    }
                 }
 
                 AssetPackStatus.REQUIRES_USER_CONFIRMATION -> {
