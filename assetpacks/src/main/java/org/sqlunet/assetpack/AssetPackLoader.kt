@@ -30,6 +30,7 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
 
     private val assetPackManager: AssetPackManager = AssetPackManagerFactory.getInstance(context)
     private var waitForWifiConfirmationShown = false
+    private var userConfirmationShown = false
 
     /**
      * Asset pack path
@@ -190,6 +191,16 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
                 AssetPackStatus.REQUIRES_USER_CONFIRMATION -> {
                     Log.i(TAG, "Requires user confirmation")
                     observer.taskUpdate(statusStr)
+                    if (!userConfirmationShown) {
+                        assetPackManager.showConfirmationDialog(activity).addOnSuccessListener { resultCode: Int ->
+                            if (resultCode == Activity.RESULT_OK) {
+                                Log.d(TAG, "User confirmation dialog has been accepted.")
+                            } else if (resultCode == Activity.RESULT_CANCELED) {
+                                Log.d(TAG, "User confirmation dialog has been denied by the user.")
+                            }
+                        }
+                        userConfirmationShown = true
+                    }
                 }
             }
         }
