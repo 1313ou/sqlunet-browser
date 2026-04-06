@@ -51,6 +51,7 @@ class AssetLoadFragment : Fragment(), TaskObserver<Pair<Number, Number>> {
         progressBar = view.findViewById(R.id.progressBar)
         progressTextView = view.findViewById(R.id.progressProgress)
         cancelButton = view.findViewById(R.id.cancelButton)
+        cancelButton!!.visibility = View.GONE
         cancelButton!!.setOnClickListener {
             val result = task != null && task!!.cancel(true)
             Log.d(TAG, "Cancel task @" + (if (task == null) "null" else Integer.toHexString(task.hashCode())) + ' ' + result)
@@ -82,7 +83,7 @@ class AssetLoadFragment : Fragment(), TaskObserver<Pair<Number, Number>> {
 
     override fun taskStart(task: Cancelable) {
         this.task = task
-        cancelButton!!.visibility = View.VISIBLE
+        cancelButton!!.visibility = View.GONE
         progressBar!!.isIndeterminate = true
         progressTextView!!.text = ""
         messageTextView!!.text = ""
@@ -98,6 +99,7 @@ class AssetLoadFragment : Fragment(), TaskObserver<Pair<Number, Number>> {
     }
 
     override fun taskProgress(progress: Pair<Number, Number>) {
+        cancelButton!!.visibility = View.VISIBLE
         val longProgress = progress.first.toLong()
         val longLength = progress.second.toLong()
         val indeterminate = longLength == -1L
