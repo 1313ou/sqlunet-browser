@@ -80,6 +80,7 @@ abstract class AbstractBrowseActivity<F : BaseSearchFragment?> : BaseActivity() 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.activity_main, menu)
         menuInflater.inflate(R.menu.activity_theme, menu)
+        menuInflater.inflate(R.menu.activity_capture, menu)
         return true
     }
 

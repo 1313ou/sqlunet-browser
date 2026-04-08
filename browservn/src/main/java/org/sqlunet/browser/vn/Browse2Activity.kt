@@ -45,16 +45,4 @@ class Browse2Activity : AbstractBrowse2Activity() {
         val fragment = (supportFragmentManager.findFragmentById(R.id.fragment_detail) as Browse2Fragment?)!!
         fragment.search(pointer, null, null, null, null)
     }
-
-    // M E N U
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(CommonR.menu.activity_main, menu)
-        menuInflater.inflate(CommonR.menu.activity_theme, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return menuDispatch(this, item)
-    }
 }
