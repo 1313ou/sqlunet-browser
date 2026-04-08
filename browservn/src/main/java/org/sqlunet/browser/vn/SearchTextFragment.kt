@@ -32,7 +32,7 @@ class SearchTextFragment : BaseSearchFragment() {
 
     init {
         layoutId = CommonR.layout.fragment_searchtext
-        menuIds = listOf(CommonR.menu.searchtext)
+        menuIds = listOf(CommonR.menu.capture)
         spinnerLabels = R.array.searchtext_modes
         spinnerIcons = R.array.searchtext_icons
     }

@@ -50,7 +50,7 @@ class BrowseFragment : BaseSearchFragment() {
 
     init {
         layoutId = CommonR.layout.fragment_browse
-        menuIds = listOf(R.menu.database, CommonR.menu.browse)
+        menuIds = listOf(R.menu.database, CommonR.menu.capture)
         spinnerLabels = R.array.selectors_names
         spinnerIcons = R.array.selectors_icons
     }

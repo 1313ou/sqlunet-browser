@@ -17,6 +17,7 @@ import org.sqlunet.browser.SplashFragment
 import org.sqlunet.predicatematrix.PmRolePointer
 import org.sqlunet.predicatematrix.settings.Settings.PMMode
 import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.browser.common.R as CommonR
 
 /**
  * PredicateMatrix fragment
@@ -37,7 +38,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
 
     init {
         layoutId = R.layout.fragment_browse_predicatematrix
-        menuIds = listOf(R.menu.predicate_matrix)
+        menuIds = listOf(CommonR.menu.capture)
         spinnerLabels = R.array.predicatematrix_modes
         spinnerIcons = R.array.predicatematrix_icons
     }
