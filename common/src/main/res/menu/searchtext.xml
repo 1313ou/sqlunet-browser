@@ -4,10 +4,12 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
-	<!-- <group> -->
 	<item
-		android:id="@+id/action_main"
-		android:title="@string/action_main"
+		android:id="@+id/action_capture"
+		android:title="@string/action_capture"
 		app:showAsAction="never" />
-	<!-- </group> -->
+	<item
+		android:id="@+id/action_share_capture"
+		android:title="@string/action_share_capture"
+		app:showAsAction="never" />
 </menu>
