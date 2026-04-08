@@ -179,26 +179,27 @@ object MenuHandler {
         return true
     }
 
-    private fun capturedView(activity: AppCompatActivity): View? {
-        var view = activity.findViewById<View>(R.id.container_browse2)
-        if (view != null && view.width > 0 && view.height > 0) {
-            return view
+    private val viewIds = listOf(
+        R.id.container_browse2,
+        R.id.container_browse2m,
+        R.id.container_browse12,
+        R.id.container_browse_extra,
+        R.id.container_browse,
+        R.id.container_browse_extra,
+        R.id.container_senses,
+        R.id.container_data,
+        R.id.container_selectors,
+
+        R.id.container_searchtext
+    )
+
+    private fun capturedView(activity: AppCompatActivity): View? =
+        viewIds.firstNotNullOfOrNull { id ->
+            activity.findViewById<View>(id)?.takeIf { it.width > 0 && it.height > 0 }
+        } ?: run {
+            Toast.makeText(activity, R.string.status_capture_no_view, Toast.LENGTH_SHORT).show()
+            null
         }
-        view = activity.findViewById(R.id.container_browse2m)
-        if (view != null && view.width > 0 && view.height > 0) {
-            return view
-        }
-        view = activity.findViewById(R.id.container_browse_extra)
-        if (view != null && view.width > 0 && view.height > 0) {
-            return view
-        }
-        view = activity.findViewById(R.id.container_searchtext)
-        if (view != null && view.width > 0 && view.height > 0) {
-            return view
-        }
-        Toast.makeText(activity, R.string.status_capture_no_view, Toast.LENGTH_SHORT).show()
-        return null
-    }
 
     /**
      * Dispatch menu item action when can't run
