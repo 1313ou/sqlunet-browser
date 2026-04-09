@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.core.ktx)
 
     implementation(project(":core"))
+    implementation(project(":stub"))
     implementation(project(":common"))
     implementation(project(":expandableListFragment"))
     implementation(project(":assetpacks"))

@@ -103,6 +103,7 @@ dependencies {
 
     implementation(project(":browserwncommon"))
     implementation(project(":core"))
+    implementation(project(":stub"))
     implementation(project(":common"))
     // for manifest
     implementation(project(":wordNet"))
