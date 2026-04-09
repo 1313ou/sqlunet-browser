@@ -6,7 +6,7 @@ private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
 
 android {
-    namespace = "org.sqlunet.browser.base"
+    namespace = "org.sqlunet.browser.stub"
 
     compileSdk = vCompileSdk
 
@@ -42,6 +42,7 @@ dependencies {
     implementation(libs.core.ktx)
 
     implementation(project(":core"))
+    implementation(project(":capture"))
 
     implementation(libs.appcompat)
 }

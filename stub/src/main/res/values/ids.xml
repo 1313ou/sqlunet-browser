@@ -4,6 +4,23 @@
 
 <resources>
 	<item name="toolbar" type="id" />
+
+	<item name="container_browse2" type="id" />
+	<item name="container_browse2m" type="id" />
+	<item name="container_browse12" type="id" />
+	<item name="container_browse_extra" type="id" />
+	<item name="container_browse" type="id" />
+	<item name="container_senses" type="id" />
+	<item name="container_data" type="id" />
+	<item name="container_selectors" type="id" />
+	<item name="container_searchtext" type="id" />
+
+	<item name="action_theme_system" type="id" />
+	<item name="action_theme_night" type="id" />
+	<item name="action_theme_day" type="id" />
+	<item name="action_capture" type="id" />
+	<item name="action_share_capture" type="id" />
+
 	<item name="activity_theme" type="menu" />
 	<item name="activity_capture" type="menu" />
 </resources>

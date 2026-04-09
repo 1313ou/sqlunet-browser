@@ -345,7 +345,6 @@ object MenuHandler {
         R.id.container_browse12,
         R.id.container_browse_extra,
         R.id.container_browse,
-        R.id.container_browse_extra,
         R.id.container_senses,
         R.id.container_data,
         R.id.container_selectors,
