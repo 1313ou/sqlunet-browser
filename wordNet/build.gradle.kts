@@ -49,9 +49,10 @@ dependencies {
     implementation(libs.core.ktx)
 
     implementation(project(":core"))
+    implementation(project(":stub"))
     implementation(project(":xNet"))
     implementation(project(":treeView"))
-    implementation(project(":common"))
+    implementation(project(":preference"))
 
     implementation(libs.appcompat)
     implementation(libs.lifecycle.ktx)

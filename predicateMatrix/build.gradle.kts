@@ -44,6 +44,7 @@ dependencies {
     implementation(libs.core.ktx)
 
     implementation(project(":core"))
+    implementation(project(":stub"))
     implementation(project(":xNet"))
     implementation(project(":treeView"))
     implementation(project(":frameNet"))
