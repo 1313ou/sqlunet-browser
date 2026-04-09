@@ -52,3 +52,4 @@ include(":dbsn_wn31_asset")
 include(":dbsn_ewn_asset")
 
 include(":test-sql")
+include(":stub")

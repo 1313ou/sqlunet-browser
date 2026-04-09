@@ -1,14 +1,15 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
  */
+
 package org.sqlunet.browser
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import org.sqlunet.core.R
-import org.sqlunet.browser.NightMode.createOverrideConfigurationForDayNight
+import org.sqlunet.browser.base.R
 
 /**
  * Abstract activity
@@ -47,14 +48,21 @@ abstract class AbstractActivity : BaseActivity() {
                 .beginTransaction()
                 .setReorderingAllowed(true)
                 .replace(containerId, fragment)
-                // .addToBackStack(fragment.getTag() == null ? "tagless" : fragment.getTag()) 
+                // .addToBackStack(fragment.getTag() == null ? "tagless" : fragment.getTag())
                 .commit()
         }
     }
 
-    override fun onNightModeChanged(mode: Int) {
-        super.onNightModeChanged(mode)
-        val overrideConfig = createOverrideConfigurationForDayNight(this, mode)
-        application.onConfigurationChanged(overrideConfig)
+    // M E N U
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.activity_theme, menu)
+        menuInflater.inflate(R.menu.activity_capture, menu)
+        return true
     }
+
+    // TODO
+    // override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    //     return menuDispatch(this, item)
+    // }
 }
