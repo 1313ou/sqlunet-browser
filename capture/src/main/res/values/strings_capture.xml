@@ -10,4 +10,6 @@
 	<string name="pref_description_capture_in_mediastore">Capture file in MediaStore</string>
 	<string name="pref_title_capture_time_stamped">Time stamp</string>
 	<string name="pref_description_capture_time_stamped">Time-stamped capture</string>
+
+	<string name="status_capture_no_view">No view to capture</string>
 </resources>

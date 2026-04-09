@@ -11,18 +11,20 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import org.sqlunet.browser.EdgeToEdge.updateHorizontalMargin
 import org.sqlunet.browser.NightMode.createOverrideConfigurationForDayNight
 import org.sqlunet.browser.NightMode.isNightMode
-import org.sqlunet.core.R as CoreR
+import org.sqlunet.core.R
 import android.R as AndroidR
 
 /**
@@ -49,7 +51,7 @@ open class BaseActivity : AppCompatActivity() {
         // Resolve custom theme color
         val navBarColor = if (isLandscape) {
             val typedValue = TypedValue()
-            theme.resolveAttribute(CoreR.attr.colorCustom, typedValue, true)
+            theme.resolveAttribute(R.attr.colorCustom, typedValue, true)
             typedValue.data
         } else {
             Color.TRANSPARENT
@@ -113,6 +115,27 @@ open class BaseActivity : AppCompatActivity() {
         } else {
             @Suppress("DEPRECATION")
             overridePendingTransition(0, 0)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_theme_system -> {
+                NightMode.switchToMode(this, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                true
+            }
+
+            R.id.action_theme_night -> {
+                NightMode.switchToMode(this, AppCompatDelegate.MODE_NIGHT_YES)
+                true
+            }
+
+            R.id.action_theme_day -> {
+                NightMode.switchToMode(this, AppCompatDelegate.MODE_NIGHT_NO)
+                true
+            }
+
+            else -> false
         }
     }
 

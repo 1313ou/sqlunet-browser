@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2026. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<resources>
+	<item name="toolbar" type="id" />
+
+	<item name="container_browse2" type="id" />
+	<item name="container_browse2m" type="id" />
+	<item name="container_browse12" type="id" />
+	<item name="container_browse_extra" type="id" />
+	<item name="container_browse" type="id" />
+	<item name="container_senses" type="id" />
+	<item name="container_data" type="id" />
+	<item name="container_selectors" type="id" />
+	<item name="container_searchtext" type="id" />
+</resources>

@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.util.Log
 import androidx.annotation.StyleRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.view.ContextThemeWrapper
 
@@ -45,8 +46,16 @@ object NightMode {
         return overrideConf
     }
 
-    fun wrapContext(context: Context, newConfig: Configuration?, @StyleRes themeId: Int): Context {
-        val newContext = context.createConfigurationContext(newConfig!!)
+    /**
+     * Wrap context
+     *
+     * @param context context
+     * @param newConfig new config
+     * @param themeId theme id
+     * @return wrapped context
+     */
+    fun wrapContext(context: Context, newConfig: Configuration, @StyleRes themeId: Int): Context {
+        val newContext = context.createConfigurationContext(newConfig)
         return ContextThemeWrapper(newContext, themeId)
     }
 
@@ -82,6 +91,12 @@ object NightMode {
         }
     }
 
+    /**
+     * Check dark mode
+     *
+     * @param expected expected value
+     * @return true if expected is actual value
+     */
     fun checkDarkMode(expected: Int): Boolean {
         return when (val mode = AppCompatDelegate.getDefaultNightMode()) {
             AppCompatDelegate.MODE_NIGHT_YES -> {
@@ -105,6 +120,21 @@ object NightMode {
             AppCompatDelegate.MODE_NIGHT_AUTO_TIME -> throw IllegalStateException("Unexpected value: $mode")
 
             else -> throw IllegalStateException("Unexpected value: $mode")
+        }
+    }
+
+    /**
+     * Switch to light mode
+     *
+     * @param activity activity
+     * @param mode mode
+     */
+    fun switchToMode(activity: AppCompatActivity, mode: Int) {
+        Log.d("MenuHandler", "set $mode mode from " + activity.componentName)
+        if (AppCompatDelegate.getDefaultNightMode() != mode) {
+            activity.window.decorView.post {
+                AppCompatDelegate.setDefaultNightMode(mode)
+            }
         }
     }
 }

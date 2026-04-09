@@ -11,11 +11,12 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import org.sqlunet.browser.stub.R
 import com.bbou.capture.Capture.captureAndSave
 import com.bbou.capture.Capture.captureAndShare
 import com.bbou.capture.Capture.getBackgroundFromTheme
-import org.sqlunet.browser.Utils.capturedView
+import com.bbou.capture.Captured.capturedView
+import org.sqlunet.browser.stub.R
+import org.sqlunet.core.R as CoreR
 
 /**
  * Abstract activity
@@ -68,20 +69,20 @@ abstract class AbstractDataActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_theme_system -> {
-                Utils.switchToLightMode(this, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-                return true
+        return when (item.itemId) {
+            CoreR.id.action_theme_system -> {
+                NightMode.switchToMode(this, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                 true
             }
 
-            R.id.action_theme_night -> {
-                Utils.switchToLightMode(this, AppCompatDelegate.MODE_NIGHT_YES)
-                return true
+            CoreR.id.action_theme_night -> {
+                NightMode.switchToMode(this, AppCompatDelegate.MODE_NIGHT_YES)
+                 true
             }
 
-            R.id.action_theme_day -> {
-                Utils.switchToLightMode(this, AppCompatDelegate.MODE_NIGHT_NO)
-                return true
+            CoreR.id.action_theme_day -> {
+                NightMode.switchToMode(this, AppCompatDelegate.MODE_NIGHT_NO)
+                 true
             }
 
             R.id.action_capture -> {
@@ -90,7 +91,7 @@ abstract class AbstractDataActivity : BaseActivity() {
                     val bg: Int = getBackgroundFromTheme(this)
                     captureAndSave(view, this, backGround = bg)
                 }
-                return true
+                 true
             }
 
             R.id.action_share_capture -> {
@@ -99,10 +100,10 @@ abstract class AbstractDataActivity : BaseActivity() {
                     val bg: Int = getBackgroundFromTheme(this)
                     captureAndShare(view, this, backGround = bg)
                 }
-                return true
+                 true
             }
 
-            else -> return false
+            else ->  false
         }
     }
 }
