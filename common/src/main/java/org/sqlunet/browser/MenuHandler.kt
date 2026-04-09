@@ -179,28 +179,6 @@ object MenuHandler {
         return true
     }
 
-    private val viewIds = listOf(
-        R.id.container_browse2,
-        R.id.container_browse2m,
-        R.id.container_browse12,
-        R.id.container_browse_extra,
-        R.id.container_browse,
-        R.id.container_browse_extra,
-        R.id.container_senses,
-        R.id.container_data,
-        R.id.container_selectors,
-
-        R.id.container_searchtext
-    )
-
-    private fun capturedView(activity: AppCompatActivity): View? =
-        viewIds.firstNotNullOfOrNull { id ->
-            activity.findViewById<View>(id)?.takeIf { it.width > 0 && it.height > 0 }
-        } ?: run {
-            Toast.makeText(activity, R.string.status_capture_no_view, Toast.LENGTH_SHORT).show()
-            null
-        }
-
     /**
      * Dispatch menu item action when can't run
      *
@@ -344,16 +322,6 @@ object MenuHandler {
         return true
     }
 
-    fun switchToLightMode(activity: AppCompatActivity, mode: Int) {
-        Log.d("MenuHandler", "set $mode mode from " + activity.componentName)
-        if (AppCompatDelegate.getDefaultNightMode() != mode) {
-            activity.window.decorView.post {
-                AppCompatDelegate.setDefaultNightMode(mode)
-                //activity.recreate()
-            }
-        }
-    }
-
     /**
      * Dispatch menu item action, handle home
      *
@@ -369,24 +337,39 @@ object MenuHandler {
         return false
     }
 
-    /*
-	static public void populateAssets(@NonNull Context context, @NonNull Menu menu)
-	{
-		MenuItem menuItem = menu.findItem(R.id.action_assets)
-		if (menuItem != null)
-		{
-			Menu subMenu = menuItem.getSubMenu()
-			if (subMenu != null)
-			{
-				var res = context.getResources()
-				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_deliver_primary), R.string.action_asset_deliver_format, R.string.asset_primary_name)
-				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_dispose_primary), R.string.action_asset_dispose_format, R.string.asset_primary_name)
-				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_deliver_alt), R.string.action_asset_deliver_format, R.string.asset_alt_name)
-				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_dispose_alt), R.string.action_asset_dispose_format, R.string.asset_alt_name)
-			}
-		}
-	}
-	*/
+    // H E L P E R S
+
+    private val viewIds = listOf(
+        R.id.container_browse2,
+        R.id.container_browse2m,
+        R.id.container_browse12,
+        R.id.container_browse_extra,
+        R.id.container_browse,
+        R.id.container_browse_extra,
+        R.id.container_senses,
+        R.id.container_data,
+        R.id.container_selectors,
+
+        R.id.container_searchtext
+    )
+
+    private fun capturedView(activity: AppCompatActivity): View? =
+        viewIds.firstNotNullOfOrNull { id ->
+            activity.findViewById<View>(id)?.takeIf { it.width > 0 && it.height > 0 }
+        } ?: run {
+            Toast.makeText(activity, R.string.status_capture_no_view, Toast.LENGTH_SHORT).show()
+            null
+        }
+
+    private fun switchToLightMode(activity: AppCompatActivity, mode: Int) {
+        Log.d("MenuHandler", "set $mode mode from " + activity.componentName)
+        if (AppCompatDelegate.getDefaultNightMode() != mode) {
+            activity.window.decorView.post {
+                AppCompatDelegate.setDefaultNightMode(mode)
+            }
+        }
+    }
+
     private fun setAssetActionTitle(res: Resources, menuItem: MenuItem?, @StringRes formatId: Int, @StringRes assetNameId: Int) {
         if (menuItem != null) {
             val title = String.format(res.getString(formatId), res.getString(assetNameId))
@@ -394,7 +377,7 @@ object MenuHandler {
         }
     }
 
-    fun disableDataChange(menu: Menu) {
+    private fun disableDataChange(menu: Menu) {
         // MenuHandler.populateAssets(this, menu)
         val submenuItem = menu.findItem(R.id.action_data)
         if (submenuItem != null) {
