@@ -6,17 +6,23 @@ package org.sqlunet.browser
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import org.sqlunet.browser.base.R
+import org.sqlunet.browser.stub.R
+import com.bbou.capture.Capture.captureAndSave
+import com.bbou.capture.Capture.captureAndShare
+import com.bbou.capture.Capture.getBackgroundFromTheme
+import org.sqlunet.browser.Utils.capturedView
 
 /**
  * Abstract activity
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract class AbstractActivity : BaseActivity() {
+abstract class AbstractDataActivity : BaseActivity() {
 
     protected abstract val layoutId: Int
     protected abstract val containerId: Int
@@ -61,8 +67,42 @@ abstract class AbstractActivity : BaseActivity() {
         return true
     }
 
-    // TODO
-    // override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    //     return menuDispatch(this, item)
-    // }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_theme_system -> {
+                Utils.switchToLightMode(this, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                return true
+            }
+
+            R.id.action_theme_night -> {
+                Utils.switchToLightMode(this, AppCompatDelegate.MODE_NIGHT_YES)
+                return true
+            }
+
+            R.id.action_theme_day -> {
+                Utils.switchToLightMode(this, AppCompatDelegate.MODE_NIGHT_NO)
+                return true
+            }
+
+            R.id.action_capture -> {
+                val view = capturedView(this)
+                if (view != null) {
+                    val bg: Int = getBackgroundFromTheme(this)
+                    captureAndSave(view, this, backGround = bg)
+                }
+                return true
+            }
+
+            R.id.action_share_capture -> {
+                val view = capturedView(this)
+                if (view != null) {
+                    val bg: Int = getBackgroundFromTheme(this)
+                    captureAndShare(view, this, backGround = bg)
+                }
+                return true
+            }
+
+            else -> return false
+        }
+    }
 }

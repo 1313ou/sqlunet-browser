@@ -4,7 +4,7 @@
 package org.sqlunet.framenet.browser
 
 import androidx.fragment.app.Fragment
-import org.sqlunet.browser.AbstractActivity
+import org.sqlunet.browser.AbstractDataActivity
 import org.sqlunet.framenet.R
 
 /**
@@ -12,7 +12,7 @@ import org.sqlunet.framenet.R
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class FnSentenceActivity : AbstractActivity() {
+class FnSentenceActivity : AbstractDataActivity() {
 
     override val layoutId: Int
         get() = R.layout.activity_fnsentence

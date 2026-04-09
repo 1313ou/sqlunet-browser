@@ -4,7 +4,7 @@
 package org.sqlunet.verbnet.browser
 
 import androidx.fragment.app.Fragment
-import org.sqlunet.browser.AbstractActivity
+import org.sqlunet.browser.AbstractDataActivity
 import org.sqlunet.verbnet.R
 
 /**
@@ -12,7 +12,7 @@ import org.sqlunet.verbnet.R
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class VnClassActivity : AbstractActivity() {
+class VnClassActivity : AbstractDataActivity() {
 
     override val layoutId: Int
         get() = R.layout.activity_vnclass

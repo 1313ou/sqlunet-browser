@@ -4,7 +4,7 @@
 package org.sqlunet.propbank.browser
 
 import androidx.fragment.app.Fragment
-import org.sqlunet.browser.AbstractActivity
+import org.sqlunet.browser.AbstractDataActivity
 import org.sqlunet.propbank.R
 
 /**
@@ -12,7 +12,7 @@ import org.sqlunet.propbank.R
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class PbRoleSetActivity : AbstractActivity() {
+class PbRoleSetActivity : AbstractDataActivity() {
 
     override val layoutId: Int
         get() = R.layout.activity_pbroleset
