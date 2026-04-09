@@ -6,8 +6,8 @@ package org.sqlunet.wordnet.settings
 import android.os.Bundle
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import org.sqlunet.settings.BitAggregatePreference
-import org.sqlunet.settings.BitAggregatePreference.Companion.apply
+import org.sqlunet.preference.BitAggregatePreference
+import org.sqlunet.preference.BitAggregatePreference.Companion.apply
 
 import org.sqlunet.wordnet.R
 import org.sqlunet.wordnet.settings.Settings.PREF_RELATION_FILTER

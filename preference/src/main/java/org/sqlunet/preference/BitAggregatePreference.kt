@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
-package org.sqlunet.settings
+package org.sqlunet.preference
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,8 +12,6 @@ import android.util.AttributeSet
 import androidx.core.content.res.use
 import androidx.preference.CheckBoxPreference
 import androidx.preference.Preference
-
-import org.sqlunet.browser.common.R
 
 /**
  * Aggregate preference (aggregate bits to long)
