@@ -5,9 +5,6 @@
 <resources>
 	<item name="toolbar" type="id" />
 
-	<item name="activity_theme" type="menu" />
-	<item name="activity_capture" type="menu" />
-
 	<item name="action_capture" type="id" />
 	<item name="action_share_capture" type="id" />
 </resources>

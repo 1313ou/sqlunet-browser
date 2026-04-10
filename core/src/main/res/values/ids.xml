@@ -11,6 +11,7 @@
 	<item name="nav_view" type="id" />
 	<item name="search_view_data_container" type="id" />
 
+	<item name="action_theme" type="id" />
 	<item name="action_theme_system" type="id" />
 	<item name="action_theme_night" type="id" />
 	<item name="action_theme_day" type="id" />
