@@ -63,7 +63,8 @@ abstract class AbstractDataActivity : BaseActivity() {
     // M E N U
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.activity_theme, menu)
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(CoreR.menu.activity_theme, menu)
         menuInflater.inflate(R.menu.activity_capture, menu)
         return true
     }
