@@ -4,12 +4,9 @@
 package org.sqlunet.browser.wn
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import org.sqlunet.browser.AbstractBrowse2Activity
-import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.getParcelable
 import org.sqlunet.browser.wn.lib.R
 import org.sqlunet.provider.ProviderArgs
