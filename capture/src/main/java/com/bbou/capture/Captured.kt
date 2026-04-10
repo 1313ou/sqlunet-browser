@@ -16,6 +16,18 @@ object Captured {
         R.id.container_browse_extra,
         R.id.container_browse,
         R.id.container_senses,
+        R.id.container_sense,
+        R.id.container_synset,
+        R.id.container_relation,
+        R.id.container_word,
+        R.id.container_fnframe,
+        R.id.container_fnlexunit,
+        R.id.container_fnsentence,
+        R.id.container_fnannoset,
+        R.id.container_vnclass,
+        R.id.container_pbroleset,
+        R.id.container_collocation,
+
         R.id.container_data,
         R.id.container_selectors,
 

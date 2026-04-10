@@ -11,6 +11,18 @@
 	<item name="container_browse_extra" type="id" />
 	<item name="container_browse" type="id" />
 	<item name="container_senses" type="id" />
+	<item name="container_sense" type="id" />
+	<item name="container_synset" type="id" />
+	<item name="container_relation" type="id" />
+	<item name="container_word" type="id" />
+	<item name="container_fnframe" type="id" />
+	<item name="container_fnlexunit" type="id" />
+	<item name="container_fnsentence" type="id" />
+	<item name="container_fnannoset" type="id" />
+	<item name="container_vnclass" type="id" />
+	<item name="container_pbroleset" type="id" />
+	<item name="container_collocation" type="id" />
+
 	<item name="container_data" type="id" />
 	<item name="container_selectors" type="id" />
 	<item name="container_searchtext" type="id" />
