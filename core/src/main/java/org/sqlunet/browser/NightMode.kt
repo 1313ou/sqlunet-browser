@@ -14,8 +14,6 @@ import androidx.appcompat.view.ContextThemeWrapper
 
 object NightMode {
 
-    private const val TAG = "NightMode"
-
     fun toConfigurationUiMode(mode: Int): Int {
         return when (mode) {
             AppCompatDelegate.MODE_NIGHT_YES -> Configuration.UI_MODE_NIGHT_YES
@@ -138,5 +136,5 @@ object NightMode {
         }
     }
 
-    const val TAG = "Day/Night"
+    private const val TAG = "Day/Night"
 }
