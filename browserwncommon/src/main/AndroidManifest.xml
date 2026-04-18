@@ -363,7 +363,7 @@
 			/>
 
 		<provider
-			android:name="org.sqlunet.browser.history.SearchSuggestionsProvider"
+			android:name="org.sqlunet.browser.history.HistoryProvider"
 			android:authorities="@string/history_authority"
 			android:exported="false" />
 

@@ -29,9 +29,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.common.R
-import org.sqlunet.browser.history.History.makeSearchIntent
-import org.sqlunet.browser.history.History.recordQuery
-import org.sqlunet.browser.history.SearchRecentSuggestions.Companion.getAuthority
+import org.sqlunet.browser.history.History.Companion.getAuthority
+import org.sqlunet.browser.history.History.Companion.makeSearchIntent
+import org.sqlunet.browser.history.History.Companion.recordQuery
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.FileOutputStream
@@ -87,9 +87,9 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             if (cursor != null && cursor.moveToPosition(position)) {
                 val itemIdIdx = cursor.getColumnIndex("_id")
                 val itemId = cursor.getString(itemIdIdx)
-                val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
+                val dataIdx = cursor.getColumnIndex(History.SuggestionColumns.DISPLAY1)
                 val data = cursor.getString(dataIdx)
-                val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                val suggestions = History(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
                 suggestions.delete(itemId)
                 // Restart the loader to get the updated cursor
                 LoaderManager.getInstance(this@HistoryFragment).restartLoader(LOADER_ID, null, this@HistoryFragment)
@@ -135,7 +135,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     override fun onCreateLoader(loaderID: Int, args: Bundle?): Loader<Cursor> {
-        val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+        val suggestions = History(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
         return suggestions.cursorLoader()
     }
 
@@ -158,7 +158,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             if (cursor?.moveToPosition(position) == true) {
-                val dataIdx = cursor!!.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
+                val dataIdx = cursor!!.getColumnIndex(History.SuggestionColumns.DISPLAY1)
                 val query = cursor!!.getString(dataIdx)
                 holder.textView.text = query
                 holder.itemView.setOnClickListener {
@@ -221,11 +221,11 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 FileOutputStream(pfd!!.fileDescriptor).use { fileOutputStream ->
                     OutputStreamWriter(fileOutputStream).use { writer ->
                         BufferedWriter(writer).use { bw ->
-                            val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                            val suggestions = History(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
                             suggestions.cursor().use { cursor ->
                                 if (cursor?.moveToFirst() == true) {
                                     do {
-                                        val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
+                                        val dataIdx = cursor.getColumnIndex(History.SuggestionColumns.DISPLAY1)
                                         val data = cursor.getString(dataIdx)
                                         bw.write(data + '\n')
                                     } while (cursor.moveToNext())

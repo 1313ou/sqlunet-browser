@@ -16,7 +16,7 @@ import org.sqlunet.browser.BaseSearchFragment
 import org.sqlunet.browser.BrowseSplashFragment
 import org.sqlunet.browser.SplashFragment
 import org.sqlunet.browser.config.TableActivity
-import org.sqlunet.browser.history.History.recordQuery
+import org.sqlunet.browser.history.History.Companion.recordQuery
 import org.sqlunet.browser.vn.web.WebActivity
 import org.sqlunet.browser.vn.web.WebFragment
 import org.sqlunet.browser.vn.xselector.XBrowse1Activity

@@ -50,7 +50,7 @@ import org.sqlunet.browser.ColorUtils.fetchColor
 import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
-import org.sqlunet.browser.history.SearchRecentSuggestions
+import org.sqlunet.browser.history.History
 import java.io.IOException
 import com.google.android.material.R as MaterialR
 
@@ -500,9 +500,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         viewLifecycleOwner.lifecycleScope.launch {
             try {
                 val history = withContext(Dispatchers.IO) {
-                    val suggestions = SearchRecentSuggestions(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                    val suggestions = History(AppContext.context, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
                     suggestions.cursor()?.use { cursor ->
-                        val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
+                        val dataIdx = cursor.getColumnIndex(History.SuggestionColumns.DISPLAY1)
                         generateSequence { if (cursor.moveToNext()) cursor else null }
                             .map { it.getString(dataIdx) to R.drawable.ic_history }
                             .toList()

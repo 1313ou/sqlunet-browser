@@ -10,11 +10,11 @@ import android.content.SearchRecentSuggestionsProvider
  *
  * @author Bernard Bou
  */
-class SearchSuggestionsProvider : SearchRecentSuggestionsProvider() {
+class HistoryProvider : SearchRecentSuggestionsProvider() {
 
     override fun onCreate(): Boolean {
         val context = context!!
-        val authority = SearchRecentSuggestions.getAuthority(context)
+        val authority = History.getAuthority(context)
         setupSuggestions(authority, MODE)
         return super.onCreate()
     }
