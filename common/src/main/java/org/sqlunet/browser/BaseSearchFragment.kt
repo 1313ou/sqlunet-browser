@@ -346,19 +346,22 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * Set up search view
      */
     private fun takeSearchView() {
-        Log.d(TAG, "SearchView: controlled by $this")
 
+        // s e a r c h   i n f o
+        val searchableInfo = getSearchInfo() ?: return // safety check
+
+        // s e a r c h   v i e w
         searchView.apply {
 
+            // query
             query?.let { setText(it) }
 
-            // s e a r c h   i n f o
-            val searchableInfo = getSearchInfo() ?: return@apply // safety check
+            // hint
             searchableInfo.hintId.takeIf { it != 0 }?.let {
                 hint = getString(it)
             }
 
-            // e d i t t e x t   t w e a k
+            // tweak look n feel
             editText.pillbox()
 
             // s u b m i s s i o n
@@ -382,7 +385,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             searchTransitionListener = SearchView.TransitionListener { _, _, newState ->
                 onBackPressedCallback.isEnabled = (newState == SearchView.TransitionState.SHOWN)
             }
-            searchTransitionListener?.let { addTransitionListener(it) }
+            addTransitionListener(searchTransitionListener!!)
 
             // m e n u
             searchView.toolbar.menu.clear()
@@ -436,6 +439,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 }
             }
         }
+        Log.d(TAG, "SearchView: controlled by $this")
     }
 
     private fun releaseSearchView() {
