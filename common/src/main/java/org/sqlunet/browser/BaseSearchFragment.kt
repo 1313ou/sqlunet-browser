@@ -509,6 +509,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     } ?: emptyList()
                 }
                 (suggestionContainer.adapter as? SuggestionAdapter)?.submitAddedList(history)
+                suggestionContainer.scrollToPosition(0)
             } catch (e: IOException) {
                 Log.e(TAG, "While getting history", e)
             }
