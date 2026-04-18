@@ -124,17 +124,19 @@ object NightMode {
     }
 
     /**
-     * Switch to light mode
+     * Switch to day/night mode
      *
      * @param activity activity
      * @param mode mode
      */
     fun switchToMode(activity: AppCompatActivity, mode: Int) {
-        Log.d("MenuHandler", "set $mode mode from " + activity.componentName)
+        Log.d(TAG, "set $mode mode for ${activity.componentName}")
         if (AppCompatDelegate.getDefaultNightMode() != mode) {
             activity.window.decorView.post {
                 AppCompatDelegate.setDefaultNightMode(mode)
             }
         }
     }
+
+    const val TAG = "Day/Night"
 }
