@@ -174,7 +174,6 @@
 	<!-- misc -->
 	<string name="hint_search">Search</string>
 	<string name="hint_searchtext">Text search</string>
-	<string name="hint_history">History</string>
 	<string name="hint_splash_browse">Exploring senses and semantic roles</string>
 	<string name="hint_splash_searchtext">Text search</string>
 	<string name="hint_sql">SQL statements stack</string>
@@ -212,6 +211,7 @@
 	<string name="title_history_import">Imported from</string>
 	<string name="title_history_export">Exported to</string>
 	<string name="title_history_deleted">History deleted</string>
+	<string name="title_add_history">Add history</string>
 	<string name="title_sql_howto">Long-press to select and copy statement</string>
 
 	<!-- rows -->

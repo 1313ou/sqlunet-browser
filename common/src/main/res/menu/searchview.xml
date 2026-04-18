@@ -10,7 +10,7 @@
 	<item
 		android:id="@+id/searchview_history"
 		android:icon="@drawable/ic_history"
-		android:title="@string/hint_history"
+		android:title="@string/title_add_history"
 		app:showAsAction="always"
 		app:iconTint="?attr/colorOnCustom"
 		tools:ignore="AlwaysShowAction" />
