@@ -28,8 +28,8 @@
 		<item name="liftOnScroll">false</item>
 	</style>
 
-	<!-- Search view -->
-	<style name="MySearchViewStyle" parent="Widget.Material3.SearchView">
+	<!-- M3 Search view -->
+	<style name="MyM3SearchViewStyle" parent="Widget.Material3.SearchView">
 		<item name="backgroundTint">?attr/colorCustom</item>
 	</style>
 

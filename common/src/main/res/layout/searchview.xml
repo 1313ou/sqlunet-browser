@@ -5,7 +5,7 @@
 <com.google.android.material.search.SearchView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/search_view"
-	style="@style/MySearchViewStyle"
+	style="@style/MyM3SearchViewStyle"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:hint="@string/hint_search"
