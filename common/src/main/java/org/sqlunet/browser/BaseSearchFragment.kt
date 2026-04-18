@@ -23,6 +23,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.BaseAdapter
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
@@ -351,19 +352,37 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
             query?.let { setText(it) }
 
-            // e d i t t e x t   t w e a k
-            editText.apply {
-                // set the white pill background
-                setBackgroundResource(R.drawable.searchview_edittext_pill)
-                setTextColor(fetchColor(context, MaterialR.attr.colorOnSurface))
-                // match the height
-                layoutParams.height = resources.getDimensionPixelSize(R.dimen.search_pill_height)
-                // center text vertically
-                val horizontalPadding = resources.getDimensionPixelSize(R.dimen.search_pill_horizontal_padding)
-                setPadding(horizontalPadding, 0, horizontalPadding, 0)
-                // optional: adjust gravity to center the text perfectly
-                gravity = Gravity.CENTER_VERTICAL
+            // s e a r c h   i n f o
+            val searchableInfo = getSearchInfo() ?: return@apply // safety check
+            searchableInfo.hintId.takeIf { it != 0 }?.let {
+                hint = getString(it)
             }
+
+            // e d i t t e x t   t w e a k
+            editText.pillbox()
+
+            // s u b m i s s i o n
+            editText.setOnEditorActionListener { textView, _, _ ->
+                val query = textView.text.toString()
+
+                // update search bar with the submitted query
+                searchBar.setText(searchView.text.toString())
+
+                // close the search view after submission
+                searchView.hide()
+
+                // emulate what the legacy SearchView did automatically
+                // trigger the search intent manually for M3 SearchView
+                performSearch(query, searchableInfo)
+                true
+            }
+
+            // b a c k   h a n d l e r
+            // update the SearchView listener to toggle the existing member callback
+            searchTransitionListener = SearchView.TransitionListener { _, _, newState ->
+                onBackPressedCallback.isEnabled = (newState == SearchView.TransitionState.SHOWN)
+            }
+            searchTransitionListener?.let { addTransitionListener(it) }
 
             // m e n u
             searchView.toolbar.menu.clear()
@@ -381,35 +400,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                         handled || menuDispatch((requireActivity() as AppCompatActivity), menuItem)
                     }
                 }
-            }
-
-            // b a c k   h a n d l e r
-            // update the SearchView listener to toggle the existing member callback
-            searchTransitionListener = SearchView.TransitionListener { _, _, newState ->
-                onBackPressedCallback.isEnabled = (newState == SearchView.TransitionState.SHOWN)
-            }
-            searchTransitionListener?.let { addTransitionListener(it) }
-
-            // s e a r c h   i n f o
-            val searchableInfo = getSearchInfo() ?: return@apply // safety check
-            searchableInfo.hintId.takeIf { it != 0 }?.let {
-                hint = getString(it)
-            }
-
-            // s u b m i s s i o n
-            editText.setOnEditorActionListener { textView, _, _ ->
-                val query = textView.text.toString()
-
-                // update search bar with the submitted query
-                searchBar.setText(searchView.text.toString())
-
-                // close the search view after submission
-                searchView.hide()
-
-                // emulate what the legacy SearchView did automatically
-                // trigger the search intent manually for M3 SearchView
-                performSearch(query, searchableInfo)
-                true
             }
 
             // s u g g e s t i o n s
@@ -467,6 +457,18 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         Log.d(TAG, "SearchView: released by $this")
     }
 
+    private fun EditText.pillbox() {
+        setBackgroundResource(R.drawable.searchview_edittext_pill)
+        setTextColor(fetchColor(context, MaterialR.attr.colorOnSurface))
+        // match the height
+        layoutParams.height = resources.getDimensionPixelSize(R.dimen.search_pill_height)
+        // center text vertically
+        val horizontalPadding = resources.getDimensionPixelSize(R.dimen.search_pill_horizontal_padding)
+        setPadding(horizontalPadding, 0, horizontalPadding, 0)
+        // optional: adjust gravity to center the text perfectly
+        gravity = Gravity.CENTER_VERTICAL
+    }
+
     private fun getSuggestions(query: String, searchableInfo: SearchableInfo): List<Pair<String, Int>> {
         val authority = searchableInfo.suggestAuthority
         val path = searchableInfo.suggestPath ?: ""
@@ -514,7 +516,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         return searchManager?.getSearchableInfo(activity?.componentName ?: return null)
     }
 
-    fun performSearch(query: String, searchableInfo: SearchableInfo) {
+    private fun performSearch(query: String, searchableInfo: SearchableInfo) {
         val intent = Intent(Intent.ACTION_SEARCH).apply {
             component = searchableInfo.searchActivity
             putExtra(SearchManager.QUERY, query)
