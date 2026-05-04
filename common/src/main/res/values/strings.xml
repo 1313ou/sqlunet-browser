@@ -164,6 +164,7 @@
 	<string name="ask_drop">Do you wish to drop the database ?</string>
 	<string name="fix_it">Fix it</string>
 	<string name="description_cancel">Cancel operation</string>
+	<string name="title_dismiss" />
 
 	<!-- gloss -->
 	<string name="gloss_load">You need to acquire database</string>

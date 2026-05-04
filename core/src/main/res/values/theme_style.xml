@@ -51,4 +51,12 @@
 		<item name="android:popupBackground">?attr/colorCustom</item>
 	</style>
 
+	<!-- A L E R T   D I A L O G S -->
+
+	<!-- M3 Alert Dialog overlay -->
+	<style name="MyM3AlertDialogOverlay" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+		<item name="android:backgroundTint">?attr/colorCustom</item>
+		<!-- <item name="colorPrimary">?attr/colorOnPrimary</item>-->
+	</style>
+
 </resources>

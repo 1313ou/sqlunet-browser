@@ -6,6 +6,7 @@ package org.sqlunet.browser
 import android.content.Context
 import android.content.res.Resources
 import android.content.res.Resources.Theme
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.TypedValue
 import android.view.View
@@ -16,6 +17,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StyleRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.use
 import androidx.core.content.withStyledAttributes
 import com.google.android.material.color.MaterialColors
 
@@ -28,75 +30,241 @@ object ColorUtils {
 
     // colors
 
+    /**
+     * Get color
+     *
+     * @param context context
+     * @param resId resource id
+     * @return color int
+     */
+    @JvmStatic
     @ColorInt
-    fun getColor(context: Context, @ColorRes colorRes: Int): Int {
-        return getColor(context.resources, context.theme, colorRes)
-    }
-
-    @ColorInt
-    private fun getColor(res: Resources, theme: Theme?, @ColorRes colorRes: Int): Int {
-        return res.getColor(colorRes, theme)
-    }
-
-    @ColorInt
-    fun getColors(context: Context, @ColorRes vararg colorRes: Int): IntArray {
-        val result = IntArray(colorRes.size)
-        for (i in colorRes.indices) {
-            result[i] = getColor(context, colorRes[i])
-        }
-        return result
-    }
-
-   @ColorInt
-    fun fetchColor(context: Context, @AttrRes attr: Int): Int {
-        val resId = fetchColorResId(context, attr)
+    fun getColor(context: Context, @ColorRes resId: Int): Int {
         return ContextCompat.getColor(context, resId)
-        // return typedValue.data from typedValue
     }
 
-    @ColorRes
-    private fun fetchColorResId(context: Context, @AttrRes attr: Int): Int {
+    /**
+     * Get color
+     *
+     * @param context context
+     * @param resIds resource ids
+     * @return color int array
+     */
+    @JvmStatic
+    fun getColors(context: Context, @ColorRes vararg resIds: Int): IntArray {
+        return IntArray(resIds.size) {
+            getColor(context, resIds[it])
+        }
+    }
+
+    /**
+     * Add transparency
+     * @receiver color int
+     * @param alpha 0.0 to 1.0
+     */
+    fun Int.withAlpha(alpha: Float): Int {
+        val alphaInt = (alpha.coerceIn(0f, 1f) * 255).toInt()
+        return (this and 0x00FFFFFF) or (alphaInt shl 24)
+    }
+
+    // theme color attr
+
+    /**
+     * Fetch colors resources
+     *
+     * @param context context
+     * @param colorAttr color attribute
+     * @return color int
+     */
+    @JvmStatic
+    @ColorInt
+    fun fetchColor(context: Context, @AttrRes colorAttr: Int): Int {
+        return fetchColorNullable(context, colorAttr) ?: Color.TRANSPARENT
+    }
+
+    /**
+     * Fetch colors resources
+     *
+     * @param context context
+     * @param colorAttr color attribute
+     * @return color int
+     */
+    @JvmStatic
+    @ColorInt
+    fun fetchColorNullable(context: Context, @AttrRes colorAttr: Int): Int? {
         val typedValue = TypedValue()
-        context.theme.resolveAttribute(attr, typedValue, true)
-        return typedValue.resourceId
+        val wasResolved = context.theme.resolveAttribute(colorAttr, typedValue, true)
+        return if (wasResolved) {
+            if (typedValue.type >= TypedValue.TYPE_FIRST_COLOR_INT &&
+                typedValue.type <= TypedValue.TYPE_LAST_COLOR_INT
+            ) {
+                // It's a raw hex value like #FF0000 defined directly in the theme
+                typedValue.data
+            } else {
+                // It's a reference to a color resource (@color/...)
+                // Must use ContextCompat or Resources to get the actual hex
+                getColor(context, typedValue.resourceId)
+            }
+        } else null
     }
 
     /**
-     * Fetch text color
+     * Fetch colors resources from theme
      *
-     * @param view view
-     * @param attr color attribute like android.R.attr.background
-     * @return color
+     * @param context context
+     * @param colorAttrs attributes
+     * Expects an array of Attribute IDs (@AttrRes attrs)
+     * Even though passing a dynamic array of @AttrRes (the IDs), the compiler treats that array as a "temporary styleable."
+     * @return array of int resources, with 0 value if not found
      */
+    @JvmStatic
     @ColorInt
-    fun fetchColorFromView(view: View, @AttrRes attr: Int): Int {
-        return MaterialColors.getColor(view, attr)
-    }
-
-    /**
-     * Fetch colors from style
-     *
-     * @param context activity or view's context
-     * @param style style resource id
-     * @param attrs color attribute like android.R.attr.background, android.R.attr.textColor
-     * @return colors
-     */
-    @ColorInt
-    fun fetchColorsFromStyle(context: Context, @StyleRes style: Int, @AttrRes attrs: IntArray): IntArray {
-        val colors = IntArray(attrs.size)
-        context.withStyledAttributes(style, attrs) {
-            for (i in attrs.indices) {
-                colors[i] = getColor(i, 0)
+    fun fetchColors(
+        context: Context,
+        vararg colorAttrs: /* @AttrRes */ Int
+    ): IntArray {
+        context.obtainStyledAttributes(colorAttrs).use { typedArray ->
+            return IntArray(colorAttrs.size) { i ->
+                typedArray.getColor(i, 0)
             }
         }
-        return colors
     }
+
+    /**
+     * Fetch colors resources from theme
+     *
+     * @param context context
+     * @param colorAttrs attributes
+     * Expects an array of Attribute IDs (@AttrRes attrs)
+     * Even though passing a dynamic array of @AttrRes (the IDs), the compiler treats that array as a "temporary styleable."
+     * @return array of Integer resources, with null value if not found
+     */
+    @JvmStatic
+    @ColorInt
+    fun fetchColorsNullable(
+        context: Context,
+        vararg colorAttrs: /* @AttrRes */ Int
+    ): Array<Int?> {
+        context.obtainStyledAttributes(colorAttrs).use {
+            return Array(colorAttrs.size) { i ->
+                if (it.hasValue(i)) it.getColor(i, 0) else null
+            }
+        }
+    }
+
+    /**
+     * Fetch colors resources from style
+     *
+     * @param context context
+     * @param styleId style id (e.g.: R.style.actionBarTheme)
+     * @param colorAttrs color attributes
+     * Expects an array of Attribute IDs (@AttrRes attrs)
+     * Even though passing a dynamic array of @AttrRes (the IDs), the compiler treats that array as a "temporary styleable."
+     * @return array of int resources, with 0 value if not found
+     */
+    @JvmStatic
+    @ColorInt
+    fun fetchColorsFromStyle(
+        context: Context,
+        @StyleRes styleId: Int,
+        vararg colorAttrs: /* @AttrRes */ Int
+    ): IntArray {
+        context.obtainStyledAttributes(styleId, colorAttrs).use { typedArray ->
+            return IntArray(colorAttrs.size) { i ->
+                typedArray.getColor(i, 0)
+            }
+        }
+    }
+
+    /**
+     * Fetch colors resources from style
+     *
+     * @param context context
+     * @param styleId style id (e.g.: R.style.actionBarTheme)
+     * @param colorAttrs color attributes
+     * Expects an array of Attribute IDs (@AttrRes attrs)
+     * Even though passing a dynamic array of @AttrRes (the IDs), the compiler treats that array as a "temporary styleable."
+     * @return array of Integer resources, with null value if not found
+     */
+    @JvmStatic
+    @ColorInt
+    fun fetchColorsNullableFromStyle(
+        context: Context,
+        @StyleRes styleId: Int,
+        vararg colorAttrs: /* @AttrRes */ Int
+    ): Array<Int?> {
+        context.obtainStyledAttributes(styleId, colorAttrs).use {
+            return Array(colorAttrs.size) { i ->
+                if (it.hasValue(i)) it.getColor(i, 0) else null
+            }
+        }
+    }
+
+    /**
+     * Get style from theme
+     * Resolve the style attribute to the style it points to in the current Theme.
+     * @param context context
+     * @param styleAttr style attribute id (e.g.: R.attr.actionBarTheme)
+     * @return a style reference
+     */
+    @StyleRes
+    fun getStyleFromTheme(
+        context: Context,
+        @AttrRes styleAttr: Int // We search for an Attribute key
+    ): Int {
+        val typedValue = TypedValue()
+        val found = context.theme.resolveAttribute(styleAttr, typedValue, true)
+        return if (found) typedValue.resourceId else 0
+    }
+
+    /**
+     * Fetch colors resources from style
+     *
+     * @param context context
+     * @param styleAttr style attribute id (e.g.: R.attr.actionBarTheme)
+     * @param colorAttrs color attributes
+     * Expects an array of Attribute IDs (@AttrRes attrs)
+     * Even though passing a dynamic array of @AttrRes (the IDs), the compiler treats that array as a "temporary styleable."
+     * @return array of Integer resources, with null value if not found
+     */
+    @JvmStatic
+    @ColorInt
+    fun fetchColorsFromStyleInThemeNullable(
+        context: Context,
+        @AttrRes styleAttr: Int,
+        vararg colorAttrs: /* @AttrRes */ Int
+    ): Array<Int?> {
+
+        // res id of style pointed to from style attr (e.g. actionBarStyle)
+        val styleId = getStyleFromTheme(context, styleAttr)
+
+        // get style values (e.g. textColor, or background)
+        return fetchColorsNullableFromStyle(context, styleId, *colorAttrs)
+    }
+
+    /**
+     * Fetch colors resources from style
+     *
+     * @param context context
+     * @param styleAttr style attribute id (e.g.: R.attr.actionBarTheme)
+     * @param colorAttr color attribute
+     * @return array of Integer resources, with null value if not found
+     */
+    @JvmStatic
+    @ColorInt
+    fun fetchColorFromStyleInTheme(
+        context: Context,
+        @AttrRes styleAttr: Int,
+        @AttrRes colorAttr: Int
+    ): Int? = fetchColorsFromStyleInThemeNullable(context, styleAttr, colorAttr)[0]
 
     // drawable
 
     fun getDrawable(context: Context, @DrawableRes resId: Int): Drawable {
         return AppCompatResources.getDrawable(context, resId)!!
     }
+
+    // tint
 
     fun tint(@ColorInt color: Int, vararg drawables: Drawable) {
         for (drawable in drawables) {
