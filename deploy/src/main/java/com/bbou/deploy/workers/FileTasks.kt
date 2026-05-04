@@ -1006,14 +1006,10 @@ class FileTasks(
          */
         fun launchMd5(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, sourceFile: String, whenDone: Runnable?) {
             val consumer = Consumer { md5: String? ->
-                val alert2 = AlertDialog.Builder(activity)
-                if (md5 != null) {
-                    alert2.setMessage(md5)
-                } else {
-                    alert2.setMessage(R.string.result_fail)
-                }
-                alert2.setOnDismissListener { _: DialogInterface? -> whenDone?.run() }
-                alert2.show()
+                AlertDialog.Builder(activity)
+                    .apply { if (md5 != null) setMessage(md5) else setMessage(R.string.result_fail) }
+                    .setOnDismissListener { _ -> whenDone?.run() }
+                    .show()
             }
             val task = FileTasks(observer, safeCast<String?>(consumer), 1000).md5FromFile()
             task.execute(sourceFile)
@@ -1030,14 +1026,10 @@ class FileTasks(
          */
         fun launchMd5(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, uri: Uri, whenDone: Runnable?) {
             val consumer = Consumer { md5: String? ->
-                val alert2 = AlertDialog.Builder(activity)
-                if (md5 != null) {
-                    alert2.setMessage(md5)
-                } else {
-                    alert2.setMessage(R.string.result_fail)
-                }
-                alert2.setOnDismissListener { _: DialogInterface? -> whenDone?.run() }
-                alert2.show()
+                AlertDialog.Builder(activity)
+                    .apply { if (md5 != null) setMessage(md5) else setMessage(R.string.result_fail) }
+                    .setOnDismissListener { _: DialogInterface? -> whenDone?.run() }
+                    .show()
             }
             val task = FileTasks(observer, safeCast<String?>(consumer), 1000).md5FromUri(activity.contentResolver)
             task.execute(uri)
@@ -1054,14 +1046,10 @@ class FileTasks(
          */
         fun launchMd5(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, url: URL, whenDone: Runnable?) {
             val consumer = Consumer { md5: String? ->
-                val alert2 = AlertDialog.Builder(activity)
-                if (md5 != null) {
-                    alert2.setMessage(md5)
-                } else {
-                    alert2.setMessage(R.string.result_fail)
-                }
-                alert2.setOnDismissListener { _: DialogInterface? -> whenDone?.run() }
-                alert2.show()
+                AlertDialog.Builder(activity)
+                    .apply { if (md5 != null) setMessage(md5) else setMessage(R.string.result_fail) }
+                    .setOnDismissListener { _ -> whenDone?.run() }
+                    .show()
             }
             val task = FileTasks(observer, safeCast<String?>(consumer), 1000).md5FromUrl()
             task.execute(url)

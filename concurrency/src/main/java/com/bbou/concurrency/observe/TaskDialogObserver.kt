@@ -5,7 +5,6 @@ package com.bbou.concurrency.observe
 
 import android.app.Activity
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -153,15 +152,14 @@ class TaskDialogObserver<Progress : Pair<Number, Number>>(private val fragmentMa
             titleTextView.text = title
             messageTextView.text = message
 
-            val builder = AlertDialog.Builder(activity)
-            builder.setView(view)
-            builder.setNegativeButton(R.string.action_cancel) { _: DialogInterface?, _: Int ->
-                // cancelled.
-                val result = task.cancel(true)
-                Log.d(TAG, "Cancel task @" + (Integer.toHexString(task.hashCode())) + ' ' + result)
-                dismiss()
-            }
-            return builder.create()
+            return AlertDialog.Builder(activity)
+                .setView(view)
+                .setNegativeButton(R.string.action_cancel) { _, _ ->
+                    val result = task.cancel(true)
+                    Log.d(TAG, "Cancel task @" + (Integer.toHexString(task.hashCode())) + ' ' + result)
+                    dismiss()
+                }
+                .create()
         }
 
         /**

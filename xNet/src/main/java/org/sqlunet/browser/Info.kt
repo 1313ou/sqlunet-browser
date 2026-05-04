@@ -4,7 +4,6 @@
 package org.sqlunet.browser
 
 import android.app.Activity
-import android.content.DialogInterface
 import android.text.SpannableStringBuilder
 import android.widget.TextView
 import androidx.annotation.StringRes
@@ -34,7 +33,7 @@ object Info {
         val alert = AlertDialog.Builder(activity)
         alert.setTitle(R.string.action_info)
         alert.setMessage(messageId)
-        alert.setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
+        alert.setNegativeButton(R.string.action_dismiss) { _, _ -> }
         val sb = SpannableStringBuilder()
         build(sb, *lines)
         val extra = TextView(activity)

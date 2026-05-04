@@ -3,7 +3,6 @@
  */
 package org.sqlunet.browser.config
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +10,6 @@ import android.util.Pair
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -21,6 +19,7 @@ import com.google.android.material.tabs.TabLayout
 import org.sqlunet.browser.BaseActivity
 import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
+import org.sqlunet.browser.makeDialog
 import org.sqlunet.provider.ManagerContract
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.StorageReports.getStyledCachesNamesValues
@@ -198,10 +197,8 @@ class SetupActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
 
             R.id.action_dirs -> {
                 val message = reportStyledDirs(this)
-                AlertDialog.Builder(this)
+                makeDialog(message,this)
                     .setTitle(R.string.action_dirs)
-                    .setMessage(message)
-                    .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                     .show()
                 true
             }
@@ -209,10 +206,8 @@ class SetupActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
             R.id.action_storage_dirs -> {
                 val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledStorageDirectoriesNamesValues(this)
                 val message = namesValuesToReportStyled(dirs)
-                AlertDialog.Builder(this)
+                makeDialog(message,this)
                     .setTitle(R.string.action_storage_dirs)
-                    .setMessage(message)
-                    .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                     .show()
                 true
             }
@@ -220,10 +215,8 @@ class SetupActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
             R.id.action_cache_dirs -> {
                 val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledCachesNamesValues(this)
                 val message = namesValuesToReportStyled(dirs)
-                AlertDialog.Builder(this)
+                makeDialog(message,this)
                     .setTitle(R.string.action_cache_dirs)
-                    .setMessage(message)
-                    .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                     .show()
                 true
             }
@@ -231,10 +224,8 @@ class SetupActivity : BaseActivity(), TabLayout.OnTabSelectedListener {
             R.id.action_download_dirs -> {
                 val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledDownloadNamesValues(this)
                 val message = namesValuesToReportStyled(dirs)
-                AlertDialog.Builder(this)
+                makeDialog(message,this)
                     .setTitle(R.string.action_download_dirs)
-                    .setMessage(message)
-                    .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                     .show()
                 true
             }

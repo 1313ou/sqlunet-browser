@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.common.BaseTextFragment
 import org.sqlunet.browser.common.TextAdapter
+import org.sqlunet.browser.makeDialog
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.wordnet.SynsetPointer
 import org.sqlunet.wordnet.WordPointer
@@ -96,7 +97,7 @@ class TextFragment : BaseTextFragment() {
      * @return dialog
      */
     private fun makeDialog(listener: DialogInterface.OnClickListener, vararg choices: CharSequence): AlertDialog {
-        return AlertDialog.Builder(requireContext())
+        return makeDialog(requireContext())
             .setTitle(CommonR.string.title_activity_searchtext)
             .setItems(choices, listener)
             .create()

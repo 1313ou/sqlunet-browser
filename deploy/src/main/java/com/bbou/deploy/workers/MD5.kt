@@ -66,7 +66,7 @@ object MD5 {
         resultView.setTextIsSelectable(true)
         AlertDialog.Builder(context)
             .setTitle(context.getString(R.string.action_md5_of_what, sourceFile))
-            .setView(resultView) //.setMessage(sb)
+            .setView(resultView)
             .show()
     }
 }

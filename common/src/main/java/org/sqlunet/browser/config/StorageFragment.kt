@@ -6,7 +6,6 @@ package org.sqlunet.browser.config
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -15,7 +14,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -23,6 +21,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import org.sqlunet.browser.AppContext
 import org.sqlunet.browser.common.R
+import org.sqlunet.browser.makeDialog
 import org.sqlunet.settings.Storage.getSqlUNetStorage
 import org.sqlunet.settings.StorageReports.getStyledCachesNamesValues
 import org.sqlunet.settings.StorageReports.getStyledDownloadNamesValues
@@ -55,10 +54,8 @@ class StorageFragment : Fragment() {
             return when (menuItem.itemId) {
                 R.id.action_dirs -> {
                     val message = reportStyledDirs(activityContext)
-                    AlertDialog.Builder(activityContext)
+                    makeDialog(message, activityContext)
                         .setTitle(R.string.action_dirs)
-                        .setMessage(message)
-                        .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                         .show()
                     true
                 }
@@ -66,10 +63,8 @@ class StorageFragment : Fragment() {
                 R.id.action_storage_dirs -> {
                     val dirs = getStyledStorageDirectoriesNamesValues(activityContext)
                     val message = namesValuesToReportStyled(dirs)
-                    AlertDialog.Builder(activityContext)
+                    makeDialog(message, activityContext)
                         .setTitle(R.string.action_storage_dirs)
-                        .setMessage(message)
-                        .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                         .show()
                     true
                 }
@@ -77,10 +72,8 @@ class StorageFragment : Fragment() {
                 R.id.action_cache_dirs -> {
                     val dirs = getStyledCachesNamesValues(activityContext)
                     val message = namesValuesToReportStyled(dirs)
-                    AlertDialog.Builder(activityContext)
+                    makeDialog(message,activityContext)
                         .setTitle(R.string.action_cache_dirs)
-                        .setMessage(message)
-                        .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                         .show()
                     true
                 }
@@ -88,10 +81,8 @@ class StorageFragment : Fragment() {
                 R.id.action_download_dirs -> {
                     val dirs = getStyledDownloadNamesValues(activityContext)
                     val message = namesValuesToReportStyled(dirs)
-                    AlertDialog.Builder(activityContext)
+                    makeDialog(message,activityContext)
                         .setTitle(R.string.action_download_dirs)
-                        .setMessage(message)
-                        .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                         .show()
                     true
                 }

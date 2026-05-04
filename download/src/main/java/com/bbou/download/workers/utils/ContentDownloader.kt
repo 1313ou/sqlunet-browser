@@ -7,7 +7,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -184,18 +183,20 @@ class ContentDownloader(private val listener: Listener) : Task<String, Void, Arr
             val sourceView = header.findViewById<TextView>(R.id.source)
             sourceView.text = targetFile
 
-            val alert = AlertDialog.Builder(activity)
-            alert.setCustomTitle(header)
-            if (result == null) {
-                alert.setIconAttribute(android.R.attr.alertDialogIcon)
-                    .setMessage(R.string.status_task_failed)
-            } else {
-                alert.setItems(result) { _: DialogInterface?, which: Int ->
-                    val item = result[which]
-                    consumer.accept(activity, item)
+            AlertDialog.Builder(activity)
+                .setCustomTitle(header)
+                .apply {
+                    if (result == null) {
+                        setIconAttribute(android.R.attr.alertDialogIcon)
+                        setMessage(R.string.status_task_failed)
+                    } else {
+                        setItems(result) { _, which ->
+                            val item = result[which]
+                            consumer.accept(activity, item)
+                        }
+                    }
                 }
-            }
-            alert.show()
+                .show()
         }
 
         /**

@@ -12,9 +12,9 @@ import android.os.Build
 import android.text.SpannableStringBuilder
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AlertDialog
 import org.sqlunet.browser.AbstractApplication
 import org.sqlunet.browser.common.R
+import org.sqlunet.browser.makeDialog
 import kotlin.math.roundToLong
 
 /**
@@ -35,12 +35,13 @@ object Utils {
      * @param runnable run if confirmed
      */
     fun confirm(context: Context, @StringRes titleId: Int, @StringRes askId: Int, runnable: Runnable) {
-        AlertDialog.Builder(context)
+        makeDialog(context)
             .setIconAttribute(android.R.attr.alertDialogIcon)
             .setTitle(titleId)
             .setMessage(askId)
-            .setPositiveButton(R.string.yes) { _: DialogInterface?, _: Int -> runnable.run() }
-            .setNegativeButton(R.string.no, null).show()
+            .setPositiveButton(R.string.yes) { _, _ -> runnable.run() }
+            .setNegativeButton(R.string.no, null)
+            .show()
     }
 
     // Human-readable sizes
@@ -101,10 +102,9 @@ object Utils {
 
     fun version(context: Context) {
         val version = reportVersion(context)
-        AlertDialog.Builder(context)
+        makeDialog(version, context)
             .setTitle(R.string.app_name)
-            .setMessage(version)
-            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
+            .setNegativeButton(R.string.action_dismiss) { _, _ -> }
             .show()
     }
 }

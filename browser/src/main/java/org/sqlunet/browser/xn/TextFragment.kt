@@ -18,6 +18,7 @@ import org.sqlunet.browser.common.BaseTextFragment
 import org.sqlunet.browser.common.TextAdapter
 import org.sqlunet.browser.common.TextAdapter.Companion.append
 import org.sqlunet.browser.common.TextAdapter.Companion.appendImage
+import org.sqlunet.browser.makeDialog
 import org.sqlunet.framenet.FnFramePointer
 import org.sqlunet.framenet.FnLexUnitPointer
 import org.sqlunet.framenet.FnSentencePointer
@@ -167,8 +168,7 @@ class TextFragment : BaseTextFragment() {
                             val typedPointer = result.first[which]
                             startFn(typedPointer)
                         }
-                        val dialog = makeDialog(listener, *result.second)
-                        dialog.show()
+                        makeDialog(listener, *result.second).show()
                     } else if (result.first.size == 1) {
                         val typedPointer = result.first[0]
                         startFn(typedPointer)
@@ -311,7 +311,7 @@ class TextFragment : BaseTextFragment() {
      * @return dialog
      */
     private fun makeDialog(listener: DialogInterface.OnClickListener, vararg choices: CharSequence): AlertDialog {
-        return AlertDialog.Builder(requireContext())
+        return makeDialog(requireContext())
             .setTitle(CommonR.string.title_activity_searchtext)
             .setItems(choices, listener)
             .create()

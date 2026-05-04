@@ -31,6 +31,7 @@ import com.bbou.download.workers.core.DownloadWork
 import com.bbou.download.workers.utils.MD5Downloader
 import java.io.File
 import androidx.core.net.toUri
+import com.bbou.download.storage.ReportUtils.appendHeader
 
 /**
  * Download fragment using DownloadWork.
@@ -271,17 +272,17 @@ class DownloadFragment : DownloadBaseFragment() {
                     if (activity2 != null && !isDetached && !activity2.isFinishing && !activity2.isDestroyed) {
                         val success = downloadedResult == result
                         val sb = SpannableStringBuilder()
-                        ReportUtils.appendHeader(sb, getString(R.string.md5_downloaded))
-                        sb.append('\n')
-                        sb.append(downloadedResult)
-                        sb.append('\n')
-                        ReportUtils.appendHeader(sb, getString(R.string.md5_computed))
-                        sb.append('\n')
-                        sb.append(result ?: getString(R.string.status_task_failed))
-                        sb.append('\n')
-                        ReportUtils.appendHeader(sb, getString(R.string.md5_compared))
-                        sb.append('\n')
-                        sb.append(getString(if (success) R.string.status_task_success else R.string.status_task_failed))
+                            .appendHeader(getString(R.string.md5_downloaded))
+                            .append('\n')
+                            .append(downloadedResult)
+                            .append('\n')
+                            .appendHeader(getString(R.string.md5_computed))
+                            .append('\n')
+                            .append(result ?: getString(R.string.status_task_failed))
+                            .append('\n')
+                            .appendHeader(getString(R.string.md5_compared))
+                            .append('\n')
+                            .append(getString(if (success) R.string.status_task_success else R.string.status_task_failed))
                         AlertDialog.Builder(activity2)
                             .setTitle(getString(R.string.action_md5_of_what, targetFile))
                             .setMessage(sb)

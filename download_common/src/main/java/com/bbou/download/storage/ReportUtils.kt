@@ -16,6 +16,7 @@ import android.text.style.ImageSpan
 import android.text.style.StyleSpan
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
+import androidx.annotation.ReturnThis
 import androidx.appcompat.content.res.AppCompatResources
 import com.bbou.download.common.R
 import java.util.Collections
@@ -30,23 +31,26 @@ object ReportUtils {
     /**
      * Append header
      *
-     * @param sb   spannable string builder
+     * @receiver sb spannable string builder
      * @param text text
-     * @return spannable string builder
      */
-    fun appendHeader(sb: SpannableStringBuilder, text: CharSequence?): SpannableStringBuilder {
-        return append(sb, text, StyleSpan(Typeface.BOLD))
+    @ReturnThis
+    fun SpannableStringBuilder.appendHeader(text: CharSequence?): SpannableStringBuilder {
+        append(text, StyleSpan(Typeface.BOLD))
+        return this
     }
 
     /**
      * Append Image
      *
+     * @receiver spannable string builder
      * @param context context
-     * @param sb      spannable string builder
      * @param resId   resource id
      */
-    fun appendImage(context: Context, sb: SpannableStringBuilder, resId: Int) {
-        append(sb, "\u0000", makeImageSpan(context, resId))
+    @ReturnThis
+    fun SpannableStringBuilder.appendImage(context: Context, resId: Int): SpannableStringBuilder {
+        append("\u0000", makeImageSpan(context, resId))
+        return this
     }
 
     // S P A N S
@@ -54,51 +58,56 @@ object ReportUtils {
     /**
      * Append text
      *
-     * @param sb    spannable string builder
+     * @receiver spannable string builder
      * @param text  text
      * @param spans spans to apply
      */
-    private fun append(sb: SpannableStringBuilder, text: CharSequence?, vararg spans: Any): SpannableStringBuilder {
+    @ReturnThis
+    private fun SpannableStringBuilder.append(text: CharSequence?, vararg spans: Any): SpannableStringBuilder {
         if (!text.isNullOrEmpty()) {
-            val from = sb.length
-            sb.append(text)
-            val to = sb.length
+            val from = length
+            append(text)
+            val to = length
             for (span in spans) {
-                sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
         }
-        return sb
+        return this
     }
 
     /**
      * Append text
      *
-     * @param sb    spannable string builder
+     * @receiver spannable string builder
      * @param text  text
      * @param spans spans to apply
      */
-    fun appendWithSpans(sb: SpannableStringBuilder, text: CharSequence?, vararg spans: Any): SpannableStringBuilder {
+    @ReturnThis
+    fun SpannableStringBuilder.appendWithSpans(text: CharSequence?, vararg spans: Any): SpannableStringBuilder {
         if (!text.isNullOrEmpty()) {
-            val from = sb.length
-            sb.append(text)
-            val to = sb.length
-            applySpans(sb, from, to, *spans)
+            val from = length
+            append(text)
+            val to = length
+            applySpans(from, to, *spans)
         }
-        return sb
+        return this
     }
 
     /**
      * Apply spans
      *
+     * @receiver spannable string builder
      * @param sb    spannable string builder
      * @param from  from position
      * @param to    to position
      * @param spans spans to apply
      */
-    private fun applySpans(sb: SpannableStringBuilder, from: Int, to: Int, vararg spans: Any) {
+    @ReturnThis
+    private fun SpannableStringBuilder.applySpans(from: Int, to: Int, vararg spans: Any): SpannableStringBuilder {
         for (span in spans) {
-            applySpan(sb, from, to, span)
+            applySpan(from, to, span)
         }
+        return this
     }
 
     /**
@@ -109,24 +118,26 @@ object ReportUtils {
      * @param to   to position
      * @param span span to apply
      */
-    private fun applySpan(sb: SpannableStringBuilder, from: Int, to: Int, span: Any) {
+    @ReturnThis
+    private fun SpannableStringBuilder.applySpan(from: Int, to: Int, span: Any): SpannableStringBuilder {
         when (span) {
             is Array<*> if span.isArrayOf<Any>() -> {
                 for (span2 in span) {
-                    sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 }
             }
 
             is Collection<*> -> {
                 for (span2 in span) {
-                    sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 }
             }
 
             else -> {
-                sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
         }
+        return this
     }
 
     /**

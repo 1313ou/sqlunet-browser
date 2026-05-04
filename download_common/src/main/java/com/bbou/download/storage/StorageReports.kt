@@ -14,6 +14,9 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import com.bbou.download.common.R
+import com.bbou.download.storage.ReportUtils.appendHeader
+import com.bbou.download.storage.ReportUtils.appendImage
+import com.bbou.download.storage.ReportUtils.appendWithSpans
 import java.io.File
 
 /**
@@ -40,7 +43,11 @@ object StorageReports {
         for (dir in dirs) {
             val value = dir.absolutePath
             val name = SpannableStringBuilder()
-            ReportUtils.appendHeader(name, "Download").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value)
+                .appendHeader("Download")
+                .append(' ')
+                .append(StorageUtils.storageFreeAsString(value.toString()))
+                .append('\n')
+                .append(value)
             names.add(name)
             values.add(value)
         }
@@ -67,7 +74,7 @@ object StorageReports {
         if (dir != null) {
             val value = dir.absolutePath
             val name = SpannableStringBuilder()
-            ReportUtils.appendHeader(name, "External cache")
+                .appendHeader("External cache")
                 .append(' ')
                 .append(StorageUtils.storageFreeAsString(value.toString()))
                 .append('\n')
@@ -80,7 +87,11 @@ object StorageReports {
         if (dir != null) {
             val value = dir.absolutePath
             val name = SpannableStringBuilder()
-            ReportUtils.appendHeader(name, "Cache").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value)
+                .appendHeader("Cache")
+                .append(' ')
+                .append(StorageUtils.storageFreeAsString(value.toString()))
+                .append('\n')
+                .append(value)
             names.add(name)
             values.add(value)
         }
@@ -93,7 +104,11 @@ object StorageReports {
                 }
                 val value = dir2.absolutePath
                 val name = SpannableStringBuilder()
-                ReportUtils.appendHeader(name, "External cache[" + i++ + "]").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value)
+                    .appendHeader("External cache[" + i++ + "]")
+                    .append(' ')
+                    .append(StorageUtils.storageFreeAsString(value.toString()))
+                    .append('\n')
+                    .append(value)
                 names.add(name)
                 values.add(value)
             }
@@ -103,7 +118,11 @@ object StorageReports {
         if (dir != null) {
             val value = dir.absolutePath
             val name = SpannableStringBuilder()
-            ReportUtils.appendHeader(name, "Download").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value)
+                .appendHeader("Download")
+                .append(' ')
+                .append(StorageUtils.storageFreeAsString(value.toString()))
+                .append('\n')
+                .append(value)
             names.add(name)
             values.add(value)
         }
@@ -321,68 +340,78 @@ object StorageReports {
         val physical = storages[FormatUtils.StorageType.PRIMARY_PHYSICAL]
         val emulated = storages[FormatUtils.StorageType.PRIMARY_EMULATED]
         val secondary = storages[FormatUtils.StorageType.SECONDARY]
-        val sb = SpannableStringBuilder()
-        if (physical != null) {
-            ReportUtils.appendImage(context, sb, R.drawable.ic_storage_intern)
-            sb.append(' ')
-            ReportUtils.appendWithSpans(sb, " primary physical ", BackgroundColorSpan(ReportUtils.storageTypeBackColor), ForegroundColorSpan(ReportUtils.storageTypeForeColor), RelativeSizeSpan(ReportUtils.ENLARGE))
-            sb.append('\n')
-            for (f in physical) {
-                val s = f.absolutePath
-                ReportUtils.appendWithSpans(sb, s, ReportUtils.spans(ReportUtils.storageValueBackColor, ReportUtils.storageValueForeColor, StyleSpan(Typeface.ITALIC)))
-                sb.append('\n')
-                sb.append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)))
-                sb.append(' ')
-                try {
-                    sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                } catch (_: Throwable) {
+        return SpannableStringBuilder()
+            .apply {
+                if (physical != null) {
+                    appendImage(context, R.drawable.ic_storage_intern)
+                    append(' ')
+                    appendWithSpans(" primary physical ", BackgroundColorSpan(ReportUtils.storageTypeBackColor), ForegroundColorSpan(ReportUtils.storageTypeForeColor), RelativeSizeSpan(ReportUtils.ENLARGE))
+                    append('\n')
+                    for (f in physical) {
+                        val s = f.absolutePath
+                        appendWithSpans(s, ReportUtils.spans(ReportUtils.storageValueBackColor, ReportUtils.storageValueForeColor, StyleSpan(Typeface.ITALIC)))
+                        append('\n')
+                        append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)))
+                        append(' ')
+                        try {
+                            append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
+                        } catch (_: Throwable) {
+                        }
+                        append('\n')
+                    }
                 }
-                sb.append('\n')
             }
-        }
-        if (emulated != null) {
-            ReportUtils.appendImage(context, sb, R.drawable.ic_storage_extern_primary)
-            sb.append(' ')
-            ReportUtils.appendWithSpans(sb, " primary emulated ", BackgroundColorSpan(ReportUtils.storageTypeBackColor), ForegroundColorSpan(ReportUtils.storageTypeForeColor), RelativeSizeSpan(ReportUtils.ENLARGE))
-            sb.append('\n')
-            for (f in emulated) {
-                val s = f.absolutePath
-                ReportUtils.appendWithSpans(sb, s, ReportUtils.spans(ReportUtils.storageValueBackColor, ReportUtils.storageValueForeColor, StyleSpan(Typeface.ITALIC)))
-                sb.append('\n')
-                sb.append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)))
-                sb.append(' ')
-                try {
-                    sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                } catch (_: Throwable) {
+            .apply {
+                if (emulated != null) {
+                    appendImage(context, R.drawable.ic_storage_extern_primary)
+                    append(' ')
+                    appendWithSpans(" primary emulated ", BackgroundColorSpan(ReportUtils.storageTypeBackColor), ForegroundColorSpan(ReportUtils.storageTypeForeColor), RelativeSizeSpan(ReportUtils.ENLARGE))
+                    append('\n')
+                    for (f in emulated) {
+                        val s = f.absolutePath
+                        appendWithSpans(s, ReportUtils.spans(ReportUtils.storageValueBackColor, ReportUtils.storageValueForeColor, StyleSpan(Typeface.ITALIC)))
+                        append('\n')
+                        append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)))
+                        append(' ')
+                        try {
+                            append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
+                        } catch (_: Throwable) {
+                        }
+                        append('\n')
+                    }
                 }
-                sb.append('\n')
             }
-        }
-        if (secondary != null) {
-            ReportUtils.appendImage(context, sb, R.drawable.ic_storage_extern_secondary)
-            sb.append(' ')
-            sb.append(' ')
-            ReportUtils.appendWithSpans(sb, " secondary ", BackgroundColorSpan(ReportUtils.storageTypeBackColor), ForegroundColorSpan(ReportUtils.storageTypeForeColor), RelativeSizeSpan(ReportUtils.ENLARGE))
-            sb.append('\n')
-            for (f in secondary) {
-                val s = f.absolutePath
-                ReportUtils.appendWithSpans(sb, s, ReportUtils.spans(ReportUtils.storageValueBackColor, ReportUtils.storageValueForeColor, StyleSpan(Typeface.ITALIC)))
-                sb.append('\n')
-                sb.append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)))
-                sb.append(' ')
-                try {
-                    sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                } catch (_: Throwable) {
+            .apply {
+                if (secondary != null) {
+                    appendImage(context, R.drawable.ic_storage_extern_secondary)
+                    append(' ')
+                    append(' ')
+                    appendWithSpans(" secondary ", BackgroundColorSpan(ReportUtils.storageTypeBackColor), ForegroundColorSpan(ReportUtils.storageTypeForeColor), RelativeSizeSpan(ReportUtils.ENLARGE))
+                    append('\n')
+                    for (f in secondary) {
+                        val s = f.absolutePath
+                        appendWithSpans(s, ReportUtils.spans(ReportUtils.storageValueBackColor, ReportUtils.storageValueForeColor, StyleSpan(Typeface.ITALIC)))
+                        append('\n')
+                        append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)))
+                        append(' ')
+                        try {
+                            append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
+                        } catch (_: Throwable) {
+                        }
+                        append('\n')
+                    }
                 }
-                sb.append('\n')
             }
-        }
-        return sb
     }
 
     private fun appendStyledDir(sb: SpannableStringBuilder, header: CharSequence, dir: File?): SpannableStringBuilder {
         dir?.let {
-            ReportUtils.appendHeader(sb, header).append(' ').append(StorageUtils.storageFreeAsString(dir)).append('\n').append(dir.absolutePath).append('\n')
+            sb.appendHeader(header)
+                .append(' ')
+                .append(StorageUtils.storageFreeAsString(dir))
+                .append('\n')
+                .append(dir.absolutePath)
+                .append('\n')
         }
         return sb
     }
@@ -397,16 +426,17 @@ object StorageReports {
      */
     @SafeVarargs
     fun namesValuesToReportStyled(vararg directories: Pair<Array<out CharSequence>, Array<String>>): CharSequence {
-        val sb = SpannableStringBuilder()
-        for (namesValues in directories) {
-            val names = namesValues.first
-            for (name in names) {
-                sb.append(name)
-                sb.append('\n')
+        return SpannableStringBuilder()
+            .apply {
+                for (namesValues in directories) {
+                    val names = namesValues.first
+                    for (name in names) {
+                        append(name)
+                        append('\n')
+                    }
+                    append('\n')
+                }
             }
-            sb.append('\n')
-        }
-        return sb
     }
 
     // D I R S
@@ -418,11 +448,10 @@ object StorageReports {
      * @return styled string
      */
     private fun dirStatusToStyledString(dir: StorageUtils.StorageDirectory): CharSequence {
-        val sb = SpannableStringBuilder()
         val status: CharSequence = dir.status()
         val statusOk = "Ok" == status.toString()
-        ReportUtils.appendWithSpans(sb, "Status: $status", ReportUtils.spans(if (statusOk) ReportUtils.dirOkBackColor else ReportUtils.dirFailBackColor, if (statusOk) ReportUtils.dirOkForeColor else ReportUtils.dirFailForeColor))
-        return sb
+        return SpannableStringBuilder()
+            .appendWithSpans("Status: $status", ReportUtils.spans(if (statusOk) ReportUtils.dirOkBackColor else ReportUtils.dirFailBackColor, if (statusOk) ReportUtils.dirOkForeColor else ReportUtils.dirFailForeColor))
     }
 
     /**
@@ -450,26 +479,23 @@ object StorageReports {
      * @return styled string
      */
     private fun dirToStyledString(context: Context, dir: StorageUtils.StorageDirectory): CharSequence {
-
-        val sb = SpannableStringBuilder()
-
-        // icon
-        ReportUtils.appendImage(context, sb, dirTypeToIconId(dir.dir.type))
-        sb.append(' ')
-        // type
-        ReportUtils.appendWithSpans(sb, ' ' + dir.dir.type.toDisplay() + ' ', BackgroundColorSpan(ReportUtils.dirTypeBackColor), ForegroundColorSpan(ReportUtils.dirTypeForeColor), RelativeSizeSpan(ReportUtils.ENLARGE))
-        sb.append('\n')
-        // value
-        ReportUtils.appendWithSpans(sb, dir.dir.getTaggedValue(), ReportUtils.spans(ReportUtils.dirValueBackColor, ReportUtils.dirValueForeColor, StyleSpan(Typeface.ITALIC)))
-        sb.append('\n')
-        // status
         val suitable = dir.status == 0 && dir.fitsIn(context)
-        ReportUtils.appendWithSpans(
-            sb, StorageUtils.mbToString(dir.free), ReportUtils.spans(
-                if (suitable) ReportUtils.dirOkBackColor else ReportUtils.dirFailBackColor,
-                if (suitable) ReportUtils.dirOkForeColor else ReportUtils.dirFailForeColor
+        return SpannableStringBuilder()
+            // icon
+            .appendImage(context, dirTypeToIconId(dir.dir.type))
+            .append(' ')
+            // type
+            .appendWithSpans(' ' + dir.dir.type.toDisplay() + ' ', BackgroundColorSpan(ReportUtils.dirTypeBackColor), ForegroundColorSpan(ReportUtils.dirTypeForeColor), RelativeSizeSpan(ReportUtils.ENLARGE))
+            .append('\n')
+            // value
+            .appendWithSpans(dir.dir.getTaggedValue(), ReportUtils.spans(ReportUtils.dirValueBackColor, ReportUtils.dirValueForeColor, StyleSpan(Typeface.ITALIC)))
+            .append('\n')
+            // status
+            .appendWithSpans(
+                StorageUtils.mbToString(dir.free), ReportUtils.spans(
+                    if (suitable) ReportUtils.dirOkBackColor else ReportUtils.dirFailBackColor,
+                    if (suitable) ReportUtils.dirOkForeColor else ReportUtils.dirFailForeColor
+                )
             )
-        )
-        return sb
     }
 }

@@ -5,11 +5,9 @@ package org.sqlunet.browser
 
 import android.app.SearchManager
 import android.content.Context
-import android.content.DialogInterface
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.text.SpannableStringBuilder
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import org.sqlunet.browser.common.R
 import org.sqlunet.style.Factories
@@ -70,10 +68,8 @@ internal object Providers {
         }
 
         // dialog
-        AlertDialog.Builder(activity)
+        makeDialog(sb,activity)
             .setTitle(R.string.action_provider_info)
-            .setMessage(sb)
-            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
             .show()
     }
 

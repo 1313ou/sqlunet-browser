@@ -224,7 +224,7 @@ class UpdateFragment : Fragment() {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle(titleId)
                 .setMessage(askId)
-                .setPositiveButton(R.string.yes) { _: DialogInterface?, _: Int -> runnable.run() }
+                .setPositiveButton(R.string.yes) { _, _ -> runnable.run() }
                 .setNegativeButton(R.string.no, null).show()
         }
     }

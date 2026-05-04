@@ -146,21 +146,23 @@ class ResourcesDownloader internal constructor(private val listener: Listener) :
                     AlertDialog.Builder(activity)
                         .setTitle(activity.getString(R.string.action_directory) + " of " + url)
                         .setMessage(R.string.status_task_failed)
-                        .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
+                        .setNegativeButton(R.string.action_dismiss) { _, _ -> }
                         .show()
                 } else {
                     if (!activity.isFinishing && !activity.isDestroyed) {
                         val sb = SpannableStringBuilder()
-                        sb.append('\n')
-                        for (row in resources) {
-                            sb.append(java.lang.String.join(" ", *row))
-                            sb.append('\n')
-                            sb.append('\n')
-                        }
+                            .append('\n')
+                            .apply {
+                                for (row in resources) {
+                                    append(java.lang.String.join(" ", *row))
+                                    append('\n')
+                                    append('\n')
+                                }
+                            }
                         AlertDialog.Builder(activity)
                             .setTitle(activity.getString(R.string.resource_directory) + ' ' + url)
                             .setMessage(sb)
-                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
+                            .setNegativeButton(R.string.action_dismiss) { _, _ -> }
                             .show()
                     }
                 }
