@@ -433,6 +433,9 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                             append('\n')
                             append('\t')
                             appendImage(drawableSyntax)
+                            with(syntaxSpanner) {
+                                append(line, 0)
+                            }
                         }
 
                         // semantics
@@ -442,6 +445,9 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                             append('\t')
                             appendImage(drawableSemantics)
                             val statement = semanticsProcessor.process(line)
+                            with(semanticsSpanner) {
+                                append(statement, 0)
+                            }
                         }
 
                         // examples
