@@ -125,7 +125,6 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
     private fun bncCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
         val changed: Array<TreeOp>
-        val sb = SpannableStringBuilder()
         // if (cursor.getCount() > 1)
         // throw RuntimeException("Unexpected number of rows")
         if (cursor.moveToFirst()) {
@@ -151,87 +150,85 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val idWrFreq = cursor.getColumnIndexOrThrow(Words_BNCs.BNCSPWRS + Words_BNCs.FREQ2)
             val idWrRange = cursor.getColumnIndexOrThrow(Words_BNCs.BNCSPWRS + Words_BNCs.RANGE2)
             val idWrDisp = cursor.getColumnIndexOrThrow(Words_BNCs.BNCSPWRS + Words_BNCs.DISP2)
-            do {
-                val pos1 = cursor.getString(idPos)
-                sb.appendImage(posDrawable)
-                sb.append(' ')
-                sb.append(pos1)
-                sb.append('\n')
-                var value1: String?
-                if (cursor.getString(idFreq).also { value1 = it } != null) {
-                    sb.append("frequency=").append(value1).append(" per million").append('\n')
-                }
-                if (cursor.getString(idRange).also { value1 = it } != null) {
-                    sb.append("range=").append(value1).append('\n')
-                }
-                if (cursor.getString(idDisp).also { value1 = it } != null) {
-                    sb.append("dispersion=").append(value1)
-                }
-                sb.append('\n')
-                var fvalue = cursor.getString(idConvFreq)
-                var fvalue2 = cursor.getString(idTaskFreq)
-                var rvalue = cursor.getString(idConvRange)
-                var rvalue2 = cursor.getString(idTaskRange)
-                var dvalue = cursor.getString(idConvDisp)
-                var dvalue2 = cursor.getString(idTaskDisp)
-                if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null) {
-                    sb.appendImage(convtaskDrawable)
-                    sb.append(' ')
-                    sb.append("conversation / task\n", 0, BNCFactories.headerFactory)
-                    if (fvalue != null && fvalue2 != null) {
-                        sb.append("frequency=").append(fvalue).append(" / ").append(fvalue2).append('\n')
+
+            val sb = SpannableStringBuilder().apply {
+                do {
+                    val pos1 = cursor.getString(idPos)
+                    appendImage(posDrawable)
+                    append(' ')
+                    append(pos1)
+                    append('\n')
+
+                    cursor.getString(idFreq)?.let { append("frequency=").append(it).append(" per million").append('\n') }
+                    cursor.getString(idRange)?.let { append("range=").append(it).append('\n') }
+                    cursor.getString(idDisp)?.let { append("dispersion=").append(it) }
+                    append('\n')
+
+                    var fvalue = cursor.getString(idConvFreq)
+                    var fvalue2 = cursor.getString(idTaskFreq)
+                    var rvalue = cursor.getString(idConvRange)
+                    var rvalue2 = cursor.getString(idTaskRange)
+                    var dvalue = cursor.getString(idConvDisp)
+                    var dvalue2 = cursor.getString(idTaskDisp)
+                    if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null) {
+                        appendImage(convtaskDrawable)
+                        append(' ')
+                        append("conversation / task\n", 0, BNCFactories.headerFactory)
+                        if (fvalue != null && fvalue2 != null) {
+                            append("frequency=").append(fvalue).append(" / ").append(fvalue2).append('\n')
+                        }
+                        if (rvalue != null && rvalue2 != null) {
+                            append("range=").append(rvalue).append(" / ").append(rvalue2).append('\n')
+                        }
+                        if (dvalue != null && dvalue2 != null) {
+                            append("dispersion=").append(dvalue).append(" / ").append(dvalue2)
+                        }
+                        append('\n')
                     }
-                    if (rvalue != null && rvalue2 != null) {
-                        sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append('\n')
+                    fvalue = cursor.getString(idImagFreq)
+                    fvalue2 = cursor.getString(idInfFreq)
+                    rvalue = cursor.getString(idImagRange)
+                    rvalue2 = cursor.getString(idInfRange)
+                    dvalue = cursor.getString(idImagDisp)
+                    dvalue2 = cursor.getString(idInfDisp)
+                    if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null) {
+                        appendImage(imaginfDrawable)
+                        append(' ')
+                        append("imagination / information\n", 0, BNCFactories.headerFactory)
+                        if (fvalue != null && fvalue2 != null) {
+                            append("frequency=").append(fvalue).append(" / ").append(fvalue2).append('\n')
+                        }
+                        if (rvalue != null && rvalue2 != null) {
+                            append("range=").append(rvalue).append(" / ").append(rvalue2).append('\n')
+                        }
+                        if (dvalue != null && dvalue2 != null) {
+                            append("dispersion=").append(dvalue).append(" / ").append(dvalue2)
+                        }
+                        append('\n')
                     }
-                    if (dvalue != null && dvalue2 != null) {
-                        sb.append("dispersion=").append(dvalue).append(" / ").append(dvalue2)
+                    fvalue = cursor.getString(idSpFreq)
+                    fvalue2 = cursor.getString(idWrFreq)
+                    rvalue = cursor.getString(idSpRange)
+                    rvalue2 = cursor.getString(idWrRange)
+                    dvalue = cursor.getString(idSpDisp)
+                    dvalue2 = cursor.getString(idWrDisp)
+                    if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null) {
+                        appendImage(spwrDrawable)
+                        append(' ')
+                        append("spoken / written\n", 0, BNCFactories.headerFactory)
+                        if (fvalue != null && fvalue2 != null) {
+                            append("frequency=").append(fvalue).append(" / ").append(fvalue2).append('\n')
+                        }
+                        if (rvalue != null && rvalue2 != null) {
+                            append("range=").append(rvalue).append(" / ").append(rvalue2).append('\n')
+                        }
+                        if (dvalue != null && dvalue2 != null) {
+                            append("dispersion=").append(dvalue).append(" / ").append(dvalue2)
+                        }
+                        append('\n')
                     }
-                    sb.append('\n')
-                }
-                fvalue = cursor.getString(idImagFreq)
-                fvalue2 = cursor.getString(idInfFreq)
-                rvalue = cursor.getString(idImagRange)
-                rvalue2 = cursor.getString(idInfRange)
-                dvalue = cursor.getString(idImagDisp)
-                dvalue2 = cursor.getString(idInfDisp)
-                if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null) {
-                    sb.appendImage(imaginfDrawable)
-                    sb.append(' ')
-                    sb.append("imagination / information\n", 0, BNCFactories.headerFactory)
-                    if (fvalue != null && fvalue2 != null) {
-                        sb.append("frequency=").append(fvalue).append(" / ").append(fvalue2).append('\n')
-                    }
-                    if (rvalue != null && rvalue2 != null) {
-                        sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append('\n')
-                    }
-                    if (dvalue != null && dvalue2 != null) {
-                        sb.append("dispersion=").append(dvalue).append(" / ").append(dvalue2)
-                    }
-                    sb.append('\n')
-                }
-                fvalue = cursor.getString(idSpFreq)
-                fvalue2 = cursor.getString(idWrFreq)
-                rvalue = cursor.getString(idSpRange)
-                rvalue2 = cursor.getString(idWrRange)
-                dvalue = cursor.getString(idSpDisp)
-                dvalue2 = cursor.getString(idWrDisp)
-                if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null) {
-                    sb.appendImage(spwrDrawable)
-                    sb.append(' ')
-                    sb.append("spoken / written\n", 0, BNCFactories.headerFactory)
-                    if (fvalue != null && fvalue2 != null) {
-                        sb.append("frequency=").append(fvalue).append(" / ").append(fvalue2).append('\n')
-                    }
-                    if (rvalue != null && rvalue2 != null) {
-                        sb.append("range=").append(rvalue).append(" / ").append(rvalue2).append('\n')
-                    }
-                    if (dvalue != null && dvalue2 != null) {
-                        sb.append("dispersion=").append(dvalue).append(" / ").append(dvalue2)
-                    }
-                    sb.append('\n')
-                }
-            } while (cursor.moveToNext())
+                } while (cursor.moveToNext())
+            }
 
             // attach result
             val node = TreeFactory.makeTextNode(sb, false).addTo(parent)
