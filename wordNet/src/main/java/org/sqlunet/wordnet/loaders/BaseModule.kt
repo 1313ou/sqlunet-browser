@@ -760,7 +760,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         //append(sampleId)
                         //append(' ')
                         append(sample, 0, WordNetFactories.sampleFactory)
-                        //.append(formattedSample)
+                        //append(formattedSample)
                     } while (cursor.moveToNext())
                 }
 
