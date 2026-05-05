@@ -17,9 +17,9 @@ import org.sqlunet.model.TreeFactory.makeQueryTreeNode
 import org.sqlunet.model.TreeFactory.makeTextNode
 import org.sqlunet.model.TreeFactory.makeTreeNode
 import org.sqlunet.model.TreeFactory.setNoResult
-import org.sqlunet.style.Spanner.Companion.append
-import org.sqlunet.style.Spanner.Companion.appendImage
-import org.sqlunet.style.Spanner.Companion.getDrawable
+import org.sqlunet.style.Spanner.append
+import org.sqlunet.style.Spanner.appendImage
+import org.sqlunet.style.Spanner.getDrawable
 import org.sqlunet.treeview.control.Query
 import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.verbnet.R

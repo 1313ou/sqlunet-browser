@@ -11,7 +11,7 @@ import android.text.SpannableStringBuilder
 import androidx.appcompat.app.AppCompatActivity
 import org.sqlunet.browser.common.R
 import org.sqlunet.style.Factories
-import org.sqlunet.style.Spanner.Companion.append
+import org.sqlunet.style.Spanner.append
 import java.io.IOException
 
 /**

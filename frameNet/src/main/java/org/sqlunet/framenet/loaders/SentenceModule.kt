@@ -16,7 +16,7 @@ import org.sqlunet.framenet.provider.FrameNetProvider
 import org.sqlunet.framenet.style.FrameNetFactories
 import org.sqlunet.model.TreeFactory.makeTextNode
 import org.sqlunet.model.TreeFactory.setNoResult
-import org.sqlunet.style.Spanner.Companion.append
+import org.sqlunet.style.Spanner.append
 import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.view.TreeOp
 import org.sqlunet.view.TreeOp.Companion.seq

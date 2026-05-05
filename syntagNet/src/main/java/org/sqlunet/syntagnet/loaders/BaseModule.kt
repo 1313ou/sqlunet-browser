@@ -13,7 +13,7 @@ import org.sqlunet.browser.TreeFragment
 import org.sqlunet.model.TreeFactory.makeLinkNode
 import org.sqlunet.model.TreeFactory.makeTreeNode
 import org.sqlunet.model.TreeFactory.setNoResult
-import org.sqlunet.style.Spanner.Companion.append
+import org.sqlunet.style.Spanner.append
 import org.sqlunet.syntagnet.R
 import org.sqlunet.syntagnet.provider.SyntagNetContract
 import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X

@@ -14,7 +14,7 @@ import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import org.sqlunet.style.Colors
 import org.sqlunet.style.Factories
-import org.sqlunet.style.Spanner.Companion.appendWithSpans
+import org.sqlunet.style.Spanner.appendWithSpans
 import java.util.LinkedList
 import java.util.StringTokenizer
 

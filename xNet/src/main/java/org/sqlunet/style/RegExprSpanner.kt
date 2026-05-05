@@ -7,13 +7,15 @@ import android.text.SpannableStringBuilder
 import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException
 import kotlin.math.min
+import org.sqlunet.style.Spanner.SpanFactory
+import org.sqlunet.style.Spanner.applySpans
 
 /**
  * Spanner as per regexpr
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-open class RegExprSpanner : Spanner {
+open class RegExprSpanner {
 
     /**
      * Replacers

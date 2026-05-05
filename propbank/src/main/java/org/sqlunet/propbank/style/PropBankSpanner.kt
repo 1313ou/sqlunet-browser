@@ -7,6 +7,8 @@ import android.content.Context
 import android.text.style.ImageSpan
 import org.sqlunet.propbank.R
 import org.sqlunet.style.RegExprSpanner
+import org.sqlunet.style.Spanner.HiddenSpan
+import org.sqlunet.style.Spanner.SpanFactory
 
 /**
  * Spanner for PropBank

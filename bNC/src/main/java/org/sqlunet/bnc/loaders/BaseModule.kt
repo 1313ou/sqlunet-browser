@@ -25,8 +25,8 @@ import org.sqlunet.view.TreeOp
 import org.sqlunet.view.TreeOp.TreeOpCode
 import org.sqlunet.view.TreeOpExecute
 import androidx.core.net.toUri
-import org.sqlunet.style.Spanner.Companion.append
-import org.sqlunet.style.Spanner.Companion.appendImage
+import org.sqlunet.style.Spanner.append
+import org.sqlunet.style.Spanner.appendImage
 import org.sqlunet.xnet.R as XNetR
 
 class BaseModule(fragment: TreeFragment) : Module(fragment) {

@@ -11,7 +11,7 @@ import android.text.style.ImageSpan
 import android.text.style.StyleSpan
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
-import org.sqlunet.style.Spanner.Companion.appendWithSpans
+import org.sqlunet.style.Spanner.appendWithSpans
 
 /**
  * Report helper

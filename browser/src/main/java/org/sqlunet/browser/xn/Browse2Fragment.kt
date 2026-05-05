@@ -26,7 +26,7 @@ import org.sqlunet.speak.SpeakButton.appendClickableImage
 import org.sqlunet.speak.SpeakSettings
 import org.sqlunet.speak.TTS.Companion.pronounce
 import org.sqlunet.style.Factories
-import org.sqlunet.style.Spanner.Companion.append
+import org.sqlunet.style.Spanner.append
 import org.sqlunet.verbnet.browser.VerbNetFragment
 import org.sqlunet.wordnet.browser.SenseFragment
 

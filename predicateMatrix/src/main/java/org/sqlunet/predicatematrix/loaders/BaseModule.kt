@@ -29,9 +29,9 @@ import org.sqlunet.predicatematrix.style.PredicateMatrixFactories
 import org.sqlunet.propbank.PbRoleSetPointer
 import org.sqlunet.propbank.browser.PbRoleSetActivity
 import org.sqlunet.provider.ProviderArgs
-import org.sqlunet.style.Spanner.Companion.append
-import org.sqlunet.style.Spanner.Companion.appendImage
-import org.sqlunet.style.Spanner.Companion.getDrawable
+import org.sqlunet.style.Spanner.append
+import org.sqlunet.style.Spanner.appendImage
+import org.sqlunet.style.Spanner.getDrawable
 import org.sqlunet.treeview.control.Link
 import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.verbnet.VnClassPointer

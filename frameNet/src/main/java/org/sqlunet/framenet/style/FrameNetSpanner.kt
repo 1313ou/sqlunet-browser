@@ -8,7 +8,7 @@ import android.text.SpannableStringBuilder
 import android.text.Spanned
 import org.sqlunet.style.MarkupSpanner.setSpan
 import org.sqlunet.style.Spanner
-import org.sqlunet.style.Spanner.Companion.setSpan
+import org.sqlunet.style.Spanner.setSpan
 import java.util.regex.Pattern
 
 /**

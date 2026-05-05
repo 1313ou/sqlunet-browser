@@ -26,9 +26,9 @@ import org.sqlunet.propbank.provider.PropBankContract.Words_PbRoleSets
 import org.sqlunet.propbank.provider.PropBankProvider
 import org.sqlunet.propbank.style.PropBankFactories
 import org.sqlunet.propbank.style.PropBankSpanner
-import org.sqlunet.style.Spanner.Companion.append
-import org.sqlunet.style.Spanner.Companion.appendImage
-import org.sqlunet.style.Spanner.Companion.getDrawable
+import org.sqlunet.style.Spanner.append
+import org.sqlunet.style.Spanner.appendImage
+import org.sqlunet.style.Spanner.getDrawable
 import org.sqlunet.treeview.control.Query
 import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.view.TreeOp

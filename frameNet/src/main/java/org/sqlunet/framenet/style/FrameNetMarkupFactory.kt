@@ -16,7 +16,7 @@ import org.sqlunet.style.MarkupSpanner
 import org.sqlunet.style.MarkupSpanner.SpanPosition
 import org.sqlunet.style.MarkupSpanner.SpanPosition.Companion.valueFrom
 import org.sqlunet.style.Span
-import org.sqlunet.style.Spanner.Companion.getDrawable
+import org.sqlunet.style.Spanner.getDrawable
 import org.sqlunet.style.Spanner.HiddenSpan
 import org.sqlunet.xnet.R as XNetR
 

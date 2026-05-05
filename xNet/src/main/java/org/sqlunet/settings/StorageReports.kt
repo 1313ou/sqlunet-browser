@@ -21,7 +21,7 @@ import org.sqlunet.style.Colors
 import org.sqlunet.style.Factories.spans
 import org.sqlunet.style.Report.appendHeader
 import org.sqlunet.style.Report.appendImage
-import org.sqlunet.style.Spanner.Companion.appendWithSpans
+import org.sqlunet.style.Spanner.appendWithSpans
 import org.sqlunet.xnet.R
 import java.io.File
 

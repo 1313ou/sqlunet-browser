@@ -5,13 +5,14 @@ package org.sqlunet.style
 
 import android.text.SpannableStringBuilder
 import java.util.regex.Pattern
+import org.sqlunet.style.Spanner.setSpan
 
 /**
  * Spanner as per mark-up tags
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-object MarkupSpanner : Spanner() {
+object MarkupSpanner {
 
     /**
      * Apply spans
