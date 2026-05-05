@@ -47,7 +47,9 @@ class TextAdapter(
             val idTextId = 1 // cursor!!.getColumnIndex("text")
             val text = cursor!!.getString(idTextId)
             val sb = SpannableStringBuilder(text)
-            spanner.setSpan(sb, 0, 0)
+            with(spanner){
+                sb.setSpan( 0, 0)
+            }
             holder.textView.text = sb
             holder.itemView.setOnClickListener { listener(cursor!!, position, getItemId(position)) }
         }

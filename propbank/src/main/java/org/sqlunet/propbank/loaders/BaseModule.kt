@@ -172,27 +172,26 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val idRoleSetHead = cursor.getColumnIndex(PbRoleSets_X.ROLESETHEAD)
             val idAliases = cursor.getColumnIndex(PbRoleSets_X.ALIASES)
 
-            // read cursor
-            val sb = SpannableStringBuilder()
-
             // data
             // var roleSetId = cursor.getInt(idRoleSetId)
 
-            // roleSet
-            sb.appendImage(roleSetDrawable)
-            sb.append(' ')
-            sb.append(cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory)
-            sb.append(' ')
-            sb.append("head=")
-            sb.append(cursor.getString(idRoleSetHead))
-            sb.append('\n')
-            sb.appendImage(aliasDrawable)
-            sb.append(cursor.getString(idAliases))
-            sb.append('\n')
+            // read cursor
+            val sb = SpannableStringBuilder()
+                // roleSet
+                .appendImage(roleSetDrawable)
+                .append(' ')
+                .append(cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory)
+                .append(' ')
+                .append("head=")
+                .append(cursor.getString(idRoleSetHead))
+                .append('\n')
+                .appendImage(aliasDrawable)
+                .append(cursor.getString(idAliases))
+                .append('\n')
 
-            // description
-            sb.appendImage(definitionDrawable)
-            sb.append(cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory)
+                // description
+                .appendImage(definitionDrawable)
+                .append(cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory)
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
@@ -234,23 +233,22 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
             // read cursor
             do {
-                val sb = SpannableStringBuilder()
-
                 // data
                 val roleSetId = cursor.getInt(idRoleSetId)
 
-                // roleSet
-                sb.appendImage(rolesDrawable)
-                sb.append(' ')
-                sb.append(cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory)
-                sb.append(' ')
-                sb.append("head=")
-                sb.append(cursor.getString(idRoleSetHead))
-                sb.append('\n')
+                val sb = SpannableStringBuilder()
+                    // roleSet
+                    .appendImage(rolesDrawable)
+                    .append(' ')
+                    .append(cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory)
+                    .append(' ')
+                    .append("head=")
+                    .append(cursor.getString(idRoleSetHead))
+                    .append('\n')
 
-                // description
-                sb.appendImage(definitionDrawable)
-                sb.append(cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory)
+                    // description
+                    .appendImage(definitionDrawable)
+                    .append(cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory)
 
                 // attach result
                 val node = makeTextNode(sb, false).addTo(parent)
@@ -287,7 +285,6 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
     private fun rolesCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
         val changed: Array<TreeOp>
-        val sb = SpannableStringBuilder()
         if (cursor.moveToFirst()) {
             // column indices
             // var idRoleId = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEID)
@@ -297,44 +294,47 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val idArgType = cursor.getColumnIndex(PbRoleSets_PbRoles.ARGTYPE)
 
             // read cursor
-            while (true) {
-                // data
+            val sb = SpannableStringBuilder()
+                .apply {
+                    while (true) {
+                        // data
 
-                // n
-                sb.append(cursor.getString(idArgType) ?: "-")
-                sb.append(' ')
+                        // n
+                        append(cursor.getString(idArgType) ?: "-")
+                        append(' ')
 
-                // role
-                sb.appendImage(roleDrawable)
-                sb.append(' ')
-                sb.append(capitalize1(cursor.getString(idRoleDescr)), 0, PropBankFactories.roleFactory)
+                        // role
+                        appendImage(roleDrawable)
+                        append(' ')
+                        append(capitalize1(cursor.getString(idRoleDescr)), 0, PropBankFactories.roleFactory)
 
-                // vn role
-                val vnRole = cursor.getString(idVnRole)
-                if (vnRole != null && vnRole.isNotEmpty()) {
-                    sb.append(' ')
-                    sb.appendImage(vnRoleDrawable)
-                    sb.append(' ')
-                    sb.append(vnRole, 0, PropBankFactories.vnRoleFactory)
+                        // vn role
+                        val vnRole = cursor.getString(idVnRole)
+                        if (vnRole != null && vnRole.isNotEmpty()) {
+                            append(' ')
+                            appendImage(vnRoleDrawable)
+                            append(' ')
+                            append(vnRole, 0, PropBankFactories.vnRoleFactory)
+                        }
+
+                        // func
+                        if (!cursor.isNull(idFunc)) {
+                            append(' ')
+                            append("func=")
+                            append(cursor.getString(idFunc))
+                        }
+
+                        // var roleId = cursor.getInt(idRoleId)
+                        // append(" role id=")
+                        // append(Integer.toString(roleId))
+                        // append(' ')
+
+                        if (!cursor.moveToNext()) {
+                            break
+                        }
+                        append('\n')
+                    }
                 }
-
-                // func
-                if (!cursor.isNull(idFunc)) {
-                    sb.append(' ')
-                    sb.append("func=")
-                    sb.append(cursor.getString(idFunc))
-                }
-
-                // var roleId = cursor.getInt(idRoleId)
-                // sb.append(" role id=")
-                // sb.append(Integer.toString(roleId))
-                // sb.append(' ')
-
-                if (!cursor.moveToNext()) {
-                    break
-                }
-                sb.append('\n')
-            }
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
@@ -363,75 +363,77 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
     private fun examplesCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
         val changed: Array<TreeOp>
-        val sb = SpannableStringBuilder()
         if (cursor.moveToFirst()) {
             // column indices
             val idText = cursor.getColumnIndex(PbRoleSets_PbExamples.TEXT)
             val idRel = cursor.getColumnIndex(PbRoleSets_PbExamples.REL)
             val idArgs = cursor.getColumnIndex(PbRoleSets_PbExamples.ARGS)
 
-            // read cursor
-            while (true) {
-                // text
-                val text = cursor.getString(idText)
-                sb.appendImage(sampleDrawable)
-                sb.append(text, 0, PropBankFactories.exampleFactory)
-                sb.append('\n')
+            val sb = SpannableStringBuilder()
+                .apply {
+                    // read cursor
+                    while (true) {
+                        // text
+                        val text = cursor.getString(idText)
+                        appendImage(sampleDrawable)
+                        append(text, 0, PropBankFactories.exampleFactory)
+                        append('\n')
 
-                // relation
-                sb.append('\t')
-                sb.appendImage(relationDrawable)
-                sb.append(' ')
-                sb.append(cursor.getString(idRel), 0, PropBankFactories.relationFactory)
+                        // relation
+                        append('\t')
+                        appendImage(relationDrawable)
+                        append(' ')
+                        append(cursor.getString(idRel), 0, PropBankFactories.relationFactory)
 
-                // args
-                val argsPack = cursor.getString(idArgs)
-                if (argsPack != null) {
-                    val args = argsPack.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                    Arrays.sort(args)
-                    for (arg in args) {
-                        val fields = arg.split("~".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                        if (fields.size < 5) {
-                            sb.append(arg)
-                            continue
+                        // args
+                        val argsPack = cursor.getString(idArgs)
+                        if (argsPack != null) {
+                            val args = argsPack.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                            Arrays.sort(args)
+                            for (arg in args) {
+                                val fields = arg.split("~".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                                if (fields.size < 5) {
+                                    append(arg)
+                                    continue
+                                }
+                                append('\n')
+                                append('\t')
+
+                                // n
+                                append(fields[0])
+                                append(' ')
+
+                                // role
+                                appendImage(roleDrawable)
+                                append(' ')
+                                append(capitalize1(fields[2]), 0, PropBankFactories.roleFactory)
+                                append(' ')
+
+                                // vnrole
+                                appendImage(vnRoleDrawable)
+                                append(' ')
+                                append(fields[3], 0, PropBankFactories.vnRoleFactory)
+
+                                // func
+                                if (fields[1].isNotEmpty()) {
+                                    // append(" func=")
+                                    append(' ')
+                                    append(fields[1])
+                                }
+
+                                // subtext
+                                append(' ')
+                                // append("subtext=");
+                                append(fields[4])
+                                // append(fields[4], 0, PropBankFactories.textFactory);
+                            }
                         }
-                        sb.append('\n')
-                        sb.append('\t')
-
-                        // n
-                        sb.append(fields[0])
-                        sb.append(' ')
-
-                        // role
-                        sb.appendImage(roleDrawable)
-                        sb.append(' ')
-                        sb.append(capitalize1(fields[2]), 0, PropBankFactories.roleFactory)
-                        sb.append(' ')
-
-                        // vnrole
-                        sb.appendImage(vnRoleDrawable)
-                        sb.append(' ')
-                        sb.append(fields[3], 0, PropBankFactories.vnRoleFactory)
-
-                        // func
-                        if (fields[1].isNotEmpty()) {
-                            // sb.append(" func=")
-                            sb.append(' ')
-                            sb.append(fields[1])
+                        if (!cursor.moveToNext()) {
+                            break
                         }
-
-                        // subtext
-                        sb.append(' ')
-                        // sb.append("subtext=");
-                        sb.append(fields[4])
-                        // sb.append(fields[4], 0, PropBankFactories.textFactory);
+                        append('\n')
                     }
                 }
-                if (!cursor.moveToNext()) {
-                    break
-                }
-                sb.append('\n')
-            }
 
             // extra format
             spanner.setSpan(sb, 0, 0)
