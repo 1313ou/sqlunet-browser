@@ -28,7 +28,7 @@ object Report {
      * @return spannable string builder
      */
     fun appendHeader(sb: SpannableStringBuilder, text: CharSequence?): SpannableStringBuilder {
-        return appendWithSpans(sb, text, StyleSpan(Typeface.BOLD))
+        return sb.appendWithSpans(text, StyleSpan(Typeface.BOLD))
     }
 
     /**
@@ -39,7 +39,7 @@ object Report {
      * @param resId   resource id
      */
     fun appendImage(context: Context, sb: SpannableStringBuilder, @DrawableRes resId: Int) {
-        appendWithSpans(sb, "\u0000", makeImageSpan(context, resId))
+        sb.appendWithSpans("\u0000", makeImageSpan(context, resId))
     }
 
     /**

@@ -182,12 +182,13 @@ open class Spanner {
         /**
          * Append clickable text
          *
-         * @param sb       spannable string builder
+         * @receiver       spannable string builder
          * @param text     text
          * @param listener click listener
          */
         @Suppress("unused")
-        fun appendClickableText(sb: SpannableStringBuilder, text: CharSequence, listener: () -> Unit) {
+        @ReturnThis
+        fun SpannableStringBuilder.appendClickableText(text: CharSequence, listener: () -> Unit): SpannableStringBuilder {
             val span: ClickableSpan = object : ClickableSpan() {
 
                 override fun onClick(view: View) {
@@ -201,7 +202,8 @@ open class Spanner {
                     drawState.color = Color.RED // Optional: change text color
                 }
             }
-            appendWithSpans(sb, text, span)
+            appendWithSpans(text, span)
+            return this
         }
 
         @Suppress("unused")
@@ -304,7 +306,7 @@ open class Spanner {
          * @param position position to start from (to end-of-expanded string)
          */
         fun collapse(sb: SpannableStringBuilder, position: Int) {
-            sb.delete(position, find(sb, position, EOEXPANDEDSTRING))
+            sb.delete(position, sb.find(position, EOEXPANDEDSTRING))
         }
 
         // T E X T
@@ -326,7 +328,7 @@ open class Spanner {
                 for (spanFactory in factories) {
                     val span = spanFactory!!.make(flags)
                     if (span != null) {
-                        applySpan(sb, from, to, span)
+                        sb.applySpan(from, to, span)
                     }
                 }
             }
@@ -336,60 +338,65 @@ open class Spanner {
         /**
          * Append text
          *
-         * @param sb    spannable string builder
+         * @receiver    spannable string builder
          * @param text  text
          * @param spans spans to apply
          */
-        fun appendWithSpans(sb: SpannableStringBuilder, text: CharSequence?, vararg spans: Span): SpannableStringBuilder {
+        @ReturnThis
+        fun SpannableStringBuilder.appendWithSpans(text: CharSequence?, vararg spans: Span): SpannableStringBuilder {
             if (!text.isNullOrEmpty()) {
-                val from = sb.length
-                sb.append(text)
-                val to = sb.length
-                applySpans(sb, from, to, *spans)
+                val from = length
+                append(text)
+                val to = length
+                applySpans(from, to, *spans)
             }
-            return sb
+            return this
         }
 
         /**
          * Apply spans
          *
-         * @param sb    spannable string builder
+         * @receiver    spannable string builder
          * @param from  from position
          * @param to    to position
          * @param spans spans to apply
          */
-        fun applySpans(sb: SpannableStringBuilder, from: Int, to: Int, vararg spans: Span) {
+        @ReturnThis
+        fun SpannableStringBuilder.applySpans(from: Int, to: Int, vararg spans: Span): SpannableStringBuilder {
             for (span in spans) {
-                applySpan(sb, from, to, span)
+                applySpan(from, to, span)
             }
+            return this
         }
 
         /**
          * Apply span
          *
-         * @param sb   spannable string builder
+         * receiver   spannable string builder
          * @param from from position
          * @param to   to position
          * @param span span to apply
          */
-        private fun applySpan(sb: SpannableStringBuilder, from: Int, to: Int, span: Span) {
+        @ReturnThis
+        private fun SpannableStringBuilder.applySpan(from: Int, to: Int, span: Span): SpannableStringBuilder {
             when (span) {
                 is Array<*> if span.isArrayOf<Span>() -> {
                     for (span2 in span) {
-                        sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                     }
                 }
 
                 is Collection<*> -> {
                     for (span2 in span) {
-                        sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                     }
                 }
 
                 else -> {
-                    sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 }
             }
+            return this
         }
 
         // H E L P E R S
@@ -397,15 +404,15 @@ open class Spanner {
         /**
          * Find delimiter
          *
-         * @param sb        spannable string builder
+         * @receiver        spannable string builder
          * @param start     search start
          * @param delimiter delimiter
          * @return delimiter position or -1 if not found
          */
-        private fun find(sb: SpannableStringBuilder, start: Int, @Suppress("SameParameterValue") delimiter: Char): Int {
+        private fun SpannableStringBuilder.find(start: Int, @Suppress("SameParameterValue") delimiter: Char): Int {
             var i = start
-            while (i < sb.length) {
-                if (sb[i] == delimiter) {
+            while (i < length) {
+                if (this[i] == delimiter) {
                     return i + 1
                 }
                 i++

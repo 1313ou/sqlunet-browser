@@ -14,7 +14,7 @@ import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import org.sqlunet.style.Colors
 import org.sqlunet.style.Factories
-import org.sqlunet.style.Spanner
+import org.sqlunet.style.Spanner.Companion.appendWithSpans
 import java.util.LinkedList
 import java.util.StringTokenizer
 
@@ -346,7 +346,7 @@ object SqlFormatter {
 
         private fun outKeyw() {
             if (style) {
-                Spanner.appendWithSpans(result, token, Factories.spans(Colors.sqlKeywordBackColor, Colors.sqlKeywordForeColor, StyleSpan(Typeface.BOLD)))
+                result.appendWithSpans(token, Factories.spans(Colors.sqlKeywordBackColor, Colors.sqlKeywordForeColor, StyleSpan(Typeface.BOLD)))
             } else {
                 out()
             }
@@ -355,8 +355,8 @@ object SqlFormatter {
         private fun outMisc() {
             if (style) {
                 when (token!![0]) {
-                    '\'' -> Spanner.appendWithSpans(result, token, Factories.spans(Colors.sqlSlashBackColor, Colors.sqlSlashForeColor))
-                    '?' -> Spanner.appendWithSpans(result, token, Factories.spans(Colors.sqlQuestionMarkBackColor, Colors.sqlQuestionMarkForeColor))
+                    '\'' -> result.appendWithSpans(token, Factories.spans(Colors.sqlSlashBackColor, Colors.sqlSlashForeColor))
+                    '?' -> result.appendWithSpans(token, Factories.spans(Colors.sqlQuestionMarkBackColor, Colors.sqlQuestionMarkForeColor))
                     else -> out()
                 }
             } else {

@@ -135,7 +135,7 @@ open class RegExprSpanner : Spanner {
                         // span
                         val startSpans = spanFactories[i].make(flags)
                         if (startSpans != null) {
-                            applySpans(sb, start, end, startSpans)
+                            sb.applySpans(start, end, startSpans)
                         }
                     }
                 }

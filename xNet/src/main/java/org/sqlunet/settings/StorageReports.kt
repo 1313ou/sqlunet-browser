@@ -47,15 +47,15 @@ object StorageReports {
         appendImage(activityContext, sb, toIconId(dir.dir.type))
         sb.append(' ')
         // type
-        appendWithSpans(sb, ' '.toString() + dir.dir.type.toDisplay() + ' ', BackgroundColorSpan(Colors.dirTypeBackColor), ForegroundColorSpan(Colors.dirTypeForeColor), RelativeSizeSpan(ENLARGE))
+        sb.appendWithSpans(' '.toString() + dir.dir.type.toDisplay() + ' ', BackgroundColorSpan(Colors.dirTypeBackColor), ForegroundColorSpan(Colors.dirTypeForeColor), RelativeSizeSpan(ENLARGE))
         sb.append('\n')
         // value
-        appendWithSpans(sb, dir.dir.taggedValue, spans(Colors.dirValueBackColor, Colors.dirValueForeColor, StyleSpan(Typeface.ITALIC)))
+        sb.appendWithSpans(dir.dir.taggedValue, spans(Colors.dirValueBackColor, Colors.dirValueForeColor, StyleSpan(Typeface.ITALIC)))
         sb.append('\n')
         // status
         val suitable = dir.status == 0 && dir.fitsIn(activityContext)
-        appendWithSpans(
-            sb, mbToString(dir.free), spans(
+        sb.appendWithSpans(
+            mbToString(dir.free), spans(
                 if (suitable) Colors.dirOkBackColor else Colors.dirFailBackColor,
                 if (suitable) Colors.dirOkForeColor else Colors.dirFailForeColor
             )
@@ -73,7 +73,7 @@ object StorageReports {
     private fun styledFitsIn(context: Context, dir: StorageUtils.StorageDirectory): CharSequence {
         val sb = SpannableStringBuilder()
         val fitsIn = dir.fitsIn(context)
-        appendWithSpans(sb, if (fitsIn) "Fits in" else "Does not fit in", spans(if (fitsIn) Colors.dirOkBackColor else Colors.dirFailBackColor, if (fitsIn) Colors.dirOkForeColor else Colors.dirFailForeColor))
+        sb.appendWithSpans(if (fitsIn) "Fits in" else "Does not fit in", spans(if (fitsIn) Colors.dirOkBackColor else Colors.dirFailBackColor, if (fitsIn) Colors.dirOkForeColor else Colors.dirFailForeColor))
         return sb
     }
 
@@ -87,7 +87,7 @@ object StorageReports {
         val sb = SpannableStringBuilder()
         val status = dir.status()
         val statusOk = "Ok" == status.toString()
-        appendWithSpans(sb, "Status: $status", spans(if (statusOk) Colors.dirOkBackColor else Colors.dirFailBackColor, if (statusOk) Colors.dirOkForeColor else Colors.dirFailForeColor))
+        sb.appendWithSpans("Status: $status", spans(if (statusOk) Colors.dirOkBackColor else Colors.dirFailBackColor, if (statusOk) Colors.dirOkForeColor else Colors.dirFailForeColor))
         return sb
     }
 
@@ -412,11 +412,11 @@ object StorageReports {
         if (physical != null) {
             appendImage(context, sb, R.drawable.ic_storage_intern)
             sb.append(' ')
-            appendWithSpans(sb, " primary physical ", BackgroundColorSpan(Colors.storageTypeBackColor), ForegroundColorSpan(Colors.storageTypeForeColor), RelativeSizeSpan(ENLARGE))
+            sb.appendWithSpans(" primary physical ", BackgroundColorSpan(Colors.storageTypeBackColor), ForegroundColorSpan(Colors.storageTypeForeColor), RelativeSizeSpan(ENLARGE))
             sb.append('\n')
             for (f in physical) {
                 val s = f.absolutePath
-                appendWithSpans(sb, s, spans(Colors.storageValueBackColor, Colors.storageValueForeColor, StyleSpan(Typeface.ITALIC)))
+                sb.appendWithSpans(s, spans(Colors.storageValueBackColor, Colors.storageValueForeColor, StyleSpan(Typeface.ITALIC)))
                 sb.append('\n')
                 sb.append(mbToString(storageCapacity(s)))
                 sb.append(' ')
@@ -430,11 +430,11 @@ object StorageReports {
         if (emulated != null) {
             appendImage(context, sb, R.drawable.ic_storage_extern_primary)
             sb.append(' ')
-            appendWithSpans(sb, " primary emulated ", BackgroundColorSpan(Colors.storageTypeBackColor), ForegroundColorSpan(Colors.storageTypeForeColor), RelativeSizeSpan(ENLARGE))
+            sb.appendWithSpans(" primary emulated ", BackgroundColorSpan(Colors.storageTypeBackColor), ForegroundColorSpan(Colors.storageTypeForeColor), RelativeSizeSpan(ENLARGE))
             sb.append('\n')
             for (f in emulated) {
                 val s = f.absolutePath
-                appendWithSpans(sb, s, spans(Colors.storageValueBackColor, Colors.storageValueForeColor, StyleSpan(Typeface.ITALIC)))
+                sb.appendWithSpans(s, spans(Colors.storageValueBackColor, Colors.storageValueForeColor, StyleSpan(Typeface.ITALIC)))
                 sb.append('\n')
                 sb.append(mbToString(storageCapacity(s)))
                 sb.append(' ')
@@ -449,11 +449,11 @@ object StorageReports {
             appendImage(context, sb, R.drawable.ic_storage_extern_secondary)
             sb.append(' ')
             sb.append(' ')
-            appendWithSpans(sb, " secondary ", BackgroundColorSpan(Colors.storageTypeBackColor), ForegroundColorSpan(Colors.storageTypeForeColor), RelativeSizeSpan(ENLARGE))
+            sb.appendWithSpans(" secondary ", BackgroundColorSpan(Colors.storageTypeBackColor), ForegroundColorSpan(Colors.storageTypeForeColor), RelativeSizeSpan(ENLARGE))
             sb.append('\n')
             for (f in secondary) {
                 val s = f.absolutePath
-                appendWithSpans(sb, s, spans(Colors.storageValueBackColor, Colors.storageValueForeColor, StyleSpan(Typeface.ITALIC)))
+                sb.appendWithSpans(s, spans(Colors.storageValueBackColor, Colors.storageValueForeColor, StyleSpan(Typeface.ITALIC)))
                 sb.append('\n')
                 sb.append(mbToString(storageCapacity(s)))
                 sb.append(' ')
