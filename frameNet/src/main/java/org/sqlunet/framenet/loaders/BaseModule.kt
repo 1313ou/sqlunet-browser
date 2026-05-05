@@ -13,6 +13,7 @@ import android.text.Spanned
 import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import android.util.Log
+import androidx.annotation.ReturnThis
 import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.browser.Module
 import org.sqlunet.browser.SqlunetViewTreeModel
@@ -86,6 +87,7 @@ import org.sqlunet.view.TreeOp.TreeOps
 import org.sqlunet.view.TreeOpExecute
 import java.util.TreeMap
 import androidx.core.net.toUri
+import org.sqlunet.applyIf
 import org.sqlunet.xnet.R as XNetR
 
 /**
@@ -255,7 +257,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             throw RuntimeException("Unexpected number of rows")
         }
         if (cursor.moveToFirst()) {
-            val sb = SpannableStringBuilder()
 
             // column indices
             // var idFrameId = cursor.getColumnIndex(Frames_X.FRAMEID)
@@ -264,30 +265,33 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // data
             // var frameId = cursor.getInt(idFrameId)
-
-            // frame
-            sb.appendImage(frameDrawable)
-            sb.append(' ')
-            sb.append(cursor.getString(idFrame), 0, FrameNetFactories.frameFactory)
-            if (VERBOSE) {
-                sb.append(' ')
-                sb.append(frameId.toString())
-            }
-            sb.append('\n')
-
-            // definition
-            sb.appendImage(metadefinitionDrawable)
-            sb.append(' ')
             var frameDefinition = cursor.getString(idFrameDefinition)
             frameDefinition = frameDefinition.replace("\n*<ex></ex>\n*".toRegex(), "") // TODO remove in sqlunet database
             val frameDefinitionFields = processDefinition(frameDefinition, 0)
-            sb.append(frameDefinitionFields[0])
 
-            // examples in definition
-            for (i in 1 until frameDefinitionFields.size) {
-                sb.append('\n')
-                sb.append(frameDefinitionFields[i])
-            }
+            val sb = SpannableStringBuilder()
+                // frame
+                .appendImage(frameDrawable)
+                .append(' ')
+                .append(cursor.getString(idFrame), 0, FrameNetFactories.frameFactory)
+                .applyIf(VERBOSE) {
+                    append(' ')
+                    append(frameId.toString())
+                }
+                .append('\n')
+
+                // definition
+                .appendImage(metadefinitionDrawable)
+                .append(' ')
+                .append(frameDefinitionFields[0])
+
+                // examples in definition
+                .apply {
+                    for (i in 1 until frameDefinitionFields.size) {
+                        append('\n')
+                        append(frameDefinitionFields[i])
+                    }
+                }
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
@@ -367,8 +371,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             // var idRelation = cursor.getColumnIndex(Frames_Related.RELATION)
             val relatedNodes: MutableMap<Int, TreeNode> = TreeMap()
             do {
-                val sb: Editable = SpannableStringBuilder()
-
                 // data
                 val frame1Id = cursor.getInt(idFrameId)
                 val frame2Id = cursor.getInt(idFrame2Id)
@@ -378,53 +380,62 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // val relation = cursor.getString(idRelation)
                 val gloss = FRAMERELATION_GLOSS[relationId - 1]
 
-                // related
-                if (VERBOSE) {
-                    sb.append(relationId.toString())
-                    sb.append(' ')
-                }
-
                 // slots
                 val slot1 = frame1Id.toLong() == frameId
                 val slot2 = frame2Id.toLong() == frameId
 
-                // arg 1
-                val sb1 = SpannableStringBuilder()
-                if (slot1) {
-                    sb1.append("it")
-                } else {
-                    sb1.append(frame1, 0, FrameNetFactories.frameFactory)
-                    if (VERBOSE) {
-                        sb1.append(' ')
-                        sb1.append(frame1Id.toString())
-                    }
-                }
+                val sb: Editable = SpannableStringBuilder()
+                    .apply {
+                        // related
+                        if (VERBOSE) {
+                            append(relationId.toString())
+                            append(' ')
+                        }
 
-                // arg 2
-                val sb2 = SpannableStringBuilder()
-                if (slot2) {
-                    sb2.append("it")
-                } else {
-                    sb2.append(frame2, 0, FrameNetFactories.frameFactory)
-                    if (VERBOSE) {
-                        sb2.append(' ')
-                        sb2.append(frame2Id.toString())
-                    }
-                }
+                        // arg 1
+                        val sb1 = SpannableStringBuilder()
+                            .apply {
+                                if (slot1) {
+                                    append("it")
+                                } else {
+                                    append(frame1, 0, FrameNetFactories.frameFactory)
+                                    if (VERBOSE) {
+                                        append(' ')
+                                        append(frame1Id.toString())
+                                    }
+                                }
+                            }
 
-                // relation
-                var position = gloss.indexOf("%s")
-                val sbr = SpannableStringBuilder(gloss)
-                sbr.replace(position, position + 2, sb1)
-                position = sbr.toString().indexOf("%s")
-                sbr.replace(position, position + 2, sb2)
-                sb.append(sbr)
+                        // arg 2
+                        val sb2 = SpannableStringBuilder()
+                            .apply {
+                                if (slot2) {
+                                    append("it")
+                                } else {
+                                    append(frame2, 0, FrameNetFactories.frameFactory)
+                                    if (VERBOSE) {
+                                        append(' ')
+                                        append(frame2Id.toString())
+                                    }
+                                }
+                            }
+
+                        // relation
+                        var position = gloss.indexOf("%s")
+                        val sbr = SpannableStringBuilder(gloss).apply {
+                            replace(position, position + 2, sb1)
+                            position = toString().indexOf("%s")
+                            replace(position, position + 2, sb2)
+                        }
+                        append(sbr)
+                    }
 
                 // result
                 val targetFrameId = (if (slot1) frame2Id else frame1Id).toLong()
                 val memberNode = makeLinkNode(sb, XNetR.drawable.roleclass, false, FnFrameLink(targetFrameId))
                 relatedNodes[FRAMERELATION_RANK[relationId - 1]] = memberNode
             } while (cursor.moveToNext())
+
             for (relatedNode in relatedNodes.values) {
                 relatedNode.addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, relatedNode)
@@ -468,7 +479,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // read cursor
             do {
-                val sb = SpannableStringBuilder()
                 val feType = cursor.getString(idFeType)
                 val feAbbrev = cursor.getString(idFeAbbrev)
                 val feDefinition = cursor.getString(idDefinition).trim { it <= ' ' }.replace("\n+".toRegex(), "\n").replace("\n$".toRegex(), "")
@@ -478,56 +488,57 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val coreType = cursor.getString(idCoreType)
 
                 // fe
-                sb.append(feType, 0, FrameNetFactories.feFactory)
-                sb.append(' ')
-                sb.append(feAbbrev, 0, FrameNetFactories.feAbbrevFactory)
+                val sb = SpannableStringBuilder()
+                    .append(feType, 0, FrameNetFactories.feFactory)
+                    .append(' ')
+                    .append(feAbbrev, 0, FrameNetFactories.feAbbrevFactory)
 
                 // attach fe
                 val feNode = makeTreeNode(sb, if (coreTypeId == 1) R.drawable.rolex else XNetR.drawable.role, true).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, feNode)
 
-                // more info
-                val sb2 = SpannableStringBuilder()
-
                 // fe definition
                 val frameDefinitionFields = processDefinition(feDefinition, FrameNetMarkupFactory.FEDEF.toLong())
-                sb2.append('\t')
-                sb2.appendImage(metadefinitionDrawable)
-                sb2.append(' ')
-                sb2.append(frameDefinitionFields[0])
+                val sb2 = SpannableStringBuilder()
+                    .apply {
+                        append('\t')
+                        appendImage(metadefinitionDrawable)
+                        append(' ')
+                        append(frameDefinitionFields[0])
 
-                // fe examples in definition
-                for (i in 1 until frameDefinitionFields.size) {
-                    sb2.append('\n')
-                    sb2.append('\t')
-                    sb2.append(frameDefinitionFields[i])
-                }
+                        // fe examples in definition
+                        for (i in 1 until frameDefinitionFields.size) {
+                            append('\n')
+                            append('\t')
+                            append(frameDefinitionFields[i])
+                        }
 
-                // core type
-                sb2.append('\n')
-                sb2.append('\t')
-                sb2.appendImage(coresetDrawable)
-                sb2.append(' ')
-                sb2.append(coreType)
+                        // core type
+                        append('\n')
+                        append('\t')
+                        appendImage(coresetDrawable)
+                        append(' ')
+                        append(coreType)
 
-                // coreset
-                if (isInCoreSet) {
-                    val coreset = cursor.getInt(idCoreset)
-                    sb2.append('\n')
-                    sb2.append('\t')
-                    sb2.appendImage(coresetDrawable)
-                    sb2.append("[coreset] ")
-                    sb2.append(coreset.toString())
-                }
+                        // coreset
+                        if (isInCoreSet) {
+                            val coreset = cursor.getInt(idCoreset)
+                            append('\n')
+                            append('\t')
+                            appendImage(coresetDrawable)
+                            append("[coreset] ")
+                            append(coreset.toString())
+                        }
 
-                // sem types
-                if (feSemTypes != null) {
-                    sb2.append('\n')
-                    sb2.append('\t')
-                    sb2.appendImage(semtypeDrawable)
-                    sb2.append(' ')
-                    sb2.append(feSemTypes)
-                }
+                        // sem types
+                        if (feSemTypes != null) {
+                            append('\n')
+                            append('\t')
+                            appendImage(semtypeDrawable)
+                            append(' ')
+                            append(feSemTypes)
+                        }
+                    }
 
                 // attach extra node to fe node
                 val extraNode = makeTextNode(sb2, false).addTo(feNode)
@@ -565,7 +576,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         val changed: Array<TreeOp>
         if (cursor.moveToFirst()) {
             val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
-            val sb = SpannableStringBuilder()
 
             // column indices
             // var idLuId = cursor.getColumnIndex(LexUnits_X.LUID)
@@ -586,54 +596,56 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val frameId = cursor.getInt(idFrameId)
             val frame = cursor.getString(idFrame)
 
-            // lexUnit
-            sb.appendImage(lexunitDrawable)
-            sb.append(' ')
-            sb.append(cursor.getString(idLexUnit), 0, FrameNetFactories.lexunitFactory)
-            if (VERBOSE) {
-                sb.append(' ')
-                sb.append(luId.toString())
-            }
-
-            // definition
-            sb.append('\n')
-            sb.appendImage(definitionDrawable)
-            sb.append(' ')
-            sb.append(definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
-            sb.append(' ')
-            sb.append('[')
-            sb.append(dictionary)
-            sb.append(']')
-
-            // incorporated fe
-            if (incorporatedFEType != null) {
-                sb.append('\n')
-                sb.appendImage(feDrawable)
-                sb.append(' ')
-                sb.append("Incorporated")
-                sb.append(' ')
-                sb.append(incorporatedFEType, 0, FrameNetFactories.fe2Factory)
-                if (incorporatedFEDefinition != null) {
-                    sb.append(' ')
-                    sb.append('-')
-                    sb.append(' ')
-                    val definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF.toLong())
-                    sb.append(definitionFields[0])
-                    // no examples
-                    // for (i in 1 until definitionFields.size) {
-                    //     sb.append('\n')
-                    //     sb.append('\t')
-                    //     sb.append(definitionFields[i])
-                    // }
+            val sb = SpannableStringBuilder()
+                // lexUnit
+                .appendImage(lexunitDrawable)
+                .append(' ')
+                .append(cursor.getString(idLexUnit), 0, FrameNetFactories.lexunitFactory)
+                .applyIf(VERBOSE) {
+                    append(' ')
+                    append(luId.toString())
                 }
-            }
+
+                // definition
+                .append('\n')
+                .appendImage(definitionDrawable)
+                .append(' ')
+                .append(definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
+                .append(' ')
+                .append('[')
+                .append(dictionary)
+                .append(']')
+
+                // incorporated fe
+                .applyIf(incorporatedFEType != null) {
+                    append('\n')
+                    appendImage(feDrawable)
+                    append(' ')
+                    append("Incorporated")
+                    append(' ')
+                    append(incorporatedFEType, 0, FrameNetFactories.fe2Factory)
+                    if (incorporatedFEDefinition != null) {
+                        val definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF.toLong())
+                        append(' ')
+                        append('-')
+                        append(' ')
+                        append(definitionFields[0])
+                        // no examples
+                        // for (i in 1 until definitionFields.size) {
+                        //     append('\n')
+                        //     append('\t')
+                        //     append(definitionFields[i])
+                        // }
+                    }
+                }
 
             // with-frame option
             if (withFrame) {
                 val sb2 = SpannableStringBuilder()
-                sb2.append("Frame")
-                sb2.append(' ')
-                sb2.append(frame, 0, FrameNetFactories.boldFactory)
+                    .append("Frame")
+                    .append(' ')
+                    .append(frame, 0, FrameNetFactories.boldFactory)
+
                 val frameNode = makeHotQueryTreeNode(sb2, XNetR.drawable.roleclass, false, FrameQuery(frameId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, frameNode)
                 if (withFes) {
@@ -692,8 +704,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // data
             do {
-                val sb = SpannableStringBuilder()
-
                 // var frameId = cursor.getInt(idFrameId);
                 val luId = cursor.getLong(idLuId)
                 val lexUnit = cursor.getString(idLexUnit)
@@ -703,11 +713,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val incorporatedFEDefinition = cursor.getString(idIncorporatedFEDefinition)
 
                 // lex unit
-                sb.append(lexUnit, 0, FrameNetFactories.lexunitFactory)
-                if (VERBOSE) {
-                    sb.append(' ')
-                    sb.append(luId.toString())
-                }
+                val sb = SpannableStringBuilder()
+                    .append(lexUnit, 0, FrameNetFactories.lexunitFactory)
+                    .applyIf(VERBOSE) {
+                        append(' ')
+                        append(luId.toString())
+                    }
 
                 // attach lex unit
                 val luNode = makeLinkTreeNode(sb, XNetR.drawable.member, true, FnLexUnitLink(luId)).addTo(parent)
@@ -724,39 +735,39 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // more info
                 val sb2 = SpannableStringBuilder()
 
-                // definition
-                sb2.appendImage(definitionDrawable)
-                sb2.append(' ')
-                sb2.append(definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
-                if (dictionary != null) {
-                    sb2.append(' ')
-                    sb2.append('[')
-                    sb2.append(dictionary)
-                    sb2.append(']')
-                }
-
-                // incorporated fe
-                if (incorporatedFEType != null) {
-                    sb2.append('\n')
-                    sb2.appendImage(feDrawable)
-                    sb2.append(' ')
-                    sb2.append("Incorporated")
-                    sb2.append(' ')
-                    sb2.append(incorporatedFEType, 0, FrameNetFactories.fe2Factory)
-                    if (incorporatedFEDefinition != null) {
-                        sb2.append(' ')
-                        sb2.append('-')
-                        sb2.append(' ')
-                        val definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF.toLong())
-                        sb2.append(definitionFields[0], 0, FrameNetFactories.definitionFactory)
-                        // no examples
-                        // for (i in 1 until definitionFields.size) {
-                        //     sb.append('\n')
-                        //     sb.append('\t')
-                        //     sb.append(definitionFields[i])
-                        // }
+                    // definition
+                    .appendImage(definitionDrawable)
+                    .append(' ')
+                    .append(definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
+                    .applyIf(dictionary != null) {
+                        append(' ')
+                        append('[')
+                        append(dictionary)
+                        append(']')
                     }
-                }
+
+                    // incorporated fe
+                    .applyIf(incorporatedFEType != null) {
+                        append('\n')
+                        appendImage(feDrawable)
+                        append(' ')
+                        append("Incorporated")
+                        append(' ')
+                        append(incorporatedFEType, 0, FrameNetFactories.fe2Factory)
+                        if (incorporatedFEDefinition != null) {
+                            val definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF.toLong())
+                            append(' ')
+                            append('-')
+                            append(' ')
+                            append(definitionFields[0], 0, FrameNetFactories.definitionFactory)
+                            // no examples
+                            // for (i in 1 until definitionFields.size) {
+                            //     append('\n')
+                            //     append('\t')
+                            //     append(definitionFields[i])
+                            // }
+                        }
+                    }
 
                 // attach extra node to lex unit node
                 val extraNode = makeTextNode(sb2, false).addTo(luNode)
@@ -810,7 +821,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // data
             do {
-                val sb = SpannableStringBuilder()
                 val luId = cursor.getInt(idLuId)
                 val frameId = cursor.getInt(idFrameId)
                 val definition = cursor.getString(idDefinition)
@@ -818,49 +828,51 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val incorporatedFEType = cursor.getString(idIncorporatedFEType)
                 val incorporatedFEDefinition = cursor.getString(idIncorporatedFEDefinition)
 
-                // lex unit
-                sb.appendImage(lexunitDrawable)
-                sb.append(' ')
-                sb.append(cursor.getString(idLexUnit), 0, FrameNetFactories.lexunitFactory)
-                if (VERBOSE) {
-                    sb.append(' ')
-                    sb.append(luId.toString())
-                }
-
-                // definition
-                sb.append('\n')
-                sb.appendImage(definitionDrawable)
-                sb.append(' ')
-                sb.append(definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
-                if (dictionary != null) {
-                    sb.append(' ')
-                    sb.append('[')
-                    sb.append(dictionary)
-                    sb.append(']')
-                }
-
-                // incorporated FE
-                if (incorporatedFEType != null) {
-                    sb.append('\n')
-                    sb.appendImage(feDrawable)
-                    sb.append(' ')
-                    sb.append("Incorporated")
-                    sb.append(' ')
-                    sb.append(incorporatedFEType, 0, FrameNetFactories.fe2Factory)
-                    if (incorporatedFEDefinition != null) {
-                        sb.append(' ')
-                        sb.append('-')
-                        sb.append(' ')
-                        val definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF.toLong())
-                        sb.append(definitionFields[0])
-                        // no examples
-                        // for (i in 1 until definitionFields.size) {
-                        //     sb.append('\n')
-                        //     sb.append('\t')
-                        //     sb.append(definitionFields[i])
-                        // }
+                val sb = SpannableStringBuilder()
+                    // lex unit
+                    .appendImage(lexunitDrawable)
+                    .append(' ')
+                    .append(cursor.getString(idLexUnit), 0, FrameNetFactories.lexunitFactory)
+                    .applyIf(VERBOSE) {
+                        append(' ')
+                        append(luId.toString())
                     }
-                }
+
+                    // definition
+                    .append('\n')
+                    .appendImage(definitionDrawable)
+                    .append(' ')
+                    .append(definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
+                    .applyIf(dictionary != null) {
+                        append(' ')
+                        append('[')
+                        append(dictionary)
+                        append(']')
+                    }
+
+                    // incorporated FE
+                    .applyIf(incorporatedFEType != null) {
+                        append('\n')
+                        appendImage(feDrawable)
+                        append(' ')
+                        append("Incorporated")
+                        append(' ')
+                        append(incorporatedFEType, 0, FrameNetFactories.fe2Factory)
+                        if (incorporatedFEDefinition != null) {
+                            val definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF.toLong())
+                            append(' ')
+                            append('-')
+                            append(' ')
+                            append(definitionFields[0])
+                            // no examples
+                            // for (i in 1 until definitionFields.size) {
+                            //     append('\n')
+                            //     append('\t')
+                            //     append(definitionFields[i])
+                            // }
+                        }
+                    }
+
                 // attach result
                 val node = makeTextNode(sb, false).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, node)
@@ -915,24 +927,23 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // data
             do {
-                val sb = SpannableStringBuilder()
-
                 // data
                 val governorId = cursor.getLong(idGovernorId)
                 val governorType = cursor.getString(idGovernorType)
                 val word = cursor.getString(idWord)
 
-                // type
-                sb.append(governorType, 0, FrameNetFactories.governorTypeFactory)
-                sb.append(' ')
-                if (VERBOSE) {
-                    sb.append(' ')
-                    sb.append(governorId.toString())
-                    sb.append(' ')
-                    sb.append(cursor.getInt(idWordId).toString())
-                }
-                sb.append(' ')
-                sb.append(word, 0, FrameNetFactories.governorFactory)
+                val sb = SpannableStringBuilder()
+                    // type
+                    .append(governorType, 0, FrameNetFactories.governorTypeFactory)
+                    .append(' ')
+                    .applyIf(VERBOSE) {
+                        append(' ')
+                        append(governorId.toString())
+                        append(' ')
+                        append(cursor.getInt(idWordId).toString())
+                    }
+                    .append(' ')
+                    .append(word, 0, FrameNetFactories.governorFactory)
 
                 // attach annoSets node
                 val annoSetsNode = makeQueryTreeNode(sb, R.drawable.governor, false, AnnoSetsForGovernorQuery(governorId)).addTo(parent)
@@ -975,16 +986,15 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             // data
             do {
                 val sb = SpannableStringBuilder()
-
-                // realization
-                sb.append(cursor.getString(idFeType), 0, FrameNetFactories.feFactory)
-                sb.append(' ')
-                sb.append("[annotated] ")
-                sb.append(cursor.getInt(idTotal).toString())
-                if (VERBOSE) {
-                    sb.append(' ')
-                    sb.append(cursor.getString(idFerId))
-                }
+                    // realization
+                    .append(cursor.getString(idFeType), 0, FrameNetFactories.feFactory)
+                    .append(' ')
+                    .append("[annotated] ")
+                    .append(cursor.getInt(idTotal).toString())
+                    .applyIf(VERBOSE) {
+                        append(' ')
+                        append(cursor.getString(idFerId))
+                    }
 
                 // fe
                 val feNode = makeTreeNode(sb, XNetR.drawable.role, false).addTo(parent)
@@ -1001,22 +1011,24 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     if (fields.size > 2) {
                         vuId = fields[2].toLong()
                     }
+
                     val sb1 = SpannableStringBuilder()
 
-                    // pt
-                    if (fields.isNotEmpty()) {
-                        sb1.append(processPT(fields[0]), 0, FrameNetFactories.ptFactory)
-                        sb1.append(' ')
-                    }
-                    // gf
-                    if (fields.size > 1) {
-                        sb1.append(' ')
-                        sb1.append(fields[1], 0, FrameNetFactories.gfFactory)
-                    }
-                    if (VERBOSE) {
-                        sb.append(' ')
-                        sb.append(vuId.toString())
-                    }
+                        // pt
+                        .applyIf(fields.isNotEmpty()) {
+                            append(processPT(fields[0]), 0, FrameNetFactories.ptFactory)
+                            append(' ')
+                        }
+                        // gf
+                        .applyIf(fields.size > 1) {
+                            append(' ')
+                            append(fields[1], 0, FrameNetFactories.gfFactory)
+                        }
+                        // vu
+                        .applyIf(VERBOSE) {
+                            append(' ')
+                            append(vuId.toString())
+                        }
 
                     // attach fer node
                     val ferNode = makeQueryTreeNode(sb1, R.drawable.realization, false, SentencesForValenceUnitQuery(vuId)).addTo(feNode)
@@ -1059,7 +1071,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             var groupId: Long = -1
             var groupNode: TreeNode? = null
             do {
-                val sb = SpannableStringBuilder()
 
                 // data
                 val feGroupId = cursor.getLong(idFEGRId)
@@ -1072,21 +1083,23 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                 // group
                 if (groupId != feGroupId) {
-                    val sb1: Editable = SpannableStringBuilder()
-                    sb1.append("group")
-                    sb1.append(' ')
-                    sb1.append((++groupNumber).toString())
-                    if (VERBOSE) {
-                        sb1.append(' ')
-                        sb1.append(feGroupId.toString())
-                    }
+                    val sb1 = SpannableStringBuilder()
+                        .append("group")
+                        .append(' ')
+                        .append((++groupNumber).toString())
+                        .applyIf(VERBOSE) {
+                            append(' ')
+                            append(feGroupId.toString())
+                        }
                     groupId = feGroupId
+
                     groupNode = makeTreeNode(sb1, R.drawable.grouprealization, false).addTo(parent)
                     changedList.add(TreeOpCode.NEWCHILD, groupNode)
                 }
 
-                // group realization
-                parseGroupRealizations(groupRealizations, sb)
+                val sb = SpannableStringBuilder()
+                    // group realization
+                    .parseGroupRealizations(groupRealizations)
 
                 // attach sentences node
                 val sentencesNode = makeQueryTreeNode(sb, R.drawable.grouprealization, false, SentencesForPatternQuery(patternId.toLong())).addTo(groupNode!!)
@@ -1104,11 +1117,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     /**
      * Parse group realizations
      *
+     * @receiver        builder to host result
      * @param aggregate aggregate to parse
-     * @param sb        builder to host result
      * @return builder
      */
-    private fun parseGroupRealizations(aggregate: String, sb: SpannableStringBuilder): CharSequence {
+    @ReturnThis
+    private fun SpannableStringBuilder.parseGroupRealizations(aggregate: String): SpannableStringBuilder {
         // fe.pt.gf,fe.pt.gf,...
         val groupRealizations = aggregate.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         var first = true
@@ -1116,27 +1130,27 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             if (first) {
                 first = false
             } else {
-                sb.append('\n')
+                append('\n')
             }
-            sb.appendImage(realizationDrawable)
+            appendImage(realizationDrawable)
 
             // fe.pt.gf
             val components = groupRealization.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             if (components.isNotEmpty()) {
-                sb.append(components[0], 0, FrameNetFactories.feFactory)
+                append(components[0], 0, FrameNetFactories.feFactory)
             }
-            sb.append(' ')
+            append(' ')
             if (components.size > 1) {
                 // pt
-                sb.append(processPT(components[1]), 0, FrameNetFactories.ptFactory)
+                append(processPT(components[1]), 0, FrameNetFactories.ptFactory)
             }
-            sb.append(' ')
+            append(' ')
             if (components.size > 2) {
                 // gf
-                sb.append(components[2], 0, FrameNetFactories.gfFactory)
+                append(components[2], 0, FrameNetFactories.gfFactory)
             }
         }
-        return sb
+        return this
     }
 
     // S E N T E N C E S
@@ -1166,63 +1180,66 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // read cursor
             do {
-                val sb = SpannableStringBuilder()
                 val text = cursor.getString(idText)
                 val layerType = cursor.getString(idLayerType)
                 val annotations = cursor.getString(idAnnotations)
                 val sentenceId = cursor.getLong(idSentenceId)
 
-                // sentence text
-                val sentenceStart = sb.length
-                sb.append(text, 0, FrameNetFactories.sentenceFactory)
-                if (VERBOSE) {
-                    sb.append(sentenceId.toString())
-                    sb.append(' ')
-                }
+                val sb = SpannableStringBuilder()
+                    .apply {
+                        val sentenceStart = length
 
-                // labels
-                val labels = Utils.parseLabels(annotations)
-                if (labels != null) {
-                    for (label in labels) {
-                        sb.append('\n')
-
-                        // segment
-                        var subtext: String
-                        val from = label.from.toInt()
-                        val to = label.to.toInt() + 1
-                        val len = text.length
-                        subtext = if (from < 0 || to > len || from > to) {
-                            val idAnnoSetId = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.ANNOSETID)
-                            val annoSetId = cursor.getLong(idAnnoSetId)
-                            Log.d(TAG, "annoSetId=" + annoSetId + "annotations=" + annotations + "label=" + label + "text=" + text)
-                            label.toString() + " ERROR [" + label.from + ',' + label.to + ']'
-                        } else {
-                            text.substring(from, to)
+                        // sentence text
+                        append(text, 0, FrameNetFactories.sentenceFactory)
+                        if (VERBOSE) {
+                            append(sentenceId.toString())
+                            append(' ')
                         }
 
-                        // span text
-                        sb.setSpan(sentenceStart + from, sentenceStart + to, 0, if ("Target" == layerType) FrameNetFactories.targetHighlightTextFactory else FrameNetFactories.highlightTextFactory)
+                        // labels
+                        val labels = Utils.parseLabels(annotations)
+                        if (labels != null) {
+                            for (label in labels) {
+                                append('\n')
 
-                        // label
-                        sb.append('\t')
-                        sb.append(label.label, 0, if ("FE" == layerType) FrameNetFactories.feFactory else FrameNetFactories.labelFactory)
-                        sb.append(' ')
+                                // segment
+                                var subtext: String
+                                val from = label.from.toInt()
+                                val to = label.to.toInt() + 1
+                                val len = text.length
+                                subtext = if (from < 0 || to > len || from > to) {
+                                    val idAnnoSetId = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.ANNOSETID)
+                                    val annoSetId = cursor.getLong(idAnnoSetId)
+                                    Log.d(TAG, "annoSetId=" + annoSetId + "annotations=" + annotations + "label=" + label + "text=" + text)
+                                    label.toString() + " ERROR [" + label.from + ',' + label.to + ']'
+                                } else {
+                                    text.substring(from, to)
+                                }
 
-                        // subtext value
-                        val p = sb.length
-                        sb.append(subtext, 0, FrameNetFactories.subtextFactory)
+                                // span text
+                                setSpan(sentenceStart + from, sentenceStart + to, 0, if ("Target" == layerType) FrameNetFactories.targetHighlightTextFactory else FrameNetFactories.highlightTextFactory)
 
-                        // value colors
-                        if (label.bgColor != null) {
-                            val color = label.bgColor.toInt(16)
-                            sb.setSpan(BackgroundColorSpan(color or -0x1000000), p, p + subtext.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                        }
-                        if (label.fgColor != null) {
-                            val color = label.fgColor.toInt(16)
-                            sb.setSpan(ForegroundColorSpan(color or -0x1000000), p, p + subtext.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                // label
+                                append('\t')
+                                append(label.label, 0, if ("FE" == layerType) FrameNetFactories.feFactory else FrameNetFactories.labelFactory)
+                                append(' ')
+
+                                // subtext value
+                                val p = length
+                                append(subtext, 0, FrameNetFactories.subtextFactory)
+
+                                // value colors
+                                if (label.bgColor != null) {
+                                    val color = label.bgColor.toInt(16)
+                                    setSpan(BackgroundColorSpan(color or -0x1000000), p, p + subtext.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                }
+                                if (label.fgColor != null) {
+                                    val color = label.fgColor.toInt(16)
+                                    setSpan(ForegroundColorSpan(color or -0x1000000), p, p + subtext.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                                }
+                            }
                         }
                     }
-                }
 
                 // attach result
                 val sentenceNode = makeLinkNode(sb, XNetR.drawable.sentence, false, FnSentenceLink(sentenceId)).addTo(parent)
@@ -1261,19 +1278,19 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // read cursor
             do {
-                val sb = SpannableStringBuilder()
                 val annotationId = cursor.getLong(idAnnotationId)
                 val text = cursor.getString(idText)
-                // var sentenceId = cursor.getLong(idSentenceId);
+                // val sentenceId = cursor.getLong(idSentenceId)
 
-                // sentence
-                sb.append(text, 0, FrameNetFactories.sentenceFactory)
+                val sb = SpannableStringBuilder()
+                    // sentence
+                    .append(text, 0, FrameNetFactories.sentenceFactory)
 
-                // annotation id
-                if (VERBOSE) {
-                    sb.append(' ')
-                    sb.append(annotationId.toString())
-                }
+                    // annotation id
+                    .applyIf(VERBOSE) {
+                        append(' ')
+                        append(annotationId.toString())
+                    }
 
                 // attach annoSet node
                 val annoSetNode = makeQueryTreeNode(sb, XNetR.drawable.sentence, false, AnnoSetQuery(annotationId, false)).addTo(parent)
@@ -1312,19 +1329,19 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // read cursor
             do {
-                val sb = SpannableStringBuilder()
                 val annotationId = cursor.getLong(idAnnotationId)
                 val text = cursor.getString(idText)
                 // val sentenceId = cursor.getLong(idSentenceId)
 
-                // sentence
-                sb.append(text, 0, FrameNetFactories.sentenceFactory)
+                val sb = SpannableStringBuilder()
+                    // sentence
+                    .append(text, 0, FrameNetFactories.sentenceFactory)
 
-                // annotation id
-                if (VERBOSE) {
-                    sb.append(' ')
-                    sb.append(annotationId.toString())
-                }
+                    // annotation id
+                    .applyIf(VERBOSE) {
+                        append(' ')
+                        append(annotationId.toString())
+                    }
 
                 // pattern
                 val annoSetNode = makeQueryTreeNode(sb, XNetR.drawable.sentence, false, AnnoSetQuery(annotationId, false)).addTo(parent)
@@ -1356,7 +1373,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
     private fun annoSetCursorToTreeModel(cursor: Cursor, parent: TreeNode, withSentence: Boolean): Array<TreeOp> {
         val changed: Array<TreeOp>
-        val sb = SpannableStringBuilder()
         if (cursor.moveToFirst()) {
             // column indices
             val idLayerType = cursor.getColumnIndex(AnnoSets_Layers_X.LAYERTYPE)
@@ -1366,81 +1382,83 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val idRank = cursor.getColumnIndex(AnnoSets_Layers_X.RANK)
 
             // read cursor
-            var first = true
-            while (true) {
-                val layerType = cursor.getString(idLayerType)
-                val annotations = cursor.getString(idAnnotations)
-                val sentenceText = cursor.getString(idSentenceText)
-                val isTarget = "Target" == layerType
-                val isFE = "FE" == layerType
+            val sb = SpannableStringBuilder().apply {
+                var first = true
+                while (true) {
+                    val layerType = cursor.getString(idLayerType)
+                    val annotations = cursor.getString(idAnnotations)
+                    val sentenceText = cursor.getString(idSentenceText)
+                    val isTarget = "Target" == layerType
+                    val isFE = "FE" == layerType
 
-                // sentence
-                if (withSentence && first) {
-                    sb.appendImage(sentenceDrawable)
-                    sb.append(' ')
-                    sb.append(sentenceText, 0, FrameNetFactories.sentenceFactory)
+                    // sentence
+                    if (withSentence && first) {
+                        appendImage(sentenceDrawable)
+                        append(' ')
+                        append(sentenceText, 0, FrameNetFactories.sentenceFactory)
+                        if (VERBOSE) {
+                            val sentenceId = cursor.getLong(idSentenceId)
+                            append(' ')
+                            append(sentenceId.toString())
+                        }
+                        append('\n')
+                        first = false
+                    }
+
+                    // layer
+                    appendImage(layerDrawable)
+                    append(' ')
+                    append(processLayer(layerType), 0, if (isTarget) FrameNetFactories.targetFactory else FrameNetFactories.layerTypeFactory)
                     if (VERBOSE) {
-                        val sentenceId = cursor.getLong(idSentenceId)
-                        sb.append(' ')
-                        sb.append(sentenceId.toString())
+                        val rank = cursor.getString(idRank)
+                        append(' ')
+                        append('[')
+                        append(rank)
+                        append(']')
                     }
-                    sb.append('\n')
-                    first = false
-                }
 
-                // layer
-                sb.appendImage(layerDrawable)
-                sb.append(' ')
-                sb.append(processLayer(layerType), 0, if (isTarget) FrameNetFactories.targetFactory else FrameNetFactories.layerTypeFactory)
-                if (VERBOSE) {
-                    val rank = cursor.getString(idRank)
-                    sb.append(' ')
-                    sb.append('[')
-                    sb.append(rank)
-                    sb.append(']')
-                }
+                    // annotations
+                    val labels = Utils.parseLabels(annotations)
+                    if (labels != null) {
+                        for (label in labels) {
+                            append('\n')
+                            append('\t')
+                            append('\t')
 
-                // annotations
-                val labels = Utils.parseLabels(annotations)
-                if (labels != null) {
-                    for (label in labels) {
-                        sb.append('\n')
-                        sb.append('\t')
-                        sb.append('\t')
+                            // label
+                            append(label.label, 0, if (isFE) FrameNetFactories.feFactory else FrameNetFactories.labelFactory)
+                            append(' ')
 
-                        // label
-                        sb.append(label.label, 0, if (isFE) FrameNetFactories.feFactory else FrameNetFactories.labelFactory)
-                        sb.append(' ')
+                            // subtext value
+                            var subtext: String
+                            val from = label.from.toInt()
+                            val to = label.to.toInt() + 1
+                            val len = sentenceText.length
+                            subtext = if (from < 0 || to > len || from > to) {
+                                Log.d(TAG, "annotations=" + annotations + "label=" + label + "text=" + sentenceText)
+                                label.toString() + " ERROR [" + label.from + ',' + label.to + ']'
+                            } else {
+                                sentenceText.substring(from, to)
+                            }
+                            val p = length
+                            append(subtext, 0, FrameNetFactories.subtextFactory)
 
-                        // subtext value
-                        var subtext: String
-                        val from = label.from.toInt()
-                        val to = label.to.toInt() + 1
-                        val len = sentenceText.length
-                        subtext = if (from < 0 || to > len || from > to) {
-                            Log.d(TAG, "annotations=" + annotations + "label=" + label + "text=" + sentenceText)
-                            label.toString() + " ERROR [" + label.from + ',' + label.to + ']'
-                        } else {
-                            sentenceText.substring(from, to)
-                        }
-                        val p = sb.length
-                        sb.append(subtext, 0, FrameNetFactories.subtextFactory)
-
-                        // value color
-                        if (label.bgColor != null) {
-                            val color = label.bgColor.toInt(16)
-                            sb.setSpan(BackgroundColorSpan(color or -0x1000000), p, p + subtext.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                        }
-                        if (label.fgColor != null) {
-                            val color = label.fgColor.toInt(16)
-                            sb.setSpan(ForegroundColorSpan(color or -0x1000000), p, p + subtext.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                            // value color
+                            if (label.bgColor != null) {
+                                val color = label.bgColor.toInt(16)
+                                setSpan(BackgroundColorSpan(color or -0x1000000), p, p + subtext.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                            }
+                            if (label.fgColor != null) {
+                                val color = label.fgColor.toInt(16)
+                                setSpan(ForegroundColorSpan(color or -0x1000000), p, p + subtext.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                            }
                         }
                     }
+                    if (!cursor.moveToNext()) {
+                        break
+                    }
+                    append('\n')
                 }
-                if (!cursor.moveToNext()) {
-                    break
-                }
-                sb.append('\n')
             }
 
             // attach result
@@ -1478,23 +1496,22 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // data
             do {
-                val sb = SpannableStringBuilder()
-
                 // data
                 val text = cursor.getString(idText)
                 val annoSetId = cursor.getLong(idAnnoSetId)
 
-                // sentence
-                sb.append(text, 0, FrameNetFactories.sentenceFactory)
-                sb.append(' ')
-                if (VERBOSE) {
-                    sb.append(' ')
-                    sb.append("sentenceid=")
-                    sb.append(cursor.getString(idSentenceId))
-                    sb.append(' ')
-                    sb.append("annosetid=")
-                    sb.append(annoSetId.toString())
-                }
+                val sb = SpannableStringBuilder()
+                    // sentence
+                    .append(text, 0, FrameNetFactories.sentenceFactory)
+                    .append(' ')
+                    .applyIf(VERBOSE) {
+                        append(' ')
+                        append("sentenceid=")
+                        append(cursor.getString(idSentenceId))
+                        append(' ')
+                        append("annosetid=")
+                        append(annoSetId.toString())
+                    }
 
                 // attach annoSet node
                 val annoSetNode = makeQueryTreeNode(sb, R.drawable.annoset, false, AnnoSetQuery(annoSetId, false)).addTo(parent)
@@ -1606,76 +1623,77 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     }
                     sb = SpannableStringBuilder()
                     sba = SpannableStringBuilder()
-                    sba.append( "AnnoSet", 0, FrameNetFactories.annoSetFactory)
-                    sba.append(' ')
-                    sba.append(annoSetId.toString(), 0, FrameNetFactories.dataFactory)
+                        .append("AnnoSet", 0, FrameNetFactories.annoSetFactory)
+                        .append(' ')
+                        .append(annoSetId.toString(), 0, FrameNetFactories.dataFactory)
                     annoSetNode = makeTreeNode(sba, R.drawable.annoset, false).addTo(parent)
                     changedList.add(TreeOpCode.NEWCHILD, annoSetNode)
                     currentAnnoSetId = annoSetId
                 }
-                if (sb!!.isNotEmpty()) {
-                    sb.append('\n')
-                }
 
-                // layer
-                sb.appendImage(layerDrawable)
-                sb.append(' ')
-                sb.append(processLayer(layerType), 0, FrameNetFactories.layerTypeFactory)
-                if (VERBOSE) {
-                    sb.append(' ')
-                    sb.append('[')
-                    sb.append(rank)
-                    sb.append(']')
-                }
+                sb!!.apply {
+                    if (isNotEmpty()) append('\n')
 
-                // annotations
-                val labels = Utils.parseLabels(annotations)
-                if (labels != null) {
-                    for (label in labels.sortedBy { it.from.toInt() }) {
-                        sb.append('\n')
-                        sb.append('\t')
-                        sb.append('\t')
+                    // layer
+                    appendImage(layerDrawable)
+                    append(' ')
+                    append(processLayer(layerType), 0, FrameNetFactories.layerTypeFactory)
+                    if (VERBOSE) {
+                        append(' ')
+                        append('[')
+                        append(rank)
+                        append(']')
+                    }
 
-                        // label
-                        sb.append(
-                            label.label, 0, if (isFE)
-                                FrameNetFactories.feFactory else
-                                FrameNetFactories.labelFactory
-                        )
-                        sb.append(' ')
+                    // annotations
+                    val labels = Utils.parseLabels(annotations)
+                    if (labels != null) {
+                        for (label in labels.sortedBy { it.from.toInt() }) {
+                            append('\n')
+                            append('\t')
+                            append('\t')
 
-                        // subtext value
-                        val from = label.from.toInt()
-                        val to = label.to.toInt() + 1
-                        var subtext: String
-                        val len = text?.length ?: 0
-                        subtext = if (from < 0 || to > len || from > to) {
-                            Log.d(TAG, "annoSetId=" + annoSetId + "annotations=" + annotations + "label=" + label + "text=" + text)
-                            label.toString() + " ERROR [" + label.from + ',' + label.to + ']'
-                        } else {
-                            text?.substring(from, to) ?: "<null>"
-                        }
-                        val p = sb.length
-                        sb.append(
-                            subtext, 0, if (isTarget)
-                                FrameNetFactories.targetFactory else
-                                FrameNetFactories.subtextFactory
-                        )
+                            // label
+                            append(
+                                label.label, 0, if (isFE)
+                                    FrameNetFactories.feFactory else
+                                    FrameNetFactories.labelFactory
+                            )
+                            append(' ')
 
-                        // target
-                        if (isTarget) {
-                            sba!!.append(' ')
-                            sba.append(subtext, 0, FrameNetFactories.targetFactory)
-                        }
+                            // subtext value
+                            val from = label.from.toInt()
+                            val to = label.to.toInt() + 1
+                            var subtext: String
+                            val len = text?.length ?: 0
+                            subtext = if (from < 0 || to > len || from > to) {
+                                Log.d(TAG, "annoSetId=" + annoSetId + "annotations=" + annotations + "label=" + label + "text=" + text)
+                                label.toString() + " ERROR [" + label.from + ',' + label.to + ']'
+                            } else {
+                                text?.substring(from, to) ?: "<null>"
+                            }
+                            val p = length
+                            append(
+                                subtext, 0, if (isTarget)
+                                    FrameNetFactories.targetFactory else
+                                    FrameNetFactories.subtextFactory
+                            )
 
-                        // value colors
-                        if (label.bgColor != null) {
-                            val color = label.bgColor.toInt(16)
-                            sb.setSpan(BackgroundColorSpan(color or -0x1000000), p, p + subtext.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                        }
-                        if (label.fgColor != null) {
-                            val color = label.fgColor.toInt(16)
-                            sb.setSpan(ForegroundColorSpan(color or -0x1000000), p, p + subtext.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                            // target
+                            if (isTarget) {
+                                sba!!.append(' ')
+                                sba.append(subtext, 0, FrameNetFactories.targetFactory)
+                            }
+
+                            // value colors
+                            if (label.bgColor != null) {
+                                val color = label.bgColor.toInt(16)
+                                setSpan(BackgroundColorSpan(color or -0x1000000), p, p + subtext.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                            }
+                            if (label.fgColor != null) {
+                                val color = label.fgColor.toInt(16)
+                                setSpan(ForegroundColorSpan(color or -0x1000000), p, p + subtext.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                            }
                         }
                     }
                 }
