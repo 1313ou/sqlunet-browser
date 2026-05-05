@@ -280,22 +280,6 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     val memberNode = makeTreeNode(sb, XNetR.drawable.member, false).addTo(parent)
                     changedList.add(TreeOpCode.NEWCHILD, memberNode)
                     val sb2 = SpannableStringBuilder()
-
-                    // definitions
-                    var first = true
-                    if (definitionsConcat != null) {
-                        val definitions = definitionsConcat.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                        for (definition in definitions) {
-                            if (first) {
-                                first = false
-                            } else {
-                                sb2.append('\n')
-                            }
-                            sb2.appendImage(drawableDefinition)
-                            sb2.append(' ')
-                            sb2.append(definition.trim { it <= ' ' }, 0, VerbNetFactories.definitionFactory)
-                        }
-                    }
                         .apply {
                             // definitions
                             var first = true
@@ -305,6 +289,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                                     if (first) {
                                         first = false
                                     } else {
+                                        append('\n')
                                     }
                                     appendImage(drawableDefinition)
                                     append(' ')
@@ -312,23 +297,6 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                                 }
                             }
 
-                    // groupings
-                    first = true
-                    if (groupings != null) {
-                        for (grouping in groupings.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
-                            if (first) {
-                                if (sb2.isNotEmpty()) {
-                                    sb2.append('\n')
-                                }
-                                first = false
-                            } else {
-                                sb2.append('\n')
-                            }
-                            sb2.appendImage(drawableGrouping)
-                            sb2.append(' ')
-                            sb2.append(grouping.trim { it <= ' ' }, 0, VerbNetFactories.groupingFactory)
-                        }
-                    }
                             // groupings
                             first = true
                             if (groupings != null) {
@@ -337,6 +305,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                                         if (isNotEmpty()) append('\n')
                                         first = false
                                     } else {
+                                        append('\n')
                                     }
                                     appendImage(drawableGrouping)
                                     append(' ')
@@ -386,11 +355,6 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val idRestrs = cursor.getColumnIndex(VnClasses_VnRoles_X.RESTRS)
 
             // read cursor
-            while (true) {
-                // role
-                sb.appendImage(drawableRole)
-                sb.append(' ')
-                sb.append(cursor.getString(idRoleType), 0, VerbNetFactories.roleFactory)
             val sb = SpannableStringBuilder()
                 .apply {
                     while (true) {
@@ -406,15 +370,6 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                             append(restrs, 0, VerbNetFactories.restrsFactory)
                         }
 
-                // role id
-                // var roleId = cursor.getInt(idRoleId)
-                // sb.append(" role id=")
-                // sb.append(Integer.toString(roleId))
-                if (!cursor.moveToNext()) {
-                    break
-                }
-                sb.append('\n')
-            }
                         // role id
                         // val roleId = cursor.getInt(idRoleId)
                         // append(" role id=")
@@ -458,17 +413,11 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val idExamples = cursor.getColumnIndex(VnClasses_VnFrames_X.EXAMPLES)
 
             // read cursor
-            while (true) {
-                // frame
-                sb.appendImage(drawableFrame)
-                sb.append(' ')
-                sb.append(cursor.getString(idFrameName), 0, VerbNetFactories.frameFactory)
-                sb.append(' ')
-                sb.append(cursor.getString(idFrameSubName), 0, VerbNetFactories.framesubnameFactory)
             val sb = SpannableStringBuilder()
                 .apply {
                     while (true) {
                         // frame
+                        appendImage(drawableFrame)
                         append(' ')
                         append(cursor.getString(idFrameName), 0, VerbNetFactories.frameFactory)
                         append(' ')
@@ -478,14 +427,6 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                         // append(Integer.toString(cursor.getInt(idFrameId)))
                         // append('\n')
 
-                // syntax
-                val syntax = cursor.getString(idSyntax)
-                for (line in syntax.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
-                    sb.append('\n')
-                    sb.append('\t')
-                    sb.appendImage(drawableSyntax)
-                    syntaxSpanner.append(line, sb, 0)
-                }
                         // syntax
                         val syntax = cursor.getString(idSyntax)
                         for (line in syntax.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
@@ -494,37 +435,15 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                             appendImage(drawableSyntax)
                         }
 
-                // semantics
-                val semantics = cursor.getString(idSemantics)
-                for (line in semantics.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
-                    sb.append('\n')
-                    sb.append('\t')
-                    sb.appendImage(drawableSemantics)
-                    val statement = semanticsProcessor.process(line)
-                    semanticsSpanner.append(statement, sb, 0)
-                }
                         // semantics
                         val semantics = cursor.getString(idSemantics)
                         for (line in semantics.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
                             append('\n')
+                            append('\t')
                             appendImage(drawableSemantics)
                             val statement = semanticsProcessor.process(line)
                         }
 
-                // examples
-                val examplesConcat = cursor.getString(idExamples)
-                val examples = examplesConcat.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                for (example in examples) {
-                    sb.append('\n')
-                    sb.append('\t')
-                    sb.appendImage(drawableExample)
-                    sb.append(example, 0, VerbNetFactories.exampleFactory)
-                }
-                if (!cursor.moveToNext()) {
-                    break
-                }
-                sb.append('\n')
-            }
                         // examples
                         val examplesConcat = cursor.getString(idExamples)
                         val examples = examplesConcat.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
@@ -568,15 +487,6 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 return makeIconTextNode(sb, XNetR.drawable.member, false).addTo(parent)
             } else if (items.size > 1) {
                 val groupingsNode = makeIconTextNode(groupLabel, XNetR.drawable.member, false).addTo(parent)
-                var first = true
-                for (item in items) {
-                    if (first) {
-                        first = false
-                    } else {
-                        sb.append('\n')
-                    }
-                    sb.appendImage(drawableMember)
-                    sb.append(item, 0, VerbNetFactories.memberFactory)
                 val sb = SpannableStringBuilder().apply {
                     var first = true
                     for (item in items) {
