@@ -35,7 +35,7 @@ class FrameNetSpanner(context: Context) {
     fun process(text: CharSequence, flags: Long, factory: Spanner.SpanFactory?): CharSequence {
         val sb = SpannableStringBuilder(text)
         if (factory != null) {
-            setSpan(sb, 0, sb.length, 0, factory)
+            sb.setSpan(0, sb.length, 0, factory)
         }
         setSpan(text, sb, this.factory, flags, pattern, pattern1, pattern2)
         return sb

@@ -1201,7 +1201,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         }
 
                         // span text
-                        setSpan(sb, sentenceStart + from, sentenceStart + to, 0, if ("Target" == layerType) FrameNetFactories.targetHighlightTextFactory else FrameNetFactories.highlightTextFactory)
+                        sb.setSpan(sentenceStart + from, sentenceStart + to, 0, if ("Target" == layerType) FrameNetFactories.targetHighlightTextFactory else FrameNetFactories.highlightTextFactory)
 
                         // label
                         sb.append('\t')

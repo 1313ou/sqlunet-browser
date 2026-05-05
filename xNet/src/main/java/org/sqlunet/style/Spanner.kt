@@ -124,19 +124,21 @@ open class Spanner {
         /**
          * Apply spans
          *
-         * @param sb        spannable string builder
+         * @receiver        spannable string builder
          * @param from      start
          * @param to        finish
          * @param flags     flags
          * @param factories span factories to call to get spans
          */
-        fun setSpan(sb: SpannableStringBuilder, from: Int, to: Int, flags: Long, vararg factories: SpanFactory) {
+        @ReturnThis
+        fun SpannableStringBuilder.setSpan(from: Int, to: Int, flags: Long, vararg factories: SpanFactory): SpannableStringBuilder {
             if (to - from > 0) {
                 for (spanFactory in factories) {
                     val spans = spanFactory.make(flags)
-                    setSpan(sb, from, to, spans)
+                    setSpan(this, from, to, spans)
                 }
             }
+            return this
         }
 
         // I M A G E
@@ -186,7 +188,6 @@ open class Spanner {
          * @param text     text
          * @param listener click listener
          */
-        @Suppress("unused")
         @ReturnThis
         fun SpannableStringBuilder.appendClickableText(text: CharSequence, listener: () -> Unit): SpannableStringBuilder {
             val span: ClickableSpan = object : ClickableSpan() {
