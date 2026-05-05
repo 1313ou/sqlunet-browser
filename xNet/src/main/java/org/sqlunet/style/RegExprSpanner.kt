@@ -4,6 +4,7 @@
 package org.sqlunet.style
 
 import android.text.SpannableStringBuilder
+import androidx.annotation.ReturnThis
 import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException
 import kotlin.math.min
@@ -51,28 +52,34 @@ open class RegExprSpanner {
     /**
      * Append
      *
+     * @receiver    spannable string builder to append to
      * @param text  text to append
-     * @param sb    spannable string builder to append to
      * @param flags flags
      */
-    fun append(text: CharSequence?, sb: SpannableStringBuilder, flags: Long) {
-        val from = sb.length
-        sb.append(text)
-        setSpan(sb, from, flags)
+    @ReturnThis
+    fun SpannableStringBuilder.append(text: CharSequence?, flags: Long): SpannableStringBuilder {
+        val from = length
+        append(text)
+        setSpan(from, flags)
+        return this
     }
 
     /**
      * Apply span
      *
-     * @param sb    spannable string builder
+     * @receiver    spannable string builder
      * @param from  start
      * @param flags flags
      */
-    fun setSpan(sb: SpannableStringBuilder, from: Int, flags: Long) {
-        val text = sb.subSequence(from, sb.length)
+    @ReturnThis
+    fun SpannableStringBuilder.setSpan(from: Int, flags: Long): SpannableStringBuilder {
+        val text = subSequence(from, length)
         for (spanReplacer in spanReplacers) {
-            spanReplacer.setSpan(text, sb, from, flags)
+            with(spanReplacer) {
+                setSpan(text, from, flags)
+            }
         }
+        return this
     }
 
     /**
@@ -102,7 +109,7 @@ open class RegExprSpanner {
         init {
             val p: Pattern = try {
                 Pattern.compile(regexpr, Pattern.MULTILINE)
-            } catch (pse: PatternSyntaxException) {
+            } catch (_: PatternSyntaxException) {
                 val regexpr2 = ""
                 Pattern.compile(regexpr2, Pattern.MULTILINE)
             }
@@ -114,20 +121,21 @@ open class RegExprSpanner {
          * Make spans
          *
          * @param input input string
-         * @param sb    spannable string builder
+         * @receiver    spannable string builder
          * @param from  start
          * @param flags flags
          */
-        fun setSpan(input: CharSequence, sb: SpannableStringBuilder, from: Int, flags: Long) {
+        @ReturnThis
+        fun SpannableStringBuilder.setSpan(input: CharSequence, from: Int, flags: Long): SpannableStringBuilder {
             if (input.isEmpty()) {
-                return
+                return this
             }
             val matcher = pattern.matcher(input)
             while (matcher.find()) {
                 val n = matcher.groupCount()
                 for (i in 0 until n) {
                     if (matcher.group(i + 1) == null) {
-                        return
+                        return this
                     }
 
                     // Log.d(TAG, '"' + matcher.group(i + 1) + '"')
@@ -137,11 +145,12 @@ open class RegExprSpanner {
                         // span
                         val startSpans = spanFactories[i].make(flags)
                         if (startSpans != null) {
-                            sb.applySpans(start, end, startSpans)
+                            applySpans(start, end, startSpans)
                         }
                     }
                 }
             }
+            return this
         }
 
         override fun toString(): String {

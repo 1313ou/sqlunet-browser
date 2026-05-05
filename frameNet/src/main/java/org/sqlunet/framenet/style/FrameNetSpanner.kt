@@ -6,6 +6,7 @@ package org.sqlunet.framenet.style
 import android.content.Context
 import android.text.SpannableStringBuilder
 import android.text.Spanned
+import androidx.annotation.ReturnThis
 import org.sqlunet.style.MarkupSpanner.setSpan
 import org.sqlunet.style.Spanner
 import org.sqlunet.style.Spanner.setSpan
@@ -37,37 +38,39 @@ class FrameNetSpanner(context: Context) {
         if (factory != null) {
             sb.setSpan(0, sb.length, 0, factory)
         }
-        setSpan(text, sb, this.factory, flags, pattern, pattern1, pattern2)
+        sb.setSpan(text, this.factory, flags, pattern, pattern1, pattern2)
         return sb
     }
 
     /**
      * Add span
      *
-     * @param sb       spannable string builder
+     * @receiver       spannable string builder
      * @param start    start
      * @param end      end
      * @param selector selector guide
      * @param flags    flags
      */
-    fun addSpan(sb: SpannableStringBuilder, start: Int, end: Int, selector: String, flags: Long) {
+    @ReturnThis
+    fun SpannableStringBuilder.addSpan(start: Int, end: Int, selector: String, flags: Long): SpannableStringBuilder {
         when (val spans = factory.makeSpans(selector, flags)) {
             is Array<*> -> {
                 for (span in spans) {
-                    sb.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 }
             }
 
             is Collection<*> -> {
                 for (span2 in spans) {
-                    sb.setSpan(span2, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    setSpan(span2, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 }
             }
 
             else -> {
-                sb.setSpan(spans, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                setSpan(spans, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
         }
+        return this
     }
 
     companion object {

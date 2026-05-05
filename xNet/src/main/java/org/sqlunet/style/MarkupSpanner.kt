@@ -4,6 +4,7 @@
 package org.sqlunet.style
 
 import android.text.SpannableStringBuilder
+import androidx.annotation.ReturnThis
 import java.util.regex.Pattern
 import org.sqlunet.style.Spanner.setSpan
 
@@ -17,21 +18,22 @@ object MarkupSpanner {
     /**
      * Apply spans
      *
+     * @receiver            spannable string builder
      * @param text          input text
-     * @param sb            spannable string builder
      * @param spanFactory   span factory
      * @param flags         flags
      * @param pattern       pattern
      * @param extraPatterns more patterns
      * @return spannable string builder
      */
-    fun setSpan(
+    @ReturnThis
+    fun SpannableStringBuilder.setSpan(
         text: CharSequence,
-        sb: SpannableStringBuilder, spanFactory: SpanFactory,
+        spanFactory: SpanFactory,
         flags: Long,
         pattern: Pattern,
         vararg extraPatterns: Pattern
-    ): CharSequence {
+    ): SpannableStringBuilder {
         // specific patterns
         for (xpattern in extraPatterns) {
             val xmatcher = xpattern.matcher(text)
@@ -45,20 +47,20 @@ object MarkupSpanner {
                     val startSpans = spanFactory.makeSpans(headTag, flags or SpanPosition.TAG1.flags().toLong())
                     val tag1Start = xmatcher.start(1) - 1
                     val tag1End = xmatcher.end(1) + 1
-                    sb.setSpan(tag1Start, tag1End, startSpans)
+                    setSpan(tag1Start, tag1End, startSpans)
 
                     // middle
                     val textSpans = spanFactory.makeSpans(tailTag, flags or SpanPosition.TEXT.flags().toLong())
                     val textStart = xmatcher.start(2)
                     val textEnd = xmatcher.end(2)
-                    sb.setSpan(textStart, textEnd, textSpans)
+                    setSpan(textStart, textEnd, textSpans)
 
                     // end
                     val endSpans = spanFactory.makeSpans(tailTag, flags or SpanPosition.TAG2.flags().toLong())
                     val tag2Start = xmatcher.start(3) - 2
                     val tag2End = xmatcher.end(3) + 1
-                    sb.setSpan(tag2Start, tag2End, endSpans)
-                    sb.replace(xmatcher.start(1), xmatcher.start(1), "")
+                    setSpan(tag2Start, tag2End, endSpans)
+                    replace(xmatcher.start(1), xmatcher.start(1), "")
                 }
             }
         }
@@ -75,39 +77,41 @@ object MarkupSpanner {
                 val startSpans = spanFactory.makeSpans(headTag, flags or SpanPosition.TAG1.flags().toLong())
                 val tag1Start = matcher.start(1) - 1
                 val tag1End = matcher.end(1) + 1
-                sb.setSpan(tag1Start, tag1End, startSpans)
+                setSpan(tag1Start, tag1End, startSpans)
 
                 // text
                 val textSpans = spanFactory.makeSpans(tailTag, flags or SpanPosition.TEXT.flags().toLong())
                 val textStart = matcher.start(2)
                 val textEnd = matcher.end(2)
-                sb.setSpan(textStart, textEnd, textSpans)
+                setSpan(textStart, textEnd, textSpans)
 
                 // </tag>
                 val endSpans = spanFactory.makeSpans(tailTag, flags or SpanPosition.TAG2.flags().toLong())
                 val tag2Start = matcher.start(3) - 2
                 val tag2End = matcher.end(3) + 1
-                sb.setSpan(tag2Start, tag2End, endSpans)
+                setSpan(tag2Start, tag2End, endSpans)
             }
         }
-        return sb
+        return this
     }
 
     /**
      * Apply spans
      *
+     * @receiver        spannable string builder
      * @param selector  factory selector
-     * @param sb        spannable string builder
      * @param i         from
      * @param j         to
      * @param flags     flags
      * @param factories span factories
      */
-    private fun setSpan(selector: String, sb: SpannableStringBuilder, i: Int, j: Int, flags: Long, vararg factories: SpanFactory) {
+    @ReturnThis
+    private fun SpannableStringBuilder.setSpan(selector: String, i: Int, j: Int, flags: Long, vararg factories: SpanFactory): SpannableStringBuilder {
         val spans = Array(factories.size) {
             factories[it].makeSpans(selector, flags)
         }
-        sb.setSpan(i, j, spans)
+        setSpan(i, j, spans)
+        return this
     }
 
     /**
@@ -126,6 +130,7 @@ object MarkupSpanner {
      * @author [Bernard Bou](mailto:1313ou@gmail.com)
      */
     enum class SpanPosition {
+
         TAG1,
         TEXT,
         TAG2;
