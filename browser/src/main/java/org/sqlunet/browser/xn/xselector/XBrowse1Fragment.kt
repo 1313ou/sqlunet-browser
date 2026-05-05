@@ -67,7 +67,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
             if (browse2Fragment == null) {
                 browse2Fragment = Browse2Fragment()
                 val args2 = Bundle()
-                args2.putBoolean(Browse2Fragment.ARG_ALT, false)
+                args2.putBoolean(Browse2Fragment.ARG_ALT, true)
                 browse2Fragment.setArguments(args2)
             }
             Log.d(TAG, "create 'browse2' fragment")

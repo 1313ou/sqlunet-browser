@@ -39,7 +39,7 @@ class Browse2Activity : AbstractBrowse2Activity() {
         var browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG)
         if (browse2Fragment == null) {
             browse2Fragment = Browse2Fragment()
-            val alt = intent.getBooleanExtra(Browse2Fragment.ARG_ALT, false)
+            val alt = intent.getBooleanExtra(Browse2Fragment.ARG_ALT, true)
             val args = Bundle()
             args.putBoolean(Browse2Fragment.ARG_ALT, alt)
             browse2Fragment.setArguments(args)

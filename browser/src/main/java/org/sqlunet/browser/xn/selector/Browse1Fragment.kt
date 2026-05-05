@@ -69,7 +69,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
                 if (args2 == null) {
                     args2 = Bundle()
                 }
-                args2.putBoolean(Browse2Fragment.ARG_ALT, false)
+                args2.putBoolean(Browse2Fragment.ARG_ALT, true)
                 browse2Fragment.setArguments(args2)
             }
             manager.beginTransaction()
