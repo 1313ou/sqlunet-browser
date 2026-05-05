@@ -121,7 +121,7 @@ class ClassFromWordModule(fragment: TreeFragment) : BaseModule(fragment) {
                 val vnClass = cursor.getString(idClass)
 
                 // sb.append("[class]")
-                appendImage(sb, drawableRoles)
+                sb.appendImage(drawableRoles)
                 sb.append(' ')
                 append(sb, vnClass, 0, VerbNetFactories.classFactory)
                 // sb.append(" tag=")

@@ -25,6 +25,7 @@ import org.sqlunet.view.TreeOp
 import org.sqlunet.view.TreeOp.TreeOpCode
 import org.sqlunet.view.TreeOpExecute
 import androidx.core.net.toUri
+import org.sqlunet.style.Spanner.Companion.appendImage
 import org.sqlunet.xnet.R as XNetR
 
 class BaseModule(fragment: TreeFragment) : Module(fragment) {
@@ -151,7 +152,7 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val idWrDisp = cursor.getColumnIndexOrThrow(Words_BNCs.BNCSPWRS + Words_BNCs.DISP2)
             do {
                 val pos1 = cursor.getString(idPos)
-                Spanner.appendImage(sb, posDrawable)
+                sb.appendImage(posDrawable)
                 sb.append(' ')
                 sb.append(pos1)
                 sb.append('\n')
@@ -173,7 +174,7 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 var dvalue = cursor.getString(idConvDisp)
                 var dvalue2 = cursor.getString(idTaskDisp)
                 if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null) {
-                    Spanner.appendImage(sb, convtaskDrawable)
+                    sb.appendImage(convtaskDrawable)
                     sb.append(' ')
                     Spanner.append(sb, "conversation / task\n", 0, BNCFactories.headerFactory)
                     if (fvalue != null && fvalue2 != null) {
@@ -194,7 +195,7 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 dvalue = cursor.getString(idImagDisp)
                 dvalue2 = cursor.getString(idInfDisp)
                 if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null) {
-                    Spanner.appendImage(sb, imaginfDrawable)
+                    sb.appendImage(imaginfDrawable)
                     sb.append(' ')
                     Spanner.append(sb, "imagination / information\n", 0, BNCFactories.headerFactory)
                     if (fvalue != null && fvalue2 != null) {
@@ -215,7 +216,7 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 dvalue = cursor.getString(idSpDisp)
                 dvalue2 = cursor.getString(idWrDisp)
                 if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null) {
-                    Spanner.appendImage(sb, spwrDrawable)
+                    sb.appendImage(spwrDrawable)
                     sb.append(' ')
                     Spanner.append(sb, "spoken / written\n", 0, BNCFactories.headerFactory)
                     if (fvalue != null && fvalue2 != null) {

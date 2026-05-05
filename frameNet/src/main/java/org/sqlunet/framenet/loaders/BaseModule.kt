@@ -266,7 +266,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             // var frameId = cursor.getInt(idFrameId)
 
             // frame
-            appendImage(sb, frameDrawable)
+            sb.appendImage(frameDrawable)
             sb.append(' ')
             append(sb, cursor.getString(idFrame), 0, FrameNetFactories.frameFactory)
             if (VERBOSE) {
@@ -276,7 +276,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             sb.append('\n')
 
             // definition
-            appendImage(sb, metadefinitionDrawable)
+            sb.appendImage(metadefinitionDrawable)
             sb.append(' ')
             var frameDefinition = cursor.getString(idFrameDefinition)
             frameDefinition = frameDefinition.replace("\n*<ex></ex>\n*".toRegex(), "") // TODO remove in sqlunet database
@@ -492,7 +492,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // fe definition
                 val frameDefinitionFields = processDefinition(feDefinition, FrameNetMarkupFactory.FEDEF.toLong())
                 sb2.append('\t')
-                appendImage(sb2, metadefinitionDrawable)
+                sb2.appendImage(metadefinitionDrawable)
                 sb2.append(' ')
                 sb2.append(frameDefinitionFields[0])
 
@@ -506,7 +506,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // core type
                 sb2.append('\n')
                 sb2.append('\t')
-                appendImage(sb2, coresetDrawable)
+                sb2.appendImage(coresetDrawable)
                 sb2.append(' ')
                 sb2.append(coreType)
 
@@ -515,7 +515,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     val coreset = cursor.getInt(idCoreset)
                     sb2.append('\n')
                     sb2.append('\t')
-                    appendImage(sb2, coresetDrawable)
+                    sb2.appendImage(coresetDrawable)
                     sb2.append("[coreset] ")
                     sb2.append(coreset.toString())
                 }
@@ -524,7 +524,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (feSemTypes != null) {
                     sb2.append('\n')
                     sb2.append('\t')
-                    appendImage(sb2, semtypeDrawable)
+                    sb2.appendImage(semtypeDrawable)
                     sb2.append(' ')
                     sb2.append(feSemTypes)
                 }
@@ -587,7 +587,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val frame = cursor.getString(idFrame)
 
             // lexUnit
-            appendImage(sb, lexunitDrawable)
+            sb.appendImage(lexunitDrawable)
             sb.append(' ')
             append(sb, cursor.getString(idLexUnit), 0, FrameNetFactories.lexunitFactory)
             if (VERBOSE) {
@@ -597,7 +597,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
             // definition
             sb.append('\n')
-            appendImage(sb, definitionDrawable)
+            sb.appendImage(definitionDrawable)
             sb.append(' ')
             append(sb, definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
             sb.append(' ')
@@ -608,7 +608,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             // incorporated fe
             if (incorporatedFEType != null) {
                 sb.append('\n')
-                appendImage(sb, feDrawable)
+                sb.appendImage(feDrawable)
                 sb.append(' ')
                 sb.append("Incorporated")
                 sb.append(' ')
@@ -725,7 +725,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val sb2 = SpannableStringBuilder()
 
                 // definition
-                appendImage(sb2, definitionDrawable)
+                sb2.appendImage(definitionDrawable)
                 sb2.append(' ')
                 append(sb2, definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
                 if (dictionary != null) {
@@ -738,7 +738,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // incorporated fe
                 if (incorporatedFEType != null) {
                     sb2.append('\n')
-                    appendImage(sb2, feDrawable)
+                    sb2.appendImage(feDrawable)
                     sb2.append(' ')
                     sb2.append("Incorporated")
                     sb2.append(' ')
@@ -819,7 +819,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val incorporatedFEDefinition = cursor.getString(idIncorporatedFEDefinition)
 
                 // lex unit
-                appendImage(sb, lexunitDrawable)
+                sb.appendImage(lexunitDrawable)
                 sb.append(' ')
                 append(sb, cursor.getString(idLexUnit), 0, FrameNetFactories.lexunitFactory)
                 if (VERBOSE) {
@@ -829,7 +829,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                 // definition
                 sb.append('\n')
-                appendImage(sb, definitionDrawable)
+                sb.appendImage(definitionDrawable)
                 sb.append(' ')
                 append(sb, definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
                 if (dictionary != null) {
@@ -842,7 +842,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // incorporated FE
                 if (incorporatedFEType != null) {
                     sb.append('\n')
-                    appendImage(sb, feDrawable)
+                    sb.appendImage(feDrawable)
                     sb.append(' ')
                     sb.append("Incorporated")
                     sb.append(' ')
@@ -1118,7 +1118,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             } else {
                 sb.append('\n')
             }
-            appendImage(sb, realizationDrawable)
+            sb.appendImage(realizationDrawable)
 
             // fe.pt.gf
             val components = groupRealization.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
@@ -1376,7 +1376,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                 // sentence
                 if (withSentence && first) {
-                    appendImage(sb, sentenceDrawable)
+                    sb.appendImage(sentenceDrawable)
                     sb.append(' ')
                     append(sb, sentenceText, 0, FrameNetFactories.sentenceFactory)
                     if (VERBOSE) {
@@ -1389,7 +1389,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 }
 
                 // layer
-                appendImage(sb, layerDrawable)
+                sb.appendImage(layerDrawable)
                 sb.append(' ')
                 append(sb, processLayer(layerType), 0, if (isTarget) FrameNetFactories.targetFactory else FrameNetFactories.layerTypeFactory)
                 if (VERBOSE) {
@@ -1618,7 +1618,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 }
 
                 // layer
-                appendImage(sb, layerDrawable)
+                sb.appendImage(layerDrawable)
                 sb.append(' ')
                 append(sb, processLayer(layerType), 0, FrameNetFactories.layerTypeFactory)
                 if (VERBOSE) {

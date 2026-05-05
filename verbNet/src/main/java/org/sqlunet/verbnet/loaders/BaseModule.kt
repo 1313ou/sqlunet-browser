@@ -216,7 +216,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val vnClass = cursor.getString(idClass)
 
             // sb.append("[class]")
-            appendImage(sb, drawableClass)
+            sb.appendImage(drawableClass)
             sb.append(' ')
             append(sb, vnClass, 0, VerbNetFactories.classFactory)
             // sb.append(" tag=")
@@ -271,7 +271,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 val sb = SpannableStringBuilder()
 
                 // member
-                // Spanner.appendImage(sb, BaseModule.this.drawableMember)
+                // sb.appendImage(BaseModule.this.drawableMember)
                 // sb.append(' ')
                 append(sb, cursor.getString(idWord), 0, VerbNetFactories.memberFactory)
                 val definitionsConcat = cursor.getString(idDefinitions)
@@ -291,7 +291,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                             } else {
                                 sb2.append('\n')
                             }
-                            appendImage(sb2, drawableDefinition)
+                            sb2.appendImage(drawableDefinition)
                             sb2.append(' ')
                             append(sb2, definition.trim { it <= ' ' }, 0, VerbNetFactories.definitionFactory)
                         }
@@ -309,7 +309,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                             } else {
                                 sb2.append('\n')
                             }
-                            appendImage(sb2, drawableGrouping)
+                            sb2.appendImage(drawableGrouping)
                             sb2.append(' ')
                             append(sb2, grouping.trim { it <= ' ' }, 0, VerbNetFactories.groupingFactory)
                         }
@@ -359,7 +359,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             // read cursor
             while (true) {
                 // role
-                appendImage(sb, drawableRole)
+                sb.appendImage(drawableRole)
                 sb.append(' ')
                 append(sb, cursor.getString(idRoleType), 0, VerbNetFactories.roleFactory)
 
@@ -415,7 +415,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             // read cursor
             while (true) {
                 // frame
-                appendImage(sb, drawableFrame)
+                sb.appendImage(drawableFrame)
                 sb.append(' ')
                 append(sb, cursor.getString(idFrameName), 0, VerbNetFactories.frameFactory)
                 sb.append(' ')
@@ -430,7 +430,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 for (line in syntax.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
                     sb.append('\n')
                     sb.append('\t')
-                    appendImage(sb, drawableSyntax)
+                    sb.appendImage(drawableSyntax)
                     syntaxSpanner.append(line, sb, 0)
                 }
 
@@ -439,7 +439,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 for (line in semantics.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
                     sb.append('\n')
                     sb.append('\t')
-                    appendImage(sb, drawableSemantics)
+                    sb.appendImage(drawableSemantics)
                     val statement = semanticsProcessor.process(line)
                     semanticsSpanner.append(statement, sb, 0)
                 }
@@ -450,7 +450,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 for (example in examples) {
                     sb.append('\n')
                     sb.append('\t')
-                    appendImage(sb, drawableExample)
+                    sb.appendImage(drawableExample)
                     append(sb, example, 0, VerbNetFactories.exampleFactory)
                 }
                 if (!cursor.moveToNext()) {
@@ -481,7 +481,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val sb = SpannableStringBuilder()
             val items = group.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             if (items.size == 1) {
-                appendImage(sb, drawableMember)
+                sb.appendImage(drawableMember)
                 append(sb, items[0], 0, VerbNetFactories.memberFactory)
                 return makeIconTextNode(sb, XNetR.drawable.member, false).addTo(parent)
             } else if (items.size > 1) {
@@ -493,7 +493,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     } else {
                         sb.append('\n')
                     }
-                    appendImage(sb, drawableMember)
+                    sb.appendImage(drawableMember)
                     append(sb, item, 0, VerbNetFactories.memberFactory)
                 }
                 makeTextNode(sb, false).addTo(groupingsNode)

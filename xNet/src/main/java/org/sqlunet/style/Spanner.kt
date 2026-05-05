@@ -21,6 +21,7 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.DrawableRes
+import androidx.annotation.ReturnThis
 import androidx.appcompat.content.res.AppCompatResources
 import org.sqlunet.xnet.R
 
@@ -143,37 +144,40 @@ open class Spanner {
         /**
          * Append spans
          *
-         * @param sb    spannable string builder
+         * @receiver spannable string builder
          * @param spans image span with possible image style span
          */
-        private fun appendImageSpans(sb: SpannableStringBuilder, vararg spans: Span) {
-            val from = sb.length
-            sb.append(COLLAPSEDCHAR)
-            val to = sb.length
+        @ReturnThis
+        private fun SpannableStringBuilder.appendImageSpans(vararg spans: Span): SpannableStringBuilder {
+            val from = length
+            append(COLLAPSEDCHAR)
+            val to = length
             for (span in spans) {
-                sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
+            return this
         }
 
         /**
          * Append image
          *
-         * @param sb       spannable string builder
+         * @receiver spannable string builder
          * @param drawable drawable to use
          */
-        fun appendImage(sb: SpannableStringBuilder, drawable: Drawable) {
+        @ReturnThis
+        fun SpannableStringBuilder.appendImage(drawable: Drawable): SpannableStringBuilder {
             val span: Span = ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BASELINE)
-            appendImageSpans(sb, span)
+            appendImageSpans(span)
+            return this
         }
 
         // C L I C K A B L E
 
         // how to use:
-        // val tv: TextView = ...
+        // val textView: TextView = ...
         // prepareTextViewForClickableSpan(tv)
-        // val sb = SpannableStringBuilder()
-        // appendClickableText(sb, "text", callback)
-        // tv.text = sb
+        // textView.text= SpannableStringBuilder()
+        //  .appendClickableText("text", callback)
 
         /**
          * Append clickable text
@@ -214,27 +218,30 @@ open class Spanner {
         /**
          * Append clickable image
          *
-         * @param sb       spannable string builder
+         * @receiver       spannable string builder
          * @param caption  caption
          * @param listener click listener
          * @param context  context
          */
-        fun appendClickableImage(sb: SpannableStringBuilder, caption: CharSequence, listener: (sb: SpannableStringBuilder?, position: Int, collapsed: Boolean) -> Unit, context: Context) {
+        @ReturnThis
+        fun SpannableStringBuilder.appendClickableImage(caption: CharSequence, listener: (sb: SpannableStringBuilder?, position: Int, collapsed: Boolean) -> Unit, context: Context): SpannableStringBuilder {
             val collapsedDrawable = getDrawable(context, R.drawable.ic_collapsed)
             val expandedDrawable = getDrawable(context, R.drawable.ic_expanded)
-            appendClickableImage(sb, collapsedDrawable, expandedDrawable, caption, listener)
+            appendClickableImage(collapsedDrawable, expandedDrawable, caption, listener)
+            return this
         }
 
         /**
          * Append clickable image
          *
-         * @param sb                spannable string builder
+         * @receiver                spannable string builder
          * @param collapsedDrawable collapse drawable
          * @param expandedDrawable  expandContainer drawable
          * @param caption           caption
          * @param listener          click listener
          */
-        private fun appendClickableImage(sb: SpannableStringBuilder, collapsedDrawable: Drawable, expandedDrawable: Drawable, caption: CharSequence, listener: (sb: SpannableStringBuilder?, position: Int, collapsed: Boolean) -> Unit) {
+        @ReturnThis
+        private fun SpannableStringBuilder.appendClickableImage(collapsedDrawable: Drawable, expandedDrawable: Drawable, caption: CharSequence, listener: (sb: SpannableStringBuilder?, position: Int, collapsed: Boolean) -> Unit): SpannableStringBuilder {
             val span = ImageSpan(collapsedDrawable, DynamicDrawableSpan.ALIGN_BASELINE)
             val span2: ClickableSpan = object : ClickableSpan() {
                 @Synchronized
@@ -271,8 +278,9 @@ open class Spanner {
                     textView.text = sb1
                 }
             }
-            appendImageSpans(sb, span, span2)
-            sb.append(' ').append(caption).append('\n')
+            appendImageSpans(span, span2)
+            append(' ').append(caption).append('\n')
+            return this
         }
 
         /**

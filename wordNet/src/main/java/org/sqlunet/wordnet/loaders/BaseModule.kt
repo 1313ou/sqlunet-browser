@@ -294,7 +294,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val idMorphs = cursor.getColumnIndex(Words_Lexes_Morphs.MORPHS)
             val word = cursor.getString(idWord)
             val morphs = cursor.getString(idMorphs)
-            appendImage(sb, memberDrawable)
+            sb.appendImage(memberDrawable)
             sb.append(' ')
             append(sb, word, 0, WordNetFactories.wordFactory)
             if (morphs != null && morphs.isNotEmpty()) {
@@ -476,7 +476,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val posName = cursor.getString(idPosName)
             val domain = cursor.getString(idDomain)
             val definition = cursor.getString(idDefinition)
-            appendImage(sb, synsetDrawable)
+            sb.appendImage(synsetDrawable)
             sb.append(' ')
             synset(sb, synsetId, posName, domain, definition)
 
@@ -510,7 +510,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     private fun sense(sb: SpannableStringBuilder, synsetId: Long, posName: CharSequence, domain: CharSequence, definition: CharSequence, tagCount: Int, cased: CharSequence?): SpannableStringBuilder {
         synsetHead(sb, synsetId, posName, domain)
         if (!cased.isNullOrEmpty()) {
-            appendImage(sb, memberDrawable)
+            sb.appendImage(memberDrawable)
             sb.append(' ')
             append(sb, cased, 0, WordNetFactories.wordFactory)
             sb.append(' ')
@@ -551,7 +551,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val posName = cursor.getString(idPosName)
             val domain = cursor.getString(idDomain)
             val definition = cursor.getString(idDefinition)
-            appendImage(sb, synsetDrawable)
+            sb.appendImage(synsetDrawable)
             sb.append(' ')
             synset(sb, synsetId, posName, domain, definition)
 
@@ -598,11 +598,11 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @return string builder
      */
     private fun synsetHead(sb: SpannableStringBuilder, synsetId: Long, posName: CharSequence, domain: CharSequence): SpannableStringBuilder {
-        appendImage(sb, posDrawable)
+        sb.appendImage(posDrawable)
         sb.append(' ')
         sb.append(posName)
         sb.append(' ')
-        appendImage(sb, domainDrawable)
+        sb.appendImage(domainDrawable)
         sb.append(' ')
         sb.append(domain)
         sb.append(' ')
@@ -618,7 +618,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @return string builder
      */
     private fun synsetDefinition(sb: SpannableStringBuilder, definition: CharSequence): SpannableStringBuilder {
-        appendImage(sb, definitionDrawable)
+        sb.appendImage(definitionDrawable)
         sb.append(' ')
         append(sb, definition, 0, WordNetFactories.definitionFactory)
         return sb
@@ -699,7 +699,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     if (sb.isNotEmpty()) {
                         sb.append('\n')
                     }
-                    //Spanner.appendImage(sb, BaseModule.this.memberDrawable)
+                    //sb.appendImage(BaseModule.this.memberDrawable)
                     //sb.append(' ')
                     append(sb, word, 0, WordNetFactories.membersFactory)
                 } while (cursor.moveToNext())
@@ -746,7 +746,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (sb.isNotEmpty()) {
                     sb.append('\n')
                 }
-                appendImage(sb, sampleDrawable)
+                sb.appendImage(sampleDrawable)
                 sb.append(' ')
                 // sb.append(sampleId)
                 // sb.append(' ')
@@ -796,7 +796,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (sb.isNotEmpty()) {
                     sb.append('\n')
                 }
-                // appendImage(sb, usageDrawable)
+                // sb.appendImage(usageDrawable)
                 // sb.append(' ')
                 // sb.append(usageId)
                 // sb.append(' ')
@@ -1301,7 +1301,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (sb.isNotEmpty()) {
                     sb.append('\n')
                 }
-                appendImage(sb, verbframeDrawable)
+                sb.appendImage(verbframeDrawable)
                 sb.append(' ')
                 sb.append(formattedVframe)
             } while (cursor.moveToNext())
@@ -1341,7 +1341,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (sb.isNotEmpty()) {
                     sb.append('\n')
                 }
-                appendImage(sb, verbframeDrawable)
+                sb.appendImage(verbframeDrawable)
                 sb.append(' ')
                 sb.append(formattedVTemplate)
             } while (cursor.moveToNext())
@@ -1381,7 +1381,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (sb.isNotEmpty()) {
                     sb.append('\n')
                 }
-                appendImage(sb, verbframeDrawable)
+                sb.appendImage(verbframeDrawable)
                 sb.append(' ')
                 sb.append(formattedVTemplate)
             } while (cursor.moveToNext())
@@ -1434,7 +1434,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (sb.isNotEmpty()) {
                     sb.append('\n')
                 }
-                appendImage(sb, verbframeDrawable)
+                sb.appendImage(verbframeDrawable)
                 sb.append(' ')
                 sb.append(formattedPosition)
             } while (cursor.moveToNext())
@@ -1476,7 +1476,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (sb.isNotEmpty()) {
                     sb.append('\n')
                 }
-                appendImage(sb, morphDrawable)
+                sb.appendImage(morphDrawable)
                 sb.append(' ')
                 sb.append(formattedMorph)
             } while (cursor.moveToNext())

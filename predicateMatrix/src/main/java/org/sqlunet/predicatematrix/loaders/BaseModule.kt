@@ -837,12 +837,12 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
         fun makeVnNode(parent: TreeNode, changedList: TreeOps, vnData: VnData, vararg wnDatas: WnData): TreeNode {
             val vnsb = SpannableStringBuilder()
             if (!vnData.vnClass.isNullOrEmpty()) {
-                appendImage(vnsb, classDrawable)
+                vnsb.appendImage(classDrawable)
                 vnsb.append(' ')
                 append(vnsb, vnData.vnClass, 0, PredicateMatrixFactories.classFactory)
             }
             vnsb.append(' ')
-            appendImage(vnsb, roleDrawable)
+            vnsb.appendImage(roleDrawable)
             vnsb.append(' ')
             if (!vnData.vnRole.isNullOrEmpty()) {
                 append(vnsb, vnData.vnRole, 0, PredicateMatrixFactories.roleFactory)
@@ -883,12 +883,12 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             // pb
             val pbsb = SpannableStringBuilder()
             if (!pbData.pbRoleSet.isNullOrEmpty()) {
-                appendImage(pbsb, classDrawable)
+                pbsb.appendImage(classDrawable)
                 pbsb.append(' ')
                 append(pbsb, pbData.pbRoleSet, 0, PredicateMatrixFactories.classFactory)
             }
             pbsb.append(' ')
-            appendImage(pbsb, roleDrawable)
+            pbsb.appendImage(roleDrawable)
             pbsb.append(' ')
             if (!pbData.pbRole.isNullOrEmpty()) {
                 append(pbsb, pbData.pbRole, 0, PredicateMatrixFactories.roleFactory)
@@ -937,12 +937,12 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             // fn
             val fnsb = SpannableStringBuilder()
             if (!fnData.fnFrame.isNullOrEmpty()) {
-                appendImage(fnsb, classDrawable)
+                fnsb.appendImage(classDrawable)
                 fnsb.append(' ')
                 append(fnsb, fnData.fnFrame, 0, PredicateMatrixFactories.classFactory)
             }
             fnsb.append(' ')
-            appendImage(fnsb, roleDrawable)
+            fnsb.appendImage(roleDrawable)
             fnsb.append(' ')
             if (!fnData.fnFe.isNullOrEmpty()) {
                 append(fnsb, fnData.fnFe, 0, PredicateMatrixFactories.roleFactory)
