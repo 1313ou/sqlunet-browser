@@ -40,7 +40,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val args = arguments
-        val alt = args != null && args.getBoolean(ARG_ALT)
+        val alt = args?.getBoolean(ARG_ALT) ?: false
         layoutId = if (alt) R.layout.fragment_browse2_multi_alt else R.layout.fragment_browse2_multi
     }
 
