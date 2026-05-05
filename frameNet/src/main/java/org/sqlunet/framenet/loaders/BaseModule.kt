@@ -1005,13 +1005,13 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                     // pt
                     if (fields.isNotEmpty()) {
-                        append(sb1, processPT(fields[0]), 0, FrameNetFactories.ptFactory)
+                        sb1.append(processPT(fields[0]), 0, FrameNetFactories.ptFactory)
                         sb1.append(' ')
                     }
                     // gf
                     if (fields.size > 1) {
                         sb1.append(' ')
-                        append(sb1, fields[1], 0, FrameNetFactories.gfFactory)
+                        sb1.append(fields[1], 0, FrameNetFactories.gfFactory)
                     }
                     if (VERBOSE) {
                         sb.append(' ')
@@ -1606,9 +1606,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     }
                     sb = SpannableStringBuilder()
                     sba = SpannableStringBuilder()
-                    append(sba, "AnnoSet", 0, FrameNetFactories.annoSetFactory)
+                    sba.append( "AnnoSet", 0, FrameNetFactories.annoSetFactory)
                     sba.append(' ')
-                    append(sba, annoSetId.toString(), 0, FrameNetFactories.dataFactory)
+                    sba.append(annoSetId.toString(), 0, FrameNetFactories.dataFactory)
                     annoSetNode = makeTreeNode(sba, R.drawable.annoset, false).addTo(parent)
                     changedList.add(TreeOpCode.NEWCHILD, annoSetNode)
                     currentAnnoSetId = annoSetId
@@ -1637,8 +1637,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         sb.append('\t')
 
                         // label
-                        append(
-                            sb, label.label, 0, if (isFE)
+                        sb.append(
+                            label.label, 0, if (isFE)
                                 FrameNetFactories.feFactory else
                                 FrameNetFactories.labelFactory
                         )
@@ -1656,8 +1656,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                             text?.substring(from, to) ?: "<null>"
                         }
                         val p = sb.length
-                        append(
-                            sb, subtext, 0, if (isTarget)
+                        sb.append(
+                            subtext, 0, if (isTarget)
                                 FrameNetFactories.targetFactory else
                                 FrameNetFactories.subtextFactory
                         )
@@ -1665,7 +1665,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         // target
                         if (isTarget) {
                             sba!!.append(' ')
-                            append(sba, subtext, 0, FrameNetFactories.targetFactory)
+                            sba.append(subtext, 0, FrameNetFactories.targetFactory)
                         }
 
                         // value colors

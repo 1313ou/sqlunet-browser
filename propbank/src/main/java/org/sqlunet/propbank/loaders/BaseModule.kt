@@ -181,7 +181,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             // roleSet
             sb.appendImage(roleSetDrawable)
             sb.append(' ')
-            append(sb, cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory)
+            sb.append(cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory)
             sb.append(' ')
             sb.append("head=")
             sb.append(cursor.getString(idRoleSetHead))
@@ -192,7 +192,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
             // description
             sb.appendImage(definitionDrawable)
-            append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory)
+            sb.append(cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory)
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
@@ -242,7 +242,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 // roleSet
                 sb.appendImage(rolesDrawable)
                 sb.append(' ')
-                append(sb, cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory)
+                sb.append(cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory)
                 sb.append(' ')
                 sb.append("head=")
                 sb.append(cursor.getString(idRoleSetHead))
@@ -250,7 +250,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
                 // description
                 sb.appendImage(definitionDrawable)
-                append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory)
+                sb.append(cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory)
 
                 // attach result
                 val node = makeTextNode(sb, false).addTo(parent)
@@ -307,7 +307,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 // role
                 sb.appendImage(roleDrawable)
                 sb.append(' ')
-                append(sb, capitalize1(cursor.getString(idRoleDescr)), 0, PropBankFactories.roleFactory)
+                sb.append(capitalize1(cursor.getString(idRoleDescr)), 0, PropBankFactories.roleFactory)
 
                 // vn role
                 val vnRole = cursor.getString(idVnRole)
@@ -315,7 +315,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     sb.append(' ')
                     sb.appendImage(vnRoleDrawable)
                     sb.append(' ')
-                    append(sb, vnRole, 0, PropBankFactories.vnRoleFactory)
+                    sb.append(vnRole, 0, PropBankFactories.vnRoleFactory)
                 }
 
                 // func
@@ -375,14 +375,14 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 // text
                 val text = cursor.getString(idText)
                 sb.appendImage(sampleDrawable)
-                append(sb, text, 0, PropBankFactories.exampleFactory)
+                sb.append(text, 0, PropBankFactories.exampleFactory)
                 sb.append('\n')
 
                 // relation
                 sb.append('\t')
                 sb.appendImage(relationDrawable)
                 sb.append(' ')
-                append(sb, cursor.getString(idRel), 0, PropBankFactories.relationFactory)
+                sb.append(cursor.getString(idRel), 0, PropBankFactories.relationFactory)
 
                 // args
                 val argsPack = cursor.getString(idArgs)
@@ -405,13 +405,13 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                         // role
                         sb.appendImage(roleDrawable)
                         sb.append(' ')
-                        append(sb, capitalize1(fields[2]), 0, PropBankFactories.roleFactory)
+                        sb.append(capitalize1(fields[2]), 0, PropBankFactories.roleFactory)
                         sb.append(' ')
 
                         // vnrole
                         sb.appendImage(vnRoleDrawable)
                         sb.append(' ')
-                        append(sb, fields[3], 0, PropBankFactories.vnRoleFactory)
+                        sb.append(fields[3], 0, PropBankFactories.vnRoleFactory)
 
                         // func
                         if (fields[1].isNotEmpty()) {
@@ -424,7 +424,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                         sb.append(' ')
                         // sb.append("subtext=");
                         sb.append(fields[4])
-                        // Spanner.append(sb, fields[4], 0, PropBankFactories.textFactory);
+                        // sb.append(fields[4], 0, PropBankFactories.textFactory);
                     }
                 }
                 if (!cursor.moveToNext()) {

@@ -323,6 +323,7 @@ open class Spanner {
          * @param factories span factories
          * @return input spannable string builder
          */
+        @ReturnThis
         fun SpannableStringBuilder.append(text: CharSequence?, flags: Long, vararg factories: SpanFactory?): SpannableStringBuilder {
             if (!text.isNullOrEmpty()) {
                 val from = length
@@ -336,10 +337,6 @@ open class Spanner {
                 }
             }
             return this
-        }
-
-        fun append(sb: SpannableStringBuilder, text: CharSequence?, flags: Long, vararg factories: SpanFactory?): Appendable {
-            return sb.append(text, flags, *factories)
         }
 
         /**

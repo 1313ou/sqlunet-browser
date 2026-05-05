@@ -668,7 +668,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 // add aliases to header
                 for (alias in aliases) {
                     pmsb.append(' ')
-                    append(pmsb, alias, 0, PredicateMatrixFactories.roleAliasFactory)
+                    pmsb.append(alias, 0, PredicateMatrixFactories.roleAliasFactory)
                 }
             }
         }
@@ -790,10 +790,10 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
         fun displayPmRole(parent: TreeNode, pmsb: SpannableStringBuilder, pmRole: PmRole, changedList: TreeOps): TreeNode {
             if (pmRole.pmRole != null) {
                 val roleName = pmRole.toRoleString()
-                append(pmsb, roleName, 0, PredicateMatrixFactories.groupFactory)
+                pmsb.append(roleName, 0, PredicateMatrixFactories.groupFactory)
                 pmsb.append(' ')
                 val roleData = pmRole.toRoleData()
-                append(pmsb, roleData, 0, PredicateMatrixFactories.dataFactory)
+                pmsb.append(roleData, 0, PredicateMatrixFactories.dataFactory)
             }
             val result = makeTreeNode(pmsb, XNetR.drawable.role, false).addTo(parent)
             changedList.add(TreeOpCode.NEWCHILD, result)
@@ -813,13 +813,13 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             // rolesb.append("predicate role ")
             if (pmRow.pmRole != null) {
                 val rowName = pmRow.toRoleString()
-                append(pmsb, rowName, 0, PredicateMatrixFactories.nameFactory)
+                pmsb.append(rowName, 0, PredicateMatrixFactories.nameFactory)
             }
             pmsb.append(' ')
-            append(pmsb, pmRow.toData(), 0, PredicateMatrixFactories.dataFactory)
+            pmsb.append(pmRow.toData(), 0, PredicateMatrixFactories.dataFactory)
             if (wnData != null) {
                 pmsb.append(' ')
-                append(pmsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
+                pmsb.append(wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
             }
             val result = makeTreeNode(pmsb, R.drawable.predicatematrix, false).addTo(parent)
             changedList.add(TreeOpCode.NEWCHILD, result)
@@ -839,18 +839,18 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             if (!vnData.vnClass.isNullOrEmpty()) {
                 vnsb.appendImage(classDrawable)
                 vnsb.append(' ')
-                append(vnsb, vnData.vnClass, 0, PredicateMatrixFactories.classFactory)
+                vnsb.append(vnData.vnClass, 0, PredicateMatrixFactories.classFactory)
             }
             vnsb.append(' ')
             vnsb.appendImage(roleDrawable)
             vnsb.append(' ')
             if (!vnData.vnRole.isNullOrEmpty()) {
-                append(vnsb, vnData.vnRole, 0, PredicateMatrixFactories.roleFactory)
+                vnsb.append(vnData.vnRole, 0, PredicateMatrixFactories.roleFactory)
             } else {
                 vnsb.append('∅')
             }
             vnsb.append(' ')
-            append(vnsb, vnData.toData(), 0, PredicateMatrixFactories.dataFactory)
+            vnsb.append(vnData.toData(), 0, PredicateMatrixFactories.dataFactory)
 
             // wn
             var first = true
@@ -862,7 +862,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     vnsb.append('|')
                 }
                 vnsb.append(' ')
-                append(vnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
+                vnsb.append(wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
             }
             val result = if (vnData.vnClassId == 0L)
                 makeLeafNode(vnsb, R.drawable.verbnet, false).addTo(parent) else
@@ -885,25 +885,25 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             if (!pbData.pbRoleSet.isNullOrEmpty()) {
                 pbsb.appendImage(classDrawable)
                 pbsb.append(' ')
-                append(pbsb, pbData.pbRoleSet, 0, PredicateMatrixFactories.classFactory)
+                pbsb.append(pbData.pbRoleSet, 0, PredicateMatrixFactories.classFactory)
             }
             pbsb.append(' ')
             pbsb.appendImage(roleDrawable)
             pbsb.append(' ')
             if (!pbData.pbRole.isNullOrEmpty()) {
-                append(pbsb, pbData.pbRole, 0, PredicateMatrixFactories.roleFactory)
+                pbsb.append(pbData.pbRole, 0, PredicateMatrixFactories.roleFactory)
                 pbsb.append(' ')
                 pbsb.append('-')
                 pbsb.append(' ')
-                append(pbsb, capitalize1(pbData.pbRoleDescr), 0, PredicateMatrixFactories.roleFactory)
+                pbsb.append(capitalize1(pbData.pbRoleDescr), 0, PredicateMatrixFactories.roleFactory)
             } else {
                 pbsb.append('∅')
             }
             pbsb.append(' ')
-            append(pbsb, pbData.toData(), 0, PredicateMatrixFactories.dataFactory)
+            pbsb.append(pbData.toData(), 0, PredicateMatrixFactories.dataFactory)
             if (pbData.pbRoleSetDescr != null) {
                 pbsb.append(' ')
-                append(pbsb, pbData.pbRoleSetDescr, 0, PredicateMatrixFactories.dataFactory)
+                pbsb.append(pbData.pbRoleSetDescr, 0, PredicateMatrixFactories.dataFactory)
             }
 
             // wn
@@ -916,7 +916,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     pbsb.append('|')
                 }
                 pbsb.append(' ')
-                append(pbsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
+                pbsb.append(wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
             }
             val result = if (pbData.pbRoleSetId == 0L)
                 makeLeafNode(pbsb, R.drawable.propbank, false).addTo(parent) else
@@ -939,18 +939,18 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             if (!fnData.fnFrame.isNullOrEmpty()) {
                 fnsb.appendImage(classDrawable)
                 fnsb.append(' ')
-                append(fnsb, fnData.fnFrame, 0, PredicateMatrixFactories.classFactory)
+                fnsb.append(fnData.fnFrame, 0, PredicateMatrixFactories.classFactory)
             }
             fnsb.append(' ')
             fnsb.appendImage(roleDrawable)
             fnsb.append(' ')
             if (!fnData.fnFe.isNullOrEmpty()) {
-                append(fnsb, fnData.fnFe, 0, PredicateMatrixFactories.roleFactory)
+                fnsb.append(fnData.fnFe, 0, PredicateMatrixFactories.roleFactory)
             } else {
                 fnsb.append('∅')
             }
             fnsb.append(' ')
-            append(fnsb, fnData.toData(), 0, PredicateMatrixFactories.dataFactory)
+            fnsb.append(fnData.toData(), 0, PredicateMatrixFactories.dataFactory)
 
             // wn
             var first = true
@@ -962,7 +962,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     fnsb.append('|')
                 }
                 fnsb.append(' ')
-                append(fnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
+                fnsb.append(wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
             }
             val result = if (fnData.fnFrameId == 0L)
                 makeLeafNode(fnsb, R.drawable.framenet, false).addTo(parent) else
@@ -1020,9 +1020,9 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 synsetId = wnData.synsetId
                 val synsetsb = SpannableStringBuilder()
                 if (synsetId != 0L) {
-                    append(synsetsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
+                    synsetsb.append( wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
                     synsetsb.append(' ')
-                    append(synsetsb, synsetId.toString(), 0, PredicateMatrixFactories.dataFactory)
+                    synsetsb.append( synsetId.toString(), 0, PredicateMatrixFactories.dataFactory)
                 } else {
                     synsetsb.append('∅')
                 }

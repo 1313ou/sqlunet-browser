@@ -99,7 +99,7 @@ class SentenceModule(fragment: TreeFragment) : BaseModule(fragment) {
             // data
             sentenceText = cursor.getString(idText)
             val id = cursor.getLong(idSentenceId)
-            append(sb, sentenceText, 0, FrameNetFactories.sentenceFactory)
+            sb.append(sentenceText, 0, FrameNetFactories.sentenceFactory)
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)

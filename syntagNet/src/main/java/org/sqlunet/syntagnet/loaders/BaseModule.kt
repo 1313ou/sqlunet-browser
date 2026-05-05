@@ -188,15 +188,15 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
     ) {
         // header
         val sbh = SpannableStringBuilder()
-        append(sbh, word1, 0, SyntagNetFactories.collocationFactory)
+        sbh.append(word1, 0, SyntagNetFactories.collocationFactory)
         sbh.append(' ')
         sbh.append(pos1)
         sbh.append(' ')
-        append(sbh, word2, 0, SyntagNetFactories.collocationFactory)
+        sbh.append(word2, 0, SyntagNetFactories.collocationFactory)
         sbh.append(' ')
         sbh.append(pos2)
         sbh.append(' ')
-        append(sbh, collocationId.toString(), 0, SyntagNetFactories.idsFactory)
+        sbh.append(collocationId.toString(), 0, SyntagNetFactories.idsFactory)
 
         // collocation
         val collocationNode = makeTreeNode(sbh, R.drawable.sncollocation, !isSingle).addTo(parent)
@@ -206,24 +206,24 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
         // collocation 1
         val sb1w = SpannableStringBuilder()
-        append(sb1w, word1, 0, if (isTargetSecond) SyntagNetFactories.word2Factory else SyntagNetFactories.word1Factory)
+        sb1w.append(word1, 0, if (isTargetSecond) SyntagNetFactories.word2Factory else SyntagNetFactories.word1Factory)
         val link1w: Link = BaseWordLink(word1Id, fragment)
         val collocation1wNode = makeLinkNode(sb1w, if (isTargetSecond) R.drawable.sncollocation2 else R.drawable.sncollocation1, false, link1w).addTo(collocationNode)
         changedList.add(TreeOpCode.NEWCHILD, collocation1wNode)
         val sb1s = SpannableStringBuilder()
-        append(sb1s, definition1, 0, if (isTargetSecond) SyntagNetFactories.definition2Factory else SyntagNetFactories.definition1Factory)
+        sb1s.append(definition1, 0, if (isTargetSecond) SyntagNetFactories.definition2Factory else SyntagNetFactories.definition1Factory)
         val link1s: Link = BaseSynsetLink(synset1Id, Int.MAX_VALUE, fragment)
         val collocation1sNode = makeLinkNode(sb1s, if (isTargetSecond) R.drawable.sndefinition2 else R.drawable.sndefinition1, false, link1s).addTo(collocationNode)
         changedList.add(TreeOpCode.NEWCHILD, collocation1sNode)
 
         // collocation 2
         val sb2w = SpannableStringBuilder()
-        append(sb2w, word2, 0, if (isTargetSecond) SyntagNetFactories.word1Factory else SyntagNetFactories.word2Factory)
+        sb2w.append(word2, 0, if (isTargetSecond) SyntagNetFactories.word1Factory else SyntagNetFactories.word2Factory)
         val link2w: Link = BaseWordLink(word2Id, fragment)
         val collocation2wNode = makeLinkNode(sb2w, if (isTargetSecond) R.drawable.sncollocation1 else R.drawable.sncollocation2, false, link2w).addTo(collocationNode)
         changedList.add(TreeOpCode.NEWCHILD, collocation2wNode)
         val sb2s = SpannableStringBuilder()
-        append(sb2s, definition2, 0, if (isTargetSecond) SyntagNetFactories.definition1Factory else SyntagNetFactories.definition2Factory)
+        sb2s.append(definition2, 0, if (isTargetSecond) SyntagNetFactories.definition1Factory else SyntagNetFactories.definition2Factory)
         val link2s: Link = BaseSynsetLink(synset2Id, Int.MAX_VALUE, fragment)
         val collocation2sNode = makeLinkNode(sb2s, if (isTargetSecond) R.drawable.sndefinition1 else R.drawable.sndefinition2, false, link2s).addTo(collocationNode)
         changedList.add(TreeOpCode.NEWCHILD, collocation2sNode)

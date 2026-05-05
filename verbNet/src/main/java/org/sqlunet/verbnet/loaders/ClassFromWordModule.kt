@@ -123,7 +123,7 @@ class ClassFromWordModule(fragment: TreeFragment) : BaseModule(fragment) {
                 // sb.append("[class]")
                 sb.appendImage(drawableRoles)
                 sb.append(' ')
-                append(sb, vnClass, 0, VerbNetFactories.classFactory)
+                sb.append(vnClass, 0, VerbNetFactories.classFactory)
                 // sb.append(" tag=")
                 // sb.append(cursor.getString(idClassTag))
                 sb.append(" id=")

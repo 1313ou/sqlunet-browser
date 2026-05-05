@@ -296,10 +296,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val morphs = cursor.getString(idMorphs)
             sb.appendImage(memberDrawable)
             sb.append(' ')
-            append(sb, word, 0, WordNetFactories.wordFactory)
+            sb.append(word, 0, WordNetFactories.wordFactory)
             if (morphs != null && morphs.isNotEmpty()) {
                 sb.append(' ')
-                append(sb, morphs, 0, dataFactory)
+                sb.append(morphs, 0, dataFactory)
             }
 
             // result
@@ -512,12 +512,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         if (!cased.isNullOrEmpty()) {
             sb.appendImage(memberDrawable)
             sb.append(' ')
-            append(sb, cased, 0, WordNetFactories.wordFactory)
+            sb.append(cased, 0, WordNetFactories.wordFactory)
             sb.append(' ')
         }
         if (tagCount > 0) {
             sb.append(' ')
-            append(sb, "tagcount:$tagCount", 0, dataFactory)
+            sb.append("tagcount:$tagCount", 0, dataFactory)
         }
         sb.append('\n')
         synsetDefinition(sb, definition)
@@ -606,7 +606,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         sb.append(' ')
         sb.append(domain)
         sb.append(' ')
-        append(sb, synsetId.toString(), 0, dataFactory)
+        sb.append(synsetId.toString(), 0, dataFactory)
         return sb
     }
 
@@ -620,7 +620,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     private fun synsetDefinition(sb: SpannableStringBuilder, definition: CharSequence): SpannableStringBuilder {
         sb.appendImage(definitionDrawable)
         sb.append(' ')
-        append(sb, definition, 0, WordNetFactories.definitionFactory)
+        sb.append(definition, 0, WordNetFactories.definitionFactory)
         return sb
     }
 
@@ -649,7 +649,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     val wordId = cursor.getLong(idWordId)
                     val member = cursor.getString(idMember)
                     val sb = SpannableStringBuilder()
-                    append(sb, member, 0, WordNetFactories.membersFactory)
+                    sb.append(member, 0, WordNetFactories.membersFactory)
 
                     // result
                     val memberNode = makeLinkNode(sb, XNetR.drawable.member, false, WordLink(fragment, wordId)).addTo(parent)
@@ -690,7 +690,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             if (concatQuery) {
                 val idMembers = cursor.getColumnIndex(Senses_Words.MEMBERS)
                 sb.append('{')
-                append(sb, cursor.getString(idMembers), 0, WordNetFactories.membersFactory)
+                sb.append(cursor.getString(idMembers), 0, WordNetFactories.membersFactory)
                 sb.append('}')
             } else {
                 val wordId = cursor.getColumnIndex(WordNetContract.Words.WORD)
@@ -701,7 +701,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     }
                     //sb.appendImage(BaseModule.this.memberDrawable)
                     //sb.append(' ')
-                    append(sb, word, 0, WordNetFactories.membersFactory)
+                    sb.append(word, 0, WordNetFactories.membersFactory)
                 } while (cursor.moveToNext())
             }
 
@@ -750,7 +750,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 sb.append(' ')
                 // sb.append(sampleId)
                 // sb.append(' ')
-                append(sb, sample, 0, WordNetFactories.sampleFactory)
+                sb.append(sample, 0, WordNetFactories.sampleFactory)
                 // var formattedSample = String.format(Locale.ENGLISH, "[%d] %s", sampleId, sample)
                 // sb.append(formattedSample)
             } while (cursor.moveToNext())
@@ -800,7 +800,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // sb.append(' ')
                 // sb.append(usageId)
                 // sb.append(' ')
-                append(sb, usage, 0, WordNetFactories.usageFactory)
+                sb.append(usage, 0, WordNetFactories.usageFactory)
                 // var formattedUsage = String.format(Locale.ENGLISH, "[%d] %s", usageId, usageNote)
                 // sb.append(formattedUsage)
             } while (cursor.moveToNext())
@@ -850,9 +850,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 }
             }
             val sb = SpannableStringBuilder()
-            append(sb, "ILI", 0, boldFactory)
+            sb.append("ILI", 0, boldFactory)
             sb.append(' ')
-            append(sb, ili, 0, iliFactory)
+            sb.append(ili, 0, iliFactory)
 
             // result
             parent.payload!![1] = callback
@@ -891,9 +891,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     this.putExtra("data", wikidata)
                 }
                 val sb = SpannableStringBuilder()
-                append(sb, "Wikidata", 0, boldFactory)
+                sb.append("Wikidata", 0, boldFactory)
                 sb.append(' ')
-                append(sb, wikidata, 0, wikidataFactory)
+                sb.append(wikidata, 0, wikidataFactory)
 
                 // result
                 // if (addNewNode) {
@@ -956,12 +956,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         val targetWord = if (cursor.isNull(idTargetWord)) null else cursor.getString(idTargetWord)
                         val targetWordId = if (cursor.isNull(idTargetWordId)) null else cursor.getLong(idTargetWordId)
                         if (targetWordId == null && displaySemRelationName || targetWordId != null && displayLexRelationName) {
-                            append(sb, relation, 0, WordNetFactories.relationFactory)
+                            sb.append(relation, 0, WordNetFactories.relationFactory)
                             sb.append(' ')
                         }
                         appendMembers(sb, targetMembers, targetWord)
                         sb.append(' ')
-                        append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
+                        sb.append(targetDefinition, 0, WordNetFactories.definitionFactory)
 
                         // recursion
                         if (relationCanRecurse) {
@@ -989,21 +989,21 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     private fun appendMembers(sb: SpannableStringBuilder, members: String, targetWord: String?) {
         val membersSeq = extractMembers(members)
         if (targetWord != null) {
-            append(sb, targetWord, 0, WordNetFactories.targetMemberFactory)
+            sb.append(targetWord, 0, WordNetFactories.targetMemberFactory)
             val otherMembers = membersSeq
                 .filterNot { it == targetWord }
                 .joinToString(separator = ",")
             if (!otherMembers.isEmpty())
                 sb.append(',')
-            append(sb, otherMembers, 0, WordNetFactories.otherMembersFactory)
+            sb.append(otherMembers, 0, WordNetFactories.otherMembersFactory)
         } else {
-            append(sb, membersSeq.joinToString(separator = ","), 0, WordNetFactories.membersFactory)
+            sb.append(membersSeq.joinToString(separator = ","), 0, WordNetFactories.membersFactory)
         }
     }
 
     private fun appendMembers(sb: SpannableStringBuilder, members: String) {
         val membersSeq = extractMembers(members)
-        append(sb, membersSeq.joinToString(separator = ","), 0, WordNetFactories.membersFactory)
+        sb.append(membersSeq.joinToString(separator = ","), 0, WordNetFactories.membersFactory)
     }
 
     // S E M R E L A T I O N S
@@ -1041,12 +1041,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     val targetMembers = cursor.getString(idTargetMembers)
                     val relationCanRecurse = cursor.getInt(idRecurses) != 0
                     if (displaySemRelationName) {
-                        append(sb, relation, 0, WordNetFactories.relationFactory)
+                        sb.append(relation, 0, WordNetFactories.relationFactory)
                         sb.append(' ')
                     }
                     appendMembers(sb, targetMembers)
                     sb.append(' ')
-                    append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
+                    sb.append(targetDefinition, 0, WordNetFactories.definitionFactory)
 
                     // recursion
                     if (relationCanRecurse) {
@@ -1108,7 +1108,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 }
                 appendMembers(sb, targetMembers)
                 sb.append(' ')
-                append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
+                sb.append(targetDefinition, 0, WordNetFactories.definitionFactory)
 
                 // recurse
                 if (relationCanRecurse) {
@@ -1182,12 +1182,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     val targetWord = cursor.getString(idTargetWord)
                     val targetMembers = cursor.getString(idTargetMembers)
                     if (displayLexRelationName) {
-                        append(sb, relation, 0, WordNetFactories.relationFactory)
+                        sb.append(relation, 0, WordNetFactories.relationFactory)
                         sb.append(' ')
                     }
                     appendMembers(sb, targetMembers, targetWord)
                     sb.append(' ')
-                    append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
+                    sb.append(targetDefinition, 0, WordNetFactories.definitionFactory)
 
                     // attach result
                     val relationNode = makeLinkLeafNode(sb, getRelationRes(relationId), false, SenseLink(targetSynsetId, idTargetWordId.toLong(), maxRecursion, fragment)).addTo(parent)
@@ -1240,7 +1240,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     }
                     appendMembers(sb, targetMembers, targetWord)
                     sb.append(' ')
-                    append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
+                    sb.append(targetDefinition, 0, WordNetFactories.definitionFactory)
 
                     // attach result
                     val relationNode = makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent)
