@@ -117,13 +117,13 @@ class Browse2Fragment : BaseBrowse2Fragment() {
         val sb = SpannableStringBuilder()
         if (cased != null) {
             sb.append(' ')
-            append(sb, cased, 0, Factories.casedFactory)
+            sb.append(cased, 0, Factories.casedFactory)
         } else {
-            append(sb, word, 0, Factories.wordFactory)
+            sb.append(word, 0, Factories.wordFactory)
         }
         if (pos != null) {
             sb.append(' ')
-            append(sb, pos, 0, Factories.posFactory)
+            sb.append(pos, 0, Factories.posFactory)
         }
         if (pronunciation != null) {
             val pronunciations = pronunciations(pronunciation)

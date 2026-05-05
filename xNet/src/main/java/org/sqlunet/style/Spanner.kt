@@ -97,6 +97,7 @@ open class Spanner {
          * @param to    finish
          * @param spans spans to apply
          */
+        @ReturnThis
         fun SpannableStringBuilder.setSpan(from: Int, to: Int, spans: Span?): SpannableStringBuilder {
             if (spans != null && to - from > 0) {
                 when (spans) {
@@ -316,25 +317,29 @@ open class Spanner {
         /**
          * Append text
          *
-         * @param sb        spannable string builder
+         * @receiver        spannable string builder
          * @param text      text
          * @param flags     flags
          * @param factories span factories
          * @return input spannable string builder
          */
-        fun append(sb: SpannableStringBuilder, text: CharSequence?, flags: Long, vararg factories: SpanFactory?): Appendable {
+        fun SpannableStringBuilder.append(text: CharSequence?, flags: Long, vararg factories: SpanFactory?): SpannableStringBuilder {
             if (!text.isNullOrEmpty()) {
-                val from = sb.length
-                sb.append(text)
-                val to = sb.length
+                val from = length
+                append(text)
+                val to = length
                 for (spanFactory in factories) {
                     val span = spanFactory!!.make(flags)
                     if (span != null) {
-                        sb.applySpan(from, to, span)
+                        applySpan(from, to, span)
                     }
                 }
             }
-            return sb
+            return this
+        }
+
+        fun append(sb: SpannableStringBuilder, text: CharSequence?, flags: Long, vararg factories: SpanFactory?): Appendable {
+            return sb.append(text, flags, *factories)
         }
 
         /**

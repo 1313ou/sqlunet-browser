@@ -28,7 +28,7 @@ internal object Providers {
      */
     fun listProviders(activity: AppCompatActivity) {
         val sb = SpannableStringBuilder()
-        append(sb, activity.getString(R.string.providers), 0, Factories.boldFactory)
+        sb.append(activity.getString(R.string.providers), 0, Factories.boldFactory)
         sb.append('\n').append('\n')
         val manager = activity.applicationContext.packageManager
         val packageName = activity.applicationContext.packageName
@@ -59,7 +59,7 @@ internal object Providers {
 
             // message
             try {
-                append(sb, activity.getString(R.string.suggestions), 0, Factories.boldFactory)
+                sb.append(activity.getString(R.string.suggestions), 0, Factories.boldFactory)
                     .append('\n')
                     .append('\n')
                 build(sb, null, activity.getString(R.string.suggestion_provider_pack), suggestPkg, activity.getString(R.string.suggestion_provider_authority), suggestAuthority, activity.getString(R.string.suggestion_provider_path), suggestPath)
@@ -86,14 +86,14 @@ internal object Providers {
 
         // package
         if (pkg != null) {
-            append(sb, pkgLabel, 0, Factories.boldFactory)
+            sb.append(pkgLabel, 0, Factories.boldFactory)
                 .append(' ')
                 .append(pkg)
                 .append('\n')
         }
 
         // authority
-        append(sb, authorityLabel, 0, Factories.boldFactory)
+        sb.append(authorityLabel, 0, Factories.boldFactory)
             .append(':')
             .append(' ')
             .append(authority)
@@ -101,7 +101,7 @@ internal object Providers {
 
         // package
         if (path != null) {
-            append(sb, pathLabel, 0, Factories.boldFactory)
+            sb.append(pathLabel, 0, Factories.boldFactory)
                 .append(' ')
                 .append(path)
                 .append('\n')

@@ -25,6 +25,7 @@ import org.sqlunet.view.TreeOp
 import org.sqlunet.view.TreeOp.TreeOpCode
 import org.sqlunet.view.TreeOpExecute
 import androidx.core.net.toUri
+import org.sqlunet.style.Spanner.Companion.append
 import org.sqlunet.style.Spanner.Companion.appendImage
 import org.sqlunet.xnet.R as XNetR
 
@@ -176,7 +177,7 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null) {
                     sb.appendImage(convtaskDrawable)
                     sb.append(' ')
-                    Spanner.append(sb, "conversation / task\n", 0, BNCFactories.headerFactory)
+                    sb.append("conversation / task\n", 0, BNCFactories.headerFactory)
                     if (fvalue != null && fvalue2 != null) {
                         sb.append("frequency=").append(fvalue).append(" / ").append(fvalue2).append('\n')
                     }
@@ -197,7 +198,7 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null) {
                     sb.appendImage(imaginfDrawable)
                     sb.append(' ')
-                    Spanner.append(sb, "imagination / information\n", 0, BNCFactories.headerFactory)
+                    sb.append("imagination / information\n", 0, BNCFactories.headerFactory)
                     if (fvalue != null && fvalue2 != null) {
                         sb.append("frequency=").append(fvalue).append(" / ").append(fvalue2).append('\n')
                     }
@@ -218,7 +219,7 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 if (fvalue != null || fvalue2 != null || rvalue != null || rvalue2 != null || dvalue != null || dvalue2 != null) {
                     sb.appendImage(spwrDrawable)
                     sb.append(' ')
-                    Spanner.append(sb, "spoken / written\n", 0, BNCFactories.headerFactory)
+                    sb.append("spoken / written\n", 0, BNCFactories.headerFactory)
                     if (fvalue != null && fvalue2 != null) {
                         sb.append("frequency=").append(fvalue).append(" / ").append(fvalue2).append('\n')
                     }

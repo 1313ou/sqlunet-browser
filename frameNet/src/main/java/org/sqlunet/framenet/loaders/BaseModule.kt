@@ -268,7 +268,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             // frame
             sb.appendImage(frameDrawable)
             sb.append(' ')
-            append(sb, cursor.getString(idFrame), 0, FrameNetFactories.frameFactory)
+            sb.append(cursor.getString(idFrame), 0, FrameNetFactories.frameFactory)
             if (VERBOSE) {
                 sb.append(' ')
                 sb.append(frameId.toString())
@@ -393,7 +393,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (slot1) {
                     sb1.append("it")
                 } else {
-                    append(sb1, frame1, 0, FrameNetFactories.frameFactory)
+                    sb1.append(frame1, 0, FrameNetFactories.frameFactory)
                     if (VERBOSE) {
                         sb1.append(' ')
                         sb1.append(frame1Id.toString())
@@ -405,7 +405,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (slot2) {
                     sb2.append("it")
                 } else {
-                    append(sb2, frame2, 0, FrameNetFactories.frameFactory)
+                    sb2.append(frame2, 0, FrameNetFactories.frameFactory)
                     if (VERBOSE) {
                         sb2.append(' ')
                         sb2.append(frame2Id.toString())
@@ -478,9 +478,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val coreType = cursor.getString(idCoreType)
 
                 // fe
-                append(sb, feType, 0, FrameNetFactories.feFactory)
+                sb.append(feType, 0, FrameNetFactories.feFactory)
                 sb.append(' ')
-                append(sb, feAbbrev, 0, FrameNetFactories.feAbbrevFactory)
+                sb.append(feAbbrev, 0, FrameNetFactories.feAbbrevFactory)
 
                 // attach fe
                 val feNode = makeTreeNode(sb, if (coreTypeId == 1) R.drawable.rolex else XNetR.drawable.role, true).addTo(parent)
@@ -589,7 +589,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             // lexUnit
             sb.appendImage(lexunitDrawable)
             sb.append(' ')
-            append(sb, cursor.getString(idLexUnit), 0, FrameNetFactories.lexunitFactory)
+            sb.append(cursor.getString(idLexUnit), 0, FrameNetFactories.lexunitFactory)
             if (VERBOSE) {
                 sb.append(' ')
                 sb.append(luId.toString())
@@ -599,7 +599,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             sb.append('\n')
             sb.appendImage(definitionDrawable)
             sb.append(' ')
-            append(sb, definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
+            sb.append(definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
             sb.append(' ')
             sb.append('[')
             sb.append(dictionary)
@@ -612,7 +612,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 sb.append(' ')
                 sb.append("Incorporated")
                 sb.append(' ')
-                append(sb, incorporatedFEType, 0, FrameNetFactories.fe2Factory)
+                sb.append(incorporatedFEType, 0, FrameNetFactories.fe2Factory)
                 if (incorporatedFEDefinition != null) {
                     sb.append(' ')
                     sb.append('-')
@@ -633,7 +633,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val sb2 = SpannableStringBuilder()
                 sb2.append("Frame")
                 sb2.append(' ')
-                append(sb2, frame, 0, FrameNetFactories.boldFactory)
+                sb2.append(frame, 0, FrameNetFactories.boldFactory)
                 val frameNode = makeHotQueryTreeNode(sb2, XNetR.drawable.roleclass, false, FrameQuery(frameId.toLong())).addTo(parent)
                 changedList.add(TreeOpCode.NEWCHILD, frameNode)
                 if (withFes) {
@@ -703,7 +703,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val incorporatedFEDefinition = cursor.getString(idIncorporatedFEDefinition)
 
                 // lex unit
-                append(sb, lexUnit, 0, FrameNetFactories.lexunitFactory)
+                sb.append(lexUnit, 0, FrameNetFactories.lexunitFactory)
                 if (VERBOSE) {
                     sb.append(' ')
                     sb.append(luId.toString())
@@ -727,7 +727,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // definition
                 sb2.appendImage(definitionDrawable)
                 sb2.append(' ')
-                append(sb2, definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
+                sb2.append(definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
                 if (dictionary != null) {
                     sb2.append(' ')
                     sb2.append('[')
@@ -742,13 +742,13 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     sb2.append(' ')
                     sb2.append("Incorporated")
                     sb2.append(' ')
-                    append(sb2, incorporatedFEType, 0, FrameNetFactories.fe2Factory)
+                    sb2.append(incorporatedFEType, 0, FrameNetFactories.fe2Factory)
                     if (incorporatedFEDefinition != null) {
                         sb2.append(' ')
                         sb2.append('-')
                         sb2.append(' ')
                         val definitionFields = processDefinition(incorporatedFEDefinition, FrameNetMarkupFactory.FEDEF.toLong())
-                        append(sb2, definitionFields[0], 0, FrameNetFactories.definitionFactory)
+                        sb2.append(definitionFields[0], 0, FrameNetFactories.definitionFactory)
                         // no examples
                         // for (i in 1 until definitionFields.size) {
                         //     sb.append('\n')
@@ -821,7 +821,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // lex unit
                 sb.appendImage(lexunitDrawable)
                 sb.append(' ')
-                append(sb, cursor.getString(idLexUnit), 0, FrameNetFactories.lexunitFactory)
+                sb.append(cursor.getString(idLexUnit), 0, FrameNetFactories.lexunitFactory)
                 if (VERBOSE) {
                     sb.append(' ')
                     sb.append(luId.toString())
@@ -831,7 +831,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 sb.append('\n')
                 sb.appendImage(definitionDrawable)
                 sb.append(' ')
-                append(sb, definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
+                sb.append(definition.trim { it <= ' ' }, 0, FrameNetFactories.definitionFactory)
                 if (dictionary != null) {
                     sb.append(' ')
                     sb.append('[')
@@ -846,7 +846,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     sb.append(' ')
                     sb.append("Incorporated")
                     sb.append(' ')
-                    append(sb, incorporatedFEType, 0, FrameNetFactories.fe2Factory)
+                    sb.append(incorporatedFEType, 0, FrameNetFactories.fe2Factory)
                     if (incorporatedFEDefinition != null) {
                         sb.append(' ')
                         sb.append('-')
@@ -923,7 +923,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val word = cursor.getString(idWord)
 
                 // type
-                append(sb, governorType, 0, FrameNetFactories.governorTypeFactory)
+                sb.append(governorType, 0, FrameNetFactories.governorTypeFactory)
                 sb.append(' ')
                 if (VERBOSE) {
                     sb.append(' ')
@@ -932,7 +932,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     sb.append(cursor.getInt(idWordId).toString())
                 }
                 sb.append(' ')
-                append(sb, word, 0, FrameNetFactories.governorFactory)
+                sb.append(word, 0, FrameNetFactories.governorFactory)
 
                 // attach annoSets node
                 val annoSetsNode = makeQueryTreeNode(sb, R.drawable.governor, false, AnnoSetsForGovernorQuery(governorId)).addTo(parent)
@@ -977,7 +977,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val sb = SpannableStringBuilder()
 
                 // realization
-                append(sb, cursor.getString(idFeType), 0, FrameNetFactories.feFactory)
+                sb.append(cursor.getString(idFeType), 0, FrameNetFactories.feFactory)
                 sb.append(' ')
                 sb.append("[annotated] ")
                 sb.append(cursor.getInt(idTotal).toString())
@@ -1123,17 +1123,17 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             // fe.pt.gf
             val components = groupRealization.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
             if (components.isNotEmpty()) {
-                append(sb, components[0], 0, FrameNetFactories.feFactory)
+                sb.append(components[0], 0, FrameNetFactories.feFactory)
             }
             sb.append(' ')
             if (components.size > 1) {
                 // pt
-                append(sb, processPT(components[1]), 0, FrameNetFactories.ptFactory)
+                sb.append(processPT(components[1]), 0, FrameNetFactories.ptFactory)
             }
             sb.append(' ')
             if (components.size > 2) {
                 // gf
-                append(sb, components[2], 0, FrameNetFactories.gfFactory)
+                sb.append(components[2], 0, FrameNetFactories.gfFactory)
             }
         }
         return sb
@@ -1174,7 +1174,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                 // sentence text
                 val sentenceStart = sb.length
-                append(sb, text, 0, FrameNetFactories.sentenceFactory)
+                sb.append(text, 0, FrameNetFactories.sentenceFactory)
                 if (VERBOSE) {
                     sb.append(sentenceId.toString())
                     sb.append(' ')
@@ -1205,12 +1205,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                         // label
                         sb.append('\t')
-                        append(sb, label.label, 0, if ("FE" == layerType) FrameNetFactories.feFactory else FrameNetFactories.labelFactory)
+                        sb.append(label.label, 0, if ("FE" == layerType) FrameNetFactories.feFactory else FrameNetFactories.labelFactory)
                         sb.append(' ')
 
                         // subtext value
                         val p = sb.length
-                        append(sb, subtext, 0, FrameNetFactories.subtextFactory)
+                        sb.append(subtext, 0, FrameNetFactories.subtextFactory)
 
                         // value colors
                         if (label.bgColor != null) {
@@ -1267,7 +1267,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // var sentenceId = cursor.getLong(idSentenceId);
 
                 // sentence
-                append(sb, text, 0, FrameNetFactories.sentenceFactory)
+                sb.append(text, 0, FrameNetFactories.sentenceFactory)
 
                 // annotation id
                 if (VERBOSE) {
@@ -1318,7 +1318,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // val sentenceId = cursor.getLong(idSentenceId)
 
                 // sentence
-                append(sb, text, 0, FrameNetFactories.sentenceFactory)
+                sb.append(text, 0, FrameNetFactories.sentenceFactory)
 
                 // annotation id
                 if (VERBOSE) {
@@ -1378,7 +1378,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 if (withSentence && first) {
                     sb.appendImage(sentenceDrawable)
                     sb.append(' ')
-                    append(sb, sentenceText, 0, FrameNetFactories.sentenceFactory)
+                    sb.append(sentenceText, 0, FrameNetFactories.sentenceFactory)
                     if (VERBOSE) {
                         val sentenceId = cursor.getLong(idSentenceId)
                         sb.append(' ')
@@ -1391,7 +1391,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // layer
                 sb.appendImage(layerDrawable)
                 sb.append(' ')
-                append(sb, processLayer(layerType), 0, if (isTarget) FrameNetFactories.targetFactory else FrameNetFactories.layerTypeFactory)
+                sb.append(processLayer(layerType), 0, if (isTarget) FrameNetFactories.targetFactory else FrameNetFactories.layerTypeFactory)
                 if (VERBOSE) {
                     val rank = cursor.getString(idRank)
                     sb.append(' ')
@@ -1409,7 +1409,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         sb.append('\t')
 
                         // label
-                        append(sb, label.label, 0, if (isFE) FrameNetFactories.feFactory else FrameNetFactories.labelFactory)
+                        sb.append(label.label, 0, if (isFE) FrameNetFactories.feFactory else FrameNetFactories.labelFactory)
                         sb.append(' ')
 
                         // subtext value
@@ -1424,7 +1424,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                             sentenceText.substring(from, to)
                         }
                         val p = sb.length
-                        append(sb, subtext, 0, FrameNetFactories.subtextFactory)
+                        sb.append(subtext, 0, FrameNetFactories.subtextFactory)
 
                         // value color
                         if (label.bgColor != null) {
@@ -1485,7 +1485,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val annoSetId = cursor.getLong(idAnnoSetId)
 
                 // sentence
-                append(sb, text, 0, FrameNetFactories.sentenceFactory)
+                sb.append(text, 0, FrameNetFactories.sentenceFactory)
                 sb.append(' ')
                 if (VERBOSE) {
                     sb.append(' ')
@@ -1620,7 +1620,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 // layer
                 sb.appendImage(layerDrawable)
                 sb.append(' ')
-                append(sb, processLayer(layerType), 0, FrameNetFactories.layerTypeFactory)
+                sb.append(processLayer(layerType), 0, FrameNetFactories.layerTypeFactory)
                 if (VERBOSE) {
                     sb.append(' ')
                     sb.append('[')
