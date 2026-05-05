@@ -44,19 +44,19 @@ object MarkupSpanner : Spanner() {
                     val startSpans = spanFactory.makeSpans(headTag, flags or SpanPosition.TAG1.flags().toLong())
                     val tag1Start = xmatcher.start(1) - 1
                     val tag1End = xmatcher.end(1) + 1
-                    setSpan(sb, tag1Start, tag1End, startSpans)
+                    sb.setSpan(tag1Start, tag1End, startSpans)
 
                     // middle
                     val textSpans = spanFactory.makeSpans(tailTag, flags or SpanPosition.TEXT.flags().toLong())
                     val textStart = xmatcher.start(2)
                     val textEnd = xmatcher.end(2)
-                    setSpan(sb, textStart, textEnd, textSpans)
+                    sb.setSpan(textStart, textEnd, textSpans)
 
                     // end
                     val endSpans = spanFactory.makeSpans(tailTag, flags or SpanPosition.TAG2.flags().toLong())
                     val tag2Start = xmatcher.start(3) - 2
                     val tag2End = xmatcher.end(3) + 1
-                    setSpan(sb, tag2Start, tag2End, endSpans)
+                    sb.setSpan(tag2Start, tag2End, endSpans)
                     sb.replace(xmatcher.start(1), xmatcher.start(1), "")
                 }
             }
@@ -74,19 +74,19 @@ object MarkupSpanner : Spanner() {
                 val startSpans = spanFactory.makeSpans(headTag, flags or SpanPosition.TAG1.flags().toLong())
                 val tag1Start = matcher.start(1) - 1
                 val tag1End = matcher.end(1) + 1
-                setSpan(sb, tag1Start, tag1End, startSpans)
+                sb.setSpan(tag1Start, tag1End, startSpans)
 
                 // text
                 val textSpans = spanFactory.makeSpans(tailTag, flags or SpanPosition.TEXT.flags().toLong())
                 val textStart = matcher.start(2)
                 val textEnd = matcher.end(2)
-                setSpan(sb, textStart, textEnd, textSpans)
+                sb.setSpan(textStart, textEnd, textSpans)
 
                 // </tag>
                 val endSpans = spanFactory.makeSpans(tailTag, flags or SpanPosition.TAG2.flags().toLong())
                 val tag2Start = matcher.start(3) - 2
                 val tag2End = matcher.end(3) + 1
-                setSpan(sb, tag2Start, tag2End, endSpans)
+                sb.setSpan(tag2Start, tag2End, endSpans)
             }
         }
         return sb
@@ -106,7 +106,7 @@ object MarkupSpanner : Spanner() {
         val spans = Array(factories.size) {
             factories[it].makeSpans(selector, flags)
         }
-        setSpan(sb, i, j, spans)
+        sb.setSpan(i, j, spans)
     }
 
     /**
