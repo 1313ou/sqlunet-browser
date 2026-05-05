@@ -12,9 +12,11 @@ import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.ReturnThis
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import org.sqlunet.applyIf
 import org.sqlunet.browser.Module
 import org.sqlunet.browser.SqlunetViewTreeModel
 import org.sqlunet.browser.TreeFragment
@@ -287,20 +289,21 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             throw RuntimeException("Unexpected number of rows")
         }
         val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
-            val sb = SpannableStringBuilder()
 
             // var idWordId = cursor.getColumnIndex(Words.WORDID)
             val idWord = cursor.getColumnIndex(Words_Lexes_Morphs.WORD)
             val idMorphs = cursor.getColumnIndex(Words_Lexes_Morphs.MORPHS)
             val word = cursor.getString(idWord)
             val morphs = cursor.getString(idMorphs)
-            sb.appendImage(memberDrawable)
-            sb.append(' ')
-            sb.append(word, 0, WordNetFactories.wordFactory)
-            if (morphs != null && morphs.isNotEmpty()) {
-                sb.append(' ')
-                sb.append(morphs, 0, dataFactory)
-            }
+
+            val sb = SpannableStringBuilder()
+                .appendImage(memberDrawable)
+                .append(' ')
+                .append(word, 0, WordNetFactories.wordFactory)
+                .applyIf(morphs != null && morphs.isNotEmpty()) {
+                    append(' ')
+                    append(morphs, 0, dataFactory)
+                }
 
             // result
             if (addNewNode) {
@@ -365,7 +368,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val cased = cursor.getString(idCased)
                 val tagCount = cursor.getInt(idTagCount)
                 val sb = SpannableStringBuilder()
-                sense(sb, synsetId, posName, domain, definition, tagCount, cased)
+                    .sense(synsetId, posName, domain, definition, tagCount, cased)
 
                 // result
                 val synsetNode = makeLinkNode(sb, R.drawable.synset, false, SenseLink(synsetId, wordId, maxRecursion, fragment)).addTo(parent)
@@ -469,16 +472,17 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             throw RuntimeException("Unexpected number of rows")
         }
         val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
-            val sb = SpannableStringBuilder()
             val idPosName = cursor.getColumnIndex(Poses.POS)
             val idDomain = cursor.getColumnIndex(Domains.DOMAIN)
             val idDefinition = cursor.getColumnIndex(Synsets.DEFINITION)
             val posName = cursor.getString(idPosName)
             val domain = cursor.getString(idDomain)
             val definition = cursor.getString(idDefinition)
-            sb.appendImage(synsetDrawable)
-            sb.append(' ')
-            synset(sb, synsetId, posName, domain, definition)
+
+            val sb = SpannableStringBuilder()
+                .appendImage(synsetDrawable)
+                .append(' ')
+                .synset(synsetId, posName, domain, definition)
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
@@ -498,7 +502,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     /**
      * Sense to string builder
      *
-     * @param sb         string builder
+     * @receiver         string builder
      * @param synsetId   synset id
      * @param posName    pos
      * @param domain     domain
@@ -507,21 +511,22 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @param cased      cased
      * @return string builder
      */
-    private fun sense(sb: SpannableStringBuilder, synsetId: Long, posName: CharSequence, domain: CharSequence, definition: CharSequence, tagCount: Int, cased: CharSequence?): SpannableStringBuilder {
-        synsetHead(sb, synsetId, posName, domain)
+    @ReturnThis
+    private fun SpannableStringBuilder.sense(synsetId: Long, posName: CharSequence, domain: CharSequence, definition: CharSequence, tagCount: Int, cased: CharSequence?): SpannableStringBuilder {
+        synsetHead(synsetId, posName, domain)
         if (!cased.isNullOrEmpty()) {
-            sb.appendImage(memberDrawable)
-            sb.append(' ')
-            sb.append(cased, 0, WordNetFactories.wordFactory)
-            sb.append(' ')
+            appendImage(memberDrawable)
+            append(' ')
+            append(cased, 0, WordNetFactories.wordFactory)
+            append(' ')
         }
         if (tagCount > 0) {
-            sb.append(' ')
-            sb.append("tagcount:$tagCount", 0, dataFactory)
+            append(' ')
+            append("tagcount:$tagCount", 0, dataFactory)
         }
-        sb.append('\n')
-        synsetDefinition(sb, definition)
-        return sb
+        append('\n')
+        synsetDefinition(definition)
+        return this
     }
 
     // S Y N S E T
@@ -544,16 +549,17 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             throw RuntimeException("Unexpected number of rows")
         }
         val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
-            val sb = SpannableStringBuilder()
             val idPosName = cursor.getColumnIndex(Poses.POS)
             val idDomain = cursor.getColumnIndex(Domains.DOMAIN)
             val idDefinition = cursor.getColumnIndex(Synsets.DEFINITION)
             val posName = cursor.getString(idPosName)
             val domain = cursor.getString(idDomain)
             val definition = cursor.getString(idDefinition)
-            sb.appendImage(synsetDrawable)
-            sb.append(' ')
-            synset(sb, synsetId, posName, domain, definition)
+
+            val sb = SpannableStringBuilder()
+                .appendImage(synsetDrawable)
+                .append(' ')
+                .synset(synsetId, posName, domain, definition)
 
             // result
             if (addNewNode) {
@@ -574,54 +580,57 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     /**
      * Synset to string builder
      *
-     * @param sb         string builder
+     * @receiver         string builder
      * @param synsetId   synset id
      * @param posName    pos
      * @param domain     domain
      * @param definition definition
      * @return string builder
      */
-    private fun synset(sb: SpannableStringBuilder, synsetId: Long, posName: CharSequence, domain: CharSequence, definition: CharSequence): SpannableStringBuilder {
-        synsetHead(sb, synsetId, posName, domain)
-        sb.append('\n')
-        synsetDefinition(sb, definition)
-        return sb
+    @ReturnThis
+    private fun SpannableStringBuilder.synset(synsetId: Long, posName: CharSequence, domain: CharSequence, definition: CharSequence): SpannableStringBuilder {
+        synsetHead(synsetId, posName, domain)
+        append('\n')
+        synsetDefinition(definition)
+        return this
     }
 
     /**
      * Synset head to string builder
      *
-     * @param sb       string builder
+     * @receiver       string builder
      * @param synsetId synset id
      * @param posName  pos
      * @param domain   domain
      * @return string builder
      */
-    private fun synsetHead(sb: SpannableStringBuilder, synsetId: Long, posName: CharSequence, domain: CharSequence): SpannableStringBuilder {
-        sb.appendImage(posDrawable)
-        sb.append(' ')
-        sb.append(posName)
-        sb.append(' ')
-        sb.appendImage(domainDrawable)
-        sb.append(' ')
-        sb.append(domain)
-        sb.append(' ')
-        sb.append(synsetId.toString(), 0, dataFactory)
-        return sb
+    @ReturnThis
+    private fun SpannableStringBuilder.synsetHead(synsetId: Long, posName: CharSequence, domain: CharSequence): SpannableStringBuilder {
+        appendImage(posDrawable)
+        append(' ')
+        append(posName)
+        append(' ')
+        appendImage(domainDrawable)
+        append(' ')
+        append(domain)
+        append(' ')
+        append(synsetId.toString(), 0, dataFactory)
+        return this
     }
 
     /**
      * Synset definition to string builder
      *
-     * @param sb         string builder
+     * @receiver         string builder
      * @param definition definition
      * @return string builder
      */
-    private fun synsetDefinition(sb: SpannableStringBuilder, definition: CharSequence): SpannableStringBuilder {
-        sb.appendImage(definitionDrawable)
-        sb.append(' ')
-        sb.append(definition, 0, WordNetFactories.definitionFactory)
-        return sb
+    @ReturnThis
+    private fun SpannableStringBuilder.synsetDefinition(definition: CharSequence): SpannableStringBuilder {
+        appendImage(definitionDrawable)
+        append(' ')
+        append(definition, 0, WordNetFactories.definitionFactory)
+        return this
     }
 
     // M E M B E R S
@@ -649,7 +658,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     val wordId = cursor.getLong(idWordId)
                     val member = cursor.getString(idMember)
                     val sb = SpannableStringBuilder()
-                    sb.append(member, 0, WordNetFactories.membersFactory)
+                        .append(member, 0, WordNetFactories.membersFactory)
 
                     // result
                     val memberNode = makeLinkNode(sb, XNetR.drawable.member, false, WordLink(fragment, wordId)).addTo(parent)
@@ -687,23 +696,23 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         }
         val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val sb = SpannableStringBuilder()
-            if (concatQuery) {
-                val idMembers = cursor.getColumnIndex(Senses_Words.MEMBERS)
-                sb.append('{')
-                sb.append(cursor.getString(idMembers), 0, WordNetFactories.membersFactory)
-                sb.append('}')
-            } else {
-                val wordId = cursor.getColumnIndex(WordNetContract.Words.WORD)
-                do {
-                    val word = cursor.getString(wordId)
-                    if (sb.isNotEmpty()) {
-                        sb.append('\n')
+                .apply {
+                    if (concatQuery) {
+                        val idMembers = cursor.getColumnIndex(Senses_Words.MEMBERS)
+                        append('{')
+                        append(cursor.getString(idMembers), 0, WordNetFactories.membersFactory)
+                        append('}')
+                    } else {
+                        val wordId = cursor.getColumnIndex(WordNetContract.Words.WORD)
+                        do {
+                            val word = cursor.getString(wordId)
+                            if (isNotEmpty()) append('\n')
+                            //appendImage(BaseModule.this.memberDrawable)
+                            //append(' ')
+                            append(word, 0, WordNetFactories.membersFactory)
+                        } while (cursor.moveToNext())
                     }
-                    //sb.appendImage(BaseModule.this.memberDrawable)
-                    //sb.append(' ')
-                    sb.append(word, 0, WordNetFactories.membersFactory)
-                } while (cursor.moveToNext())
-            }
+                }
 
             // result
             if (addNewNode) {
@@ -740,20 +749,20 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val idSample = cursor.getColumnIndex(Samples.SAMPLE)
             val sb = SpannableStringBuilder()
-            do {
-                val sample = cursor.getString(idSample)
-                // var sampleId = cursor.getInt(idSampleId)
-                if (sb.isNotEmpty()) {
-                    sb.append('\n')
+                .apply {
+                    do {
+                        val sample = cursor.getString(idSample)
+                        // val sampleId = cursor.getInt(idSampleId)
+                        // val formattedSample = "[$sampleId] $sample"
+                        if (isNotEmpty()) append('\n')
+                        appendImage(sampleDrawable)
+                        append(' ')
+                        //append(sampleId)
+                        //append(' ')
+                        append(sample, 0, WordNetFactories.sampleFactory)
+                        //.append(formattedSample)
+                    } while (cursor.moveToNext())
                 }
-                sb.appendImage(sampleDrawable)
-                sb.append(' ')
-                // sb.append(sampleId)
-                // sb.append(' ')
-                sb.append(sample, 0, WordNetFactories.sampleFactory)
-                // var formattedSample = String.format(Locale.ENGLISH, "[%d] %s", sampleId, sample)
-                // sb.append(formattedSample)
-            } while (cursor.moveToNext())
 
             // result
             if (addNewNode) {
@@ -790,20 +799,20 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val idUsage = cursor.getColumnIndex(Usages.USAGENOTE)
             val sb = SpannableStringBuilder()
-            do {
-                val usage = cursor.getString(idUsage)
-                // var usageId = cursor.getInt(idUsageId)
-                if (sb.isNotEmpty()) {
-                    sb.append('\n')
+                .apply {
+                    do {
+                        val usage = cursor.getString(idUsage)
+                        // val usageId = cursor.getInt(idUsageId)
+                        // val formattedUsage = "[$usageId] $usageNode"
+                        if (isNotEmpty()) append('\n')
+                        // appendImage(usageDrawable)
+                        // append(' ')
+                        // append(usageId)
+                        // append(' ')
+                        append(usage, 0, WordNetFactories.usageFactory)
+                        // append(formattedUsage)
+                    } while (cursor.moveToNext())
                 }
-                // sb.appendImage(usageDrawable)
-                // sb.append(' ')
-                // sb.append(usageId)
-                // sb.append(' ')
-                sb.append(usage, 0, WordNetFactories.usageFactory)
-                // var formattedUsage = String.format(Locale.ENGLISH, "[%d] %s", usageId, usageNote)
-                // sb.append(formattedUsage)
-            } while (cursor.moveToNext())
 
             // result
             if (addNewNode) {
@@ -850,9 +859,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 }
             }
             val sb = SpannableStringBuilder()
-            sb.append("ILI", 0, boldFactory)
-            sb.append(' ')
-            sb.append(ili, 0, iliFactory)
+                .append("ILI", 0, boldFactory)
+                .append(' ')
+                .append(ili, 0, iliFactory)
 
             // result
             parent.payload!![1] = callback
@@ -891,9 +900,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     this.putExtra("data", wikidata)
                 }
                 val sb = SpannableStringBuilder()
-                sb.append("Wikidata", 0, boldFactory)
-                sb.append(' ')
-                sb.append(wikidata, 0, wikidataFactory)
+                    .append("Wikidata", 0, boldFactory)
+                    .append(' ')
+                    .append(wikidata, 0, wikidataFactory)
 
                 // result
                 // if (addNewNode) {
@@ -945,33 +954,34 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val idTargetWordId = cursor.getColumnIndex(V.WORD2ID)
                 val idTargetWord = cursor.getColumnIndex(V.WORD2)
                 do {
-                    val sb = SpannableStringBuilder()
                     val relationId = cursor.getInt(idRelationId)
-                    if (relationFilter.invoke(relationId)) {
-                        val relation = cursor.getString(idRelation)
-                        val targetSynsetId = cursor.getLong(idTargetSynsetId)
-                        val targetDefinition = cursor.getString(idTargetDefinition)
-                        val targetMembers = cursor.getString(idTargetMembers)
-                        val relationCanRecurse = !cursor.isNull(idRecurses) && cursor.getInt(idRecurses) != 0
-                        val targetWord = if (cursor.isNull(idTargetWord)) null else cursor.getString(idTargetWord)
-                        val targetWordId = if (cursor.isNull(idTargetWordId)) null else cursor.getLong(idTargetWordId)
-                        if (targetWordId == null && displaySemRelationName || targetWordId != null && displayLexRelationName) {
-                            sb.append(relation, 0, WordNetFactories.relationFactory)
-                            sb.append(' ')
-                        }
-                        appendMembers(sb, targetMembers, targetWord)
-                        sb.append(' ')
-                        sb.append(targetDefinition, 0, WordNetFactories.definitionFactory)
+                    SpannableStringBuilder()
+                        .applyIf(relationFilter.invoke(relationId)) {
+                            val relation = cursor.getString(idRelation)
+                            val targetSynsetId = cursor.getLong(idTargetSynsetId)
+                            val targetDefinition = cursor.getString(idTargetDefinition)
+                            val targetMembers = cursor.getString(idTargetMembers)
+                            val relationCanRecurse = !cursor.isNull(idRecurses) && cursor.getInt(idRecurses) != 0
+                            val targetWord = if (cursor.isNull(idTargetWord)) null else cursor.getString(idTargetWord)
+                            val targetWordId = if (cursor.isNull(idTargetWordId)) null else cursor.getLong(idTargetWordId)
+                            if (targetWordId == null && displaySemRelationName || targetWordId != null && displayLexRelationName) {
+                                append(relation, 0, WordNetFactories.relationFactory)
+                                append(' ')
+                            }
+                            appendMembers(targetMembers, targetWord)
+                            append(' ')
+                            append(targetDefinition, 0, WordNetFactories.definitionFactory)
 
-                        // recursion
-                        if (relationCanRecurse) {
-                            val relationsNode = makeLinkQueryTreeNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, maxRecursion), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
-                            changedList += seq(TreeOpCode.NEWCHILD, relationsNode)
-                        } else {
-                            val node = makeLinkLeafNode(sb, getRelationRes(relationId), false, if (targetWordId == null) SynsetLink(targetSynsetId, maxRecursion, fragment) else SenseLink(targetSynsetId, targetWordId, maxRecursion, fragment)).addTo(parent)
-                            changedList += seq(TreeOpCode.NEWCHILD, node)
+                            // recursion
+                            if (relationCanRecurse) {
+                                val relationsNode = makeLinkQueryTreeNode(this, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, maxRecursion), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
+                                changedList += seq(TreeOpCode.NEWCHILD, relationsNode)
+                            } else {
+                                val node =
+                                    makeLinkLeafNode(this, getRelationRes(relationId), false, if (targetWordId == null) SynsetLink(targetSynsetId, maxRecursion, fragment) else SenseLink(targetSynsetId, targetWordId, maxRecursion, fragment)).addTo(parent)
+                                changedList += seq(TreeOpCode.NEWCHILD, node)
+                            }
                         }
-                    }
                 } while (cursor.moveToNext())
                 changedList.toArray()
             } else {
@@ -986,24 +996,27 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         return changed
     }
 
-    private fun appendMembers(sb: SpannableStringBuilder, members: String, targetWord: String?) {
+    @ReturnThis
+    private fun SpannableStringBuilder.appendMembers(members: String, targetWord: String?): SpannableStringBuilder {
         val membersSeq = extractMembers(members)
         if (targetWord != null) {
-            sb.append(targetWord, 0, WordNetFactories.targetMemberFactory)
             val otherMembers = membersSeq
                 .filterNot { it == targetWord }
                 .joinToString(separator = ",")
-            if (!otherMembers.isEmpty())
-                sb.append(',')
-            sb.append(otherMembers, 0, WordNetFactories.otherMembersFactory)
+            append(targetWord, 0, WordNetFactories.targetMemberFactory)
+            if (!otherMembers.isEmpty()) append(',')
+            append(otherMembers, 0, WordNetFactories.otherMembersFactory)
         } else {
-            sb.append(membersSeq.joinToString(separator = ","), 0, WordNetFactories.membersFactory)
+            append(membersSeq.joinToString(separator = ","), 0, WordNetFactories.membersFactory)
         }
+        return this
     }
 
-    private fun appendMembers(sb: SpannableStringBuilder, members: String) {
+    @ReturnThis
+    private fun SpannableStringBuilder.appendMembers(members: String): SpannableStringBuilder {
         val membersSeq = extractMembers(members)
-        sb.append(membersSeq.joinToString(separator = ","), 0, WordNetFactories.membersFactory)
+        append(membersSeq.joinToString(separator = ","), 0, WordNetFactories.membersFactory)
+        return this
     }
 
     // S E M R E L A T I O N S
@@ -1032,31 +1045,31 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2)
             val idRecurses = cursor.getColumnIndex(SemRelations_Synsets_Words_X.RECURSES)
             do {
-                val sb = SpannableStringBuilder()
                 val relationId = cursor.getInt(idRelationId)
-                if (relationFilter.invoke(relationId)) {
-                    val relation = cursor.getString(idRelation)
-                    val targetSynsetId = cursor.getLong(idTargetSynsetId)
-                    val targetDefinition = cursor.getString(idTargetDefinition)
-                    val targetMembers = cursor.getString(idTargetMembers)
-                    val relationCanRecurse = cursor.getInt(idRecurses) != 0
-                    if (displaySemRelationName) {
-                        sb.append(relation, 0, WordNetFactories.relationFactory)
-                        sb.append(' ')
-                    }
-                    appendMembers(sb, targetMembers)
-                    sb.append(' ')
-                    sb.append(targetDefinition, 0, WordNetFactories.definitionFactory)
+                SpannableStringBuilder()
+                    .applyIf(relationFilter.invoke(relationId)) {
+                        val relation = cursor.getString(idRelation)
+                        val targetSynsetId = cursor.getLong(idTargetSynsetId)
+                        val targetDefinition = cursor.getString(idTargetDefinition)
+                        val targetMembers = cursor.getString(idTargetMembers)
+                        val relationCanRecurse = cursor.getInt(idRecurses) != 0
+                        if (displaySemRelationName) {
+                            append(relation, 0, WordNetFactories.relationFactory)
+                            append(' ')
+                        }
+                        appendMembers(targetMembers)
+                        append(' ')
+                        append(targetDefinition, 0, WordNetFactories.definitionFactory)
 
-                    // recursion
-                    if (relationCanRecurse) {
-                        val relationsNode = makeLinkQueryTreeNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, maxRecursion), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
-                        changedList += seq(TreeOpCode.NEWCHILD, relationsNode)
-                    } else {
-                        val node = makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent)
-                        changedList += seq(TreeOpCode.NEWCHILD, node)
+                        // recursion
+                        if (relationCanRecurse) {
+                            val relationsNode = makeLinkQueryTreeNode(this, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, maxRecursion), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
+                            changedList += seq(TreeOpCode.NEWCHILD, relationsNode)
+                        } else {
+                            val node = makeLeafNode(this, getRelationRes(relationId), false).addTo(parent)
+                            changedList += seq(TreeOpCode.NEWCHILD, node)
+                        }
                     }
-                }
             } while (cursor.moveToNext())
             changed = changedList.toArray()
         } else {
@@ -1098,17 +1111,16 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2)
             val idRecurses = cursor.getColumnIndex(SemRelations_Synsets_Words_X.RECURSES)
             do {
-                val sb = SpannableStringBuilder()
                 val targetSynsetId = cursor.getLong(idTargetSynsetId)
                 val targetDefinition = cursor.getString(idTargetDefinition)
                 val targetMembers = cursor.getString(idTargetMembers)
                 val relationCanRecurse = cursor.getInt(idRecurses) != 0
-                if (sb.isNotEmpty()) {
-                    sb.append('\n')
-                }
-                appendMembers(sb, targetMembers)
-                sb.append(' ')
-                sb.append(targetDefinition, 0, WordNetFactories.definitionFactory)
+
+                val sb = SpannableStringBuilder()
+                    .applyIf(SpannableStringBuilder::isNotEmpty) { append('\n') }
+                    .appendMembers(targetMembers)
+                    .append(' ')
+                    .append(targetDefinition, 0, WordNetFactories.definitionFactory)
 
                 // recurse
                 if (relationCanRecurse) {
@@ -1173,26 +1185,27 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val idTargetWordId = cursor.getColumnIndex(V.WORD2ID)
             val idTargetWord = cursor.getColumnIndex(V.WORD2)
             do {
-                val sb = SpannableStringBuilder()
                 val relationId = cursor.getInt(idRelationId)
-                if (relationFilter.invoke(relationId)) {
-                    val relation = cursor.getString(idRelation)
-                    val targetSynsetId = cursor.getLong(idTargetSynsetId)
-                    val targetDefinition = cursor.getString(idTargetDefinition)
-                    val targetWord = cursor.getString(idTargetWord)
-                    val targetMembers = cursor.getString(idTargetMembers)
-                    if (displayLexRelationName) {
-                        sb.append(relation, 0, WordNetFactories.relationFactory)
-                        sb.append(' ')
-                    }
-                    appendMembers(sb, targetMembers, targetWord)
-                    sb.append(' ')
-                    sb.append(targetDefinition, 0, WordNetFactories.definitionFactory)
+                SpannableStringBuilder()
+                    .applyIf(relationFilter.invoke(relationId)) {
+                        val relation = cursor.getString(idRelation)
+                        val targetSynsetId = cursor.getLong(idTargetSynsetId)
+                        val targetDefinition = cursor.getString(idTargetDefinition)
+                        val targetWord = cursor.getString(idTargetWord)
+                        val targetMembers = cursor.getString(idTargetMembers)
 
-                    // attach result
-                    val relationNode = makeLinkLeafNode(sb, getRelationRes(relationId), false, SenseLink(targetSynsetId, idTargetWordId.toLong(), maxRecursion, fragment)).addTo(parent)
-                    changedList += seq(TreeOpCode.NEWCHILD, relationNode)
-                }
+                        if (displayLexRelationName) {
+                            append(relation, 0, WordNetFactories.relationFactory)
+                            append(' ')
+                        }
+                        appendMembers(targetMembers, targetWord)
+                        append(' ')
+                        append(targetDefinition, 0, WordNetFactories.definitionFactory)
+
+                        // attach result
+                        val relationNode = makeLinkLeafNode(this, getRelationRes(relationId), false, SenseLink(targetSynsetId, idTargetWordId.toLong(), maxRecursion, fragment)).addTo(parent)
+                        changedList += seq(TreeOpCode.NEWCHILD, relationNode)
+                    }
             } while (cursor.moveToNext())
             changed = changedList.toArray()
         } else {
@@ -1228,25 +1241,26 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2)
             val idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2)
             val idTargetWord = cursor.getColumnIndex(V.WORD2)
-            val sb = SpannableStringBuilder()
-            do {
-                val relationId = cursor.getInt(idRelationId)
-                if (relationFilter.invoke(relationId)) {
-                    val targetDefinition = cursor.getString(idTargetDefinition)
-                    val targetWord = cursor.getString(idTargetWord)
-                    val targetMembers = cursor.getString(idTargetMembers)
-                    if (sb.isNotEmpty()) {
-                        sb.append('\n')
-                    }
-                    appendMembers(sb, targetMembers, targetWord)
-                    sb.append(' ')
-                    sb.append(targetDefinition, 0, WordNetFactories.definitionFactory)
 
-                    // attach result
-                    val relationNode = makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent)
-                    changedList += seq(TreeOpCode.NEWCHILD, relationNode)
+            val sb = SpannableStringBuilder()
+                .apply {
+                    do {
+                        val relationId = cursor.getInt(idRelationId)
+                        if (relationFilter.invoke(relationId)) {
+                            val targetDefinition = cursor.getString(idTargetDefinition)
+                            val targetWord = cursor.getString(idTargetWord)
+                            val targetMembers = cursor.getString(idTargetMembers)
+                            if (isNotEmpty()) append('\n')
+                            appendMembers(targetMembers, targetWord)
+                            append(' ')
+                            append(targetDefinition, 0, WordNetFactories.definitionFactory)
+
+                            // attach result
+                            val relationNode = makeLeafNode(this, getRelationRes(relationId), false).addTo(parent)
+                            changedList += seq(TreeOpCode.NEWCHILD, relationNode)
+                        }
+                    } while (cursor.moveToNext())
                 }
-            } while (cursor.moveToNext())
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
@@ -1295,16 +1309,16 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val vframeId = cursor.getColumnIndex(Senses_VerbFrames.FRAME)
             val sb = SpannableStringBuilder()
-            do {
-                val vframe = cursor.getString(vframeId)
-                val formattedVframe = String.format(Locale.ENGLISH, "%s", vframe)
-                if (sb.isNotEmpty()) {
-                    sb.append('\n')
+                .apply {
+                    do {
+                        val vframe = cursor.getString(vframeId)
+                        val formattedVframe = String.format(Locale.ENGLISH, "%s", vframe)
+                        if (isNotEmpty()) append('\n')
+                        appendImage(verbframeDrawable)
+                        append(' ')
+                        append(formattedVframe)
+                    } while (cursor.moveToNext())
                 }
-                sb.appendImage(verbframeDrawable)
-                sb.append(' ')
-                sb.append(formattedVframe)
-            } while (cursor.moveToNext())
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
@@ -1334,17 +1348,18 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     private fun vTemplatesCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
         val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val vTemplateId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE)
-            val sb = SpannableStringBuilder()
-            do {
-                val vTemplate = cursor.getString(vTemplateId)
-                val formattedVTemplate = String.format(Locale.ENGLISH, vTemplate, "[-]")
-                if (sb.isNotEmpty()) {
-                    sb.append('\n')
-                }
-                sb.appendImage(verbframeDrawable)
-                sb.append(' ')
-                sb.append(formattedVTemplate)
-            } while (cursor.moveToNext())
+            val sb = SpannableStringBuilder().apply {
+                do {
+                    val vTemplate = cursor.getString(vTemplateId)
+                    val formattedVTemplate = String.format(Locale.ENGLISH, vTemplate, "[-]")
+                    if (isNotEmpty()) {
+                        append('\n')
+                    }
+                    appendImage(verbframeDrawable)
+                    append(' ')
+                    append(formattedVTemplate)
+                } while (cursor.moveToNext())
+            }
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
@@ -1375,16 +1390,16 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val word = "---"
             val vTemplateId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE)
             val sb = SpannableStringBuilder()
-            do {
-                val vTemplate = cursor.getString(vTemplateId)
-                val formattedVTemplate = String.format(Locale.ENGLISH, vTemplate, "[$word]")
-                if (sb.isNotEmpty()) {
-                    sb.append('\n')
+                .apply {
+                    do {
+                        val vTemplate = cursor.getString(vTemplateId)
+                        val formattedVTemplate = String.format(Locale.ENGLISH, vTemplate, "[$word]")
+                        if (isNotEmpty()) append('\n')
+                        appendImage(verbframeDrawable)
+                        append(' ')
+                        append(formattedVTemplate)
+                    } while (cursor.moveToNext())
                 }
-                sb.appendImage(verbframeDrawable)
-                sb.append(' ')
-                sb.append(formattedVTemplate)
-            } while (cursor.moveToNext())
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
@@ -1427,17 +1442,16 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     private fun adjPositionCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
         val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val positionId = cursor.getColumnIndex(Senses_AdjPositions.POSITION)
-            val sb = SpannableStringBuilder()
-            do {
-                val position = cursor.getString(positionId)
-                val formattedPosition = String.format(Locale.ENGLISH, "%s", position)
-                if (sb.isNotEmpty()) {
-                    sb.append('\n')
-                }
-                sb.appendImage(verbframeDrawable)
-                sb.append(' ')
-                sb.append(formattedPosition)
-            } while (cursor.moveToNext())
+            val sb = SpannableStringBuilder().apply {
+                do {
+                    val position = cursor.getString(positionId)
+                    val formattedPosition = String.format(Locale.ENGLISH, "%s", position)
+                    if (isNotEmpty()) append('\n')
+                    appendImage(verbframeDrawable)
+                    append(' ')
+                    append(formattedPosition)
+                } while (cursor.moveToNext())
+            }
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
@@ -1468,18 +1482,17 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
             val morphId = cursor.getColumnIndex(Lexes_Morphs.MORPH)
             val posId = cursor.getColumnIndex(Lexes_Morphs.POSID)
-            val sb = SpannableStringBuilder()
-            do {
-                val morph1 = cursor.getString(morphId)
-                val pos1 = cursor.getString(posId)
-                val formattedMorph = String.format(Locale.ENGLISH, "(%s) %s", pos1, morph1)
-                if (sb.isNotEmpty()) {
-                    sb.append('\n')
-                }
-                sb.appendImage(morphDrawable)
-                sb.append(' ')
-                sb.append(formattedMorph)
-            } while (cursor.moveToNext())
+            val sb = SpannableStringBuilder().apply {
+                do {
+                    val morph1 = cursor.getString(morphId)
+                    val pos1 = cursor.getString(posId)
+                    val formattedMorph = "($pos1) $morph1"
+                    if (isNotEmpty()) append('\n')
+                    appendImage(morphDrawable)
+                    append(' ')
+                    append(formattedMorph)
+                } while (cursor.moveToNext())
+            }
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
