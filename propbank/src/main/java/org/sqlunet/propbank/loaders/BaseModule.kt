@@ -436,7 +436,9 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 }
 
             // extra format
-            spanner.setSpan(sb, 0, 0)
+            with(spanner) {
+                sb.setSpan(0, 0)
+            }
 
             // attach result
             val node = makeTextNode(sb, false).addTo(parent)
