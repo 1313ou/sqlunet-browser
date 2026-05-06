@@ -51,4 +51,5 @@ dependencies {
     implementation(project(":concurrency"))
 
     implementation(libs.appcompat)
+    implementation(libs.material)
 }

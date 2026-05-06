@@ -47,8 +47,9 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(libs.core.ktx)
 
-    implementation(libs.appcompat)
     implementation(libs.fragment.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.material)
     implementation(libs.annotation)
 
     testImplementation(libs.junit)

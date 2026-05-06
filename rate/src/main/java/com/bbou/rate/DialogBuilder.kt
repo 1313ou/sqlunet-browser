@@ -4,23 +4,17 @@
  */
 package com.bbou.rate
 
-import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.widget.Toast
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 internal object DialogBuilder {
 
-    @SuppressLint("NewApi")
-    private fun getDialogBuilder(context: Context): AlertDialog.Builder {
-        return AlertDialog.Builder(context)
-    }
-
     fun build(context: Context, options: DialogOptions): Dialog {
         val view = options.view
-        return getDialogBuilder(context)
+        return MaterialAlertDialogBuilder(context)
             // message
             .setMessage(options.getMessageText(context))
             // title

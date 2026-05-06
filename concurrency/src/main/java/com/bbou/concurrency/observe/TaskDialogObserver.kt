@@ -10,12 +10,12 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.bbou.concurrency.Cancelable
 import com.bbou.concurrency.R
 import com.bbou.concurrency.observe.Formatter.formatAsString
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /**
  * Task dialog observer
@@ -152,7 +152,7 @@ class TaskDialogObserver<Progress : Pair<Number, Number>>(private val fragmentMa
             titleTextView.text = title
             messageTextView.text = message
 
-            return AlertDialog.Builder(activity)
+            return MaterialAlertDialogBuilder(activity)
                 .setView(view)
                 .setNegativeButton(R.string.action_cancel) { _, _ ->
                     val result = task.cancel(true)

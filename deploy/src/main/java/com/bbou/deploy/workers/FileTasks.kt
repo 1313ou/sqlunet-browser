@@ -4,7 +4,6 @@
 package com.bbou.deploy.workers
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.ContentResolver
 import android.net.Uri
 import androidx.core.util.Consumer
@@ -24,6 +23,7 @@ import com.bbou.deploy.workers.DeployOps.unzipEntryFromArchiveUrl
 import com.bbou.deploy.workers.DeployOps.unzipFromArchiveFile
 import com.bbou.deploy.workers.DeployOps.unzipFromArchiveUri
 import com.bbou.deploy.workers.DeployOps.unzipFromArchiveUrl
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.net.URL
 
 /**
@@ -1005,7 +1005,7 @@ class FileTasks(
          */
         fun launchMd5(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, sourceFile: String, whenDone: Runnable?) {
             val consumer = Consumer { md5: String? ->
-                AlertDialog.Builder(activity)
+                MaterialAlertDialogBuilder(activity)
                     .apply { if (md5 != null) setMessage(md5) else setMessage(R.string.result_fail) }
                     .setOnDismissListener { _ -> whenDone?.run() }
                     .show()
@@ -1025,7 +1025,7 @@ class FileTasks(
          */
         fun launchMd5(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, uri: Uri, whenDone: Runnable?) {
             val consumer = Consumer { md5: String? ->
-                AlertDialog.Builder(activity)
+                MaterialAlertDialogBuilder(activity)
                     .apply { if (md5 != null) setMessage(md5) else setMessage(R.string.result_fail) }
                     .setOnDismissListener { _ -> whenDone?.run() }
                     .show()
@@ -1045,7 +1045,7 @@ class FileTasks(
          */
         fun launchMd5(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, url: URL, whenDone: Runnable?) {
             val consumer = Consumer { md5: String? ->
-                AlertDialog.Builder(activity)
+                MaterialAlertDialogBuilder(activity)
                     .apply { if (md5 != null) setMessage(md5) else setMessage(R.string.result_fail) }
                     .setOnDismissListener { _ -> whenDone?.run() }
                     .show()

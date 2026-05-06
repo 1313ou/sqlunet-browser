@@ -3,12 +3,12 @@
  */
 package com.bbou.deploy.workers
 
-import android.app.AlertDialog
 import android.content.Context
 import android.widget.TextView
 import androidx.core.util.Consumer
 import androidx.fragment.app.FragmentActivity
 import com.bbou.concurrency.observe.TaskDialogObserver
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 /**
  * Md5 async task
@@ -64,7 +64,7 @@ object MD5 {
         resultView.text = result
         resultView.setPadding(35, 20, 35, 20)
         resultView.setTextIsSelectable(true)
-        AlertDialog.Builder(context)
+        MaterialAlertDialogBuilder(context)
             .setTitle(context.getString(R.string.action_md5_of_what, sourceFile))
             .setView(resultView)
             .show()
