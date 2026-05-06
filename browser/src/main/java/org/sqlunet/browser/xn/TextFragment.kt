@@ -119,7 +119,7 @@ class TextFragment : BaseTextFragment() {
                     Log.d(TAG, "Click: vn classes=$classes")
                     val result = makeData(classes)
                     if (result.first.size > 1) {
-                        val listener = DialogInterface.OnClickListener { _: DialogInterface?, which: Int ->
+                        val listener = DialogInterface.OnClickListener { _, which ->
                             // which argument contains the index position of the selected item
                             val typedPointer = result.first[which]
                             startVn(typedPointer)
@@ -138,7 +138,7 @@ class TextFragment : BaseTextFragment() {
                     Log.d(TAG, "Click: pb rolesets=$roleSets")
                     val result = makeData(roleSets)
                     if (result.first.size > 1) {
-                        val listener = DialogInterface.OnClickListener { _: DialogInterface?, which: Int ->
+                        val listener = DialogInterface.OnClickListener { _, which ->
                             // which argument contains the index position of the selected item
                             val typedPointer = result.first[which]
                             startPb(typedPointer)
@@ -163,7 +163,7 @@ class TextFragment : BaseTextFragment() {
                     Log.d(TAG, "Click: fn sentence=$sentence")
                     val result = makeData(frames, lexUnits, sentence)
                     if (result.first.size > 1) {
-                        val listener = DialogInterface.OnClickListener { _: DialogInterface?, which: Int ->
+                        val listener = DialogInterface.OnClickListener { _, which ->
                             // which argument contains the index position of the selected item
                             val typedPointer = result.first[which]
                             startFn(typedPointer)

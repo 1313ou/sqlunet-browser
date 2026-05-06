@@ -7,9 +7,10 @@ import android.app.Activity
 import android.text.SpannableStringBuilder
 import android.widget.TextView
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.sqlunet.style.Report.appendHeader
 import org.sqlunet.xnet.R
+import org.sqlunet.core.R as CoreR
 
 /**
  * Info helper
@@ -30,7 +31,7 @@ object Info {
     }
 
     fun info(activity: Activity, @StringRes messageId: Int, vararg lines: CharSequence) {
-        val alert = AlertDialog.Builder(activity)
+        val alert = MaterialAlertDialogBuilder(activity, CoreR.style.MyM3AlertDialogOverlay)
         alert.setTitle(R.string.action_info)
         alert.setMessage(messageId)
         alert.setNegativeButton(R.string.action_dismiss) { _, _ -> }

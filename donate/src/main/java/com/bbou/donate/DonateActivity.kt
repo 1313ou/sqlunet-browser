@@ -16,7 +16,6 @@ import android.view.View
 import android.widget.Button
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.Toolbar
 import com.android.billingclient.api.Purchase
@@ -25,6 +24,7 @@ import com.bbou.donate.billing.BillingManager.BillingListener
 import com.bbou.donate.billing.Products.inappProducts
 import com.bbou.donate.billing.Products.init
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.sqlunet.browser.BaseActivity
 import java.util.Date
 import org.sqlunet.core.R as CoreR
@@ -236,7 +236,7 @@ class DonateActivity : BaseActivity(), BillingListener {
     }
 
     private fun inform(message: String) {
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this, CoreR.style.MyM3AlertDialogOverlay)
             .setTitle(R.string.title_donate)
             .setMessage(message)
             .show()

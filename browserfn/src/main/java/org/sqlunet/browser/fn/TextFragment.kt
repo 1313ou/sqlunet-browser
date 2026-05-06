@@ -64,7 +64,7 @@ class TextFragment : BaseTextFragment() {
                 Log.d(TAG, "Click: fn sentence=$sentence")
                 val result = makeData(frames, lexUnits, sentence)
                 if (result.first.size > 1) {
-                    val listener = DialogInterface.OnClickListener { _: DialogInterface?, which: Int ->
+                    val listener = DialogInterface.OnClickListener { _, which ->
                         // which argument contains the index position of the selected item
                         val typedPointer = result.first[which]
                         startFn(typedPointer)

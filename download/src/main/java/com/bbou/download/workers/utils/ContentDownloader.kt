@@ -5,7 +5,6 @@ package com.bbou.download.workers.utils
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -19,14 +18,16 @@ import com.bbou.download.Keys.DOWNLOAD_FROM_ARG
 import com.bbou.download.Keys.DOWNLOAD_MODE_ARG
 import com.bbou.download.Keys.DOWNLOAD_TARGET_FILE_ARG
 import com.bbou.download.Keys.DOWNLOAD_TO_FILE_ARG
-import com.bbou.download.common.R
 import com.bbou.download.preference.Settings
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.lang.ref.WeakReference
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.function.BiConsumer
+import com.bbou.download.common.R as CommonR
+import org.sqlunet.core.R as CoreR
 
 /**
  * (Table of) Contents downloader task
@@ -179,16 +180,16 @@ class ContentDownloader(private val listener: Listener) : Task<String, Void, Arr
         private fun show(activity: Activity, result: Array<String>?, targetFile: String, consumer: BiConsumer<Context, String>) {
 
             val inflater = LayoutInflater.from(activity)
-            @SuppressLint("InflateParams") val header = inflater.inflate(R.layout.content_header, null)
-            val sourceView = header.findViewById<TextView>(R.id.source)
+            @SuppressLint("InflateParams") val header = inflater.inflate(CommonR.layout.content_header, null)
+            val sourceView = header.findViewById<TextView>(CommonR.id.source)
             sourceView.text = targetFile
 
-            AlertDialog.Builder(activity)
+            MaterialAlertDialogBuilder(activity, CoreR.style.MyM3AlertDialogOverlay)
                 .setCustomTitle(header)
                 .apply {
                     if (result == null) {
                         setIconAttribute(android.R.attr.alertDialogIcon)
-                        setMessage(R.string.status_task_failed)
+                        setMessage(CommonR.string.status_task_failed)
                     } else {
                         setItems(result) { _, which ->
                             val item = result[which]
@@ -203,11 +204,11 @@ class ContentDownloader(private val listener: Listener) : Task<String, Void, Arr
          * Content
          */
         fun showContents(activity: Activity, consumer: BiConsumer<Context, String>) {
-            Toast.makeText(activity, R.string.status_download_downloadable_content, Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, CommonR.string.status_download_downloadable_content, Toast.LENGTH_SHORT).show()
             val activityReference = WeakReference(activity)
             val repo = Settings.getRepoPref(activity)
             if (repo == null) {
-                Toast.makeText(activity, R.string.status_download_error_null_download_url, Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, CommonR.string.status_download_error_null_download_url, Toast.LENGTH_SHORT).show()
                 return
             }
             val dest = Settings.getCachePref(activity)

@@ -1028,7 +1028,7 @@ class FileTasks(
             val consumer = Consumer { md5: String? ->
                 AlertDialog.Builder(activity)
                     .apply { if (md5 != null) setMessage(md5) else setMessage(R.string.result_fail) }
-                    .setOnDismissListener { _: DialogInterface? -> whenDone?.run() }
+                    .setOnDismissListener { _ -> whenDone?.run() }
                     .show()
             }
             val task = FileTasks(observer, safeCast<String?>(consumer), 1000).md5FromUri(activity.contentResolver)

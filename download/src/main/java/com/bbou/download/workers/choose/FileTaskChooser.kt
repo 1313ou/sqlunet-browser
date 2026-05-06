@@ -3,8 +3,6 @@
  */
 package com.bbou.download.workers.choose
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.RadioButton
@@ -12,7 +10,9 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import com.bbou.deploy.workers.FileTasks
 import com.bbou.download.choose.Chooser.toRadioGroup
-import com.bbou.download.common.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.bbou.download.common.R as CommonR
+import org.sqlunet.core.R as CoreR
 
 /**
  * File async task chooser
@@ -35,16 +35,16 @@ object FileTaskChooser {
         // collect sources
         val input = toRadioGroup(activity, directories.first, directories.second)
         if (input == null) {
-            Toast.makeText(activity, R.string.no_datapack, Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, CommonR.string.no_datapack, Toast.LENGTH_SHORT).show()
             return
         }
 
         // display sources
-        AlertDialog.Builder(activity)
-            .setTitle(R.string.action_copy_datapack_from_file)
-            .setMessage(R.string.hint_copy_from_file)
+        MaterialAlertDialogBuilder(activity, CoreR.style.MyM3AlertDialogOverlay)
+            .setTitle(CommonR.string.action_copy_datapack_from_file)
+            .setMessage(CommonR.string.hint_copy_from_file)
             .setView(input)
-            .setPositiveButton(R.string.action_ok) { dialog, _ ->
+            .setPositiveButton(CommonR.string.action_ok) { dialog, _ ->
                 dialog.dismiss()
                 val childCount = input.childCount
                 for (i in 0 until childCount) {
@@ -57,7 +57,7 @@ object FileTaskChooser {
                     }
                 }
             }
-            .setNegativeButton(R.string.action_cancel) { _, _ -> }
+            .setNegativeButton(CommonR.string.action_cancel) { _, _ -> }
             .show()
     }
 
@@ -74,16 +74,16 @@ object FileTaskChooser {
         // collect sources
         val input = toRadioGroup(activity, directories.first, directories.second)
         if (input == null) {
-            Toast.makeText(activity, R.string.no_datapack, Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, CommonR.string.no_datapack, Toast.LENGTH_SHORT).show()
             return
         }
 
         // display sources
-        AlertDialog.Builder(activity)
-            .setTitle(R.string.action_unzip_datapack_from_archive)
-            .setMessage(R.string.hint_unzip_from_archive)
+        MaterialAlertDialogBuilder(activity, CoreR.style.MyM3AlertDialogOverlay)
+            .setTitle(CommonR.string.action_unzip_datapack_from_archive)
+            .setMessage(CommonR.string.hint_unzip_from_archive)
             .setView(input)
-            .setPositiveButton(R.string.action_ok) { dialog, _ ->
+            .setPositiveButton(CommonR.string.action_ok) { dialog, _ ->
                 dialog.dismiss()
                 val childCount = input.childCount
                 for (i in 0 until childCount) {
@@ -96,7 +96,7 @@ object FileTaskChooser {
                     }
                 }
             }
-            .setNegativeButton(R.string.action_cancel) { _, _ -> }
+            .setNegativeButton(CommonR.string.action_cancel) { _, _ -> }
             .show()
     }
 
@@ -113,24 +113,24 @@ object FileTaskChooser {
         // collect sources
         val archiveInput1 = toRadioGroup(activity, directories.first, directories.second)
         if (archiveInput1 == null) {
-            Toast.makeText(activity, R.string.no_datapack, Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, CommonR.string.no_datapack, Toast.LENGTH_SHORT).show()
             return
         }
 
         // assemble composite input
-        val defaultDatapackZipEntry = activity.getString(R.string.default_download_datapack_zipentry)
-        val input = activity.layoutInflater.inflate(R.layout.zip_input, null) as LinearLayout
-        val entryInput = input.findViewById<EditText>(R.id.zip_entry)
+        val defaultDatapackZipEntry = activity.getString(CommonR.string.default_download_datapack_zipentry)
+        val input = activity.layoutInflater.inflate(CommonR.layout.zip_input, null) as LinearLayout
+        val entryInput = input.findViewById<EditText>(CommonR.id.zip_entry)
         entryInput.setText(defaultDatapackZipEntry)
         entryInput.setSelection(defaultDatapackZipEntry.length)
         input.addView(archiveInput1)
 
         // display sources
-        AlertDialog.Builder(activity)
-            .setTitle(R.string.action_unzip_datapack_from_archive)
-            .setMessage(R.string.hint_unzip_from_archive)
+        MaterialAlertDialogBuilder(activity, CoreR.style.MyM3AlertDialogOverlay)
+            .setTitle(CommonR.string.action_unzip_datapack_from_archive)
+            .setMessage(CommonR.string.hint_unzip_from_archive)
             .setView(input)
-            .setPositiveButton(R.string.action_ok) { dialog, _ ->
+            .setPositiveButton(CommonR.string.action_ok) { dialog, _ ->
                 dialog.dismiss()
                 val zipEntry = entryInput.text.toString()
                 if (zipEntry.isNotEmpty()) {
@@ -146,7 +146,7 @@ object FileTaskChooser {
                     }
                 }
             }
-            .setNegativeButton(R.string.action_cancel) { _, _ -> }
+            .setNegativeButton(CommonR.string.action_cancel) { _, _ -> }
             .show()
     }
 
@@ -162,16 +162,16 @@ object FileTaskChooser {
         // collect sources
         val input = toRadioGroup(activity, directories.first, directories.second)
         if (input == null) {
-            Toast.makeText(activity, R.string.no_datapack, Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, CommonR.string.no_datapack, Toast.LENGTH_SHORT).show()
             return
         }
 
         // display sources
-        AlertDialog.Builder(activity)
-            .setTitle(R.string.action_md5_ask)
-            .setMessage(R.string.hint_md5_of_file)
+        MaterialAlertDialogBuilder(activity, CoreR.style.MyM3AlertDialogOverlay)
+            .setTitle(CommonR.string.action_md5_ask)
+            .setMessage(CommonR.string.hint_md5_of_file)
             .setView(input)
-            .setPositiveButton(R.string.action_ok) { dialog, _ ->
+            .setPositiveButton(CommonR.string.action_ok) { dialog, _ ->
                 dialog.dismiss()
                 val childCount = input.childCount
                 for (i in 0 until childCount) {
@@ -184,7 +184,7 @@ object FileTaskChooser {
                     }
                 }
             }
-            .setNegativeButton(R.string.action_cancel) { _, _ -> }
+            .setNegativeButton(CommonR.string.action_cancel) { _, _ -> }
             .show()
     }
 }

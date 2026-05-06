@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.CallSuper
+import androidx.core.net.toUri
 import com.bbou.concurrency.ObservedDelegatingTask
 import com.bbou.concurrency.Task
 import com.bbou.concurrency.observe.BaseObserver
@@ -24,14 +25,14 @@ import com.bbou.download.DownloadData
 import com.bbou.download.Keys.DOWNLOAD_TO_FILE_ARG
 import com.bbou.download.Keys.THEN_UNZIP_TO_ARG
 import com.bbou.download.Notifier
-import com.bbou.download.common.R
 import com.bbou.download.preference.Settings
-import com.bbou.download.storage.ReportUtils
+import com.bbou.download.storage.ReportUtils.appendHeader
 import com.bbou.download.workers.core.DownloadWork
 import com.bbou.download.workers.utils.MD5Downloader
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.File
-import androidx.core.net.toUri
-import com.bbou.download.storage.ReportUtils.appendHeader
+import com.bbou.download.common.R as CommonR
+import org.sqlunet.core.R as CoreR
 
 /**
  * Download fragment using DownloadWork.
@@ -52,7 +53,7 @@ class DownloadFragment : DownloadBaseFragment() {
      * Layout id
      */
     override val layoutId: Int
-        get() = R.layout.fragment_download
+        get() = CommonR.layout.fragment_download
 
     // A R G U M E N T S
 
@@ -81,11 +82,11 @@ class DownloadFragment : DownloadBaseFragment() {
     // S E T   D E S T I N A T I O N
 
     override fun setDestination(view: View) {
-        val targetView = view.findViewById<TextView>(R.id.target)
-        val targetView2 = view.findViewById<TextView>(R.id.target2)
-        val targetView3 = view.findViewById<TextView>(R.id.target3)
-        val targetView4 = view.findViewById<TextView>(R.id.target4)
-        val targetView5 = view.findViewById<TextView>(R.id.target5)
+        val targetView = view.findViewById<TextView>(CommonR.id.target)
+        val targetView2 = view.findViewById<TextView>(CommonR.id.target2)
+        val targetView3 = view.findViewById<TextView>(CommonR.id.target3)
+        val targetView4 = view.findViewById<TextView>(CommonR.id.target4)
+        val targetView5 = view.findViewById<TextView>(CommonR.id.target5)
 
         if (targetView2 != null && targetView3 != null) {
             val parent = if (toFile != null) toFile!!.parentFile else null
@@ -100,7 +101,7 @@ class DownloadFragment : DownloadBaseFragment() {
             targetView.text = toFile?.absolutePath ?: ""
         }
         if (targetView4 != null) {
-            val deployTo: CharSequence = if (unzipDir != null) SpannableStringBuilder(getText(R.string.deploy_dest)).append(unzipDir!!.parent).append('/') else ""
+            val deployTo: CharSequence = if (unzipDir != null) SpannableStringBuilder(getText(CommonR.string.deploy_dest)).append(unzipDir!!.parent).append('/') else ""
             targetView4.text = deployTo
         }
         if (targetView5 != null) {
@@ -150,7 +151,7 @@ class DownloadFragment : DownloadBaseFragment() {
      */
     private fun start(fromUrl: String, toFile: String) {
         uuid = if (useCoroutines)
-            com.bbou.download.workers.core.coroutines.DownloadWork.Utils.startWork(appContext, fromUrl, toFile, this, observer)
+            DownloadWork.Utils.startWork(appContext, fromUrl, toFile, this, observer)
         else
             DownloadWork.Utils.startWork(appContext, fromUrl, toFile, this, observer)
     }
@@ -240,7 +241,7 @@ class DownloadFragment : DownloadBaseFragment() {
             val fileName = toFile!!.name
             val filePath = toFile!!.absolutePath
             val fatObserver = TaskDialogObserver<Pair<Number, Number>>(parentFragmentManager)
-                .setTitle(appContext.getString(R.string.action_unzip_datapack_from_archive))
+                .setTitle(appContext.getString(CommonR.string.action_unzip_datapack_from_archive))
                 .setMessage(fileName)
             val task: Task<String, Pair<Number, Number>, Boolean> = ObservedDelegatingTask(baseTask, fatObserver)
             task.execute(filePath)
@@ -261,9 +262,9 @@ class DownloadFragment : DownloadBaseFragment() {
                 return@Listener
             }
             if (downloadedResult == null) {
-                AlertDialog.Builder(activity)
-                    .setTitle(getString(R.string.action_md5_of_what, targetFile))
-                    .setMessage(R.string.status_task_failed)
+                MaterialAlertDialogBuilder(activity, CoreR.style.MyM3AlertDialogOverlay)
+                    .setTitle(getString(CommonR.string.action_md5_of_what, targetFile))
+                    .setMessage(CommonR.string.status_task_failed)
                     .show()
             } else {
                 val localPath = toFile!!.absolutePath
@@ -272,19 +273,19 @@ class DownloadFragment : DownloadBaseFragment() {
                     if (activity2 != null && !isDetached && !activity2.isFinishing && !activity2.isDestroyed) {
                         val success = downloadedResult == result
                         val sb = SpannableStringBuilder()
-                            .appendHeader(getString(R.string.md5_downloaded))
+                            .appendHeader(getString(CommonR.string.md5_downloaded))
                             .append('\n')
                             .append(downloadedResult)
                             .append('\n')
-                            .appendHeader(getString(R.string.md5_computed))
+                            .appendHeader(getString(CommonR.string.md5_computed))
                             .append('\n')
-                            .append(result ?: getString(R.string.status_task_failed))
+                            .append(result ?: getString(CommonR.string.status_task_failed))
                             .append('\n')
-                            .appendHeader(getString(R.string.md5_compared))
+                            .appendHeader(getString(CommonR.string.md5_compared))
                             .append('\n')
-                            .append(getString(if (success) R.string.status_task_success else R.string.status_task_failed))
-                        AlertDialog.Builder(activity2)
-                            .setTitle(getString(R.string.action_md5_of_what, targetFile))
+                            .append(getString(if (success) CommonR.string.status_task_success else CommonR.string.status_task_failed))
+                        MaterialAlertDialogBuilder(activity2, CoreR.style.MyM3AlertDialogOverlay)
+                            .setTitle(getString(CommonR.string.action_md5_of_what, targetFile))
                             .setMessage(sb)
                             .show()
                     }
@@ -352,7 +353,7 @@ class DownloadFragment : DownloadBaseFragment() {
      */
     override fun fireNotification(context: Context, notificationId: Int, type: Notifier.NotificationType, vararg args: Any) {
         val from = downloadUrl?.toUri()?.host
-        val to = if (toFile == null) context.getString(R.string.result_deleted) else toFile!!.name
+        val to = if (toFile == null) context.getString(CommonR.string.result_deleted) else toFile!!.name
         val contentText = "$from→$to"
         Notifier.fireNotification(context, notificationId, type, contentText, *args)
     }

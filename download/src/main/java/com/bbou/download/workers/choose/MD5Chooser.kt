@@ -3,7 +3,6 @@
  */
 package com.bbou.download.workers.choose
 
-import android.app.AlertDialog
 import android.content.DialogInterface
 import android.text.SpannableStringBuilder
 import android.widget.RadioButton
@@ -12,11 +11,13 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import com.bbou.deploy.workers.MD5
 import com.bbou.download.choose.Chooser
-import com.bbou.download.common.R
 import com.bbou.download.storage.ReportUtils.appendHeader
 import com.bbou.download.storage.StorageReports
 import com.bbou.download.storage.StorageUtils
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.File
+import com.bbou.download.common.R as CommonR
+import org.sqlunet.core.R as CoreR
 
 /**
  * Md5 async task
@@ -65,16 +66,16 @@ object MD5Chooser {
     private fun md5(activity: FragmentActivity, radioGroup: RadioGroup?) {
 
         if (radioGroup == null) {
-            Toast.makeText(activity, R.string.no_datapack, Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, CommonR.string.no_datapack, Toast.LENGTH_SHORT).show()
             return
         }
 
         // display targets
-        AlertDialog.Builder(activity)
-            .setTitle(R.string.action_md5_ask)
-            .setMessage(R.string.hint_md5_of_file)
+        MaterialAlertDialogBuilder(activity, CoreR.style.MyM3AlertDialogOverlay)
+            .setTitle(CommonR.string.action_md5_ask)
+            .setMessage(CommonR.string.hint_md5_of_file)
             .setView(radioGroup)
-            .setPositiveButton(R.string.action_ok) { dialog: DialogInterface, _: Int ->
+            .setPositiveButton(CommonR.string.action_ok) { dialog: DialogInterface, _ ->
 
                 // selected
                 dialog.dismiss()
@@ -93,24 +94,24 @@ object MD5Chooser {
 
                                     // format result
                                     val sb = SpannableStringBuilder()
-                                        .appendHeader(activity.getString(R.string.md5_computed))
+                                        .appendHeader(activity.getString(CommonR.string.md5_computed))
                                         .append('\n')
-                                        .append(computedResult ?: activity.getString(R.string.status_task_failed))
+                                        .append(computedResult ?: activity.getString(CommonR.string.status_task_failed))
 
                                     // display result
                                     MD5.md5Dialog(activity, sb, sourceFile)
                                 }
                             }
                         } else {
-                            AlertDialog.Builder(activity)
+                            MaterialAlertDialogBuilder(activity, CoreR.style.MyM3AlertDialogOverlay)
                                 .setTitle(sourceFile)
-                                .setMessage(activity.getString(R.string.status_error_no_file))
+                                .setMessage(activity.getString(CommonR.string.status_error_no_file))
                                 .show()
                         }
                     }
                 }
             }
-            .setNegativeButton(R.string.action_cancel) { _, _ -> }
+            .setNegativeButton(CommonR.string.action_cancel) { _, _ -> }
             .show()
     }
 }

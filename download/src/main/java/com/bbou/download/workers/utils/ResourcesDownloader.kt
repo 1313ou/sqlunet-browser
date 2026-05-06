@@ -4,20 +4,20 @@
 package com.bbou.download.workers.utils
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import com.bbou.concurrency.Task
-import com.bbou.download.common.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.function.BiConsumer
+import com.bbou.download.common.R as CommonR
+import org.sqlunet.core.R as CoreR
 
 /**
  * Resources downloader task
@@ -72,7 +72,7 @@ class ResourcesDownloader internal constructor(private val listener: Listener) :
                                     if (lines == null) {
                                         lines = ArrayList()
                                     }
-                                    lines!!.add(fields)
+                                    lines.add(fields)
                                 }
                             }
 
@@ -136,17 +136,17 @@ class ResourcesDownloader internal constructor(private val listener: Listener) :
          * Display resources
          */
         fun showResources(activity: Activity) {
-            val url = activity.getString(R.string.resources_directory)
-            val filter = activity.getString(R.string.resources_directory_filter)
+            val url = activity.getString(CommonR.string.resources_directory)
+            val filter = activity.getString(CommonR.string.resources_directory_filter)
             ResourcesDownloader(Listener { resources: Collection<Array<String>>? ->
                 if (activity.isFinishing || activity.isDestroyed) {
                     return@Listener
                 }
                 if (resources == null) {
-                    AlertDialog.Builder(activity)
-                        .setTitle(activity.getString(R.string.action_directory) + " of " + url)
-                        .setMessage(R.string.status_task_failed)
-                        .setNegativeButton(R.string.action_dismiss) { _, _ -> }
+                    MaterialAlertDialogBuilder(activity, CoreR.style.MyM3AlertDialogOverlay)
+                        .setTitle(activity.getString(CommonR.string.action_directory) + " of " + url)
+                        .setMessage(CommonR.string.status_task_failed)
+                        .setNegativeButton(CommonR.string.action_dismiss) { _, _ -> }
                         .show()
                 } else {
                     if (!activity.isFinishing && !activity.isDestroyed) {
@@ -159,10 +159,10 @@ class ResourcesDownloader internal constructor(private val listener: Listener) :
                                     append('\n')
                                 }
                             }
-                        AlertDialog.Builder(activity)
-                            .setTitle(activity.getString(R.string.resource_directory) + ' ' + url)
+                        MaterialAlertDialogBuilder(activity, CoreR.style.MyM3AlertDialogOverlay)
+                            .setTitle(activity.getString(CommonR.string.resource_directory) + ' ' + url)
                             .setMessage(sb)
-                            .setNegativeButton(R.string.action_dismiss) { _, _ -> }
+                            .setNegativeButton(CommonR.string.action_dismiss) { _, _ -> }
                             .show()
                     }
                 }
@@ -173,8 +173,8 @@ class ResourcesDownloader internal constructor(private val listener: Listener) :
          * Populate radio group with resources
          */
         fun populateLists(context: Context, consumer: BiConsumer<List<String>, List<String>>) {
-            val url = context.getString(R.string.resources_directory)
-            val filter = context.getString(R.string.resources_directory_filter)
+            val url = context.getString(CommonR.string.resources_directory)
+            val filter = context.getString(CommonR.string.resources_directory_filter)
             ResourcesDownloader { resources: Collection<Array<String>>? ->
                 if (resources != null) {
                     val values: MutableList<String> = ArrayList()
