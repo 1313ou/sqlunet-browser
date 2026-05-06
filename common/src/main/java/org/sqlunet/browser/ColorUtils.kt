@@ -4,12 +4,9 @@
 package org.sqlunet.browser
 
 import android.content.Context
-import android.content.res.Resources
-import android.content.res.Resources.Theme
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.TypedValue
-import android.view.View
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
@@ -18,8 +15,6 @@ import androidx.annotation.StyleRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
-import androidx.core.content.withStyledAttributes
-import com.google.android.material.color.MaterialColors
 
 /**
  * Color utils

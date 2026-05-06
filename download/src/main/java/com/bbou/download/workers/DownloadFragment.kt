@@ -4,7 +4,6 @@
 package com.bbou.download.workers
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
 import android.text.SpannableStringBuilder
 import android.util.Log

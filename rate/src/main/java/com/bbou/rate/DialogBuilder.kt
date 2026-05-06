@@ -9,7 +9,6 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Context
-import android.content.DialogInterface
 import android.widget.Toast
 
 internal object DialogBuilder {
