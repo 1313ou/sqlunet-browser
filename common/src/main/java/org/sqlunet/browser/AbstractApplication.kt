@@ -91,7 +91,7 @@ abstract class AbstractApplication : Application() {
             val tasks = manager.appTasks
             for (task in tasks) {
                 val info = task.taskInfo
-                Log.i("task", info.baseActivity.toString())
+                Log.i("task", info?.baseActivity.toString())
             }
         }
     }
