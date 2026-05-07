@@ -5,13 +5,18 @@ import java.util.Scanner
 
 val buildTime = SimpleDateFormat("yyyy-MM-dd_HH:mm").format(Date())
 
-fun getGitHash(): String {
+fun getGitHash(workingDir: File = File(".")): String? {
     return try {
-        val process = Runtime.getRuntime().exec("git rev-parse --short HEAD")
-        val scanner = Scanner(process.inputStream).useDelimiter("\\A")
-        if (scanner.hasNext()) scanner.next().trim() else "unknown"
+        val process = ProcessBuilder("git", "rev-parse", "--short", "HEAD")
+            .directory(workingDir)
+            .redirectErrorStream(true)
+            .start()
+        val result = process.inputStream.bufferedReader().use { it.readText() }.trim()
+        val exitCode = process.waitFor()
+        if (exitCode == 0) result else null
     } catch (e: Exception) {
-        "unknown"
+        e.printStackTrace()
+        null
     }
 }
 
@@ -19,12 +24,6 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.navigationSafeargs)
 }
-
-private val vCode by lazy { rootProject.extra["versionCode"] as Int }
-private val vName by lazy { rootProject.extra["versionName"] as String }
-private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
-private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
-private val vTargetSdk by lazy { rootProject.extra["targetSdk"] as Int }
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
@@ -36,23 +35,23 @@ android {
 
     defaultConfig {
         applicationId = "org.sqlunet.browser.vn"
-        versionCode = vCode
-        versionName = vName
-        minSdk = vMinSdk
-        targetSdk = vTargetSdk
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get() as String?
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // BuildConfig fields
-        buildConfigField("int", "VERSION_CODE", vCode.toString())
-        buildConfigField("String", "VERSION_NAME", "\"$vName\"")
+        buildConfigField("int", "VERSION_CODE", "${libs.versions.versionCode.get().toInt()}")
+        buildConfigField("String", "VERSION_NAME", "\"${libs.versions.versionName.get()}\"")
         buildConfigField("boolean", "DROP_DATA", "false")
         buildConfigField("String", "BUILD_TIME", "\"$buildTime\"")
         buildConfigField("String", "GIT_HASH", "\"${getGitHash()}\"")
     }
 
-    compileSdk = vCompileSdk
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

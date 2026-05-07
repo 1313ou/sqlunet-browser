@@ -11,12 +11,12 @@ android {
     namespace = "org.sqlunet.browser.common"
 
     defaultConfig {
-        minSdk = vMinSdk
+        minSdk = libs.versions.minSdk.get().toInt()
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    compileSdk = vCompileSdk
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

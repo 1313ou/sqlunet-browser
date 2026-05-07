@@ -13,11 +13,11 @@ android {
     namespace = "org.sqlunet.xnet"
 
     defaultConfig {
-        minSdk = vMinSdk
+        minSdk = libs.versions.minSdk.get().toInt()
         multiDexEnabled = true
     }
 
-    compileSdk = vCompileSdk
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

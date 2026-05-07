@@ -5,11 +5,6 @@ plugins {
     alias(libs.plugins.navigationSafeargs) apply false
  }
 
-private val vCode by lazy { rootProject.extra["versionCode"] as Int }
-private val vName by lazy { rootProject.extra["versionName"] as String }
-private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
-private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
-
 val keystorePropertiesFile = rootProject.file("keystore.properties")
 val keystoreProperties = Properties()
 keystoreProperties.load(keystorePropertiesFile.inputStream())
@@ -19,17 +14,17 @@ android {
     namespace = "org.sqlunet.browser.wn.lib"
 
     defaultConfig {
-        minSdk = vMinSdk
+        minSdk = libs.versions.minSdk.get().toInt()
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // BuildConfig fields
-        buildConfigField("int", "VERSION_CODE", vCode.toString())
-        buildConfigField("String", "VERSION_NAME", "\"$vName\"")
+        buildConfigField("int", "VERSION_CODE", "${libs.versions.versionCode.get().toInt()}")
+        buildConfigField("String", "VERSION_NAME", "\"${libs.versions.versionName.get()}\"")
     }
 
-    compileSdk = vCompileSdk
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

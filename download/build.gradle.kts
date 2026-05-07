@@ -11,10 +11,10 @@ android {
 
     namespace = "com.bbou.download.workers"
 
-    compileSdk = vCompileSdk
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = vMinSdk
+        minSdk = libs.versions.minSdk.get().toInt()
         multiDexEnabled = true
     }
 
@@ -26,7 +26,7 @@ android {
 
     @Suppress("UnstableApiUsage")
     testOptions {
-        targetSdk = vTargetSdk
+        targetSdk = libs.versions.targetSdk.get().toInt()
     }
 
     buildFeatures {

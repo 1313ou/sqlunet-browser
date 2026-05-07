@@ -8,10 +8,10 @@ private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
 android {
     namespace = "org.sqlunet.browser.stub"
 
-    compileSdk = vCompileSdk
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = vMinSdk
+        minSdk = libs.versions.minSdk.get().toInt()
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

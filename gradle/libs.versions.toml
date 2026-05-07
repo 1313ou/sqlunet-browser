@@ -1,4 +1,10 @@
 [versions]
+versionCode="219"
+versionName="6.219"
+minSdk = "23"
+targetSdk = "37"
+compileSdk = "37"
+
 agp = "9.2.1"
 
 desugar = "2.1.5"
