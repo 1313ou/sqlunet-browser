@@ -29,7 +29,7 @@ class RunBrowseFlatTest : TestCase() {
     fun before() {
         if (ensureDownloaded()) ActivityScenario.launch(MainActivity::class.java)
         //Actions.do_choose(R.id.spinner, "senses")
-        Seq.doChoose(CommonR.id.spinner, 0)
+        Seq.doChoose(CommonR.id.search_bar_spinner, 0)
     }
 
     @Test

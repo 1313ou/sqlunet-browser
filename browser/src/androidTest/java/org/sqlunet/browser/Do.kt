@@ -5,6 +5,7 @@ package org.sqlunet.browser
 
 import android.util.Log
 import android.widget.ListView
+import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.AdapterViewProtocols
@@ -12,17 +13,8 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import org.hamcrest.CoreMatchers
-import org.sqlunet.browser.ContainerUtils
-import org.sqlunet.browser.DataUtils
-import org.sqlunet.browser.Seq
-import org.sqlunet.browser.ToBoolean
-import org.sqlunet.browser.Wait
-import org.sqlunet.browser.WaitUntil
-import org.sqlunet.browser.WaitUntilText
 import com.bbou.download.common.R as DownloadR
 import org.sqlunet.browser.common.R as CommonR
-import org.sqlunet.browser.wn.lib.R as LibR
-import org.sqlunet.core.R as CoreR
 
 internal object Do {
 
@@ -37,7 +29,7 @@ internal object Do {
     }
 
     private fun download() {
-        Seq.doClick(LibR.id.databaseButton)
+        Seq.doClick(R.id.databaseButton)
         // download activity
         Seq.doClick(DownloadR.id.downloadButton)
         //Wait.until_not_text(R.id.status, Seq.getResourceString(R.string.status_task_running), 10)
@@ -61,7 +53,7 @@ internal object Do {
 
     fun searchRunFlat() {
         for (word in DataUtils.wordList!!) {
-            Seq.doTypeSearch(CoreR.id.search_view, word)
+            Seq.doTypeSearch(CommonR.id.search_view, word)
             // selector list
             Wait.until(android.R.id.list, 5)
             WaitUntil.shown(android.R.id.list)
@@ -84,7 +76,7 @@ internal object Do {
 
     fun searchRunTree() {
         for (word in DataUtils.wordList!!) {
-            Seq.doTypeSearch(CoreR.id.search_view, word)
+            Seq.doTypeSearch(CommonR.id.search_view, word)
 
             // selector list
             //Wait.until(android.R.id.list, 5)
@@ -127,7 +119,7 @@ internal object Do {
 
     fun xselectorsRunTree() {
         for (word in DataUtils.wordList!!) {
-            Seq.doTypeSearch(CoreR.id.search_view, word)
+            Seq.doTypeSearch(CommonR.id.search_view, word)
 
             // selector list
             //Wait.until(android.R.id.list, 5)
@@ -136,7 +128,7 @@ internal object Do {
             Espresso.onView(list).check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
             Espresso.onView(ViewMatchers.withChild(CoreMatchers.allOf(ViewMatchers.withId(R.id.xn), CoreMatchers.instanceOf(TextView::class.java), ViewMatchers.withText("wordnet"))))
                 .perform(ViewActions.click())
-            for (i in 0..49) {
+            repeat(50) {
                 for (section in arrayOf("framenet", "propbank", "verbnet", "wordnet")) {
                     Espresso.onView(ViewMatchers.withChild(CoreMatchers.allOf(ViewMatchers.withId(R.id.xn), CoreMatchers.instanceOf(TextView::class.java), ViewMatchers.withText(section))))
                         .perform(ViewActions.click())
@@ -148,9 +140,9 @@ internal object Do {
     }
 
     fun textSearchRun(position: Int) {
-        Seq.doChoose(CommonR.id.spinner, position)
+        Seq.doChoose(CommonR.id.search_bar_spinner, position)
         for (word in DataUtils.wordList!!) {
-            Seq.doTypeSearch(CoreR.id.search_view, word)
+            Seq.doTypeSearch(CommonR.id.search_view, word)
         }
     }
 }

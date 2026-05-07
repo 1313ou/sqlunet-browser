@@ -19,7 +19,6 @@ import org.sqlunet.browser.WaitUntil
 import org.sqlunet.browser.WaitUntilText
 import com.bbou.download.common.R as DownloadR
 import org.sqlunet.browser.common.R as CommonR
-import org.sqlunet.core.R as CoreR
 
 internal object Do {
 
@@ -58,7 +57,7 @@ internal object Do {
 
     fun searchRunFlat() {
         for (word in DataUtils.wordList!!) {
-            Seq.doTypeSearch(CoreR.id.search_view, word)
+            Seq.doTypeSearch(CommonR.id.search_view, word)
             // selector list
             //Wait.until(android.R.id.list, (5))
             WaitUntil.shown(android.R.id.list)
@@ -80,9 +79,9 @@ internal object Do {
     }
 
     fun textSearchRun(position: Int) {
-        Seq.doChoose(CommonR.id.spinner, position)
+        Seq.doChoose(CommonR.id.search_bar_spinner, position)
         for (word in DataUtils.wordList!!) {
-            Seq.doTypeSearch(CoreR.id.search_view, word)
+            Seq.doTypeSearch(CommonR.id.search_view, word)
         }
     }
 }

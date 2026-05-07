@@ -80,7 +80,7 @@ internal object Do {
 
     fun textSearchRun(position: Int) {
         if (position != -1) {
-            Seq.doChoose(CommonR.id.spinner, position)
+            Seq.doChoose(CommonR.id.search_bar_spinner, position)
         }
         for (word in DataUtils.wordList!!) {
             Seq.doTypeSearch(CommonR.id.search, word)

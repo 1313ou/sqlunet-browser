@@ -25,7 +25,7 @@ class RunXSelectTreeTest : TestCase() {
     @Before
     fun before() {
         //Actions.do_choose(R.id.spinner, "grouped by source")
-        Seq.doChoose(CommonR.id.spinner, 1)
+        Seq.doChoose(CommonR.id.search_bar_spinner, 1)
     }
 
     @Test

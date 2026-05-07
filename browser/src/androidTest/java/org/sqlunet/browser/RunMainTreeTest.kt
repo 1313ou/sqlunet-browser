@@ -33,7 +33,7 @@ class RunMainTreeTest : TestCase() {
         //Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, "Browse")
         Seq.doNavigate(CommonR.id.drawer_layout, CommonR.id.nav_view, CommonR.id.nav_search_browse)
         //Actions.do_choose(R.id.spinner, "grouped by source")
-        Seq.doChoose(CommonR.id.spinner, 1)
+        Seq.doChoose(CommonR.id.search_bar_spinner, 1)
     }
 
     @Test
