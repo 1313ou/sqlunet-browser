@@ -45,4 +45,6 @@ dependencies {
     implementation(project(":capture"))
 
     implementation(libs.appcompat)
+
+    androidTestImplementation(project(":common"))
 }

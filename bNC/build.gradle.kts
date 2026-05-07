@@ -53,6 +53,7 @@ dependencies {
     testImplementation(project(":test-sql"))
     testImplementation(libs.junit)
     testImplementation(libs.querybuilder)
+    androidTestImplementation(project(":common"))
 }
 
 // C O D E   G E N E R A T I O N

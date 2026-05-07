@@ -61,6 +61,7 @@ dependencies {
     testImplementation(project(":test-sql"))
     testImplementation(libs.junit)
     testImplementation(libs.querybuilder)
+    androidTestImplementation(project(":common"))
 }
 
 kotlin {
