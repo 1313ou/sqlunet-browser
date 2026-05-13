@@ -58,7 +58,13 @@ class SqlunetViewModel(application: Application) : AndroidViewModel(application)
 
     override fun onCleared() {
         super.onCleared()
-        mutableData.value?.close()
+        mutableData.value?.let { cursor ->
+            // clear the LiveData value first so UI stops reacting
+            mutableData.value = null
+            if (!cursor.isClosed) {
+                cursor.close()
+            }
+        }
     }
 
     companion object {
