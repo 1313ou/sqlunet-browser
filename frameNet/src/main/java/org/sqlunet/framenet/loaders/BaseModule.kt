@@ -1775,19 +1775,17 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @param flags flags
      * @return processed definition
      */
-    private fun processDefinition(text: CharSequence, flags: Long): Array<CharSequence?> {
+    private fun processDefinition(text: CharSequence, flags: Long): Array<CharSequence> {
         val isFrame = flags and FrameNetMarkupFactory.FEDEF.toLong() == 0L
         val texts = processor.split(text)
-        val fields = arrayOfNulls<CharSequence>(texts.size)
-        for (i in texts.indices) {
-            val field = (if (isFrame) frameProcessor.process(texts[i]) else texts[i])!!
-            if (i == 0) {
-                fields[i] = spanner!!.process(field, flags, if (isFrame) FrameNetFactories.metaFrameDefinitionFactory else FrameNetFactories.metaFeDefinitionFactory)
+        return Array(texts.size) {
+            val field = (if (isFrame) frameProcessor.process(texts[it]) else texts[it])!!
+            if (it == 0) {
+                spanner!!.process(field, flags, if (isFrame) FrameNetFactories.metaFrameDefinitionFactory else FrameNetFactories.metaFeDefinitionFactory)
             } else {
-                fields[i] = spanner!!.process(field, flags, null)
+                spanner!!.process(field, flags, null)
             }
         }
-        return fields
     }
 
     /**
