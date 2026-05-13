@@ -25,7 +25,7 @@ for m in ${all}; do
   res=$H/$d/src/main/res
   seedsDay=${m}-day.txt 
   seedsNight=${m}-night.txt
-  echo -e "${Y}${m}${Z}"
+  echo -e "${bY}${K}${m}${Z}"
 
   ./build-theme.sh "$res" "$seedsDay" "$seedsNight"
 done  

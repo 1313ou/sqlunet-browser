@@ -29,5 +29,7 @@ echo -e "${M}seeds night        ${seedsNight}$Z"
 
 # run
 
-./run.sh -o theme_html    $seedsDay   -x > "html/theme-${m}-day.html"
-./run.sh -o theme_html -d $seedsNight -x > "html/theme-${m}-night.html"
+./run.sh -o theme_html       $seedsDay   -x > "html/theme-${m}-day.html"
+./run.sh -o theme_html -d    $seedsNight -x > "html/theme-${m}-night.html"
+./run.sh -o contrast_html    $seedsDay   -x > "html/contrast-${m}-day.html"
+./run.sh -o contrast_html -d $seedsNight -x > "html/contrast-${m}-night.html"

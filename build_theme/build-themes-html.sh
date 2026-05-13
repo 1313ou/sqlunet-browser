@@ -20,7 +20,7 @@ if [ -z "$all"]; then
 for m in ${all}; do
   seedsDay=${m}-day.txt
   seedsNight=${m}-night.txt
-  echo -e "${Y}${m}${Z}"
+  echo -e "${bY}${K}${m}${Z}"
 
   ./build-theme-html.sh "$m" "$seedsDay" "$seedsNight"
 done  
