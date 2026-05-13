@@ -504,13 +504,17 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         append('\t')
                         appendImage(metadefinitionDrawable)
                         append(' ')
-                        append(frameDefinitionFields[0])
+                        if (frameDefinitionFields.isEmpty())
+                            append("<no definition>")
+                        else {
+                            append(frameDefinitionFields[0])
 
-                        // fe examples in definition
-                        for (i in 1 until frameDefinitionFields.size) {
-                            append('\n')
-                            append('\t')
-                            append(frameDefinitionFields[i])
+                            // fe examples in definition
+                            for (i in 1 until frameDefinitionFields.size) {
+                                append('\n')
+                                append('\t')
+                                append(frameDefinitionFields[i])
+                            }
                         }
 
                         // core type
