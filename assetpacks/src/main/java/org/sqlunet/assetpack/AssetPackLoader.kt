@@ -19,6 +19,7 @@ import com.google.android.play.core.assetpacks.model.AssetPackErrorCode
 import com.google.android.play.core.assetpacks.model.AssetPackStatus
 import java.io.File
 import java.util.Locale
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * Asset pack loader
@@ -31,6 +32,8 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
     private val assetPackManager: AssetPackManager = AssetPackManagerFactory.getInstance(context)
     private var waitForWifiConfirmationShown = false
     private var userConfirmationShown = false
+    private val delivered = AtomicBoolean(false)
+    private var listener: Listener? = null
 
     /**
      * Asset pack path
@@ -67,7 +70,9 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
         observer.taskStart(this)
 
         // listener
-        assetPackManager.registerListener(Listener(activity, observer, whenReady))
+        val stateListener = Listener(activity, observer, whenReady)
+        listener = stateListener
+        assetPackManager.registerListener(stateListener)
 
         // fetch if uninstalled
         assetPackManager
@@ -104,7 +109,10 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
                             Log.i(TAG, "Status asset path " + if (packLocation1 == null) "null" else packLocation1.assetsPath())
                             observer.taskUpdate(statusToString(status))
                             observer.taskFinish(true)
-                            whenReady?.run()
+                            if (delivered.compareAndSet(false, true)) {
+                                listener?.let { assetPackManager.unregisterListener(it) }
+                                whenReady?.run()
+                            }
                         }
                     } else {
                         Log.d(TAG, "AssetPack null status")
@@ -148,13 +156,15 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
                     observer.taskProgress(Pair<Number, Number>(percent2, -1))
                 }
 
-                 AssetPackStatus.COMPLETED -> {
+                AssetPackStatus.COMPLETED -> {
                     assetPackManager.unregisterListener(this)
                     val packLocation1 = assetPackManager.getPackLocation(pack)
                     Log.i(TAG, "Status asset path " + if (packLocation1 == null) "null" else packLocation1.assetsPath())
                     observer.taskUpdate(statusStr)
-                    observer.taskFinish(true)
-                    whenReady?.run()
+                    if (delivered.compareAndSet(false, true)) {
+                        observer.taskFinish(true)
+                        whenReady?.run()
+                    }
                 }
 
                 AssetPackStatus.FAILED -> {
