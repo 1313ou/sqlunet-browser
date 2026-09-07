@@ -58,13 +58,22 @@ class SqlunetViewModel(application: Application) : AndroidViewModel(application)
 
     override fun onCleared() {
         super.onCleared()
-        mutableData.value?.let { cursor ->
-            // clear the LiveData value first so UI stops reacting
-            mutableData.value = null
-            if (!cursor.isClosed) {
-                cursor.close()
-            }
+        val cursor = mutableData.value
+        if (cursor != null && !cursor.isClosed) {
+            cursor.close()
         }
+        // Don't route the teardown through LiveData.setValue() at all.
+        // By the time onCleared() runs, the ViewModel is being destroyed —
+        // there's no legitimate reason to notify observers of anything; any observer still attached is about to be torn down itself,
+        // and notifying it is the bug, not a feature.
+
+        //mutableData.value?.let { cursor ->
+        //    // clear the LiveData value first so UI stops reacting
+        //    mutableData.value = null
+        //    if (!cursor.isClosed) {
+        //        cursor.close()
+        //    }
+        //}
     }
 
     companion object {
