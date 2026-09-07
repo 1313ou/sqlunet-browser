@@ -5,7 +5,7 @@ minSdk = "23"
 targetSdk = "37"
 compileSdk = "37"
 
-agp = "9.2.1"
+agp = "9.4.0"
 
 desugar = "2.1.5"
 
