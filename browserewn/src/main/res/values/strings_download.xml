@@ -6,10 +6,10 @@
 
 	<!-- sites -->
 	<string-array name="download_site_labels">
-		<item>Open English WordNet 2025 (GitHub, zipped)</item>
-		<item>Open English WordNet 2025 (Sourceforge, zipped)</item>
-		<item>Open English WordNet 2025 dev (GitHub, zipped)</item>
-		<item>Open English WordNet 2025 dev (Sourceforge, zipped)</item>
+		<item>Open English Wordnet 2026 (GitHub, zipped)</item>
+		<item>Open English Wordnet 2026 (Sourceforge, zipped)</item>
+		<item>Open English Wordnet 2025 dev (GitHub, zipped)</item>
+		<item>Open English Wordnet 2025 dev (Sourceforge, zipped)</item>
 	</string-array>
 
 </resources>
