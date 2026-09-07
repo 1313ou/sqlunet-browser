@@ -2,6 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/data/bitbucket" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/data/bitbucket2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/data/bitbucket3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/data/github" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/dist/resources" vcs="Git" />
   </component>
 </project>
