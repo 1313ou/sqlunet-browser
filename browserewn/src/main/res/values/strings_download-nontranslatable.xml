@@ -16,9 +16,11 @@
 	<string name="sourceforge_site_url" translatable="false">https://sourceforge.net/projects/sqlunet/files/semantikos/2026</string>
 	<string name="dev_github_site_url" translatable="false">https://github.com/x-englishwordnet/semantikos/releases/download/Semantikos-2025-2</string>
 	<string name="dev_sourceforge_site_url" translatable="false">https://sourceforge.net/projects/sqlunet/files/semantikos/2025</string>
+	<string name="huggingface_site_url" translatable="false">https://huggingface.co/buckets/1313ou/semantikos/resolve</string>
 
 	<string name="default_download_site_url" translatable="false">@string/github_site_url</string>
 	<string-array name="download_site_urls" translatable="false">
+		<item>@string/huggingface_site_url</item>
 		<item>@string/github_site_url</item>
 		<item>@string/sourceforge_site_url</item>
 		<item>@string/dev_github_site_url</item>

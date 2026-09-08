@@ -6,6 +6,7 @@
 
 	<!-- sites -->
 	<string-array name="download_site_labels">
+		<item>Semantikos (HuggingFace bucket, zipped)</item>
 		<item>Semantikos 2026 (Github, zipped)</item>
 		<item>Semantikos 2026 (Sourceforge, zipped)</item>
 	</string-array>
