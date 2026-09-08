@@ -522,7 +522,7 @@ abstract class BaseDownloadFragment : Fragment() {
     @UiThread
     protected fun updateUI() {
 
-        val progress100 = if (progress!!.second == 0L) -1 else (progress!!.first * 100L / progress!!.second).toInt()
+        val progress100 = if (progress!!.second <= 0L) 0 else (progress!!.first * 100L / progress!!.second).toInt()
         val count = "$progress100%   ${formatAsInformationString(progress!!.first)}"
         val message = buildStatusString(status)
         Log.d(TAG, "Update UI $count, $message")
