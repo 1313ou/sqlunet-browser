@@ -1,6 +1,6 @@
 [versions]
-versionCode="221"
-versionName="6.221"
+versionCode="222"
+versionName="6.222"
 minSdk = "23"
 targetSdk = "37"
 compileSdk = "37"
